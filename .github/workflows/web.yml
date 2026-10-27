@@ -29,6 +29,9 @@ jobs:
       - name: Databáze Bible (jen BKR – volné dílo)
         run: python3 tool/build_bible_db.py --fetch --only BKR
 
+      - name: Studijní balíček, mapy (STEPBible, OpenBible, Natural Earth)
+        run: python3 tool/build_study_db.py --fetch
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.47.8'

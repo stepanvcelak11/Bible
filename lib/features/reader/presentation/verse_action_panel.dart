@@ -11,6 +11,7 @@ import '../../../domain/services/citation.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/chapter_content_provider.dart';
 import '../application/reader_state.dart';
+import '../../study/presentation/verse_study_sheet.dart';
 import 'note_editor_sheet.dart';
 
 /// Panel akcí s vybranými verši: Zvýraznit, Přidat záložku, Přidat
@@ -101,6 +102,12 @@ class VerseActionPanel extends ConsumerWidget {
                     onTap: () => actions.bookmark(remove: allBookmarked),
                   ),
                   _ActionButton(
+                    icon: Icons.history_edu,
+                    label: S.study,
+                    tooltip: '${S.original} · ${S.crossRefs}',
+                    onTap: actions.study,
+                  ),
+                  _ActionButton(
                     icon: Icons.edit_note,
                     label: S.note,
                     tooltip: S.addNote,
@@ -165,6 +172,13 @@ class _Actions {
         await repo.toggleBookmark(r, translationId: translationId);
       }
     }
+  }
+
+  void study() {
+    final first = selection.refs.first;
+    final navigatorContext = Navigator.of(context).context;
+    clear();
+    showVerseStudy(navigatorContext, first);
   }
 
   void note() {
@@ -296,17 +310,19 @@ class _ActionButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(icon, color: theme.colorScheme.primary),
             const SizedBox(height: 4),
-            Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelMedium,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                label,
+                maxLines: 1,
+                style: theme.textTheme.labelSmall,
+              ),
             ),
           ],
         ),

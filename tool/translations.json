@@ -22,7 +22,7 @@
       "description": "Současná, čtivá čeština. Nadpisy oddílů, odstavce, poezie a poznámky překladatelů.",
       "format": "osis",
       "source": "CzeB21.xml",
-      "url": "https://gitlab.com/api/v4/projects/crosswire-bible-society%2FCzeB21/repository/files/CzeB21.xml/raw?ref=master&lfs=true",
+      "url": "https://gitlab.com/api/v4/projects/5095544/repository/files/CzeB21.xml/raw?ref=master&lfs=true",
       "size_mb": 9.8,
       "enabled": false,
       "download": true
@@ -36,7 +36,7 @@
       "description": "Nejrozšířenější moderní překlad, společné dílo českých církví.",
       "format": "osis",
       "source": "CzeCEP.xml",
-      "url": "https://gitlab.com/api/v4/projects/crosswire-bible-society%2FCzeCEP/repository/files/CzeCEP.xml/raw?ref=master&lfs=true",
+      "url": "https://gitlab.com/api/v4/projects/685250/repository/files/CzeCEP.xml/raw?ref=master&lfs=true",
       "size_mb": 7.0,
       "enabled": false,
       "download": true

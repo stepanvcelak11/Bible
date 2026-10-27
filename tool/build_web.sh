@@ -37,6 +37,12 @@ rm -f build/web/drift_worker.js.deps build/web/drift_worker.js.map
 curl -sSfL -o build/web/sqlite3.wasm \
   "https://github.com/simolus3/sqlite3.dart/releases/download/sqlite3-${SQLITE_VERSION}/sqlite3.wasm"
 
+# Studijní balíček (stahuje se v aplikaci na požádání, ne při instalaci).
+mkdir -p build/web/data
+if ls build/study/study-*.db.gz >/dev/null 2>&1; then
+  cp build/study/study-*.db.gz build/web/data/
+fi
+
 # Zastaralý service worker Flutteru nepoužíváme (máme vlastní sw.js).
 rm -f build/web/flutter_service_worker.js
 
@@ -48,7 +54,7 @@ python3 - <<'PY'
 import fnmatch, hashlib, json
 from pathlib import Path
 web = Path('build/web')
-skip = ['sw.js', '.*', '*.map', '*.symbols', 'assets/NOTICES',
+skip = ['sw.js', '.*', '*.map', '*.symbols', 'assets/NOTICES', 'data/*',
         'canvaskit/chromium/*', 'canvaskit/webparagraph/*',
         'canvaskit/skwasm*', 'canvaskit/wimp*']
 files, h = [], hashlib.sha256()

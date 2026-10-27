@@ -7,20 +7,23 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
+import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
-import '../../reader/application/reading_position_controller.dart';
+import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
+import '../application/reference_parser.dart';
 
-const _limit = 200;
+const _pageSize = 100;
 
 typedef SearchQuery = ({
   String text,
   Testament? testament,
+  int? bookId,
+  int limit,
   String translations, // seřazená id oddělená čárkou (hodnotová rovnost)
 });
 
-/// Výsledky hledání – cache podle dotazu, takže návrat k předchozímu
-/// dotazu je okamžitý.
+/// Výsledky hledání (cache podle dotazu → návrat k dotazu je okamžitý).
 final searchResultsProvider = FutureProvider.autoDispose
     .family<List<SearchHit>, SearchQuery>((ref, q) {
       return ref
@@ -29,11 +32,24 @@ final searchResultsProvider = FutureProvider.autoDispose
             q.text,
             translationIds: q.translations.split(',').toSet(),
             testament: q.testament,
-            limit: _limit,
+            bookId: q.bookId,
+            limit: q.limit,
           );
     });
 
-/// Offline fulltextové hledání (SQLite FTS5, bez diakritiky).
+/// Počty výsledků podle knih (pro filtr).
+final searchCountsProvider = FutureProvider.autoDispose
+    .family<Map<int, int>, SearchQuery>((ref, q) {
+      return ref
+          .watch(bibleRepositoryProvider)
+          .searchCounts(
+            q.text,
+            translationIds: q.translations.split(',').toSet(),
+            testament: q.testament,
+          );
+    });
+
+/// Offline hledání (SQLite FTS5, bez diakritiky) + skok na biblický odkaz.
 class SearchScreen extends ConsumerStatefulWidget {
   const SearchScreen({super.key});
 
@@ -43,8 +59,11 @@ class SearchScreen extends ConsumerStatefulWidget {
 
 class _SearchScreenState extends ConsumerState<SearchScreen> {
   final _controller = TextEditingController();
+  final _focus = FocusNode();
   Timer? _debounce;
   String _text = '';
+  int? _bookId;
+  int _limit = _pageSize;
   late Testament? _testament = switch (ref
       .read(appPreferencesProvider)
       .searchTestament) {
@@ -60,190 +79,371 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   void dispose() {
     _debounce?.cancel();
     _controller.dispose();
+    _focus.dispose();
     super.dispose();
   }
 
-  void _onChanged(String value) {
+  void _setText(String value, {bool immediate = false}) {
     _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 280), () {
-      if (mounted) setState(() => _text = value.trim());
-    });
+    void apply() {
+      if (!mounted) return;
+      setState(() {
+        _text = value.trim();
+        _bookId = null;
+        _limit = _pageSize;
+      });
+    }
+
+    immediate
+        ? apply()
+        : _debounce = Timer(const Duration(milliseconds: 280), apply);
+  }
+
+  void _remember() {
+    if (_text.length >= 2) {
+      ref.read(appPreferencesProvider).addRecentSearch(_text);
+    }
   }
 
   void _setTestament(Testament? t) {
-    setState(() => _testament = t);
+    setState(() {
+      _testament = t;
+      _bookId = null;
+      _limit = _pageSize;
+    });
     ref.read(appPreferencesProvider).setSearchTestament(t?.code);
   }
+
+  SearchQuery get _query => (
+    text: _text,
+    testament: _testament,
+    bookId: _bookId,
+    limit: _limit,
+    translations: (_translations.toList()..sort()).join(','),
+  );
 
   @override
   Widget build(BuildContext context) {
     final translations = ref.watch(translationsProvider);
-    final query = (
-      text: _text,
-      testament: _testament,
-      translations: (_translations.toList()..sort()).join(','),
-    );
+    final books = ref.watch(booksProvider);
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final insets = MediaQuery.paddingOf(context);
+    final reference = _text.isEmpty ? null : parseReference(_text, books);
     final results = _text.isEmpty
         ? null
-        : ref.watch(searchResultsProvider(query));
+        : ref.watch(searchResultsProvider(_query));
+    final counts = _text.isEmpty
+        ? null
+        : ref
+              .watch(
+                searchCountsProvider((
+                  text: _text,
+                  testament: _testament,
+                  bookId: null,
+                  limit: 0,
+                  translations: _query.translations,
+                )),
+              )
+              .value;
+    final total = counts?.values.fold<int>(0, (a, b) => a + b) ?? 0;
 
     return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        title: TextField(
-          controller: _controller,
-          autofocus: true,
-          onChanged: _onChanged,
-          onSubmitted: (v) => setState(() => _text = v.trim()),
-          textInputAction: TextInputAction.search,
-          decoration: InputDecoration(
-            hintText: S.searchHint,
-            border: InputBorder.none,
-            suffixIcon: _controller.text.isEmpty
-                ? null
-                : IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {
-                      _controller.clear();
-                      setState(() => _text = '');
+      body: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(16, insets.top + 14, 16, 6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(S.search, style: theme.textTheme.headlineMedium),
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: _controller,
+                    focusNode: _focus,
+                    onChanged: _setText,
+                    onSubmitted: (v) {
+                      _setText(v, immediate: true);
+                      _remember();
                     },
-                  ),
-          ),
-        ),
-      ),
-      body: Column(
-        children: [
-          // Filtry: zákon + překlady.
-          SizedBox(
-            height: 52,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              children: [
-                for (final (label, t) in [
-                  (S.searchAll, null),
-                  (S.oldTestament, Testament.oldTestament),
-                  (S.newTestament, Testament.newTestament),
-                ])
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ChoiceChip(
-                      label: Text(label),
-                      selected: _testament == t,
-                      onSelected: (_) => _setTestament(t),
-                    ),
-                  ),
-                if (translations.length > 1) ...[
-                  const VerticalDivider(width: 16),
-                  for (final t in translations)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: FilterChip(
-                        label: Text(t.abbreviation),
-                        selected: _translations.contains(t.id),
-                        onSelected: (on) => setState(() {
-                          final next = {..._translations};
-                          on ? next.add(t.id) : next.remove(t.id);
-                          if (next.isNotEmpty) _translations = next;
-                        }),
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      hintText: S.searchHint,
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: _controller.text.isEmpty
+                          ? null
+                          : IconButton(
+                              icon: const Icon(Icons.clear),
+                              onPressed: () {
+                                _controller.clear();
+                                _setText('', immediate: true);
+                              },
+                            ),
+                      filled: true,
+                      fillColor: palette.card,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide(color: palette.cardBorder),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide(color: palette.cardBorder),
                       ),
                     ),
+                  ),
                 ],
-              ],
+              ),
             ),
           ),
-          const Divider(),
-          Expanded(
-            child: switch (results) {
-              null => const _Hint(
-                icon: Icons.search,
-                title: S.searchEmptyTitle,
-                body: S.searchEmptyBody,
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 50,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
+                children: [
+                  for (final (label, t) in [
+                    (S.searchAll, null),
+                    (S.oldTestament, Testament.oldTestament),
+                    (S.newTestament, Testament.newTestament),
+                  ])
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        label: Text(label),
+                        selected: _testament == t,
+                        onSelected: (_) => _setTestament(t),
+                      ),
+                    ),
+                  if (translations.length > 1) ...[
+                    const VerticalDivider(width: 16, indent: 8, endIndent: 8),
+                    for (final t in translations)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: FilterChip(
+                          label: Text(t.abbreviation),
+                          selected: _translations.contains(t.id),
+                          onSelected: (on) => setState(() {
+                            final next = {..._translations};
+                            on ? next.add(t.id) : next.remove(t.id);
+                            if (next.isNotEmpty) _translations = next;
+                            _limit = _pageSize;
+                          }),
+                        ),
+                      ),
+                  ],
+                ],
               ),
-              AsyncValue(:final value?) when value.isEmpty => const _Hint(
-                icon: Icons.search_off,
-                title: S.searchNoResults,
-                body: S.searchEmptyBody,
-              ),
-              AsyncValue(:final value?) => _Results(
-                hits: value,
-                showTranslation: _translations.length > 1,
-              ),
-              AsyncValue(:final error?) => Center(child: Text('$error')),
-              _ => const Center(child: CircularProgressIndicator()),
-            },
+            ),
           ),
+          if (reference != null)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                child: Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: palette.gold.withValues(alpha: 0.15),
+                      child: Icon(Icons.arrow_forward, color: palette.gold),
+                    ),
+                    title: Text(
+                      '${S.goToReference} '
+                      '${Citation.single(books[reference.bookId - 1].name, reference)}',
+                    ),
+                    onTap: () {
+                      _remember();
+                      openReaderAt(context, ref, reference);
+                    },
+                  ),
+                ),
+              ),
+            ),
+          if (_text.isEmpty)
+            SliverToBoxAdapter(
+              child: _EmptyState(
+                onPick: (q) {
+                  _controller.text = q;
+                  _setText(q, immediate: true);
+                },
+              ),
+            )
+          else ...[
+            if (counts != null && counts.isNotEmpty)
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                      child: Text(
+                        S.inBooks(total, counts.length),
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: palette.muted,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 48,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 6),
+                            child: ChoiceChip(
+                              label: const Text(S.allBooks),
+                              selected: _bookId == null,
+                              onSelected: (_) => setState(() {
+                                _bookId = null;
+                                _limit = _pageSize;
+                              }),
+                            ),
+                          ),
+                          for (final e
+                              in (counts.entries.toList()
+                                ..sort((a, b) => a.key.compareTo(b.key))))
+                            Padding(
+                              padding: const EdgeInsets.only(right: 6),
+                              child: ChoiceChip(
+                                avatar: CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Color(
+                                    categoryOf(e.key).color,
+                                  ),
+                                ),
+                                label: Text(
+                                  '${books[e.key - 1].abbreviation} ${e.value}',
+                                ),
+                                selected: _bookId == e.key,
+                                onSelected: (_) => setState(() {
+                                  _bookId = e.key;
+                                  _limit = _pageSize;
+                                }),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            switch (results) {
+              AsyncValue(:final value?)
+                  when value.isEmpty && reference == null =>
+                const SliverToBoxAdapter(
+                  child: _Hint(
+                    icon: Icons.search_off,
+                    title: S.searchNoResults,
+                    body: S.searchEmptyBody,
+                  ),
+                ),
+              AsyncValue(:final value?) => SliverList.builder(
+                itemCount: value.length + 1,
+                itemBuilder: (context, i) {
+                  if (i == value.length) {
+                    final more = value.length >= _limit;
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        16,
+                        8,
+                        16,
+                        insets.bottom + 110,
+                      ),
+                      child: more
+                          ? OutlinedButton(
+                              onPressed: () =>
+                                  setState(() => _limit += _pageSize),
+                              child: const Text(S.loadMore),
+                            )
+                          : const SizedBox.shrink(),
+                    );
+                  }
+                  return _ResultTile(
+                    hit: value[i],
+                    showTranslation: _translations.length > 1,
+                    onOpen: _remember,
+                  );
+                },
+              ),
+              AsyncValue(:final error?) => SliverToBoxAdapter(
+                child: Center(child: Text('$error')),
+              ),
+              _ => const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              ),
+            },
+          ],
         ],
       ),
     );
   }
 }
 
-class _Results extends ConsumerWidget {
-  const _Results({required this.hits, required this.showTranslation});
+class _ResultTile extends ConsumerWidget {
+  const _ResultTile({
+    required this.hit,
+    required this.showTranslation,
+    required this.onOpen,
+  });
 
-  final List<SearchHit> hits;
+  final SearchHit hit;
   final bool showTranslation;
+  final VoidCallback onOpen;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final translations = {
-      for (final t in ref.watch(translationsProvider)) t.id: t,
-    };
-    return ListView.separated(
-      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.paddingOf(context).bottom + 16,
-      ),
-      itemCount: hits.length + 1,
-      separatorBuilder: (_, i) =>
-          i == 0 ? const SizedBox.shrink() : const Divider(indent: 20),
-      itemBuilder: (context, i) {
-        if (i == 0) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 4),
-            child: Text(
-              S.searchResultCount(hits.length, limited: hits.length >= _limit),
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
+    final palette = AppPalette.of(context);
+    final book = ref.watch(bookByIdProvider(hit.verse.ref.bookId));
+    final abbr = ref
+        .watch(translationsProvider)
+        .where((t) => t.id == hit.verse.translationId)
+        .firstOrNull
+        ?.abbreviation;
+    return InkWell(
+      onTap: () {
+        onOpen();
+        final controller = ref.read(translationControllerProvider.notifier);
+        controller.selectPrimary(hit.verse.translationId);
+        openReaderAt(context, ref, hit.verse.ref);
+      },
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              Citation.single(book.name, hit.verse.ref) +
+                  (showTranslation && abbr != null ? '  ·  $abbr' : ''),
+              style: theme.textTheme.labelLarge?.copyWith(
+                color: palette.gold,
+                fontWeight: FontWeight.w700,
               ),
             ),
-          );
-        }
-        final hit = hits[i - 1];
-        final book = ref.watch(bookByIdProvider(hit.verse.ref.bookId));
-        final abbr = translations[hit.verse.translationId]?.abbreviation;
-        return InkWell(
-          onTap: () {
-            final position = ref.read(readingPositionProvider.notifier);
-            final controller = ref.read(translationControllerProvider.notifier);
-            controller.selectPrimary(hit.verse.translationId);
-            position.jumpTo(hit.verse.ref);
-            Navigator.of(context).pop();
-          },
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  Citation.single(book.name, hit.verse.ref) +
-                      (showTranslation && abbr != null ? '  ·  $abbr' : ''),
-                  style: theme.textTheme.labelLarge?.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text.rich(
-                  _snippet(context, hit.snippet),
-                  style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                ),
-              ],
+            const SizedBox(height: 4),
+            Text.rich(
+              _snippet(context, hit.snippet.replaceAll('\n', ' ')),
+              style: TextStyle(
+                fontFamily: appFontFamily,
+                fontSize: 16,
+                height: 1.45,
+                color: theme.colorScheme.onSurface,
+              ),
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 
@@ -270,6 +470,105 @@ class _Results extends ConsumerWidget {
   }
 }
 
+class _EmptyState extends ConsumerStatefulWidget {
+  const _EmptyState({required this.onPick});
+
+  final ValueChanged<String> onPick;
+
+  @override
+  ConsumerState<_EmptyState> createState() => _EmptyStateState();
+}
+
+class _EmptyStateState extends ConsumerState<_EmptyState> {
+  @override
+  Widget build(BuildContext context) {
+    final prefs = ref.watch(appPreferencesProvider);
+    final recent = prefs.recentSearches;
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    const examples = [
+      'láska',
+      'pokoj',
+      '„dobrý pastýř“',
+      'Ž 23',
+      'J 3,16',
+      'Ř 8,28',
+    ];
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (recent.isNotEmpty) ...[
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    S.recentSearches,
+                    style: theme.textTheme.titleMedium,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    await prefs.clearRecentSearches();
+                    setState(() {});
+                  },
+                  child: const Text(S.clear),
+                ),
+              ],
+            ),
+            for (final q in recent)
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                leading: Icon(Icons.history, color: palette.muted),
+                title: Text(q),
+                onTap: () => widget.onPick(q),
+              ),
+            const SizedBox(height: 16),
+          ],
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.tips_and_updates_outlined,
+                        color: palette.gold,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        S.searchEmptyTitle,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(S.searchEmptyBody, style: theme.textTheme.bodyMedium),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final e in examples)
+                        ActionChip(
+                          label: Text(e),
+                          onPressed: () => widget.onPick(e),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _Hint extends StatelessWidget {
   const _Hint({required this.icon, required this.title, required this.body});
 
@@ -280,25 +579,20 @@ class _Hint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 48, color: theme.colorScheme.outline),
-            const SizedBox(height: 16),
-            Text(title, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 8),
-            Text(
-              body,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(40),
+      child: Column(
+        children: [
+          Icon(icon, size: 48, color: theme.colorScheme.outline),
+          const SizedBox(height: 16),
+          Text(title, style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Text(
+            body,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodyMedium,
+          ),
+        ],
       ),
     );
   }

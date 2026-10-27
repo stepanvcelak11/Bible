@@ -4,10 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
-import '../../journal/presentation/journal_screen.dart';
+import '../../maps/presentation/maps_screen.dart';
 import '../../navigation/presentation/book_picker_screen.dart';
-import '../../search/presentation/search_screen.dart';
 import '../../settings/presentation/settings_screen.dart';
+import '../../shell/home_shell.dart';
+import '../../study/presentation/book_intro_sheet.dart';
+import '../../translations/presentation/library_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/translation_selector_sheet.dart';
 import '../application/chapter_content_provider.dart';
@@ -130,7 +132,8 @@ class _TopBar extends ConsumerWidget {
               IconButton(
                 tooltip: S.search,
                 icon: const Icon(Icons.search),
-                onPressed: () => openSearch(context),
+                onPressed: () =>
+                    ref.read(shellTabProvider.notifier).select(AppTab.search),
               ),
               Tooltip(
                 message: S.selectTranslation,
@@ -156,26 +159,33 @@ class _TopBar extends ConsumerWidget {
                 tooltip: S.menu,
                 icon: const Icon(Icons.more_vert),
                 onSelected: (item) => switch (item) {
-                  _MenuItem.journal => openJournal(context),
-                  _MenuItem.settings => openSettings(context),
+                  _MenuItem.intro => showBookIntro(context, position.bookId),
+                  _MenuItem.map => openChapterMap(
+                    context,
+                    position.bookId,
+                    position.chapter,
+                  ),
+                  _MenuItem.translations => _push(
+                    context,
+                    const LibraryScreen(),
+                  ),
+                  _MenuItem.settings => _push(context, const SettingsScreen()),
                 },
-                itemBuilder: (_) => const [
-                  PopupMenuItem(
-                    value: _MenuItem.journal,
-                    child: ListTile(
-                      leading: Icon(Icons.bookmarks_outlined),
-                      title: Text(S.journal),
-                      contentPadding: EdgeInsets.zero,
+                itemBuilder: (_) => [
+                  for (final (item, icon, label) in const [
+                    (_MenuItem.intro, Icons.auto_stories_outlined, S.bookIntro),
+                    (_MenuItem.map, Icons.map_outlined, S.chapterPlaces),
+                    (_MenuItem.translations, Icons.translate, S.library),
+                    (_MenuItem.settings, Icons.tune, S.settings),
+                  ])
+                    PopupMenuItem(
+                      value: item,
+                      child: ListTile(
+                        leading: Icon(icon),
+                        title: Text(label),
+                        contentPadding: EdgeInsets.zero,
+                      ),
                     ),
-                  ),
-                  PopupMenuItem(
-                    value: _MenuItem.settings,
-                    child: ListTile(
-                      leading: Icon(Icons.tune),
-                      title: Text(S.settings),
-                      contentPadding: EdgeInsets.zero,
-                    ),
-                  ),
                 ],
               ),
             ],
@@ -186,7 +196,10 @@ class _TopBar extends ConsumerWidget {
   }
 }
 
-enum _MenuItem { journal, settings }
+Future<void> _push(BuildContext context, Widget page) =>
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
+
+enum _MenuItem { intro, map, translations, settings }
 
 /// Vodorovné listování kapitolami.
 class _ChapterPager extends ConsumerWidget {
@@ -280,15 +293,3 @@ class _PagerState extends ConsumerState<_Pager> {
 
 Future<void> openBookPicker(BuildContext context) => Navigator.of(context)
     .push(MaterialPageRoute<void>(builder: (_) => const BookPickerScreen()));
-
-Future<void> openSearch(BuildContext context) =>
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (_) => const SearchScreen()));
-
-Future<void> openJournal(BuildContext context) =>
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (_) => const JournalScreen()));
-
-Future<void> openSettings(BuildContext context) =>
-    Navigator.of(context)
-        .push(MaterialPageRoute<void>(builder: (_) => const SettingsScreen()));

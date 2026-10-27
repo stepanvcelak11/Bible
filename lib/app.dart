@@ -4,9 +4,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/l10n/strings_cs.dart';
+import 'core/theme/app_background.dart';
 import 'core/theme/app_theme.dart';
 import 'domain/entities/reader_settings.dart';
-import 'features/reader/presentation/reader_screen.dart';
+import 'features/shell/home_shell.dart';
 import 'features/settings/application/reader_settings_controller.dart';
 
 const _czech = Locale('cs', 'CZ');
@@ -26,15 +27,15 @@ class BibleApp extends ConsumerWidget {
       supportedLocales: const [_czech],
       // Systémové texty (kopírovat/vložit, dialogy…) také česky.
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: AppTheme.forMode(mode),
-      darkTheme: AppTheme.dark(),
+      theme: withAppBackground(AppTheme.forMode(mode)),
+      darkTheme: withAppBackground(AppTheme.dark()),
       themeMode: switch (mode) {
         AppThemeMode.system => ThemeMode.system,
         AppThemeMode.dark => ThemeMode.dark,
         _ => ThemeMode.light,
       },
       themeAnimationDuration: const Duration(milliseconds: 350),
-      home: const ReaderScreen(),
+      home: const HomeShell(),
     );
   }
 }

@@ -5,6 +5,7 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../application/translation_controller.dart';
+import 'library_screen.dart';
 
 /// Otevře spodní panel „Vybrat překlad“.
 Future<void> showTranslationSelector(BuildContext context) {
@@ -48,6 +49,19 @@ class TranslationSelectorSheet extends ConsumerWidget {
               selected: t.id == selection.primaryId,
               onTap: () => controller.selectPrimary(t.id),
             ),
+          ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+            leading: const Icon(Icons.download_for_offline_outlined),
+            title: const Text(S.manageTranslations),
+            subtitle: const Text('B21, ČEP, ČSP'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const LibraryScreen()),
+              );
+            },
+          ),
           const Divider(height: 32),
           SwitchListTile(
             title: const Text(S.compareTranslations),

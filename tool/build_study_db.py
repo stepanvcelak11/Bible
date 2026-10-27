@@ -341,9 +341,13 @@ def build_routes(by_friendly: dict) -> list[tuple]:
 
 # --- Podklad mapy ------------------------------------------------------------
 def _simplify(points: list, tol: float) -> list:
-    """Douglas–Peucker."""
+    """Douglas–Peucker. Uzavřený obrys (první = poslední bod) se dělí na dvě
+    poloviny – jinak by úsečka mezi koncovými body měla nulovou délku."""
     if len(points) < 3:
         return points
+    if points[0] == points[-1] and len(points) > 4:
+        mid = len(points) // 2
+        return _simplify(points[: mid + 1], tol)[:-1] + _simplify(points[mid:], tol)
     (x1, y1), (x2, y2) = points[0], points[-1]
     dx, dy = x2 - x1, y2 - y1
     norm = (dx * dx + dy * dy) ** 0.5 or 1e-12

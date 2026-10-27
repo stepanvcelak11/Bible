@@ -28,7 +28,10 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const request = event.request;
-  if (request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+  const url = new URL(request.url);
+  if (request.method !== 'GET' || url.origin !== self.location.origin) return;
+  // Studijní balíček si aplikace ukládá sama do databáze – necachovat dvakrát.
+  if (url.pathname.includes('/data/')) return;
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);

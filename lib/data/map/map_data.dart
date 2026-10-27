@@ -61,18 +61,25 @@ class MapData {
 
   static Future<MapData> load([AssetBundle? bundle]) async {
     final b = bundle ?? rootBundle;
-    final base = jsonDecode(
-      await b.loadString('assets/map/basemap.json'),
-    ) as Map<String, Object?>;
+    // load + utf8 místo loadString: ten velké soubory dekóduje v isolate
+    // (zbytečná režie, na webu bez užitku).
+    Future<Object?> json(String key) async {
+      final data = await b.load(key);
+      return jsonDecode(
+        utf8.decode(
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+        ),
+      );
+    }
+
+    final base = await json('assets/map/basemap.json') as Map<String, Object?>;
     List<Float32List> lines(String key) => [
       for (final l in base[key]! as List<Object?>)
         Float32List.fromList([
           for (final v in l! as List<Object?>) (v! as num).toDouble(),
         ]),
     ];
-    final data = jsonDecode(
-      await b.loadString('assets/map/places.json'),
-    ) as Map<String, Object?>;
+    final data = await json('assets/map/places.json') as Map<String, Object?>;
     return MapData(
       basemap: Basemap(
         land: lines('land'),

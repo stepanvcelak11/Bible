@@ -8,7 +8,7 @@ import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/user_entities.dart';
 import '../../../domain/services/citation.dart';
 import '../../reader/application/reader_state.dart';
-import '../../reader/application/reading_position_controller.dart';
+import '../../shell/home_shell.dart';
 import '../../reader/presentation/note_editor_sheet.dart';
 import '../../translations/application/translation_controller.dart';
 
@@ -49,10 +49,8 @@ class JournalScreen extends StatelessWidget {
   }
 }
 
-void _open(BuildContext context, WidgetRef ref, VerseRef target) {
-  ref.read(readingPositionProvider.notifier).jumpTo(target);
-  Navigator.of(context).popUntil((route) => route.isFirst);
-}
+void _open(BuildContext context, WidgetRef ref, VerseRef target) =>
+    openReaderAt(context, ref, target);
 
 void _showUndo(BuildContext context, Future<void> Function() undo) {
   ScaffoldMessenger.of(context)

@@ -29,6 +29,12 @@ class ReaderSettingsController extends Notifier<ReaderSettings> {
   void setShowVerseNumbers(bool value) =>
       update((s) => s.copyWith(showVerseNumbers: value));
 
+  void setParagraphMode(bool value) =>
+      update((s) => s.copyWith(paragraphMode: value));
+
+  void setBackground(AppBackgroundStyle value) =>
+      update((s) => s.copyWith(background: value));
+
   void reset() => update((_) => const ReaderSettings());
 }
 

@@ -93,9 +93,12 @@ class StudyPackManager {
     onProgress?.call(const Processing());
     // Na webu nemá rozbalení vlastní vlákno – dát UI chvíli překreslit.
     await Future<void>.delayed(const Duration(milliseconds: 50));
-    final bytes = Uint8List.fromList(
-      const GZipDecoder().decodeBytes(builder.takeBytes()),
-    );
+    final raw = builder.takeBytes();
+    // Server mohl soubor rozbalit sám (Content-Encoding) – pak už není gzip.
+    final isGzip = raw.length > 2 && raw[0] == 0x1f && raw[1] == 0x8b;
+    final bytes = isGzip
+        ? Uint8List.fromList(const GZipDecoder().decodeBytes(raw))
+        : raw;
     onProgress?.call(const Saving());
     await storeStudyPack(manifest.version, bytes);
   }

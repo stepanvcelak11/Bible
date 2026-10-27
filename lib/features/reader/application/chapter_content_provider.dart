@@ -22,9 +22,12 @@ sealed class ChapterContent {
 }
 
 final class SingleChapter extends ChapterContent {
-  const SingleChapter(super.bookId, super.chapter, this.verses);
+  const SingleChapter(super.bookId, super.chapter, this.text);
 
-  final List<Verse> verses;
+  /// Verše včetně nadpisů oddílů a poznámek překladatelů.
+  final ChapterText text;
+
+  List<Verse> get verses => text.verses;
 
   @override
   bool get isEmpty => verses.isEmpty;
@@ -73,7 +76,7 @@ final chapterPageProvider = FutureProvider.autoDispose
         return SingleChapter(
           key.bookId,
           key.chapter,
-          await repo.getChapter(key.primaryId, key.bookId, key.chapter),
+          await repo.getChapterText(key.primaryId, key.bookId, key.chapter),
         );
       }
       return ParallelChapter(

@@ -8,9 +8,13 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
+import '../../../core/theme/app_background.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/reader_settings.dart';
 import '../../../domain/entities/user_entities.dart';
 import '../../reader/presentation/verse_tile.dart';
+import '../../study/presentation/study_pack_screen.dart';
+import '../../translations/presentation/library_screen.dart';
 import '../application/reader_settings_controller.dart';
 
 /// Nastavení: vzhled čtení (s živým náhledem), záloha dat, o aplikaci.
@@ -57,6 +61,8 @@ class SettingsScreen extends ConsumerWidget {
               onSelectionChanged: (s) => ctl.setThemeMode(s.single),
             ),
           ),
+          const _Header(S.background),
+          const _BackgroundPicker(),
           // Živý náhled textu.
           Container(
             margin: const EdgeInsets.fromLTRB(16, 20, 16, 8),
@@ -65,7 +71,7 @@ class SettingsScreen extends ConsumerWidget {
               vertical: 16,
             ),
             decoration: BoxDecoration(
-              color: theme.scaffoldBackgroundColor,
+              color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(color: theme.colorScheme.outlineVariant),
             ),
@@ -118,6 +124,13 @@ class SettingsScreen extends ConsumerWidget {
             value: settings.showVerseNumbers,
             onChanged: ctl.setShowVerseNumbers,
           ),
+          SwitchListTile(
+            secondary: const Icon(Icons.notes),
+            title: const Text(S.paragraphMode),
+            subtitle: const Text(S.paragraphModeHint),
+            value: settings.paragraphMode,
+            onChanged: ctl.setParagraphMode,
+          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -126,6 +139,25 @@ class SettingsScreen extends ConsumerWidget {
                 onPressed: ctl.reset,
                 child: const Text(S.resetAppearance),
               ),
+            ),
+          ),
+          const _Header(S.translations),
+          ListTile(
+            leading: const Icon(Icons.translate),
+            title: const Text(S.manageTranslations),
+            subtitle: const Text('B21, ČEP, ČSP, vlastní soubor'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const LibraryScreen()),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.history_edu),
+            title: const Text(S.studyPackTitle),
+            subtitle: const Text('Původní text, slovník, souvislosti'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const StudyPackScreen()),
             ),
           ),
           const _Header(S.backup),
@@ -153,7 +185,7 @@ class SettingsScreen extends ConsumerWidget {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
             child: Text(S.aboutBody, style: theme.textTheme.bodyMedium),
           ),
-          const _Header(S.translations),
+          const _Header('Licence'),
           for (final t in ref.watch(translationsProvider))
             ListTile(
               leading: CircleAvatar(
@@ -174,7 +206,8 @@ class SettingsScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
             child: Text(
-              'Písmo Literata – SIL Open Font License.',
+              'Písma Literata a Inter – SIL Open Font License. '
+              '${S.studyPackCredits}',
               style: theme.textTheme.bodySmall,
             ),
           ),
@@ -313,6 +346,93 @@ class _SliderTile extends StatelessWidget {
               style: theme.textTheme.labelLarge,
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Výběr pozadí – malé živé náhledy.
+class _BackgroundPicker extends ConsumerWidget {
+  const _BackgroundPicker();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = ref.watch(
+      readerSettingsProvider.select((s) => s.background),
+    );
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    const labels = {
+      AppBackgroundStyle.plain: S.backgroundPlain,
+      AppBackgroundStyle.paper: S.backgroundPaper,
+      AppBackgroundStyle.glow: S.backgroundGlow,
+      AppBackgroundStyle.sky: S.backgroundSky,
+    };
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+      child: Row(
+        children: [
+          for (final style in AppBackgroundStyle.values)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Semantics(
+                  button: true,
+                  selected: style == selected,
+                  label: labels[style],
+                  child: GestureDetector(
+                    onTap: () => ref
+                        .read(readerSettingsProvider.notifier)
+                        .setBackground(style),
+                    child: Column(
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 180),
+                          height: 74,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            border: Border.all(
+                              color: style == selected
+                                  ? palette.gold
+                                  : palette.cardBorder,
+                              width: style == selected ? 2 : 1,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: CustomPaint(
+                              size: Size.infinite,
+                              painter: BackdropPainter(
+                                style: style,
+                                surface: theme.colorScheme.surface,
+                                palette: palette,
+                                dark: theme.brightness == Brightness.dark,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        ExcludeSemantics(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              labels[style]!,
+                              maxLines: 1,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                fontWeight: style == selected
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

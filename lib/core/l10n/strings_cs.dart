@@ -70,7 +70,7 @@ abstract final class S {
   static const cancel = 'Zrušit';
 
   // Hledání
-  static const searchHint = 'Hledat slovo nebo frázi…';
+  static const searchHint = 'Slovo, frázi nebo odkaz (J 3,16)…';
   static const searchAll = 'Celá Bible';
   static const searchEmptyTitle = 'Hledání v Bibli';
   static const searchEmptyBody =
@@ -100,6 +100,11 @@ abstract final class S {
   static const themeLight = 'Světlý';
   static const themeSepia = 'Sépie';
   static const themeDark = 'Tmavý';
+  static const background = 'Pozadí';
+  static const backgroundPlain = 'Jednobarevné';
+  static const backgroundPaper = 'Papír';
+  static const backgroundGlow = 'Záře';
+  static const backgroundSky = 'Obloha';
   static const fontSize = 'Velikost písma';
   static const lineHeight = 'Řádkování';
   static const margins = 'Okraje';
@@ -120,6 +125,142 @@ abstract final class S {
       'Soukromá čtečka Bible. Bez reklam, účtů a sledování – vše zůstává '
       'v tomto zařízení a funguje bez internetu.';
   static const translations = 'Překlady';
+
+  // Navigace aplikace
+  static const tabToday = 'Dnes';
+  static const tabBible = 'Bible';
+  static const tabSearch = 'Hledat';
+  static const tabMaps = 'Mapy';
+  static const tabJournal = 'Deník';
+
+  // Čtečka – rozšíření
+  static const footnote = 'Poznámka překladu';
+  static const bookIntro = 'Úvod ke knize';
+  static String placesInChapter(int n) => switch (n) {
+    1 => '1 místo na mapě',
+    >= 2 && <= 4 => '$n místa na mapě',
+    _ => '$n míst na mapě',
+  };
+  static const study = 'Studovat';
+  static const paragraphMode = 'Text v odstavcích';
+  static const paragraphModeHint =
+      'Jako v tištěné Bibli (u překladů s členěním, např. B21).';
+
+  // Úvod ke knize
+  static const author = 'Autor';
+  static const written = 'Doba';
+  static const theme2 = 'Hlavní téma';
+  static const outline = 'Obsah knihy';
+  static const keyVerses = 'Klíčové verše';
+  static const readBook = 'Číst knihu';
+
+  // Studium verše
+  static const original = 'Originál';
+  static const crossRefs = 'Souvislosti';
+  static const studyPackTitle = 'Studijní balíček';
+  static const studyPackBody =
+      'Původní hebrejský a řecký text slovo po slově, slovník s českými '
+      'významy a 87 000 souvislostí mezi verši. Stáhne se jednou a pak '
+      'funguje bez internetu.';
+  static String studyPackDownload(String size) => 'Stáhnout ($size)';
+  static const studyPackInstalled = 'Studijní balíček je stažený';
+  static const studyPackRemove = 'Odstranit studijní balíček';
+  static const studyPackCredits =
+      'Původní text a slovník: STEPBible.org (CC BY 4.0). Souvislosti a '
+      'místa: OpenBible.info (CC BY 4.0). Mapa: Natural Earth.';
+  static const downloading = 'Stahuji…';
+  static const processing = 'Zpracovávám…';
+  static const saving = 'Ukládám…';
+  static const noOriginal = 'K tomuto verši není původní text k dispozici.';
+  static const noCrossRefs = 'K tomuto verši nejsou žádné souvislosti.';
+  static const englishMeaning = 'Anglický výklad (STEPBible)';
+  static const czechMeaning = 'Význam';
+  static const grammar = 'Tvar';
+  static const strongNumber = 'Strongovo číslo';
+  static String occurrencesCount(int n) => 'Vyskytuje se $n×';
+  static const showOccurrences = 'Kde všude se vyskytuje';
+  static const originalHint =
+      'Klepněte na slovo pro slovník. Pořadí slov je podle původního textu.';
+
+  // Dnes
+  static const goodMorning = 'Dobré ráno';
+  static const goodDay = 'Dobrý den';
+  static const goodEvening = 'Dobrý večer';
+  static const verseOfDay = 'Verš dne';
+  static const continueReading = 'Pokračovat ve čtení';
+  static const streak = 'dní v řadě';
+  static const thisWeek = 'kapitol tento týden';
+  static const totalRead = 'přečteno celkem';
+  static const readingPlan = 'Plán čtení';
+  static const choosePlan = 'Vybrat plán čtení';
+  static const planIntro =
+      'Pravidelné čtení po malých dávkách. Pokrok se ukládá jen v telefonu.';
+  static const startPlan = 'Začít';
+  static const stopPlan = 'Ukončit plán';
+  static String planDay(int day, int total) => 'Den $day z $total';
+  static const planDone = 'Plán je dokončen. Skvělá práce!';
+  static const markDone = 'Hotovo';
+  static const recentlyRead = 'Nedávno čteno';
+  static const explore = 'Objevovat';
+  static const exploreMaps = 'Biblické mapy';
+  static const exploreMapsHint = 'Místa a cesty';
+  static const exploreIntros = 'Úvody ke knihám';
+  static const exploreIntrosHint = 'Autor, doba, téma';
+  static const exploreTranslations = 'Překlady';
+  static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
+  static const exploreStudy = 'Původní text';
+  static const exploreStudyHint = 'Hebrejština a řečtina';
+
+  // Mapy
+  static const mapsTitle = 'Biblické mapy';
+  static const thematicMaps = 'Tematické mapy';
+  static const allPlaces = 'Všechna místa';
+  static const findPlace = 'Najít místo…';
+  static String mentions(int n) => switch (n) {
+    1 => '1 zmínka',
+    >= 2 && <= 4 => '$n zmínky',
+    _ => '$n zmínek',
+  };
+  static const mapCredits =
+      'Místa: OpenBible.info (CC BY 4.0) · Mapa: Natural Earth';
+  static const chapterPlaces = 'Místa v kapitole';
+  static const fitMap = 'Zobrazit vše';
+
+  // Knihy
+  static const findBook = 'Najít knihu…';
+  static String chaptersRead(int read, int total) => '$read z $total přečteno';
+
+  // Hledání – rozšíření
+  static const recentSearches = 'Nedávná hledání';
+  static const clear = 'Vymazat';
+  static const goToReference = 'Přejít na';
+  static const loadMore = 'Načíst další';
+  static const allBooks = 'Všechny knihy';
+  static String inBooks(int results, int books) =>
+      '${_results(results)} v ${books == 1 ? '1 knize' : '$books knihách'}';
+
+  // Překlady
+  static const library = 'Překlady';
+  static const installed = 'V telefonu';
+  static const availableToDownload = 'Ke stažení';
+  static const unavailable = 'Nedostupné';
+  static const download = 'Stáhnout';
+  static const remove = 'Odstranit';
+  static const bundled = 'Součást aplikace';
+  static String removeTranslationQuestion(String name) =>
+      'Odstranit překlad $name z telefonu?';
+  static const importFile = 'Importovat vlastní soubor';
+  static const importHint =
+      'OSIS, Zefania XML nebo JSON – např. překlad, který máte legálně '
+      'z jiného zdroje.';
+  static const importName = 'Název překladu';
+  static const importAbbreviation = 'Zkratka';
+  static String imported(int n) => 'Importováno $n veršů';
+  static const libraryInfo =
+      'Překlady se stahují přímo od CrossWire Bible Society, která má od '
+      'vydavatelů povolení k šíření. Jsou jen pro vaši osobní potřebu.';
+  static const manageTranslations = 'Spravovat a stahovat překlady';
+  static const downloadFailed = 'Stažení se nepodařilo';
 
   /// „Jan 3“
   static String chapterTitle(String bookName, int chapter) =>

@@ -18,6 +18,17 @@ abstract interface class BibleRepository {
   /// Verše jedné kapitoly seřazené podle čísla verše.
   Future<List<Verse>> getChapter(String translationId, int bookId, int chapter);
 
+  /// Kapitola včetně nadpisů oddílů a poznámek překladatelů.
+  Future<ChapterText> getChapterText(
+    String translationId,
+    int bookId,
+    int chapter,
+  );
+
+  /// Překlady a jejich umístění se změnily (stažení/odstranění) – zahodit
+  /// cache.
+  void invalidate();
+
   /// Jeden verš (např. pro seznam záložek), nebo `null`, pokud v překladu
   /// neexistuje.
   Future<Verse?> getVerse(String translationId, VerseRef ref);
@@ -37,6 +48,15 @@ abstract interface class BibleRepository {
     String query, {
     Set<String>? translationIds,
     Testament? testament,
+    int? bookId,
     int limit = 200,
+    int offset = 0,
+  });
+
+  /// Počet nalezených veršů v jednotlivých knihách (`bookId → počet`).
+  Future<Map<int, int>> searchCounts(
+    String query, {
+    Set<String>? translationIds,
+    Testament? testament,
   });
 }

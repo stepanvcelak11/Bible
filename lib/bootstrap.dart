@@ -15,14 +15,15 @@ import 'data/user/user_database.dart';
 /// dvou SQLite databází a dva drobné dotazy (překlady, knihy). Pouze při
 /// prvním spuštění / aktualizaci dat se navíc kopíruje databáze z assets.
 Future<List<Override>> bootstrap() async {
-  final (bibleDb, sharedPrefs) = await (
+  final (bibleDb, downloadsDb, sharedPrefs) = await (
     openBibleDatabase(),
+    openDownloadsDatabase(),
     SharedPreferences.getInstance(),
   ).wait;
   final userDb = UserDatabase.open();
 
   // Repozitář si seznamy uloží do cache; providery je pak vydají synchronně.
-  final repo = BibleRepositoryImpl(bibleDb);
+  final repo = BibleRepositoryImpl(bibleDb, downloadsDb);
   final (translations, books) = await (
     repo.getTranslations(),
     repo.getBooks(),
@@ -33,10 +34,11 @@ Future<List<Override>> bootstrap() async {
 
   return [
     bibleDatabaseProvider.overrideWithValue(bibleDb),
+    downloadsDatabaseProvider.overrideWithValue(downloadsDb),
     userDatabaseProvider.overrideWithValue(userDb),
     appPreferencesProvider.overrideWithValue(AppPreferences(sharedPrefs)),
     bibleRepositoryProvider.overrideWithValue(repo),
-    translationsProvider.overrideWithValue(translations),
+    initialTranslationsProvider.overrideWithValue(translations),
     booksProvider.overrideWithValue(books),
   ];
 }

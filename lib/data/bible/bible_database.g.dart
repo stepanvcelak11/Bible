@@ -1530,6 +1530,28 @@ class Verses extends Table with TableInfo<Verses, Verse> {
     requiredDuringInsert: true,
     $customConstraints: 'NOT NULL',
   );
+  static const VerificationMeta _paragraphMeta = const VerificationMeta(
+    'paragraph',
+  );
+  late final GeneratedColumn<int> paragraph = GeneratedColumn<int>(
+    'paragraph',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 1',
+    defaultValue: const CustomExpression('1'),
+  );
+  static const VerificationMeta _poetryMeta = const VerificationMeta('poetry');
+  late final GeneratedColumn<int> poetry = GeneratedColumn<int>(
+    'poetry',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1538,6 +1560,8 @@ class Verses extends Table with TableInfo<Verses, Verse> {
     chapter,
     verse,
     text$,
+    paragraph,
+    poetry,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1597,6 +1621,18 @@ class Verses extends Table with TableInfo<Verses, Verse> {
     } else if (isInserting) {
       context.missing(_text$Meta);
     }
+    if (data.containsKey('paragraph')) {
+      context.handle(
+        _paragraphMeta,
+        paragraph.isAcceptableOrUnknown(data['paragraph']!, _paragraphMeta),
+      );
+    }
+    if (data.containsKey('poetry')) {
+      context.handle(
+        _poetryMeta,
+        poetry.isAcceptableOrUnknown(data['poetry']!, _poetryMeta),
+      );
+    }
     return context;
   }
 
@@ -1630,6 +1666,14 @@ class Verses extends Table with TableInfo<Verses, Verse> {
         DriftSqlType.string,
         data['${effectivePrefix}text'],
       )!,
+      paragraph: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}paragraph'],
+      )!,
+      poetry: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}poetry'],
+      )!,
     );
   }
 
@@ -1649,6 +1693,13 @@ class Verse extends DataClass implements Insertable<Verse> {
   final int chapter;
   final int verse;
   final String text$;
+
+  /// 1 = verš začíná nový odstavec. Zdroje bez členění mají 1 u každého
+  /// verše (čtečka pak zobrazí verš po verši).
+  final int paragraph;
+
+  /// 1 = verš je součástí poezie (žalmy, písně) – odsazené řádky.
+  final int poetry;
   const Verse({
     required this.id,
     required this.translationId,
@@ -1656,6 +1707,8 @@ class Verse extends DataClass implements Insertable<Verse> {
     required this.chapter,
     required this.verse,
     required this.text$,
+    required this.paragraph,
+    required this.poetry,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1666,6 +1719,8 @@ class Verse extends DataClass implements Insertable<Verse> {
     map['chapter'] = Variable<int>(chapter);
     map['verse'] = Variable<int>(verse);
     map['text'] = Variable<String>(text$);
+    map['paragraph'] = Variable<int>(paragraph);
+    map['poetry'] = Variable<int>(poetry);
     return map;
   }
 
@@ -1677,6 +1732,8 @@ class Verse extends DataClass implements Insertable<Verse> {
       chapter: Value(chapter),
       verse: Value(verse),
       text$: Value(text$),
+      paragraph: Value(paragraph),
+      poetry: Value(poetry),
     );
   }
 
@@ -1692,6 +1749,8 @@ class Verse extends DataClass implements Insertable<Verse> {
       chapter: serializer.fromJson<int>(json['chapter']),
       verse: serializer.fromJson<int>(json['verse']),
       text$: serializer.fromJson<String>(json['text']),
+      paragraph: serializer.fromJson<int>(json['paragraph']),
+      poetry: serializer.fromJson<int>(json['poetry']),
     );
   }
   @override
@@ -1704,6 +1763,8 @@ class Verse extends DataClass implements Insertable<Verse> {
       'chapter': serializer.toJson<int>(chapter),
       'verse': serializer.toJson<int>(verse),
       'text': serializer.toJson<String>(text$),
+      'paragraph': serializer.toJson<int>(paragraph),
+      'poetry': serializer.toJson<int>(poetry),
     };
   }
 
@@ -1714,6 +1775,8 @@ class Verse extends DataClass implements Insertable<Verse> {
     int? chapter,
     int? verse,
     String? text$,
+    int? paragraph,
+    int? poetry,
   }) => Verse(
     id: id ?? this.id,
     translationId: translationId ?? this.translationId,
@@ -1721,6 +1784,8 @@ class Verse extends DataClass implements Insertable<Verse> {
     chapter: chapter ?? this.chapter,
     verse: verse ?? this.verse,
     text$: text$ ?? this.text$,
+    paragraph: paragraph ?? this.paragraph,
+    poetry: poetry ?? this.poetry,
   );
   Verse copyWithCompanion(VersesCompanion data) {
     return Verse(
@@ -1732,6 +1797,8 @@ class Verse extends DataClass implements Insertable<Verse> {
       chapter: data.chapter.present ? data.chapter.value : this.chapter,
       verse: data.verse.present ? data.verse.value : this.verse,
       text$: data.text$.present ? data.text$.value : this.text$,
+      paragraph: data.paragraph.present ? data.paragraph.value : this.paragraph,
+      poetry: data.poetry.present ? data.poetry.value : this.poetry,
     );
   }
 
@@ -1743,14 +1810,24 @@ class Verse extends DataClass implements Insertable<Verse> {
           ..write('bookId: $bookId, ')
           ..write('chapter: $chapter, ')
           ..write('verse: $verse, ')
-          ..write('text\$: ${text$}')
+          ..write('text\$: ${text$}, ')
+          ..write('paragraph: $paragraph, ')
+          ..write('poetry: $poetry')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, translationId, bookId, chapter, verse, text$);
+  int get hashCode => Object.hash(
+    id,
+    translationId,
+    bookId,
+    chapter,
+    verse,
+    text$,
+    paragraph,
+    poetry,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1760,7 +1837,9 @@ class Verse extends DataClass implements Insertable<Verse> {
           other.bookId == this.bookId &&
           other.chapter == this.chapter &&
           other.verse == this.verse &&
-          other.text$ == this.text$);
+          other.text$ == this.text$ &&
+          other.paragraph == this.paragraph &&
+          other.poetry == this.poetry);
 }
 
 class VersesCompanion extends UpdateCompanion<Verse> {
@@ -1770,6 +1849,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
   final Value<int> chapter;
   final Value<int> verse;
   final Value<String> text$;
+  final Value<int> paragraph;
+  final Value<int> poetry;
   const VersesCompanion({
     this.id = const Value.absent(),
     this.translationId = const Value.absent(),
@@ -1777,6 +1858,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
     this.chapter = const Value.absent(),
     this.verse = const Value.absent(),
     this.text$ = const Value.absent(),
+    this.paragraph = const Value.absent(),
+    this.poetry = const Value.absent(),
   });
   VersesCompanion.insert({
     this.id = const Value.absent(),
@@ -1785,6 +1868,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
     required int chapter,
     required int verse,
     required String text$,
+    this.paragraph = const Value.absent(),
+    this.poetry = const Value.absent(),
   }) : translationId = Value(translationId),
        bookId = Value(bookId),
        chapter = Value(chapter),
@@ -1797,6 +1882,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
     Expression<int>? chapter,
     Expression<int>? verse,
     Expression<String>? text$,
+    Expression<int>? paragraph,
+    Expression<int>? poetry,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1805,6 +1892,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
       if (chapter != null) 'chapter': chapter,
       if (verse != null) 'verse': verse,
       if (text$ != null) 'text': text$,
+      if (paragraph != null) 'paragraph': paragraph,
+      if (poetry != null) 'poetry': poetry,
     });
   }
 
@@ -1815,6 +1904,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
     Value<int>? chapter,
     Value<int>? verse,
     Value<String>? text$,
+    Value<int>? paragraph,
+    Value<int>? poetry,
   }) {
     return VersesCompanion(
       id: id ?? this.id,
@@ -1823,6 +1914,8 @@ class VersesCompanion extends UpdateCompanion<Verse> {
       chapter: chapter ?? this.chapter,
       verse: verse ?? this.verse,
       text$: text$ ?? this.text$,
+      paragraph: paragraph ?? this.paragraph,
+      poetry: poetry ?? this.poetry,
     );
   }
 
@@ -1847,6 +1940,12 @@ class VersesCompanion extends UpdateCompanion<Verse> {
     if (text$.present) {
       map['text'] = Variable<String>(text$.value);
     }
+    if (paragraph.present) {
+      map['paragraph'] = Variable<int>(paragraph.value);
+    }
+    if (poetry.present) {
+      map['poetry'] = Variable<int>(poetry.value);
+    }
     return map;
   }
 
@@ -1858,6 +1957,834 @@ class VersesCompanion extends UpdateCompanion<Verse> {
           ..write('bookId: $bookId, ')
           ..write('chapter: $chapter, ')
           ..write('verse: $verse, ')
+          ..write('text\$: ${text$}, ')
+          ..write('paragraph: $paragraph, ')
+          ..write('poetry: $poetry')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class Headings extends Table with TableInfo<Headings, Heading> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  Headings(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _translationIdMeta = const VerificationMeta(
+    'translationId',
+  );
+  late final GeneratedColumn<String> translationId = GeneratedColumn<String>(
+    'translation_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES translations(id)',
+  );
+  static const VerificationMeta _bookIdMeta = const VerificationMeta('bookId');
+  late final GeneratedColumn<int> bookId = GeneratedColumn<int>(
+    'book_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES books(id)',
+  );
+  static const VerificationMeta _chapterMeta = const VerificationMeta(
+    'chapter',
+  );
+  late final GeneratedColumn<int> chapter = GeneratedColumn<int>(
+    'chapter',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _verseMeta = const VerificationMeta('verse');
+  late final GeneratedColumn<int> verse = GeneratedColumn<int>(
+    'verse',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _ordMeta = const VerificationMeta('ord');
+  late final GeneratedColumn<int> ord = GeneratedColumn<int>(
+    'ord',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  static const VerificationMeta _text$Meta = const VerificationMeta('text\$');
+  late final GeneratedColumn<String> text$ = GeneratedColumn<String>(
+    'text',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    translationId,
+    bookId,
+    chapter,
+    verse,
+    ord,
+    text$,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'headings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Heading> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('translation_id')) {
+      context.handle(
+        _translationIdMeta,
+        translationId.isAcceptableOrUnknown(
+          data['translation_id']!,
+          _translationIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_translationIdMeta);
+    }
+    if (data.containsKey('book_id')) {
+      context.handle(
+        _bookIdMeta,
+        bookId.isAcceptableOrUnknown(data['book_id']!, _bookIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_bookIdMeta);
+    }
+    if (data.containsKey('chapter')) {
+      context.handle(
+        _chapterMeta,
+        chapter.isAcceptableOrUnknown(data['chapter']!, _chapterMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_chapterMeta);
+    }
+    if (data.containsKey('verse')) {
+      context.handle(
+        _verseMeta,
+        verse.isAcceptableOrUnknown(data['verse']!, _verseMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_verseMeta);
+    }
+    if (data.containsKey('ord')) {
+      context.handle(
+        _ordMeta,
+        ord.isAcceptableOrUnknown(data['ord']!, _ordMeta),
+      );
+    }
+    if (data.containsKey('text')) {
+      context.handle(
+        _text$Meta,
+        text$.isAcceptableOrUnknown(data['text']!, _text$Meta),
+      );
+    } else if (isInserting) {
+      context.missing(_text$Meta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {
+    translationId,
+    bookId,
+    chapter,
+    verse,
+    ord,
+  };
+  @override
+  Heading map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Heading(
+      translationId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}translation_id'],
+      )!,
+      bookId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}book_id'],
+      )!,
+      chapter: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}chapter'],
+      )!,
+      verse: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}verse'],
+      )!,
+      ord: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ord'],
+      )!,
+      text$: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}text'],
+      )!,
+    );
+  }
+
+  @override
+  Headings createAlias(String alias) {
+    return Headings(attachedDatabase, alias);
+  }
+
+  @override
+  bool get withoutRowId => true;
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(translation_id, book_id, chapter, verse, ord)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class Heading extends DataClass implements Insertable<Heading> {
+  final String translationId;
+  final int bookId;
+  final int chapter;
+  final int verse;
+  final int ord;
+  final String text$;
+  const Heading({
+    required this.translationId,
+    required this.bookId,
+    required this.chapter,
+    required this.verse,
+    required this.ord,
+    required this.text$,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['translation_id'] = Variable<String>(translationId);
+    map['book_id'] = Variable<int>(bookId);
+    map['chapter'] = Variable<int>(chapter);
+    map['verse'] = Variable<int>(verse);
+    map['ord'] = Variable<int>(ord);
+    map['text'] = Variable<String>(text$);
+    return map;
+  }
+
+  HeadingsCompanion toCompanion(bool nullToAbsent) {
+    return HeadingsCompanion(
+      translationId: Value(translationId),
+      bookId: Value(bookId),
+      chapter: Value(chapter),
+      verse: Value(verse),
+      ord: Value(ord),
+      text$: Value(text$),
+    );
+  }
+
+  factory Heading.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Heading(
+      translationId: serializer.fromJson<String>(json['translation_id']),
+      bookId: serializer.fromJson<int>(json['book_id']),
+      chapter: serializer.fromJson<int>(json['chapter']),
+      verse: serializer.fromJson<int>(json['verse']),
+      ord: serializer.fromJson<int>(json['ord']),
+      text$: serializer.fromJson<String>(json['text']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'translation_id': serializer.toJson<String>(translationId),
+      'book_id': serializer.toJson<int>(bookId),
+      'chapter': serializer.toJson<int>(chapter),
+      'verse': serializer.toJson<int>(verse),
+      'ord': serializer.toJson<int>(ord),
+      'text': serializer.toJson<String>(text$),
+    };
+  }
+
+  Heading copyWith({
+    String? translationId,
+    int? bookId,
+    int? chapter,
+    int? verse,
+    int? ord,
+    String? text$,
+  }) => Heading(
+    translationId: translationId ?? this.translationId,
+    bookId: bookId ?? this.bookId,
+    chapter: chapter ?? this.chapter,
+    verse: verse ?? this.verse,
+    ord: ord ?? this.ord,
+    text$: text$ ?? this.text$,
+  );
+  Heading copyWithCompanion(HeadingsCompanion data) {
+    return Heading(
+      translationId: data.translationId.present
+          ? data.translationId.value
+          : this.translationId,
+      bookId: data.bookId.present ? data.bookId.value : this.bookId,
+      chapter: data.chapter.present ? data.chapter.value : this.chapter,
+      verse: data.verse.present ? data.verse.value : this.verse,
+      ord: data.ord.present ? data.ord.value : this.ord,
+      text$: data.text$.present ? data.text$.value : this.text$,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Heading(')
+          ..write('translationId: $translationId, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('verse: $verse, ')
+          ..write('ord: $ord, ')
+          ..write('text\$: ${text$}')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(translationId, bookId, chapter, verse, ord, text$);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Heading &&
+          other.translationId == this.translationId &&
+          other.bookId == this.bookId &&
+          other.chapter == this.chapter &&
+          other.verse == this.verse &&
+          other.ord == this.ord &&
+          other.text$ == this.text$);
+}
+
+class HeadingsCompanion extends UpdateCompanion<Heading> {
+  final Value<String> translationId;
+  final Value<int> bookId;
+  final Value<int> chapter;
+  final Value<int> verse;
+  final Value<int> ord;
+  final Value<String> text$;
+  const HeadingsCompanion({
+    this.translationId = const Value.absent(),
+    this.bookId = const Value.absent(),
+    this.chapter = const Value.absent(),
+    this.verse = const Value.absent(),
+    this.ord = const Value.absent(),
+    this.text$ = const Value.absent(),
+  });
+  HeadingsCompanion.insert({
+    required String translationId,
+    required int bookId,
+    required int chapter,
+    required int verse,
+    this.ord = const Value.absent(),
+    required String text$,
+  }) : translationId = Value(translationId),
+       bookId = Value(bookId),
+       chapter = Value(chapter),
+       verse = Value(verse),
+       text$ = Value(text$);
+  static Insertable<Heading> custom({
+    Expression<String>? translationId,
+    Expression<int>? bookId,
+    Expression<int>? chapter,
+    Expression<int>? verse,
+    Expression<int>? ord,
+    Expression<String>? text$,
+  }) {
+    return RawValuesInsertable({
+      if (translationId != null) 'translation_id': translationId,
+      if (bookId != null) 'book_id': bookId,
+      if (chapter != null) 'chapter': chapter,
+      if (verse != null) 'verse': verse,
+      if (ord != null) 'ord': ord,
+      if (text$ != null) 'text': text$,
+    });
+  }
+
+  HeadingsCompanion copyWith({
+    Value<String>? translationId,
+    Value<int>? bookId,
+    Value<int>? chapter,
+    Value<int>? verse,
+    Value<int>? ord,
+    Value<String>? text$,
+  }) {
+    return HeadingsCompanion(
+      translationId: translationId ?? this.translationId,
+      bookId: bookId ?? this.bookId,
+      chapter: chapter ?? this.chapter,
+      verse: verse ?? this.verse,
+      ord: ord ?? this.ord,
+      text$: text$ ?? this.text$,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (translationId.present) {
+      map['translation_id'] = Variable<String>(translationId.value);
+    }
+    if (bookId.present) {
+      map['book_id'] = Variable<int>(bookId.value);
+    }
+    if (chapter.present) {
+      map['chapter'] = Variable<int>(chapter.value);
+    }
+    if (verse.present) {
+      map['verse'] = Variable<int>(verse.value);
+    }
+    if (ord.present) {
+      map['ord'] = Variable<int>(ord.value);
+    }
+    if (text$.present) {
+      map['text'] = Variable<String>(text$.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('HeadingsCompanion(')
+          ..write('translationId: $translationId, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('verse: $verse, ')
+          ..write('ord: $ord, ')
+          ..write('text\$: ${text$}')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class Footnotes extends Table with TableInfo<Footnotes, Footnote> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  Footnotes(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _translationIdMeta = const VerificationMeta(
+    'translationId',
+  );
+  late final GeneratedColumn<String> translationId = GeneratedColumn<String>(
+    'translation_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES translations(id)',
+  );
+  static const VerificationMeta _bookIdMeta = const VerificationMeta('bookId');
+  late final GeneratedColumn<int> bookId = GeneratedColumn<int>(
+    'book_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL REFERENCES books(id)',
+  );
+  static const VerificationMeta _chapterMeta = const VerificationMeta(
+    'chapter',
+  );
+  late final GeneratedColumn<int> chapter = GeneratedColumn<int>(
+    'chapter',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _verseMeta = const VerificationMeta('verse');
+  late final GeneratedColumn<int> verse = GeneratedColumn<int>(
+    'verse',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  static const VerificationMeta _ordMeta = const VerificationMeta('ord');
+  late final GeneratedColumn<int> ord = GeneratedColumn<int>(
+    'ord',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    $customConstraints: 'NOT NULL DEFAULT 0',
+    defaultValue: const CustomExpression('0'),
+  );
+  static const VerificationMeta _text$Meta = const VerificationMeta('text\$');
+  late final GeneratedColumn<String> text$ = GeneratedColumn<String>(
+    'text',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    $customConstraints: 'NOT NULL',
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    translationId,
+    bookId,
+    chapter,
+    verse,
+    ord,
+    text$,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'footnotes';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<Footnote> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('translation_id')) {
+      context.handle(
+        _translationIdMeta,
+        translationId.isAcceptableOrUnknown(
+          data['translation_id']!,
+          _translationIdMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_translationIdMeta);
+    }
+    if (data.containsKey('book_id')) {
+      context.handle(
+        _bookIdMeta,
+        bookId.isAcceptableOrUnknown(data['book_id']!, _bookIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_bookIdMeta);
+    }
+    if (data.containsKey('chapter')) {
+      context.handle(
+        _chapterMeta,
+        chapter.isAcceptableOrUnknown(data['chapter']!, _chapterMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_chapterMeta);
+    }
+    if (data.containsKey('verse')) {
+      context.handle(
+        _verseMeta,
+        verse.isAcceptableOrUnknown(data['verse']!, _verseMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_verseMeta);
+    }
+    if (data.containsKey('ord')) {
+      context.handle(
+        _ordMeta,
+        ord.isAcceptableOrUnknown(data['ord']!, _ordMeta),
+      );
+    }
+    if (data.containsKey('text')) {
+      context.handle(
+        _text$Meta,
+        text$.isAcceptableOrUnknown(data['text']!, _text$Meta),
+      );
+    } else if (isInserting) {
+      context.missing(_text$Meta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {
+    translationId,
+    bookId,
+    chapter,
+    verse,
+    ord,
+  };
+  @override
+  Footnote map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Footnote(
+      translationId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}translation_id'],
+      )!,
+      bookId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}book_id'],
+      )!,
+      chapter: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}chapter'],
+      )!,
+      verse: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}verse'],
+      )!,
+      ord: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}ord'],
+      )!,
+      text$: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}text'],
+      )!,
+    );
+  }
+
+  @override
+  Footnotes createAlias(String alias) {
+    return Footnotes(attachedDatabase, alias);
+  }
+
+  @override
+  bool get withoutRowId => true;
+  @override
+  List<String> get customConstraints => const [
+    'PRIMARY KEY(translation_id, book_id, chapter, verse, ord)',
+  ];
+  @override
+  bool get dontWriteConstraints => true;
+}
+
+class Footnote extends DataClass implements Insertable<Footnote> {
+  final String translationId;
+  final int bookId;
+  final int chapter;
+  final int verse;
+  final int ord;
+  final String text$;
+  const Footnote({
+    required this.translationId,
+    required this.bookId,
+    required this.chapter,
+    required this.verse,
+    required this.ord,
+    required this.text$,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['translation_id'] = Variable<String>(translationId);
+    map['book_id'] = Variable<int>(bookId);
+    map['chapter'] = Variable<int>(chapter);
+    map['verse'] = Variable<int>(verse);
+    map['ord'] = Variable<int>(ord);
+    map['text'] = Variable<String>(text$);
+    return map;
+  }
+
+  FootnotesCompanion toCompanion(bool nullToAbsent) {
+    return FootnotesCompanion(
+      translationId: Value(translationId),
+      bookId: Value(bookId),
+      chapter: Value(chapter),
+      verse: Value(verse),
+      ord: Value(ord),
+      text$: Value(text$),
+    );
+  }
+
+  factory Footnote.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Footnote(
+      translationId: serializer.fromJson<String>(json['translation_id']),
+      bookId: serializer.fromJson<int>(json['book_id']),
+      chapter: serializer.fromJson<int>(json['chapter']),
+      verse: serializer.fromJson<int>(json['verse']),
+      ord: serializer.fromJson<int>(json['ord']),
+      text$: serializer.fromJson<String>(json['text']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'translation_id': serializer.toJson<String>(translationId),
+      'book_id': serializer.toJson<int>(bookId),
+      'chapter': serializer.toJson<int>(chapter),
+      'verse': serializer.toJson<int>(verse),
+      'ord': serializer.toJson<int>(ord),
+      'text': serializer.toJson<String>(text$),
+    };
+  }
+
+  Footnote copyWith({
+    String? translationId,
+    int? bookId,
+    int? chapter,
+    int? verse,
+    int? ord,
+    String? text$,
+  }) => Footnote(
+    translationId: translationId ?? this.translationId,
+    bookId: bookId ?? this.bookId,
+    chapter: chapter ?? this.chapter,
+    verse: verse ?? this.verse,
+    ord: ord ?? this.ord,
+    text$: text$ ?? this.text$,
+  );
+  Footnote copyWithCompanion(FootnotesCompanion data) {
+    return Footnote(
+      translationId: data.translationId.present
+          ? data.translationId.value
+          : this.translationId,
+      bookId: data.bookId.present ? data.bookId.value : this.bookId,
+      chapter: data.chapter.present ? data.chapter.value : this.chapter,
+      verse: data.verse.present ? data.verse.value : this.verse,
+      ord: data.ord.present ? data.ord.value : this.ord,
+      text$: data.text$.present ? data.text$.value : this.text$,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Footnote(')
+          ..write('translationId: $translationId, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('verse: $verse, ')
+          ..write('ord: $ord, ')
+          ..write('text\$: ${text$}')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(translationId, bookId, chapter, verse, ord, text$);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Footnote &&
+          other.translationId == this.translationId &&
+          other.bookId == this.bookId &&
+          other.chapter == this.chapter &&
+          other.verse == this.verse &&
+          other.ord == this.ord &&
+          other.text$ == this.text$);
+}
+
+class FootnotesCompanion extends UpdateCompanion<Footnote> {
+  final Value<String> translationId;
+  final Value<int> bookId;
+  final Value<int> chapter;
+  final Value<int> verse;
+  final Value<int> ord;
+  final Value<String> text$;
+  const FootnotesCompanion({
+    this.translationId = const Value.absent(),
+    this.bookId = const Value.absent(),
+    this.chapter = const Value.absent(),
+    this.verse = const Value.absent(),
+    this.ord = const Value.absent(),
+    this.text$ = const Value.absent(),
+  });
+  FootnotesCompanion.insert({
+    required String translationId,
+    required int bookId,
+    required int chapter,
+    required int verse,
+    this.ord = const Value.absent(),
+    required String text$,
+  }) : translationId = Value(translationId),
+       bookId = Value(bookId),
+       chapter = Value(chapter),
+       verse = Value(verse),
+       text$ = Value(text$);
+  static Insertable<Footnote> custom({
+    Expression<String>? translationId,
+    Expression<int>? bookId,
+    Expression<int>? chapter,
+    Expression<int>? verse,
+    Expression<int>? ord,
+    Expression<String>? text$,
+  }) {
+    return RawValuesInsertable({
+      if (translationId != null) 'translation_id': translationId,
+      if (bookId != null) 'book_id': bookId,
+      if (chapter != null) 'chapter': chapter,
+      if (verse != null) 'verse': verse,
+      if (ord != null) 'ord': ord,
+      if (text$ != null) 'text': text$,
+    });
+  }
+
+  FootnotesCompanion copyWith({
+    Value<String>? translationId,
+    Value<int>? bookId,
+    Value<int>? chapter,
+    Value<int>? verse,
+    Value<int>? ord,
+    Value<String>? text$,
+  }) {
+    return FootnotesCompanion(
+      translationId: translationId ?? this.translationId,
+      bookId: bookId ?? this.bookId,
+      chapter: chapter ?? this.chapter,
+      verse: verse ?? this.verse,
+      ord: ord ?? this.ord,
+      text$: text$ ?? this.text$,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (translationId.present) {
+      map['translation_id'] = Variable<String>(translationId.value);
+    }
+    if (bookId.present) {
+      map['book_id'] = Variable<int>(bookId.value);
+    }
+    if (chapter.present) {
+      map['chapter'] = Variable<int>(chapter.value);
+    }
+    if (verse.present) {
+      map['verse'] = Variable<int>(verse.value);
+    }
+    if (ord.present) {
+      map['ord'] = Variable<int>(ord.value);
+    }
+    if (text$.present) {
+      map['text'] = Variable<String>(text$.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FootnotesCompanion(')
+          ..write('translationId: $translationId, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('verse: $verse, ')
+          ..write('ord: $ord, ')
           ..write('text\$: ${text$}')
           ..write(')'))
         .toString();
@@ -2035,6 +2962,8 @@ abstract class _$BibleDatabase extends GeneratedDatabase {
   late final Books books = Books(this);
   late final Chapters chapters = Chapters(this);
   late final Verses verses = Verses(this);
+  late final Headings headings = Headings(this);
+  late final Footnotes footnotes = Footnotes(this);
   late final Index versesByRef = Index(
     'verses_by_ref',
     'CREATE UNIQUE INDEX verses_by_ref ON verses (translation_id, book_id, chapter, verse)',
@@ -2050,6 +2979,8 @@ abstract class _$BibleDatabase extends GeneratedDatabase {
     books,
     chapters,
     verses,
+    headings,
+    footnotes,
     versesByRef,
     versesFts,
   ];
@@ -2248,6 +3179,44 @@ final class $TranslationsReferences
       manager.$state.copyWith(prefetchedData: cache),
     );
   }
+
+  static MultiTypedResultKey<Headings, List<Heading>> _headingsRefsTable(
+    _$BibleDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.headings,
+    aliasName: 'translations__id__headings__translation_id',
+  );
+
+  $HeadingsProcessedTableManager get headingsRefs {
+    final manager = $HeadingsTableManager(
+      $_db,
+      $_db.headings,
+    ).filter((f) => f.translationId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_headingsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<Footnotes, List<Footnote>> _footnotesRefsTable(
+    _$BibleDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.footnotes,
+    aliasName: 'translations__id__footnotes__translation_id',
+  );
+
+  $FootnotesProcessedTableManager get footnotesRefs {
+    final manager = $FootnotesTableManager(
+      $_db,
+      $_db.footnotes,
+    ).filter((f) => f.translationId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_footnotesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
 }
 
 class $TranslationsFilterComposer
@@ -2345,6 +3314,56 @@ class $TranslationsFilterComposer
           }) => $VersesFilterComposer(
             $db: $db,
             $table: $db.verses,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> headingsRefs(
+    Expression<bool> Function($HeadingsFilterComposer f) f,
+  ) {
+    final $HeadingsFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.headings,
+      getReferencedColumn: (t) => t.translationId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $HeadingsFilterComposer(
+            $db: $db,
+            $table: $db.headings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> footnotesRefs(
+    Expression<bool> Function($FootnotesFilterComposer f) f,
+  ) {
+    final $FootnotesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.footnotes,
+      getReferencedColumn: (t) => t.translationId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $FootnotesFilterComposer(
+            $db: $db,
+            $table: $db.footnotes,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -2501,6 +3520,56 @@ class $TranslationsAnnotationComposer
     );
     return f(composer);
   }
+
+  Expression<T> headingsRefs<T extends Object>(
+    Expression<T> Function($HeadingsAnnotationComposer a) f,
+  ) {
+    final $HeadingsAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.headings,
+      getReferencedColumn: (t) => t.translationId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $HeadingsAnnotationComposer(
+            $db: $db,
+            $table: $db.headings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> footnotesRefs<T extends Object>(
+    Expression<T> Function($FootnotesAnnotationComposer a) f,
+  ) {
+    final $FootnotesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.footnotes,
+      getReferencedColumn: (t) => t.translationId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $FootnotesAnnotationComposer(
+            $db: $db,
+            $table: $db.footnotes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $TranslationsTableManager
@@ -2516,7 +3585,12 @@ class $TranslationsTableManager
           $TranslationsUpdateCompanionBuilder,
           (Translation, $TranslationsReferences),
           Translation,
-          PrefetchHooks Function({bool chaptersRefs, bool versesRefs})
+          PrefetchHooks Function({
+            bool chaptersRefs,
+            bool versesRefs,
+            bool headingsRefs,
+            bool footnotesRefs,
+          })
         > {
   $TranslationsTableManager(_$BibleDatabase db, Translations table)
     : super(
@@ -2585,53 +3659,104 @@ class $TranslationsTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({chaptersRefs = false, versesRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [
-                if (chaptersRefs) db.chapters,
-                if (versesRefs) db.verses,
-              ],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (chaptersRefs)
-                    await $_getPrefetchedDataByColumns<
-                      Translation,
-                      Translations,
-                      Chapter,
-                      Chapters
-                    >(
-                      currentTable: table,
-                      referencedTable: $TranslationsReferences
-                          ._chaptersRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $TranslationsReferences(db, table, p0).chaptersRefs,
-                      currentColumn: 'id',
-                      referencedColumn: 'translation_id',
-                      typedResults: items,
-                    ),
-                  if (versesRefs)
-                    await $_getPrefetchedDataByColumns<
-                      Translation,
-                      Translations,
-                      Verse,
-                      Verses
-                    >(
-                      currentTable: table,
-                      referencedTable: $TranslationsReferences._versesRefsTable(
-                        db,
-                      ),
-                      managerFromTypedResult: (p0) =>
-                          $TranslationsReferences(db, table, p0).versesRefs,
-                      currentColumn: 'id',
-                      referencedColumn: 'translation_id',
-                      typedResults: items,
-                    ),
-                ];
+          prefetchHooksCallback:
+              ({
+                chaptersRefs = false,
+                versesRefs = false,
+                headingsRefs = false,
+                footnotesRefs = false,
+              }) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (chaptersRefs) db.chapters,
+                    if (versesRefs) db.verses,
+                    if (headingsRefs) db.headings,
+                    if (footnotesRefs) db.footnotes,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (chaptersRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Translation,
+                          Translations,
+                          Chapter,
+                          Chapters
+                        >(
+                          currentTable: table,
+                          referencedTable: $TranslationsReferences
+                              ._chaptersRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $TranslationsReferences(
+                                db,
+                                table,
+                                p0,
+                              ).chaptersRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'translation_id',
+                          typedResults: items,
+                        ),
+                      if (versesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Translation,
+                          Translations,
+                          Verse,
+                          Verses
+                        >(
+                          currentTable: table,
+                          referencedTable: $TranslationsReferences
+                              ._versesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $TranslationsReferences(db, table, p0).versesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'translation_id',
+                          typedResults: items,
+                        ),
+                      if (headingsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Translation,
+                          Translations,
+                          Heading,
+                          Headings
+                        >(
+                          currentTable: table,
+                          referencedTable: $TranslationsReferences
+                              ._headingsRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $TranslationsReferences(
+                                db,
+                                table,
+                                p0,
+                              ).headingsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'translation_id',
+                          typedResults: items,
+                        ),
+                      if (footnotesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Translation,
+                          Translations,
+                          Footnote,
+                          Footnotes
+                        >(
+                          currentTable: table,
+                          referencedTable: $TranslationsReferences
+                              ._footnotesRefsTable(db),
+                          managerFromTypedResult: (p0) =>
+                              $TranslationsReferences(
+                                db,
+                                table,
+                                p0,
+                              ).footnotesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'translation_id',
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -2648,7 +3773,12 @@ typedef $TranslationsProcessedTableManager =
       $TranslationsUpdateCompanionBuilder,
       (Translation, $TranslationsReferences),
       Translation,
-      PrefetchHooks Function({bool chaptersRefs, bool versesRefs})
+      PrefetchHooks Function({
+        bool chaptersRefs,
+        bool versesRefs,
+        bool headingsRefs,
+        bool footnotesRefs,
+      })
     >;
 typedef $BooksCreateCompanionBuilder = BooksCompanion Function({
   Value<int> id,
@@ -2702,6 +3832,44 @@ final class $BooksReferences
     ).filter((f) => f.bookId.id.sqlEquals($_itemColumn<int>('id')!));
 
     final cache = $_typedResult.readTableOrNull(_versesRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<Headings, List<Heading>> _headingsRefsTable(
+    _$BibleDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.headings,
+    aliasName: 'books__id__headings__book_id',
+  );
+
+  $HeadingsProcessedTableManager get headingsRefs {
+    final manager = $HeadingsTableManager(
+      $_db,
+      $_db.headings,
+    ).filter((f) => f.bookId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_headingsRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+
+  static MultiTypedResultKey<Footnotes, List<Footnote>> _footnotesRefsTable(
+    _$BibleDatabase db,
+  ) => MultiTypedResultKey.fromTable(
+    db.footnotes,
+    aliasName: 'books__id__footnotes__book_id',
+  );
+
+  $FootnotesProcessedTableManager get footnotesRefs {
+    final manager = $FootnotesTableManager(
+      $_db,
+      $_db.footnotes,
+    ).filter((f) => f.bookId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_footnotesRefsTable($_db));
     return ProcessedTableManager(
       manager.$state.copyWith(prefetchedData: cache),
     );
@@ -2782,6 +3950,56 @@ class $BooksFilterComposer extends Composer<_$BibleDatabase, Books> {
           }) => $VersesFilterComposer(
             $db: $db,
             $table: $db.verses,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> headingsRefs(
+    Expression<bool> Function($HeadingsFilterComposer f) f,
+  ) {
+    final $HeadingsFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.headings,
+      getReferencedColumn: (t) => t.bookId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $HeadingsFilterComposer(
+            $db: $db,
+            $table: $db.headings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<bool> footnotesRefs(
+    Expression<bool> Function($FootnotesFilterComposer f) f,
+  ) {
+    final $FootnotesFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.footnotes,
+      getReferencedColumn: (t) => t.bookId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $FootnotesFilterComposer(
+            $db: $db,
+            $table: $db.footnotes,
             $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
             joinBuilder: joinBuilder,
             $removeJoinBuilderFromRootComposer:
@@ -2900,6 +4118,56 @@ class $BooksAnnotationComposer extends Composer<_$BibleDatabase, Books> {
     );
     return f(composer);
   }
+
+  Expression<T> headingsRefs<T extends Object>(
+    Expression<T> Function($HeadingsAnnotationComposer a) f,
+  ) {
+    final $HeadingsAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.headings,
+      getReferencedColumn: (t) => t.bookId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $HeadingsAnnotationComposer(
+            $db: $db,
+            $table: $db.headings,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+
+  Expression<T> footnotesRefs<T extends Object>(
+    Expression<T> Function($FootnotesAnnotationComposer a) f,
+  ) {
+    final $FootnotesAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.footnotes,
+      getReferencedColumn: (t) => t.bookId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $FootnotesAnnotationComposer(
+            $db: $db,
+            $table: $db.footnotes,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
 }
 
 class $BooksTableManager
@@ -2915,7 +4183,12 @@ class $BooksTableManager
           $BooksUpdateCompanionBuilder,
           (Book, $BooksReferences),
           Book,
-          PrefetchHooks Function({bool chaptersRefs, bool versesRefs})
+          PrefetchHooks Function({
+            bool chaptersRefs,
+            bool versesRefs,
+            bool headingsRefs,
+            bool footnotesRefs,
+          })
         > {
   $BooksTableManager(_$BibleDatabase db, Books table)
     : super(
@@ -2964,50 +4237,96 @@ class $BooksTableManager
                 ),
               )
               .toList(),
-          prefetchHooksCallback: ({chaptersRefs = false, versesRefs = false}) {
-            return PrefetchHooks(
-              db: db,
-              explicitlyWatchedTables: [
-                if (chaptersRefs) db.chapters,
-                if (versesRefs) db.verses,
-              ],
-              addJoins: null,
-              getPrefetchedDataCallback: (items) async {
-                return [
-                  if (chaptersRefs)
-                    await $_getPrefetchedDataByColumns<
-                      Book,
-                      Books,
-                      Chapter,
-                      Chapters
-                    >(
-                      currentTable: table,
-                      referencedTable: $BooksReferences._chaptersRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $BooksReferences(db, table, p0).chaptersRefs,
-                      currentColumn: 'id',
-                      referencedColumn: 'book_id',
-                      typedResults: items,
-                    ),
-                  if (versesRefs)
-                    await $_getPrefetchedDataByColumns<
-                      Book,
-                      Books,
-                      Verse,
-                      Verses
-                    >(
-                      currentTable: table,
-                      referencedTable: $BooksReferences._versesRefsTable(db),
-                      managerFromTypedResult: (p0) =>
-                          $BooksReferences(db, table, p0).versesRefs,
-                      currentColumn: 'id',
-                      referencedColumn: 'book_id',
-                      typedResults: items,
-                    ),
-                ];
+          prefetchHooksCallback:
+              ({
+                chaptersRefs = false,
+                versesRefs = false,
+                headingsRefs = false,
+                footnotesRefs = false,
+              }) {
+                return PrefetchHooks(
+                  db: db,
+                  explicitlyWatchedTables: [
+                    if (chaptersRefs) db.chapters,
+                    if (versesRefs) db.verses,
+                    if (headingsRefs) db.headings,
+                    if (footnotesRefs) db.footnotes,
+                  ],
+                  addJoins: null,
+                  getPrefetchedDataCallback: (items) async {
+                    return [
+                      if (chaptersRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Book,
+                          Books,
+                          Chapter,
+                          Chapters
+                        >(
+                          currentTable: table,
+                          referencedTable: $BooksReferences._chaptersRefsTable(
+                            db,
+                          ),
+                          managerFromTypedResult: (p0) =>
+                              $BooksReferences(db, table, p0).chaptersRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'book_id',
+                          typedResults: items,
+                        ),
+                      if (versesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Book,
+                          Books,
+                          Verse,
+                          Verses
+                        >(
+                          currentTable: table,
+                          referencedTable: $BooksReferences._versesRefsTable(
+                            db,
+                          ),
+                          managerFromTypedResult: (p0) =>
+                              $BooksReferences(db, table, p0).versesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'book_id',
+                          typedResults: items,
+                        ),
+                      if (headingsRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Book,
+                          Books,
+                          Heading,
+                          Headings
+                        >(
+                          currentTable: table,
+                          referencedTable: $BooksReferences._headingsRefsTable(
+                            db,
+                          ),
+                          managerFromTypedResult: (p0) =>
+                              $BooksReferences(db, table, p0).headingsRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'book_id',
+                          typedResults: items,
+                        ),
+                      if (footnotesRefs)
+                        await $_getPrefetchedDataByColumns<
+                          Book,
+                          Books,
+                          Footnote,
+                          Footnotes
+                        >(
+                          currentTable: table,
+                          referencedTable: $BooksReferences._footnotesRefsTable(
+                            db,
+                          ),
+                          managerFromTypedResult: (p0) =>
+                              $BooksReferences(db, table, p0).footnotesRefs,
+                          currentColumn: 'id',
+                          referencedColumn: 'book_id',
+                          typedResults: items,
+                        ),
+                    ];
+                  },
+                );
               },
-            );
-          },
         ),
       );
 }
@@ -3024,7 +4343,12 @@ typedef $BooksProcessedTableManager =
       $BooksUpdateCompanionBuilder,
       (Book, $BooksReferences),
       Book,
-      PrefetchHooks Function({bool chaptersRefs, bool versesRefs})
+      PrefetchHooks Function({
+        bool chaptersRefs,
+        bool versesRefs,
+        bool headingsRefs,
+        bool footnotesRefs,
+      })
     >;
 typedef $ChaptersCreateCompanionBuilder = ChaptersCompanion Function({
   required String translationId,
@@ -3403,6 +4727,8 @@ typedef $VersesCreateCompanionBuilder = VersesCompanion Function({
   required int chapter,
   required int verse,
   required String text$,
+  Value<int> paragraph,
+  Value<int> poetry,
 });
 typedef $VersesUpdateCompanionBuilder = VersesCompanion Function({
   Value<int> id,
@@ -3411,6 +4737,8 @@ typedef $VersesUpdateCompanionBuilder = VersesCompanion Function({
   Value<int> chapter,
   Value<int> verse,
   Value<String> text$,
+  Value<int> paragraph,
+  Value<int> poetry,
 });
 
 final class $VersesReferences
@@ -3477,6 +4805,16 @@ class $VersesFilterComposer extends Composer<_$BibleDatabase, Verses> {
 
   ColumnFilters<String> get text$ => $composableBuilder(
     column: $table.text$,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get paragraph => $composableBuilder(
+    column: $table.paragraph,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get poetry => $composableBuilder(
+    column: $table.poetry,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -3555,6 +4893,16 @@ class $VersesOrderingComposer extends Composer<_$BibleDatabase, Verses> {
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<int> get paragraph => $composableBuilder(
+    column: $table.paragraph,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get poetry => $composableBuilder(
+    column: $table.poetry,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $TranslationsOrderingComposer get translationId {
     final $TranslationsOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -3621,6 +4969,12 @@ class $VersesAnnotationComposer extends Composer<_$BibleDatabase, Verses> {
 
   GeneratedColumn<String> get text$ =>
       $composableBuilder(column: $table.text$, builder: (column) => column);
+
+  GeneratedColumn<int> get paragraph =>
+      $composableBuilder(column: $table.paragraph, builder: (column) => column);
+
+  GeneratedColumn<int> get poetry =>
+      $composableBuilder(column: $table.poetry, builder: (column) => column);
 
   $TranslationsAnnotationComposer get translationId {
     final $TranslationsAnnotationComposer composer = $composerBuilder(
@@ -3703,6 +5057,8 @@ class $VersesTableManager
                 Value<int> chapter = const Value.absent(),
                 Value<int> verse = const Value.absent(),
                 Value<String> text$ = const Value.absent(),
+                Value<int> paragraph = const Value.absent(),
+                Value<int> poetry = const Value.absent(),
               }) => VersesCompanion(
                 id: id,
                 translationId: translationId,
@@ -3710,6 +5066,8 @@ class $VersesTableManager
                 chapter: chapter,
                 verse: verse,
                 text$: text$,
+                paragraph: paragraph,
+                poetry: poetry,
               ),
           createCompanionCallback:
               ({
@@ -3719,6 +5077,8 @@ class $VersesTableManager
                 required int chapter,
                 required int verse,
                 required String text$,
+                Value<int> paragraph = const Value.absent(),
+                Value<int> poetry = const Value.absent(),
               }) => VersesCompanion.insert(
                 id: id,
                 translationId: translationId,
@@ -3726,6 +5086,8 @@ class $VersesTableManager
                 chapter: chapter,
                 verse: verse,
                 text$: text$,
+                paragraph: paragraph,
+                poetry: poetry,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -3799,6 +5161,819 @@ typedef $VersesProcessedTableManager =
       $VersesUpdateCompanionBuilder,
       (Verse, $VersesReferences),
       Verse,
+      PrefetchHooks Function({bool translationId, bool bookId})
+    >;
+typedef $HeadingsCreateCompanionBuilder = HeadingsCompanion Function({
+  required String translationId,
+  required int bookId,
+  required int chapter,
+  required int verse,
+  Value<int> ord,
+  required String text$,
+});
+typedef $HeadingsUpdateCompanionBuilder = HeadingsCompanion Function({
+  Value<String> translationId,
+  Value<int> bookId,
+  Value<int> chapter,
+  Value<int> verse,
+  Value<int> ord,
+  Value<String> text$,
+});
+
+final class $HeadingsReferences
+    extends BaseReferences<_$BibleDatabase, Headings, Heading> {
+  $HeadingsReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static Translations _translationIdTable(_$BibleDatabase db) =>
+      db.translations.createAlias('headings__translation_id__translations__id');
+
+  $TranslationsProcessedTableManager get translationId {
+    final $_column = $_itemColumn<String>('translation_id')!;
+
+    final manager = $TranslationsTableManager(
+      $_db,
+      $_db.translations,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_translationIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static Books _bookIdTable(_$BibleDatabase db) =>
+      db.books.createAlias('headings__book_id__books__id');
+
+  $BooksProcessedTableManager get bookId {
+    final $_column = $_itemColumn<int>('book_id')!;
+
+    final manager = $BooksTableManager(
+      $_db,
+      $_db.books,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_bookIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $HeadingsFilterComposer extends Composer<_$BibleDatabase, Headings> {
+  $HeadingsFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get verse => $composableBuilder(
+    column: $table.verse,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get ord => $composableBuilder(
+    column: $table.ord,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get text$ => $composableBuilder(
+    column: $table.text$,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $TranslationsFilterComposer get translationId {
+    final $TranslationsFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsFilterComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksFilterComposer get bookId {
+    final $BooksFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksFilterComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $HeadingsOrderingComposer extends Composer<_$BibleDatabase, Headings> {
+  $HeadingsOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get verse => $composableBuilder(
+    column: $table.verse,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get ord => $composableBuilder(
+    column: $table.ord,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get text$ => $composableBuilder(
+    column: $table.text$,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $TranslationsOrderingComposer get translationId {
+    final $TranslationsOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsOrderingComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksOrderingComposer get bookId {
+    final $BooksOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksOrderingComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $HeadingsAnnotationComposer extends Composer<_$BibleDatabase, Headings> {
+  $HeadingsAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get chapter =>
+      $composableBuilder(column: $table.chapter, builder: (column) => column);
+
+  GeneratedColumn<int> get verse =>
+      $composableBuilder(column: $table.verse, builder: (column) => column);
+
+  GeneratedColumn<int> get ord =>
+      $composableBuilder(column: $table.ord, builder: (column) => column);
+
+  GeneratedColumn<String> get text$ =>
+      $composableBuilder(column: $table.text$, builder: (column) => column);
+
+  $TranslationsAnnotationComposer get translationId {
+    final $TranslationsAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsAnnotationComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksAnnotationComposer get bookId {
+    final $BooksAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksAnnotationComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $HeadingsTableManager
+    extends
+        RootTableManager<
+          _$BibleDatabase,
+          Headings,
+          Heading,
+          $HeadingsFilterComposer,
+          $HeadingsOrderingComposer,
+          $HeadingsAnnotationComposer,
+          $HeadingsCreateCompanionBuilder,
+          $HeadingsUpdateCompanionBuilder,
+          (Heading, $HeadingsReferences),
+          Heading,
+          PrefetchHooks Function({bool translationId, bool bookId})
+        > {
+  $HeadingsTableManager(_$BibleDatabase db, Headings table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $HeadingsFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $HeadingsOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $HeadingsAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> translationId = const Value.absent(),
+                Value<int> bookId = const Value.absent(),
+                Value<int> chapter = const Value.absent(),
+                Value<int> verse = const Value.absent(),
+                Value<int> ord = const Value.absent(),
+                Value<String> text$ = const Value.absent(),
+              }) => HeadingsCompanion(
+                translationId: translationId,
+                bookId: bookId,
+                chapter: chapter,
+                verse: verse,
+                ord: ord,
+                text$: text$,
+              ),
+          createCompanionCallback:
+              ({
+                required String translationId,
+                required int bookId,
+                required int chapter,
+                required int verse,
+                Value<int> ord = const Value.absent(),
+                required String text$,
+              }) => HeadingsCompanion.insert(
+                translationId: translationId,
+                bookId: bookId,
+                chapter: chapter,
+                verse: verse,
+                ord: ord,
+                text$: text$,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<Headings, Heading>(table),
+                  $HeadingsReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({translationId = false, bookId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (translationId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.translationId,
+                        referencedTable: $HeadingsReferences
+                            ._translationIdTable(db),
+                        referencedColumn: $HeadingsReferences
+                            ._translationIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+                    if (bookId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.bookId,
+                        referencedTable: $HeadingsReferences._bookIdTable(db),
+                        referencedColumn: $HeadingsReferences
+                            ._bookIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $HeadingsProcessedTableManager =
+    ProcessedTableManager<
+      _$BibleDatabase,
+      Headings,
+      Heading,
+      $HeadingsFilterComposer,
+      $HeadingsOrderingComposer,
+      $HeadingsAnnotationComposer,
+      $HeadingsCreateCompanionBuilder,
+      $HeadingsUpdateCompanionBuilder,
+      (Heading, $HeadingsReferences),
+      Heading,
+      PrefetchHooks Function({bool translationId, bool bookId})
+    >;
+typedef $FootnotesCreateCompanionBuilder = FootnotesCompanion Function({
+  required String translationId,
+  required int bookId,
+  required int chapter,
+  required int verse,
+  Value<int> ord,
+  required String text$,
+});
+typedef $FootnotesUpdateCompanionBuilder = FootnotesCompanion Function({
+  Value<String> translationId,
+  Value<int> bookId,
+  Value<int> chapter,
+  Value<int> verse,
+  Value<int> ord,
+  Value<String> text$,
+});
+
+final class $FootnotesReferences
+    extends BaseReferences<_$BibleDatabase, Footnotes, Footnote> {
+  $FootnotesReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static Translations _translationIdTable(_$BibleDatabase db) => db.translations
+      .createAlias('footnotes__translation_id__translations__id');
+
+  $TranslationsProcessedTableManager get translationId {
+    final $_column = $_itemColumn<String>('translation_id')!;
+
+    final manager = $TranslationsTableManager(
+      $_db,
+      $_db.translations,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_translationIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+
+  static Books _bookIdTable(_$BibleDatabase db) =>
+      db.books.createAlias('footnotes__book_id__books__id');
+
+  $BooksProcessedTableManager get bookId {
+    final $_column = $_itemColumn<int>('book_id')!;
+
+    final manager = $BooksTableManager(
+      $_db,
+      $_db.books,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_bookIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $FootnotesFilterComposer extends Composer<_$BibleDatabase, Footnotes> {
+  $FootnotesFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get verse => $composableBuilder(
+    column: $table.verse,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get ord => $composableBuilder(
+    column: $table.ord,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get text$ => $composableBuilder(
+    column: $table.text$,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $TranslationsFilterComposer get translationId {
+    final $TranslationsFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsFilterComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksFilterComposer get bookId {
+    final $BooksFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksFilterComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $FootnotesOrderingComposer extends Composer<_$BibleDatabase, Footnotes> {
+  $FootnotesOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get verse => $composableBuilder(
+    column: $table.verse,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get ord => $composableBuilder(
+    column: $table.ord,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get text$ => $composableBuilder(
+    column: $table.text$,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $TranslationsOrderingComposer get translationId {
+    final $TranslationsOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsOrderingComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksOrderingComposer get bookId {
+    final $BooksOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksOrderingComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $FootnotesAnnotationComposer
+    extends Composer<_$BibleDatabase, Footnotes> {
+  $FootnotesAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get chapter =>
+      $composableBuilder(column: $table.chapter, builder: (column) => column);
+
+  GeneratedColumn<int> get verse =>
+      $composableBuilder(column: $table.verse, builder: (column) => column);
+
+  GeneratedColumn<int> get ord =>
+      $composableBuilder(column: $table.ord, builder: (column) => column);
+
+  GeneratedColumn<String> get text$ =>
+      $composableBuilder(column: $table.text$, builder: (column) => column);
+
+  $TranslationsAnnotationComposer get translationId {
+    final $TranslationsAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.translationId,
+      referencedTable: $db.translations,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $TranslationsAnnotationComposer(
+            $db: $db,
+            $table: $db.translations,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+
+  $BooksAnnotationComposer get bookId {
+    final $BooksAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.bookId,
+      referencedTable: $db.books,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $BooksAnnotationComposer(
+            $db: $db,
+            $table: $db.books,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $FootnotesTableManager
+    extends
+        RootTableManager<
+          _$BibleDatabase,
+          Footnotes,
+          Footnote,
+          $FootnotesFilterComposer,
+          $FootnotesOrderingComposer,
+          $FootnotesAnnotationComposer,
+          $FootnotesCreateCompanionBuilder,
+          $FootnotesUpdateCompanionBuilder,
+          (Footnote, $FootnotesReferences),
+          Footnote,
+          PrefetchHooks Function({bool translationId, bool bookId})
+        > {
+  $FootnotesTableManager(_$BibleDatabase db, Footnotes table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $FootnotesFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $FootnotesOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $FootnotesAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> translationId = const Value.absent(),
+                Value<int> bookId = const Value.absent(),
+                Value<int> chapter = const Value.absent(),
+                Value<int> verse = const Value.absent(),
+                Value<int> ord = const Value.absent(),
+                Value<String> text$ = const Value.absent(),
+              }) => FootnotesCompanion(
+                translationId: translationId,
+                bookId: bookId,
+                chapter: chapter,
+                verse: verse,
+                ord: ord,
+                text$: text$,
+              ),
+          createCompanionCallback:
+              ({
+                required String translationId,
+                required int bookId,
+                required int chapter,
+                required int verse,
+                Value<int> ord = const Value.absent(),
+                required String text$,
+              }) => FootnotesCompanion.insert(
+                translationId: translationId,
+                bookId: bookId,
+                chapter: chapter,
+                verse: verse,
+                ord: ord,
+                text$: text$,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<Footnotes, Footnote>(table),
+                  $FootnotesReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({translationId = false, bookId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (translationId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.translationId,
+                        referencedTable: $FootnotesReferences
+                            ._translationIdTable(db),
+                        referencedColumn: $FootnotesReferences
+                            ._translationIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+                    if (bookId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.bookId,
+                        referencedTable: $FootnotesReferences._bookIdTable(db),
+                        referencedColumn: $FootnotesReferences
+                            ._bookIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $FootnotesProcessedTableManager =
+    ProcessedTableManager<
+      _$BibleDatabase,
+      Footnotes,
+      Footnote,
+      $FootnotesFilterComposer,
+      $FootnotesOrderingComposer,
+      $FootnotesAnnotationComposer,
+      $FootnotesCreateCompanionBuilder,
+      $FootnotesUpdateCompanionBuilder,
+      (Footnote, $FootnotesReferences),
+      Footnote,
       PrefetchHooks Function({bool translationId, bool bookId})
     >;
 typedef $VersesFtsCreateCompanionBuilder = VersesFtsCompanion Function({
@@ -3927,6 +6102,10 @@ class $BibleDatabaseManager {
   $ChaptersTableManager get chapters =>
       $ChaptersTableManager(_db, _db.chapters);
   $VersesTableManager get verses => $VersesTableManager(_db, _db.verses);
+  $HeadingsTableManager get headings =>
+      $HeadingsTableManager(_db, _db.headings);
+  $FootnotesTableManager get footnotes =>
+      $FootnotesTableManager(_db, _db.footnotes);
   $VersesFtsTableManager get versesFts =>
       $VersesFtsTableManager(_db, _db.versesFts);
 }

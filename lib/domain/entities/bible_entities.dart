@@ -24,6 +24,7 @@ class Translation {
     this.year,
     this.license,
     this.description,
+    this.downloaded = false,
   });
 
   /// Stabilní kód překladu (např. `BKR`). Používá se jako klíč všude.
@@ -38,6 +39,9 @@ class Translation {
   final int? year;
   final String? license;
   final String? description;
+
+  /// Stažený v aplikaci (lze odstranit), ne přibalený.
+  final bool downloaded;
 
   @override
   bool operator ==(Object other) => other is Translation && other.id == id;
@@ -134,13 +138,40 @@ class Verse {
     required this.translationId,
     required this.ref,
     required this.text,
+    this.paragraph = true,
+    this.poetry = false,
   });
 
   final String translationId;
   final VerseRef ref;
+
+  /// Text verše; řádky poezie jsou odděleny `\n`.
   final String text;
 
+  /// Verš začíná nový odstavec.
+  final bool paragraph;
+
+  /// Verš je poezie (žalmy, písně) – zobrazuje se po řádcích s odsazením.
+  final bool poetry;
+
   int get number => ref.verse;
+}
+
+/// Kapitola jednoho překladu včetně nadpisů oddílů a poznámek překladatelů.
+class ChapterText {
+  const ChapterText({
+    required this.verses,
+    this.headings = const {},
+    this.footnotes = const {},
+  });
+
+  final List<Verse> verses;
+
+  /// Nadpisy zobrazené PŘED veršem s daným číslem.
+  final Map<int, List<String>> headings;
+
+  /// Poznámky překladatelů k veršům.
+  final Map<int, List<String>> footnotes;
 }
 
 /// Řádek srovnávacího (dvousloupcového) zobrazení. Jedna strana může chybět,

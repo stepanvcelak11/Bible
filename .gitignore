@@ -55,3 +55,4 @@ app.*.map.json
 !/data/sources/README.md
 /assets/db/bible.db
 /assets/db/bible_manifest.json
+/assets/db/catalog.json

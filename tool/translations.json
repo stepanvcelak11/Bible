@@ -1,5 +1,5 @@
 {
-  "_comment": "Seznam překladů pro tool/build_bible_db.py. Položky se zdrojovým souborem, který v data/sources neexistuje, se přeskočí. Podporované formáty: 'scrollmapper' (JSON), 'zefania' (XML), 'flat' (JSON, viz data/sources/README.md). ČEP, B21 a SNC jsou chráněny autorským právem a nejsou volně ke stažení – pokud máte vlastní licencovaný soubor, vložte jej do data/sources a nastavte enabled: true.",
+  "_comment": "Seznam překladů. build_bible_db.py z nich sestaví assets/db/bible.db (enabled + zdroj k dispozici) a zároveň katalog assets/db/catalog.json pro stahování překladů přímo v aplikaci (položky s \"download\": true). Formáty: osis, scrollmapper, zefania, flat.",
   "translations": [
     {
       "id": "BKR",
@@ -7,53 +7,66 @@
       "abbreviation": "BKR",
       "year": 1613,
       "license": "Volné dílo (public domain)",
-      "description": "Klasický překlad Jednoty bratrské, vydání z roku 1613.",
+      "description": "Klasický překlad Jednoty bratrské z roku 1613. Archaický, ale krásný jazyk.",
       "format": "scrollmapper",
       "source": "CzeBKR.json",
       "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeBKR.json",
       "enabled": true
     },
     {
-      "id": "CSP",
-      "name": "Český studijní překlad",
-      "abbreviation": "ČSP",
+      "id": "B21",
+      "name": "Bible, překlad 21. století",
+      "abbreviation": "B21",
       "year": 2009,
-      "license": "© Nadační fond Křesťanská dobročinnost. Šířeno přes CrossWire s povolením pro nekomerční použití – pouze pro osobní potřebu.",
-      "description": "Doslovný studijní překlad z původních jazyků.",
-      "format": "scrollmapper",
-      "source": "CzeCSP.json",
-      "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeCSP.json",
-      "enabled": true
+      "license": "© Biblion, z. s. Šíření povoleno společnosti CrossWire; stahuje se z jejího repozitáře pro osobní potřebu.",
+      "description": "Současná, čtivá čeština. Nadpisy oddílů, odstavce, poezie a poznámky překladatelů.",
+      "format": "osis",
+      "source": "CzeB21.xml",
+      "url": "https://gitlab.com/api/v4/projects/crosswire-bible-society%2FCzeB21/repository/files/CzeB21.xml/raw?ref=master&lfs=true",
+      "size_mb": 9.8,
+      "enabled": false,
+      "download": true
     },
     {
       "id": "CEP",
       "name": "Český ekumenický překlad",
       "abbreviation": "ČEP",
       "year": 1985,
-      "license": "© Česká biblická společnost – vlastní licencovaný soubor",
-      "format": "zefania",
-      "source": "CEP.xml",
-      "enabled": false
+      "license": "© Ekumenická rada církví v ČR. Šíření povoleno společnosti CrossWire; stahuje se z jejího repozitáře pro osobní potřebu.",
+      "description": "Nejrozšířenější moderní překlad, společné dílo českých církví.",
+      "format": "osis",
+      "source": "CzeCEP.xml",
+      "url": "https://gitlab.com/api/v4/projects/crosswire-bible-society%2FCzeCEP/repository/files/CzeCEP.xml/raw?ref=master&lfs=true",
+      "size_mb": 7.0,
+      "enabled": false,
+      "download": true
     },
     {
-      "id": "B21",
-      "name": "Bible, překlad 21. století",
-      "abbreviation": "B21",
+      "id": "CSP",
+      "name": "Český studijní překlad",
+      "abbreviation": "ČSP",
       "year": 2009,
-      "license": "© Biblion, z. s. – vlastní licencovaný soubor",
-      "format": "zefania",
-      "source": "B21.xml",
-      "enabled": false
+      "license": "© Nadační fond Křesťanská dobročinnost. Šíření povoleno společnosti CrossWire; pouze pro osobní potřebu.",
+      "description": "Doslovný studijní překlad – blízko původnímu textu.",
+      "format": "scrollmapper",
+      "source": "CzeCSP.json",
+      "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeCSP.json",
+      "size_mb": 8.0,
+      "enabled": false,
+      "download": true
     },
     {
       "id": "SNC",
       "name": "Slovo na cestu",
       "abbreviation": "SNC",
       "year": 2012,
-      "license": "© Biblion, z. s. – vlastní licencovaný soubor",
+      "license": "© Biblion, z. s.",
+      "description": "Volný převod do současné češtiny. Vydavatel ho nešíří v otevřeném formátu, proto ho nelze stáhnout.",
       "format": "zefania",
       "source": "SNC.xml",
-      "enabled": false
+      "enabled": false,
+      "download": false,
+      "unavailable": true
     }
   ]
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/bible/bible_database.dart' show BibleDatabase;
+import '../data/translations/translation_installer.dart';
 import '../data/preferences/app_preferences.dart';
 import '../data/repositories/bible_repository_impl.dart';
 import '../data/repositories/user_data_repository_impl.dart';
@@ -26,6 +27,15 @@ final bibleDatabaseProvider = Provider<BibleDatabase>(
   (ref) => _notOverridden('bibleDatabaseProvider'),
 );
 
+/// Override: databáze překladů stažených v aplikaci.
+final downloadsDatabaseProvider = Provider<BibleDatabase>(
+  (ref) => _notOverridden('downloadsDatabaseProvider'),
+);
+
+final translationInstallerProvider = Provider<TranslationInstaller>(
+  (ref) => TranslationInstaller(ref.watch(downloadsDatabaseProvider)),
+);
+
 /// Override: uživatelská databáze.
 final userDatabaseProvider = Provider<UserDatabase>(
   (ref) => _notOverridden('userDatabaseProvider'),
@@ -44,10 +54,29 @@ final userDataRepositoryProvider = Provider<UserDataRepository>(
   (ref) => UserDataRepositoryImpl(ref.watch(userDatabaseProvider)),
 );
 
-/// Override: přednačtený seznam překladů (nemění se za běhu aplikace).
-final translationsProvider = Provider<List<Translation>>(
-  (ref) => _notOverridden('translationsProvider'),
+/// Override: seznam překladů načtený při startu.
+final initialTranslationsProvider = Provider<List<Translation>>(
+  (ref) => _notOverridden('initialTranslationsProvider'),
 );
+
+/// Dostupné překlady (přibalené + stažené). Po stažení nebo odstranění
+/// překladu zavolejte [TranslationsController.refresh].
+class TranslationsController extends Notifier<List<Translation>> {
+  @override
+  List<Translation> build() => ref.watch(initialTranslationsProvider);
+
+  Future<void> refresh() async {
+    final repo = ref.read(bibleRepositoryProvider)..invalidate();
+    final list = await repo.getTranslations();
+    ref.invalidate(chapterCountsProvider);
+    state = list;
+  }
+}
+
+final translationsProvider =
+    NotifierProvider<TranslationsController, List<Translation>>(
+      TranslationsController.new,
+    );
 
 /// Override: přednačtený seznam 66 knih.
 final booksProvider = Provider<List<Book>>(

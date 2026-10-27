@@ -41,3 +41,9 @@ Future<BibleDatabase> openBibleDatabase() async {
     ),
   );
 }
+
+/// Databáze překladů stažených v aplikaci (uložená v prohlížeči).
+Future<BibleDatabase> openDownloadsDatabase() async => BibleDatabase(
+  driftDatabase(name: 'bible_downloads', web: webDriftOptions),
+  downloads: true,
+);

@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:drift/native.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 import 'bible_database.dart';
 import 'bible_db_installer.dart';
@@ -20,5 +24,21 @@ Future<BibleDatabase> openBibleDatabase() async {
         db.execute('PRAGMA temp_store = MEMORY;');
       },
     ),
+  );
+}
+
+/// Databáze překladů stažených v aplikaci (zapisovatelná, mimo instalátor –
+/// aktualizace přibalených dat ji nepřepíše).
+Future<BibleDatabase> openDownloadsDatabase() async {
+  final dir = Directory(
+    p.join((await getApplicationSupportDirectory()).path, 'bible'),
+  );
+  await dir.create(recursive: true);
+  return BibleDatabase(
+    NativeDatabase.createInBackground(
+      File(p.join(dir.path, 'downloads.db')),
+      setup: (db) => db.execute('PRAGMA journal_mode = WAL;'),
+    ),
+    downloads: true,
   );
 }

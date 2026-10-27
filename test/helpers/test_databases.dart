@@ -115,22 +115,27 @@ Future<ProviderContainer> createTestContainer({
   SharedPreferences.setMockInitialValues(prefs);
   final sharedPrefs = await SharedPreferences.getInstance();
   final bibleDb = await createTestBibleDb();
-  final repo = BibleRepositoryImpl(bibleDb);
+  final downloadsDb = BibleDatabase(NativeDatabase.memory(), downloads: true);
+  final repo = BibleRepositoryImpl(bibleDb, downloadsDb);
   final container = ProviderContainer(
     overrides: [
       bibleDatabaseProvider.overrideWithValue(bibleDb),
+      downloadsDatabaseProvider.overrideWithValue(downloadsDb),
       userDatabaseProvider.overrideWithValue(
         UserDatabase(NativeDatabase.memory()),
       ),
       appPreferencesProvider.overrideWithValue(AppPreferences(sharedPrefs)),
       bibleRepositoryProvider.overrideWithValue(repo),
-      translationsProvider.overrideWithValue(await repo.getTranslations()),
+      initialTranslationsProvider.overrideWithValue(
+        await repo.getTranslations(),
+      ),
       booksProvider.overrideWithValue(await repo.getBooks()),
     ],
   );
   addTearDown(() async {
     container.dispose();
     await bibleDb.close();
+    await downloadsDb.close();
   });
   return container;
 }

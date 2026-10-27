@@ -22,6 +22,8 @@ Podporované formáty zdrojů (klíč "format" v translations.json):
   zefania      – Zefania XML (<BIBLEBOOK bnumber><CHAPTER cnumber><VERS vnumber>)
   flat         – jednoduchý JSON: {"verses": [{"book": 1|"Gen", "chapter": 1,
                  "verse": 1, "text": "…"}, …]}
+  osis         – OSIS XML (moduly CrossWire/SWORD); navíc nadpisy oddílů,
+                 odstavce, poezie a poznámky překladatelů.
 
 Skript používá jen standardní knihovnu Pythonu 3.9+.
 """
@@ -29,6 +31,8 @@ Skript používá jen standardní knihovnu Pythonu 3.9+.
 from __future__ import annotations
 
 import argparse
+import dataclasses
+import html
 import datetime as dt
 import hashlib
 import json
@@ -46,9 +50,10 @@ CONFIG_FILE = ROOT / "tool" / "translations.json"
 SOURCES_DIR = ROOT / "data" / "sources"
 OUTPUT_DB = ROOT / "assets" / "db" / "bible.db"
 OUTPUT_MANIFEST = ROOT / "assets" / "db" / "bible_manifest.json"
+OUTPUT_CATALOG = ROOT / "assets" / "db" / "catalog.json"
 
 # Musí odpovídat `schemaVersion` v lib/data/bible/bible_database.dart.
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 # --------------------------------------------------------------------------
 # Kánon: (OSIS, český název, česká zkratka dle ČEP, zákon, počet kapitol)
@@ -148,6 +153,16 @@ EN_NAME_TO_ID["revelation"] = 66
 VerseRow = tuple[int, int, int, str]
 
 
+@dataclasses.dataclass
+class Parsed:
+    """Výsledek parseru. `verses` = (book, chapter, verse, text, paragraph,
+    poetry); `headings` a `footnotes` = (book, chapter, verse, text)."""
+
+    verses: list[tuple[int, int, int, str, bool, bool]]
+    headings: list[tuple[int, int, int, str]]
+    footnotes: list[tuple[int, int, int, str]]
+
+
 # --------------------------------------------------------------------------
 # Pomocné funkce
 # --------------------------------------------------------------------------
@@ -159,8 +174,9 @@ _WS = re.compile(r"\s+")
 
 
 def clean_text(text: str) -> str:
-    """Sjednotí bílé znaky. Typografii a poznámky ve {} ponecháváme."""
-    return _WS.sub(" ", text).strip()
+    """Sjednotí bílé znaky (zachová zalomení řádků poezie `\n`)."""
+    lines = (_WS.sub(" ", line).strip() for line in text.split("\n"))
+    return "\n".join(line for line in lines if line)
 
 
 def resolve_book_id(value: object) -> int:
@@ -223,7 +239,166 @@ def parse_flat(path: Path) -> Iterator[VerseRow]:
                int(row["verse"]), row["text"])
 
 
+_TOKEN = re.compile(r"<[^>]+>|[^<]+")
+_TAG = re.compile(r"<\s*(/?)\s*([A-Za-z]+)([^>]*?)(/?)\s*>")
+_ATTR = re.compile(r'([A-Za-z]+)="([^"]*)"')
+_SKIP_TITLE_TYPES = {"main", "chapter", "runningHead", "acrostic"}
+
+
+def parse_osis(path: Path) -> Parsed:
+    """Proudové zpracování OSIS XML bez DOM (stejný algoritmus jako
+    lib/data/translations/osis_parser.dart).
+
+    Podporuje verše jako milníky (sID/eID) i jako kontejnery, nadpisy
+    <title>, odstavce <p>, poezii <lg>/<l> a poznámky <note>.
+    """
+    text = path.read_text(encoding="utf-8")
+    verses, headings, footnotes = [], [], []
+    cur = None            # (book, chapter, verse) aktuálního verše
+    buf: list[str] = []
+    meta = (True, False)  # (paragraph, poetry) aktuálního verše
+    para_pending = True
+    lg_depth = 0
+    note_depth, note_buf = 0, []
+    title_depth, title_buf, title_skip = 0, [], False
+    pending_titles: list[str] = []
+    in_header = False
+
+    def start(osis_id: str) -> None:
+        nonlocal cur, buf, meta, para_pending, pending_titles
+        ref = osis_id.split()[0].split(".")
+        book = OSIS_TO_ID.get(ref[0].lower()) if len(ref) == 3 else None
+        if book is None or not ref[1].isdigit() or not ref[2].isdigit():
+            cur = None  # deuterokanonické knihy apod. přeskočíme
+            return
+        cur = (book, int(ref[1]), int(ref[2]))
+        buf = []
+        meta = (para_pending, lg_depth > 0)
+        para_pending = False
+        for t in pending_titles:
+            headings.append((*cur, t))
+        pending_titles = []
+
+    def end() -> None:
+        nonlocal cur
+        if cur is not None:
+            verses.append((*cur, "".join(buf), *meta))
+        cur = None
+
+    for m in _TOKEN.finditer(text):
+        tok = m.group(0)
+        if not tok.startswith("<"):
+            if in_header:
+                continue
+            # Zalomení z formátování XML nejsou součástí textu – skutečné
+            # konce řádků poezie přidávají až značky </l>, </p>.
+            chunk = _WS.sub(" ", html.unescape(tok))
+            if note_depth:
+                note_buf.append(chunk)
+            elif title_depth:
+                title_buf.append(chunk)
+            elif cur is not None:
+                buf.append(chunk)
+            continue
+        t = _TAG.match(tok)
+        if t is None or tok.startswith("<?") or tok.startswith("<!"):
+            continue
+        closing, name, rest, selfclosing = t.group(1), t.group(2), t.group(3), t.group(4)
+        attrs = dict(_ATTR.findall(rest))
+        if name == "header":
+            in_header = not closing and not selfclosing
+            continue
+        if in_header:
+            continue
+        if name == "hi" and closing:
+            # „<hi>adam</hi>zní“ – formátování XML spolklo mezeru za značkou.
+            nxt = text[m.end():m.end() + 1]
+            if nxt.isalnum():
+                target = note_buf if note_depth else (title_buf if title_depth else buf)
+                target.append(" ")
+            continue
+        if name == "note":
+            if selfclosing:
+                continue
+            if not closing:
+                note_depth += 1
+                if note_depth == 1:
+                    note_buf = []
+            else:
+                note_depth -= 1
+                if note_depth == 0 and cur is not None:
+                    note = clean_text("".join(note_buf).replace("\n", " "))
+                    if note:
+                        footnotes.append((*cur, note))
+            continue
+        if note_depth:
+            continue
+        if name == "title":
+            if selfclosing:
+                continue
+            if not closing:
+                title_depth += 1
+                if title_depth == 1:
+                    title_buf = []
+                    title_skip = attrs.get("type") in _SKIP_TITLE_TYPES
+            else:
+                title_depth -= 1
+                if title_depth == 0 and not title_skip:
+                    title = clean_text("".join(title_buf).replace("\n", " "))
+                    if title:
+                        pending_titles.append(title)
+            continue
+        if title_depth:
+            continue
+        if name == "verse":
+            if closing:
+                end()
+            elif "eID" in attrs:
+                end()
+            elif "osisID" in attrs:
+                end()
+                start(attrs["osisID"])
+            continue
+        if name in ("p", "lg"):
+            if not closing and not selfclosing:
+                if name == "lg":
+                    lg_depth += 1
+                para_pending = True
+            elif closing:
+                if name == "lg":
+                    lg_depth = max(0, lg_depth - 1)
+                para_pending = True
+                if cur is not None:
+                    buf.append("\n")
+            continue
+        if name == "l" and closing and cur is not None:
+            buf.append("\n")
+            continue
+        if name in ("chapter", "div") and (closing or selfclosing):
+            para_pending = True
+        if name == "lb" and cur is not None:
+            buf.append("\n")
+    verses = [(b, c, v, fix_spacing(t), p, po) for b, c, v, t, p, po in verses]
+    footnotes = [(b, c, v, fix_spacing(t)) for b, c, v, t in footnotes]
+    # Zdroj bez skutečného členění na odstavce (např. ČEP) → verš po verši,
+    # jinak by celá kapitola byla jediný odstavec.
+    if sum(1 for v in verses if v[4]) < len(verses) * 0.10:
+        verses = [(b, c, v, t, True, po) for b, c, v, t, _, po in verses]
+    return Parsed(verses, headings, footnotes)
+
+
+_SPACE_AFTER_OPEN = re.compile(r"([(\[„]) +")
+_SPACE_BEFORE_CLOSE = re.compile(r" +([)\],.;:!?“])")
+
+
+def fix_spacing(text: str) -> str:
+    """Opraví mezery rozbité formátováním XML: „( země)“ → „(země)“."""
+    text = _SPACE_AFTER_OPEN.sub(r"\1", text)
+    return _SPACE_BEFORE_CLOSE.sub(r"\1", text)
+
+
 PARSERS = {
+    "osis": parse_osis,
     "scrollmapper": parse_scrollmapper,
     "zefania": parse_zefania,
     "flat": parse_flat,
@@ -262,22 +437,30 @@ def insert_books(conn: sqlite3.Connection) -> None:
     )
 
 
-def load_translation(entry: dict) -> list[VerseRow]:
-    parser = PARSERS[entry["format"]]
-    rows: dict[tuple[int, int, int], str] = {}
-    for book_id, ch, vs, text in parser(SOURCES_DIR / entry["source"]):
+def load_translation(entry: dict) -> Parsed:
+    result = PARSERS[entry["format"]](SOURCES_DIR / entry["source"])
+    if not isinstance(result, Parsed):
+        # Jednoduché formáty: verše bez členění (každý verš = odstavec).
+        result = Parsed([(b, c, v, t, True, False) for b, c, v, t in result], [], [])
+
+    rows: dict[tuple[int, int, int], list] = {}
+    for book_id, ch, vs, text, paragraph, poetry in result.verses:
         text = clean_text(text)
-        if not text:
+        if not text or vs < 1:
             continue  # prázdné verše (vynechané v překladu) neukládáme
         key = (book_id, ch, vs)
-        # Duplicitní verš (vzácné chyby zdrojů) → spojíme text.
-        rows[key] = f"{rows[key]} {text}" if key in rows else text
+        if key in rows:
+            # Duplicitní verš (vzácné chyby zdrojů) → spojíme text.
+            rows[key][0] += " " + text
+        else:
+            rows[key] = [text, paragraph, poetry]
     # Kanonické pořadí = fyzické pořadí v souboru databáze.
-    return [(*key, text) for key, text in sorted(rows.items())]
+    verses = [(*key, t, p, po) for key, (t, p, po) in sorted(rows.items())]
+    return Parsed(verses, result.headings, result.footnotes)
 
 
 def insert_translation(conn: sqlite3.Connection, entry: dict, order: int,
-                       rows: list[VerseRow]) -> None:
+                       data: Parsed) -> None:
     tid = entry["id"]
     conn.execute(
         "INSERT INTO translations (id, name, abbreviation, language, year,"
@@ -285,13 +468,23 @@ def insert_translation(conn: sqlite3.Connection, entry: dict, order: int,
         " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (tid, entry["name"], entry.get("abbreviation", tid),
          entry.get("language", "cs"), entry.get("year"), entry.get("license"),
-         entry.get("description"), order, len(rows)),
+         entry.get("description"), order, len(data.verses)),
     )
     conn.executemany(
-        "INSERT INTO verses (translation_id, book_id, chapter, verse, text)"
-        " VALUES (?, ?, ?, ?, ?)",
-        ((tid, b, c, v, t) for b, c, v, t in rows),
+        "INSERT INTO verses (translation_id, book_id, chapter, verse, text,"
+        " paragraph, poetry) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        ((tid, b, c, v, t, int(p), int(po)) for b, c, v, t, p, po in data.verses),
     )
+    for table, items in (("headings", data.headings), ("footnotes", data.footnotes)):
+        counters: dict[tuple[int, int, int], int] = {}
+        out = []
+        for b, c, v, text in items:
+            ordn = counters.get((b, c, v), 0)
+            counters[(b, c, v)] = ordn + 1
+            out.append((tid, b, c, v, ordn, text))
+        conn.executemany(
+            f"INSERT INTO {table} (translation_id, book_id, chapter, verse, ord, text)"
+            " VALUES (?, ?, ?, ?, ?, ?)", out)
     conn.execute(
         "INSERT INTO chapters (translation_id, book_id, chapter, verse_count)"
         " SELECT translation_id, book_id, chapter, MAX(verse) FROM verses"
@@ -342,9 +535,10 @@ def build(entries: list[dict]) -> None:
         insert_books(conn)
 
         for order, entry in enumerate(entries, start=1):
-            rows = load_translation(entry)
-            insert_translation(conn, entry, order, rows)
-            log(f"  ✓ {entry['id']:4} {entry['name']}: {len(rows):,} veršů")
+            data = load_translation(entry)
+            insert_translation(conn, entry, order, data)
+            log(f"  ✓ {entry['id']:4} {entry['name']}: {len(data.verses):,} veršů,"
+                f" {len(data.headings):,} nadpisů, {len(data.footnotes):,} poznámek")
             for warning in validate(conn, entry["id"]):
                 log(f"    ! {warning}")
 
@@ -378,6 +572,21 @@ def build(entries: list[dict]) -> None:
         f" verze obsahu {version}")
 
 
+def write_catalog(entries: list[dict]) -> None:
+    """Katalog překladů ke stažení v aplikaci (zařízení si text stáhne samo
+    přímo od distributora – ve veřejném buildu se chráněné texty nešíří)."""
+    keys = ("id", "name", "abbreviation", "year", "license", "description",
+            "format", "url", "size_mb")
+    catalog = [
+        {k: e[k] for k in keys if k in e} | {"available": not e.get("unavailable")}
+        for e in entries if e.get("download") or e.get("unavailable")
+    ]
+    OUTPUT_CATALOG.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_CATALOG.write_text(json.dumps({"translations": catalog},
+                                         ensure_ascii=False, indent=2) + "\n",
+                              encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--fetch", action="store_true",
@@ -389,6 +598,7 @@ def main() -> int:
     args = parser.parse_args()
 
     config = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+    write_catalog(config["translations"])
     entries = [e for e in config["translations"] if e.get("enabled", True)]
     if args.only:
         wanted = {x.upper() for x in args.only}

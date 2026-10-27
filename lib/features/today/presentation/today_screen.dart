@@ -17,6 +17,8 @@ import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
+import '../../content/presentation/harmony_screen.dart';
+import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/situations_screen.dart';
 import 'plans_sheet.dart';
 import 'timeline_screen.dart';
@@ -546,11 +548,32 @@ class _ExploreGrid extends ConsumerWidget {
             .push(MaterialPageRoute<void>(builder: (_) => page));
     final tiles = [
       (
-        Icons.map_outlined,
-        const Color(0xFF3F7CAC),
-        S.exploreMaps,
-        S.exploreMapsHint,
-        () => ref.read(shellTabProvider.notifier).select(AppTab.maps),
+        Icons.favorite_border,
+        const Color(0xFFB0603A),
+        S.situations,
+        S.situationsHint,
+        () => push(const SituationsScreen()),
+      ),
+      (
+        Icons.diversity_3_outlined,
+        const Color(0xFF8C4A6B),
+        S.people,
+        S.peopleHint,
+        () => push(const PeopleScreen()),
+      ),
+      (
+        Icons.view_week_outlined,
+        const Color(0xFF2E8B57),
+        S.harmony,
+        S.harmonyHint,
+        () => push(const HarmonyScreen()),
+      ),
+      (
+        Icons.view_timeline_outlined,
+        const Color(0xFFB0603A),
+        S.timeline,
+        S.timelineHint,
+        () => push(const TimelineScreen()),
       ),
       (
         Icons.auto_stories_outlined,
@@ -560,11 +583,11 @@ class _ExploreGrid extends ConsumerWidget {
         () => push(const BookIntrosScreen()),
       ),
       (
-        Icons.translate,
-        const Color(0xFF4E9A8A),
-        S.exploreTranslations,
-        S.exploreTranslationsHint,
-        () => push(const LibraryScreen()),
+        Icons.map_outlined,
+        const Color(0xFF3F7CAC),
+        S.exploreMaps,
+        S.exploreMapsHint,
+        () => ref.read(shellTabProvider.notifier).select(AppTab.maps),
       ),
       (
         Icons.history_edu,
@@ -574,18 +597,11 @@ class _ExploreGrid extends ConsumerWidget {
         () => push(const StudyPackScreen()),
       ),
       (
-        Icons.favorite_border,
-        const Color(0xFFB0603A),
-        S.situations,
-        S.situationsHint,
-        () => push(const SituationsScreen()),
-      ),
-      (
-        Icons.view_timeline_outlined,
-        const Color(0xFFB0603A),
-        S.timeline,
-        S.timelineHint,
-        () => push(const TimelineScreen()),
+        Icons.translate,
+        const Color(0xFF4E9A8A),
+        S.exploreTranslations,
+        S.exploreTranslationsHint,
+        () => push(const LibraryScreen()),
       ),
       (
         Icons.event_note_outlined,
@@ -683,7 +699,7 @@ class _SituationsStrip extends ConsumerWidget {
             Expanded(
               child: Text(S.situationsToday, style: theme.textTheme.titleLarge),
             ),
-            TextButton(onPressed: openAll, child: const Text(S.allSituations)),
+            TextButton(onPressed: openAll, child: const Text(S.all)),
           ],
         ),
         const SizedBox(height: 8),

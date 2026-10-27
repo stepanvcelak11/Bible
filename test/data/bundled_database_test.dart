@@ -75,6 +75,42 @@ void main() {
           refs['úvod $key $kv'] = VerseRef(int.parse(key), parts[0], parts[1]);
         }
       }
+      // Verše do situací, medailony a harmonie evangelií: začátek i konec
+      // každého místa.
+      Object? load(String name) =>
+          jsonDecode(File('assets/content/$name').readAsStringSync());
+      void addPassage(String label, Object? json) {
+        final l = (json! as List).cast<int>();
+        if (l[2] == 0) {
+          refs[label] = VerseRef(l[0], l[1]);
+          return;
+        }
+        refs['$label (začátek)'] = VerseRef(l[0], l[1], l[2]);
+        refs['$label (konec)'] = VerseRef(
+          l[0],
+          l.length > 4 ? l[4] : l[1],
+          l[3],
+        );
+      }
+
+      for (final s in (load('situations.json')! as Map)['situations'] as List) {
+        for (final r in s['refs'] as List) {
+          addPassage('situace ${s['id']} $r', r);
+        }
+      }
+      for (final p in (load('people.json')! as Map)['people'] as List) {
+        addPassage('postava ${p['id']} klíčový verš', p['key']);
+        for (final r in p['story'] as List) {
+          addPassage('postava ${p['id']} $r', r);
+        }
+      }
+      for (final per in (load('harmony.json')! as Map)['periods'] as List) {
+        for (final e in per['events'] as List) {
+          for (final r in e['refs'] as List) {
+            if (r != null) addPassage('harmonie ${e['title']} $r', r);
+          }
+        }
+      }
       // Kanonické číslování → BKR (anglické číslování).
       final missing = <String>[];
       for (final MapEntry(:key, :value) in refs.entries) {

@@ -42,7 +42,7 @@ final passageTextProvider = FutureProvider.autoDispose
       }
       final a = Versification.fromCanonical(p.start, translationId);
       final b = Versification.fromCanonical(
-        VerseRef(p.bookId, p.chapter, p.end),
+        VerseRef(p.bookId, p.endChapter, p.end),
         translationId,
       );
       final verses = <Verse>[];
@@ -55,3 +55,27 @@ final passageTextProvider = FutureProvider.autoDispose
       }
       return verses;
     });
+
+/// Medailony biblických postav.
+final peopleProvider = FutureProvider<List<BiblePerson>>((ref) async {
+  final j = await _loadJson('people.json');
+  return [
+    for (final p
+        in (j['people']! as List<Object?>).cast<Map<String, Object?>>())
+      BiblePerson.fromJson(p),
+  ];
+});
+
+/// Harmonie evangelií.
+final harmonyProvider = FutureProvider<List<HarmonyPeriod>>((ref) async {
+  final j = await _loadJson('harmony.json');
+  return [
+    for (final p
+        in (j['periods']! as List<Object?>).cast<Map<String, Object?>>())
+      HarmonyPeriod(p['name']! as String, [
+        for (final e
+            in (p['events']! as List<Object?>).cast<Map<String, Object?>>())
+          HarmonyEvent.fromJson(e),
+      ]),
+  ];
+});

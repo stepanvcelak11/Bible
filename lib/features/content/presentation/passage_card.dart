@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/content_entities.dart';
@@ -27,6 +28,17 @@ class PassageCard extends ConsumerWidget {
         .value;
     final color = accent ?? palette.gold;
     final multi = (verses?.length ?? 0) > 1;
+    // Označení v číslování zvoleného překladu (BKR čísluje některá místa
+    // jinak než ČEP).
+    final shown = verses == null || verses.isEmpty || passage.wholeChapter
+        ? passage
+        : Passage(
+            passage.bookId,
+            verses.first.ref.chapter,
+            verses.first.number,
+            verses.last.number,
+            verses.last.ref.chapter,
+          );
 
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
@@ -41,7 +53,7 @@ class PassageCard extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: Text(
-                      passage.label(book.name),
+                      shown.label(book.name),
                       style: theme.textTheme.labelLarge?.copyWith(
                         color: color,
                         fontWeight: FontWeight.w700,
@@ -94,3 +106,30 @@ class PassageCard extends ConsumerWidget {
     );
   }
 }
+
+/// Text místa (i celé kapitoly) ve spodním panelu s odkazem do čtečky.
+Future<void> showPassageSheet(BuildContext context, Passage passage) =>
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (_) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        maxChildSize: 0.95,
+        builder: (context, controller) => Consumer(
+          builder: (context, ref, _) => ListView(
+            controller: controller,
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+            children: [
+              PassageCard(passage: passage),
+              FilledButton.icon(
+                onPressed: () => openReaderAt(context, ref, passage.start),
+                icon: const Icon(Icons.menu_book),
+                label: const Text(S.readInBible),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );

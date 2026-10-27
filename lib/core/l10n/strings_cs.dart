@@ -223,6 +223,29 @@ abstract final class S {
   static const exploreTranslations = 'Překlady';
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
   static const situations = 'Verše do situací';
+  static const harmony = 'Harmonie evangelií';
+  static const harmonyHint = 'Ježíšův život v pořadí';
+  static const harmonyIntro =
+      'Události Ježíšova života v přibližném časovém pořadí a místa, kde '
+      'o nich píší jednotlivá evangelia. Evangelisté často řadí látku '
+      'tematicky, proto je pořadí místy jen pravděpodobné.';
+  static const people = 'Biblické postavy';
+  static const peopleHint = 'Medailony 55 postav';
+  static const peopleIntro =
+      'Medailony hlavních postav Bible – jejich silné stránky i selhání '
+      'a co se z jejich života můžeme naučit.';
+  static const findPerson = 'Hledat postavu';
+  static const personWhere = 'Kde žil(a)';
+  static const personOccupation = 'Povolání';
+  static const personRelatives = 'Příbuzní';
+  static const personBooks = 'Vystupuje v knihách';
+  static const strengths = 'Silné stránky a úspěchy';
+  static const weaknesses = 'Slabiny a selhání';
+  static const lessons = 'Ponaučení';
+  static const keyVerse = 'Klíčový verš';
+  static const personStory = 'Příběh v Bibli';
+  static const readInBible = 'Číst v Bibli';
+  static const profiles = 'Medailony postav';
   static const bookPlaces = 'Místa v knize';
   static const overview = 'Přehled';
   static const basicFacts = 'Základní údaje';
@@ -241,8 +264,10 @@ abstract final class S {
       'klepnutím otevřete celý text v souvislostech.';
   static const situationsToday = 'Verše pro tuto chvíli';
   static const allSituations = 'Všechny situace';
+  static const all = 'Vše';
   static const timeline = 'Časová osa';
-  static const timelineHint = 'Od Abrahama po Zjevení';
+  static const worldHistory = 'Ve světě';
+  static const timelineHint = 'Bible a světové dějiny';
   static const timelineIntro =
       'Hlavní události biblických dějin. Starší období mají jen přibližnou '
       'nebo tradiční dataci – odborníci se v nich liší.';

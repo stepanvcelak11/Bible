@@ -23,6 +23,7 @@ enum TimelineEra {
   exodus('Exodus a země', 0xFF3F7CAC),
   kingdom('Království', 0xFF8C4A6B),
   exile('Zajetí a návrat', 0xFF4E6E81),
+  between('Mezi Starým a Novým zákonem', 0xFF7A7A6A),
   jesus('Ježíš', 0xFFB0813B),
   church('První církev', 0xFF2E8B57);
 
@@ -41,8 +42,20 @@ class TimelineEvent {
     required this.certainty,
     required this.description,
     required this.refs,
-  });
+  }) : world = false;
 
+  /// Událost ze světových dějin (pro souvislosti, bez biblických odkazů
+  /// nebo jen s nepřímým odkazem).
+  const TimelineEvent.world({
+    required this.era,
+    required this.title,
+    required this.date,
+    required this.certainty,
+    required this.description,
+    this.refs = const [],
+  }) : world = true;
+
+  final bool world;
   final TimelineEra era;
   final String title;
 
@@ -71,24 +84,48 @@ const timelineEvents = [
         'Vyprávění Gn 1–11 nepodává historickou chronologii.',
     refs: [VerseRef(1, 1), VerseRef(1, 3), VerseRef(1, 6), VerseRef(1, 11)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.beginnings,
+    title: 'Vznik písma',
+    date: 'cca 3200 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'V Mezopotámii vzniká klínové písmo a v Egyptě hieroglyfy – začínají '
+        'psané dějiny.',
+    refs: [],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.beginnings,
+    title: 'Velká pyramida v Gíze',
+    date: 'cca 2560 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Stavba Chufuovy pyramidy v Egyptě – stála už staletí, když do Egypta '
+        'přišel Abraham.',
+    refs: [],
+  ),
+
   TimelineEvent(
     era: TimelineEra.patriarchs,
     title: 'Abrahamovo povolání',
-    date: 'cca 2000–1800 př. Kr.',
+    date: 'tradičně 2091 př. Kr.',
     certainty: DatingCertainty.traditional,
     description:
-        'Abraham odchází z Cháranu do Kenaanu a přijímá zaslíbení země, '
-        'potomstva a požehnání pro všechny národy.',
+        'Abram (narozen tradičně r. 2166 př. Kr.) odchází v 75 letech '
+        'z Cháranu do Kenaanu a přijímá zaslíbení země, potomstva a požehnání '
+        'pro všechny národy. Tradiční data vycházejí z věků v Bibli; mnozí '
+        'badatelé kladou praotce do let cca 2000–1700 př. Kr.',
     refs: [VerseRef(1, 12), VerseRef(1, 15), VerseRef(1, 22)],
   ),
   TimelineEvent(
     era: TimelineEra.patriarchs,
     title: 'Izák, Jákob a dvanáct kmenů',
-    date: 'cca 1900–1700 př. Kr.',
+    date: 'tradičně 2066–1876 př. Kr.',
     certainty: DatingCertainty.traditional,
     description:
-        'Jákob, nazvaný Izrael, je praotcem dvanácti kmenů. Josef se v '
-        'Egyptě stává správcem a jeho rodina se tam usazuje.',
+        'Izák se narodil tradičně r. 2066, Jákob 2006 př. Kr. Jákob, '
+        'nazvaný Izrael, je praotcem dvanácti kmenů. Josef se v Egyptě '
+        'stává správcem a rodina se tam usazuje (tradičně 1876 př. Kr.).',
     refs: [
       VerseRef(1, 28),
       VerseRef(1, 32, 23),
@@ -96,6 +133,17 @@ const timelineEvents = [
       VerseRef(1, 50, 20),
     ],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.patriarchs,
+    title: 'Chammurapiho zákoník',
+    date: 'cca 1750 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Babylonský král Chammurapi dává vytesat sbírku zákonů – ukazuje '
+        'právní svět doby praotců.',
+    refs: [],
+  ),
+
   TimelineEvent(
     era: TimelineEra.exodus,
     title: 'Vyvedení z Egypta',
@@ -106,6 +154,17 @@ const timelineEvents = [
         'se dělí mezi dřívější (cca 1446) a pozdější (cca 1260) dataci.',
     refs: [VerseRef(2, 3), VerseRef(2, 12), VerseRef(2, 14)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.exodus,
+    title: 'Ramesse II. vládne Egyptu',
+    date: '1279–1213 př. Kr.',
+    certainty: DatingCertainty.approximate,
+    description:
+        'Nejslavnější faraon Nové říše; zastánci pozdní datace exodu ho '
+        'považují za faraona útlaku.',
+    refs: [],
+  ),
+
   TimelineEvent(
     era: TimelineEra.exodus,
     title: 'Smlouva na Sínaji a Desatero',
@@ -126,6 +185,17 @@ const timelineEvents = [
         'závisí na dataci exodu.',
     refs: [VerseRef(6, 1), VerseRef(6, 3), VerseRef(6, 6), VerseRef(6, 24)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.exodus,
+    title: 'Merenptahova stéla',
+    date: 'cca 1208 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Nejstarší mimobiblická zmínka o „Izraeli“ – lidu žijícím v Kenaanu. '
+        'Nápis faraona Merenptaha.',
+    refs: [],
+  ),
+
   TimelineEvent(
     era: TimelineEra.exodus,
     title: 'Doba soudců',
@@ -136,6 +206,17 @@ const timelineEvents = [
         'vysvobozují Izrael z útlaku. Do této doby patří i příběh Rút.',
     refs: [VerseRef(7, 2), VerseRef(7, 4), VerseRef(7, 6), VerseRef(8, 1)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.exodus,
+    title: 'Konec doby bronzové, příchod Pelištejců',
+    date: 'cca 1200 př. Kr.',
+    certainty: DatingCertainty.approximate,
+    description:
+        'Rozpad velkých říší; „mořské národy“, mezi nimi Pelištejci, se usazují '
+        'na pobřeží Kenaanu.',
+    refs: [VerseRef(7, 13), VerseRef(9, 17)],
+  ),
+
   TimelineEvent(
     era: TimelineEra.kingdom,
     title: 'Saul, první izraelský král',
@@ -187,6 +268,17 @@ const timelineEvents = [
         'zmiňují i asyrské záznamy (bitva u Karkaru 853 př. Kr.).',
     refs: [VerseRef(11, 17), VerseRef(11, 18), VerseRef(12, 2)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.kingdom,
+    title: 'První olympijské hry a založení Říma',
+    date: '776 a 753 př. Kr.',
+    certainty: DatingCertainty.traditional,
+    description:
+        'Podle tradice se konají první olympijské hry (776) a je založen Řím '
+        '(753) – v době proroků Ámose a Ozeáše.',
+    refs: [],
+  ),
+
   TimelineEvent(
     era: TimelineEra.kingdom,
     title: 'Proroci Ámos, Ozeáš a Izajáš',
@@ -283,6 +375,17 @@ const timelineEvents = [
         'Připomíná to svátek Purim.',
     refs: [VerseRef(17, 4), VerseRef(17, 9)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.exile,
+    title: 'Bitva u Salamíny',
+    date: '480 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Řekové porážejí loďstvo perského krále Xerxa – téhož Achašveróše, '
+        'jehož manželkou se stala Ester.',
+    refs: [VerseRef(17, 1)],
+  ),
+
   TimelineEvent(
     era: TimelineEra.exile,
     title: 'Ezdráš a Nehemjáš',
@@ -293,6 +396,65 @@ const timelineEvents = [
         'Malachiáš je posledním z proroků Starého zákona.',
     refs: [VerseRef(15, 7), VerseRef(16, 2), VerseRef(16, 8), VerseRef(39, 3)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Alexandr Veliký',
+    date: '332 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Alexandr Makedonský dobývá Perskou říši i Judsko; řečtina se stává '
+        'společným jazykem – později i jazykem Nového zákona.',
+    refs: [],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Septuaginta',
+    date: '3. stol. př. Kr.',
+    certainty: DatingCertainty.approximate,
+    description:
+        'V Alexandrii vzniká řecký překlad Starého zákona. Apoštolové z něj '
+        'často citují.',
+    refs: [],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Makabejské povstání',
+    date: '167–164 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Židé se vzbouří proti Antiochovi IV., který znesvětil chrám; nové '
+        'posvěcení chrámu připomíná svátek Chanuka.',
+    refs: [VerseRef(43, 10, 22)],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Řím ovládne Judsko',
+    date: '63 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Pompeius dobývá Jeruzalém; Judsko se dostává pod římskou nadvládu.',
+    refs: [],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Herodes Veliký',
+    date: '37–4 př. Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Herodes vládne jako římský vazal a od r. 20/19 př. Kr. velkolepě '
+        'přestavuje chrám.',
+    refs: [VerseRef(40, 2, 1), VerseRef(43, 2, 20)],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.between,
+    title: 'Císař Augustus',
+    date: '27 př. Kr. – 14 po Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'První římský císař; jeho nařízení o sčítání lidu zmiňuje Lukáš.',
+    refs: [VerseRef(42, 2, 1)],
+  ),
+
   TimelineEvent(
     era: TimelineEra.jesus,
     title: 'Narození Ježíše',
@@ -395,6 +557,17 @@ const timelineEvents = [
         'v domácím vězení. Vznikají dopisy z vězení.',
     refs: [VerseRef(44, 27), VerseRef(44, 28), VerseRef(50, 1, 12)],
   ),
+  TimelineEvent.world(
+    era: TimelineEra.church,
+    title: 'Požár Říma a Neronovo pronásledování',
+    date: '64 po Kr.',
+    certainty: DatingCertainty.documented,
+    description:
+        'Nero obviní křesťany z požáru Říma. Podle tradice v té době umírají '
+        'v Římě apoštolové Petr a Pavel.',
+    refs: [VerseRef(55, 4, 6)],
+  ),
+
   TimelineEvent(
     era: TimelineEra.church,
     title: 'Zničení Jeruzaléma Římany',
@@ -414,5 +587,25 @@ const timelineEvents = [
         'Za císaře Domitiána sepisuje Jan vidění o Kristově vítězství '
         'a novém stvoření.',
     refs: [VerseRef(66, 1, 9), VerseRef(66, 21)],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.church,
+    title: 'Nejstarší rukopis Nového zákona',
+    date: 'cca 125 po Kr.',
+    certainty: DatingCertainty.approximate,
+    description:
+        'Papyrus P52 se zlomkem Janova evangelia (J 18) – jen několik desítek '
+        'let po sepsání.',
+    refs: [VerseRef(43, 18, 31)],
+  ),
+  TimelineEvent.world(
+    era: TimelineEra.church,
+    title: 'Objev kumránských svitků',
+    date: '1947',
+    certainty: DatingCertainty.documented,
+    description:
+        'U Mrtvého moře jsou nalezeny svitky z doby před Kristem včetně '
+        'celého svitku Izajáše – potvrzují pečlivost opisování Bible.',
+    refs: [VerseRef(23, 53)],
   ),
 ];

@@ -6,6 +6,10 @@ import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
+import '../../../domain/entities/content_entities.dart';
+import '../../content/application/content_providers.dart';
+import '../../content/presentation/harmony_screen.dart';
+import '../../content/presentation/people_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../shell/home_shell.dart';
 import '../application/study_providers.dart';
@@ -40,6 +44,10 @@ class BookIntroView extends ConsumerWidget {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final category = categoryOf(bookId);
+    final profiles = [
+      for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
+        if (p.books.contains(bookId)) p,
+    ];
     final accent = Color(category.color);
 
     if (intro == null) {
@@ -217,8 +225,34 @@ class BookIntroView extends ConsumerWidget {
               ),
             ),
         ],
+        // --- Medailony postav -----------------------------------------
+        if (profiles.isNotEmpty) ...[
+          section(S.profiles),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final p in profiles)
+                ActionChip(
+                  avatar: Icon(Icons.person_outline, size: 18, color: accent),
+                  label: Text(p.name),
+                  onPressed: () => openPerson(context, p),
+                ),
+            ],
+          ),
+        ],
         // --- Mapa a čtení ----------------------------------------------
         const SizedBox(height: 18),
+        if (bookId >= 40 && bookId <= 43) ...[
+          OutlinedButton.icon(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const HarmonyScreen()),
+            ),
+            icon: const Icon(Icons.view_week_outlined),
+            label: const Text(S.harmony),
+          ),
+          const SizedBox(height: 10),
+        ],
         OutlinedButton.icon(
           onPressed: () => openBookMap(context, bookId),
           icon: const Icon(Icons.map_outlined),

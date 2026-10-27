@@ -100,10 +100,14 @@ class _EventTile extends ConsumerWidget {
                   width: 12,
                   height: 12,
                   margin: const EdgeInsets.only(top: 18),
+                  // Světové dějiny: prázdné kolečko.
                   decoration: BoxDecoration(
-                    color: color,
+                    color: event.world ? palette.card : color,
                     shape: BoxShape.circle,
-                    border: Border.all(color: palette.card, width: 2),
+                    border: Border.all(
+                      color: event.world ? palette.muted : palette.card,
+                      width: 2,
+                    ),
                   ),
                 ),
                 Expanded(
@@ -121,6 +125,7 @@ class _EventTile extends ConsumerWidget {
           Expanded(
             child: Card(
               margin: const EdgeInsets.only(bottom: 10),
+              color: event.world ? palette.card.withValues(alpha: 0.55) : null,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12, 14, 12),
                 child: Column(
@@ -128,11 +133,17 @@ class _EventTile extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
+                        if (event.world) ...[
+                          Icon(Icons.public, size: 16, color: palette.muted),
+                          const SizedBox(width: 6),
+                        ],
                         Expanded(
                           child: Text(
-                            event.date,
+                            event.world
+                                ? '${S.worldHistory} · ${event.date}'
+                                : event.date,
                             style: theme.textTheme.labelLarge?.copyWith(
-                              color: color,
+                              color: event.world ? palette.muted : color,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -148,7 +159,7 @@ class _EventTile extends ConsumerWidget {
                       event.description,
                       style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
                     ),
-                    const SizedBox(height: 8),
+                    if (event.refs.isNotEmpty) const SizedBox(height: 8),
                     Wrap(
                       spacing: 6,
                       runSpacing: 6,

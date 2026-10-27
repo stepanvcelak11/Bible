@@ -101,6 +101,14 @@ abstract final class S {
   static const themeSepia = 'Sépie';
   static const themeDark = 'Tmavý';
   static const background = 'Pozadí';
+  static const readAloud = 'Předčítání';
+  static const readAloudUnavailable = 'Toto zařízení neumí předčítat text.';
+  static const readAloudNoCzechVoice =
+      'Nenašel jsem český hlas, text přečte jiný hlas. Na iPhonu ho přidáte '
+      'v Nastavení → Zpřístupnění → Předčítaný obsah → Hlasy → Čeština.';
+  static const pause = 'Pozastavit';
+  static const resume = 'Pokračovat';
+  static const stop = 'Zastavit';
   static const backgroundPlain = 'Jednobarevné';
   static const backgroundPaper = 'Papír';
   static const backgroundGlow = 'Záře';
@@ -194,7 +202,7 @@ abstract final class S {
   static const readingPlan = 'Plán čtení';
   static const choosePlan = 'Vybrat plán čtení';
   static const planIntro =
-      'Pravidelné čtení po malých dávkách. Pokrok se ukládá jen v telefonu.';
+      'Pravidelné čtení po malých dávkách. Pokrok se ukládá jen ve vašem zařízení.';
   static const startPlan = 'Začít';
   static const stopPlan = 'Ukončit plán';
   static String planDay(int day, int total) => 'Den $day z $total';
@@ -241,14 +249,14 @@ abstract final class S {
 
   // Překlady
   static const library = 'Překlady';
-  static const installed = 'V telefonu';
+  static const installed = 'V zařízení';
   static const availableToDownload = 'Ke stažení';
   static const unavailable = 'Nedostupné';
   static const download = 'Stáhnout';
   static const remove = 'Odstranit';
   static const bundled = 'Součást aplikace';
   static String removeTranslationQuestion(String name) =>
-      'Odstranit překlad $name z telefonu?';
+      'Odstranit překlad $name ze zařízení?';
   static const importFile = 'Importovat vlastní soubor';
   static const importHint =
       'OSIS, Zefania XML nebo JSON – např. překlad, který máte legálně '

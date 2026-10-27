@@ -168,8 +168,20 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
       }
       ref.read(jumpRequestProvider.notifier).done(request.id);
       if (_scroll.isAttached && _itemVerses.isNotEmpty) {
+        final index = _itemIndexFor(request.ref.verse);
+        if (request.ifNeeded) {
+          // Položka (verš nebo odstavec) je na obrazovce dost vidět – dlouhý
+          // odstavec se nesmí vracet na začátek s každým veršem.
+          final visible = _positions.itemPositions.value.any(
+            (p) =>
+                p.index == index &&
+                p.itemTrailingEdge > 0.3 &&
+                p.itemLeadingEdge < 0.72,
+          );
+          if (visible) return;
+        }
         _scroll.scrollTo(
-          index: _itemIndexFor(request.ref.verse),
+          index: index,
           alignment: 0.12,
           duration: const Duration(milliseconds: 380),
           curve: Curves.easeOutCubic,
@@ -220,6 +232,12 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
     final insets = MediaQuery.paddingOf(context);
     final parallel = content is ParallelChapter;
     final palette = AppPalette.of(context);
+    // Na tabletu text ve sloupci příjemné šířky (cca 70 znaků na řádek),
+    // porovnání překladů smí být širší.
+    final width = MediaQuery.sizeOf(context).width;
+    final maxText = parallel ? 1100.0 : settings.fontSize * 38;
+    final margin = parallel ? 12.0 : settings.horizontalMargin;
+    final side = width - 2 * margin > maxText ? (width - maxText) / 2 : margin;
 
     return Stack(
       children: [
@@ -235,8 +253,8 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
             padding: EdgeInsets.only(
               top: insets.top + readerBarHeight + 8,
               bottom: insets.bottom + 180,
-              left: parallel ? 12 : settings.horizontalMargin,
-              right: parallel ? 12 : settings.horizontalMargin,
+              left: side,
+              right: side,
             ),
             itemCount: items.length + 1,
             itemBuilder: (context, i) => i == 0
@@ -284,11 +302,16 @@ class _ChapterHeader extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final theme = Theme.of(context);
     final category = categoryOf(bookId);
+    final translationId = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
     final places = ref.watch(
       mapDataProvider.select(
         (d) =>
             d.value?.places
-                .where((p) => p.mentionedIn(bookId, chapter))
+                .where(
+                  (p) => p.mentionedInChapterOf(bookId, chapter, translationId),
+                )
                 .toList() ??
             const [],
       ),

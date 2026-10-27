@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/services.dart';
 
+import '../../domain/services/versification.dart';
 import '../../domain/entities/bible_entities.dart';
 import '../../domain/entities/study_entities.dart';
 
@@ -36,6 +37,19 @@ class MapPlace {
           n % 1000 == 0 ? 1 : n % 1000,
         ),
   ];
+
+  /// Zmínka v kapitole [chapter] podle číslování překladu [translationId]
+  /// (odkazy jsou uložené kanonicky – hebrejské číslování).
+  bool mentionedInChapterOf(int book, int chapter, String translationId) {
+    final scheme = schemeOf(translationId);
+    return Versification.chaptersSpanned(
+      book,
+      chapter,
+      176,
+      scheme,
+      VerseScheme.hebrew,
+    ).any((c) => mentionedIn(book, c));
+  }
 
   bool mentionedIn(int book, int chapter) {
     final prefix = (book * 1000000 + chapter * 1000);

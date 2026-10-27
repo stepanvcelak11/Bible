@@ -3,6 +3,7 @@ import 'package:drift/drift.dart';
 import '../../domain/entities/bible_entities.dart';
 import '../../domain/entities/user_entities.dart';
 import '../../domain/repositories/user_data_repository.dart';
+import '../../domain/services/versification.dart';
 import '../user/user_database.dart' as db;
 
 /// Implementace [UserDataRepository] nad `user.db` (Drift).
@@ -144,7 +145,10 @@ class UserDataRepositoryImpl implements UserDataRepository {
   // --- Záloha -------------------------------------------------------------
 
   static const _backupApp = 'bible_reader';
-  static const _backupFormat = 1;
+
+  /// 2 = odkazy v kanonickém (hebrejském) číslování; zálohy verze 1
+  /// vznikly v Kralické (anglické číslování) a při obnově se převedou.
+  static const _backupFormat = 2;
 
   @override
   Future<Map<String, Object?>> exportBackup() async {
@@ -187,6 +191,19 @@ class UserDataRepositoryImpl implements UserDataRepository {
     };
   }
 
+  /// Konec rozsahu poznámky; u starých záloh převedený stejně jako
+  /// začátek ([raw] = začátek v původním číslování).
+  static int _noteEnd(VerseRef raw, int? end, {required bool legacy}) {
+    if (!legacy) return end ?? raw.verse;
+    VerseRef convert(VerseRef r) =>
+        Versification.convert(r, VerseScheme.english, VerseScheme.hebrew);
+    final start = convert(raw);
+    final e = convert(raw.copyWith(verse: end ?? raw.verse));
+    return e.chapter == start.chapter && e.verse >= start.verse
+        ? e.verse
+        : start.verse;
+  }
+
   @override
   Future<BackupImportResult> importBackup(Map<String, Object?> json) async {
     // 1) Nejdřív celé ověřit a převést – při chybě se nic nezapíše.
@@ -210,9 +227,19 @@ class UserDataRepositoryImpl implements UserDataRepository {
       ];
     }
 
-    VerseRef ref(Map<String, Object?> item) =>
+    final legacy = format < 2;
+    VerseRef raw(Map<String, Object?> item) =>
         VerseRef.tryDecode(item['ref'] as String?) ??
         (throw InvalidBackupException('Neplatný odkaz ${item['ref']}.'));
+    VerseRef convert(VerseRef r) =>
+        Versification.convert(r, VerseScheme.english, VerseScheme.hebrew);
+    VerseRef ref(Map<String, Object?> item) {
+      final translationId = item['translationId'] as String?;
+      return legacy && (translationId == null || translationId == 'BKR')
+          ? convert(raw(item))
+          : raw(item);
+    }
+
     DateTime date(Object? value) =>
         DateTime.tryParse(value as String? ?? '') ?? DateTime.now();
 
@@ -239,7 +266,7 @@ class UserDataRepositoryImpl implements UserDataRepository {
       for (final n in list('notes'))
         (
           ref(n),
-          (n['verseEnd'] as int?) ?? ref(n).verse,
+          _noteEnd(raw(n), n['verseEnd'] as int?, legacy: legacy),
           (n['body'] as String?) ??
               (throw const InvalidBackupException('Poznámka bez textu.')),
           date(n['createdAt']),

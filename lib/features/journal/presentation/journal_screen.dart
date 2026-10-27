@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/user_entities.dart';
 import '../../../domain/services/citation.dart';
@@ -265,7 +266,15 @@ class _VerseItem extends ConsumerWidget {
     final theme = Theme.of(context);
     final book = ref.watch(bookByIdProvider(verseRef.bookId));
     final translationId = ref.watch(primaryTranslationProvider).id;
-    final verse = ref.watch(verseTextProvider((translationId, verseRef))).value;
+    // Uložené odkazy jsou kanonické; text se načte v číslování překladu.
+    final verse = ref
+        .watch(
+          verseTextProvider((
+            translationId,
+            Versification.fromCanonical(verseRef, translationId),
+          )),
+        )
+        .value;
     final end = verseEnd ?? verseRef.verse;
     final citation = Citation.range(book.name, verseRef.chapter, [
       for (var v = verseRef.verse; v <= end; v++) v,

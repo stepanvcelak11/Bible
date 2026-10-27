@@ -5,6 +5,7 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/utils/morphology_cs.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/study_entities.dart';
 import '../../../domain/services/citation.dart';
@@ -487,7 +488,12 @@ class _CrossRefTile extends ConsumerWidget {
           color: theme.colorScheme.onSurface,
         ),
       ),
-      onTap: () => openReaderAt(context, ref, xref.target),
+      onTap: () => openReaderAt(
+        context,
+        ref,
+        xref.target,
+        from: schemeOf(translationId),
+      ),
     );
   }
 }

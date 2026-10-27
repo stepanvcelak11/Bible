@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/user_entities.dart';
+import '../../../domain/services/versification.dart';
+import '../../translations/application/translation_controller.dart';
 
 // ============================================================================
 //  Přechodný stav čtečky (neukládá se): výběr veršů, skok na verš,
@@ -63,10 +65,13 @@ final verseSelectionProvider =
 /// skok na stejný verš.
 @immutable
 class JumpRequest {
-  const JumpRequest(this.ref, this.id);
+  const JumpRequest(this.ref, this.id, {this.ifNeeded = false});
 
   final VerseRef ref;
   final int id;
+
+  /// Posunout jen tehdy, když verš není dobře vidět (předčítání).
+  final bool ifNeeded;
 }
 
 class JumpRequestController extends Notifier<JumpRequest?> {
@@ -75,7 +80,8 @@ class JumpRequestController extends Notifier<JumpRequest?> {
   @override
   JumpRequest? build() => null;
 
-  void request(VerseRef ref) => state = JumpRequest(ref, ++_counter);
+  void request(VerseRef ref, {bool ifNeeded = false}) =>
+      state = JumpRequest(ref, ++_counter, ifNeeded: ifNeeded);
 
   void done(int id) {
     if (state?.id == id) state = null;
@@ -166,21 +172,52 @@ class ChapterAnnotations {
   static const empty = ChapterAnnotations();
 }
 
+///
+/// [ChapterId] je kapitola v číslování HLAVNÍHO překladu; uložená data jsou
+/// v kanonickém číslování, proto se načtou kanonické kapitoly, které
+/// kapitola pokrývá (BKR Jóel 3 = ČEP Jóel 4), a čísla veršů se převedou.
 final chapterAnnotationsProvider = Provider.autoDispose
     .family<ChapterAnnotations, ChapterId>((ref, id) {
-      final highlights = ref.watch(_highlightsProvider(id)).value ?? const [];
-      final bookmarks = ref.watch(_bookmarksProvider(id)).value ?? const [];
-      final notes = ref.watch(_notesProvider(id)).value ?? const [];
+      final translationId = ref.watch(
+        translationControllerProvider.select((s) => s.primaryId),
+      );
+      final scheme = schemeOf(translationId);
+      final canonical = Versification.chaptersSpanned(
+        id.$1,
+        id.$2,
+        176,
+        scheme,
+        VerseScheme.hebrew,
+      );
+      final highlights = [
+        for (final c in canonical)
+          ...?ref.watch(_highlightsProvider((id.$1, c))).value,
+      ];
+      final bookmarks = [
+        for (final c in canonical)
+          ...?ref.watch(_bookmarksProvider((id.$1, c))).value,
+      ];
+      final notes = [
+        for (final c in canonical)
+          ...?ref.watch(_notesProvider((id.$1, c))).value,
+      ];
       if (highlights.isEmpty && bookmarks.isEmpty && notes.isEmpty) {
         return ChapterAnnotations.empty;
       }
+      // Kanonický verš → číslo verše v zobrazené kapitole (nebo null).
+      int? local(VerseRef r) {
+        final d = Versification.convert(r, VerseScheme.hebrew, scheme);
+        return d.chapter == id.$2 ? d.verse : null;
+      }
+
       final byVerse = <int, List<Note>>{};
       for (final n in notes) {
-        (byVerse[n.verseEnd] ??= []).add(n);
+        final v = local(n.ref.copyWith(verse: n.verseEnd));
+        if (v != null) (byVerse[v] ??= []).add(n);
       }
       return ChapterAnnotations(
-        highlights: {for (final h in highlights) h.ref.verse: h.color},
-        bookmarks: {for (final b in bookmarks) b.ref.verse},
+        highlights: {for (final h in highlights) ?local(h.ref): h.color},
+        bookmarks: {for (final b in bookmarks) ?local(b.ref)},
         notes: byVerse,
       );
     });

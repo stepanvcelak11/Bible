@@ -112,7 +112,9 @@ class TranslationController extends Notifier<TranslationSelection> {
 
     if (next.primaryId != previousPrimary) {
       // Nový překlad může mít jiný počet kapitol – pozici případně upravíme.
-      ref.read(readingPositionProvider.notifier).ensureValidFor(next.primaryId);
+      ref
+          .read(readingPositionProvider.notifier)
+          .ensureValidFor(next.primaryId, from: previousPrimary);
     }
   }
 }

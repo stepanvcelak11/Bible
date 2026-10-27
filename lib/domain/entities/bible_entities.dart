@@ -177,11 +177,21 @@ class ChapterText {
 /// Řádek srovnávacího (dvousloupcového) zobrazení. Jedna strana může chybět,
 /// pokud překlady verše číslují odlišně.
 class ParallelVerse {
-  const ParallelVerse({required this.number, this.primary, this.secondary});
+  const ParallelVerse({
+    required this.number,
+    this.primary,
+    this.secondary,
+    this.secondaryLabel,
+  });
 
   final int number;
   final Verse? primary;
   final Verse? secondary;
+
+  /// Číslo verše(ů) druhého překladu, liší-li se od [number] – při jiném
+  /// číslování (BKR × ČEP) může jednomu verši odpovídat více veršů nebo
+  /// verš z jiné kapitoly („3:1“, „1–3“).
+  final String? secondaryLabel;
 }
 
 /// Výsledek fulltextového vyhledávání.

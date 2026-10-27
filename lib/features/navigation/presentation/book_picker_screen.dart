@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
+import '../../../domain/services/versification.dart';
 import '../../reader/application/reading_position_controller.dart';
 import '../../search/application/reference_parser.dart';
 import '../../shell/home_shell.dart';
@@ -60,116 +62,124 @@ class _BookPickerScreenState extends ConsumerState<BookPickerScreen> {
       onTap: () => _openChapters(book, counts[book.id] ?? 0),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(S.chooseBook),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(112),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
-            child: Column(
-              children: [
-                TextField(
-                  onChanged: (v) => setState(() => _query = v),
-                  decoration: InputDecoration(
-                    hintText: S.findBook,
-                    prefixIcon: const Icon(Icons.search),
-                    filled: true,
-                    fillColor: palette.card,
-                    isDense: true,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: palette.cardBorder),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide(color: palette.cardBorder),
+    return ReadableWidth(
+      maxWidth: 980,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(S.chooseBook),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(112),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+              child: Column(
+                children: [
+                  TextField(
+                    onChanged: (v) => setState(() => _query = v),
+                    decoration: InputDecoration(
+                      hintText: S.findBook,
+                      prefixIcon: const Icon(Icons.search),
+                      filled: true,
+                      fillColor: palette.card,
+                      isDense: true,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: palette.cardBorder),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: BorderSide(color: palette.cardBorder),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  child: SegmentedButton<Testament>(
-                    showSelectedIcon: false,
-                    segments: const [
-                      ButtonSegment(
-                        value: Testament.oldTestament,
-                        label: Text(S.oldTestament),
-                      ),
-                      ButtonSegment(
-                        value: Testament.newTestament,
-                        label: Text(S.newTestament),
-                      ),
-                    ],
-                    selected: {_testament},
-                    onSelectionChanged: (s) =>
-                        setState(() => _testament = s.single),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: SegmentedButton<Testament>(
+                      showSelectedIcon: false,
+                      segments: const [
+                        ButtonSegment(
+                          value: Testament.oldTestament,
+                          label: Text(S.oldTestament),
+                        ),
+                        ButtonSegment(
+                          value: Testament.newTestament,
+                          label: Text(S.newTestament),
+                        ),
+                      ],
+                      selected: {_testament},
+                      onSelectionChanged: (s) =>
+                          setState(() => _testament = s.single),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      body: ListView(
-        padding: EdgeInsets.fromLTRB(
-          14,
-          8,
-          14,
-          MediaQuery.paddingOf(context).bottom + 24,
-        ),
-        children: [
-          if (reference != null)
-            Card(
-              margin: const EdgeInsets.only(bottom: 12),
-              child: ListTile(
-                leading: Icon(Icons.arrow_forward, color: palette.gold),
-                title: Text(
-                  '${S.goToReference} ${books[reference.bookId - 1].name} '
-                  '${reference.chapter}'
-                  '${reference.verse > 1 ? ',${reference.verse}' : ''}',
-                ),
-                onTap: () => openReaderAt(context, ref, reference),
-              ),
-            ),
-          if (filtered != null)
-            _Grid(children: [for (final b in filtered) tile(b)])
-          else
-            for (final category in bookCategories)
-              if (category.testament == _testament) ...[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(4, 14, 4, 8),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: Color(category.color),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        category.name.toUpperCase(),
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          letterSpacing: 1.3,
-                          fontWeight: FontWeight.w700,
-                          color: palette.muted,
-                        ),
-                      ),
-                    ],
+        body: ListView(
+          padding: EdgeInsets.fromLTRB(
+            14,
+            8,
+            14,
+            MediaQuery.paddingOf(context).bottom + 24,
+          ),
+          children: [
+            if (reference != null)
+              Card(
+                margin: const EdgeInsets.only(bottom: 12),
+                child: ListTile(
+                  leading: Icon(Icons.arrow_forward, color: palette.gold),
+                  title: Text(
+                    '${S.goToReference} ${books[reference.bookId - 1].name} '
+                    '${reference.chapter}'
+                    '${reference.verse > 1 ? ',${reference.verse}' : ''}',
+                  ),
+                  onTap: () => openReaderAt(
+                    context,
+                    ref,
+                    reference,
+                    from: schemeOf(primaryId),
                   ),
                 ),
-                _Grid(
-                  children: [
-                    for (var id = category.first; id <= category.last; id++)
-                      if ((counts[id] ?? 0) > 0) tile(books[id - 1]),
-                  ],
-                ),
-              ],
-        ],
+              ),
+            if (filtered != null)
+              _Grid(children: [for (final b in filtered) tile(b)])
+            else
+              for (final category in bookCategories)
+                if (category.testament == _testament) ...[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 14, 4, 8),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: Color(category.color),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          category.name.toUpperCase(),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            letterSpacing: 1.3,
+                            fontWeight: FontWeight.w700,
+                            color: palette.muted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  _Grid(
+                    children: [
+                      for (var id = category.first; id <= category.last; id++)
+                        if ((counts[id] ?? 0) > 0) tile(books[id - 1]),
+                    ],
+                  ),
+                ],
+          ],
+        ),
       ),
     );
   }
@@ -371,8 +381,14 @@ class _ChapterSheet extends ConsumerWidget {
               borderRadius: BorderRadius.circular(14),
               child: InkWell(
                 borderRadius: BorderRadius.circular(14),
-                onTap: () =>
-                    openReaderAt(context, ref, VerseRef(book.id, chapter)),
+                onTap: () => openReaderAt(
+                  context,
+                  ref,
+                  VerseRef(book.id, chapter),
+                  from: schemeOf(
+                    ref.read(translationControllerProvider).primaryId,
+                  ),
+                ),
                 child: Center(
                   child: Text(
                     '$chapter',

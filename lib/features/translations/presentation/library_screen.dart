@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/translations/translation_installer.dart';
@@ -147,132 +148,134 @@ class LibraryScreen extends ConsumerWidget {
       ),
     );
 
-    return Scaffold(
-      appBar: AppBar(title: const Text(S.library)),
-      body: ListView(
-        padding: EdgeInsets.fromLTRB(
-          16,
-          0,
-          16,
-          MediaQuery.paddingOf(context).bottom + 24,
-        ),
-        children: [
-          Text(
-            S.libraryInfo,
-            style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+    return ReadableWidth(
+      child: Scaffold(
+        appBar: AppBar(title: const Text(S.library)),
+        body: ListView(
+          padding: EdgeInsets.fromLTRB(
+            16,
+            0,
+            16,
+            MediaQuery.paddingOf(context).bottom + 24,
           ),
-          header(S.installed),
-          for (final t in installed)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Card(
-                child: ListTile(
-                  leading: _Badge(text: t.abbreviation, active: true),
-                  title: Text(t.name),
-                  subtitle: Text(
-                    [
-                      if (t.year != null) '${t.year}',
-                      t.downloaded ? S.installed : S.bundled,
-                    ].join(' · '),
+          children: [
+            Text(
+              S.libraryInfo,
+              style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+            ),
+            header(S.installed),
+            for (final t in installed)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Card(
+                  child: ListTile(
+                    leading: _Badge(text: t.abbreviation, active: true),
+                    title: Text(t.name),
+                    subtitle: Text(
+                      [
+                        if (t.year != null) '${t.year}',
+                        t.downloaded ? S.installed : S.bundled,
+                      ].join(' · '),
+                    ),
+                    trailing: t.downloaded
+                        ? IconButton(
+                            tooltip: S.remove,
+                            icon: const Icon(Icons.delete_outline),
+                            onPressed: () => _remove(context, ref, t),
+                          )
+                        : null,
                   ),
-                  trailing: t.downloaded
-                      ? IconButton(
-                          tooltip: S.remove,
-                          icon: const Icon(Icons.delete_outline),
-                          onPressed: () => _remove(context, ref, t),
-                        )
-                      : null,
                 ),
               ),
-            ),
-          if (available.isNotEmpty) header(S.availableToDownload),
-          for (final (i, c) in available.indexed)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          _Badge(text: c.abbreviation, active: false),
-                          const SizedBox(width: 14),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  c.name,
-                                  style: theme.textTheme.titleMedium,
-                                ),
-                                if (c.description != null)
+            if (available.isNotEmpty) header(S.availableToDownload),
+            for (final (i, c) in available.indexed)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            _Badge(text: c.abbreviation, active: false),
+                            const SizedBox(width: 14),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
                                   Text(
-                                    c.description!,
-                                    style: theme.textTheme.bodySmall,
+                                    c.name,
+                                    style: theme.textTheme.titleMedium,
                                   ),
-                              ],
-                            ),
-                          ),
-                          if (!installs.containsKey(c.id))
-                            FilledButton.tonalIcon(
-                              onPressed: () => _install(context, ref, c, i),
-                              icon: const Icon(Icons.download, size: 18),
-                              label: Text(
-                                c.sizeMb == null
-                                    ? S.download
-                                    : '${c.sizeMb!.toStringAsFixed(0)} MB',
+                                  if (c.description != null)
+                                    Text(
+                                      c.description!,
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                ],
                               ),
                             ),
-                        ],
-                      ),
-                      if (installs.containsKey(c.id)) ...[
-                        const SizedBox(height: 12),
-                        _ProgressRow(progress: installs[c.id]),
-                      ],
-                      if (c.license != null) ...[
-                        const SizedBox(height: 8),
-                        Text(
-                          c.license!,
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: palette.muted,
-                          ),
+                            if (!installs.containsKey(c.id))
+                              FilledButton.tonalIcon(
+                                onPressed: () => _install(context, ref, c, i),
+                                icon: const Icon(Icons.download, size: 18),
+                                label: Text(
+                                  c.sizeMb == null
+                                      ? S.download
+                                      : '${c.sizeMb!.toStringAsFixed(0)} MB',
+                                ),
+                              ),
+                          ],
                         ),
+                        if (installs.containsKey(c.id)) ...[
+                          const SizedBox(height: 12),
+                          _ProgressRow(progress: installs[c.id]),
+                        ],
+                        if (c.license != null) ...[
+                          const SizedBox(height: 8),
+                          Text(
+                            c.license!,
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: palette.muted,
+                            ),
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          if (unavailable.isNotEmpty) header(S.unavailable),
-          for (final c in unavailable)
-            Opacity(
-              opacity: 0.7,
-              child: Card(
-                child: ListTile(
-                  leading: _Badge(text: c.abbreviation, active: false),
-                  title: Text(c.name),
-                  subtitle: Text(c.description ?? ''),
+            if (unavailable.isNotEmpty) header(S.unavailable),
+            for (final c in unavailable)
+              Opacity(
+                opacity: 0.7,
+                child: Card(
+                  child: ListTile(
+                    leading: _Badge(text: c.abbreviation, active: false),
+                    title: Text(c.name),
+                    subtitle: Text(c.description ?? ''),
+                  ),
                 ),
               ),
-            ),
-          header(S.importFile),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.upload_file),
-              title: const Text(S.importFile),
-              subtitle: const Text(S.importHint),
-              onTap: () => _import(context, ref),
-            ),
-          ),
-          for (final e in installs.entries)
-            if (e.key.startsWith('U_'))
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: _ProgressRow(progress: e.value),
+            header(S.importFile),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.upload_file),
+                title: const Text(S.importFile),
+                subtitle: const Text(S.importHint),
+                onTap: () => _import(context, ref),
               ),
-        ],
+            ),
+            for (final e in installs.entries)
+              if (e.key.startsWith('U_'))
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: _ProgressRow(progress: e.value),
+                ),
+          ],
+        ),
       ),
     );
   }

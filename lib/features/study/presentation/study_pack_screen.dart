@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/translations/translation_installer.dart';
 import '../application/study_providers.dart';
@@ -12,11 +13,13 @@ class StudyPackScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(S.studyPackTitle)),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: const [StudyPackCard(showCredits: true)],
+    return ReadableWidth(
+      child: Scaffold(
+        appBar: AppBar(title: const Text(S.studyPackTitle)),
+        body: ListView(
+          padding: const EdgeInsets.all(20),
+          children: const [StudyPackCard(showCredits: true)],
+        ),
       ),
     );
   }

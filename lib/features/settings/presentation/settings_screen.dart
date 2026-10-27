@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_background.dart';
 import '../../../core/theme/app_theme.dart';
@@ -27,191 +28,195 @@ class SettingsScreen extends ConsumerWidget {
     final ctl = ref.read(readerSettingsProvider.notifier);
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text(S.settings)),
-      body: ListView(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.paddingOf(context).bottom + 24,
-        ),
-        children: [
-          const _Header(S.appearance),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: SegmentedButton<AppThemeMode>(
-              showSelectedIcon: false,
-              segments: const [
-                ButtonSegment(
-                  value: AppThemeMode.system,
-                  label: Text(S.themeSystem),
-                ),
-                ButtonSegment(
-                  value: AppThemeMode.light,
-                  label: Text(S.themeLight),
-                ),
-                ButtonSegment(
-                  value: AppThemeMode.sepia,
-                  label: Text(S.themeSepia),
-                ),
-                ButtonSegment(
-                  value: AppThemeMode.dark,
-                  label: Text(S.themeDark),
-                ),
-              ],
-              selected: {settings.themeMode},
-              onSelectionChanged: (s) => ctl.setThemeMode(s.single),
-            ),
+    return ReadableWidth(
+      child: Scaffold(
+        appBar: AppBar(title: const Text(S.settings)),
+        body: ListView(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.paddingOf(context).bottom + 24,
           ),
-          const _Header(S.background),
-          const _BackgroundPicker(),
-          // Živý náhled textu.
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 20, 16, 8),
-            padding: EdgeInsets.symmetric(
-              horizontal: settings.horizontalMargin,
-              vertical: 16,
-            ),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: theme.colorScheme.outlineVariant),
-            ),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  if (settings.showVerseNumbers)
-                    verseNumberSpan(context, 1, settings),
-                  const TextSpan(text: S.previewText),
+          children: [
+            const _Header(S.appearance),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SegmentedButton<AppThemeMode>(
+                showSelectedIcon: false,
+                segments: const [
+                  ButtonSegment(
+                    value: AppThemeMode.system,
+                    label: Text(S.themeSystem),
+                  ),
+                  ButtonSegment(
+                    value: AppThemeMode.light,
+                    label: Text(S.themeLight),
+                  ),
+                  ButtonSegment(
+                    value: AppThemeMode.sepia,
+                    label: Text(S.themeSepia),
+                  ),
+                  ButtonSegment(
+                    value: AppThemeMode.dark,
+                    label: Text(S.themeDark),
+                  ),
                 ],
-              ),
-              style: verseTextStyle(context, settings),
-            ),
-          ),
-          _SliderTile(
-            icon: Icons.format_size,
-            label: S.fontSize,
-            value: settings.fontSize,
-            min: ReaderSettings.minFontSize,
-            max: ReaderSettings.maxFontSize,
-            divisions: 18,
-            display: settings.fontSize.round().toString(),
-            onChanged: ctl.setFontSize,
-          ),
-          _SliderTile(
-            icon: Icons.format_line_spacing,
-            label: S.lineHeight,
-            value: settings.lineHeight,
-            min: ReaderSettings.minLineHeight,
-            max: ReaderSettings.maxLineHeight,
-            divisions: 10,
-            display: settings.lineHeight
-                .toStringAsFixed(1)
-                .replaceAll('.', ','),
-            onChanged: ctl.setLineHeight,
-          ),
-          _SliderTile(
-            icon: Icons.format_indent_increase,
-            label: S.margins,
-            value: settings.horizontalMargin,
-            min: ReaderSettings.minMargin,
-            max: ReaderSettings.maxMargin,
-            divisions: 10,
-            display: settings.horizontalMargin.round().toString(),
-            onChanged: ctl.setMargin,
-          ),
-          SwitchListTile(
-            secondary: const Icon(Icons.format_list_numbered),
-            title: const Text(S.showVerseNumbers),
-            value: settings.showVerseNumbers,
-            onChanged: ctl.setShowVerseNumbers,
-          ),
-          SwitchListTile(
-            secondary: const Icon(Icons.notes),
-            title: const Text(S.paragraphMode),
-            subtitle: const Text(S.paragraphModeHint),
-            value: settings.paragraphMode,
-            onChanged: ctl.setParagraphMode,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 8),
-              child: TextButton(
-                onPressed: ctl.reset,
-                child: const Text(S.resetAppearance),
+                selected: {settings.themeMode},
+                onSelectionChanged: (s) => ctl.setThemeMode(s.single),
               ),
             ),
-          ),
-          const _Header(S.translations),
-          ListTile(
-            leading: const Icon(Icons.translate),
-            title: const Text(S.manageTranslations),
-            subtitle: const Text('B21, ČEP, ČSP, vlastní soubor'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const LibraryScreen()),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.history_edu),
-            title: const Text(S.studyPackTitle),
-            subtitle: const Text('Původní text, slovník, souvislosti'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const StudyPackScreen()),
-            ),
-          ),
-          const _Header(S.backup),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-            child: Text(
-              S.backupInfo,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
+            const _Header(S.background),
+            const _BackgroundPicker(),
+            // Živý náhled textu.
+            Container(
+              margin: const EdgeInsets.fromLTRB(16, 20, 16, 8),
+              padding: EdgeInsets.symmetric(
+                horizontal: settings.horizontalMargin,
+                vertical: 16,
+              ),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: theme.colorScheme.outlineVariant),
+              ),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    if (settings.showVerseNumbers)
+                      verseNumberSpan(context, 1, settings),
+                    const TextSpan(text: S.previewText),
+                  ],
+                ),
+                style: verseTextStyle(context, settings),
               ),
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.upload_file),
-            title: const Text(S.exportBackup),
-            onTap: () => _export(context, ref),
-          ),
-          ListTile(
-            leading: const Icon(Icons.restore),
-            title: const Text(S.importBackup),
-            onTap: () => _import(context, ref),
-          ),
-          const _Header(S.about),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-            child: Text(S.aboutBody, style: theme.textTheme.bodyMedium),
-          ),
-          const _Header('Licence'),
-          for (final t in ref.watch(translationsProvider))
+            _SliderTile(
+              icon: Icons.format_size,
+              label: S.fontSize,
+              value: settings.fontSize,
+              min: ReaderSettings.minFontSize,
+              max: ReaderSettings.maxFontSize,
+              divisions: 18,
+              display: settings.fontSize.round().toString(),
+              onChanged: ctl.setFontSize,
+            ),
+            _SliderTile(
+              icon: Icons.format_line_spacing,
+              label: S.lineHeight,
+              value: settings.lineHeight,
+              min: ReaderSettings.minLineHeight,
+              max: ReaderSettings.maxLineHeight,
+              divisions: 10,
+              display: settings.lineHeight
+                  .toStringAsFixed(1)
+                  .replaceAll('.', ','),
+              onChanged: ctl.setLineHeight,
+            ),
+            _SliderTile(
+              icon: Icons.format_indent_increase,
+              label: S.margins,
+              value: settings.horizontalMargin,
+              min: ReaderSettings.minMargin,
+              max: ReaderSettings.maxMargin,
+              divisions: 10,
+              display: settings.horizontalMargin.round().toString(),
+              onChanged: ctl.setMargin,
+            ),
+            SwitchListTile(
+              secondary: const Icon(Icons.format_list_numbered),
+              title: const Text(S.showVerseNumbers),
+              value: settings.showVerseNumbers,
+              onChanged: ctl.setShowVerseNumbers,
+            ),
+            SwitchListTile(
+              secondary: const Icon(Icons.notes),
+              title: const Text(S.paragraphMode),
+              subtitle: const Text(S.paragraphModeHint),
+              value: settings.paragraphMode,
+              onChanged: ctl.setParagraphMode,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8),
+                child: TextButton(
+                  onPressed: ctl.reset,
+                  child: const Text(S.resetAppearance),
+                ),
+              ),
+            ),
+            const _Header(S.translations),
             ListTile(
-              leading: CircleAvatar(
-                radius: 18,
-                child: Text(
-                  t.abbreviation,
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
+              leading: const Icon(Icons.translate),
+              title: const Text(S.manageTranslations),
+              subtitle: const Text('B21, ČEP, ČSP, vlastní soubor'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const LibraryScreen()),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.history_edu),
+              title: const Text(S.studyPackTitle),
+              subtitle: const Text('Původní text, slovník, souvislosti'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const StudyPackScreen(),
+                ),
+              ),
+            ),
+            const _Header(S.backup),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+              child: Text(
+                S.backupInfo,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.upload_file),
+              title: const Text(S.exportBackup),
+              onTap: () => _export(context, ref),
+            ),
+            ListTile(
+              leading: const Icon(Icons.restore),
+              title: const Text(S.importBackup),
+              onTap: () => _import(context, ref),
+            ),
+            const _Header(S.about),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+              child: Text(S.aboutBody, style: theme.textTheme.bodyMedium),
+            ),
+            const _Header('Licence'),
+            for (final t in ref.watch(translationsProvider))
+              ListTile(
+                leading: CircleAvatar(
+                  radius: 18,
+                  child: Text(
+                    t.abbreviation,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
+                title: Text(t.name),
+                subtitle: Text(
+                  [if (t.year != null) '${t.year}', ?t.license].join(' · '),
+                ),
               ),
-              title: Text(t.name),
-              subtitle: Text(
-                [if (t.year != null) '${t.year}', ?t.license].join(' · '),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+              child: Text(
+                'Písma Literata a Inter – SIL Open Font License. '
+                '${S.studyPackCredits}',
+                style: theme.textTheme.bodySmall,
               ),
             ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-            child: Text(
-              'Písma Literata a Inter – SIL Open Font License. '
-              '${S.studyPackCredits}',
-              style: theme.textTheme.bodySmall,
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

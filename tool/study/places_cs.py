@@ -104,7 +104,8 @@ ROUTES = [
      "#B7792F",
      ["Ur 1", "Haran", "Shechem", "Bethel 1", "Negeb", "Egypt", "Bethel 1", "Hebron"]),
     ("exodus", "Exodus – cesta z Egypta",
-     "Tradiční trasa putování Izraele z Egypta k Sínaji a do Moábu (Ex–Dt).",
+     "Tradiční trasa putování z Egypta k Sínaji a do Moábu (Ex 12–19; Nu 33). "
+     "Poloha Sínaje i většiny zastávek je nejistá.",
      "#3F7CAC",
      ["Rameses", "Succoth 2", "Etham", "Pi-hahiroth", "Marah", "Elim",
       "Rephidim", "Mount Sinai", "Kibroth-hattaavah", "Hazeroth",

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
@@ -257,7 +258,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ),
                     onTap: () {
                       _remember();
-                      openReaderAt(context, ref, reference);
+                      openReaderAt(
+                        context,
+                        ref,
+                        reference,
+                        from: schemeOf(
+                          ref.read(translationControllerProvider).primaryId,
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -416,7 +424,12 @@ class _ResultTile extends ConsumerWidget {
         onOpen();
         final controller = ref.read(translationControllerProvider.notifier);
         controller.selectPrimary(hit.verse.translationId);
-        openReaderAt(context, ref, hit.verse.ref);
+        openReaderAt(
+          context,
+          ref,
+          hit.verse.ref,
+          from: schemeOf(hit.verse.translationId),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),

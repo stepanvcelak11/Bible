@@ -5,6 +5,7 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../data/map/map_data.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/entities/study_entities.dart';
 import '../../../domain/services/citation.dart';
 import '../../reader/application/reader_state.dart';
@@ -83,7 +84,12 @@ class _MapPageState extends ConsumerState<MapPage> {
     final focus = <BiblePlace>[
       if (chapter != null)
         for (final mp in data.places)
-          if (mp.mentionedIn(chapter.$1, chapter.$2)) mp.place,
+          if (mp.mentionedInChapterOf(
+            chapter.$1,
+            chapter.$2,
+            ref.read(translationControllerProvider).primaryId,
+          ))
+            mp.place,
       if (widget.placeId != null)
         for (final mp in data.places)
           if (mp.place.id == widget.placeId) mp.place,
@@ -317,7 +323,14 @@ class _PlaceSheet extends ConsumerWidget {
         return Consumer(
           builder: (context, ref, _) {
             final book = ref.watch(bookByIdProvider(r.bookId));
-            final text = ref.watch(verseTextProvider((translationId, r))).value;
+            final text = ref
+                .watch(
+                  verseTextProvider((
+                    translationId,
+                    Versification.fromCanonical(r, translationId),
+                  )),
+                )
+                .value;
             return ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(

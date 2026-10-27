@@ -5,6 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
 import '../../reader/application/reading_position_controller.dart';
@@ -208,7 +209,11 @@ class _VerseOfDayCard extends ConsumerWidget {
                         backgroundColor: palette.onHero.withValues(alpha: 0.16),
                         foregroundColor: palette.onHero,
                       ),
-                      onPressed: () => openReaderAt(context, ref, target),
+                      onPressed: () => openReaderAt(
+                        context,
+                        ref,
+                        verseOfDay(DateTime.now()),
+                      ),
                       child: const Text('Číst'),
                     ),
                   ],
@@ -242,7 +247,12 @@ class _ContinueCard extends ConsumerWidget {
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
-        onTap: () => openReaderAt(context, ref, position),
+        onTap: () => openReaderAt(
+          context,
+          ref,
+          position,
+          from: schemeOf(ref.read(translationControllerProvider).primaryId),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
@@ -492,7 +502,14 @@ class _PlanCard extends ConsumerWidget {
                       label: Text(
                         '${books[r.bookId - 1].abbreviation} ${r.chapter}',
                       ),
-                      onPressed: () => openReaderAt(context, ref, r),
+                      onPressed: () => openReaderAt(
+                        context,
+                        ref,
+                        r,
+                        from: schemeOf(
+                          ref.read(translationControllerProvider).primaryId,
+                        ),
+                      ),
                     ),
                 ],
               ),
@@ -631,7 +648,14 @@ class _RecentList extends ConsumerWidget {
                   title: Text('${books[ref0.bookId - 1].name} ${ref0.chapter}'),
                   subtitle: Text(_ago(at)),
                   trailing: const Icon(Icons.chevron_right),
-                  onTap: () => openReaderAt(context, ref, ref0),
+                  onTap: () => openReaderAt(
+                    context,
+                    ref,
+                    ref0,
+                    from: schemeOf(
+                      ref.read(translationControllerProvider).primaryId,
+                    ),
+                  ),
                 ),
               ],
             ],

@@ -3,6 +3,7 @@ import 'package:drift/drift.dart';
 import '../../core/utils/fts_query.dart';
 import '../../domain/entities/bible_entities.dart';
 import '../../domain/repositories/bible_repository.dart';
+import '../../domain/services/versification.dart';
 import '../bible/bible_database.dart' as db;
 
 /// Implementace [BibleRepository] nad lokální SQLite (Drift).
@@ -186,11 +187,81 @@ class BibleRepositoryImpl implements BibleRepository {
     int bookId,
     int chapter,
   ) async {
-    final (primary, secondary) = await (
-      getChapter(primaryId, bookId, chapter),
-      getChapter(secondaryId, bookId, chapter),
-    ).wait;
-    return alignVerses(primary, secondary);
+    final from = schemeOf(secondaryId);
+    final to = schemeOf(primaryId);
+    if (from == to) {
+      final (primary, secondary) = await (
+        getChapter(primaryId, bookId, chapter),
+        getChapter(secondaryId, bookId, chapter),
+      ).wait;
+      return alignVerses(primary, secondary);
+    }
+    // Různé číslování: verše druhého překladu se přiřadí podle obsahu
+    // (převodní tabulka), ne podle čísla.
+    final primary = await getChapter(primaryId, bookId, chapter);
+    final lastVerse = primary.isEmpty ? 1 : primary.last.number;
+    final chapters = {
+      chapter,
+      ...Versification.chaptersSpanned(bookId, chapter, lastVerse, to, from),
+    }.toList()..sort();
+    final secondary = [
+      for (final c in chapters) ...await getChapter(secondaryId, bookId, c),
+    ];
+    return alignByScheme(primary, secondary, chapter, from, to);
+  }
+
+  /// Zarovnání překladů s různým číslováním: každý verš druhého překladu
+  /// se převede do číslování hlavního a připojí k odpovídajícímu verši.
+  static List<ParallelVerse> alignByScheme(
+    List<Verse> primary,
+    List<Verse> secondary,
+    int chapter,
+    VerseScheme from,
+    VerseScheme to,
+  ) {
+    final groups = <int, List<Verse>>{};
+    for (final v in secondary) {
+      final mapped = Versification.convert(v.ref, from, to);
+      if (mapped.chapter == chapter) (groups[mapped.verse] ??= []).add(v);
+    }
+    final byNumber = {for (final v in primary) v.number: v};
+    final numbers = {...byNumber.keys, ...groups.keys}.toList()..sort();
+    return [
+      for (final n in numbers)
+        ParallelVerse(
+          number: n,
+          primary: byNumber[n],
+          secondary: _merge(groups[n]),
+          secondaryLabel: _label(groups[n], chapter, n),
+        ),
+    ];
+  }
+
+  static Verse? _merge(List<Verse>? verses) {
+    if (verses == null || verses.isEmpty) return null;
+    if (verses.length == 1) return verses.single;
+    final first = verses.first;
+    return Verse(
+      translationId: first.translationId,
+      ref: first.ref,
+      text: verses.map((v) => v.text).join(' '),
+      paragraph: first.paragraph,
+      poetry: verses.any((v) => v.poetry),
+    );
+  }
+
+  static String? _label(List<Verse>? verses, int chapter, int number) {
+    if (verses == null || verses.isEmpty) return null;
+    final a = verses.first.ref, b = verses.last.ref;
+    if (verses.length == 1 && a.chapter == chapter && a.verse == number) {
+      return null;
+    }
+    final prefix = a.chapter == chapter ? '' : '${a.chapter}:';
+    if (a == b) return '$prefix${a.verse}';
+    final end = b.chapter == a.chapter
+        ? '${b.verse}'
+        : '${b.chapter}:${b.verse}';
+    return '$prefix${a.verse}–$end';
   }
 
   /// Zarovná dva seznamy veršů podle čísla verše (sloučení dvou

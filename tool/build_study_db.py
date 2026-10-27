@@ -177,7 +177,12 @@ def fetch(force: bool) -> None:
 # --- Původní text -----------------------------------------------------------
 _REF = re.compile(r"^([1-3]?[A-Z][a-z]{1,2})\.(\d+)\.(\d+)(?:\((\d+)\.(\d+)\))?#\d+=(\S+)")
 _CANTILLATION = re.compile("[\u0591-\u05AF\u05BD\u05C0\u05C3]")
-_BRACES = re.compile(r"\{([HG]\d{4})[A-Za-z]?\}")
+_BRACES = re.compile(r"\{([HG]\d{4})([A-Za-z]?)\}")
+
+# Výskyty podrobných čísel STEPBible (H1004B, G2424G…) – podle nich se
+# ve slovníku vybere ta podvarianta hesla, která se v textu opravdu
+# vyskytuje (ne první v seznamu, což bývá vlastní jméno nebo vzácný význam).
+EXT_COUNTS: Counter = Counter()
 
 
 def _clean_translit(t: str) -> str:
@@ -206,6 +211,8 @@ def parse_tahot() -> tuple[dict, list, Counter, dict]:
                 continue
             strong_m = _BRACES.search(c[4])
             strong = strong_m.group(1) if strong_m else ""
+            if strong_m:
+                EXT_COUNTS[strong + strong_m.group(2).upper()] += 1
             # Bez kantilačních znamének (U+0591–U+05AF) – samohlásky zůstávají.
             word = _CANTILLATION.sub("", c[1].replace("/", "").replace("\\", ""))
             english = re.sub(r"\s+", " ", c[3].replace("/", " ")).strip()
@@ -236,6 +243,7 @@ def parse_tagnt() -> tuple[dict, Counter, dict]:
             gm = re.match(r"^(.*?)\s*\((.*)\)\s*$", c[1])
             word, translit = (gm.group(1), gm.group(2)) if gm else (c[1], "")
             strong, _, morph = c[3].partition("=")
+            EXT_COUNTS[strong.upper()] += 1
             strong = strong[:5]
             verses[ref].append(FIELD.join(
                 [word, translit.lower(), c[2].strip(), strong, morph]))
@@ -258,15 +266,31 @@ def _plain(definition: str) -> str:
 
 
 def parse_lexicon(counts: Counter) -> list[tuple]:
+    """Jedno heslo na Strongovo číslo. STEPBible má pod jedním číslem více
+    podvariant (H1004A „místo“, H1004B „dům“…); vybere se ta s nejvíce
+    výskyty v textu – výskyty „významů“ (H1004O = a Meaning of H1004B) se
+    připočtou k hlavnímu heslu."""
     rows: dict[str, tuple] = {}
     for name, cs in (("TBESH.txt", HEB), ("TBESG.txt", GRK)):
+        entries: dict[str, dict[str, list]] = defaultdict(dict)
+        score: Counter = Counter()
         for line in (SRC / name).open(encoding="utf-8"):
             c = line.rstrip("\n").split("\t")
             if len(c) < 8 or not re.match(r"^[HG]\d{4}[A-Za-z]?$", c[0]):
                 continue
             base = c[0][:5]
-            if base in rows or not counts.get(base):
+            if not counts.get(base):
                 continue  # jen slova, která se v textu skutečně vyskytují
+            ext = c[1].split()[0].upper() if c[1].strip() else c[0].upper()
+            target = c[2].strip().upper()
+            main = target if target[:5] == base else None
+            if main:
+                score[main] += EXT_COUNTS.get(ext, 0)
+            if ext == target or not entries[base]:
+                entries[base].setdefault(ext, c)
+        for base, cands in entries.items():
+            best = max(cands, key=lambda e: (score.get(e, 0), e == list(cands)[0]))
+            c = cands[best]
             gloss_en = c[6].split(":")[0].strip()
             rows[base] = (base, c[3], _clean_translit(c[4]), cs.get(base),
                           gloss_en, _plain(c[7]), c[5], counts.get(base, 0))
@@ -299,7 +323,13 @@ def parse_xrefs(per_verse: int = 10, min_votes: int = 5) -> list[tuple]:
 
 
 # --- Místa -------------------------------------------------------------------
-def parse_places() -> tuple[list, list, dict]:
+def parse_places(vmap: list) -> tuple[list, list, dict]:
+    """Odkazy OpenBible jsou v anglickém číslování (ESV) – převedou se na
+    hebrejské, které aplikace používá jako kanonické."""
+    e2h: dict = {}
+    for book, ec, ev, hc, hv in vmap:
+        if ev > 0:
+            e2h.setdefault((book, ec, ev), (hc, hv))
     places, verses, by_friendly = [], [], {}
     for line in (SRC / "ancient.jsonl").open(encoding="utf-8"):
         d = json.loads(line)
@@ -315,7 +345,9 @@ def parse_places() -> tuple[list, list, dict]:
             parts = v["osis"].split(".")
             b = OSIS_TO_ID.get(parts[0])
             if b and len(parts) == 3:
-                vs.append((d["id"], b, int(parts[1]), int(parts[2])))
+                c, v = int(parts[1]), int(parts[2])
+                c, v = e2h.get((b, c, v), (c, v))
+                vs.append((d["id"], b, c, v))
         places.append((d["id"], PLACES_CS.get(friendly, name_en), name_en,
                        res[0].get("type"), round(lon, 4), round(lat, 4), len(vs)))
         verses.extend(vs)
@@ -425,7 +457,7 @@ def build() -> None:
     log(f"  ✓ slovník: {len(lexicon):,} hesel ({cs} s českým významem)")
     xrefs = parse_xrefs()
     log(f"  ✓ křížové odkazy: {len(xrefs):,}")
-    places, place_verses, by_friendly = parse_places()
+    places, place_verses, by_friendly = parse_places(vmap)
     log(f"  ✓ místa: {len(places):,} ({sum(1 for p in places if p[1] != p[2])} s českým názvem)")
     routes = build_routes(by_friendly)
 

@@ -6,6 +6,7 @@ import 'package:bible_reader/data/user/user_database.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -111,6 +112,7 @@ Future<BibleDatabase> createTestBibleDb() async {
 /// ProviderContainer se vzorkovými daty – stejné overrides jako `bootstrap()`.
 Future<ProviderContainer> createTestContainer({
   Map<String, Object> prefs = const {},
+  List<Override> overrides = const [],
 }) async {
   SharedPreferences.setMockInitialValues(prefs);
   final sharedPrefs = await SharedPreferences.getInstance();
@@ -130,6 +132,7 @@ Future<ProviderContainer> createTestContainer({
         await repo.getTranslations(),
       ),
       booksProvider.overrideWithValue(await repo.getBooks()),
+      ...overrides,
     ],
   );
   addTearDown(() async {

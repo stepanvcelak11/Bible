@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../application/read_aloud_controller.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../domain/services/citation.dart';
+import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../maps/presentation/maps_screen.dart';
@@ -56,6 +63,8 @@ class ReaderScreen extends ConsumerWidget {
               child: const _TopBar(),
             ),
           ),
+          // Přehrávač předčítání.
+          if (!hasSelection) const _ReadAloudBar(),
           // Panel akcí s vybranými verši.
           Positioned(
             left: 0,
@@ -129,6 +138,23 @@ class _TopBar extends ConsumerWidget {
                   ),
                 ),
               ),
+              // Na tabletu i šipky na kapitoly (na telefonu stačí přejetí).
+              if (isWide(context)) ...[
+                IconButton(
+                  tooltip: S.previousChapter,
+                  icon: const Icon(Icons.chevron_left),
+                  onPressed: () => ref
+                      .read(readingPositionProvider.notifier)
+                      .previousChapter(),
+                ),
+                IconButton(
+                  tooltip: S.nextChapter,
+                  icon: const Icon(Icons.chevron_right),
+                  onPressed: () =>
+                      ref.read(readingPositionProvider.notifier).nextChapter(),
+                ),
+                const SizedBox(width: 8),
+              ],
               IconButton(
                 tooltip: S.search,
                 icon: const Icon(Icons.search),
@@ -159,6 +185,7 @@ class _TopBar extends ConsumerWidget {
                 tooltip: S.menu,
                 icon: const Icon(Icons.more_vert),
                 onSelected: (item) => switch (item) {
+                  _MenuItem.readAloud => _startReadAloud(context, ref),
                   _MenuItem.intro => showBookIntro(context, position.bookId),
                   _MenuItem.map => openChapterMap(
                     context,
@@ -173,6 +200,11 @@ class _TopBar extends ConsumerWidget {
                 },
                 itemBuilder: (_) => [
                   for (final (item, icon, label) in const [
+                    (
+                      _MenuItem.readAloud,
+                      Icons.record_voice_over_outlined,
+                      S.readAloud,
+                    ),
                     (_MenuItem.intro, Icons.auto_stories_outlined, S.bookIntro),
                     (_MenuItem.map, Icons.map_outlined, S.chapterPlaces),
                     (_MenuItem.translations, Icons.translate, S.library),
@@ -199,7 +231,125 @@ class _TopBar extends ConsumerWidget {
 Future<void> _push(BuildContext context, Widget page) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
 
-enum _MenuItem { intro, map, translations, settings }
+enum _MenuItem { readAloud, intro, map, translations, settings }
+
+Future<void> _startReadAloud(BuildContext context, WidgetRef ref) async {
+  final controller = ref.read(readAloudProvider.notifier);
+  final messenger = ScaffoldMessenger.of(context);
+  if (!controller.available) {
+    messenger.showSnackBar(
+      const SnackBar(content: Text(S.readAloudUnavailable)),
+    );
+    return;
+  }
+  if (!controller.hasCzechVoice) {
+    messenger.showSnackBar(
+      const SnackBar(
+        content: Text(S.readAloudNoCzechVoice),
+        duration: Duration(seconds: 8),
+      ),
+    );
+  }
+  // Od verše, který je právě nahoře na obrazovce.
+  await controller.start(ref.read(readingPositionProvider));
+}
+
+/// Malý přehrávač předčítání nad spodním okrajem.
+class _ReadAloudBar extends ConsumerWidget {
+  const _ReadAloudBar();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(readAloudProvider);
+    final controlsVisible = ref.watch(controlsVisibleProvider);
+    final controller = ref.read(readAloudProvider.notifier);
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final current = state.current;
+    final book = current == null
+        ? null
+        : ref.watch(bookByIdProvider(current.bookId));
+    // Na telefonu nad plovoucí navigací (je-li vidět).
+    final bottom =
+        MediaQuery.paddingOf(context).bottom +
+        (controlsVisible && !isWide(context) ? 88 : 16);
+
+    return AnimatedPositioned(
+      duration: const Duration(milliseconds: 260),
+      curve: Curves.easeOutCubic,
+      left: 16,
+      right: 16,
+      bottom: state.active ? bottom : -120,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 520),
+          child: Material(
+            color: theme.colorScheme.surfaceContainerLow,
+            elevation: 8,
+            shadowColor: Colors.black26,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(22),
+              side: BorderSide(color: palette.cardBorder),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 6, 6, 6),
+              child: Row(
+                children: [
+                  Icon(Icons.graphic_eq, color: palette.gold),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          S.readAloud,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: palette.muted,
+                          ),
+                        ),
+                        Text(
+                          current == null || book == null
+                              ? '…'
+                              : Citation.single(book.name, current),
+                          style: theme.textTheme.titleSmall,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: controller.cycleRate,
+                    style: TextButton.styleFrom(
+                      minimumSize: const Size(52, 40),
+                    ),
+                    child: Text(
+                      '${state.rate.toStringAsFixed(1).replaceAll('.', ',')}×',
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: state.paused ? S.resume : S.pause,
+                    icon: Icon(
+                      state.paused
+                          ? Icons.play_arrow_rounded
+                          : Icons.pause_rounded,
+                    ),
+                    onPressed: controller.togglePause,
+                  ),
+                  IconButton(
+                    tooltip: S.stop,
+                    icon: const Icon(Icons.stop_rounded),
+                    onPressed: controller.stop,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 /// Vodorovné listování kapitolami.
 class _ChapterPager extends ConsumerWidget {
@@ -258,6 +408,10 @@ class _PagerState extends ConsumerState<_Pager> {
     ref.read(controlsVisibleProvider.notifier).show();
     if (position.bookId != target.bookId ||
         position.chapter != target.chapter) {
+      // Ruční přechod na jinou kapitolu ukončí předčítání.
+      if (ref.read(readAloudProvider).active) {
+        ref.read(readAloudProvider.notifier).stop();
+      }
       ref.read(readingPositionProvider.notifier).goTo(target);
     }
   }
@@ -271,6 +425,20 @@ class _PagerState extends ConsumerState<_Pager> {
       if (page != _controller.page?.round()) _controller.jumpToPage(page);
     });
 
+    // Klávesnice (iPad, počítač): šipky ← → listují kapitolami.
+    final position = ref.read(readingPositionProvider.notifier);
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.arrowLeft): () =>
+            position.previousChapter(),
+        const SingleActivator(LogicalKeyboardKey.arrowRight): () =>
+            position.nextChapter(),
+      },
+      child: Focus(autofocus: true, child: _pageView()),
+    );
+  }
+
+  Widget _pageView() {
     return PageView.builder(
       controller: _controller,
       // Předběžně vykreslí sousední kapitoly → plynulé přejetí.

@@ -164,7 +164,7 @@ HEB = {
     "H1320": "tělo, maso",
     "H6485": "navštívit, spočítat, ustanovit",
     "H6547": "farao",
-    "H6030": "odpovědět; pokořit",
+    "H6030": "odpovědět, ozvat se",
     "H6256": "čas, doba",
     "H2403": "hřích, oběť za hřích",
     "H2091": "zlato",

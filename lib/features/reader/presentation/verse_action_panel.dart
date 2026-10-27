@@ -6,8 +6,10 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/user_entities.dart';
 import '../../../domain/services/citation.dart';
+import '../../../domain/services/versification.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/chapter_content_provider.dart';
 import '../application/reader_state.dart';
@@ -37,95 +39,102 @@ class VerseActionPanel extends ConsumerWidget {
     final theme = Theme.of(context);
     final actions = _Actions(ref, context, selection);
 
-    return Material(
-      color: theme.colorScheme.surfaceContainerLow,
-      elevation: 12,
-      shadowColor: Colors.black38,
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-      child: SafeArea(
-        top: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
+    // Na tabletu panel jen ve středu, ne přes celou šířku.
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 640),
+        child: Material(
+          color: theme.colorScheme.surfaceContainerLow,
+          elevation: 12,
+          shadowColor: Colors.black38,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+          child: SafeArea(
+            top: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Expanded(
-                    child: Text(
-                      Citation.range(
-                        book.name,
-                        selection.chapter,
-                        selection.verses,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          Citation.range(
+                            book.name,
+                            selection.chapter,
+                            selection.verses,
+                          ),
+                          style: theme.textTheme.titleMedium,
+                        ),
                       ),
-                      style: theme.textTheme.titleMedium,
+                      IconButton(
+                        tooltip: S.cancelSelection,
+                        icon: const Icon(Icons.close),
+                        onPressed: actions.clear,
+                      ),
+                    ],
+                  ),
+                  // Barvy zvýraznění.
+                  SizedBox(
+                    height: 48,
+                    child: Row(
+                      children: [
+                        for (final e in highlightSwatches.entries)
+                          _ColorDot(
+                            color: e.value,
+                            selected: selection.verses.every(
+                              (v) => annotations.highlights[v] == e.key,
+                            ),
+                            onTap: () => actions.highlight(e.key),
+                          ),
+                        if (anyHighlighted)
+                          IconButton(
+                            tooltip: S.removeHighlight,
+                            icon: const Icon(Icons.format_color_reset_outlined),
+                            onPressed: () => actions.highlight(null),
+                          ),
+                      ],
                     ),
                   ),
-                  IconButton(
-                    tooltip: S.cancelSelection,
-                    icon: const Icon(Icons.close),
-                    onPressed: actions.clear,
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _ActionButton(
+                        icon: allBookmarked
+                            ? Icons.bookmark
+                            : Icons.bookmark_border,
+                        label: allBookmarked ? S.removeBookmark : S.bookmark,
+                        onTap: () => actions.bookmark(remove: allBookmarked),
+                      ),
+                      _ActionButton(
+                        icon: Icons.history_edu,
+                        label: S.study,
+                        tooltip: '${S.original} · ${S.crossRefs}',
+                        onTap: actions.study,
+                      ),
+                      _ActionButton(
+                        icon: Icons.edit_note,
+                        label: S.note,
+                        tooltip: S.addNote,
+                        onTap: actions.note,
+                      ),
+                      _ActionButton(
+                        icon: Icons.copy_rounded,
+                        label: S.copy,
+                        onTap: actions.copy,
+                      ),
+                      _ActionButton(
+                        icon: Icons.ios_share,
+                        label: S.share,
+                        onTap: actions.share,
+                      ),
+                    ],
                   ),
                 ],
               ),
-              // Barvy zvýraznění.
-              SizedBox(
-                height: 48,
-                child: Row(
-                  children: [
-                    for (final e in highlightSwatches.entries)
-                      _ColorDot(
-                        color: e.value,
-                        selected: selection.verses.every(
-                          (v) => annotations.highlights[v] == e.key,
-                        ),
-                        onTap: () => actions.highlight(e.key),
-                      ),
-                    if (anyHighlighted)
-                      IconButton(
-                        tooltip: S.removeHighlight,
-                        icon: const Icon(Icons.format_color_reset_outlined),
-                        onPressed: () => actions.highlight(null),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _ActionButton(
-                    icon: allBookmarked
-                        ? Icons.bookmark
-                        : Icons.bookmark_border,
-                    label: allBookmarked ? S.removeBookmark : S.bookmark,
-                    onTap: () => actions.bookmark(remove: allBookmarked),
-                  ),
-                  _ActionButton(
-                    icon: Icons.history_edu,
-                    label: S.study,
-                    tooltip: '${S.original} · ${S.crossRefs}',
-                    onTap: actions.study,
-                  ),
-                  _ActionButton(
-                    icon: Icons.edit_note,
-                    label: S.note,
-                    tooltip: S.addNote,
-                    onTap: actions.note,
-                  ),
-                  _ActionButton(
-                    icon: Icons.copy_rounded,
-                    label: S.copy,
-                    onTap: actions.copy,
-                  ),
-                  _ActionButton(
-                    icon: Icons.ios_share,
-                    label: S.share,
-                    onTap: actions.share,
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
         ),
       ),
@@ -147,9 +156,18 @@ class _Actions {
 
   void clear() => ref.read(verseSelectionProvider.notifier).clear();
 
+  /// Vybrané verše v kanonickém číslování (tak se ukládají).
+  List<VerseRef> _canonicalRefs() {
+    final translationId = ref.read(translationControllerProvider).primaryId;
+    return [
+      for (final r in selection.refs)
+        Versification.toCanonical(r, translationId),
+    ];
+  }
+
   Future<void> highlight(HighlightColor? color) async {
     final repo = ref.read(userDataRepositoryProvider);
-    final refs = selection.refs;
+    final refs = _canonicalRefs();
     clear();
     HapticFeedback.lightImpact();
     for (final r in refs) {
@@ -163,33 +181,36 @@ class _Actions {
     final existing = ref
         .read(chapterAnnotationsProvider((selection.bookId, selection.chapter)))
         .bookmarks;
-    final refs = selection.refs;
+    final local = selection.refs;
+    final refs = _canonicalRefs();
     clear();
     HapticFeedback.lightImpact();
-    for (final r in refs) {
+    for (final (i, r) in refs.indexed) {
       // Přepnout jen verše, jejichž stav se má změnit.
-      if (existing.contains(r.verse) == remove) {
+      if (existing.contains(local[i].verse) == remove) {
         await repo.toggleBookmark(r, translationId: translationId);
       }
     }
   }
 
   void study() {
-    final first = selection.refs.first;
+    final first = selection.refs.first; // v číslování hlavního překladu
     final navigatorContext = Navigator.of(context).context;
     clear();
     showVerseStudy(navigatorContext, first);
   }
 
   void note() {
-    final refs = selection.refs;
+    final refs = _canonicalRefs();
     // Kontext obrazovky (navigátoru) – panel po clear() zmizí.
     final navigatorContext = Navigator.of(context).context;
     clear();
     showNoteEditor(
       navigatorContext,
       ref: refs.first,
-      verseEnd: refs.last.verse,
+      verseEnd: refs.last.chapter == refs.first.chapter
+          ? refs.last.verse
+          : refs.first.verse,
     );
   }
 

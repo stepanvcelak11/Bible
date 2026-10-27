@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers.dart';
 import '../../../data/repositories/reading_progress_repository.dart';
+import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../translations/application/translation_controller.dart';
@@ -29,7 +30,10 @@ final verseOfDayProvider = FutureProvider<Verse?>((ref) async {
   final translationId = ref.watch(
     translationControllerProvider.select((s) => s.primaryId),
   );
-  final target = verseOfDay(DateTime.now());
+  final target = Versification.fromCanonical(
+    verseOfDay(DateTime.now()),
+    translationId,
+  );
   return ref.watch(bibleRepositoryProvider).getVerse(translationId, target);
 });
 

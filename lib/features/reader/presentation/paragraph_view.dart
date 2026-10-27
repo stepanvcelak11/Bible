@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../settings/application/reader_settings_controller.dart';
+import '../application/read_aloud_controller.dart';
 import '../application/reader_blocks.dart';
 import '../application/reader_state.dart';
 import 'note_editor_sheet.dart';
@@ -112,6 +113,7 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
     final annotations = ref.watch(chapterAnnotationsProvider(id));
     final selection = ref.watch(verseSelectionProvider);
     final flash = ref.watch(flashVerseProvider);
+    final speaking = ref.watch(speakingVerseProvider);
     final base = verseTextStyle(context, settings);
     final markerSize = settings.fontSize * 0.75;
 
@@ -119,7 +121,7 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
     for (final (index, verse) in widget.block.verses.indexed) {
       final n = verse.number;
       final selected = selection.contains(widget.bookId, widget.chapter, n);
-      final flashing = flash == verse.ref;
+      final flashing = flash == verse.ref || speaking == verse.ref;
       final highlight = annotations.highlights[n];
       final background = selected
           ? colors.selection

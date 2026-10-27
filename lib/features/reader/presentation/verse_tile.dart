@@ -6,6 +6,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/reader_settings.dart';
 import '../../settings/application/reader_settings_controller.dart';
+import '../application/read_aloud_controller.dart';
 import '../application/reader_state.dart';
 import 'note_editor_sheet.dart';
 
@@ -41,7 +42,9 @@ mixin _VerseState on ConsumerWidget {
         (s) => s.contains(r.bookId, r.chapter, r.verse),
       ),
     );
-    final flashing = ref.watch(flashVerseProvider.select((f) => f == r));
+    final flashing =
+        ref.watch(flashVerseProvider.select((f) => f == r)) ||
+        ref.watch(speakingVerseProvider.select((s) => s == r));
     final annotations = ref.watch(chapterAnnotationsProvider(id));
     final color = annotations.highlights[r.verse];
     return (
@@ -130,26 +133,27 @@ class ParallelVerseTile extends ConsumerWidget with _VerseState {
     final state = watchState(context, ref);
     final style = verseTextStyle(context, compact);
 
-    Widget column(Verse? verse, {required bool markers}) => Text.rich(
-      TextSpan(
-        children: [
-          if (verse != null) ...[
-            if (settings.showVerseNumbers)
-              verseNumberSpan(context, row.number, compact),
-            ...verseTextSpans(context, verse.text),
-          ],
-          if (markers)
-            ..._markers(
-              context,
-              bookmarked: state.bookmarked,
-              hasNote: state.hasNote,
-              onNote: () => openNote(context, ref),
-              size: compact.fontSize * 0.8,
-            ),
-        ],
-      ),
-      style: style,
-    );
+    Widget column(Verse? verse, {required bool markers, String? label}) =>
+        Text.rich(
+          TextSpan(
+            children: [
+              if (verse != null) ...[
+                if (settings.showVerseNumbers || label != null)
+                  verseNumberSpan(context, label ?? row.number, compact),
+                ...verseTextSpans(context, verse.text),
+              ],
+              if (markers)
+                ..._markers(
+                  context,
+                  bookmarked: state.bookmarked,
+                  hasNote: state.hasNote,
+                  onNote: () => openNote(context, ref),
+                  size: compact.fontSize * 0.8,
+                ),
+            ],
+          ),
+          style: style,
+        );
 
     return _VerseContainer(
       background: _background(
@@ -164,7 +168,13 @@ class ParallelVerseTile extends ConsumerWidget with _VerseState {
         children: [
           Expanded(child: column(row.primary, markers: true)),
           const SizedBox(width: 14),
-          Expanded(child: column(row.secondary, markers: false)),
+          Expanded(
+            child: column(
+              row.secondary,
+              markers: false,
+              label: row.secondaryLabel,
+            ),
+          ),
         ],
       ),
     );
@@ -216,7 +226,7 @@ TextStyle verseTextStyle(BuildContext context, ReaderSettings settings) =>
 
 InlineSpan verseNumberSpan(
   BuildContext context,
-  int number,
+  Object number,
   ReaderSettings settings,
 ) => TextSpan(
   children: [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/services/bible_content.dart';
@@ -18,51 +19,53 @@ class BookIntrosScreen extends ConsumerWidget {
     final intros = ref.watch(bookIntrosProvider).value ?? const {};
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    return Scaffold(
-      appBar: AppBar(title: const Text(S.exploreIntros)),
-      body: ListView(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.paddingOf(context).bottom + 24,
-        ),
-        children: [
-          for (final category in bookCategories) ...[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 6),
-              child: Row(
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      color: Color(category.color),
-                      shape: BoxShape.circle,
+    return ReadableWidth(
+      child: Scaffold(
+        appBar: AppBar(title: const Text(S.exploreIntros)),
+        body: ListView(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.paddingOf(context).bottom + 24,
+          ),
+          children: [
+            for (final category in bookCategories) ...[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 6),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: Color(category.color),
+                        shape: BoxShape.circle,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    category.name.toUpperCase(),
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      letterSpacing: 1.4,
-                      color: palette.muted,
-                      fontWeight: FontWeight.w700,
+                    const SizedBox(width: 8),
+                    Text(
+                      category.name.toUpperCase(),
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        letterSpacing: 1.4,
+                        color: palette.muted,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            for (var id = category.first; id <= category.last; id++)
-              ListTile(
-                title: Text(books[id - 1].name),
-                subtitle: Text(
-                  intros[id]?.theme ?? '',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                  ],
                 ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => showBookIntro(context, id),
               ),
+              for (var id = category.first; id <= category.last; id++)
+                ListTile(
+                  title: Text(books[id - 1].name),
+                  subtitle: Text(
+                    intros[id]?.theme ?? '',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => showBookIntro(context, id),
+                ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

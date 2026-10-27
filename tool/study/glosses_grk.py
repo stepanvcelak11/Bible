@@ -442,7 +442,7 @@ GRK = {
     "G2511": "očistit",
     "G2008": "pokárat",
     "G2968": "vesnice",
-    "G3957": "velikonoce (pascha)",
+    "G3957": "pascha – velikonoční svátek, velikonoční beránek",
     "G5092": "čest, cena",
     "G3049": "počítat, považovat",
     "G0921": "Barnabáš",

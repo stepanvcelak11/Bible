@@ -1,0 +1,84 @@
+-- ============================================================================
+--  Schéma OBSAHOVÉ databáze (bible.db) – jediný zdroj pravdy.
+--
+--  Tento soubor čtou DVĚ strany:
+--    1. drift_dev  → generuje typované Dart třídy (bible_database.g.dart),
+--    2. tool/build_bible_db.py → spouští ho jako čisté SQL při sestavení
+--       předpřipravené databáze, která se přibalí do assets aplikace.
+--
+--  Proto zde smí být POUZE standardní SQLite příkazy (žádná Drift rozšíření
+--  jako `AS NazevTridy` nebo pojmenované dotazy) a každý příkaz končí `;`.
+--
+--  Databáze je za běhu aplikace jen pro čtení. Uživatelská data (zvýraznění,
+--  záložky, poznámky) žijí v oddělené user.db, takže aktualizace textů
+--  Bible nikdy nesáhne na data uživatele.
+-- ============================================================================
+
+-- Metadata sestavení (verze obsahu, verze schématu, datum sestavení…).
+CREATE TABLE meta (
+  "key" TEXT NOT NULL PRIMARY KEY,
+  value TEXT NOT NULL
+);
+
+-- Jeden řádek = jeden překlad (BKR, CSP, CEP, B21, SNC…).
+CREATE TABLE translations (
+  id TEXT NOT NULL PRIMARY KEY,          -- krátký stabilní kód, např. 'BKR'
+  name TEXT NOT NULL,                    -- 'Bible kralická'
+  abbreviation TEXT NOT NULL,            -- zobrazovaná zkratka, např. 'BKR'
+  language TEXT NOT NULL DEFAULT 'cs',
+  year INTEGER,                          -- rok vydání (nepovinné)
+  license TEXT,                          -- licence / copyright
+  description TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0, -- pořadí ve výběru překladu
+  verse_count INTEGER NOT NULL DEFAULT 0 -- pro kontrolu úplnosti
+);
+
+-- Kánon 66 knih. `id` = kanonické pořadí 1–66 (Gn = 1 … Zj = 66) a je
+-- sdílené napříč překlady i s uživatelskou databází.
+CREATE TABLE books (
+  id INTEGER NOT NULL PRIMARY KEY,
+  osis TEXT NOT NULL UNIQUE,             -- 'Gen', 'John' … (mezinárodní kód)
+  name TEXT NOT NULL,                    -- český název, 'Genesis', 'Jan'
+  abbreviation TEXT NOT NULL,            -- česká zkratka (ČEP), 'Gn', 'J'
+  testament TEXT NOT NULL CHECK (testament IN ('OT', 'NT'))
+);
+
+-- Počet veršů v každé kapitole každého překladu. Umožňuje postavit výběr
+-- kapitol/veršů bez skenování tabulky veršů. Počty kapitol se mezi překlady
+-- mohou lišit (různé číslování: BKR má Jóel 3 kapitoly, ČEP 4), proto se
+-- vždy berou odsud podle konkrétního překladu, nikdy z tabulky books.
+CREATE TABLE chapters (
+  translation_id TEXT NOT NULL REFERENCES translations (id),
+  book_id INTEGER NOT NULL REFERENCES books (id),
+  chapter INTEGER NOT NULL,
+  verse_count INTEGER NOT NULL,
+  PRIMARY KEY (translation_id, book_id, chapter)
+) WITHOUT ROWID;
+
+-- Samotné verše všech překladů.
+--  * `id` je rowid; skript vkládá verše v kanonickém pořadí, takže verše
+--    jedné kapitoly leží fyzicky vedle sebe (rychlé načtení kapitoly).
+--  * Unikátní index (translation_id, book_id, chapter, verse) obslouží
+--    načtení kapitoly jedním rozsahovým průchodem.
+--  * rowid zároveň slouží jako content_rowid pro FTS5 (text se neukládá
+--    dvakrát → menší aplikace).
+CREATE TABLE verses (
+  id INTEGER NOT NULL PRIMARY KEY,
+  translation_id TEXT NOT NULL REFERENCES translations (id),
+  book_id INTEGER NOT NULL REFERENCES books (id),
+  chapter INTEGER NOT NULL,
+  verse INTEGER NOT NULL,
+  text TEXT NOT NULL
+);
+
+CREATE UNIQUE INDEX verses_by_ref ON verses (translation_id, book_id, chapter, verse);
+
+-- Fulltextový index (FTS5, external content).
+-- `unicode61 remove_diacritics 2` sjednotí diakritiku v textu i v dotazu:
+-- dotaz "laska" najde "láska", "zivot" najde "život", "Hospodin" i "hospodin".
+CREATE VIRTUAL TABLE verses_fts USING fts5 (
+  text,
+  content = 'verses',
+  content_rowid = 'id',
+  tokenize = 'unicode61 remove_diacritics 2'
+);

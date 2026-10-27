@@ -1,0 +1,59 @@
+{
+  "_comment": "Seznam překladů pro tool/build_bible_db.py. Položky se zdrojovým souborem, který v data/sources neexistuje, se přeskočí. Podporované formáty: 'scrollmapper' (JSON), 'zefania' (XML), 'flat' (JSON, viz data/sources/README.md). ČEP, B21 a SNC jsou chráněny autorským právem a nejsou volně ke stažení – pokud máte vlastní licencovaný soubor, vložte jej do data/sources a nastavte enabled: true.",
+  "translations": [
+    {
+      "id": "BKR",
+      "name": "Bible kralická",
+      "abbreviation": "BKR",
+      "year": 1613,
+      "license": "Volné dílo (public domain)",
+      "description": "Klasický překlad Jednoty bratrské, vydání z roku 1613.",
+      "format": "scrollmapper",
+      "source": "CzeBKR.json",
+      "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeBKR.json",
+      "enabled": true
+    },
+    {
+      "id": "CSP",
+      "name": "Český studijní překlad",
+      "abbreviation": "ČSP",
+      "year": 2009,
+      "license": "© Nadační fond Křesťanská dobročinnost. Šířeno přes CrossWire s povolením pro nekomerční použití – pouze pro osobní potřebu.",
+      "description": "Doslovný studijní překlad z původních jazyků.",
+      "format": "scrollmapper",
+      "source": "CzeCSP.json",
+      "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeCSP.json",
+      "enabled": true
+    },
+    {
+      "id": "CEP",
+      "name": "Český ekumenický překlad",
+      "abbreviation": "ČEP",
+      "year": 1985,
+      "license": "© Česká biblická společnost – vlastní licencovaný soubor",
+      "format": "zefania",
+      "source": "CEP.xml",
+      "enabled": false
+    },
+    {
+      "id": "B21",
+      "name": "Bible, překlad 21. století",
+      "abbreviation": "B21",
+      "year": 2009,
+      "license": "© Biblion, z. s. – vlastní licencovaný soubor",
+      "format": "zefania",
+      "source": "B21.xml",
+      "enabled": false
+    },
+    {
+      "id": "SNC",
+      "name": "Slovo na cestu",
+      "abbreviation": "SNC",
+      "year": 2012,
+      "license": "© Biblion, z. s. – vlastní licencovaný soubor",
+      "format": "zefania",
+      "source": "SNC.xml",
+      "enabled": false
+    }
+  ]
+}

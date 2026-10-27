@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      drift_dev:
+        options:
+          # Fulltextové vyhledávání v obsahové databázi.
+          sql:
+            dialect: sqlite
+            options:
+              version: "3.45"
+              modules:
+                - fts5
+          store_date_time_values_as_text: false

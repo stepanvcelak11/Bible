@@ -26,6 +26,23 @@ Krok 1 vytvoří `assets/db/bible.db` (~14 MB, BKR + ČSP) a
 `data/sources/` jsou v `.gitignore` – některé překlady podléhají autorskému
 právu. Bez kroku 1 aplikace zobrazí hlášku „Chybí data Bible“.
 
+## Webová verze (iPhone)
+
+**https://stepanvcelak11.github.io/Bible/**
+
+Otevřete odkaz v Safari → tlačítko Sdílet → **Přidat na plochu**. Při prvním
+otevření se stáhne celá aplikace (~20 MB) a pak funguje i bez internetu
+(service worker + SQLite ve WebAssembly; poznámky se ukládají v prohlížeči).
+
+Web se sestaví a nasadí automaticky po každém pushi do `main`
+(`.github/workflows/web.yml` → větev `gh-pages`). Protože je repozitář
+veřejný, web obsahuje jen Bibli kralickou. Lokálně:
+
+```bash
+python3 tool/build_bible_db.py --fetch --only BKR
+tool/build_web.sh --base-href /Bible/   # výsledek v build/web
+```
+
 ## Překlady
 
 | Kód | Překlad | Zdroj | Licence |

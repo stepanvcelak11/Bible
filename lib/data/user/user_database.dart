@@ -2,6 +2,7 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 
 import '../../domain/entities/user_entities.dart';
+import '../web_drift_options.dart';
 
 part 'user_database.g.dart';
 
@@ -79,6 +80,7 @@ class UserDatabase extends _$UserDatabase {
     driftDatabase(
       name: 'user',
       native: const DriftNativeOptions(shareAcrossIsolates: true),
+      web: webDriftOptions,
     ),
   );
 

@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
 import 'bootstrap.dart';
-import 'data/bible/bible_db_installer.dart';
+import 'data/bible/bible_data_missing_exception.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -37,3 +37,9 @@ flutter:
   assets:
     # Vygenerováno skriptem tool/build_bible_db.py (viz README).
     - assets/db/
+  fonts:
+    # Literata (SIL OFL, assets/fonts/OFL.txt) – přibalené písmo s českou
+    # diakritikou. Na webu by se jinak písmo stahovalo z internetu.
+    - family: Literata
+      fonts:
+        - asset: assets/fonts/Literata.ttf

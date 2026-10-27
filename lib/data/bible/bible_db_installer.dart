@@ -5,16 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-/// Chyba: v balíčku aplikace chybí databáze Bible (nebyl spuštěn
-/// `tool/build_bible_db.py`).
-class BibleDataMissingException implements Exception {
-  const BibleDataMissingException(this.cause);
+import 'bible_data_missing_exception.dart';
 
-  final Object cause;
-
-  @override
-  String toString() => 'BibleDataMissingException: $cause';
-}
+export 'bible_data_missing_exception.dart';
 
 /// Zajistí, že v úložišti aplikace leží aktuální kopie obsahové databáze.
 ///

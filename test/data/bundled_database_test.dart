@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bible_reader/data/bible/bible_database.dart';
 import 'package:bible_reader/data/repositories/bible_repository_impl.dart';
 import 'package:bible_reader/domain/entities/bible_entities.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Kontrola skutečné vygenerované databáze (assets/db/bible.db).
@@ -17,7 +18,7 @@ void main() {
   late BibleRepositoryImpl repo;
   setUpAll(() {
     if (skip != false) return;
-    db = BibleDatabase.open(file);
+    db = BibleDatabase(NativeDatabase(file));
     repo = BibleRepositoryImpl(db);
   });
   tearDownAll(() async {

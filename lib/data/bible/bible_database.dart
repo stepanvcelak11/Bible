@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:drift/drift.dart';
-import 'package:drift/native.dart';
 
 part 'bible_database.g.dart';
 
@@ -11,25 +8,12 @@ part 'bible_database.g.dart';
 /// `tool/build_bible_db.py` k sestavení předpřipravené databáze. Za běhu
 /// se databáze nikdy nemigruje: novou verzi obsahu nahraje
 /// `BibleDbInstaller` jako celý soubor z assets.
+///
+/// Otevření podle platformy: `bible_db_connection.dart` (nativně soubor
+/// v úložišti aplikace, na webu SQLite ve WebAssembly).
 @DriftDatabase(include: {'bible_schema.drift'})
 class BibleDatabase extends _$BibleDatabase {
   BibleDatabase(super.executor);
-
-  /// Otevře databázi ze souboru na pozadí (vlastní isolate), aby dotazy
-  /// nikdy neblokovaly UI vlákno a čtení drželo plynulých 60 fps.
-  factory BibleDatabase.open(File file) => BibleDatabase(
-    NativeDatabase.createInBackground(
-      file,
-      setup: (db) {
-        // Pojistka: obsahová databáze se nesmí změnit.
-        db.execute('PRAGMA query_only = ON;');
-        // Paměťově mapované čtení – rychlejší náhodný přístup ke
-        // stránkám (načtení kapitoly, fulltext).
-        db.execute('PRAGMA mmap_size = 67108864;');
-        db.execute('PRAGMA temp_store = MEMORY;');
-      },
-    ),
-  );
 
   /// Musí odpovídat `SCHEMA_VERSION` v tool/build_bible_db.py.
   @override

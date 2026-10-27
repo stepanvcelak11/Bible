@@ -6,6 +6,9 @@ import 'features/reader/presentation/reader_screen.dart';
 
 const _czech = Locale('cs', 'CZ');
 
+/// Přibalené písmo – funguje offline i na webu.
+const _font = 'Literata';
+
 /// Kořenový widget aplikace. Motivy (světlý / tmavý / sépie) a typografie
 /// se plně rozpracují v kroku 2.
 class BibleApp extends StatelessWidget {
@@ -21,8 +24,16 @@ class BibleApp extends StatelessWidget {
       supportedLocales: const [_czech],
       // Systémové texty (kopírovat/vložit, dialogy…) také česky.
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: ThemeData(colorSchemeSeed: seed, brightness: Brightness.light),
-      darkTheme: ThemeData(colorSchemeSeed: seed, brightness: Brightness.dark),
+      theme: ThemeData(
+        colorSchemeSeed: seed,
+        brightness: Brightness.light,
+        fontFamily: _font,
+      ),
+      darkTheme: ThemeData(
+        colorSchemeSeed: seed,
+        brightness: Brightness.dark,
+        fontFamily: _font,
+      ),
       home: const ReaderScreen(),
     );
   }
@@ -39,6 +50,7 @@ class StartupErrorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: _font),
       locale: _czech,
       supportedLocales: const [_czech],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,

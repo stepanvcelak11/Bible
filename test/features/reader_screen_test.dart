@@ -5,6 +5,7 @@ import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
 import 'package:bible_reader/features/reader/application/reading_position_controller.dart';
+import 'package:bible_reader/features/reader/presentation/verse_image_sheet.dart';
 import 'package:bible_reader/features/settings/application/reader_settings_controller.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
 import 'package:flutter/material.dart';
@@ -118,6 +119,38 @@ void main() {
     await settle(tester);
     expect(find.text('Originál'), findsOneWidget);
     expect(find.text('Studijní balíček'), findsOneWidget);
+  });
+
+  appTest('sdílení verše: náhled obrázku a volba vzhledu', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Sdílet'));
+    await settle(tester);
+    expect(find.text('Sdílet verš'), findsOneWidget);
+    expect(find.byType(VerseCard), findsOneWidget);
+    expect(find.text('Jan 3,16'), findsWidgets);
+    await tester.tap(find.text('Svítání'));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<VerseCard>(find.byType(VerseCard)).style,
+      VerseCardStyle.dawn,
+    );
+  });
+
+  appTest('tablet: boční navigace místo spodní lišty', (tester) async {
+    await pumpApp(tester, openBible: false);
+    tester.view.physicalSize = const Size(2360, 1640);
+    tester.view.devicePixelRatio = 2;
+    await settle(tester);
+    // Popisky sekcí jsou v boční liště; přechod do Bible funguje.
+    await tester.tap(find.text('Bible'));
+    await settle(tester);
+    expect(find.text('Genesis 1'), findsOneWidget);
+    expect(find.byTooltip('Další kapitola'), findsOneWidget);
+    await tester.tap(find.byTooltip('Další kapitola'));
+    await settle(tester);
+    expect(find.text('Genesis 2'), findsOneWidget);
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

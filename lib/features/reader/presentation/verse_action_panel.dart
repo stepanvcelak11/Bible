@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
@@ -15,6 +14,7 @@ import '../application/chapter_content_provider.dart';
 import '../application/reader_state.dart';
 import '../../study/presentation/verse_study_sheet.dart';
 import 'note_editor_sheet.dart';
+import 'verse_image_sheet.dart';
 
 /// Panel akcí s vybranými verši: Zvýraznit, Přidat záložku, Přidat
 /// poznámku, Kopírovat, Sdílet.
@@ -214,6 +214,22 @@ class _Actions {
     );
   }
 
+  /// Vybrané verše hlavního překladu.
+  Future<List<Verse>> _verses() async {
+    final translations = ref.read(translationControllerProvider);
+    final content = await ref.read(
+      chapterPageProvider((
+        primaryId: translations.primaryId,
+        secondaryId: translations.secondaryId,
+        bookId: selection.bookId,
+        chapter: selection.chapter,
+      )).future,
+    );
+    return content.primaryVerses
+        .where((v) => selection.verses.contains(v.number))
+        .toList();
+  }
+
   /// Text vybraných veršů v hlavním překladu.
   Future<String?> _text() async {
     // Stejný klíč, jaký sleduje zobrazená stránka → data jsou už načtená.
@@ -255,17 +271,25 @@ class _Actions {
     );
   }
 
+  /// Sdílení jako obrázek (karta s veršem) nebo jako text.
   Future<void> share() async {
-    final box = context.findRenderObject() as RenderBox?;
-    // iPad: odkud má vyjet nabídka sdílení.
-    final origin = box == null
-        ? null
-        : box.localToGlobal(Offset.zero) & box.size;
-    final text = await _text();
+    final navigatorContext = Navigator.of(context).context;
+    final translation = ref.read(primaryTranslationProvider);
+    final bookName = ref.read(bookByIdProvider(selection.bookId)).name;
+    final verses = await _verses();
+    final plain = await _text();
     clear();
-    if (text == null) return;
-    await SharePlus.instance.share(
-      ShareParams(text: text, sharePositionOrigin: origin),
+    if (plain == null || verses.isEmpty || !navigatorContext.mounted) return;
+    await showVerseImageSheet(
+      navigatorContext,
+      text: verses.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
+      citation: Citation.range(
+        bookName,
+        selection.chapter,
+        verses.map((v) => v.number),
+      ),
+      translation: translation.name,
+      plainShareText: plain,
     );
   }
 }

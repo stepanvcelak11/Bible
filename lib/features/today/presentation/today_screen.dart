@@ -17,6 +17,7 @@ import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/today_providers.dart';
 import 'plans_sheet.dart';
+import 'timeline_screen.dart';
 
 const _months = [
   'ledna', 'února', 'března', 'dubna', 'května', 'června', //
@@ -567,6 +568,20 @@ class _ExploreGrid extends ConsumerWidget {
         S.exploreStudy,
         S.exploreStudyHint,
         () => push(const StudyPackScreen()),
+      ),
+      (
+        Icons.view_timeline_outlined,
+        const Color(0xFFB0603A),
+        S.timeline,
+        S.timelineHint,
+        () => push(const TimelineScreen()),
+      ),
+      (
+        Icons.event_note_outlined,
+        const Color(0xFF5B7A3A),
+        S.readingPlans,
+        S.readingPlansHint,
+        () => showPlansSheet(context),
       ),
     ];
     return GridView(

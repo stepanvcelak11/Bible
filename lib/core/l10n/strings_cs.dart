@@ -102,6 +102,12 @@ abstract final class S {
   static const themeDark = 'Tmavý';
   static const background = 'Pozadí';
   static const readAloud = 'Předčítání';
+  static const shareVerse = 'Sdílet verš';
+  static const shareAsImage = 'Obrázek';
+  static const shareAsText = 'Text';
+  static const cardNight = 'Večer';
+  static const cardPaper = 'Papír';
+  static const cardDawn = 'Svítání';
   static const readAloudUnavailable = 'Toto zařízení neumí předčítat text.';
   static const readAloudNoCzechVoice =
       'Nenašel jsem český hlas, text přečte jiný hlas. Na iPhonu ho přidáte '
@@ -216,6 +222,16 @@ abstract final class S {
   static const exploreIntrosHint = 'Autor, doba, téma';
   static const exploreTranslations = 'Překlady';
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
+  static const timeline = 'Časová osa';
+  static const timelineHint = 'Od Abrahama po Zjevení';
+  static const timelineIntro =
+      'Hlavní události biblických dějin. Starší období mají jen přibližnou '
+      'nebo tradiční dataci – odborníci se v nich liší.';
+  static const datingDocumented = 'Doloženo i mimo Bibli';
+  static const datingApproximate = 'Přibližné datum';
+  static const datingTraditional = 'Tradiční datace';
+  static const readingPlans = 'Plány čtení';
+  static const readingPlansHint = 'Žalmy, evangelia, celá Bible';
   static const exploreStudy = 'Původní text';
   static const exploreStudyHint = 'Hebrejština a řečtina';
 

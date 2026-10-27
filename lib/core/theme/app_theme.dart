@@ -253,6 +253,8 @@ abstract final class AppTheme {
         ),
       ),
       cardTheme: CardThemeData(
+        // Klepnutí/najetí myší nesmí přesahovat zaoblené rohy.
+        clipBehavior: Clip.antiAlias,
         color: palette.card,
         surfaceTintColor: Colors.transparent,
         elevation: 0,

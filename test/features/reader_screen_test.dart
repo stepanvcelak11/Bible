@@ -44,7 +44,7 @@ void main() {
     expect(find.text('VERŠ DNE'), findsOneWidget);
     expect(find.text('Pokračovat ve čtení'), findsOneWidget);
     expect(find.text('Jan 3,16'), findsOneWidget);
-    expect(find.text('Objevovat'), findsOneWidget);
+    expect(find.text('Verše pro tuto chvíli'), findsOneWidget);
 
     await tester.tap(find.text('Jan 3,16'));
     await settle(tester);
@@ -151,6 +151,17 @@ void main() {
     await tester.tap(find.byTooltip('Další kapitola'));
     await settle(tester);
     expect(find.text('Genesis 2'), findsOneWidget);
+  });
+
+  appTest('verše do situací: výběr situace zobrazí verše', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Mám strach'));
+    await settle(tester);
+    expect(find.text('Mám strach'), findsOneWidget, reason: 'nadpis stránky');
+    expect(find.textContaining('Strach k životu patří'), findsOneWidget);
+    // Testovací data obsahují Jana 3; ostatní místa jsou prázdná, ale
+    // stránka se nesmí rozbít.
+    expect(find.byType(Card), findsWidgets);
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

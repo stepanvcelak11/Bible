@@ -134,16 +134,47 @@ class BookIntro {
     required this.summary,
     required this.outline,
     required this.keyVerses,
+    this.purpose = '',
+    this.recipients = '',
+    this.setting = '',
+    this.people = const [],
+    this.places = const [],
+    this.features = '',
+    this.themes = const [],
+    this.timeline = const [],
+    this.timelineNote,
   });
 
-  factory BookIntro.fromJson(Map<String, Object?> j) => BookIntro(
-    author: j['author']! as String,
-    date: j['date']! as String,
-    theme: j['theme']! as String,
-    summary: j['summary']! as String,
-    outline: [for (final o in j['outline']! as List<Object?>) o! as String],
-    keyVerses: [for (final o in j['keyVerses']! as List<Object?>) o! as String],
-  );
+  factory BookIntro.fromJson(Map<String, Object?> j) {
+    List<String> strings(String key) => [
+      for (final o in j[key] as List<Object?>? ?? const []) o! as String,
+    ];
+    List<Map<String, Object?>> maps(String key) =>
+        (j[key] as List<Object?>? ?? const []).cast<Map<String, Object?>>();
+    return BookIntro(
+      author: j['author']! as String,
+      date: j['date']! as String,
+      theme: j['theme']! as String,
+      summary: j['summary']! as String,
+      outline: strings('outline'),
+      keyVerses: strings('keyVerses'),
+      purpose: j['purpose'] as String? ?? '',
+      recipients: j['recipients'] as String? ?? '',
+      setting: j['setting'] as String? ?? '',
+      people: strings('people'),
+      places: strings('places'),
+      features: j['features'] as String? ?? '',
+      themes: [
+        for (final t in maps('themes'))
+          (title: t['title']! as String, text: t['text']! as String),
+      ],
+      timeline: [
+        for (final t in maps('timeline'))
+          (date: t['date']! as String, event: t['event']! as String),
+      ],
+      timelineNote: j['timelineNote'] as String?,
+    );
+  }
 
   final String author;
   final String date;
@@ -153,4 +184,14 @@ class BookIntro {
 
   /// Klíčové verše ve tvaru „3:16“ nebo „3:16-17“.
   final List<String> keyVerses;
+
+  final String purpose;
+  final String recipients;
+  final String setting;
+  final List<String> people;
+  final List<String> places;
+  final String features;
+  final List<({String title, String text})> themes;
+  final List<({String date, String event})> timeline;
+  final String? timelineNote;
 }

@@ -22,6 +22,19 @@ Future<void> openChapterMap(BuildContext context, int bookId, int chapter) =>
       ),
     );
 
+/// Mapa s nejčastěji zmiňovanými místy knihy.
+Future<void> openBookMap(BuildContext context, int bookId) =>
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => MapPage(bookId: bookId)));
+
+List<BiblePlace> _bookPlaces(MapData data, int bookId) {
+  final counted = [
+    for (final mp in data.places)
+      if (mp.mentionsInBook(bookId) case final n when n > 0) (mp.place, n),
+  ]..sort((a, b) => b.$2.compareTo(a.$2));
+  return [for (final (p, _) in counted.take(30)) p];
+}
+
 /// Mapa zaměřená na jedno místo.
 Future<void> openPlaceOnMap(BuildContext context, String placeId) =>
     Navigator.of(
@@ -37,9 +50,18 @@ class MapsScreen extends StatelessWidget {
 }
 
 class MapPage extends ConsumerStatefulWidget {
-  const MapPage({super.key, this.chapter, this.placeId, this.isTab = false});
+  const MapPage({
+    super.key,
+    this.chapter,
+    this.bookId,
+    this.placeId,
+    this.isTab = false,
+  });
 
   final (int, int)? chapter;
+
+  /// Místa zmíněná v celé knize (nejčastější).
+  final int? bookId;
   final String? placeId;
   final bool isTab;
 
@@ -93,9 +115,12 @@ class _MapPageState extends ConsumerState<MapPage> {
       if (widget.placeId != null)
         for (final mp in data.places)
           if (mp.place.id == widget.placeId) mp.place,
+      if (widget.bookId case final b?) ..._bookPlaces(data, b),
     ];
     final String title;
-    if (chapter != null) {
+    if (widget.bookId case final b?) {
+      title = '${S.bookPlaces} · ${ref.watch(bookByIdProvider(b)).name}';
+    } else if (chapter != null) {
       final book = ref.watch(bookByIdProvider(chapter.$1));
       title = '${S.chapterPlaces} · ${book.name} ${chapter.$2}';
     } else if (focus.length == 1) {

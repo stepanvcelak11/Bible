@@ -1,0 +1,1515 @@
+{
+ "groups": [
+  {
+   "id": "feelings",
+   "name": "Pocity"
+  },
+  {
+   "id": "life",
+   "name": "Životní situace"
+  },
+  {
+   "id": "faith",
+   "name": "Víra a vztah s Bohem"
+  }
+ ],
+ "situations": [
+  {
+   "id": "joy",
+   "group": "feelings",
+   "icon": "sun",
+   "title": "Mám radost",
+   "intro": "Radost je dar. Bible zve radost sdílet a děkovat za ni Bohu.",
+   "refs": [
+    [
+     19,
+     16,
+     11,
+     11
+    ],
+    [
+     19,
+     118,
+     24,
+     24
+    ],
+    [
+     50,
+     4,
+     4,
+     4
+    ],
+    [
+     16,
+     8,
+     10,
+     10
+    ],
+    [
+     19,
+     126,
+     3,
+     3
+    ],
+    [
+     59,
+     1,
+     17,
+     17
+    ],
+    [
+     52,
+     5,
+     16,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "fear",
+   "group": "feelings",
+   "icon": "shield",
+   "title": "Mám strach",
+   "intro": "Strach k životu patří. Bůh slibuje, že v něm nejsme sami.",
+   "refs": [
+    [
+     23,
+     41,
+     10,
+     10
+    ],
+    [
+     19,
+     23,
+     4,
+     4
+    ],
+    [
+     19,
+     56,
+     4,
+     5
+    ],
+    [
+     6,
+     1,
+     9,
+     9
+    ],
+    [
+     55,
+     1,
+     7,
+     7
+    ],
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     19,
+     27,
+     1,
+     1
+    ],
+    [
+     62,
+     4,
+     18,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "anxiety",
+   "group": "feelings",
+   "icon": "cloud",
+   "title": "Trápí mě starosti",
+   "intro": "Starosti můžeme odevzdat – ne proto, že nejsou důležité, ale proto, že Bohu na nás záleží.",
+   "refs": [
+    [
+     50,
+     4,
+     6,
+     7
+    ],
+    [
+     60,
+     5,
+     7,
+     7
+    ],
+    [
+     40,
+     6,
+     34,
+     34
+    ],
+    [
+     40,
+     11,
+     28,
+     28
+    ],
+    [
+     19,
+     55,
+     23,
+     23
+    ],
+    [
+     43,
+     16,
+     33,
+     33
+    ],
+    [
+     19,
+     94,
+     19,
+     19
+    ]
+   ]
+  },
+  {
+   "id": "sadness",
+   "group": "feelings",
+   "icon": "rain",
+   "title": "Jsem smutný",
+   "intro": "Bible smutek nepřehlíží. Žalmy dávají slova i těm nejtěžším chvílím.",
+   "refs": [
+    [
+     19,
+     34,
+     19,
+     19
+    ],
+    [
+     40,
+     5,
+     4,
+     4
+    ],
+    [
+     19,
+     42,
+     12,
+     12
+    ],
+    [
+     19,
+     147,
+     3,
+     3
+    ],
+    [
+     47,
+     1,
+     3,
+     4
+    ],
+    [
+     25,
+     3,
+     22,
+     23
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "lonely",
+   "group": "feelings",
+   "icon": "person",
+   "title": "Cítím se osamělý",
+   "intro": "I když lidé chybí, Bůh slibuje svou blízkost.",
+   "refs": [
+    [
+     5,
+     31,
+     8,
+     8
+    ],
+    [
+     19,
+     27,
+     10,
+     10
+    ],
+    [
+     40,
+     28,
+     20,
+     20
+    ],
+    [
+     19,
+     68,
+     7,
+     7
+    ],
+    [
+     23,
+     43,
+     2,
+     2
+    ],
+    [
+     19,
+     139,
+     7,
+     10
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "anger",
+   "group": "feelings",
+   "icon": "flame",
+   "title": "Zlobím se",
+   "intro": "Hněv sám o sobě není hřích – záleží na tom, co s ním uděláme.",
+   "refs": [
+    [
+     49,
+     4,
+     26,
+     27
+    ],
+    [
+     59,
+     1,
+     19,
+     20
+    ],
+    [
+     20,
+     15,
+     1,
+     1
+    ],
+    [
+     20,
+     16,
+     32,
+     32
+    ],
+    [
+     19,
+     37,
+     8,
+     8
+    ],
+    [
+     45,
+     12,
+     19,
+     19
+    ],
+    [
+     51,
+     3,
+     13,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "guilt",
+   "group": "feelings",
+   "icon": "refresh",
+   "title": "Selhal jsem",
+   "intro": "Selhání není konečná. Bůh nabízí odpuštění a nový začátek.",
+   "refs": [
+    [
+     62,
+     1,
+     9,
+     9
+    ],
+    [
+     19,
+     51,
+     3,
+     4
+    ],
+    [
+     45,
+     8,
+     1,
+     1
+    ],
+    [
+     23,
+     1,
+     18,
+     18
+    ],
+    [
+     19,
+     103,
+     10,
+     12
+    ],
+    [
+     33,
+     7,
+     18,
+     19
+    ],
+    [
+     42,
+     15,
+     20,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "worthless",
+   "group": "feelings",
+   "icon": "heart",
+   "title": "Cítím se bezcenný",
+   "intro": "Naše hodnota nestojí na výkonu ani na názoru druhých.",
+   "refs": [
+    [
+     19,
+     139,
+     13,
+     14
+    ],
+    [
+     23,
+     43,
+     4,
+     4
+    ],
+    [
+     49,
+     2,
+     10,
+     10
+    ],
+    [
+     62,
+     3,
+     1,
+     1
+    ],
+    [
+     40,
+     10,
+     29,
+     31
+    ],
+    [
+     36,
+     3,
+     17,
+     17
+    ],
+    [
+     24,
+     31,
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "tired",
+   "group": "feelings",
+   "icon": "battery",
+   "title": "Jsem vyčerpaný",
+   "intro": "Odpočinek je Boží nápad. Síla nemusí pocházet jen z nás.",
+   "refs": [
+    [
+     40,
+     11,
+     28,
+     30
+    ],
+    [
+     23,
+     40,
+     29,
+     31
+    ],
+    [
+     19,
+     23,
+     1,
+     3
+    ],
+    [
+     47,
+     12,
+     9,
+     9
+    ],
+    [
+     48,
+     6,
+     9,
+     9
+    ],
+    [
+     19,
+     127,
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "doubt",
+   "group": "feelings",
+   "icon": "help",
+   "title": "Pochybuji",
+   "intro": "Pochybnosti mívali i apoštolové. Bůh se nebojí upřímných otázek.",
+   "refs": [
+    [
+     41,
+     9,
+     24,
+     24
+    ],
+    [
+     40,
+     14,
+     31,
+     31
+    ],
+    [
+     43,
+     20,
+     27,
+     29
+    ],
+    [
+     58,
+     11,
+     1,
+     1
+    ],
+    [
+     59,
+     1,
+     5,
+     6
+    ],
+    [
+     65,
+     1,
+     22,
+     22
+    ],
+    [
+     45,
+     10,
+     17,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "decision",
+   "group": "life",
+   "icon": "signpost",
+   "title": "Nevím, co mám dělat",
+   "intro": "Při rozhodování Bible radí hledat moudrost, modlit se a důvěřovat.",
+   "refs": [
+    [
+     20,
+     3,
+     5,
+     6
+    ],
+    [
+     59,
+     1,
+     5,
+     5
+    ],
+    [
+     19,
+     32,
+     8,
+     8
+    ],
+    [
+     23,
+     30,
+     21,
+     21
+    ],
+    [
+     20,
+     16,
+     9,
+     9
+    ],
+    [
+     19,
+     119,
+     105,
+     105
+    ],
+    [
+     45,
+     12,
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "courage",
+   "group": "life",
+   "icon": "mountain",
+   "title": "Čeká mě těžký úkol",
+   "intro": "Odvaha neznamená nemít strach, ale jít dál s Boží pomocí.",
+   "refs": [
+    [
+     6,
+     1,
+     9,
+     9
+    ],
+    [
+     50,
+     4,
+     13,
+     13
+    ],
+    [
+     5,
+     31,
+     6,
+     6
+    ],
+    [
+     19,
+     27,
+     14,
+     14
+    ],
+    [
+     46,
+     16,
+     13,
+     13
+    ],
+    [
+     55,
+     1,
+     7,
+     7
+    ],
+    [
+     23,
+     41,
+     13,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "illness",
+   "group": "life",
+   "icon": "medical",
+   "title": "Jsem nemocný",
+   "intro": "V nemoci můžeme prosit o uzdravení i o sílu nést to, co přichází.",
+   "refs": [
+    [
+     59,
+     5,
+     14,
+     15
+    ],
+    [
+     19,
+     41,
+     4,
+     4
+    ],
+    [
+     19,
+     103,
+     2,
+     3
+    ],
+    [
+     24,
+     17,
+     14,
+     14
+    ],
+    [
+     47,
+     4,
+     16,
+     18
+    ],
+    [
+     23,
+     53,
+     5,
+     5
+    ],
+    [
+     45,
+     8,
+     18,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "grief",
+   "group": "life",
+   "icon": "candle",
+   "title": "Zemřel mi někdo blízký",
+   "intro": "Smutek nad ztrátou je projevem lásky. Kristus dává naději vzkříšení.",
+   "refs": [
+    [
+     43,
+     11,
+     25,
+     26
+    ],
+    [
+     52,
+     4,
+     13,
+     14
+    ],
+    [
+     43,
+     14,
+     1,
+     3
+    ],
+    [
+     45,
+     8,
+     38,
+     39
+    ],
+    [
+     19,
+     23,
+     4,
+     4
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ],
+    [
+     19,
+     34,
+     19,
+     19
+    ]
+   ]
+  },
+  {
+   "id": "hurt",
+   "group": "life",
+   "icon": "handshake",
+   "title": "Někdo mi ublížil",
+   "intro": "Odpustit neznamená schvalovat zlo. Znamená to nechat soud na Bohu.",
+   "refs": [
+    [
+     49,
+     4,
+     32,
+     32
+    ],
+    [
+     51,
+     3,
+     13,
+     13
+    ],
+    [
+     40,
+     6,
+     14,
+     15
+    ],
+    [
+     40,
+     18,
+     21,
+     22
+    ],
+    [
+     42,
+     6,
+     27,
+     28
+    ],
+    [
+     45,
+     12,
+     17,
+     21
+    ]
+   ]
+  },
+  {
+   "id": "injustice",
+   "group": "life",
+   "icon": "scale",
+   "title": "Děje se mi křivda",
+   "intro": "Bůh vidí křivdu a jednou zjedná spravedlnost.",
+   "refs": [
+    [
+     19,
+     37,
+     5,
+     6
+    ],
+    [
+     45,
+     12,
+     19,
+     19
+    ],
+    [
+     60,
+     2,
+     23,
+     23
+    ],
+    [
+     40,
+     5,
+     10,
+     12
+    ],
+    [
+     19,
+     9,
+     10,
+     10
+    ],
+    [
+     30,
+     5,
+     24,
+     24
+    ]
+   ]
+  },
+  {
+   "id": "money",
+   "group": "life",
+   "icon": "wallet",
+   "title": "Mám finanční starosti",
+   "intro": "Bůh zná naše potřeby. Bible učí spokojenosti i moudrému hospodaření.",
+   "refs": [
+    [
+     50,
+     4,
+     19,
+     19
+    ],
+    [
+     40,
+     6,
+     31,
+     33
+    ],
+    [
+     40,
+     6,
+     26,
+     26
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ],
+    [
+     54,
+     6,
+     6,
+     8
+    ],
+    [
+     20,
+     30,
+     8,
+     9
+    ],
+    [
+     19,
+     37,
+     25,
+     25
+    ]
+   ]
+  },
+  {
+   "id": "work",
+   "group": "life",
+   "icon": "work",
+   "title": "Práce a povolání",
+   "intro": "Práce má smysl, když ji děláme poctivě a pro Pána.",
+   "refs": [
+    [
+     51,
+     3,
+     23,
+     24
+    ],
+    [
+     21,
+     9,
+     10,
+     10
+    ],
+    [
+     20,
+     16,
+     3,
+     3
+    ],
+    [
+     1,
+     2,
+     15,
+     15
+    ],
+    [
+     52,
+     4,
+     11,
+     12
+    ],
+    [
+     20,
+     22,
+     29,
+     29
+    ]
+   ]
+  },
+  {
+   "id": "love",
+   "group": "life",
+   "icon": "favorite",
+   "title": "Láska a manželství",
+   "intro": "Bible popisuje lásku jako rozhodnutí a službu, nejen jako cit.",
+   "refs": [
+    [
+     46,
+     13,
+     4,
+     7
+    ],
+    [
+     1,
+     2,
+     24,
+     24
+    ],
+    [
+     22,
+     8,
+     6,
+     7
+    ],
+    [
+     21,
+     4,
+     9,
+     10
+    ],
+    [
+     49,
+     5,
+     25,
+     25
+    ],
+    [
+     51,
+     3,
+     14,
+     14
+    ],
+    [
+     62,
+     4,
+     7,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "family",
+   "group": "life",
+   "icon": "family",
+   "title": "Rodina a děti",
+   "intro": "Víra se předává hlavně doma – slovy i příkladem.",
+   "refs": [
+    [
+     5,
+     6,
+     6,
+     7
+    ],
+    [
+     20,
+     22,
+     6,
+     6
+    ],
+    [
+     19,
+     127,
+     3,
+     3
+    ],
+    [
+     49,
+     6,
+     1,
+     4
+    ],
+    [
+     51,
+     3,
+     21,
+     21
+    ],
+    [
+     6,
+     24,
+     15,
+     15
+    ]
+   ]
+  },
+  {
+   "id": "temptation",
+   "group": "life",
+   "icon": "warning",
+   "title": "Jsem v pokušení",
+   "intro": "Pokušení není hřích. Bůh slibuje cestu ven.",
+   "refs": [
+    [
+     46,
+     10,
+     13,
+     13
+    ],
+    [
+     59,
+     1,
+     12,
+     14
+    ],
+    [
+     40,
+     26,
+     41,
+     41
+    ],
+    [
+     58,
+     4,
+     15,
+     16
+    ],
+    [
+     48,
+     5,
+     16,
+     16
+    ],
+    [
+     19,
+     119,
+     11,
+     11
+    ]
+   ]
+  },
+  {
+   "id": "waiting",
+   "group": "life",
+   "icon": "hourglass",
+   "title": "Musím čekat",
+   "intro": "Čekání není ztracený čas. Bůh jedná ve svém čase.",
+   "refs": [
+    [
+     23,
+     40,
+     31,
+     31
+    ],
+    [
+     19,
+     27,
+     14,
+     14
+    ],
+    [
+     25,
+     3,
+     25,
+     26
+    ],
+    [
+     19,
+     37,
+     7,
+     7
+    ],
+    [
+     21,
+     3,
+     1,
+     1
+    ],
+    [
+     35,
+     2,
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "sleep",
+   "group": "life",
+   "icon": "moon",
+   "title": "Nemohu spát",
+   "intro": "Na konec dne můžeme všechno složit do Božích rukou.",
+   "refs": [
+    [
+     19,
+     4,
+     9,
+     9
+    ],
+    [
+     19,
+     3,
+     6,
+     6
+    ],
+    [
+     19,
+     121,
+     3,
+     4
+    ],
+    [
+     20,
+     3,
+     24,
+     24
+    ],
+    [
+     19,
+     63,
+     7,
+     8
+    ],
+    [
+     40,
+     11,
+     28,
+     28
+    ]
+   ]
+  },
+  {
+   "id": "success",
+   "group": "life",
+   "icon": "trophy",
+   "title": "Daří se mi",
+   "intro": "Úspěch je příležitost k vděčnosti a pokoře.",
+   "refs": [
+    [
+     5,
+     8,
+     17,
+     18
+    ],
+    [
+     59,
+     4,
+     6,
+     6
+    ],
+    [
+     20,
+     16,
+     18,
+     18
+    ],
+    [
+     24,
+     9,
+     22,
+     23
+    ],
+    [
+     46,
+     4,
+     7,
+     7
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "peace",
+   "group": "faith",
+   "icon": "spa",
+   "title": "Hledám pokoj",
+   "intro": "Pokoj, který dává Kristus, nezávisí na okolnostech.",
+   "refs": [
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     50,
+     4,
+     7,
+     7
+    ],
+    [
+     23,
+     26,
+     3,
+     3
+    ],
+    [
+     45,
+     5,
+     1,
+     1
+    ],
+    [
+     51,
+     3,
+     15,
+     15
+    ],
+    [
+     19,
+     4,
+     9,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "hope",
+   "group": "faith",
+   "icon": "sunrise",
+   "title": "Potřebuji naději",
+   "intro": "Křesťanská naděje se opírá o Boží věrnost a Kristovo vzkříšení.",
+   "refs": [
+    [
+     24,
+     29,
+     11,
+     11
+    ],
+    [
+     45,
+     15,
+     13,
+     13
+    ],
+    [
+     45,
+     8,
+     28,
+     28
+    ],
+    [
+     60,
+     1,
+     3,
+     3
+    ],
+    [
+     58,
+     6,
+     19,
+     19
+    ],
+    [
+     25,
+     3,
+     21,
+     23
+    ]
+   ]
+  },
+  {
+   "id": "gratitude",
+   "group": "faith",
+   "icon": "thanks",
+   "title": "Chci poděkovat",
+   "intro": "Vděčnost mění pohled na život. Žalmy jsou plné díků.",
+   "refs": [
+    [
+     19,
+     103,
+     1,
+     2
+    ],
+    [
+     52,
+     5,
+     18,
+     18
+    ],
+    [
+     19,
+     107,
+     1,
+     1
+    ],
+    [
+     51,
+     3,
+     17,
+     17
+    ],
+    [
+     19,
+     136,
+     1,
+     1
+    ],
+    [
+     59,
+     1,
+     17,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "prayer",
+   "group": "faith",
+   "icon": "pray",
+   "title": "Nevím, jak se modlit",
+   "intro": "Modlitba je rozhovor. Ježíš dal učedníkům vzor, Duch pomáhá.",
+   "refs": [
+    [
+     40,
+     6,
+     9,
+     13
+    ],
+    [
+     45,
+     8,
+     26,
+     26
+    ],
+    [
+     50,
+     4,
+     6,
+     6
+    ],
+    [
+     40,
+     7,
+     7,
+     8
+    ],
+    [
+     24,
+     33,
+     3,
+     3
+    ],
+    [
+     52,
+     5,
+     17,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "newstart",
+   "group": "faith",
+   "icon": "sprout",
+   "title": "Chci začít znovu",
+   "intro": "U Boha je možný nový začátek – každý den.",
+   "refs": [
+    [
+     47,
+     5,
+     17,
+     17
+    ],
+    [
+     25,
+     3,
+     22,
+     23
+    ],
+    [
+     23,
+     43,
+     18,
+     19
+    ],
+    [
+     26,
+     36,
+     26,
+     26
+    ],
+    [
+     19,
+     51,
+     12,
+     12
+    ],
+    [
+     50,
+     3,
+     13,
+     14
+    ]
+   ]
+  },
+  {
+   "id": "knowgod",
+   "group": "faith",
+   "icon": "explore",
+   "title": "Chci poznat Boha",
+   "intro": "Základní verše o tom, kdo je Bůh a co pro nás udělal v Kristu.",
+   "refs": [
+    [
+     43,
+     3,
+     16,
+     16
+    ],
+    [
+     45,
+     3,
+     23,
+     24
+    ],
+    [
+     45,
+     6,
+     23,
+     23
+    ],
+    [
+     49,
+     2,
+     8,
+     9
+    ],
+    [
+     43,
+     14,
+     6,
+     6
+    ],
+    [
+     45,
+     10,
+     9,
+     9
+    ],
+    [
+     66,
+     3,
+     20,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "meaning",
+   "group": "faith",
+   "icon": "compass",
+   "title": "Hledám smysl života",
+   "intro": "Bible vidí smysl života ve vztahu s Bohem a v lásce k druhým.",
+   "refs": [
+    [
+     40,
+     22,
+     37,
+     39
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ],
+    [
+     21,
+     12,
+     13,
+     13
+    ],
+    [
+     43,
+     10,
+     10,
+     10
+    ],
+    [
+     49,
+     2,
+     10,
+     10
+    ],
+    [
+     51,
+     3,
+     23,
+     23
+    ]
+   ]
+  }
+ ]
+}

@@ -51,6 +51,16 @@ class MapPlace {
     ).any((c) => mentionedIn(book, c));
   }
 
+  /// Počet zmínek v celé knize.
+  int mentionsInBook(int book) {
+    var n = 0;
+    for (final code in _refs.split(',')) {
+      final v = int.tryParse(code, radix: 36);
+      if (v != null && v ~/ 1000000 == book) n++;
+    }
+    return n;
+  }
+
   bool mentionedIn(int book, int chapter) {
     final prefix = (book * 1000000 + chapter * 1000);
     for (final code in _refs.split(',')) {

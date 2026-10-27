@@ -16,6 +16,8 @@ import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/today_providers.dart';
+import '../../content/application/content_providers.dart';
+import '../../content/presentation/situations_screen.dart';
 import 'plans_sheet.dart';
 import 'timeline_screen.dart';
 
@@ -91,6 +93,8 @@ class TodayScreen extends ConsumerWidget {
         const _VerseOfDayCard(),
         const SizedBox(height: 16),
         const _ContinueCard(),
+        const SizedBox(height: 22),
+        const _SituationsStrip(),
         const SizedBox(height: 16),
         const _StatsRow(),
         const SizedBox(height: 16),
@@ -570,6 +574,13 @@ class _ExploreGrid extends ConsumerWidget {
         () => push(const StudyPackScreen()),
       ),
       (
+        Icons.favorite_border,
+        const Color(0xFFB0603A),
+        S.situations,
+        S.situationsHint,
+        () => push(const SituationsScreen()),
+      ),
+      (
         Icons.view_timeline_outlined,
         const Color(0xFFB0603A),
         S.timeline,
@@ -631,6 +642,69 @@ class _ExploreGrid extends ConsumerWidget {
               ),
             ),
           ),
+      ],
+    );
+  }
+}
+
+/// „Verše pro tuto chvíli“ – rychlý vstup do veršů k situacím.
+class _SituationsStrip extends ConsumerWidget {
+  const _SituationsStrip();
+
+  static const _featured = [
+    'fear',
+    'anxiety',
+    'sadness',
+    'joy',
+    'decision',
+    'tired',
+    'lonely',
+    'gratitude',
+    'guilt',
+    'hope',
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final all = ref.watch(situationsProvider).value?.$2 ?? const [];
+    final featured = [
+      for (final id in _featured) ...all.where((s) => s.id == id),
+    ];
+    void openAll() => Navigator.of(
+      context,
+    ).push(MaterialPageRoute<void>(builder: (_) => const SituationsScreen()));
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(S.situationsToday, style: theme.textTheme.titleLarge),
+            ),
+            TextButton(onPressed: openAll, child: const Text(S.allSituations)),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final s in featured)
+              ActionChip(
+                avatar: Icon(
+                  situationIcons[s.icon],
+                  size: 18,
+                  color: situationColor(s),
+                ),
+                label: Text(s.title),
+                backgroundColor: palette.card,
+                side: BorderSide(color: palette.cardBorder),
+                onPressed: () => openSituation(context, s),
+              ),
+          ],
+        ),
       ],
     );
   }

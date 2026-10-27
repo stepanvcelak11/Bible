@@ -222,6 +222,25 @@ abstract final class S {
   static const exploreIntrosHint = 'Autor, doba, téma';
   static const exploreTranslations = 'Překlady';
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
+  static const situations = 'Verše do situací';
+  static const bookPlaces = 'Místa v knize';
+  static const overview = 'Přehled';
+  static const basicFacts = 'Základní údaje';
+  static const purpose = 'Účel';
+  static const recipients = 'Adresáti';
+  static const setting = 'Prostředí';
+  static const keyPeople = 'Hlavní postavy';
+  static const keyPlaces = 'Důležitá místa';
+  static const features = 'Zvláštnosti';
+  static const bookTimeline = 'Časová osa';
+  static const mainThemes = 'Hlavní témata';
+  static const showBookMap = 'Místa knihy na mapě';
+  static const situationsHint = 'Strach, radost, rozhodování…';
+  static const situationsIntro =
+      'Vyberte, co právě prožíváte. Verše se zobrazí ve zvoleném překladu; '
+      'klepnutím otevřete celý text v souvislostech.';
+  static const situationsToday = 'Verše pro tuto chvíli';
+  static const allSituations = 'Všechny situace';
   static const timeline = 'Časová osa';
   static const timelineHint = 'Od Abrahama po Zjevení';
   static const timelineIntro =

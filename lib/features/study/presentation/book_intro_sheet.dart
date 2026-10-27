@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
+import '../../maps/presentation/maps_screen.dart';
 import '../../shell/home_shell.dart';
 import '../application/study_providers.dart';
 
@@ -80,6 +81,17 @@ class BookIntroView extends ConsumerWidget {
       ),
     );
 
+    Widget section(String title) => Padding(
+      padding: const EdgeInsets.fromLTRB(0, 26, 0, 12),
+      child: Row(
+        children: [
+          Container(width: 4, height: 20, color: accent),
+          const SizedBox(width: 10),
+          Text(title, style: theme.textTheme.titleLarge),
+        ],
+      ),
+    );
+
     return ListView(
       controller: scrollController,
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
@@ -94,7 +106,16 @@ class BookIntroView extends ConsumerWidget {
         ),
         const SizedBox(height: 4),
         Text(book.name, style: theme.textTheme.headlineMedium),
-        const SizedBox(height: 16),
+        const SizedBox(height: 6),
+        Text(
+          intro.theme,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontStyle: FontStyle.italic,
+            color: palette.muted,
+          ),
+        ),
+        // --- Přehled ---------------------------------------------------
+        section(S.overview),
         Text(
           intro.summary,
           style: TextStyle(
@@ -104,18 +125,28 @@ class BookIntroView extends ConsumerWidget {
             color: theme.colorScheme.onSurface,
           ),
         ),
-        const SizedBox(height: 22),
+        // --- Základní údaje -------------------------------------------
+        section(S.basicFacts),
+        if (intro.purpose.isNotEmpty)
+          fact(Icons.flag_outlined, S.purpose, intro.purpose),
         fact(Icons.person_outline, S.author, intro.author),
+        if (intro.recipients.isNotEmpty)
+          fact(Icons.groups_outlined, S.recipients, intro.recipients),
         fact(Icons.schedule, S.written, intro.date),
-        fact(Icons.lightbulb_outline, S.theme2, intro.theme),
+        if (intro.setting.isNotEmpty)
+          fact(Icons.landscape_outlined, S.setting, intro.setting),
+        if (intro.people.isNotEmpty)
+          fact(
+            Icons.diversity_3_outlined,
+            S.keyPeople,
+            intro.people.join(', '),
+          ),
+        if (intro.places.isNotEmpty)
+          fact(Icons.place_outlined, S.keyPlaces, intro.places.join(', ')),
+        if (intro.features.isNotEmpty)
+          fact(Icons.auto_awesome_outlined, S.features, intro.features),
+        Text(S.keyVerses, style: theme.textTheme.labelLarge),
         const SizedBox(height: 8),
-        Text(S.outline, style: theme.textTheme.titleMedium),
-        const SizedBox(height: 10),
-        for (final item in intro.outline)
-          _OutlineRow(item: item, bookId: bookId, accent: accent),
-        const SizedBox(height: 18),
-        Text(S.keyVerses, style: theme.textTheme.titleMedium),
-        const SizedBox(height: 10),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -132,7 +163,68 @@ class BookIntroView extends ConsumerWidget {
               ),
           ],
         ),
-        const SizedBox(height: 24),
+        // --- Časová osa ----------------------------------------------
+        if (intro.timeline.isNotEmpty) ...[
+          section(S.bookTimeline),
+          for (final (i, t) in intro.timeline.indexed)
+            _TimelineRow(
+              date: t.date,
+              event: t.event,
+              accent: accent,
+              last: i == intro.timeline.length - 1,
+            ),
+          if (intro.timelineNote case final note?)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                note,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: palette.muted,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+        ],
+        // --- Osnova ---------------------------------------------------
+        section(S.outline),
+        for (final item in intro.outline)
+          _OutlineRow(item: item, bookId: bookId, accent: accent),
+        // --- Hlavní témata --------------------------------------------
+        if (intro.themes.isNotEmpty) ...[
+          section(S.mainThemes),
+          for (final t in intro.themes)
+            Card(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      t.title,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: accent,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      t.text,
+                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.45),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+        // --- Mapa a čtení ----------------------------------------------
+        const SizedBox(height: 18),
+        OutlinedButton.icon(
+          onPressed: () => openBookMap(context, bookId),
+          icon: const Icon(Icons.map_outlined),
+          label: const Text(S.showBookMap),
+        ),
+        const SizedBox(height: 10),
         FilledButton.icon(
           onPressed: () => openReaderAt(context, ref, VerseRef(bookId, 1)),
           icon: const Icon(Icons.menu_book),
@@ -146,6 +238,75 @@ class BookIntroView extends ConsumerWidget {
     final m = RegExp(r'^(\d+):(\d+)').firstMatch(kv);
     if (m == null) return null;
     return VerseRef(bookId, int.parse(m[1]!), int.parse(m[2]!));
+  }
+}
+
+class _TimelineRow extends StatelessWidget {
+  const _TimelineRow({
+    required this.date,
+    required this.event,
+    required this.accent,
+    required this.last,
+  });
+
+  final String date;
+  final String event;
+  final Color accent;
+  final bool last;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            width: 18,
+            child: Column(
+              children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  margin: const EdgeInsets.only(top: 5),
+                  decoration: BoxDecoration(
+                    color: accent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    width: 2,
+                    color: last
+                        ? Colors.transparent
+                        : accent.withValues(alpha: 0.3),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    date,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: accent,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(event, style: theme.textTheme.bodyMedium),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

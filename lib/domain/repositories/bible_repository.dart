@@ -18,6 +18,10 @@ abstract interface class BibleRepository {
   /// Verše jedné kapitoly seřazené podle čísla verše.
   Future<List<Verse>> getChapter(String translationId, int bookId, int chapter);
 
+  /// Jeden verš (např. pro seznam záložek), nebo `null`, pokud v překladu
+  /// neexistuje.
+  Future<Verse?> getVerse(String translationId, VerseRef ref);
+
   /// Kapitola ve dvou překladech zarovnaná podle čísla verše.
   Future<List<ParallelVerse>> getParallelChapter(
     String primaryId,
@@ -27,10 +31,12 @@ abstract interface class BibleRepository {
   );
 
   /// Fulltextové vyhledávání nezávislé na diakritice a velikosti písmen.
-  /// Při `translationIds == null` hledá ve všech překladech.
+  /// Při `translationIds == null` hledá ve všech překladech, při
+  /// `testament == null` v celé Bibli.
   Future<List<SearchHit>> search(
     String query, {
     Set<String>? translationIds,
+    Testament? testament,
     int limit = 200,
   });
 }

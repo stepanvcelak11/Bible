@@ -44,4 +44,49 @@ void main() {
     await repo.deleteNote(id);
     expect(await repo.watchAllNotes().first, isEmpty);
   });
+
+  test('záloha: export → import do prázdné DB obnoví vše', () async {
+    await repo.setHighlight(john316, HighlightColor.green);
+    await repo.toggleBookmark(john316, translationId: 'BKR');
+    await repo.saveNote(ref: john316, body: 'Poznámka');
+    final backup = await repo.exportBackup();
+
+    final other = UserDatabase(NativeDatabase.memory());
+    addTearDown(other.close);
+    final otherRepo = UserDataRepositoryImpl(other);
+    final result = await otherRepo.importBackup(backup);
+    expect(result.total, 3);
+    expect(
+      (await otherRepo.watchAllHighlights().first).single.color,
+      HighlightColor.green,
+    );
+    expect(
+      (await otherRepo.watchAllBookmarks().first).single.translationId,
+      'BKR',
+    );
+    expect((await otherRepo.watchAllNotes().first).single.body, 'Poznámka');
+
+    // Opakovaný import nevytvoří duplicitní poznámku.
+    await otherRepo.importBackup(backup);
+    expect(await otherRepo.watchAllNotes().first, hasLength(1));
+  });
+
+  test('neplatná záloha nic nezmění', () async {
+    expect(
+      () => repo.importBackup({'app': 'jiná'}),
+      throwsA(isA<InvalidBackupException>()),
+    );
+    expect(
+      () => repo.importBackup({
+        'app': 'bible_reader',
+        'format': 1,
+        'highlights': [
+          {'ref': '43:3:16', 'color': 'yellow'},
+          {'ref': 'nesmysl', 'color': 'yellow'},
+        ],
+      }),
+      throwsA(isA<InvalidBackupException>()),
+    );
+    expect(await repo.watchAllHighlights().first, isEmpty);
+  });
 }

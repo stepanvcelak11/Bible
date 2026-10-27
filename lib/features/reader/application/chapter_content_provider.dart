@@ -13,6 +13,12 @@ sealed class ChapterContent {
   final int chapter;
 
   bool get isEmpty;
+
+  /// Verše hlavního překladu (pro kopírování, sdílení, výběr).
+  List<Verse> get primaryVerses;
+
+  /// Čísla veršů v pořadí zobrazení.
+  List<int> get verseNumbers;
 }
 
 final class SingleChapter extends ChapterContent {
@@ -22,6 +28,12 @@ final class SingleChapter extends ChapterContent {
 
   @override
   bool get isEmpty => verses.isEmpty;
+
+  @override
+  List<Verse> get primaryVerses => verses;
+
+  @override
+  List<int> get verseNumbers => [for (final v in verses) v.number];
 }
 
 final class ParallelChapter extends ChapterContent {
@@ -31,40 +43,81 @@ final class ParallelChapter extends ChapterContent {
 
   @override
   bool get isEmpty => rows.isEmpty;
+
+  @override
+  List<Verse> get primaryVerses => [
+    for (final r in rows)
+      if (r.primary != null) r.primary!,
+  ];
+
+  @override
+  List<int> get verseNumbers => [for (final r in rows) r.number];
 }
+
+/// Klíč stránky čtečky: překlad(y) + kapitola.
+typedef ChapterKey = ({
+  String primaryId,
+  String? secondaryId,
+  int bookId,
+  int chapter,
+});
+
+/// Obsah jedné kapitoly. Stránky čtečky (PageView) ho čtou každá pro svou
+/// kapitolu; sousední stránky se díky `allowImplicitScrolling` načtou
+/// dopředu, takže přejetí na další kapitolu je okamžité.
+final chapterPageProvider = FutureProvider.autoDispose
+    .family<ChapterContent, ChapterKey>((ref, key) async {
+      final repo = ref.watch(bibleRepositoryProvider);
+      final secondary = key.secondaryId;
+      if (secondary == null) {
+        return SingleChapter(
+          key.bookId,
+          key.chapter,
+          await repo.getChapter(key.primaryId, key.bookId, key.chapter),
+        );
+      }
+      return ParallelChapter(
+        key.bookId,
+        key.chapter,
+        await repo.getParallelChapter(
+          key.primaryId,
+          secondary,
+          key.bookId,
+          key.chapter,
+        ),
+      );
+    });
 
 /// Kapitola podle aktuálního výběru překladu a pozice čtení.
 ///
 /// Sleduje jen knihu + kapitolu (ne verš), takže posouvání v rámci kapitoly
-/// nevyvolá nové načtení. Při přepnutí překladu/kapitoly Riverpod ponechá
-/// předchozí data (`AsyncValue.value` během `isLoading`), takže UI může
-/// zobrazovat starý obsah až do okamžiku, kdy je nový připraven – bez
-/// probliknutí načítacího indikátoru.
+/// nevyvolá nové načtení.
 final chapterContentProvider = FutureProvider.autoDispose<ChapterContent>((
   ref,
-) async {
+) {
   final selection = ref.watch(translationControllerProvider);
   final (bookId, chapter) = ref.watch(
     readingPositionProvider.select((p) => (p.bookId, p.chapter)),
   );
-  final repo = ref.watch(bibleRepositoryProvider);
-
-  final secondary = selection.secondaryId;
-  if (secondary == null) {
-    return SingleChapter(
-      bookId,
-      chapter,
-      await repo.getChapter(selection.primaryId, bookId, chapter),
-    );
-  }
-  return ParallelChapter(
-    bookId,
-    chapter,
-    await repo.getParallelChapter(
-      selection.primaryId,
-      secondary,
-      bookId,
-      chapter,
-    ),
+  return ref.watch(
+    chapterPageProvider((
+      primaryId: selection.primaryId,
+      secondaryId: selection.secondaryId,
+      bookId: bookId,
+      chapter: chapter,
+    )).future,
   );
+});
+
+/// Všechny kapitoly hlavního překladu v kanonickém pořadí – stránky
+/// horizontálního listování čtečky.
+final chapterListProvider = FutureProvider<List<VerseRef>>((ref) async {
+  final primaryId = ref.watch(
+    translationControllerProvider.select((s) => s.primaryId),
+  );
+  final counts = await ref.watch(chapterCountsProvider(primaryId).future);
+  return [
+    for (var book = 1; book <= 66; book++)
+      for (var ch = 1; ch <= (counts[book] ?? 0); ch++) VerseRef(book, ch),
+  ];
 });

@@ -35,6 +35,31 @@ class Bookmark {
   final DateTime createdAt;
 }
 
+/// Výsledek obnovy ze zálohy (počty nově přidaných / aktualizovaných položek).
+class BackupImportResult {
+  const BackupImportResult({
+    required this.highlights,
+    required this.bookmarks,
+    required this.notes,
+  });
+
+  final int highlights;
+  final int bookmarks;
+  final int notes;
+
+  int get total => highlights + bookmarks + notes;
+}
+
+/// Chyba: soubor není platná záloha této aplikace.
+class InvalidBackupException implements Exception {
+  const InvalidBackupException(this.reason);
+
+  final String reason;
+
+  @override
+  String toString() => 'InvalidBackupException: $reason';
+}
+
 /// Poznámka k verši nebo rozsahu veršů.
 class Note {
   const Note({

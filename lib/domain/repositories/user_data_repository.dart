@@ -34,4 +34,14 @@ abstract interface class UserDataRepository {
   });
 
   Future<void> deleteNote(int id);
+
+  // --- Záloha -------------------------------------------------------------
+
+  /// Všechna uživatelská data jako JSON-kompatibilní mapa (verze formátu 1).
+  Future<Map<String, Object?>> exportBackup();
+
+  /// Sloučí zálohu s existujícími daty: zvýraznění a záložky podle verše
+  /// (záloha vyhrává), poznámky se přidají, pokud stejná ještě neexistuje.
+  /// Při neplatném formátu vyhodí [InvalidBackupException] a nic nezmění.
+  Future<BackupImportResult> importBackup(Map<String, Object?> json);
 }

@@ -54,8 +54,9 @@ data/sources/                     # zdrojové texty (mimo git)
 assets/db/                        # vygenerovaná DB + manifest (mimo git)
 ```
 
-Další funkce přibudou jako `features/<název>/{application,presentation}`
-(`navigation`, `search`, `journal`, `settings`).
+Další moduly v `features/`: `navigation` (výběr knihy), `search`,
+`journal` (deník), `settings` (vzhled, záloha). Motivy jsou v
+`core/theme/app_theme.dart`, české citace v `domain/services/citation.dart`.
 
 ## Obsahová databáze (`bible.db`)
 

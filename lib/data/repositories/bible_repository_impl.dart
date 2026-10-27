@@ -90,6 +90,19 @@ class BibleRepositoryImpl implements BibleRepository {
   }
 
   @override
+  Future<Verse?> getVerse(String translationId, VerseRef ref) {
+    final query = _db.select(_db.verses)
+      ..where(
+        (v) =>
+            v.translationId.equals(translationId) &
+            v.bookId.equals(ref.bookId) &
+            v.chapter.equals(ref.chapter) &
+            v.verse.equals(ref.verse),
+      );
+    return query.map(_toVerse).getSingleOrNull();
+  }
+
+  @override
   Future<List<ParallelVerse>> getParallelChapter(
     String primaryId,
     String secondaryId,
@@ -133,6 +146,7 @@ class BibleRepositoryImpl implements BibleRepository {
   Future<List<SearchHit>> search(
     String query, {
     Set<String>? translationIds,
+    Testament? testament,
     int limit = 200,
   }) async {
     final match = buildFtsQuery(query);
@@ -140,9 +154,13 @@ class BibleRepositoryImpl implements BibleRepository {
     if (translationIds != null && translationIds.isEmpty) return const [];
 
     final ids = translationIds?.toList();
-    final translationFilter = ids == null
-        ? ''
-        : 'AND v.translation_id IN (${List.filled(ids.length, '?').join(', ')})';
+    final filters = [
+      if (ids != null)
+        'AND v.translation_id IN (${List.filled(ids.length, '?').join(', ')})',
+      // Starý zákon = knihy 1–39, Nový zákon = 40–66.
+      if (testament == Testament.oldTestament) 'AND v.book_id <= 39',
+      if (testament == Testament.newTestament) 'AND v.book_id >= 40',
+    ].join(' ');
 
     // highlight() vrátí celý verš se shodami ohraničenými řídicími znaky
     // \u0002 … \u0003 (v textu Bible se nevyskytují).
@@ -153,7 +171,7 @@ class BibleRepositoryImpl implements BibleRepository {
              highlight(verses_fts, 0, char(2), char(3)) AS marked
       FROM verses_fts
       JOIN verses v ON v.id = verses_fts.rowid
-      WHERE verses_fts MATCH ? $translationFilter
+      WHERE verses_fts MATCH ? $filters
       ORDER BY v.book_id, v.chapter, v.verse, v.translation_id
       LIMIT ?
       ''',

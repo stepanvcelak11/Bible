@@ -82,4 +82,26 @@ void main() {
       expect(await repo.search('"miloval Bůh"'), isEmpty);
     });
   });
+
+  test('hledání podle zákona a jednotlivý verš', () async {
+    expect(
+      (await repo.search(
+        'Bůh',
+        testament: Testament.newTestament,
+      )).every((h) => h.verse.ref.bookId >= 40),
+      isTrue,
+    );
+    expect(
+      (await repo.search(
+        'Bůh',
+        testament: Testament.oldTestament,
+      )).every((h) => h.verse.ref.bookId <= 39),
+      isTrue,
+    );
+    expect(
+      (await repo.getVerse('BKR', const VerseRef(43, 3, 16)))?.text,
+      contains('miloval'),
+    );
+    expect(await repo.getVerse('BKR', const VerseRef(43, 3, 99)), isNull);
+  });
 }

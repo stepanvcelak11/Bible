@@ -4,17 +4,84 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
+import '../../journal/presentation/journal_screen.dart';
+import '../../navigation/presentation/book_picker_screen.dart';
+import '../../search/presentation/search_screen.dart';
+import '../../settings/presentation/settings_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/translation_selector_sheet.dart';
 import '../application/chapter_content_provider.dart';
+import '../application/reader_state.dart';
 import '../application/reading_position_controller.dart';
+import 'chapter_view.dart';
+import 'verse_action_panel.dart';
 
-/// Čtečka – ZÁKLADNÍ verze z kroku 1.
+/// Výška horní lišty čtečky (bez bezpečné oblasti).
+const readerBarHeight = 56.0;
+
+/// Hlavní obrazovka – čtečka.
 ///
-/// Slouží k ověření datové vrstvy a přepínání překladů. Plnohodnotná
-/// čtečka (Focus Mode, gesta, typografie, motivy) přijde v kroku 2.
+/// * Kapitoly se listují vodorovným přejetím (PageView).
+/// * Focus Mode: lišta se při čtení (posun dolů) schová a při posunu nahoru
+///   vrátí.
+/// * Klepnutí na verš ho vybere a zobrazí panel akcí (zvýraznit, záložka,
+///   poznámka, kopírovat, sdílet).
 class ReaderScreen extends ConsumerWidget {
   const ReaderScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final visible = ref.watch(controlsVisibleProvider);
+    final hasSelection = ref.watch(
+      verseSelectionProvider.select((s) => !s.isEmpty),
+    );
+
+    return Scaffold(
+      body: Stack(
+        children: [
+          const Positioned.fill(child: _ChapterPager()),
+          // Horní lišta – vyjíždí nahoru při čtení.
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AnimatedSlide(
+              offset: visible || hasSelection
+                  ? Offset.zero
+                  : const Offset(0, -1),
+              duration: const Duration(milliseconds: 260),
+              curve: Curves.easeOutCubic,
+              child: const _TopBar(),
+            ),
+          ),
+          // Panel akcí s vybranými verši.
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 220),
+              switchInCurve: Curves.easeOutCubic,
+              transitionBuilder: (child, animation) => SlideTransition(
+                position: Tween(
+                  begin: const Offset(0, 1),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: child,
+              ),
+              child: hasSelection
+                  ? const VerseActionPanel()
+                  : const SizedBox.shrink(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TopBar extends ConsumerWidget {
+  const _TopBar();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -22,195 +89,206 @@ class ReaderScreen extends ConsumerWidget {
     final book = ref.watch(bookByIdProvider(position.bookId));
     final primary = ref.watch(primaryTranslationProvider);
     final secondary = ref.watch(secondaryTranslationProvider);
-    final content = ref.watch(chapterContentProvider);
-    final positionCtl = ref.read(readingPositionProvider.notifier);
+    final scheme = Theme.of(context).colorScheme;
+    final topInset = MediaQuery.paddingOf(context).top;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(S.chapterTitle(book.name, position.chapter)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: ActionChip(
-              tooltip: S.selectTranslation,
-              avatar: Icon(
-                secondary == null
-                    ? Icons.translate
-                    : Icons.view_column_outlined,
-                size: 18,
-              ),
-              label: Text(
-                secondary == null
-                    ? primary.abbreviation
-                    : '${primary.abbreviation} · ${secondary.abbreviation}',
-              ),
-              onPressed: () => showTranslationSelector(context),
-            ),
-          ),
-        ],
-      ),
-      body: switch (content) {
-        // Data jsou k dispozici (i během načítání další kapitoly).
-        AsyncValue(:final value?) => _ChapterBody(
-          content: value,
-          primary: primary,
-          secondary: secondary,
-        ),
-        AsyncValue(:final error?) => _ErrorView(
-          onRetry: () => ref.invalidate(chapterContentProvider),
-          error: error,
-        ),
-        _ => const Center(child: CircularProgressIndicator()),
-      },
-      bottomNavigationBar: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              tooltip: S.previousChapter,
-              icon: const Icon(Icons.chevron_left),
-              onPressed: positionCtl.previousChapter,
-            ),
-            IconButton(
-              tooltip: S.nextChapter,
-              icon: const Icon(Icons.chevron_right),
-              onPressed: positionCtl.nextChapter,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _ChapterBody extends StatelessWidget {
-  const _ChapterBody({
-    required this.content,
-    required this.primary,
-    required this.secondary,
-  });
-
-  final ChapterContent content;
-  final Translation primary;
-  final Translation? secondary;
-
-  @override
-  Widget build(BuildContext context) {
-    if (content.isEmpty) {
-      return const Center(
-        child: Padding(
-          padding: EdgeInsets.all(32),
-          child: Text(S.chapterMissing, textAlign: TextAlign.center),
-        ),
-      );
-    }
-    // Klíč podle kapitoly zajistí návrat na začátek při změně kapitoly,
-    // ale ne při přepnutí překladu.
-    final key = PageStorageKey('${content.bookId}:${content.chapter}');
-    return switch (content) {
-      SingleChapter(:final verses) => ListView.builder(
-        key: key,
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
-        itemCount: verses.length,
-        itemBuilder: (context, i) => _VerseText(verse: verses[i]),
-      ),
-      ParallelChapter(:final rows) => ListView.builder(
-        key: key,
-        padding: const EdgeInsets.fromLTRB(12, 12, 12, 32),
-        itemCount: rows.length + 1,
-        itemBuilder: (context, i) {
-          if (i == 0) {
-            return _ParallelHeader(left: primary, right: secondary!);
-          }
-          final row = rows[i - 1];
-          // Bez IntrinsicHeight – ten by každý řádek měřil dvakrát.
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Material(
+      color: scheme.surface.withValues(alpha: 0.97),
+      child: Padding(
+        padding: EdgeInsets.only(top: topInset),
+        child: SizedBox(
+          height: readerBarHeight,
+          child: Row(
             children: [
+              const SizedBox(width: 4),
+              // Název knihy a kapitoly → výběr knihy.
               Expanded(
-                child: _VerseText(verse: row.primary, number: row.number),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: TextButton(
+                    onPressed: () => openBookPicker(context),
+                    style: TextButton.styleFrom(
+                      foregroundColor: scheme.onSurface,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            S.chapterTitle(book.name, position.chapter),
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        const Icon(Icons.expand_more, size: 22),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: _VerseText(verse: row.secondary, number: row.number),
+              IconButton(
+                tooltip: S.search,
+                icon: const Icon(Icons.search),
+                onPressed: () => openSearch(context),
+              ),
+              Tooltip(
+                message: S.selectTranslation,
+                child: TextButton(
+                  onPressed: () => showTranslationSelector(context),
+                  style: TextButton.styleFrom(
+                    foregroundColor: scheme.primary,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    minimumSize: const Size(48, 40),
+                  ),
+                  child: Text(
+                    secondary == null
+                        ? primary.abbreviation
+                        : '${primary.abbreviation} · ${secondary.abbreviation}',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.4,
+                    ),
+                  ),
+                ),
+              ),
+              PopupMenuButton<_MenuItem>(
+                tooltip: S.menu,
+                icon: const Icon(Icons.more_vert),
+                onSelected: (item) => switch (item) {
+                  _MenuItem.journal => openJournal(context),
+                  _MenuItem.settings => openSettings(context),
+                },
+                itemBuilder: (_) => const [
+                  PopupMenuItem(
+                    value: _MenuItem.journal,
+                    child: ListTile(
+                      leading: Icon(Icons.bookmarks_outlined),
+                      title: Text(S.journal),
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: _MenuItem.settings,
+                    child: ListTile(
+                      leading: Icon(Icons.tune),
+                      title: Text(S.settings),
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                ],
               ),
             ],
-          );
-        },
-      ),
-    };
-  }
-}
-
-class _ParallelHeader extends StatelessWidget {
-  const _ParallelHeader({required this.left, required this.right});
-
-  final Translation left;
-  final Translation right;
-
-  @override
-  Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.labelLarge;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          Expanded(child: Text(left.name, style: style)),
-          const SizedBox(width: 16),
-          Expanded(child: Text(right.name, style: style)),
-        ],
-      ),
-    );
-  }
-}
-
-class _VerseText extends StatelessWidget {
-  const _VerseText({required this.verse, this.number});
-
-  final Verse? verse;
-  final int? number;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final v = verse;
-    if (v == null) return const SizedBox.shrink();
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(
-              text: '${number ?? v.number} ',
-              style: theme.textTheme.labelSmall?.copyWith(
-                color: theme.colorScheme.primary,
-                fontFeatures: const [FontFeature.superscripts()],
-              ),
-            ),
-            TextSpan(text: v.text),
-          ],
+          ),
         ),
-        style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
       ),
     );
   }
 }
 
-class _ErrorView extends StatelessWidget {
-  const _ErrorView({required this.onRetry, required this.error});
+enum _MenuItem { journal, settings }
 
-  final VoidCallback onRetry;
-  final Object error;
+/// Vodorovné listování kapitolami.
+class _ChapterPager extends ConsumerWidget {
+  const _ChapterPager();
 
   @override
-  Widget build(BuildContext context) => Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Text(S.errorLoadChapter),
-        const SizedBox(height: 12),
-        FilledButton(onPressed: onRetry, child: const Text(S.retry)),
-      ],
-    ),
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final primaryId = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
+    final chapters = ref.watch(chapterListProvider).value;
+    if (chapters == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    // Nový překlad může mít jiný seznam kapitol → nový PageView.
+    return _Pager(key: ValueKey(primaryId), chapters: chapters);
+  }
 }
+
+class _Pager extends ConsumerStatefulWidget {
+  const _Pager({super.key, required this.chapters});
+
+  final List<VerseRef> chapters;
+
+  @override
+  ConsumerState<_Pager> createState() => _PagerState();
+}
+
+class _PagerState extends ConsumerState<_Pager> {
+  late final PageController _controller;
+  late final Map<(int, int), int> _indexOf;
+
+  @override
+  void initState() {
+    super.initState();
+    _indexOf = {
+      for (final (i, r) in widget.chapters.indexed) (r.bookId, r.chapter): i,
+    };
+    _controller = PageController(
+      initialPage: _pageFor(ref.read(readingPositionProvider)),
+    );
+  }
+
+  int _pageFor(VerseRef ref) => _indexOf[(ref.bookId, ref.chapter)] ?? 0;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged(int page) {
+    final target = widget.chapters[page];
+    final position = ref.read(readingPositionProvider);
+    ref.read(verseSelectionProvider.notifier).clear();
+    ref.read(controlsVisibleProvider.notifier).show();
+    if (position.bookId != target.bookId ||
+        position.chapter != target.chapter) {
+      ref.read(readingPositionProvider.notifier).goTo(target);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Skok odjinud (výběr knihy, hledání, záložka) → přepnout stránku.
+    ref.listen(readingPositionProvider, (previous, next) {
+      if (!_controller.hasClients) return;
+      final page = _pageFor(next);
+      if (page != _controller.page?.round()) _controller.jumpToPage(page);
+    });
+
+    return PageView.builder(
+      controller: _controller,
+      // Předběžně vykreslí sousední kapitoly → plynulé přejetí.
+      allowImplicitScrolling: true,
+      itemCount: widget.chapters.length,
+      onPageChanged: _onPageChanged,
+      itemBuilder: (context, i) {
+        final chapter = widget.chapters[i];
+        return ChapterView(
+          key: ValueKey(chapter),
+          bookId: chapter.bookId,
+          chapter: chapter.chapter,
+        );
+      },
+    );
+  }
+}
+
+// --- Navigace na další obrazovky -------------------------------------------
+
+Future<void> openBookPicker(BuildContext context) => Navigator.of(context)
+    .push(MaterialPageRoute<void>(builder: (_) => const BookPickerScreen()));
+
+Future<void> openSearch(BuildContext context) =>
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const SearchScreen()));
+
+Future<void> openJournal(BuildContext context) =>
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const JournalScreen()));
+
+Future<void> openSettings(BuildContext context) =>
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => const SettingsScreen()));

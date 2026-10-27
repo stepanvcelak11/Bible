@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'core/l10n/strings_cs.dart';
+import 'core/theme/app_theme.dart';
+import 'domain/entities/reader_settings.dart';
 import 'features/reader/presentation/reader_screen.dart';
+import 'features/settings/application/reader_settings_controller.dart';
 
 const _czech = Locale('cs', 'CZ');
 
-/// Přibalené písmo – funguje offline i na webu.
-const _font = 'Literata';
-
-/// Kořenový widget aplikace. Motivy (světlý / tmavý / sépie) a typografie
-/// se plně rozpracují v kroku 2.
-class BibleApp extends StatelessWidget {
+/// Kořenový widget aplikace. Motiv (systém / světlý / sépie / tmavý) se
+/// mění plynule podle nastavení.
+class BibleApp extends ConsumerWidget {
   const BibleApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    const seed = Color(0xFF6B5B45); // teplá hnědá – klidný „papírový“ tón
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mode = ref.watch(readerSettingsProvider.select((s) => s.themeMode));
     return MaterialApp(
       title: S.appName,
       debugShowCheckedModeBanner: false,
@@ -24,16 +26,14 @@ class BibleApp extends StatelessWidget {
       supportedLocales: const [_czech],
       // Systémové texty (kopírovat/vložit, dialogy…) také česky.
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: ThemeData(
-        colorSchemeSeed: seed,
-        brightness: Brightness.light,
-        fontFamily: _font,
-      ),
-      darkTheme: ThemeData(
-        colorSchemeSeed: seed,
-        brightness: Brightness.dark,
-        fontFamily: _font,
-      ),
+      theme: AppTheme.forMode(mode),
+      darkTheme: AppTheme.dark(),
+      themeMode: switch (mode) {
+        AppThemeMode.system => ThemeMode.system,
+        AppThemeMode.dark => ThemeMode.dark,
+        _ => ThemeMode.light,
+      },
+      themeAnimationDuration: const Duration(milliseconds: 350),
       home: const ReaderScreen(),
     );
   }
@@ -50,7 +50,7 @@ class StartupErrorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: _font),
+      theme: AppTheme.light(),
       locale: _czech,
       supportedLocales: const [_czech],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,

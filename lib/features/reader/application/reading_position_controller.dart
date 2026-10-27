@@ -4,6 +4,7 @@ import '../../../core/providers.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/chapter_navigator.dart';
 import '../../translations/application/translation_controller.dart';
+import 'reader_state.dart';
 
 /// Aktuální místo čtení – nezávislé na překladu.
 ///
@@ -22,6 +23,15 @@ class ReadingPositionController extends Notifier<VerseRef> {
     if (target == state) return;
     state = target;
     ref.read(appPreferencesProvider).setReadingPosition(target);
+  }
+
+  /// Přejde na verš, posune čtečku přímo na něj a krátce ho podbarví
+  /// (výsledek hledání, záložka, poznámka).
+  void jumpTo(VerseRef target) {
+    ref.read(verseSelectionProvider.notifier).clear();
+    goTo(target);
+    ref.read(jumpRequestProvider.notifier).request(target);
+    ref.read(flashVerseProvider.notifier).flash(target);
   }
 
   /// Zaznamená verš, který je právě nahoře na obrazovce (bez přechodu).

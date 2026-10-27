@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../domain/entities/bible_entities.dart';
+import '../../domain/entities/reader_settings.dart';
 
 /// Typovaný obal nad SharedPreferences pro drobná nastavení.
 ///
@@ -16,6 +19,8 @@ class AppPreferences {
   static const _secondaryTranslation = 'translation.secondary';
   static const _lastSecondaryTranslation = 'translation.lastSecondary';
   static const _readingPosition = 'reader.position';
+  static const _readerSettings = 'reader.settings';
+  static const _searchTestament = 'search.testament';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
   Future<void> setPrimaryTranslationId(String id) =>
@@ -38,4 +43,25 @@ class AppPreferences {
       VerseRef.tryDecode(_prefs.getString(_readingPosition));
   Future<void> setReadingPosition(VerseRef ref) =>
       _prefs.setString(_readingPosition, ref.encode());
+
+  ReaderSettings get readerSettings {
+    final raw = _prefs.getString(_readerSettings);
+    if (raw == null) return const ReaderSettings();
+    try {
+      return ReaderSettings.fromJson(jsonDecode(raw) as Map<String, Object?>);
+    } on FormatException {
+      return const ReaderSettings();
+    } on TypeError {
+      return const ReaderSettings();
+    }
+  }
+
+  Future<void> setReaderSettings(ReaderSettings settings) =>
+      _prefs.setString(_readerSettings, jsonEncode(settings.toJson()));
+
+  /// Poslední filtr hledání: `null` = celá Bible, jinak 'OT' / 'NT'.
+  String? get searchTestament => _prefs.getString(_searchTestament);
+  Future<void> setSearchTestament(String? code) => code == null
+      ? _prefs.remove(_searchTestament)
+      : _prefs.setString(_searchTestament, code);
 }

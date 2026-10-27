@@ -141,6 +141,185 @@ class UserDataRepositoryImpl implements UserDataRepository {
   Future<void> deleteNote(int id) =>
       (_db.delete(_db.notes)..where((n) => n.id.equals(id))).go();
 
+  // --- Záloha -------------------------------------------------------------
+
+  static const _backupApp = 'bible_reader';
+  static const _backupFormat = 1;
+
+  @override
+  Future<Map<String, Object?>> exportBackup() async {
+    final (highlights, bookmarks, notes) = await (
+      _db.select(_db.highlights).get(),
+      _db.select(_db.bookmarks).get(),
+      _db.select(_db.notes).get(),
+    ).wait;
+    return {
+      'app': _backupApp,
+      'format': _backupFormat,
+      'exportedAt': DateTime.now().toUtc().toIso8601String(),
+      'highlights': [
+        for (final h in highlights)
+          {
+            'ref': VerseRef(h.bookId, h.chapter, h.verse).encode(),
+            'color': h.color.name,
+            'createdAt': h.createdAt.toUtc().toIso8601String(),
+          },
+      ],
+      'bookmarks': [
+        for (final b in bookmarks)
+          {
+            'ref': VerseRef(b.bookId, b.chapter, b.verse).encode(),
+            'translationId': b.translationId,
+            'label': b.label,
+            'createdAt': b.createdAt.toUtc().toIso8601String(),
+          },
+      ],
+      'notes': [
+        for (final n in notes)
+          {
+            'ref': VerseRef(n.bookId, n.chapter, n.verseStart).encode(),
+            'verseEnd': n.verseEnd,
+            'body': n.body,
+            'createdAt': n.createdAt.toUtc().toIso8601String(),
+            'updatedAt': n.updatedAt.toUtc().toIso8601String(),
+          },
+      ],
+    };
+  }
+
+  @override
+  Future<BackupImportResult> importBackup(Map<String, Object?> json) async {
+    // 1) Nejdřív celé ověřit a převést – při chybě se nic nezapíše.
+    if (json['app'] != _backupApp) {
+      throw const InvalidBackupException('Soubor není záloha této aplikace.');
+    }
+    final format = json['format'];
+    if (format is! int || format > _backupFormat) {
+      throw const InvalidBackupException('Nepodporovaná verze zálohy.');
+    }
+
+    List<Map<String, Object?>> list(String key) {
+      final value = json[key] ?? const <Object?>[];
+      if (value is! List) throw InvalidBackupException('Chybný seznam $key.');
+      return [
+        for (final item in value)
+          if (item is Map<String, Object?>)
+            item
+          else
+            throw InvalidBackupException('Chybná položka v $key.'),
+      ];
+    }
+
+    VerseRef ref(Map<String, Object?> item) =>
+        VerseRef.tryDecode(item['ref'] as String?) ??
+        (throw InvalidBackupException('Neplatný odkaz ${item['ref']}.'));
+    DateTime date(Object? value) =>
+        DateTime.tryParse(value as String? ?? '') ?? DateTime.now();
+
+    final colors = HighlightColor.values.asNameMap();
+    final highlights = [
+      for (final h in list('highlights'))
+        (
+          ref(h),
+          colors[h['color']] ??
+              (throw InvalidBackupException('Neznámá barva ${h['color']}.')),
+          date(h['createdAt']),
+        ),
+    ];
+    final bookmarks = [
+      for (final b in list('bookmarks'))
+        (
+          ref(b),
+          b['translationId'] as String?,
+          b['label'] as String?,
+          date(b['createdAt']),
+        ),
+    ];
+    final notes = [
+      for (final n in list('notes'))
+        (
+          ref(n),
+          (n['verseEnd'] as int?) ?? ref(n).verse,
+          (n['body'] as String?) ??
+              (throw const InvalidBackupException('Poznámka bez textu.')),
+          date(n['createdAt']),
+          date(n['updatedAt']),
+        ),
+    ];
+
+    // 2) Zapsat v jedné transakci.
+    return _db.transaction(() async {
+      for (final (r, color, created) in highlights) {
+        await _db
+            .into(_db.highlights)
+            .insert(
+              db.HighlightsCompanion.insert(
+                bookId: r.bookId,
+                chapter: r.chapter,
+                verse: r.verse,
+                color: color,
+                createdAt: Value(created),
+              ),
+              onConflict: DoUpdate(
+                (_) => db.HighlightsCompanion(color: Value(color)),
+                target: [
+                  _db.highlights.bookId,
+                  _db.highlights.chapter,
+                  _db.highlights.verse,
+                ],
+              ),
+            );
+      }
+      for (final (r, translationId, label, created) in bookmarks) {
+        await _db
+            .into(_db.bookmarks)
+            .insert(
+              db.BookmarksCompanion.insert(
+                bookId: r.bookId,
+                chapter: r.chapter,
+                verse: r.verse,
+                translationId: Value(translationId),
+                label: Value(label),
+                createdAt: Value(created),
+              ),
+              mode: InsertMode.insertOrReplace,
+            );
+      }
+      var addedNotes = 0;
+      for (final (r, end, body, created, updated) in notes) {
+        final exists =
+            await (_db.select(_db.notes)..where(
+                  (n) =>
+                      n.bookId.equals(r.bookId) &
+                      n.chapter.equals(r.chapter) &
+                      n.verseStart.equals(r.verse) &
+                      n.body.equals(body),
+                ))
+                .getSingleOrNull();
+        if (exists != null) continue;
+        await _db
+            .into(_db.notes)
+            .insert(
+              db.NotesCompanion.insert(
+                bookId: r.bookId,
+                chapter: r.chapter,
+                verseStart: r.verse,
+                verseEnd: end < r.verse ? r.verse : end,
+                body: body,
+                createdAt: Value(created),
+                updatedAt: Value(updated),
+              ),
+            );
+        addedNotes++;
+      }
+      return BackupImportResult(
+        highlights: highlights.length,
+        bookmarks: bookmarks.length,
+        notes: addedNotes,
+      );
+    });
+  }
+
   // --- Mapování -----------------------------------------------------------
 
   /// Podmínka „řádek odkazuje na verš [ref]“ (Highlights i Bookmarks).

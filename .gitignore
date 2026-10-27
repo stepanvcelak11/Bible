@@ -56,3 +56,8 @@ app.*.map.json
 /assets/db/bible.db
 /assets/db/bible_manifest.json
 /assets/db/catalog.json
+/data/study_sources/
+/assets/db/study_manifest.json
+/assets/map/basemap.json
+__pycache__/
+/assets/map/places.json

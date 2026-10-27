@@ -86,7 +86,11 @@ void main() {
 
     // Hledání přes obě databáze, bez diakritiky.
     final hits = await repo.search('stvoril');
-    expect(hits.map((h) => h.verse.translationId).toSet(), {'BKR', 'CSP', 'B21'});
+    expect(hits.map((h) => h.verse.translationId).toSet(), {
+      'BKR',
+      'CSP',
+      'B21',
+    });
     expect(await repo.searchCounts('stvoril'), {1: 3});
 
     // Odstranění.
@@ -94,7 +98,8 @@ void main() {
     repo.invalidate();
     expect((await repo.getTranslations()).map((t) => t.id), ['BKR', 'CSP']);
     expect(
-      (await repo.search('stvoril')).where((h) => h.verse.translationId == 'B21'),
+      (await repo.search('stvoril'))
+          .where((h) => h.verse.translationId == 'B21'),
       isEmpty,
     );
   });
@@ -118,7 +123,9 @@ void main() {
         expect(john316.text, startsWith('Neboť Bůh'));
         expect(john316.text, isNot(contains('\n')));
       },
-      skip: dir == null || !f.existsSync() ? 'BIBLE_SOURCES nenastaveno' : false,
+      skip: dir == null || !f.existsSync()
+          ? 'BIBLE_SOURCES nenastaveno'
+          : false,
     );
   }
 

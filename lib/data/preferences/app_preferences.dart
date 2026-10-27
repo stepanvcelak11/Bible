@@ -64,4 +64,63 @@ class AppPreferences {
   Future<void> setSearchTestament(String? code) => code == null
       ? _prefs.remove(_searchTestament)
       : _prefs.setString(_searchTestament, code);
+
+  // --- Studijní balíček --------------------------------------------------------
+  static const _studyVersion = 'study.version';
+
+  /// Verze nainstalovaného studijního balíčku (`null` = nenainstalován).
+  String? get studyVersion => _prefs.getString(_studyVersion);
+  Future<void> setStudyVersion(String? v) => v == null
+      ? _prefs.remove(_studyVersion)
+      : _prefs.setString(_studyVersion, v);
+
+  // --- Plán čtení --------------------------------------------------------------
+  static const _planId = 'plan.id';
+  static const _planStart = 'plan.start';
+  static const _planDone = 'plan.done';
+
+  String? get planId => _prefs.getString(_planId);
+  DateTime? get planStart =>
+      DateTime.tryParse(_prefs.getString(_planStart) ?? '');
+  Set<int> get planDone => {
+    for (final s in _prefs.getStringList(_planDone) ?? const <String>[])
+      ?int.tryParse(s),
+  };
+
+  Future<void> setPlan(String? id, {DateTime? start}) async {
+    if (id == null) {
+      await _prefs.remove(_planId);
+      await _prefs.remove(_planStart);
+    } else {
+      await _prefs.setString(_planId, id);
+      await _prefs.setString(
+        _planStart,
+        (start ?? DateTime.now()).toIso8601String(),
+      );
+    }
+    await _prefs.remove(_planDone);
+  }
+
+  Future<void> setPlanDone(Set<int> days) => _prefs.setStringList(_planDone, [
+    for (final d in days.toList()..sort()) '$d',
+  ]);
+
+  // --- Hledání -----------------------------------------------------------------
+  static const _recentSearches = 'search.recent';
+
+  List<String> get recentSearches =>
+      _prefs.getStringList(_recentSearches) ?? const [];
+
+  Future<void> addRecentSearch(String query) {
+    final list = [query, ...recentSearches.where((q) => q != query)];
+    return _prefs.setStringList(_recentSearches, list.take(8).toList());
+  }
+
+  Future<void> clearRecentSearches() => _prefs.remove(_recentSearches);
+
+  // --- Čtečka ------------------------------------------------------------------
+  static const _onboardingDone = 'app.onboardingDone';
+
+  bool get onboardingDone => _prefs.getBool(_onboardingDone) ?? false;
+  Future<void> setOnboardingDone() => _prefs.setBool(_onboardingDone, true);
 }

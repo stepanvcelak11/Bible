@@ -1357,12 +1357,367 @@ class NotesCompanion extends UpdateCompanion<Note> {
   }
 }
 
+class $ReadingLogTable extends ReadingLog
+    with TableInfo<$ReadingLogTable, ReadingLogData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ReadingLogTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _bookIdMeta = const VerificationMeta('bookId');
+  @override
+  late final GeneratedColumn<int> bookId = GeneratedColumn<int>(
+    'book_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _chapterMeta = const VerificationMeta(
+    'chapter',
+  );
+  @override
+  late final GeneratedColumn<int> chapter = GeneratedColumn<int>(
+    'chapter',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _translationIdMeta = const VerificationMeta(
+    'translationId',
+  );
+  @override
+  late final GeneratedColumn<String> translationId = GeneratedColumn<String>(
+    'translation_id',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _readAtMeta = const VerificationMeta('readAt');
+  @override
+  late final GeneratedColumn<DateTime> readAt = GeneratedColumn<DateTime>(
+    'read_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+    defaultValue: currentDateAndTime,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    bookId,
+    chapter,
+    translationId,
+    readAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'reading_log';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<ReadingLogData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('book_id')) {
+      context.handle(
+        _bookIdMeta,
+        bookId.isAcceptableOrUnknown(data['book_id']!, _bookIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_bookIdMeta);
+    }
+    if (data.containsKey('chapter')) {
+      context.handle(
+        _chapterMeta,
+        chapter.isAcceptableOrUnknown(data['chapter']!, _chapterMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_chapterMeta);
+    }
+    if (data.containsKey('translation_id')) {
+      context.handle(
+        _translationIdMeta,
+        translationId.isAcceptableOrUnknown(
+          data['translation_id']!,
+          _translationIdMeta,
+        ),
+      );
+    }
+    if (data.containsKey('read_at')) {
+      context.handle(
+        _readAtMeta,
+        readAt.isAcceptableOrUnknown(data['read_at']!, _readAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ReadingLogData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ReadingLogData(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      bookId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}book_id'],
+      )!,
+      chapter: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}chapter'],
+      )!,
+      translationId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}translation_id'],
+      ),
+      readAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}read_at'],
+      )!,
+    );
+  }
+
+  @override
+  $ReadingLogTable createAlias(String alias) {
+    return $ReadingLogTable(attachedDatabase, alias);
+  }
+}
+
+class ReadingLogData extends DataClass implements Insertable<ReadingLogData> {
+  final int id;
+  final int bookId;
+  final int chapter;
+  final String? translationId;
+  final DateTime readAt;
+  const ReadingLogData({
+    required this.id,
+    required this.bookId,
+    required this.chapter,
+    this.translationId,
+    required this.readAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['book_id'] = Variable<int>(bookId);
+    map['chapter'] = Variable<int>(chapter);
+    if (!nullToAbsent || translationId != null) {
+      map['translation_id'] = Variable<String>(translationId);
+    }
+    map['read_at'] = Variable<DateTime>(readAt);
+    return map;
+  }
+
+  ReadingLogCompanion toCompanion(bool nullToAbsent) {
+    return ReadingLogCompanion(
+      id: Value(id),
+      bookId: Value(bookId),
+      chapter: Value(chapter),
+      translationId: translationId == null && nullToAbsent
+          ? const Value.absent()
+          : Value(translationId),
+      readAt: Value(readAt),
+    );
+  }
+
+  factory ReadingLogData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ReadingLogData(
+      id: serializer.fromJson<int>(json['id']),
+      bookId: serializer.fromJson<int>(json['bookId']),
+      chapter: serializer.fromJson<int>(json['chapter']),
+      translationId: serializer.fromJson<String?>(json['translationId']),
+      readAt: serializer.fromJson<DateTime>(json['readAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'bookId': serializer.toJson<int>(bookId),
+      'chapter': serializer.toJson<int>(chapter),
+      'translationId': serializer.toJson<String?>(translationId),
+      'readAt': serializer.toJson<DateTime>(readAt),
+    };
+  }
+
+  ReadingLogData copyWith({
+    int? id,
+    int? bookId,
+    int? chapter,
+    Value<String?> translationId = const Value.absent(),
+    DateTime? readAt,
+  }) => ReadingLogData(
+    id: id ?? this.id,
+    bookId: bookId ?? this.bookId,
+    chapter: chapter ?? this.chapter,
+    translationId: translationId.present
+        ? translationId.value
+        : this.translationId,
+    readAt: readAt ?? this.readAt,
+  );
+  ReadingLogData copyWithCompanion(ReadingLogCompanion data) {
+    return ReadingLogData(
+      id: data.id.present ? data.id.value : this.id,
+      bookId: data.bookId.present ? data.bookId.value : this.bookId,
+      chapter: data.chapter.present ? data.chapter.value : this.chapter,
+      translationId: data.translationId.present
+          ? data.translationId.value
+          : this.translationId,
+      readAt: data.readAt.present ? data.readAt.value : this.readAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadingLogData(')
+          ..write('id: $id, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('translationId: $translationId, ')
+          ..write('readAt: $readAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, bookId, chapter, translationId, readAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ReadingLogData &&
+          other.id == this.id &&
+          other.bookId == this.bookId &&
+          other.chapter == this.chapter &&
+          other.translationId == this.translationId &&
+          other.readAt == this.readAt);
+}
+
+class ReadingLogCompanion extends UpdateCompanion<ReadingLogData> {
+  final Value<int> id;
+  final Value<int> bookId;
+  final Value<int> chapter;
+  final Value<String?> translationId;
+  final Value<DateTime> readAt;
+  const ReadingLogCompanion({
+    this.id = const Value.absent(),
+    this.bookId = const Value.absent(),
+    this.chapter = const Value.absent(),
+    this.translationId = const Value.absent(),
+    this.readAt = const Value.absent(),
+  });
+  ReadingLogCompanion.insert({
+    this.id = const Value.absent(),
+    required int bookId,
+    required int chapter,
+    this.translationId = const Value.absent(),
+    this.readAt = const Value.absent(),
+  }) : bookId = Value(bookId),
+       chapter = Value(chapter);
+  static Insertable<ReadingLogData> custom({
+    Expression<int>? id,
+    Expression<int>? bookId,
+    Expression<int>? chapter,
+    Expression<String>? translationId,
+    Expression<DateTime>? readAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (bookId != null) 'book_id': bookId,
+      if (chapter != null) 'chapter': chapter,
+      if (translationId != null) 'translation_id': translationId,
+      if (readAt != null) 'read_at': readAt,
+    });
+  }
+
+  ReadingLogCompanion copyWith({
+    Value<int>? id,
+    Value<int>? bookId,
+    Value<int>? chapter,
+    Value<String?>? translationId,
+    Value<DateTime>? readAt,
+  }) {
+    return ReadingLogCompanion(
+      id: id ?? this.id,
+      bookId: bookId ?? this.bookId,
+      chapter: chapter ?? this.chapter,
+      translationId: translationId ?? this.translationId,
+      readAt: readAt ?? this.readAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (bookId.present) {
+      map['book_id'] = Variable<int>(bookId.value);
+    }
+    if (chapter.present) {
+      map['chapter'] = Variable<int>(chapter.value);
+    }
+    if (translationId.present) {
+      map['translation_id'] = Variable<String>(translationId.value);
+    }
+    if (readAt.present) {
+      map['read_at'] = Variable<DateTime>(readAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ReadingLogCompanion(')
+          ..write('id: $id, ')
+          ..write('bookId: $bookId, ')
+          ..write('chapter: $chapter, ')
+          ..write('translationId: $translationId, ')
+          ..write('readAt: $readAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$UserDatabase extends GeneratedDatabase {
   _$UserDatabase(QueryExecutor e) : super(e);
   $UserDatabaseManager get managers => $UserDatabaseManager(this);
   late final $HighlightsTable highlights = $HighlightsTable(this);
   late final $BookmarksTable bookmarks = $BookmarksTable(this);
   late final $NotesTable notes = $NotesTable(this);
+  late final $ReadingLogTable readingLog = $ReadingLogTable(this);
   late final Index highlightsByChapter = Index(
     'highlights_by_chapter',
     'CREATE INDEX highlights_by_chapter ON highlights (book_id, chapter)',
@@ -1375,6 +1730,10 @@ abstract class _$UserDatabase extends GeneratedDatabase {
     'notes_by_chapter',
     'CREATE INDEX notes_by_chapter ON notes (book_id, chapter)',
   );
+  late final Index readingLogByChapter = Index(
+    'reading_log_by_chapter',
+    'CREATE INDEX reading_log_by_chapter ON reading_log (book_id, chapter)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -1383,9 +1742,11 @@ abstract class _$UserDatabase extends GeneratedDatabase {
     highlights,
     bookmarks,
     notes,
+    readingLog,
     highlightsByChapter,
     bookmarksByChapter,
     notesByChapter,
+    readingLogByChapter,
   ];
 }
 
@@ -2095,6 +2456,209 @@ typedef $$NotesTableProcessedTableManager =
       Note,
       PrefetchHooks Function()
     >;
+typedef $$ReadingLogTableCreateCompanionBuilder = ReadingLogCompanion Function({
+  Value<int> id,
+  required int bookId,
+  required int chapter,
+  Value<String?> translationId,
+  Value<DateTime> readAt,
+});
+typedef $$ReadingLogTableUpdateCompanionBuilder = ReadingLogCompanion Function({
+  Value<int> id,
+  Value<int> bookId,
+  Value<int> chapter,
+  Value<String?> translationId,
+  Value<DateTime> readAt,
+});
+
+class $$ReadingLogTableFilterComposer
+    extends Composer<_$UserDatabase, $ReadingLogTable> {
+  $$ReadingLogTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get bookId => $composableBuilder(
+    column: $table.bookId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get translationId => $composableBuilder(
+    column: $table.translationId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get readAt => $composableBuilder(
+    column: $table.readAt,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$ReadingLogTableOrderingComposer
+    extends Composer<_$UserDatabase, $ReadingLogTable> {
+  $$ReadingLogTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get bookId => $composableBuilder(
+    column: $table.bookId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get chapter => $composableBuilder(
+    column: $table.chapter,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get translationId => $composableBuilder(
+    column: $table.translationId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get readAt => $composableBuilder(
+    column: $table.readAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$ReadingLogTableAnnotationComposer
+    extends Composer<_$UserDatabase, $ReadingLogTable> {
+  $$ReadingLogTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get bookId =>
+      $composableBuilder(column: $table.bookId, builder: (column) => column);
+
+  GeneratedColumn<int> get chapter =>
+      $composableBuilder(column: $table.chapter, builder: (column) => column);
+
+  GeneratedColumn<String> get translationId => $composableBuilder(
+    column: $table.translationId,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<DateTime> get readAt =>
+      $composableBuilder(column: $table.readAt, builder: (column) => column);
+}
+
+class $$ReadingLogTableTableManager
+    extends
+        RootTableManager<
+          _$UserDatabase,
+          $ReadingLogTable,
+          ReadingLogData,
+          $$ReadingLogTableFilterComposer,
+          $$ReadingLogTableOrderingComposer,
+          $$ReadingLogTableAnnotationComposer,
+          $$ReadingLogTableCreateCompanionBuilder,
+          $$ReadingLogTableUpdateCompanionBuilder,
+          (
+            ReadingLogData,
+            BaseReferences<_$UserDatabase, $ReadingLogTable, ReadingLogData>,
+          ),
+          ReadingLogData,
+          PrefetchHooks Function()
+        > {
+  $$ReadingLogTableTableManager(_$UserDatabase db, $ReadingLogTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ReadingLogTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ReadingLogTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ReadingLogTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> bookId = const Value.absent(),
+                Value<int> chapter = const Value.absent(),
+                Value<String?> translationId = const Value.absent(),
+                Value<DateTime> readAt = const Value.absent(),
+              }) => ReadingLogCompanion(
+                id: id,
+                bookId: bookId,
+                chapter: chapter,
+                translationId: translationId,
+                readAt: readAt,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int bookId,
+                required int chapter,
+                Value<String?> translationId = const Value.absent(),
+                Value<DateTime> readAt = const Value.absent(),
+              }) => ReadingLogCompanion.insert(
+                id: id,
+                bookId: bookId,
+                chapter: chapter,
+                translationId: translationId,
+                readAt: readAt,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$ReadingLogTable, ReadingLogData>(table),
+                  BaseReferences<
+                    _$UserDatabase,
+                    $ReadingLogTable,
+                    ReadingLogData
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$ReadingLogTableProcessedTableManager =
+    ProcessedTableManager<
+      _$UserDatabase,
+      $ReadingLogTable,
+      ReadingLogData,
+      $$ReadingLogTableFilterComposer,
+      $$ReadingLogTableOrderingComposer,
+      $$ReadingLogTableAnnotationComposer,
+      $$ReadingLogTableCreateCompanionBuilder,
+      $$ReadingLogTableUpdateCompanionBuilder,
+      (
+        ReadingLogData,
+        BaseReferences<_$UserDatabase, $ReadingLogTable, ReadingLogData>,
+      ),
+      ReadingLogData,
+      PrefetchHooks Function()
+    >;
 
 class $UserDatabaseManager {
   final _$UserDatabase _db;
@@ -2105,4 +2669,6 @@ class $UserDatabaseManager {
       $$BookmarksTableTableManager(_db, _db.bookmarks);
   $$NotesTableTableManager get notes =>
       $$NotesTableTableManager(_db, _db.notes);
+  $$ReadingLogTableTableManager get readingLog =>
+      $$ReadingLogTableTableManager(_db, _db.readingLog);
 }

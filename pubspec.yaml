@@ -28,6 +28,7 @@ dependencies:
   file_picker: ^13.3.0
   scrollable_positioned_list: ^0.3.8
   http: ^1.6.0
+  archive: ^4.5.2
 
 dev_dependencies:
   flutter_test:
@@ -39,11 +40,16 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    # Vygenerováno skriptem tool/build_bible_db.py (viz README).
+    # Vygenerováno skripty tool/build_bible_db.py a tool/build_study_db.py.
     - assets/db/
+    - assets/map/
+    - assets/content/
   fonts:
-    # Literata (SIL OFL, assets/fonts/OFL.txt) – přibalené písmo s českou
-    # diakritikou. Na webu by se jinak písmo stahovalo z internetu.
+    # Přibalená písma (SIL OFL) s českou diakritikou – na webu by se jinak
+    # stahovala z internetu. Literata = text Bible, Inter = rozhraní.
     - family: Literata
       fonts:
         - asset: assets/fonts/Literata.ttf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf

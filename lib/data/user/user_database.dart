@@ -71,7 +71,18 @@ class Notes extends Table {
   List<String> get customConstraints => ['CHECK (verse_end >= verse_start)'];
 }
 
-@DriftDatabase(tables: [Highlights, Bookmarks, Notes])
+/// Deník čtení: každý přečtený úsek kapitoly (pro pokrok, sérii dní a
+/// nedávno čtené).
+@TableIndex(name: 'reading_log_by_chapter', columns: {#bookId, #chapter})
+class ReadingLog extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get bookId => integer()();
+  IntColumn get chapter => integer()();
+  TextColumn get translationId => text().nullable()();
+  DateTimeColumn get readAt => dateTime().withDefault(currentDateAndTime)();
+}
+
+@DriftDatabase(tables: [Highlights, Bookmarks, Notes, ReadingLog])
 class UserDatabase extends _$UserDatabase {
   UserDatabase(super.executor);
 
@@ -85,14 +96,19 @@ class UserDatabase extends _$UserDatabase {
   );
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) => m.createAll(),
-    // Budoucí změny schématu: přidat kroky `if (from < 2) …` – nikdy
-    // nemazat tabulky s uživatelskými daty.
-    onUpgrade: (m, from, to) async {},
+    // Změny schématu přidávat jako kroky `if (from < N) …` – nikdy nemazat
+    // tabulky s uživatelskými daty.
+    onUpgrade: (m, from, to) async {
+      if (from < 2) {
+        await m.createTable(readingLog);
+        await m.createIndex(readingLogByChapter);
+      }
+    },
     beforeOpen: (details) async {
       await customStatement('PRAGMA foreign_keys = ON');
       // WAL: zápis poznámky neblokuje souběžné čtení.

@@ -41,13 +41,9 @@ Future<void> openPlaceOnMap(BuildContext context, String placeId) =>
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => MapPage(placeId: placeId)));
 
-/// Sekce „Mapy“ – tematické mapy a všechna místa.
-class MapsScreen extends StatelessWidget {
-  const MapsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) => const MapPage(isTab: true);
-}
+/// Přehledová mapa – všechna místa a tematické mapy (trasy).
+Future<void> openMaps(BuildContext context) => Navigator.of(context)
+    .push(MaterialPageRoute<void>(builder: (_) => const MapPage(isTab: true)));
 
 class MapPage extends ConsumerStatefulWidget {
   const MapPage({
@@ -130,7 +126,7 @@ class _MapPageState extends ConsumerState<MapPage> {
     }
 
     final topBar = insets.top + 60 + (widget.isTab ? 52 : 0);
-    final bottomPad = widget.isTab ? insets.bottom + 90 : insets.bottom + 16;
+    final bottomPad = insets.bottom + 16;
 
     return Scaffold(
       body: Stack(
@@ -173,7 +169,7 @@ class _MapPageState extends ConsumerState<MapPage> {
                     height: 56,
                     child: Row(
                       children: [
-                        if (!widget.isTab)
+                        if (Navigator.of(context).canPop())
                           const BackButton()
                         else
                           const SizedBox(width: 16),

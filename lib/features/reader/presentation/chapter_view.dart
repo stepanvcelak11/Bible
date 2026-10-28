@@ -3,6 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../content/presentation/people_screen.dart';
+import '../../content/presentation/notes_screen.dart';
+import '../../content/application/content_providers.dart';
+import '../../../domain/services/versification.dart';
+import '../../../domain/entities/content_entities.dart';
+
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -20,7 +27,7 @@ import '../application/reader_blocks.dart';
 import '../application/reader_state.dart';
 import '../application/reading_position_controller.dart';
 import 'paragraph_view.dart';
-import 'reader_screen.dart' show readerBarHeight;
+import 'reader_screen.dart' show readerTopBarHeight;
 import 'verse_tile.dart';
 
 /// Jedna stránka čtečky = jedna kapitola.
@@ -251,7 +258,7 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
                 : 0,
             initialAlignment: startAtVerse ? 0.12 : 0,
             padding: EdgeInsets.only(
-              top: insets.top + readerBarHeight + 8,
+              top: insets.top + readerTopBarHeight(ref) + 8,
               bottom: insets.bottom + 180,
               left: side,
               right: side,
@@ -264,7 +271,7 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
         ),
         // Tenký ukazatel, kolik z kapitoly je přečteno.
         Positioned(
-          top: insets.top + readerBarHeight,
+          top: insets.top + readerTopBarHeight(ref),
           left: 0,
           right: 0,
           child: ValueListenableBuilder<double>(
@@ -316,6 +323,26 @@ class _ChapterHeader extends ConsumerWidget {
             const [],
       ),
     );
+
+    // Studijní obsah ke kapitole (uložený v kanonickém číslování).
+    final canonical = Versification.chaptersSpanned(
+      bookId,
+      chapter,
+      176,
+      schemeOf(translationId),
+      VerseScheme.hebrew,
+    );
+    bool covers(Passage p) =>
+        p.bookId == bookId &&
+        canonical.any((c) => c >= p.chapter && c <= p.endChapter);
+    final notes = [
+      for (final n in ref.watch(notesProvider).value ?? const <AppNote>[])
+        if (covers(n.passage)) n,
+    ];
+    final people = [
+      for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
+        if (p.story.any(covers) || covers(p.key)) p,
+    ];
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(6, 28, 6, 18),
@@ -372,6 +399,26 @@ class _ChapterHeader extends ConsumerWidget {
                   ),
                   label: Text(S.placesInChapter(places.length)),
                   onPressed: () => openChapterMap(context, bookId, chapter),
+                ),
+              for (final n in notes)
+                ActionChip(
+                  avatar: Icon(
+                    Icons.sticky_note_2_outlined,
+                    size: 18,
+                    color: palette.gold,
+                  ),
+                  label: Text(n.title),
+                  onPressed: () => showNoteSheet(context, n),
+                ),
+              for (final p in people.take(4))
+                ActionChip(
+                  avatar: Icon(
+                    Icons.person_outline,
+                    size: 18,
+                    color: palette.gold,
+                  ),
+                  label: Text(p.name),
+                  onPressed: () => openPerson(context, p),
                 ),
             ],
           ),

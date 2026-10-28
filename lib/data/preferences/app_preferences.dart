@@ -19,6 +19,8 @@ class AppPreferences {
   static const _secondaryTranslation = 'translation.secondary';
   static const _lastSecondaryTranslation = 'translation.lastSecondary';
   static const _readingPosition = 'reader.position';
+  static const _readerTabs = 'reader.tabs';
+  static const _readerActiveTab = 'reader.activeTab';
   static const _readerSettings = 'reader.settings';
   static const _searchTestament = 'search.testament';
 
@@ -43,6 +45,17 @@ class AppPreferences {
       VerseRef.tryDecode(_prefs.getString(_readingPosition));
   Future<void> setReadingPosition(VerseRef ref) =>
       _prefs.setString(_readingPosition, ref.encode());
+
+  /// Čtecí karty (otevřená místa) a index aktivní karty.
+  List<VerseRef> get readerTabs => [
+    for (final s in _prefs.getStringList(_readerTabs) ?? const <String>[])
+      ?VerseRef.tryDecode(s),
+  ];
+  int get readerActiveTab => _prefs.getInt(_readerActiveTab) ?? 0;
+  Future<void> setReaderTabs(List<VerseRef> tabs, int active) async {
+    await _prefs.setStringList(_readerTabs, [for (final t in tabs) t.encode()]);
+    await _prefs.setInt(_readerActiveTab, active);
+  }
 
   ReaderSettings get readerSettings {
     final raw = _prefs.getString(_readerSettings);

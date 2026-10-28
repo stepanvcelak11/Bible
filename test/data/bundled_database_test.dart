@@ -104,6 +104,16 @@ void main() {
           addPassage('postava ${p['id']} $r', r);
         }
       }
+      for (final n in (load('notes.json')! as Map)['notes'] as List) {
+        addPassage('poznámka ${n['title']}', n['ref']);
+      }
+      for (final t in (load('tables.json')! as Map)['tables'] as List) {
+        for (final row in t['rows'] as List) {
+          for (final c in row as List) {
+            if (c is Map) addPassage('tabulka ${t['id']} ${c['t']}', c['r']);
+          }
+        }
+      }
       for (final per in (load('harmony.json')! as Map)['periods'] as List) {
         for (final e in per['events'] as List) {
           for (final r in e['refs'] as List) {

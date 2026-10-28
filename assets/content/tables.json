@@ -1,0 +1,2858 @@
+{
+ "tables": [
+  {
+   "id": "desatero",
+   "title": "Desatero",
+   "intro": "Deset přikázání, která Bůh dal Izraeli na Sínaji (Ex 20 a Dt 5), a jak je vykládá Ježíš.",
+   "columns": [
+    "Přikázání",
+    "Exodus",
+    "Ježíš a Nový zákon"
+   ],
+   "note": "Číslování přikázání se v církevních tradicích liší (např. katolická a luterská tradice spojují první dvě a dělí poslední).",
+   "rows": [
+    [
+     "Nebudeš mít jiné bohy",
+     {
+      "t": "Ex 20,2–3",
+      "r": [
+       2,
+       20,
+       2,
+       3
+      ]
+     },
+     {
+      "t": "Mt 22,37–38",
+      "r": [
+       40,
+       22,
+       37,
+       38
+      ]
+     }
+    ],
+    [
+     "Nezobrazíš si Boha",
+     {
+      "t": "Ex 20,4–6",
+      "r": [
+       2,
+       20,
+       4,
+       6
+      ]
+     },
+     {
+      "t": "J 4,24",
+      "r": [
+       43,
+       4,
+       24,
+       24
+      ]
+     }
+    ],
+    [
+     "Nezneužiješ Boží jméno",
+     {
+      "t": "Ex 20,7",
+      "r": [
+       2,
+       20,
+       7,
+       7
+      ]
+     },
+     {
+      "t": "Mt 6,9",
+      "r": [
+       40,
+       6,
+       9,
+       9
+      ]
+     }
+    ],
+    [
+     "Pamatuj na den odpočinku",
+     {
+      "t": "Ex 20,8–11",
+      "r": [
+       2,
+       20,
+       8,
+       11
+      ]
+     },
+     {
+      "t": "Mk 2,27",
+      "r": [
+       41,
+       2,
+       27,
+       27
+      ]
+     }
+    ],
+    [
+     "Cti otce a matku",
+     {
+      "t": "Ex 20,12",
+      "r": [
+       2,
+       20,
+       12,
+       12
+      ]
+     },
+     {
+      "t": "Ef 6,1–3",
+      "r": [
+       49,
+       6,
+       1,
+       3
+      ]
+     }
+    ],
+    [
+     "Nezabiješ",
+     {
+      "t": "Ex 20,13",
+      "r": [
+       2,
+       20,
+       13,
+       13
+      ]
+     },
+     {
+      "t": "Mt 5,21–22",
+      "r": [
+       40,
+       5,
+       21,
+       22
+      ]
+     }
+    ],
+    [
+     "Nezcizoložíš",
+     {
+      "t": "Ex 20,14",
+      "r": [
+       2,
+       20,
+       14,
+       14
+      ]
+     },
+     {
+      "t": "Mt 5,27–28",
+      "r": [
+       40,
+       5,
+       27,
+       28
+      ]
+     }
+    ],
+    [
+     "Nepokradeš",
+     {
+      "t": "Ex 20,15",
+      "r": [
+       2,
+       20,
+       15,
+       15
+      ]
+     },
+     {
+      "t": "Ef 4,28",
+      "r": [
+       49,
+       4,
+       28,
+       28
+      ]
+     }
+    ],
+    [
+     "Nevydáš křivé svědectví",
+     {
+      "t": "Ex 20,16",
+      "r": [
+       2,
+       20,
+       16,
+       16
+      ]
+     },
+     {
+      "t": "Ef 4,25",
+      "r": [
+       49,
+       4,
+       25,
+       25
+      ]
+     }
+    ],
+    [
+     "Nebudeš dychtit po ničem, co patří bližnímu",
+     {
+      "t": "Ex 20,17",
+      "r": [
+       2,
+       20,
+       17,
+       17
+      ]
+     },
+     {
+      "t": "Ř 7,7",
+      "r": [
+       45,
+       7,
+       7,
+       7
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "svatky",
+   "title": "Izraelské svátky",
+   "intro": "Svátky podle Zákona (Lv 23) a pozdější svátky, jejich smysl a vztah k Novému zákonu.",
+   "columns": [
+    "Svátek",
+    "Kdy",
+    "Připomíná",
+    "Odkaz",
+    "Nový zákon"
+   ],
+   "note": "Izraelský kalendář je lunární, proto data připadají každý rok na jiné dny našeho kalendáře.",
+   "rows": [
+    [
+     "Pascha a nekvašené chleby",
+     "1. měsíc (nísan), 14.–21. den; březen–duben",
+     "Vysvobození z Egypta",
+     {
+      "t": "Ex 12,1–20",
+      "r": [
+       2,
+       12,
+       1,
+       20
+      ]
+     },
+     {
+      "t": "Poslední večeře, Kristus náš beránek",
+      "r": [
+       46,
+       5,
+       7,
+       7
+      ]
+     }
+    ],
+    [
+     "Letnice (Svátek týdnů)",
+     "50 dní po Pasše; květen–červen",
+     "Dožínky; později i dar Zákona",
+     {
+      "t": "Lv 23,15–21",
+      "r": [
+       3,
+       23,
+       15,
+       21
+      ]
+     },
+     {
+      "t": "Seslání Ducha svatého",
+      "r": [
+       44,
+       2,
+       1,
+       4
+      ]
+     }
+    ],
+    [
+     "Den troubení",
+     "7. měsíc (tišri), 1. den; září–říjen",
+     "Shromáždění, začátek podzimních svátků",
+     {
+      "t": "Lv 23,23–25",
+      "r": [
+       3,
+       23,
+       23,
+       25
+      ]
+     },
+     ""
+    ],
+    [
+     "Den smíření (Jom kipur)",
+     "7. měsíc, 10. den",
+     "Očištění lidu a svatyně od hříchů",
+     {
+      "t": "Lv 16,29–34",
+      "r": [
+       3,
+       16,
+       29,
+       34
+      ]
+     },
+     {
+      "t": "Kristus jako velekněz",
+      "r": [
+       58,
+       9,
+       11,
+       14
+      ]
+     }
+    ],
+    [
+     "Svátek stánků",
+     "7. měsíc, 15.–22. den",
+     "Putování pouští, sklizeň",
+     {
+      "t": "Lv 23,33–43",
+      "r": [
+       3,
+       23,
+       33,
+       43
+      ]
+     },
+     {
+      "t": "Ježíš na svátku",
+      "r": [
+       43,
+       7,
+       37,
+       38
+      ]
+     }
+    ],
+    [
+     "Purim",
+     "12. měsíc (adar), 14.–15. den",
+     "Záchrana Židů za Ester",
+     {
+      "t": "Est 9,20–28",
+      "r": [
+       17,
+       9,
+       20,
+       28
+      ]
+     },
+     ""
+    ],
+    [
+     "Posvěcení chrámu (Chanuka)",
+     "9. měsíc (kislev), 25. den; prosinec",
+     "Nové posvěcení chrámu po Makabejském povstání",
+     "",
+     {
+      "t": "J 10,22–23",
+      "r": [
+       43,
+       10,
+       22,
+       23
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "kralove-juda",
+   "title": "Králové Judska",
+   "intro": "Judští králové od rozdělení říše po babylonské zajetí a jak je hodnotí Bible.",
+   "columns": [
+    "Král",
+    "Vláda (př. Kr.)",
+    "Hodnocení",
+    "Odkaz"
+   ],
+   "note": "Data podle běžně užívané chronologie (E. R. Thiele); překrývající se roky znamenají spoluvládu otce a syna. Rozdíly mezi badateli bývají 1–2 roky.",
+   "rows": [
+    [
+     "Rechabeám",
+     "931–913",
+     "zlý",
+     {
+      "t": "1Kr 12",
+      "r": [
+       11,
+       12,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Abijám",
+     "913–911",
+     "zlý",
+     {
+      "t": "1Kr 15",
+      "r": [
+       11,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Ása",
+     "911–870",
+     "dobrý",
+     {
+      "t": "1Kr 15",
+      "r": [
+       11,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóšafat",
+     "872–848",
+     "dobrý",
+     {
+      "t": "1Kr 22",
+      "r": [
+       11,
+       22,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóram",
+     "853–841",
+     "zlý",
+     {
+      "t": "2Kr 8",
+      "r": [
+       12,
+       8,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Achazjáš",
+     "841",
+     "zlý",
+     {
+      "t": "2Kr 8",
+      "r": [
+       12,
+       8,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Atalja (královna)",
+     "841–835",
+     "zlá",
+     {
+      "t": "2Kr 11",
+      "r": [
+       12,
+       11,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóaš",
+     "835–796",
+     "dobrý",
+     {
+      "t": "2Kr 12",
+      "r": [
+       12,
+       12,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Amasjáš",
+     "796–767",
+     "dobrý",
+     {
+      "t": "2Kr 14",
+      "r": [
+       12,
+       14,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Uzijáš (Azarjáš)",
+     "792–740",
+     "dobrý",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jótam",
+     "750–732",
+     "dobrý",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Achaz",
+     "735–715",
+     "zlý",
+     {
+      "t": "2Kr 16",
+      "r": [
+       12,
+       16,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Chizkijáš",
+     "715–686",
+     "dobrý",
+     {
+      "t": "2Kr 18",
+      "r": [
+       12,
+       18,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Manases",
+     "697–642",
+     "zlý (nakonec se kál, 2Pa 33)",
+     {
+      "t": "2Kr 21",
+      "r": [
+       12,
+       21,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Amón",
+     "642–640",
+     "zlý",
+     {
+      "t": "2Kr 21",
+      "r": [
+       12,
+       21,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóšijáš",
+     "640–609",
+     "dobrý",
+     {
+      "t": "2Kr 22",
+      "r": [
+       12,
+       22,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóachaz",
+     "609",
+     "zlý",
+     {
+      "t": "2Kr 23",
+      "r": [
+       12,
+       23,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jójakím",
+     "609–598",
+     "zlý",
+     {
+      "t": "2Kr 23",
+      "r": [
+       12,
+       23,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jójakín",
+     "598–597",
+     "zlý",
+     {
+      "t": "2Kr 24",
+      "r": [
+       12,
+       24,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Sidkijáš",
+     "597–586",
+     "zlý",
+     {
+      "t": "2Kr 24",
+      "r": [
+       12,
+       24,
+       0,
+       0
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "kralove-izrael",
+   "title": "Králové Izraele (severní říše)",
+   "intro": "Králové severního Izraele od rozdělení říše po pád Samaří. Bible žádného z nich nehodnotí jako dobrého.",
+   "columns": [
+    "Král",
+    "Vláda (př. Kr.)",
+    "Poznámka",
+    "Odkaz"
+   ],
+   "note": "Data podle chronologie E. R. Thieleho; některé vlády se překrývají.",
+   "rows": [
+    [
+     "Jarobeám I.",
+     "931–910",
+     "zavedl zlatá telata v Bét-elu a Danu",
+     {
+      "t": "1Kr 12",
+      "r": [
+       11,
+       12,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Nádab",
+     "910–909",
+     "zavražděn",
+     {
+      "t": "1Kr 15",
+      "r": [
+       11,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Baeša",
+     "909–886",
+     "",
+     {
+      "t": "1Kr 15",
+      "r": [
+       11,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Éla",
+     "886–885",
+     "zavražděn",
+     {
+      "t": "1Kr 16",
+      "r": [
+       11,
+       16,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Zimrí",
+     "885",
+     "vládl 7 dní",
+     {
+      "t": "1Kr 16",
+      "r": [
+       11,
+       16,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Omrí",
+     "885–874",
+     "založil Samaří",
+     {
+      "t": "1Kr 16",
+      "r": [
+       11,
+       16,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Achab",
+     "874–853",
+     "manželka Jezábel; prorok Eliáš",
+     {
+      "t": "1Kr 16",
+      "r": [
+       11,
+       16,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Achazjáš",
+     "853–852",
+     "",
+     {
+      "t": "1Kr 22",
+      "r": [
+       11,
+       22,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóram",
+     "852–841",
+     "prorok Elíša",
+     {
+      "t": "2Kr 3",
+      "r": [
+       12,
+       3,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jehú",
+     "841–814",
+     "vyhladil Achabův rod",
+     {
+      "t": "2Kr 9",
+      "r": [
+       12,
+       9,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóachaz",
+     "814–798",
+     "",
+     {
+      "t": "2Kr 13",
+      "r": [
+       12,
+       13,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jóaš",
+     "798–782",
+     "",
+     {
+      "t": "2Kr 13",
+      "r": [
+       12,
+       13,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Jarobeám II.",
+     "793–753",
+     "doba blahobytu; Ámos, Ozeáš, Jonáš",
+     {
+      "t": "2Kr 14",
+      "r": [
+       12,
+       14,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Zekarjáš",
+     "753",
+     "vládl 6 měsíců",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Šalum",
+     "752",
+     "vládl 1 měsíc",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Menachem",
+     "752–742",
+     "platil daň Asýrii",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Pekachjáš",
+     "742–740",
+     "zavražděn",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Pekach",
+     "752–732",
+     "",
+     {
+      "t": "2Kr 15",
+      "r": [
+       12,
+       15,
+       0,
+       0
+      ]
+     }
+    ],
+    [
+     "Hóšea",
+     "732–722",
+     "pád Samaří",
+     {
+      "t": "2Kr 17",
+      "r": [
+       12,
+       17,
+       0,
+       0
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "proroci",
+   "title": "Proroci a jejich doba",
+   "intro": "Proroci, po nichž máme knihy, komu mluvili, kdy a s jakým poselstvím.",
+   "columns": [
+    "Prorok",
+    "Komu",
+    "Doba (př. Kr.)",
+    "Hlavní poselství"
+   ],
+   "note": "",
+   "rows": [
+    [
+     {
+      "t": "Jonáš",
+      "r": [
+       32,
+       1,
+       0,
+       0
+      ]
+     },
+     "Ninive",
+     "cca 785–760",
+     "Boží milosrdenství i pro nepřátele"
+    ],
+    [
+     {
+      "t": "Ámos",
+      "r": [
+       30,
+       1,
+       0,
+       0
+      ]
+     },
+     "Izrael",
+     "cca 760",
+     "Spravedlnost pro chudé"
+    ],
+    [
+     {
+      "t": "Ozeáš",
+      "r": [
+       28,
+       1,
+       0,
+       0
+      ]
+     },
+     "Izrael",
+     "cca 755–715",
+     "Věrná láska k nevěrnému lidu"
+    ],
+    [
+     {
+      "t": "Izajáš",
+      "r": [
+       23,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda",
+     "cca 740–680",
+     "Svatý Bůh, soud, útěcha, Mesiáš"
+    ],
+    [
+     {
+      "t": "Micheáš",
+      "r": [
+       33,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda a Izrael",
+     "cca 735–700",
+     "Právo, milosrdenství, pokora"
+    ],
+    [
+     {
+      "t": "Nahum",
+      "r": [
+       34,
+       1,
+       0,
+       0
+      ]
+     },
+     "Ninive",
+     "663–612",
+     "Pád krutého Ninive"
+    ],
+    [
+     {
+      "t": "Sofonjáš",
+      "r": [
+       36,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda",
+     "640–609",
+     "Den Hospodinův"
+    ],
+    [
+     {
+      "t": "Jeremjáš",
+      "r": [
+       24,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda",
+     "627–580",
+     "Pokání a nová smlouva"
+    ],
+    [
+     {
+      "t": "Abakuk",
+      "r": [
+       35,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda",
+     "cca 605",
+     "Víra uprostřed nespravedlnosti"
+    ],
+    [
+     {
+      "t": "Daniel",
+      "r": [
+       27,
+       1,
+       0,
+       0
+      ]
+     },
+     "vyhnanci",
+     "605–530",
+     "Bůh vládne nad říšemi"
+    ],
+    [
+     {
+      "t": "Ezechiel",
+      "r": [
+       26,
+       1,
+       0,
+       0
+      ]
+     },
+     "vyhnanci",
+     "593–571",
+     "Boží sláva, nové srdce"
+    ],
+    [
+     {
+      "t": "Abdijáš",
+      "r": [
+       31,
+       1,
+       0,
+       0
+      ]
+     },
+     "Edóm",
+     "po 586",
+     "Soud nad pýchou"
+    ],
+    [
+     {
+      "t": "Ageus",
+      "r": [
+       37,
+       1,
+       0,
+       0
+      ]
+     },
+     "navrátilci",
+     "520",
+     "Dostavět chrám"
+    ],
+    [
+     {
+      "t": "Zacharjáš",
+      "r": [
+       38,
+       1,
+       0,
+       0
+      ]
+     },
+     "navrátilci",
+     "520–480",
+     "Obnova a přicházející král"
+    ],
+    [
+     {
+      "t": "Malachiáš",
+      "r": [
+       39,
+       1,
+       0,
+       0
+      ]
+     },
+     "navrátilci",
+     "cca 450–430",
+     "Upřímný vztah s Bohem"
+    ],
+    [
+     {
+      "t": "Jóel",
+      "r": [
+       29,
+       1,
+       0,
+       0
+      ]
+     },
+     "Juda",
+     "nejisté",
+     "Pokání a vylití Ducha"
+    ]
+   ]
+  },
+  {
+   "id": "podobenstvi",
+   "title": "Ježíšova podobenství",
+   "intro": "Podobenství v evangeliích (Jan podobenství v užším smyslu neuvádí).",
+   "columns": [
+    "Podobenství",
+    "Mt",
+    "Mk",
+    "L",
+    "Hlavní myšlenka"
+   ],
+   "note": "",
+   "rows": [
+    [
+     "Rozsévač",
+     {
+      "t": "13,3–9",
+      "r": [
+       40,
+       13,
+       3,
+       9
+      ]
+     },
+     {
+      "t": "4,3–9",
+      "r": [
+       41,
+       4,
+       3,
+       9
+      ]
+     },
+     {
+      "t": "8,5–8",
+      "r": [
+       42,
+       8,
+       5,
+       8
+      ]
+     },
+     "Jak lidé přijímají Boží slovo"
+    ],
+    [
+     "Plevel mezi pšenicí",
+     {
+      "t": "13,24–30",
+      "r": [
+       40,
+       13,
+       24,
+       30
+      ]
+     },
+     "",
+     "",
+     "Soud patří Bohu, ne nám"
+    ],
+    [
+     "Hořčičné zrno",
+     {
+      "t": "13,31–32",
+      "r": [
+       40,
+       13,
+       31,
+       32
+      ]
+     },
+     {
+      "t": "4,30–32",
+      "r": [
+       41,
+       4,
+       30,
+       32
+      ]
+     },
+     {
+      "t": "13,18–19",
+      "r": [
+       42,
+       13,
+       18,
+       19
+      ]
+     },
+     "Malé začátky Božího království"
+    ],
+    [
+     "Kvas",
+     {
+      "t": "13,33",
+      "r": [
+       40,
+       13,
+       33,
+       33
+      ]
+     },
+     "",
+     {
+      "t": "13,20–21",
+      "r": [
+       42,
+       13,
+       20,
+       21
+      ]
+     },
+     "Království proniká vším"
+    ],
+    [
+     "Rostoucí símě",
+     "",
+     {
+      "t": "4,26–29",
+      "r": [
+       41,
+       4,
+       26,
+       29
+      ]
+     },
+     "",
+     "Bůh dává růst"
+    ],
+    [
+     "Poklad v poli a perla",
+     {
+      "t": "13,44–46",
+      "r": [
+       40,
+       13,
+       44,
+       46
+      ]
+     },
+     "",
+     "",
+     "Království má nejvyšší cenu"
+    ],
+    [
+     "Síť",
+     {
+      "t": "13,47–50",
+      "r": [
+       40,
+       13,
+       47,
+       50
+      ]
+     },
+     "",
+     "",
+     "Konečné oddělení dobrých a zlých"
+    ],
+    [
+     "Ztracená ovce",
+     {
+      "t": "18,12–14",
+      "r": [
+       40,
+       18,
+       12,
+       14
+      ]
+     },
+     "",
+     {
+      "t": "15,3–7",
+      "r": [
+       42,
+       15,
+       3,
+       7
+      ]
+     },
+     "Bůh hledá ztracené"
+    ],
+    [
+     "Nemilosrdný služebník",
+     {
+      "t": "18,23–35",
+      "r": [
+       40,
+       18,
+       23,
+       35
+      ]
+     },
+     "",
+     "",
+     "Odpuštěno – proto odpouštěj"
+    ],
+    [
+     "Dělníci na vinici",
+     {
+      "t": "20,1–16",
+      "r": [
+       40,
+       20,
+       1,
+       16
+      ]
+     },
+     "",
+     "",
+     "Boží štědrost, ne zásluhy"
+    ],
+    [
+     "Dva synové",
+     {
+      "t": "21,28–32",
+      "r": [
+       40,
+       21,
+       28,
+       32
+      ]
+     },
+     "",
+     "",
+     "Rozhodují činy, ne slova"
+    ],
+    [
+     "Zlí vinaři",
+     {
+      "t": "21,33–46",
+      "r": [
+       40,
+       21,
+       33,
+       46
+      ]
+     },
+     {
+      "t": "12,1–12",
+      "r": [
+       41,
+       12,
+       1,
+       12
+      ]
+     },
+     {
+      "t": "20,9–19",
+      "r": [
+       42,
+       20,
+       9,
+       19
+      ]
+     },
+     "Odmítnutí Božího Syna"
+    ],
+    [
+     "Svatební hostina",
+     {
+      "t": "22,1–14",
+      "r": [
+       40,
+       22,
+       1,
+       14
+      ]
+     },
+     "",
+     {
+      "t": "14,16–24",
+      "r": [
+       42,
+       14,
+       16,
+       24
+      ]
+     },
+     "Pozvání pro všechny"
+    ],
+    [
+     "Deset družiček",
+     {
+      "t": "25,1–13",
+      "r": [
+       40,
+       25,
+       1,
+       13
+      ]
+     },
+     "",
+     "",
+     "Bdělost"
+    ],
+    [
+     "Svěřené hřivny",
+     {
+      "t": "25,14–30",
+      "r": [
+       40,
+       25,
+       14,
+       30
+      ]
+     },
+     "",
+     {
+      "t": "19,12–27",
+      "r": [
+       42,
+       19,
+       12,
+       27
+      ]
+     },
+     "Věrnost se svěřenými dary"
+    ],
+    [
+     "Milosrdný Samařan",
+     "",
+     "",
+     {
+      "t": "10,30–37",
+      "r": [
+       42,
+       10,
+       30,
+       37
+      ]
+     },
+     "Kdo je můj bližní"
+    ],
+    [
+     "Neodbytný přítel",
+     "",
+     "",
+     {
+      "t": "11,5–8",
+      "r": [
+       42,
+       11,
+       5,
+       8
+      ]
+     },
+     "Vytrvalost v modlitbě"
+    ],
+    [
+     "Bohatý blázen",
+     "",
+     "",
+     {
+      "t": "12,16–21",
+      "r": [
+       42,
+       12,
+       16,
+       21
+      ]
+     },
+     "Bohatství před Bohem"
+    ],
+    [
+     "Neplodný fíkovník",
+     "",
+     "",
+     {
+      "t": "13,6–9",
+      "r": [
+       42,
+       13,
+       6,
+       9
+      ]
+     },
+     "Čas k pokání"
+    ],
+    [
+     "Ztracená mince",
+     "",
+     "",
+     {
+      "t": "15,8–10",
+      "r": [
+       42,
+       15,
+       8,
+       10
+      ]
+     },
+     "Radost v nebi"
+    ],
+    [
+     "Marnotratný syn",
+     "",
+     "",
+     {
+      "t": "15,11–32",
+      "r": [
+       42,
+       15,
+       11,
+       32
+      ]
+     },
+     "Otcova láska"
+    ],
+    [
+     "Nepoctivý správce",
+     "",
+     "",
+     {
+      "t": "16,1–13",
+      "r": [
+       42,
+       16,
+       1,
+       13
+      ]
+     },
+     "Moudré užití majetku"
+    ],
+    [
+     "Boháč a Lazar",
+     "",
+     "",
+     {
+      "t": "16,19–31",
+      "r": [
+       42,
+       16,
+       19,
+       31
+      ]
+     },
+     "Odpovědnost za chudé"
+    ],
+    [
+     "Neodbytná vdova",
+     "",
+     "",
+     {
+      "t": "18,1–8",
+      "r": [
+       42,
+       18,
+       1,
+       8
+      ]
+     },
+     "Nepřestávat se modlit"
+    ],
+    [
+     "Farizeus a celník",
+     "",
+     "",
+     {
+      "t": "18,9–14",
+      "r": [
+       42,
+       18,
+       9,
+       14
+      ]
+     },
+     "Pokora před Bohem"
+    ]
+   ]
+  },
+  {
+   "id": "zazraky",
+   "title": "Ježíšovy zázraky",
+   "intro": "Výběr zázraků podle evangelií.",
+   "columns": [
+    "Zázrak",
+    "Mt",
+    "Mk",
+    "L",
+    "J"
+   ],
+   "note": "",
+   "rows": [
+    [
+     "Voda proměněná ve víno",
+     "",
+     "",
+     "",
+     {
+      "t": "2,1–11",
+      "r": [
+       43,
+       2,
+       1,
+       11
+      ]
+     }
+    ],
+    [
+     "Uzdravení syna královského úředníka",
+     "",
+     "",
+     "",
+     {
+      "t": "4,46–54",
+      "r": [
+       43,
+       4,
+       46,
+       54
+      ]
+     }
+    ],
+    [
+     "Zázračný rybolov",
+     "",
+     "",
+     {
+      "t": "5,1–11",
+      "r": [
+       42,
+       5,
+       1,
+       11
+      ]
+     },
+     ""
+    ],
+    [
+     "Uzdravení malomocného",
+     {
+      "t": "8,2–4",
+      "r": [
+       40,
+       8,
+       2,
+       4
+      ]
+     },
+     {
+      "t": "1,40–45",
+      "r": [
+       41,
+       1,
+       40,
+       45
+      ]
+     },
+     {
+      "t": "5,12–16",
+      "r": [
+       42,
+       5,
+       12,
+       16
+      ]
+     },
+     ""
+    ],
+    [
+     "Setníkův sluha",
+     {
+      "t": "8,5–13",
+      "r": [
+       40,
+       8,
+       5,
+       13
+      ]
+     },
+     "",
+     {
+      "t": "7,1–10",
+      "r": [
+       42,
+       7,
+       1,
+       10
+      ]
+     },
+     ""
+    ],
+    [
+     "Petrova tchyně",
+     {
+      "t": "8,14–15",
+      "r": [
+       40,
+       8,
+       14,
+       15
+      ]
+     },
+     {
+      "t": "1,30–31",
+      "r": [
+       41,
+       1,
+       30,
+       31
+      ]
+     },
+     {
+      "t": "4,38–39",
+      "r": [
+       42,
+       4,
+       38,
+       39
+      ]
+     },
+     ""
+    ],
+    [
+     "Utišení bouře",
+     {
+      "t": "8,23–27",
+      "r": [
+       40,
+       8,
+       23,
+       27
+      ]
+     },
+     {
+      "t": "4,35–41",
+      "r": [
+       41,
+       4,
+       35,
+       41
+      ]
+     },
+     {
+      "t": "8,22–25",
+      "r": [
+       42,
+       8,
+       22,
+       25
+      ]
+     },
+     ""
+    ],
+    [
+     "Posedlý v gadarenském kraji",
+     {
+      "t": "8,28–34",
+      "r": [
+       40,
+       8,
+       28,
+       34
+      ]
+     },
+     {
+      "t": "5,1–20",
+      "r": [
+       41,
+       5,
+       1,
+       20
+      ]
+     },
+     {
+      "t": "8,26–39",
+      "r": [
+       42,
+       8,
+       26,
+       39
+      ]
+     },
+     ""
+    ],
+    [
+     "Ochrnutý spuštěný střechou",
+     {
+      "t": "9,2–8",
+      "r": [
+       40,
+       9,
+       2,
+       8
+      ]
+     },
+     {
+      "t": "2,3–12",
+      "r": [
+       41,
+       2,
+       3,
+       12
+      ]
+     },
+     {
+      "t": "5,18–26",
+      "r": [
+       42,
+       5,
+       18,
+       26
+      ]
+     },
+     ""
+    ],
+    [
+     "Jairova dcera a nemocná žena",
+     {
+      "t": "9,18–26",
+      "r": [
+       40,
+       9,
+       18,
+       26
+      ]
+     },
+     {
+      "t": "5,22–43",
+      "r": [
+       41,
+       5,
+       22,
+       43
+      ]
+     },
+     {
+      "t": "8,41–56",
+      "r": [
+       42,
+       8,
+       41,
+       56
+      ]
+     },
+     ""
+    ],
+    [
+     "Muž s odumřelou rukou",
+     {
+      "t": "12,9–13",
+      "r": [
+       40,
+       12,
+       9,
+       13
+      ]
+     },
+     {
+      "t": "3,1–5",
+      "r": [
+       41,
+       3,
+       1,
+       5
+      ]
+     },
+     {
+      "t": "6,6–10",
+      "r": [
+       42,
+       6,
+       6,
+       10
+      ]
+     },
+     ""
+    ],
+    [
+     "Vzkříšení mladíka v Naimu",
+     "",
+     "",
+     {
+      "t": "7,11–17",
+      "r": [
+       42,
+       7,
+       11,
+       17
+      ]
+     },
+     ""
+    ],
+    [
+     "Nasycení pěti tisíc",
+     {
+      "t": "14,13–21",
+      "r": [
+       40,
+       14,
+       13,
+       21
+      ]
+     },
+     {
+      "t": "6,30–44",
+      "r": [
+       41,
+       6,
+       30,
+       44
+      ]
+     },
+     {
+      "t": "9,10–17",
+      "r": [
+       42,
+       9,
+       10,
+       17
+      ]
+     },
+     {
+      "t": "6,1–14",
+      "r": [
+       43,
+       6,
+       1,
+       14
+      ]
+     }
+    ],
+    [
+     "Chůze po vodě",
+     {
+      "t": "14,22–33",
+      "r": [
+       40,
+       14,
+       22,
+       33
+      ]
+     },
+     {
+      "t": "6,45–52",
+      "r": [
+       41,
+       6,
+       45,
+       52
+      ]
+     },
+     "",
+     {
+      "t": "6,16–21",
+      "r": [
+       43,
+       6,
+       16,
+       21
+      ]
+     }
+    ],
+    [
+     "Dcera kananejské ženy",
+     {
+      "t": "15,21–28",
+      "r": [
+       40,
+       15,
+       21,
+       28
+      ]
+     },
+     {
+      "t": "7,24–30",
+      "r": [
+       41,
+       7,
+       24,
+       30
+      ]
+     },
+     "",
+     ""
+    ],
+    [
+     "Hluchoněmý",
+     "",
+     {
+      "t": "7,31–37",
+      "r": [
+       41,
+       7,
+       31,
+       37
+      ]
+     },
+     "",
+     ""
+    ],
+    [
+     "Nasycení čtyř tisíc",
+     {
+      "t": "15,32–39",
+      "r": [
+       40,
+       15,
+       32,
+       39
+      ]
+     },
+     {
+      "t": "8,1–9",
+      "r": [
+       41,
+       8,
+       1,
+       9
+      ]
+     },
+     "",
+     ""
+    ],
+    [
+     "Slepý v Betsaidě",
+     "",
+     {
+      "t": "8,22–26",
+      "r": [
+       41,
+       8,
+       22,
+       26
+      ]
+     },
+     "",
+     ""
+    ],
+    [
+     "Posedlý chlapec",
+     {
+      "t": "17,14–20",
+      "r": [
+       40,
+       17,
+       14,
+       20
+      ]
+     },
+     {
+      "t": "9,14–29",
+      "r": [
+       41,
+       9,
+       14,
+       29
+      ]
+     },
+     {
+      "t": "9,37–43",
+      "r": [
+       42,
+       9,
+       37,
+       43
+      ]
+     },
+     ""
+    ],
+    [
+     "Nemocný u rybníka Bethesda",
+     "",
+     "",
+     "",
+     {
+      "t": "5,1–9",
+      "r": [
+       43,
+       5,
+       1,
+       9
+      ]
+     }
+    ],
+    [
+     "Slepý od narození",
+     "",
+     "",
+     "",
+     {
+      "t": "9,1–7",
+      "r": [
+       43,
+       9,
+       1,
+       7
+      ]
+     }
+    ],
+    [
+     "Shrbená žena",
+     "",
+     "",
+     {
+      "t": "13,10–17",
+      "r": [
+       42,
+       13,
+       10,
+       17
+      ]
+     },
+     ""
+    ],
+    [
+     "Deset malomocných",
+     "",
+     "",
+     {
+      "t": "17,11–19",
+      "r": [
+       42,
+       17,
+       11,
+       19
+      ]
+     },
+     ""
+    ],
+    [
+     "Slepý Bartimaios",
+     {
+      "t": "20,29–34",
+      "r": [
+       40,
+       20,
+       29,
+       34
+      ]
+     },
+     {
+      "t": "10,46–52",
+      "r": [
+       41,
+       10,
+       46,
+       52
+      ]
+     },
+     {
+      "t": "18,35–43",
+      "r": [
+       42,
+       18,
+       35,
+       43
+      ]
+     },
+     ""
+    ],
+    [
+     "Vzkříšení Lazara",
+     "",
+     "",
+     "",
+     {
+      "t": "11,1–44",
+      "r": [
+       43,
+       11,
+       1,
+       44
+      ]
+     }
+    ],
+    [
+     "Uzdravení Malchova ucha",
+     "",
+     "",
+     {
+      "t": "22,49–51",
+      "r": [
+       42,
+       22,
+       49,
+       51
+      ]
+     },
+     ""
+    ],
+    [
+     "Rybolov po vzkříšení",
+     "",
+     "",
+     "",
+     {
+      "t": "21,1–11",
+      "r": [
+       43,
+       21,
+       1,
+       11
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "ja-jsem",
+   "title": "Ježíšovy výroky „Já jsem“",
+   "intro": "Sedm obrazů z Janova evangelia, v nichž Ježíš mluví o sobě. Ozývá se v nich Boží jméno „Jsem, který jsem“ (Ex 3,14).",
+   "columns": [
+    "Výrok",
+    "Odkaz",
+    "Souvislost"
+   ],
+   "note": "Ježíš říká i prosté „Já jsem“ bez obrazu (např. J 8,58).",
+   "rows": [
+    [
+     "Já jsem chléb života",
+     {
+      "t": "J 6,35",
+      "r": [
+       43,
+       6,
+       35,
+       35
+      ]
+     },
+     "po nasycení zástupu"
+    ],
+    [
+     "Já jsem světlo světa",
+     {
+      "t": "J 8,12",
+      "r": [
+       43,
+       8,
+       12,
+       12
+      ]
+     },
+     "Svátek stánků, uzdravení slepého (J 9)"
+    ],
+    [
+     "Já jsem dveře",
+     {
+      "t": "J 10,9",
+      "r": [
+       43,
+       10,
+       9,
+       9
+      ]
+     },
+     "řeč o ovčinci"
+    ],
+    [
+     "Já jsem dobrý pastýř",
+     {
+      "t": "J 10,11",
+      "r": [
+       43,
+       10,
+       11,
+       11
+      ]
+     },
+     "dává život za ovce"
+    ],
+    [
+     "Já jsem vzkříšení a život",
+     {
+      "t": "J 11,25",
+      "r": [
+       43,
+       11,
+       25,
+       25
+      ]
+     },
+     "u Lazarova hrobu"
+    ],
+    [
+     "Já jsem cesta, pravda i život",
+     {
+      "t": "J 14,6",
+      "r": [
+       43,
+       14,
+       6,
+       6
+      ]
+     },
+     "rozlučková řeč"
+    ],
+    [
+     "Já jsem pravý vinný kmen",
+     {
+      "t": "J 15,1",
+      "r": [
+       43,
+       15,
+       1,
+       1
+      ]
+     },
+     "zůstávat v Kristu"
+    ]
+   ]
+  },
+  {
+   "id": "apostolove",
+   "title": "Dvanáct apoštolů",
+   "intro": "Seznamy apoštolů v evangeliích a ve Skutcích (Mt 10,2–4; Mk 3,16–19; L 6,14–16; Sk 1,13).",
+   "columns": [
+    "Apoštol",
+    "Kdo byl",
+    "Odkaz"
+   ],
+   "note": "",
+   "rows": [
+    [
+     "Šimon Petr",
+     "rybář, mluvčí učedníků",
+     {
+      "t": "Mt 16,13–19",
+      "r": [
+       40,
+       16,
+       13,
+       19
+      ]
+     }
+    ],
+    [
+     "Ondřej",
+     "Petrův bratr, dříve učedník Jana Křtitele",
+     {
+      "t": "J 1,40–42",
+      "r": [
+       43,
+       1,
+       40,
+       42
+      ]
+     }
+    ],
+    [
+     "Jakub Zebedeův",
+     "rybář, první apoštol mučedník",
+     {
+      "t": "Sk 12,1–2",
+      "r": [
+       44,
+       12,
+       1,
+       2
+      ]
+     }
+    ],
+    [
+     "Jan",
+     "Jakubův bratr, „učedník, kterého Ježíš miloval“",
+     {
+      "t": "J 13,23",
+      "r": [
+       43,
+       13,
+       23,
+       23
+      ]
+     }
+    ],
+    [
+     "Filip",
+     "z Betsaidy",
+     {
+      "t": "J 1,43–46",
+      "r": [
+       43,
+       1,
+       43,
+       46
+      ]
+     }
+    ],
+    [
+     "Bartoloměj",
+     "pravděpodobně totožný s Natanaelem",
+     {
+      "t": "J 1,45–49",
+      "r": [
+       43,
+       1,
+       45,
+       49
+      ]
+     }
+    ],
+    [
+     "Tomáš",
+     "zvaný Didymos (Dvojče)",
+     {
+      "t": "J 20,24–29",
+      "r": [
+       43,
+       20,
+       24,
+       29
+      ]
+     }
+    ],
+    [
+     "Matouš (Levi)",
+     "celník",
+     {
+      "t": "Mt 9,9",
+      "r": [
+       40,
+       9,
+       9,
+       9
+      ]
+     }
+    ],
+    [
+     "Jakub Alfeův",
+     "",
+     {
+      "t": "Mk 3,18",
+      "r": [
+       41,
+       3,
+       18,
+       18
+      ]
+     }
+    ],
+    [
+     "Tadeáš (Juda Jakubův)",
+     "",
+     {
+      "t": "L 6,16",
+      "r": [
+       42,
+       6,
+       16,
+       16
+      ]
+     }
+    ],
+    [
+     "Šimon Horlivec",
+     "dříve zélóta (horlivec)",
+     {
+      "t": "L 6,15",
+      "r": [
+       42,
+       6,
+       15,
+       15
+      ]
+     }
+    ],
+    [
+     "Jidáš Iškariotský",
+     "pokladník, zradil Ježíše; po jeho smrti zvolen Matěj",
+     {
+      "t": "Sk 1,15–26",
+      "r": [
+       44,
+       1,
+       15,
+       26
+      ]
+     }
+    ]
+   ]
+  },
+  {
+   "id": "kmeny",
+   "title": "Dvanáct kmenů Izraele",
+   "intro": "Jákobovi synové, jejich matky a význam jmen (Gn 29–30; 35).",
+   "columns": [
+    "Syn",
+    "Matka",
+    "Význam jména",
+    "Poznámka"
+   ],
+   "note": "",
+   "rows": [
+    [
+     "Rúben",
+     "Lea",
+     "„hle, syn“",
+     "prvorozený"
+    ],
+    [
+     "Šimeón",
+     "Lea",
+     "„slyšel“",
+     ""
+    ],
+    [
+     "Lévi",
+     "Lea",
+     "„přilne“",
+     "kněžský kmen bez vlastního území"
+    ],
+    [
+     "Juda",
+     "Lea",
+     "„chválit“",
+     "z něj král David i Ježíš"
+    ],
+    [
+     "Dan",
+     "Bilha (Ráchelina otrokyně)",
+     "„soudil“",
+     ""
+    ],
+    [
+     "Neftalí",
+     "Bilha",
+     "„zápasila jsem“",
+     ""
+    ],
+    [
+     "Gád",
+     "Zilpa (Leina otrokyně)",
+     "„štěstí“",
+     ""
+    ],
+    [
+     "Ašer",
+     "Zilpa",
+     "„blaženost“",
+     ""
+    ],
+    [
+     "Isachar",
+     "Lea",
+     "„odplata“",
+     ""
+    ],
+    [
+     "Zabulón",
+     "Lea",
+     "„příbytek, čest“",
+     ""
+    ],
+    [
+     "Josef",
+     "Ráchel",
+     "„přidá“",
+     "jeho podíl dostali synové Efrajim a Manases"
+    ],
+    [
+     "Benjamín",
+     "Ráchel",
+     "„syn pravice“",
+     "Ráchel zemřela při porodu"
+    ]
+   ]
+  },
+  {
+   "id": "pavlovy-listy",
+   "title": "Pavlovy listy",
+   "intro": "Komu, odkud a kdy Pavel psal (přibližně; u některých listů se badatelé liší).",
+   "columns": [
+    "List",
+    "Adresáti",
+    "Odkud",
+    "Kdy (po Kr.)",
+    "Téma"
+   ],
+   "note": "",
+   "rows": [
+    [
+     {
+      "t": "Galatským",
+      "r": [
+       48,
+       1,
+       0,
+       0
+      ]
+     },
+     "sbory v Galacii",
+     "nejisté",
+     "49–55",
+     "svoboda v Kristu"
+    ],
+    [
+     {
+      "t": "1. Tesalonickým",
+      "r": [
+       52,
+       1,
+       0,
+       0
+      ]
+     },
+     "Tesalonika",
+     "Korint",
+     "50–51",
+     "naděje Kristova příchodu"
+    ],
+    [
+     {
+      "t": "2. Tesalonickým",
+      "r": [
+       53,
+       1,
+       0,
+       0
+      ]
+     },
+     "Tesalonika",
+     "Korint",
+     "51",
+     "vytrvalost"
+    ],
+    [
+     {
+      "t": "1. Korintským",
+      "r": [
+       46,
+       1,
+       0,
+       0
+      ]
+     },
+     "Korint",
+     "Efez",
+     "54",
+     "jednota a láska"
+    ],
+    [
+     {
+      "t": "2. Korintským",
+      "r": [
+       47,
+       1,
+       0,
+       0
+      ]
+     },
+     "Korint",
+     "Makedonie",
+     "55–56",
+     "síla ve slabosti"
+    ],
+    [
+     {
+      "t": "Římanům",
+      "r": [
+       45,
+       1,
+       0,
+       0
+      ]
+     },
+     "Řím",
+     "Korint",
+     "57",
+     "ospravedlnění z víry"
+    ],
+    [
+     {
+      "t": "Efezským",
+      "r": [
+       49,
+       1,
+       0,
+       0
+      ]
+     },
+     "Efez a okolí",
+     "vězení",
+     "60–62",
+     "církev – Kristovo tělo"
+    ],
+    [
+     {
+      "t": "Filipským",
+      "r": [
+       50,
+       1,
+       0,
+       0
+      ]
+     },
+     "Filipy",
+     "vězení",
+     "60–62",
+     "radost v Kristu"
+    ],
+    [
+     {
+      "t": "Koloským",
+      "r": [
+       51,
+       1,
+       0,
+       0
+      ]
+     },
+     "Kolosy",
+     "vězení",
+     "60–62",
+     "Kristus nade vším"
+    ],
+    [
+     {
+      "t": "Filemonovi",
+      "r": [
+       57,
+       1,
+       0,
+       0
+      ]
+     },
+     "Filemon",
+     "vězení",
+     "60–62",
+     "odpuštění a bratrství"
+    ],
+    [
+     {
+      "t": "1. Timoteovi",
+      "r": [
+       54,
+       1,
+       0,
+       0
+      ]
+     },
+     "Timoteus v Efezu",
+     "Makedonie (?)",
+     "62–64",
+     "vedení sboru"
+    ],
+    [
+     {
+      "t": "Titovi",
+      "r": [
+       56,
+       1,
+       0,
+       0
+      ]
+     },
+     "Titus na Krétě",
+     "nejisté",
+     "63–65",
+     "zdravé učení a dobré skutky"
+    ],
+    [
+     {
+      "t": "2. Timoteovi",
+      "r": [
+       55,
+       1,
+       0,
+       0
+      ]
+     },
+     "Timoteus",
+     "vězení v Římě",
+     "66–67",
+     "věrnost do konce"
+    ]
+   ]
+  }
+ ]
+}

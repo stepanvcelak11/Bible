@@ -168,11 +168,13 @@ class PersonScreen extends ConsumerWidget {
                   children: [
                     Icon(icon, color: c, size: 20),
                     const SizedBox(width: 8),
-                    Text(
-                      title,
-                      style: theme.textTheme.titleSmall?.copyWith(
-                        color: c,
-                        fontWeight: FontWeight.w700,
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          color: c,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
                   ],

@@ -10,7 +10,7 @@ import '../../core/widgets/readable_width.dart';
 import '../../domain/entities/bible_entities.dart';
 import '../../domain/services/versification.dart';
 import '../journal/presentation/journal_screen.dart';
-import '../maps/presentation/maps_screen.dart';
+import '../study/presentation/study_hub_screen.dart';
 import '../reader/application/reader_state.dart';
 import '../reader/application/reading_position_controller.dart';
 import '../reader/presentation/reader_screen.dart';
@@ -18,7 +18,7 @@ import '../search/presentation/search_screen.dart';
 import '../today/presentation/today_screen.dart';
 import '../translations/application/translation_controller.dart';
 
-enum AppTab { today, bible, search, maps, journal }
+enum AppTab { today, bible, study, search, journal }
 
 class ShellTabController extends Notifier<AppTab> {
   @override
@@ -65,8 +65,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   Widget _page(AppTab tab) => switch (tab) {
     AppTab.today => const ReadableWidth(child: TodayScreen()),
     AppTab.bible => const ReaderScreen(),
+    AppTab.study => const StudyHubScreen(),
     AppTab.search => const ReadableWidth(child: SearchScreen()),
-    AppTab.maps => const MapsScreen(),
     AppTab.journal => const ReadableWidth(child: JournalScreen()),
   };
 
@@ -148,8 +148,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 const _navItems = [
   (AppTab.today, Icons.wb_sunny_outlined, Icons.wb_sunny, S.tabToday),
   (AppTab.bible, Icons.menu_book_outlined, Icons.menu_book, S.tabBible),
+  (AppTab.study, Icons.school_outlined, Icons.school, S.tabStudy),
   (AppTab.search, Icons.search, Icons.search, S.tabSearch),
-  (AppTab.maps, Icons.map_outlined, Icons.map, S.tabMaps),
   (AppTab.journal, Icons.bookmarks_outlined, Icons.bookmarks, S.tabJournal),
 ];
 
@@ -302,6 +302,9 @@ class _NavItem extends StatelessWidget {
             const SizedBox(height: 2),
             Text(
               label,
+              maxLines: 1,
+              softWrap: false,
+              overflow: TextOverflow.fade,
               style: theme.textTheme.labelSmall?.copyWith(
                 color: color,
                 fontWeight: selected ? FontWeight.w700 : FontWeight.w500,

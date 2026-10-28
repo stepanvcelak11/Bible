@@ -145,6 +145,7 @@ abstract final class S {
   static const tabBible = 'Bible';
   static const tabSearch = 'Hledat';
   static const tabMaps = 'Mapy';
+  static const tabStudy = 'Studium';
   static const tabJournal = 'Deník';
 
   // Čtečka – rozšíření
@@ -223,6 +224,50 @@ abstract final class S {
   static const exploreTranslations = 'Překlady';
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
   static const situations = 'Verše do situací';
+  static const studyTeaserTitle = 'Studium';
+  static const studyTeaserHint =
+      'Medailony postav, aplikační poznámky, tabulky, harmonie evangelií, '
+      'časová osa a mapy – vše najdete v záložce Studium dole.';
+  static const studyHubIntro =
+      'Všechny studijní materiály na jednom místě. Hledat můžete postavy, '
+      'situace, knihy, tabulky i poznámky.';
+  static const studySearchHint = 'Hledat: David, strach, svátky, Marek…';
+  static const studyForLife = 'Pro život';
+  static const readerTabs = 'Čtecí karty';
+  static const readerTabsHint =
+      'Otevřete si víc míst v Bibli najednou – třeba Jana a Matouše – '
+      'a přepínejte mezi nimi jedním klepnutím v liště nahoře. Každá '
+      'karta si pamatuje, kde jste skončili.';
+  static const newTab = 'Nová karta';
+  static const closeTab = 'Zavřít kartu';
+  static const fromStudy = 'Ve studijních materiálech';
+  static const studyPeopleStories = 'Lidé a příběhy';
+  static const studyBooks = 'Knihy Bible';
+  static const studyMore = 'Mapy, původní text a čtení';
+  static const studyNoResults = 'Nic nenalezeno. Zkuste jiné slovo.';
+  static const situationsCardHint =
+      'Co právě prožíváte? Vyberte situaci a přečtěte si verše, které k ní '
+      'mluví.';
+  static String allSituationsCount(int n) => 'Všech $n situací';
+  static String peopleCount(int n) => '$n medailonů – silné i slabé stránky';
+  static String notesCount(int n) => '$n poznámek: výklad a použití v životě';
+  static String tablesCount(int n) => '$n přehledů: králové, svátky, zázraky…';
+  static const introsHint = 'Přehled, údaje, osnova, témata, pozadí';
+  static const profile = 'Medailon';
+  static const applicationNotes = 'Aplikační poznámky';
+  static const applicationNote = 'Aplikační poznámka';
+  static const applicationNotesHint = 'Výklad a použití v životě';
+  static const applicationNotesIntro =
+      'Poznámky ke známým oddílům. Každá má tři části: výklad textu, '
+      'spojovací most k dnešku a konkrétní aplikaci.';
+  static const noteExplanation = 'Výklad';
+  static const noteExplanationHint = 'co text znamená ve svých souvislostech';
+  static const noteBridge = 'Spojovací most';
+  static const noteBridgeHint = 'obecná pravda platná i dnes';
+  static const noteApplication = 'Aplikace';
+  static const noteApplicationHint = 'jak ji uplatnit ve vlastním životě';
+  static const tables = 'Tabulky a přehledy';
+  static const tablesHint = 'Králové, svátky, podobenství, zázraky…';
   static const harmony = 'Harmonie evangelií';
   static const harmonyHint = 'Ježíšův život v pořadí';
   static const harmonyIntro =

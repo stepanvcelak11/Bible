@@ -17,7 +17,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import harmony, intros_nt, intros_ot, people, situations  # noqa: E402,E501
+from content import (harmony, intros_nt, intros_ot, notes, people,  # noqa: E402
+                     situations, tables)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -64,6 +65,36 @@ def build_people() -> dict:
 GOSPELS = ["Mt", "Mk", "L", "J"]
 
 
+def build_tables() -> dict:
+    def cell(header: str, c: str):
+        if "@" not in c:
+            return c
+        if not c.startswith("@"):  # „Jonáš@Jon 1“
+            text_, r = c.split("@")
+            return {"t": text_, "r": ref(r)}
+        label = c[1:].replace("-", "–")
+        book = label.split(" ")[0]
+        if header == book:  # sloupec „Mt“ → jen „13,3–9“
+            label = label[len(book) + 1:]
+        return {"t": label, "r": ref(c[1:])}
+
+    return {"tables": [
+        {**{k: v for k, v in t.items() if k != "rows"},
+         "rows": [[cell(t["columns"][i], c) for i, c in enumerate(row)]
+                  for row in t["rows"]]}
+        for t in tables.T
+    ]}
+
+
+def build_notes() -> dict:
+    return {"notes": [
+        {"id": f"n{i + 1}", "ref": ref(n["ref"]), "title": n["title"],
+         "explanation": n["explanation"], "bridge": n["bridge"],
+         "application": n["application"]}
+        for i, n in enumerate(notes.N)
+    ]}
+
+
 def build_harmony() -> dict:
     return {"periods": [
         {"name": name, "events": [
@@ -104,7 +135,9 @@ def main() -> None:
     data = {"situations.json": build_situations(),
             "book_intros.json": build_intros(out),
             "people.json": build_people(),
-            "harmony.json": build_harmony()}
+            "harmony.json": build_harmony(),
+            "notes.json": build_notes(),
+            "tables.json": build_tables()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -136,6 +169,23 @@ def main() -> None:
                                         r[3], r[3])
                             print(f"     {ABBR[r[0]-1]} {r[1]},{r[2]}: "
                                   f"{first[:55]} … {last[-45:]}")
+        if what == "notes":
+            for n in data["notes.json"]["notes"]:
+                r = n["ref"]
+                print(f"{ABBR[r[0]-1]} {r[1]},{r[2]}-{r[3]} {n['title']}: "
+                      f"{text(r[0], r[1], r[2], r[2])[:60]} … "
+                      f"{text(r[0], r[1], r[3], r[3])[-50:]}")
+        if what == "tables":
+            for t in data["tables.json"]["tables"]:
+                print(f"\n## {t['title']}")
+                for row in t["rows"]:
+                    for c in row:
+                        if isinstance(c, dict):
+                            r = c["r"]
+                            v = r[2] or 1
+                            print(f"   {row[0] if isinstance(row[0], str) else ''}"
+                                  f" | {ABBR[r[0]-1]} {r[1]},{r[2]}: "
+                                  f"{text(r[0], r[1], v, v)[:70]}")
         if what == "people":
             for p in data["people.json"]["people"]:
                 r = p["key"]

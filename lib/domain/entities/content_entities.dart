@@ -169,3 +169,77 @@ class HarmonyPeriod {
   final String name;
   final List<HarmonyEvent> events;
 }
+
+/// Aplikační poznámka: výklad, spojovací most a aplikace.
+class AppNote {
+  const AppNote({
+    required this.id,
+    required this.passage,
+    required this.title,
+    required this.explanation,
+    required this.bridge,
+    required this.application,
+  });
+
+  factory AppNote.fromJson(Map<String, Object?> j) => AppNote(
+    id: j['id']! as String,
+    passage: Passage.fromJson(j['ref']),
+    title: j['title']! as String,
+    explanation: j['explanation']! as String,
+    bridge: j['bridge']! as String,
+    application: j['application']! as String,
+  );
+
+  final String id;
+  final Passage passage;
+  final String title;
+  final String explanation;
+  final String bridge;
+  final String application;
+}
+
+/// Buňka tabulky: text, případně s biblickým odkazem.
+class TableCellData {
+  const TableCellData(this.text, [this.passage]);
+
+  factory TableCellData.fromJson(Object? j) => j is String
+      ? TableCellData(j)
+      : TableCellData(
+          (j! as Map<String, Object?>)['t']! as String,
+          Passage.fromJson((j as Map<String, Object?>)['r']),
+        );
+
+  final String text;
+  final Passage? passage;
+}
+
+/// Tabulka / přehled.
+class ContentTable {
+  const ContentTable({
+    required this.id,
+    required this.title,
+    required this.intro,
+    required this.columns,
+    required this.rows,
+    required this.note,
+  });
+
+  factory ContentTable.fromJson(Map<String, Object?> j) => ContentTable(
+    id: j['id']! as String,
+    title: j['title']! as String,
+    intro: j['intro']! as String,
+    columns: (j['columns']! as List<Object?>).cast<String>(),
+    rows: [
+      for (final r in j['rows']! as List<Object?>)
+        [for (final c in r! as List<Object?>) TableCellData.fromJson(c)],
+    ],
+    note: j['note'] as String? ?? '',
+  );
+
+  final String id;
+  final String title;
+  final String intro;
+  final List<String> columns;
+  final List<List<TableCellData>> rows;
+  final String note;
+}

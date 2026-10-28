@@ -11,17 +11,11 @@ import '../../../domain/services/citation.dart';
 import '../../reader/application/reading_position_controller.dart';
 import '../../settings/presentation/settings_screen.dart';
 import '../../shell/home_shell.dart';
-import '../../study/presentation/book_intros_screen.dart';
-import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
-import '../../translations/presentation/library_screen.dart';
 import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
-import '../../content/presentation/harmony_screen.dart';
-import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/situations_screen.dart';
 import 'plans_sheet.dart';
-import 'timeline_screen.dart';
 
 const _months = [
   'ledna', 'února', 'března', 'dubna', 'května', 'června', //
@@ -102,9 +96,7 @@ class TodayScreen extends ConsumerWidget {
         const SizedBox(height: 16),
         const _PlanCard(),
         const SizedBox(height: 24),
-        Text(S.explore, style: theme.textTheme.titleLarge),
-        const SizedBox(height: 12),
-        const _ExploreGrid(),
+        const _StudyTeaser(),
         const SizedBox(height: 24),
         const _RecentList(),
       ],
@@ -538,132 +530,72 @@ class _PlanCard extends ConsumerWidget {
   }
 }
 
-class _ExploreGrid extends ConsumerWidget {
-  const _ExploreGrid();
+/// Odkaz do záložky Studium s ukázkou obsahu.
+class _StudyTeaser extends ConsumerWidget {
+  const _StudyTeaser();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    void push(Widget page) =>
-        Navigator.of(context)
-            .push(MaterialPageRoute<void>(builder: (_) => page));
-    final tiles = [
-      (
-        Icons.favorite_border,
-        const Color(0xFFB0603A),
-        S.situations,
-        S.situationsHint,
-        () => push(const SituationsScreen()),
-      ),
-      (
-        Icons.diversity_3_outlined,
-        const Color(0xFF8C4A6B),
-        S.people,
-        S.peopleHint,
-        () => push(const PeopleScreen()),
-      ),
-      (
-        Icons.view_week_outlined,
-        const Color(0xFF2E8B57),
-        S.harmony,
-        S.harmonyHint,
-        () => push(const HarmonyScreen()),
-      ),
-      (
-        Icons.view_timeline_outlined,
-        const Color(0xFFB0603A),
-        S.timeline,
-        S.timelineHint,
-        () => push(const TimelineScreen()),
-      ),
-      (
-        Icons.auto_stories_outlined,
-        const Color(0xFFB0813B),
-        S.exploreIntros,
-        S.exploreIntrosHint,
-        () => push(const BookIntrosScreen()),
-      ),
-      (
-        Icons.map_outlined,
-        const Color(0xFF3F7CAC),
-        S.exploreMaps,
-        S.exploreMapsHint,
-        () => ref.read(shellTabProvider.notifier).select(AppTab.maps),
-      ),
-      (
-        Icons.history_edu,
-        const Color(0xFF8C6BA8),
-        S.exploreStudy,
-        S.exploreStudyHint,
-        () => push(const StudyPackScreen()),
-      ),
-      (
-        Icons.translate,
-        const Color(0xFF4E9A8A),
-        S.exploreTranslations,
-        S.exploreTranslationsHint,
-        () => push(const LibraryScreen()),
-      ),
-      (
-        Icons.event_note_outlined,
-        const Color(0xFF5B7A3A),
-        S.readingPlans,
-        S.readingPlansHint,
-        () => showPlansSheet(context),
-      ),
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    void open() => ref.read(shellTabProvider.notifier).select(AppTab.study);
+    const items = [
+      (Icons.diversity_3_outlined, S.people),
+      (Icons.sticky_note_2_outlined, S.applicationNotes),
+      (Icons.table_chart_outlined, S.tables),
+      (Icons.view_week_outlined, S.harmony),
+      (Icons.view_timeline_outlined, S.timeline),
+      (Icons.map_outlined, S.exploreMaps),
     ];
-    return GridView(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        mainAxisExtent: 128,
-      ),
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        for (final (icon, color, title, hint, onTap) in tiles)
-          Card(
-            child: InkWell(
-              borderRadius: BorderRadius.circular(20),
-              onTap: onTap,
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: color.withValues(alpha: 0.14),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(icon, color: color, size: 22),
+    return Card(
+      child: InkWell(
+        onTap: open,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 16, 14, 14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.school_outlined, color: palette.gold),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      S.studyTeaserTitle,
+                      style: theme.textTheme.titleLarge,
                     ),
-                    const Spacer(),
-                    Text(
-                      title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    Text(
-                      hint,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelSmall
-                          ?.copyWith(color: AppPalette.of(context).muted),
-                    ),
-                  ],
+                  ),
+                  const Icon(Icons.chevron_right),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                S.studyTeaserHint,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: palette.muted,
                 ),
               ),
-            ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final (icon, label) in items)
+                    Chip(
+                      avatar: Icon(icon, size: 16, color: palette.gold),
+                      label: Text(label),
+                      visualDensity: VisualDensity.compact,
+                    ),
+                ],
+              ),
+            ],
           ),
-      ],
+        ),
+      ),
     );
   }
 }
 
-/// „Verše pro tuto chvíli“ – rychlý vstup do veršů k situacím.
 class _SituationsStrip extends ConsumerWidget {
   const _SituationsStrip();
 

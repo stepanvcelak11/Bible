@@ -4,9 +4,11 @@ import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
+import 'package:bible_reader/features/reader/application/reader_tabs_controller.dart';
 import 'package:bible_reader/features/reader/application/reading_position_controller.dart';
 import 'package:bible_reader/features/reader/presentation/verse_image_sheet.dart';
 import 'package:bible_reader/features/settings/application/reader_settings_controller.dart';
+import 'package:bible_reader/features/study/presentation/study_hub_screen.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -164,6 +166,56 @@ void main() {
     expect(find.byType(Card), findsWidgets);
   });
 
+  appTest('Studium: rozcestník a hledání v materiálech', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    expect(find.text('Verše do situací'), findsWidgets);
+    for (final t in [
+      'Biblické postavy',
+      'Aplikační poznámky',
+      'Tabulky a přehledy',
+    ]) {
+      await scrollStudyTo(tester, t);
+      expect(find.text(t), findsOneWidget);
+    }
+    await tester.drag(
+      find
+          .descendant(
+            of: find.byType(StudyHubScreen),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+      const Offset(0, 3000),
+    );
+    await settle(tester);
+    await tester.enterText(find.byType(TextField).first, 'david');
+    await settle(tester);
+    expect(find.text('David'), findsOneWidget);
+    await tester.tap(find.text('David'));
+    await settle(tester);
+    expect(find.text('Silné stránky a úspěchy'), findsOneWidget);
+  });
+
+  appTest('čtecí karty: nová karta a přepnutí zpět', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    await tester.tap(find.byTooltip('Čtecí karty'));
+    await settle(tester);
+    await tester.tap(find.text('Nová karta'));
+    await settle(tester);
+    // Ve výběru knihy zvolit Genesis 1.
+    await tester.enterText(find.byType(TextField).first, 'Gn 1');
+    await settle(tester);
+    await tester.tap(find.textContaining('Přejít na'));
+    await settle(tester);
+    expect(find.text('Genesis 1'), findsWidgets);
+    expect(container.read(readerTabsProvider).tabs, hasLength(2));
+    // Lišta karet: návrat na Jana 3.
+    await tester.tap(find.text('J 3'));
+    await settle(tester);
+    expect(container.read(readingPositionProvider).bookId, 43);
+  });
+
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {
     await pumpApp(tester);
     expect(find.text('Genesis 1'), findsOneWidget);
@@ -235,9 +287,11 @@ void main() {
     await pumpApp(tester, openBible: false);
     // Načtení mapových dat z assets je skutečné I/O.
     await tester.runAsync(() => container.read(mapDataProvider.future));
-    await tester.tap(find.text('Mapy'));
+    await tester.tap(find.text('Studium'));
     await settle(tester);
-    expect(find.text('Biblické mapy'), findsOneWidget);
+    await scrollStudyTo(tester, 'Biblické mapy');
+    await tester.tap(find.text('Biblické mapy'));
+    await settle(tester);
     expect(find.text('Abrahamova cesta'), findsOneWidget);
     await tester.ensureVisible(find.text('Abrahamova cesta'));
     await tester.pumpAndSettle();
@@ -245,11 +299,26 @@ void main() {
     await settle(tester);
     expect(find.textContaining('Z Uru Kaldejských'), findsOneWidget);
 
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
     await tester.tap(find.text('Deník'));
     await settle(tester);
     expect(find.text('Záložky'), findsOneWidget);
   });
 }
+
+/// Posune záložku Studium, až je text vidět.
+Future<void> scrollStudyTo(WidgetTester tester, String text) =>
+    tester.scrollUntilVisible(
+      find.text(text),
+      300,
+      scrollable: find
+          .descendant(
+            of: find.byType(StudyHubScreen),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+    );
 
 /// testWidgets, který na konci nechá doběhnout časovače aplikace.
 void appTest(String name, Future<void> Function(WidgetTester) body) {

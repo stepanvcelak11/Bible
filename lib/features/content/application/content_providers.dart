@@ -79,3 +79,22 @@ final harmonyProvider = FutureProvider<List<HarmonyPeriod>>((ref) async {
       ]),
   ];
 });
+
+/// Aplikační poznámky.
+final notesProvider = FutureProvider<List<AppNote>>((ref) async {
+  final j = await _loadJson('notes.json');
+  return [
+    for (final n in (j['notes']! as List<Object?>).cast<Map<String, Object?>>())
+      AppNote.fromJson(n),
+  ];
+});
+
+/// Tabulky a přehledy.
+final tablesProvider = FutureProvider<List<ContentTable>>((ref) async {
+  final j = await _loadJson('tables.json');
+  return [
+    for (final t
+        in (j['tables']! as List<Object?>).cast<Map<String, Object?>>())
+      ContentTable.fromJson(t),
+  ];
+});

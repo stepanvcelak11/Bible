@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../application/read_aloud_controller.dart';
+import '../application/reader_tabs_controller.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,6 +28,16 @@ import 'verse_action_panel.dart';
 
 /// Výška horní lišty čtečky (bez bezpečné oblasti).
 const readerBarHeight = 56.0;
+
+/// Výška lišty čtecích karet (zobrazí se při více otevřených kartách).
+const readerTabsHeight = 44.0;
+
+/// Celková výška horní lišty čtečky.
+double readerTopBarHeight(WidgetRef ref) =>
+    readerBarHeight +
+    (ref.watch(readerTabsProvider.select((s) => s.hasMany))
+        ? readerTabsHeight
+        : 0);
 
 /// Hlavní obrazovka – čtečka.
 ///
@@ -103,133 +114,248 @@ class _TopBar extends ConsumerWidget {
     final scheme = Theme.of(context).colorScheme;
     final topInset = MediaQuery.paddingOf(context).top;
 
+    final tabs = ref.watch(readerTabsProvider);
+
     return Material(
       color: scheme.surface.withValues(alpha: 0.97),
       child: Padding(
         padding: EdgeInsets.only(top: topInset),
-        child: SizedBox(
-          height: readerBarHeight,
-          child: Row(
-            children: [
-              const SizedBox(width: 4),
-              // Název knihy a kapitoly → výběr knihy.
-              Expanded(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: TextButton(
-                    onPressed: () => openBookPicker(context),
-                    style: TextButton.styleFrom(
-                      foregroundColor: scheme.onSurface,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            S.chapterTitle(book.name, position.chapter),
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.titleLarge,
-                          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: readerBarHeight,
+              child: Row(
+                children: [
+                  const SizedBox(width: 4),
+                  // Název knihy a kapitoly → výběr knihy.
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(
+                        onPressed: () => openBookPicker(context),
+                        style: TextButton.styleFrom(
+                          foregroundColor: scheme.onSurface,
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                         ),
-                        const Icon(Icons.expand_more, size: 22),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              // Na tabletu i šipky na kapitoly (na telefonu stačí přejetí).
-              if (isWide(context)) ...[
-                IconButton(
-                  tooltip: S.previousChapter,
-                  icon: const Icon(Icons.chevron_left),
-                  onPressed: () => ref
-                      .read(readingPositionProvider.notifier)
-                      .previousChapter(),
-                ),
-                IconButton(
-                  tooltip: S.nextChapter,
-                  icon: const Icon(Icons.chevron_right),
-                  onPressed: () =>
-                      ref.read(readingPositionProvider.notifier).nextChapter(),
-                ),
-                const SizedBox(width: 8),
-              ],
-              IconButton(
-                tooltip: S.search,
-                icon: const Icon(Icons.search),
-                onPressed: () =>
-                    ref.read(shellTabProvider.notifier).select(AppTab.search),
-              ),
-              Tooltip(
-                message: S.selectTranslation,
-                child: TextButton(
-                  onPressed: () => showTranslationSelector(context),
-                  style: TextButton.styleFrom(
-                    foregroundColor: scheme.primary,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    minimumSize: const Size(48, 40),
-                  ),
-                  child: Text(
-                    secondary == null
-                        ? primary.abbreviation
-                        : '${primary.abbreviation} · ${secondary.abbreviation}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.4,
-                    ),
-                  ),
-                ),
-              ),
-              PopupMenuButton<_MenuItem>(
-                tooltip: S.menu,
-                icon: const Icon(Icons.more_vert),
-                onSelected: (item) => switch (item) {
-                  _MenuItem.readAloud => _startReadAloud(context, ref),
-                  _MenuItem.intro => showBookIntro(context, position.bookId),
-                  _MenuItem.map => openChapterMap(
-                    context,
-                    position.bookId,
-                    position.chapter,
-                  ),
-                  _MenuItem.translations => _push(
-                    context,
-                    const LibraryScreen(),
-                  ),
-                  _MenuItem.settings => _push(context, const SettingsScreen()),
-                },
-                itemBuilder: (_) => [
-                  for (final (item, icon, label) in const [
-                    (
-                      _MenuItem.readAloud,
-                      Icons.record_voice_over_outlined,
-                      S.readAloud,
-                    ),
-                    (_MenuItem.intro, Icons.auto_stories_outlined, S.bookIntro),
-                    (_MenuItem.map, Icons.map_outlined, S.chapterPlaces),
-                    (_MenuItem.translations, Icons.translate, S.library),
-                    (_MenuItem.settings, Icons.tune, S.settings),
-                  ])
-                    PopupMenuItem(
-                      value: item,
-                      child: ListTile(
-                        leading: Icon(icon),
-                        title: Text(label),
-                        contentPadding: EdgeInsets.zero,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                S.chapterTitle(book.name, position.chapter),
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                            ),
+                            const Icon(Icons.expand_more, size: 22),
+                          ],
+                        ),
                       ),
                     ),
+                  ),
+                  // Na tabletu i šipky na kapitoly (na telefonu stačí přejetí).
+                  if (isWide(context)) ...[
+                    IconButton(
+                      tooltip: S.previousChapter,
+                      icon: const Icon(Icons.chevron_left),
+                      onPressed: () => ref
+                          .read(readingPositionProvider.notifier)
+                          .previousChapter(),
+                    ),
+                    IconButton(
+                      tooltip: S.nextChapter,
+                      icon: const Icon(Icons.chevron_right),
+                      onPressed: () => ref
+                          .read(readingPositionProvider.notifier)
+                          .nextChapter(),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  IconButton(
+                    tooltip: S.readerTabs,
+                    icon: Badge(
+                      isLabelVisible: tabs.hasMany,
+                      label: Text('${tabs.tabs.length}'),
+                      child: const Icon(Icons.tab_outlined),
+                    ),
+                    onPressed: () => tabs.hasMany
+                        ? newReaderTab(context, ref)
+                        : _showTabsHint(context, ref),
+                  ),
+                  IconButton(
+                    tooltip: S.search,
+                    icon: const Icon(Icons.search),
+                    onPressed: () => ref
+                        .read(shellTabProvider.notifier)
+                        .select(AppTab.search),
+                  ),
+                  Tooltip(
+                    message: S.selectTranslation,
+                    child: TextButton(
+                      onPressed: () => showTranslationSelector(context),
+                      style: TextButton.styleFrom(
+                        foregroundColor: scheme.primary,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        minimumSize: const Size(48, 40),
+                      ),
+                      child: Text(
+                        secondary == null
+                            ? primary.abbreviation
+                            : '${primary.abbreviation} · ${secondary.abbreviation}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.4,
+                        ),
+                      ),
+                    ),
+                  ),
+                  PopupMenuButton<_MenuItem>(
+                    tooltip: S.menu,
+                    icon: const Icon(Icons.more_vert),
+                    onSelected: (item) => switch (item) {
+                      _MenuItem.readAloud => _startReadAloud(context, ref),
+                      _MenuItem.intro => showBookIntro(
+                        context,
+                        position.bookId,
+                      ),
+                      _MenuItem.map => openChapterMap(
+                        context,
+                        position.bookId,
+                        position.chapter,
+                      ),
+                      _MenuItem.translations => _push(
+                        context,
+                        const LibraryScreen(),
+                      ),
+                      _MenuItem.settings => _push(
+                        context,
+                        const SettingsScreen(),
+                      ),
+                    },
+                    itemBuilder: (_) => [
+                      for (final (item, icon, label) in const [
+                        (
+                          _MenuItem.readAloud,
+                          Icons.record_voice_over_outlined,
+                          S.readAloud,
+                        ),
+                        (
+                          _MenuItem.intro,
+                          Icons.auto_stories_outlined,
+                          S.bookIntro,
+                        ),
+                        (_MenuItem.map, Icons.map_outlined, S.chapterPlaces),
+                        (_MenuItem.translations, Icons.translate, S.library),
+                        (_MenuItem.settings, Icons.tune, S.settings),
+                      ])
+                        PopupMenuItem(
+                          value: item,
+                          child: ListTile(
+                            leading: Icon(icon),
+                            title: Text(label),
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        ),
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
+            ),
+            if (tabs.hasMany) const _TabStrip(),
+          ],
         ),
       ),
     );
   }
 }
 
+/// Lišta čtecích karet – rychlé přepínání mezi otevřenými místy.
+class _TabStrip extends ConsumerWidget {
+  const _TabStrip();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(readerTabsProvider);
+    final books = ref.watch(booksProvider);
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final ctl = ref.read(readerTabsProvider.notifier);
+    return SizedBox(
+      height: readerTabsHeight,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.fromLTRB(10, 2, 10, 6),
+        children: [
+          for (final (i, t) in state.tabs.indexed)
+            Padding(
+              padding: const EdgeInsets.only(right: 6),
+              child: InputChip(
+                selected: i == state.active,
+                showCheckmark: false,
+                selectedColor: palette.gold.withValues(alpha: 0.22),
+                visualDensity: VisualDensity.compact,
+                label: Text(
+                  '${books[t.bookId - 1].abbreviation} ${t.chapter}',
+                  style: theme.textTheme.labelLarge?.copyWith(
+                    fontWeight: i == state.active
+                        ? FontWeight.w700
+                        : FontWeight.w500,
+                  ),
+                ),
+                onPressed: () => ctl.select(i),
+                onDeleted: () => ctl.close(i),
+                deleteButtonTooltipMessage: S.closeTab,
+              ),
+            ),
+          ActionChip(
+            visualDensity: VisualDensity.compact,
+            avatar: const Icon(Icons.add, size: 18),
+            label: const Text(S.newTab),
+            onPressed: () => newReaderTab(context, ref),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Otevře novou kartu a hned výběr knihy pro ni.
+void newReaderTab(BuildContext context, WidgetRef ref) {
+  ref.read(readerTabsProvider.notifier).open(ref.read(readingPositionProvider));
+  openBookPicker(context);
+}
+
 Future<void> _push(BuildContext context, Widget page) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
+
+/// První klepnutí na karty: krátké vysvětlení a nová karta.
+void _showTabsHint(BuildContext context, WidgetRef ref) {
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (sheet) => Padding(
+      padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(S.readerTabs, style: Theme.of(sheet).textTheme.titleLarge),
+          const SizedBox(height: 8),
+          const Text(S.readerTabsHint),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () {
+              Navigator.of(sheet).pop();
+              newReaderTab(context, ref);
+            },
+            icon: const Icon(Icons.add),
+            label: const Text(S.newTab),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 
 enum _MenuItem { readAloud, intro, map, translations, settings }
 

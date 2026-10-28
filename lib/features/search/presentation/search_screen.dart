@@ -12,6 +12,7 @@ import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
+import '../../study/presentation/study_hub_screen.dart';
 import '../application/reference_parser.dart';
 
 const _pageSize = 100;
@@ -281,6 +282,17 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             )
           else ...[
+            // Postavy, situace, tabulky… se stejným slovem.
+            if (_text.trim().length >= 3)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: StudySearchResults(
+                    query: foldCzech(_text.trim()),
+                    compact: true,
+                  ),
+                ),
+              ),
             if (counts != null && counts.isNotEmpty)
               SliverToBoxAdapter(
                 child: Column(

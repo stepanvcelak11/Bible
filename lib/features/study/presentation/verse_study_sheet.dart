@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -15,6 +16,7 @@ import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/study_providers.dart';
 import 'study_pack_screen.dart';
+import '../../translations/presentation/library_screen.dart';
 
 /// Otevře studium verše: originál slovo po slově, souvislosti, místa.
 Future<void> showVerseStudy(BuildContext context, VerseRef verse) {
@@ -56,7 +58,7 @@ class _VerseStudySheet extends ConsumerWidget {
         const [];
 
     return DefaultTabController(
-      length: places.isEmpty ? 2 : 3,
+      length: places.isEmpty ? 3 : 4,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -92,6 +94,7 @@ class _VerseStudySheet extends ConsumerWidget {
             tabs: [
               const Tab(text: S.original),
               const Tab(text: S.crossRefs),
+              const Tab(text: S.tabTranslations),
               if (places.isNotEmpty) const Tab(text: S.tabMaps),
             ],
           ),
@@ -100,6 +103,7 @@ class _VerseStudySheet extends ConsumerWidget {
               children: [
                 _OriginalTab(verse: verse, controller: controller),
                 _CrossRefsTab(verse: verse),
+                _TranslationsTab(verse: verse),
                 if (places.isNotEmpty)
                   ListView(
                     padding: const EdgeInsets.all(16),
@@ -418,6 +422,135 @@ class _Section extends StatelessWidget {
           child,
         ],
       ),
+    );
+  }
+}
+
+/// Verš ve všech dostupných překladech (s převodem číslování).
+class _TranslationsTab extends ConsumerWidget {
+  const _TranslationsTab({required this.verse});
+
+  final VerseRef verse;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final primary = ref.watch(primaryTranslationProvider);
+    final book = ref.watch(bookByIdProvider(verse.bookId));
+    final all = ref.watch(translationsProvider);
+    final ordered = [
+      primary,
+      for (final t in all)
+        if (t.id != primary.id) t,
+    ];
+    return ListView(
+      padding: EdgeInsets.fromLTRB(
+        16,
+        12,
+        16,
+        MediaQuery.paddingOf(context).bottom + 16,
+      ),
+      children: [
+        for (final t in ordered)
+          Builder(
+            builder: (context) {
+              final target = Versification.between(verse, primary.id, t.id);
+              final v = ref.watch(verseTextProvider((t.id, target))).value;
+              final text = v?.text.replaceAll('\n', ' ');
+              return Card(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: InkWell(
+                  onLongPress: text == null
+                      ? null
+                      : () {
+                          Clipboard.setData(
+                            ClipboardData(
+                              text:
+                                  '„$text“ (${Citation.single(book.name, target)}, ${t.abbreviation})',
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text(S.copied)),
+                          );
+                        },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              t.abbreviation,
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: palette.gold,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                t.name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: palette.muted,
+                                ),
+                              ),
+                            ),
+                            if (target != verse)
+                              Text(
+                                Citation.single(book.abbreviation, target),
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: palette.muted,
+                                ),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          text ?? '—',
+                          style: TextStyle(
+                            fontFamily: appFontFamily,
+                            fontSize: 16,
+                            height: 1.45,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        if (ordered.length < 2)
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                Text(
+                  S.translationsCompareHint,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: palette.muted,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                FilledButton.tonalIcon(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const LibraryScreen(),
+                    ),
+                  ),
+                  icon: const Icon(Icons.download_outlined),
+                  label: const Text(S.moreTranslations),
+                ),
+              ],
+            ),
+          ),
+      ],
     );
   }
 }

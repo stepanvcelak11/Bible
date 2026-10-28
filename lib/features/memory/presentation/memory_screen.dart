@@ -6,6 +6,8 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/readable_width.dart';
+import '../../../core/widgets/section_label.dart';
+import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/citation.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
@@ -22,6 +24,22 @@ String _citation(WidgetRef ref, MemoryVerse m) {
   ]);
 }
 
+/// Známé verše, se kterými je dobré začít (kanonické číslování).
+const suggestedMemoryVerses = [
+  MemoryVerse(VerseRef(43, 3, 16), 16),
+  MemoryVerse(VerseRef(19, 23, 1), 1),
+  MemoryVerse(VerseRef(20, 3, 5), 6),
+  MemoryVerse(VerseRef(23, 41, 10), 10),
+  MemoryVerse(VerseRef(40, 11, 28), 28),
+  MemoryVerse(VerseRef(45, 8, 28), 28),
+  MemoryVerse(VerseRef(50, 4, 6), 7),
+  MemoryVerse(VerseRef(50, 4, 13), 13),
+  MemoryVerse(VerseRef(24, 29, 11), 11),
+  MemoryVerse(VerseRef(19, 46, 2), 2),
+  MemoryVerse(VerseRef(43, 14, 6), 6),
+  MemoryVerse(VerseRef(49, 2, 8), 9),
+];
+
 /// Seznam veršů, které se učím nazpaměť.
 class MemoryScreen extends ConsumerWidget {
   const MemoryScreen({super.key});
@@ -32,6 +50,10 @@ class MemoryScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final learned = list.where((m) => m.learned).length;
+    final suggested = [
+      for (final m in suggestedMemoryVerses)
+        if (!list.any(m.sameAs)) m,
+    ];
     return Scaffold(
       appBar: AppBar(title: const Text(S.memory)),
       body: ReadableWidth(
@@ -76,9 +98,24 @@ class MemoryScreen extends ConsumerWidget {
                 ),
               )
             else ...[
-              Text(
-                S.memoryProgress(learned, list.length),
-                style: theme.textTheme.titleSmall,
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      S.memoryProgress(learned, list.length),
+                      style: theme.textTheme.titleSmall,
+                    ),
+                  ),
+                  FilledButton.tonalIcon(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const ReviewScreen(),
+                      ),
+                    ),
+                    icon: const Icon(Icons.style_outlined, size: 18),
+                    label: Text(S.memoryReviewAll(list.length)),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Card(
@@ -118,6 +155,24 @@ class MemoryScreen extends ConsumerWidget {
                 style: theme.textTheme.bodySmall?.copyWith(
                   color: palette.muted,
                 ),
+              ),
+            ],
+            if (suggested.isNotEmpty) ...[
+              SectionLabel(S.memorySuggested),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final m in suggested)
+                    ActionChip(
+                      avatar: const Icon(Icons.add, size: 18),
+                      label: Text(_citation(ref, m)),
+                      onPressed: () {
+                        HapticFeedback.selectionClick();
+                        ref.read(memoryProvider.notifier).add(m);
+                      },
+                    ),
+                ],
               ),
             ],
           ],
@@ -392,6 +447,179 @@ class _Word extends StatelessWidget {
           ),
           Text(m.group(3)!, style: style),
         ],
+      ),
+    );
+  }
+}
+
+/// Opakování všech veršů jako kartičky: odkaz → zkusit zpaměti → text.
+class ReviewScreen extends ConsumerStatefulWidget {
+  const ReviewScreen({super.key});
+
+  @override
+  ConsumerState<ReviewScreen> createState() => _ReviewScreenState();
+}
+
+class _ReviewScreenState extends ConsumerState<ReviewScreen> {
+  // Nejdřív verše s nejnižší úrovní.
+  late final List<MemoryVerse> _cards = [...ref.read(memoryProvider)]
+    ..sort((a, b) => a.level.compareTo(b.level));
+  var _index = 0;
+  var _known = 0;
+  var _revealed = false;
+
+  void _answer(bool known) {
+    HapticFeedback.selectionClick();
+    final m = _cards[_index];
+    ref
+        .read(memoryProvider.notifier)
+        .setLevel(m, known ? m.level + 1 : m.level - 1);
+    setState(() {
+      if (known) _known++;
+      _index++;
+      _revealed = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final n = _cards.length;
+    final done = _index >= n;
+    final m = done ? null : _cards[_index];
+    final text = m == null ? null : ref.watch(memoryTextProvider(m)).value;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          done ? S.memoryReview : '${S.memoryReview} ${_index + 1}/$n',
+        ),
+      ),
+      body: ReadableWidth(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(
+            16,
+            8,
+            16,
+            MediaQuery.paddingOf(context).bottom + 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: LinearProgressIndicator(
+                  value: n == 0 ? 1 : _index / n,
+                  minHeight: 6,
+                  color: palette.gold,
+                  backgroundColor: palette.cardBorder,
+                ),
+              ),
+              Expanded(
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: done
+                        ? Column(
+                            children: [
+                              Icon(
+                                Icons.verified,
+                                size: 56,
+                                color: palette.gold,
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                S.memoryReviewDone(_known, n),
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.titleLarge,
+                              ),
+                            ],
+                          )
+                        : Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    _citation(ref, m!),
+                                    textAlign: TextAlign.center,
+                                    style: theme.textTheme.headlineSmall,
+                                  ),
+                                  const SizedBox(height: 6),
+                                  _LevelDots(m.level),
+                                  const SizedBox(height: 18),
+                                  AnimatedCrossFade(
+                                    duration: const Duration(milliseconds: 250),
+                                    crossFadeState: _revealed
+                                        ? CrossFadeState.showSecond
+                                        : CrossFadeState.showFirst,
+                                    firstChild: Text(
+                                      S.memoryRecall,
+                                      textAlign: TextAlign.center,
+                                      style: theme.textTheme.bodyMedium
+                                          ?.copyWith(color: palette.muted),
+                                    ),
+                                    secondChild: Text(
+                                      text ?? '…',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: appFontFamily,
+                                        fontSize: 19,
+                                        height: 1.5,
+                                        color: theme.colorScheme.onSurface,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                  ),
+                ),
+              ),
+              if (done)
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(52),
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text(S.close),
+                )
+              else if (!_revealed)
+                FilledButton.icon(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(52),
+                  ),
+                  onPressed: () => setState(() => _revealed = true),
+                  icon: const Icon(Icons.visibility_outlined),
+                  label: const Text(S.memoryReveal),
+                )
+              else
+                Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(52),
+                        ),
+                        onPressed: () => _answer(false),
+                        child: const Text(S.memoryEasier),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: FilledButton(
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size.fromHeight(52),
+                        ),
+                        onPressed: () => _answer(true),
+                        child: const Text(S.memoryKnow),
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

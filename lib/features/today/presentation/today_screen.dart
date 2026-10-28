@@ -542,6 +542,10 @@ class _PlanCard extends ConsumerWidget {
 
     final day = plan.nextDay;
     final books = ref.watch(booksProvider);
+    final read = ref.watch(readChaptersProvider).value ?? const {};
+    // Kolik dní mělo být podle kalendáře hotovo (včetně dneška).
+    final expected = (plan.calendarDay + 1).clamp(0, plan.schedule.length);
+    final diff = plan.done.length - expected;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -578,7 +582,12 @@ class _PlanCard extends ConsumerWidget {
               const Text(S.planDone)
             else ...[
               Text(
-                S.planDay(day + 1, plan.schedule.length),
+                '${S.planDay(day + 1, plan.schedule.length)} · '
+                '${diff < -1
+                    ? S.planBehind(-diff - 1)
+                    : diff > 0
+                    ? S.planAhead(diff)
+                    : S.planOnTrack}',
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: palette.muted,
                 ),
@@ -590,6 +599,13 @@ class _PlanCard extends ConsumerWidget {
                 children: [
                   for (final r in plan.schedule[day])
                     ActionChip(
+                      avatar: read[r.bookId]?.contains(r.chapter) ?? false
+                          ? Icon(
+                              Icons.check_circle,
+                              size: 18,
+                              color: palette.gold,
+                            )
+                          : null,
                       label: Text(
                         '${books[r.bookId - 1].abbreviation} ${r.chapter}',
                       ),

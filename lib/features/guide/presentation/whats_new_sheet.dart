@@ -5,9 +5,27 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 3;
+const whatsNewVersion = 4;
 
 const _items = [
+  (
+    Icons.translate,
+    'Verš ve všech překladech',
+    'Klepněte na verš → Studovat → Překlady: verš ve všech stažených '
+        'překladech pod sebou (podržením zkopírujete).',
+  ),
+  (
+    Icons.style_outlined,
+    'Opakování veršů nazpaměť',
+    'Doporučené verše přidáte jedním klepnutím, „Opakovat vše“ vás '
+        'vyzkouší jako kartičky.',
+  ),
+  (
+    Icons.event_available_outlined,
+    'Plán čtení',
+    'Karta plánu ukazuje, zda jste napřed, nebo pozadu, a odškrtává už '
+        'přečtené kapitoly.',
+  ),
   (
     Icons.today_outlined,
     'Na dnešek',

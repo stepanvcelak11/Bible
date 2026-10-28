@@ -60,6 +60,9 @@ abstract final class S {
   static const copy = 'Kopírovat';
   static const share = 'Sdílet';
   static const copied = 'Zkopírováno do schránky';
+  static const tabTranslations = 'Překlady';
+  static const translationsCompareHint =
+      'Stáhněte si další překlady a uvidíte tu verš ve všech vedle sebe.';
   static const cancelSelection = 'Zrušit výběr';
   static const notePlaceholder = 'Vaše myšlenky k tomuto místu…';
   static const save = 'Uložit';
@@ -338,6 +341,11 @@ abstract final class S {
       'odpověď najde – kvíz je tak i rychlé opakování.';
   static const quizAll = 'Celá Bible';
   static const forToday = 'Na dnešek';
+  static String planBehind(int n) =>
+      'Pozadu o $n ${_plural(n, 'den', 'dny', 'dní')} – nevadí, pokračujte';
+  static String planAhead(int n) =>
+      'Napřed o $n ${_plural(n, 'den', 'dny', 'dní')}';
+  static const planOnTrack = 'Přesně podle plánu';
   static const quizOfDay = 'Otázka dne';
   static const quizMore = 'Další otázky';
   static String memoryDue(int n) =>
@@ -433,6 +441,13 @@ abstract final class S {
   static const memoryHide = 'Znovu skrýt';
   static const memoryEasier = 'Ještě ne';
   static const memoryKnow = 'Umím';
+  static const memorySuggested = 'Doporučené verše';
+  static String memoryReviewAll(int n) => 'Opakovat vše ($n)';
+  static const memoryReview = 'Opakování';
+  static const memoryRecall = 'Zkuste si verš říct zpaměti.';
+  static const memoryReveal = 'Ukázat text';
+  static String memoryReviewDone(int known, int all) =>
+      'Hotovo! Umíte $known z $all.';
   static const memoryLearned = 'Výborně! Verš je naučený.';
   static const memoryAdded = 'Přidáno k učení nazpaměť';
   static const memoryAlready = 'Tento verš už se učíte';

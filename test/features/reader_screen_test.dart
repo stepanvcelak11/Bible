@@ -279,6 +279,42 @@ void main() {
     expect(container.read(memoryProvider).single.level, 1);
   });
 
+  appTest('verše nazpaměť: doporučené verše a opakování', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await scrollStudyTo(tester, 'Verše nazpaměť');
+    await tester.tap(find.text('Verše nazpaměť'));
+    await settle(tester);
+    await tester.tap(find.textContaining(' 23,1'));
+    await settle(tester);
+    expect(container.read(memoryProvider), hasLength(1));
+    await tester.tap(find.text('Opakovat vše (1)'));
+    await settle(tester);
+    expect(find.text('Zkuste si verš říct zpaměti.'), findsOneWidget);
+    await tester.tap(find.text('Ukázat text'));
+    await settle(tester);
+    await tester.tap(find.text('Umím'));
+    await settle(tester);
+    expect(find.text('Hotovo! Umíte 1 z 1.'), findsOneWidget);
+    expect(container.read(memoryProvider).single.level, 1);
+  });
+
+  appTest('studium verše: text ve všech překladech', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Studovat'));
+    await settle(tester);
+    await tester.tap(find.text('Překlady'));
+    await settle(tester);
+    final translations = container.read(translationsProvider);
+    expect(translations.length, greaterThan(1));
+    for (final t in translations) {
+      expect(find.text(t.abbreviation), findsWidgets);
+    }
+  });
+
   appTest('biblická témata: rejstřík a téma s klíčovými místy', (tester) async {
     await pumpApp(tester, openBible: false);
     await tester.runAsync(() => container.read(topicsProvider.future));

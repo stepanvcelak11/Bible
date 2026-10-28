@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+from content import (church_year, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
                      notes, people, quiz, situations, tables, topics)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
@@ -70,6 +70,15 @@ def build_quiz() -> dict:
         "questions": [{**{k: v for k, v in x.items() if k != "ref"},
                        "ref": ref(x["ref"])} for x in quiz.Q],
     }
+
+
+def build_church_year() -> dict:
+    def item(i, color, name, text_, refs):
+        return {"id": i, "color": color, "name": name, "text": text_,
+                "refs": [ref(r) for r in refs]}
+
+    return {"seasons": [item(*s) for s in church_year.SEASONS],
+            "feasts": [item(*f) for f in church_year.FEASTS]}
 
 
 def build_people() -> dict:
@@ -162,7 +171,8 @@ def main() -> None:
             "notes.json": build_notes(),
             "tables.json": build_tables(),
             "topics.json": build_topics(),
-            "quiz.json": build_quiz()}
+            "quiz.json": build_quiz(),
+            "church_year.json": build_church_year()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -182,6 +192,13 @@ def main() -> None:
                 print(f"\n## {s['title']}")
                 for r in s["refs"]:
                     print(f"  {ABBR[r[0]-1]} {r[1]},{r[2]}: {text(*r)[:140]}")
+        if what == "church":
+            d = data["church_year.json"]
+            for s in d["seasons"] + d["feasts"]:
+                print(f"\n## {s['name']}")
+                for r in s["refs"]:
+                    print(f"  {ABBR[r[0]-1]} {r[1]},{r[2]}-{r[3]}: "
+                          f"{text(*r)[:230]}")
         if what == "quiz":
             for x in data["quiz.json"]["questions"]:
                 r = x["ref"]

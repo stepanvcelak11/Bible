@@ -553,6 +553,49 @@ void main() {
     expect(container.read(prayerProvider).single.prayed, 1);
     expect(find.textContaining('pomodleno 1×'), findsOneWidget);
   });
+
+  appTest('deník: hledání podle knihy a textu poznámky', (tester) async {
+    await pumpApp(tester, openBible: false);
+    final repo = container.read(userDataRepositoryProvider);
+    await tester.runAsync(() async {
+      await repo.toggleBookmark(const VerseRef(43, 3, 16));
+      await repo.toggleBookmark(const VerseRef(1, 1, 1));
+      await repo.saveNote(ref: const VerseRef(19, 23, 1), body: 'Pastýř');
+    });
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
+    expect(find.text('Záložky (2)'), findsOneWidget);
+    await tester.tap(find.byTooltip('Hledat v deníku'));
+    await settle(tester);
+    await tester.enterText(find.byType(TextField), 'jan');
+    await settle(tester);
+    expect(find.text('Jan 3,16'), findsOneWidget);
+    expect(find.text('Genesis 1,1'), findsNothing);
+    await tester.enterText(find.byType(TextField), 'pastyr');
+    await settle(tester);
+    expect(find.text('Nic neodpovídá hledání.'), findsOneWidget);
+    await tester.tap(find.text('Poznámky (1)'));
+    await settle(tester);
+    expect(find.text('Pastýř'), findsOneWidget);
+  });
+
+  appTest('církevní rok: kruh, doba, svátky a sezónní plán', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await scrollStudyTo(tester, 'Církevní rok');
+    await tester.tap(find.text('Církevní rok'));
+    await settle(tester);
+    expect(find.textContaining('Církevní rok 20'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Velký pátek'),
+      400,
+      scrollable: find.byType(Scrollable).last,
+    );
+    await tester.tap(find.text('Velký pátek'));
+    await pumpFor(tester);
+    expect(find.textContaining('Kristus nesl hřích světa'), findsOneWidget);
+  });
 }
 
 /// Posune záložku Studium, až je text vidět.

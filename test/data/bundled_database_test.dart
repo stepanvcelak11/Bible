@@ -112,6 +112,15 @@ void main() {
           addPassage('téma ${t['id']} $r', r);
         }
       }
+      final church = load('church_year.json')! as Map;
+      for (final x in [
+        ...church['seasons'] as List,
+        ...church['feasts'] as List,
+      ]) {
+        for (final r in x['refs'] as List) {
+          addPassage('církevní rok ${x['id']} $r', r);
+        }
+      }
       for (final x in (load('quiz.json')! as Map)['questions'] as List) {
         addPassage('kvíz ${x['question']}', x['ref']);
       }

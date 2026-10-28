@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/widgets/drop_cap.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/reader_settings.dart';
@@ -87,6 +88,16 @@ class VerseTile extends ConsumerWidget with _VerseState {
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(readerSettingsProvider);
     final state = watchState(context, ref);
+    final markers = _markers(
+      context,
+      bookmarked: state.bookmarked,
+      hasNote: state.hasNote,
+      onNote: () => openNote(context, ref),
+      size: settings.fontSize * 0.8,
+    );
+    final initial = settings.dropCap && verse.number == 1
+        ? splitInitial(verse.text)
+        : null;
     return _VerseContainer(
       background: _background(
         context,
@@ -95,23 +106,25 @@ class VerseTile extends ConsumerWidget with _VerseState {
         highlight: state.highlight,
       ),
       onTap: () => onTap(ref),
-      child: Text.rich(
-        TextSpan(
-          children: [
-            if (settings.showVerseNumbers)
-              verseNumberSpan(context, verse.number, settings),
-            ...verseTextSpans(context, verse.text),
-            ..._markers(
-              context,
-              bookmarked: state.bookmarked,
-              hasNote: state.hasNote,
-              onNote: () => openNote(context, ref),
-              size: settings.fontSize * 0.8,
+      child: initial != null
+          ? DropCapText(
+              initial: initial.$1,
+              spans: [...verseTextSpans(context, initial.$2), ...markers],
+              style: verseTextStyle(context, settings),
+              color: AppPalette.of(context).gold,
+              onInitialTap: () => onTap(ref),
+            )
+          : Text.rich(
+              TextSpan(
+                children: [
+                  if (settings.showVerseNumbers)
+                    verseNumberSpan(context, verse.number, settings),
+                  ...verseTextSpans(context, verse.text),
+                  ...markers,
+                ],
+              ),
+              style: verseTextStyle(context, settings),
             ),
-          ],
-        ),
-        style: verseTextStyle(context, settings),
-      ),
     );
   }
 }

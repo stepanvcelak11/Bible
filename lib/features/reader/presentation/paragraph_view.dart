@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/widgets/drop_cap.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../settings/application/reader_settings_controller.dart';
@@ -117,6 +118,11 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
     final base = verseTextStyle(context, settings);
     final markerSize = settings.fontSize * 0.75;
 
+    final poetry = widget.block.poetry;
+    final first = widget.block.verses.first;
+    final initial = settings.dropCap && !poetry && first.number == 1
+        ? splitInitial(first.text)
+        : null;
     final spans = <InlineSpan>[];
     for (final (index, verse) in widget.block.verses.indexed) {
       final n = verse.number;
@@ -139,7 +145,8 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
       );
 
       if (index > 0) spans.add(const TextSpan(text: ' '));
-      if (settings.showVerseNumbers) {
+      final capped = index == 0 && initial != null;
+      if (settings.showVerseNumbers && !capped) {
         spans.add(
           TextSpan(
             text: '$n ',
@@ -154,7 +161,8 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
           ),
         );
       }
-      for (final part in _textParts(verse.text, colors.verseNumber)) {
+      final text = capped ? initial.$2 : verse.text;
+      for (final part in _textParts(text, colors.verseNumber)) {
         spans.add(
           TextSpan(
             text: part.$1,
@@ -211,14 +219,21 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
       }
     }
 
-    final poetry = widget.block.poetry;
     // Klepnutí mimo text (konec řádku, okraj) vybere poslední verš bloku.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => _toggle(widget.block.verses.last.number),
       child: Padding(
         padding: EdgeInsets.fromLTRB(poetry ? 22 : 6, 4, 6, poetry ? 6 : 10),
-        child: Text.rich(TextSpan(children: spans), style: base),
+        child: initial != null
+            ? DropCapText(
+                initial: initial.$1,
+                spans: spans,
+                style: base,
+                color: palette.gold,
+                onInitialTap: () => _toggle(1),
+              )
+            : Text.rich(TextSpan(children: spans), style: base),
       ),
     );
   }

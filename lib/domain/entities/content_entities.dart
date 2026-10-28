@@ -299,3 +299,31 @@ class QuizQuestion {
 
   String get correct => answers.first;
 }
+
+/// Doba nebo svátek církevního roku (texty a čtení; data počítá
+/// `ChurchYear`).
+class ChurchYearItem {
+  const ChurchYearItem({
+    required this.id,
+    required this.color,
+    required this.name,
+    required this.text,
+    required this.passages,
+  });
+
+  factory ChurchYearItem.fromJson(Map<String, Object?> j) => ChurchYearItem(
+    id: j['id']! as String,
+    color: j['color']! as String,
+    name: j['name']! as String,
+    text: j['text']! as String,
+    passages: parsePassages(j['refs']),
+  );
+
+  final String id;
+
+  /// Liturgická barva: violet, white, green, red.
+  final String color;
+  final String name;
+  final String text;
+  final List<Passage> passages;
+}

@@ -22,6 +22,7 @@ class ReaderSettings {
     this.paragraphMode = true,
     this.background = AppBackgroundStyle.glow,
     this.accent = AppAccent.gold,
+    this.dropCap = true,
   });
 
   static const minFontSize = 14.0;
@@ -44,6 +45,9 @@ class ReaderSettings {
   final AppBackgroundStyle background;
   final AppAccent accent;
 
+  /// Ozdobná iniciála na začátku kapitoly.
+  final bool dropCap;
+
   ReaderSettings copyWith({
     AppThemeMode? themeMode,
     double? fontSize,
@@ -53,6 +57,7 @@ class ReaderSettings {
     bool? paragraphMode,
     AppBackgroundStyle? background,
     AppAccent? accent,
+    bool? dropCap,
   }) => ReaderSettings(
     themeMode: themeMode ?? this.themeMode,
     fontSize: (fontSize ?? this.fontSize).clamp(minFontSize, maxFontSize),
@@ -68,6 +73,7 @@ class ReaderSettings {
     paragraphMode: paragraphMode ?? this.paragraphMode,
     background: background ?? this.background,
     accent: accent ?? this.accent,
+    dropCap: dropCap ?? this.dropCap,
   );
 
   Map<String, Object> toJson() => {
@@ -79,6 +85,7 @@ class ReaderSettings {
     'paragraphMode': paragraphMode,
     'background': background.name,
     'accent': accent.name,
+    'dropCap': dropCap,
   };
 
   /// Tolerantní načtení – neznámé nebo poškozené hodnoty se nahradí výchozími.
@@ -95,6 +102,7 @@ class ReaderSettings {
       paragraphMode: json['paragraphMode'] as bool?,
       background: AppBackgroundStyle.values.asNameMap()[json['background']],
       accent: AppAccent.values.asNameMap()[json['accent']],
+      dropCap: json['dropCap'] as bool?,
     );
   }
 
@@ -108,7 +116,8 @@ class ReaderSettings {
       other.showVerseNumbers == showVerseNumbers &&
       other.paragraphMode == paragraphMode &&
       other.background == background &&
-      other.accent == accent;
+      other.accent == accent &&
+      other.dropCap == dropCap;
 
   @override
   int get hashCode => Object.hash(
@@ -120,5 +129,6 @@ class ReaderSettings {
     paragraphMode,
     background,
     accent,
+    dropCap,
   );
 }

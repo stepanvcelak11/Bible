@@ -134,3 +134,17 @@ final quizProvider =
         ],
       );
     });
+
+/// Církevní rok: (doby podle id, svátky podle id).
+final churchYearProvider =
+    FutureProvider<(Map<String, ChurchYearItem>, Map<String, ChurchYearItem>)>((
+      ref,
+    ) async {
+      final j = await _loadJson('church_year.json');
+      Map<String, ChurchYearItem> items(String key) => {
+        for (final x in j[key]! as List<Object?>)
+          (x! as Map<String, Object?>)['id']! as String:
+              ChurchYearItem.fromJson(x as Map<String, Object?>),
+      };
+      return (items('seasons'), items('feasts'));
+    });

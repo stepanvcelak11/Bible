@@ -5,9 +5,33 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 4;
+const whatsNewVersion = 5;
 
 const _items = [
+  (
+    Icons.donut_large,
+    'Církevní rok',
+    'Kruh roku s adventem, Vánocemi, postem a Velikonocemi, nejbližší '
+        'svátek na stránce Dnes a čtení ke každé době i svátku.',
+  ),
+  (
+    Icons.event_note_outlined,
+    'Sezónní plány čtení',
+    'Advent (24 dní), Postní doba (40 dní) a Velikonoce (50 dní) – '
+        'najdete je v plánech i v Církevním roce.',
+  ),
+  (
+    Icons.text_fields,
+    'Ozdobná iniciála',
+    'Kapitola začíná velkým písmenem jako v tištěné Bibli, text ho '
+        'obtéká. Vypnout jde v Nastavení.',
+  ),
+  (
+    Icons.manage_search,
+    'Hledání v Deníku',
+    'Lupa v Deníku najde záložky, poznámky i zvýraznění podle knihy, '
+        'odkazu nebo textu poznámky. Zvýraznění filtrujete podle barvy.',
+  ),
   (
     Icons.translate,
     'Verš ve všech překladech',

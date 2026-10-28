@@ -139,6 +139,9 @@ abstract final class S {
   static const lineHeight = 'Řádkování';
   static const margins = 'Okraje';
   static const showVerseNumbers = 'Čísla veršů';
+  static const dropCap = 'Ozdobná iniciála';
+  static const dropCapHint =
+      'Velké první písmeno kapitoly jako v tištěné Bibli';
   static const resetAppearance = 'Obnovit výchozí vzhled';
   static const previewText =
       'Na počátku bylo Slovo, a to Slovo bylo u Boha, a Bůh byl to Slovo.';
@@ -347,6 +350,26 @@ abstract final class S {
       'Napřed o $n ${_plural(n, 'den', 'dny', 'dní')}';
   static const planOnTrack = 'Přesně podle plánu';
   static const quizOfDay = 'Otázka dne';
+  static const journalSearch = 'Hledat v deníku';
+  static const journalSearchHint = 'Kniha, odkaz nebo text poznámky…';
+  static const journalNoMatch = 'Nic neodpovídá hledání.';
+  static const journalAllColors = 'Vše';
+  static const churchYear = 'Církevní rok';
+  static const churchYearHint = 'Doby a svátky s čteními';
+  static String churchYearSpan(int a) => 'Církevní rok $a/${(a + 1) % 100}';
+  static const churchSeasonReadings = 'Čtení pro tuto dobu';
+  static const churchUpcoming = 'Další svátky';
+  static const churchSeasonPlan = 'Plán čtení pro tuto dobu';
+  static String planStarted(String name) => 'Plán „$name“ je na stránce Dnes';
+  static const churchToday = 'Dnes';
+  static const churchTomorrow = 'Zítra';
+  static String churchInDays(int n) =>
+      'za $n ${_plural(n, 'den', 'dny', 'dní')}';
+  static String churchDayOf(int day, int total) => '$day. den z $total';
+  static const churchYearAbout =
+      'Církevní rok začíná první nedělí adventní. Data pohyblivých svátků '
+      'se odvíjejí od Velikonoc. Jednotlivé církve slaví některé dny '
+      'odlišně – kalendář tu slouží jako průvodce čtením.';
   static const quizMore = 'Další otázky';
   static String memoryDue(int n) =>
       '$n ${_plural(n, 'verš', 'verše', 'veršů')} k opakování';

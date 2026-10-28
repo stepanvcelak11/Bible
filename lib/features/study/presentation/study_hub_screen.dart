@@ -19,6 +19,7 @@ import '../../maps/presentation/maps_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../memory/presentation/memory_screen.dart';
 import '../../prayer/presentation/prayers_view.dart';
+import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/quiz_screen.dart';
 import '../../search/application/reference_parser.dart';
 import '../../today/presentation/plans_sheet.dart';
@@ -306,6 +307,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                   S.prayers,
                   S.prayerHint,
                   () => openPrayers(context),
+                ),
+                _Entry(
+                  Icons.donut_large,
+                  const Color(0xFF7A55A8),
+                  S.churchYear,
+                  S.churchYearHint,
+                  () => openChurchYear(context),
                 ),
               ]),
               // --- Lidé a příběhy -----------------------------------------

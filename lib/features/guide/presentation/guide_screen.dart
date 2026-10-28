@@ -59,7 +59,7 @@ const _parts = [
       'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
           'i poznámky.',
       'Pro život – verše do situací, verše nazpaměť, biblická témata, '
-          'kvíz a modlitební seznam.',
+          'kvíz, modlitební seznam a církevní rok.',
       'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',
       'Knihy Bible – úvody ke knihám, aplikační poznámky, tabulky.',
       'Mapy, původní text se slovníkem, plány čtení a překlady.',
@@ -76,7 +76,8 @@ const _parts = [
     Color(0xFF5B7A3A),
     'Deník',
     [
-      'Vaše záložky, poznámky a zvýraznění na jednom místě.',
+      'Vaše záložky, poznámky a zvýraznění na jednom místě; lupa '
+          'v nich hledá.',
       'Modlitby – zapisujte prosby, označujte vyslyšené; „Čas modlitby“ '
           'vás jimi provede.',
       'Položku smažete přejetím doleva (lze vrátit).',

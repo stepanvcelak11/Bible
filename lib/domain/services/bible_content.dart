@@ -104,6 +104,54 @@ const _keyChapters = [
   (49, 2), (50, 2), (58, 11), (66, 21),
 ];
 
+/// Adventní čtení: zaslíbení Mesiáše a zprávy o narození.
+const _adventChapters = [
+  (1, 3), (1, 12), (10, 7), (19, 2), (19, 72), (23, 7), (23, 9), //
+  (23, 11), (23, 35), (23, 40), (23, 42), (23, 52), (23, 60), (23, 61),
+  (24, 23), (24, 31), (33, 5), (38, 9), (39, 3), (43, 1), (40, 1),
+  (42, 1), (19, 98), (42, 2),
+];
+
+/// Postní čtení: pokání, Markovo evangelium a cesta ke kříži.
+const _lentChapters = [
+  (29, 2), (23, 58), (19, 51), (41, 1), (41, 2), (41, 3), (41, 4), //
+  (19, 32), (41, 5), (41, 6), (1, 22), (41, 7), (41, 8), (19, 130),
+  (41, 9), (41, 10), (32, 3), (26, 36), (25, 3), (19, 23), (43, 11),
+  (43, 12), (2, 12), (41, 11), (41, 12), (41, 13), (23, 53), (19, 22),
+  (43, 13), (43, 14), (43, 15), (43, 16), (43, 17), (41, 14), (43, 18),
+  (41, 15), (43, 19), (42, 23), (40, 27), (41, 16),
+];
+
+/// Velikonoční čtení: zprávy o vzkříšení, Skutky a listy o novém životě.
+final _easterChapters = [
+  (40, 28),
+  (41, 16),
+  (42, 24),
+  (43, 20),
+  (43, 21),
+  (19, 118),
+  (46, 15),
+  for (var c = 1; c <= 28; c++) (44, c),
+  for (var c = 1; c <= 5; c++) (60, c),
+  for (var c = 1; c <= 6; c++) (49, c),
+  (45, 6),
+  (51, 1),
+  (51, 3),
+  (66, 21),
+];
+
+List<List<VerseRef>> _oneChapterDaily(List<(int, int)> chapters) => [
+  for (final (b, c) in chapters) [VerseRef(b, c)],
+];
+
+/// Sezónní plány navázané na církevní rok.
+const seasonalPlanIds = {
+  'advent': 'advent24',
+  'lent': 'lent40',
+  'holyweek': 'lent40',
+  'easter': 'easter50',
+};
+
 final readingPlans = [
   ReadingPlan(
     id: 'nt90',
@@ -172,6 +220,36 @@ final readingPlans = [
     dailyPattern: (_) => [
       for (final (b, c) in _keyChapters) [VerseRef(b, c)],
     ],
+  ),
+  ReadingPlan(
+    id: 'advent24',
+    name: 'Advent: čekání na Mesiáše (24 dní)',
+    description:
+        'Každý den jedna kapitola – Boží zaslíbení od Genesis přes Izajáše '
+        'a Micheáše až k narození v Betlémě.',
+    days: 24,
+    books: const [],
+    dailyPattern: (_) => _oneChapterDaily(_adventChapters),
+  ),
+  ReadingPlan(
+    id: 'lent40',
+    name: 'Postní doba: cesta ke kříži (40 dní)',
+    description:
+        'Žalmy pokání, Markovo evangelium a poslední dny Ježíše podle Jana '
+        '– až k velikonočnímu ránu.',
+    days: 40,
+    books: const [],
+    dailyPattern: (_) => _oneChapterDaily(_lentChapters),
+  ),
+  ReadingPlan(
+    id: 'easter50',
+    name: 'Velikonoce: 50 dní radosti',
+    description:
+        'Od prázdného hrobu po Letnice – zprávy o vzkříšení, Skutky '
+        'apoštolů a listy o novém životě.',
+    days: 50,
+    books: const [],
+    dailyPattern: (_) => _oneChapterDaily(_easterChapters),
   ),
   ReadingPlan(
     id: 'paul30',

@@ -16,6 +16,7 @@ import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/situations_screen.dart';
+import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/notes_screen.dart';
 import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/tables_screen.dart';
@@ -156,6 +157,7 @@ class TodayScreen extends ConsumerWidget {
               const SizedBox(height: 10),
               const _PlanCard(),
               const ForTodaySection(),
+              const ChurchYearCard(),
               const _StudyTeaser(),
               const _RecentList(),
             ],

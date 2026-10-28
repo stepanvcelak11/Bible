@@ -26,13 +26,69 @@ final _highlightsProvider = StreamProvider.autoDispose<List<Highlight>>(
   (ref) => ref.watch(userDataRepositoryProvider).watchAllHighlights(),
 );
 
+/// Hledaný text v deníku (prázdný = vše).
+class _JournalQuery extends Notifier<String> {
+  @override
+  String build() => '';
+
+  void set(String q) => state = q;
+}
+
+final _queryProvider = NotifierProvider.autoDispose<_JournalQuery, String>(
+  _JournalQuery.new,
+);
+
+const _fold = {
+  'á': 'a', 'č': 'c', 'ď': 'd', 'é': 'e', 'ě': 'e', 'í': 'i', 'ň': 'n', //
+  'ó': 'o', 'ř': 'r', 'š': 's', 'ť': 't', 'ú': 'u', 'ů': 'u', 'ý': 'y',
+  'ž': 'z',
+};
+
+/// Malá písmena bez diakritiky – „Žalm“ najde i „zalm“.
+String foldCs(String s) =>
+    s.toLowerCase().split('').map((c) => _fold[c] ?? c).join();
+
+/// Odpovídá položka deníku hledání? Porovnává název i zkratku knihy,
+/// „kapitola,verš“ a text poznámky.
+bool journalMatches(String query, Book book, VerseRef ref, {String? note}) {
+  final q = foldCs(query.trim());
+  if (q.isEmpty) return true;
+  final hay = foldCs(
+    '${book.name} ${book.abbreviation} ${ref.chapter},${ref.verse} '
+    '${book.abbreviation}${ref.chapter} ${note ?? ''}',
+  );
+  return q.split(RegExp(r'\s+')).every(hay.contains);
+}
+
 /// Osobní deník: Záložky, Poznámky, Zvýraznění (nejnovější nahoře)
 /// a modlitební seznam.
-class JournalScreen extends ConsumerWidget {
+class JournalScreen extends ConsumerStatefulWidget {
   const JournalScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<JournalScreen> createState() => _JournalScreenState();
+}
+
+class _JournalScreenState extends ConsumerState<JournalScreen> {
+  bool _searching = false;
+  final _search = TextEditingController();
+
+  @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
+
+  void _toggleSearch() {
+    setState(() => _searching = !_searching);
+    if (!_searching) {
+      _search.clear();
+      ref.read(_queryProvider.notifier).set('');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final top = MediaQuery.paddingOf(context).top;
@@ -50,13 +106,49 @@ class JournalScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(S.journal, style: theme.textTheme.headlineMedium),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            S.journal,
+                            style: theme.textTheme.headlineMedium,
+                          ),
+                        ),
+                        IconButton(
+                          tooltip: S.journalSearch,
+                          onPressed: _toggleSearch,
+                          icon: Icon(_searching ? Icons.close : Icons.search),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 4),
-                    Text(
-                      S.journalIntro,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: palette.muted,
-                      ),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: _searching
+                          ? TextField(
+                              key: const ValueKey('search'),
+                              controller: _search,
+                              autofocus: true,
+                              onChanged: ref.read(_queryProvider.notifier).set,
+                              decoration: InputDecoration(
+                                hintText: S.journalSearchHint,
+                                prefixIcon: const Icon(Icons.search),
+                                isDense: true,
+                                filled: true,
+                                fillColor: palette.gold.withValues(alpha: 0.08),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(14),
+                                  borderSide: BorderSide.none,
+                                ),
+                              ),
+                            )
+                          : Text(
+                              S.journalIntro,
+                              key: const ValueKey('intro'),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: palette.muted,
+                              ),
+                            ),
                     ),
                   ],
                 ),
@@ -134,11 +226,17 @@ class _BookmarksTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(_bookmarksProvider).value;
+    final query = ref.watch(_queryProvider);
+    final books = ref.watch(booksProvider);
+    final items = ref
+        .watch(_bookmarksProvider)
+        .value
+        ?.where((b) => journalMatches(query, books[b.ref.bookId - 1], b.ref))
+        .toList();
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
       icon: Icons.bookmark_outline,
-      empty: S.journalEmptyBookmarks,
+      empty: query.isEmpty ? S.journalEmptyBookmarks : S.journalNoMatch,
       length: items?.length,
       itemBuilder: (context, i) {
         final b = items![i];
@@ -170,11 +268,24 @@ class _NotesTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(_notesProvider).value;
+    final query = ref.watch(_queryProvider);
+    final books = ref.watch(booksProvider);
+    final items = ref
+        .watch(_notesProvider)
+        .value
+        ?.where(
+          (n) => journalMatches(
+            query,
+            books[n.ref.bookId - 1],
+            n.ref,
+            note: n.body,
+          ),
+        )
+        .toList();
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
       icon: Icons.sticky_note_2_outlined,
-      empty: S.journalEmptyNotes,
+      empty: query.isEmpty ? S.journalEmptyNotes : S.journalNoMatch,
       length: items?.length,
       itemBuilder: (context, i) {
         final n = items![i];
@@ -205,16 +316,74 @@ class _NotesTab extends ConsumerWidget {
   }
 }
 
-class _HighlightsTab extends ConsumerWidget {
+class _HighlightsTab extends ConsumerStatefulWidget {
   const _HighlightsTab();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final items = ref.watch(_highlightsProvider).value;
+  ConsumerState<_HighlightsTab> createState() => _HighlightsTabState();
+}
+
+class _HighlightsTabState extends ConsumerState<_HighlightsTab> {
+  /// Zobrazená barva (null = všechny).
+  HighlightColor? _color;
+
+  @override
+  Widget build(BuildContext context) {
+    final query = ref.watch(_queryProvider);
+    final books = ref.watch(booksProvider);
+    final all = ref.watch(_highlightsProvider).value;
+    final colors = {for (final h in all ?? const <Highlight>[]) h.color};
+    final color = colors.contains(_color) ? _color : null;
+    final items = all
+        ?.where(
+          (h) =>
+              (color == null || h.color == color) &&
+              journalMatches(query, books[h.ref.bookId - 1], h.ref),
+        )
+        .toList();
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
       icon: Icons.format_color_fill,
-      empty: S.journalEmptyHighlights,
+      empty: query.isEmpty ? S.journalEmptyHighlights : S.journalNoMatch,
+      header: colors.length < 2
+          ? null
+          : SizedBox(
+              height: 48,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: ChoiceChip(
+                      label: const Text(S.journalAllColors),
+                      selected: color == null,
+                      onSelected: (_) => setState(() => _color = null),
+                    ),
+                  ),
+                  for (final c in [
+                    ...colors,
+                  ]..sort((a, b) => a.index - b.index))
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        showCheckmark: false,
+                        avatar: Icon(
+                          Icons.circle,
+                          color: highlightSwatches[c],
+                          size: 18,
+                        ),
+                        label: Text(
+                          '${all!.where((h) => h.color == c).length}',
+                        ),
+                        selected: color == c,
+                        onSelected: (_) =>
+                            setState(() => _color = color == c ? null : c),
+                      ),
+                    ),
+                ],
+              ),
+            ),
       length: items?.length,
       itemBuilder: (context, i) {
         final h = items![i];
@@ -244,8 +413,10 @@ class _List extends StatelessWidget {
     required this.empty,
     required this.length,
     required this.itemBuilder,
+    this.header,
   });
 
+  final Widget? header;
   final IconData icon;
   final String empty;
   final int? length;
@@ -255,6 +426,21 @@ class _List extends StatelessWidget {
   Widget build(BuildContext context) {
     final n = length;
     if (n == null) return const Center(child: CircularProgressIndicator());
+    if (header case final h?) {
+      return Column(
+        children: [
+          h,
+          Expanded(
+            child: _List(
+              icon: icon,
+              empty: empty,
+              length: n,
+              itemBuilder: itemBuilder,
+            ),
+          ),
+        ],
+      );
+    }
     if (n == 0) {
       final theme = Theme.of(context);
       final palette = AppPalette.of(context);

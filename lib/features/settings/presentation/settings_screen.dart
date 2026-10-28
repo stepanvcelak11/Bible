@@ -134,6 +134,13 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: ctl.setShowVerseNumbers,
             ),
             SwitchListTile(
+              secondary: const Icon(Icons.text_fields),
+              title: const Text(S.dropCap),
+              subtitle: const Text(S.dropCapHint),
+              value: settings.dropCap,
+              onChanged: ctl.setDropCap,
+            ),
+            SwitchListTile(
               secondary: const Icon(Icons.notes),
               title: const Text(S.paragraphMode),
               subtitle: const Text(S.paragraphModeHint),

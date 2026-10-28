@@ -687,3 +687,239 @@ note("Ef 6,10-18", "Boží výzbroj",
      "potřebujeme, abychom obstáli.",
      "Která část výzbroje mi chybí? Můžu se ráno „obléct“ – projít si "
      "jednotlivé části v modlitbě.")
+
+
+# --- Žalmy (další) ---------------------------------------------------------------
+note("Ž 8,2-10", "Co je člověk?",
+     "David hledí na noční nebe, dílo Božích prstů, a žasne: co je člověk, "
+     "že na něj Bůh pamatuje? A přece ho Bůh korunoval slávou a svěřil mu "
+     "péči o stvoření.",
+     "Člověk je malý ve vesmíru, ale velký v Boží lásce; jeho důstojnost "
+     "je darem a odpovědností.",
+     "Kdy jsem naposledy jen tak žasl nad stvořením? Jak zacházím se "
+     "zemí a se zvířaty, které mi Bůh svěřil?")
+note("Ž 19,2-15", "Nebesa vypravují",
+     "Žalm spojuje dvě Boží „knihy“: přírodu, která beze slov hlásá Boží "
+     "slávu, a Zákon, který je dokonalý, občerstvuje duši a je sladší než "
+     "med. Končí prosbou o čisté srdce i slova.",
+     "Bůh mluví skrze stvoření i skrze své slovo; obojí vede k poznání "
+     "sebe a k pokoře.",
+     "Můžu si dnešní modlitbu zakončit veršem 15: „Kéž ti jsou milá slova "
+     "mých úst i myšlenky mého srdce.“")
+note("Ž 27,1-14", "Hospodin je mé světlo",
+     "David vyznává: „Hospodin je mé světlo a má spása, koho bych se "
+     "bál?“ Uprostřed nepřátel touží jen po jednom – přebývat v Božím "
+     "domě a hledět na Boží krásu. Končí výzvou: „Čekej na Hospodina!“",
+     "Důvěra v Boha neruší nebezpečí, ale mění vztah ke strachu.",
+     "Co je moje „jedno“, po čem toužím nejvíc? Čekat na Hospodina "
+     "znamená vydržet a nepanikařit.")
+note("Ž 32,1-11", "Úleva z přiznání",
+     "„Blaze tomu, komu je odpuštěno.“ David popisuje, jak ho mlčení o "
+     "hříchu vysilovalo, „kosti mi chřadly“. Když hřích vyznal, Bůh mu "
+     "odpustil.",
+     "Skrývaná vina tíží; vyznání přináší svobodu.",
+     "Je něco, o čem před Bohem mlčím? Mohu to dnes pojmenovat a přijmout "
+     "jeho odpuštění.")
+note("Ž 42,2-12", "Proč se rmoutíš, duše má?",
+     "Žalmista touží po Bohu „jako laň po vodách“. Je daleko od chrámu, "
+     "slzy jsou mu chlebem a lidé se ptají: „Kde je tvůj Bůh?“ Přesto mluví "
+     "sám k sobě: „Čekej na Boha, ještě mu budu vzdávat chválu.“",
+     "Víra a smutek se nevylučují; žalm učí mluvit k vlastní duši pravdu.",
+     "Když jsem na dně, můžu jako žalmista mluvit k sobě – připomenout si, "
+     "kým je Bůh, i když to necítím.")
+note("Ž 46,2-12", "Bůh je naše útočiště",
+     "I kdyby se země zachvěla a hory se zřítily do moře, nebudeme se bát. "
+     "Bůh je uprostřed svého města. „Utište se a poznejte, že já jsem Bůh.“",
+     "Ve chvílích chaosu je Bůh pevným bodem; zastavit se je výraz důvěry.",
+     "Co v mém světě „se otřásá“? Můžu si dopřát pár minut ticha "
+     "a opakovat: „Utište se a poznejte…“")
+note("Ž 90,1-17", "Nauč nás počítat dny",
+     "Jediný Mojžíšův žalm staví do protikladu Boží věčnost a krátkost "
+     "lidského života – „jako tráva“. Prosí: „Nauč nás počítat naše dny, "
+     "ať získáme moudré srdce“ a „potvrď dílo našich rukou“.",
+     "Vědomí konečnosti nás má vést k moudrosti, ne ke strachu.",
+     "Kdybych měl jen rok, co bych dělal jinak? Které „dílo mých rukou“ "
+     "chci svěřit Bohu?")
+note("Ž 103,1-22", "Nezapomeň na jeho dobrodiní",
+     "„Dobrořeč, má duše, Hospodinu, a nezapomínej na žádné jeho "
+     "dobrodiní.“ David vyjmenovává: odpouští, uzdravuje, vykupuje, "
+     "korunuje milosrdenstvím. Bůh je jako otec, který se slitovává.",
+     "Vděčnost je i rozhodnutí pamatovat si, co Bůh udělal.",
+     "Napíšu si dnes pět „dobrodiní“, za která jsem Bohu vděčný.")
+note("Ž 121,1-8", "Odkud přijde pomoc?",
+     "Poutník na cestě do Jeruzaléma hledí k horám – odtud hrozilo "
+     "nebezpečí. Odpověď: „Má pomoc je od Hospodina, který učinil nebe "
+     "i zemi.“ Bůh nedřímá a střeží vycházení i vcházení.",
+     "Bůh doprovází naše cesty; jeho péče neusíná.",
+     "Před cestou, novým úkolem nebo nocí si můžu připomenout: Hospodin "
+     "mě střeží.")
+
+# --- Přísloví ----------------------------------------------------------------------
+note("Př 3,1-12", "Důvěřuj Hospodinu celým srdcem",
+     "Otec radí synovi: neopouštěj lásku a věrnost, „důvěřuj Hospodinu "
+     "celým svým srdcem a nespoléhej na svůj rozum. Poznávej ho na všech "
+     "svých cestách, a on napřímí tvé stezky.“",
+     "Moudrost začíná důvěrou v Boha, ne vlastní chytrostí.",
+     "Ve kterém rozhodnutí se spoléhám jen na sebe? Můžu ho dnes vědomě "
+     "svěřit Bohu.")
+note("Př 15,1-4", "Moc slova",
+     "„Mírná odpověď odvrací zlobu, urážlivé slovo vyvolává hněv.“ "
+     "Přísloví opakovaně ukazují, že jazyk může léčit i zraňovat.",
+     "Slova mají moc budovat nebo bořit vztahy.",
+     "V jaké situaci mívám ostrý jazyk? Zkusím dnes odpovědět mírně "
+     "tam, kde bych jindy vybuchl.")
+
+# --- Skutky apoštolů ----------------------------------------------------------------
+note("Sk 1,6-11", "Budete mými svědky",
+     "Učedníci se ptají, kdy Ježíš obnoví království Izraeli. Ježíš "
+     "odpovídá, že časy nejsou jejich věc – dostanou moc Ducha svatého a "
+     "budou jeho svědky v Jeruzalémě, Judsku, Samaří a až na konec země.",
+     "Úkolem církve není spekulovat o budoucnosti, ale svědčit o Ježíši "
+     "v síle Ducha.",
+     "Kde je můj „Jeruzalém“ – nejbližší okolí, kde mohu žít a mluvit "
+     "jako Ježíšův svědek?")
+note("Sk 2,1-13", "Letnice",
+     "O svátku letnic sestoupí na učedníky Duch svatý jako vichr a ohnivé "
+     "jazyky. Mluví jinými jazyky a poutníci z mnoha národů slyší o Božích "
+     "velikých činech ve své řeči.",
+     "Duch svatý dává církvi moc a evangelium je pro všechny národy "
+     "a jazyky.",
+     "Prosím o Ducha svatého? Komu bych mohl o Bohu mluvit „jeho "
+     "jazykem“ – tak, aby rozuměl?")
+note("Sk 2,42-47", "Život první církve",
+     "První křesťané vytrvávali v učení apoštolů, ve společenství, "
+     "v lámání chleba a v modlitbách. Sdíleli majetek s potřebnými, "
+     "scházeli se v chrámu i doma a Pán k nim přidával další.",
+     "Zdravé společenství stojí na slově, sdílení, večeři Páně, modlitbě "
+     "a štědrosti.",
+     "Který z těchto pilířů mi v životě víry chybí? Můžu někoho pozvat "
+     "domů na jídlo a sdílení.")
+note("Sk 3,1-10", "Co mám, to ti dám",
+     "Chromý žebrák prosí Petra a Jana o almužnu. Petr říká: „Stříbro "
+     "ani zlato nemám, ale co mám, to ti dám: ve jménu Ježíše Krista "
+     "Nazaretského – choď!“",
+     "Největší dar, který můžeme dát, je Ježíš sám.",
+     "Nemusím mít všechno, abych mohl pomoci. Co mám – čas, modlitbu, "
+     "slovo – můžu dnes nabídnout?")
+note("Sk 4,1-20", "Nemůžeme mlčet",
+     "Petr a Jan jsou zatčeni a vyslýcháni veleradou. Ta jim zakáže mluvit "
+     "o Ježíši. Odpovídají: „Nemůžeme nemluvit o tom, co jsme viděli "
+     "a slyšeli.“ Rada žasne nad odvahou „neučených“ mužů.",
+     "Kdo opravdu zažil Ježíše, má odvahu o něm svědčit i pod tlakem.",
+     "Co jsem s Bohem „viděl a slyšel“? Kde mám tendenci mlčet ze strachu?")
+note("Sk 6,1-7", "Služba stolům",
+     "Vdovy z řecky mluvících Židů byly při podělování přehlíženy. "
+     "Apoštolové nechají sbor zvolit sedm mužů plných Ducha a moudrosti, "
+     "aby se o to starali. Slovo Boží se pak dále šířilo.",
+     "Konflikty ve sboru se mají řešit, ne zametat; různé služby mají "
+     "stejnou hodnotu.",
+     "Je ve společenství, kam patřím, někdo přehlížený? Jakou praktickou "
+     "službu bych mohl převzít?")
+note("Sk 8,26-40", "Na cestě do Gázy",
+     "Anděl pošle Filipa na pustou cestu. Potká etiopského dvořana, který "
+     "čte Izajáše a nerozumí. Filip mu vysvětlí Písmo a zvěstuje Ježíše; "
+     "dvořan se dá pokřtít a jede dál s radostí.",
+     "Bůh připravuje setkání; stačí být poslušný a ochotný vysvětlit.",
+     "Je kolem mě někdo, kdo hledá? Mohu se nabídnout, že spolu budeme "
+     "číst Bibli.")
+note("Sk 9,1-19", "Saul na cestě do Damašku",
+     "Saul, pronásledovatel křesťanů, je na cestě zastaven světlem a "
+     "hlasem: „Saule, proč mě pronásleduješ?“ Oslepne a Ananiáš, kterého "
+     "Bůh pošle, mu vloží ruce a pokřtí ho.",
+     "Nikdo není pro Boží milost ztracený případ; Ježíš se ztotožňuje se "
+     "svou církví.",
+     "Za koho jsem se přestal modlit, protože mi připadá „beznadějný“? "
+     "A umím jako Ananiáš přijmout člověka s minulostí?")
+note("Sk 10,34-48", "Bůh nikomu nestraní",
+     "Petr přichází do domu římského setníka Kornélia – Žid k pohanovi. "
+     "Říká: „Bůh nikomu nestraní.“ Zatímco mluví, sestoupí Duch svatý i "
+     "na pohany a Petr je dá pokřtít.",
+     "Evangelium boří hranice národů a kultur.",
+     "Mám předsudky vůči nějaké skupině lidí? Jak by vypadalo „vejít do "
+     "jejich domu“?")
+note("Sk 16,25-34", "Píseň o půlnoci",
+     "Pavel a Silas jsou zbiti a uvězněni ve Filipech. O půlnoci se modlí "
+     "a zpívají. Zemětřesení otevře dveře, ale oni neutečou. Žalářník se "
+     "ptá: „Co mám dělat, abych byl spasen?“ – „Věř v Pána Ježíše.“",
+     "Chvála v těžkostech je silné svědectví.",
+     "Za co mohu Boha chválit i v tom, co mě teď tíží?")
+note("Sk 17,22-31", "Neznámému Bohu",
+     "V Athénách Pavel navazuje na oltář „neznámému Bohu“ a na řecké "
+     "básníky. Hlásá Boha, který stvořil svět, není daleko od nikoho "
+     "z nás a vzkřísil Ježíše.",
+     "Evangelium lze předávat s respektem ke kultuře posluchačů a s "
+     "navázáním na jejich otázky.",
+     "Jaké „oltáře neznámému Bohu“ vidím v dnešní kultuře – touhy a "
+     "otázky, na které Ježíš odpovídá?")
+note("Sk 20,17-35", "Rozloučení s efezskými staršími",
+     "Pavel se loučí s vedoucími z Efezu. Připomíná, jak sloužil s pokorou "
+     "a slzami, nic nezamlčel a pracoval vlastníma rukama. Svěřuje je Bohu "
+     "a připomíná Ježíšova slova: „Blaženější je dávat než brát.“",
+     "Služba je dlouhodobá věrnost, pokora a štědrost.",
+     "Jak bych chtěl, aby se na mě jednou vzpomínalo? Co pro to můžu "
+     "dělat dnes?")
+
+# --- List Židům ---------------------------------------------------------------------
+note("Žd 4,12-16", "Velekněz, který rozumí",
+     "Boží slovo je živé a proniká až do hloubky. Ale máme velekněze – "
+     "Ježíše – který s námi cítí v našich slabostech, protože byl ve všem "
+     "pokoušen jako my, ale bez hříchu. Proto smíme s důvěrou přistoupit "
+     "k trůnu milosti.",
+     "Ježíš rozumí lidské slabosti zevnitř; jeho trůn je trůn milosti.",
+     "S jakou slabostí můžu dnes přistoupit k Bohu – bez strachu, "
+     "s důvěrou?")
+note("Žd 11,1-16", "Víra je jistota",
+     "„Víra je podstata toho, v co doufáme, důkaz věcí, které nevidíme.“ "
+     "Pisatel prochází galerii víry: Ábel, Henoch, Noe, Abraham, Sára. "
+     "Mnozí zemřeli, aniž viděli splnění, ale vyhlíželi lepší vlast.",
+     "Víra jedná podle Božích slibů dřív, než se splní.",
+     "Na který Boží slib dnes čekám? Jak by vypadalo jednat, jako by byl "
+     "jistý?")
+note("Žd 12,1-3", "Běžme vytrvale",
+     "Obklopeni „oblakem svědků“ víry máme odložit každou zátěž i hřích, "
+     "který nás snadno spoutá, a vytrvale běžet závod. Hledět na Ježíše, "
+     "který snesl kříž kvůli radosti, jež ho čekala.",
+     "Křesťanský život je vytrvalostní běh, ne sprint; síla přichází "
+     "z pohledu na Ježíše.",
+     "Co mě v běhu zbytečně zatěžuje? Co mohu odložit?")
+
+# --- Jakubův a Petrovy listy, 1. Janův -----------------------------------------
+note("1Pt 1,3-9", "Živá naděje",
+     "Petr píše pronásledovaným křesťanům: Bůh nás znovu zrodil k živé "
+     "naději skrze Kristovo vzkříšení. Zkoušky jsou jako oheň, který "
+     "zušlechťuje zlato víry. Milujete ho, i když jste ho neviděli.",
+     "Křesťanská naděje stojí na vzkříšení; těžkosti mohou víru "
+     "zušlechtit.",
+     "Jak by se změnil můj pohled na dnešní těžkost, kdybych ji viděl "
+     "jako zkoušku, která zušlechťuje?")
+note("1Pt 3,13-17", "Buďte připraveni odpovědět",
+     "Nebojte se toho, čeho se bojí ostatní. Posvěťte Krista ve svých "
+     "srdcích a buďte vždy připraveni odpovědět každému, kdo se ptá na "
+     "vaši naději – ale tiše a s úctou.",
+     "Svědectví o víře má být připravené, pokorné a laskavé.",
+     "Dokázal bych v několika větách říct, proč doufám v Krista? Zkusím "
+     "si to napsat.")
+note("1Pt 5,6-11", "Starosti na Boha",
+     "„Pokořte se pod mocnou ruku Boží… všechnu svou starost složte na "
+     "něho, neboť mu na vás záleží.“ Zároveň buďte střízliví – ďábel "
+     "obchází jako řvoucí lev. Bůh vás po krátkém utrpení posílí.",
+     "Pokora a důvěra jdou spolu: složit starosti na Boha je přiznat, že "
+     "je neuneseme sami.",
+     "Kterou konkrétní starost dnes „složím“ na Boha? Pomáhá ji v "
+     "modlitbě nahlas pojmenovat.")
+note("1J 1,5-10", "Chodit ve světle",
+     "Bůh je světlo a není v něm žádná tma. Kdo říká, že je bez hříchu, "
+     "klame sám sebe. „Jestliže vyznáváme své hříchy, on je věrný "
+     "a spravedlivý, aby nám hříchy odpustil.“",
+     "Společenství s Bohem a s druhými roste z poctivosti, ne "
+     "z předstírání dokonalosti.",
+     "Mám někde „tmavou místnost“, kterou skrývám? Vyznání je cesta ke "
+     "světlu a svobodě.")
+note("1J 4,7-21", "Bůh je láska",
+     "„Kdo nemiluje, nepoznal Boha, neboť Bůh je láska.“ Láska nezačíná "
+     "u nás – Bůh nás miloval první a poslal Syna. Dokonalá láska vyhání "
+     "strach. Kdo miluje Boha, má milovat i bratra.",
+     "Naše láska je odpovědí na Boží lásku; projevuje se ke konkrétním "
+     "lidem.",
+     "Koho je pro mě těžké milovat? Co by pro něj dnes byl jeden "
+     "konkrétní projev lásky?")

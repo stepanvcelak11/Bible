@@ -37,7 +37,8 @@ const _parts = [
       'Kapitoly listujete přejetím prstem do stran.',
       'Název kapitoly nahoře → výběr knihy a kapitoly.',
       'Klepnutí na verš → zvýraznit, záložka, poznámka, kopírovat, '
-          'sdílet a studium (původní text, slovník, souvislosti).',
+          'sdílet, studium (původní text, slovník, souvislosti) a „Učit se“ '
+          '– verš nazpaměť.',
       'Zkratka překladu (např. BKR) → jiný překlad, nebo dva překlady '
           'vedle sebe.',
       'Ikona karet → víc otevřených míst najednou; každá karta může mít '
@@ -55,7 +56,7 @@ const _parts = [
     [
       'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
           'i poznámky.',
-      'Pro život – verše do situací.',
+      'Pro život – verše do situací a verše nazpaměť.',
       'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',
       'Knihy Bible – úvody ke knihám, aplikační poznámky, tabulky.',
       'Mapy, původní text se slovníkem, plány čtení a překlady.',

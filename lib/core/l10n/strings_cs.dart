@@ -229,6 +229,37 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const memory = 'Verše nazpaměť';
+  static const memoryShort = 'Učit se';
+  static const memoryHint = 'Naučte se verše krok za krokem';
+  static const memoryIntro =
+      'Verš se při procvičování krok za krokem skrývá – nejdřív pár slov, '
+      'pak polovina, pak zbudou jen první písmena. Verše přidáte v Bibli: '
+      'klepněte na verš a zvolte „Učit se“.';
+  static const memoryEmpty =
+      'Zatím se neučíte žádný verš. Otevřete Bibli, klepněte na verš '
+      'a zvolte „Učit se“.';
+  static const openBible = 'Otevřít Bibli';
+  static String memoryProgress(int learned, int all) =>
+      'Naučeno $learned z $all';
+  static const memorySwipeHint = 'Verš odeberete přejetím doleva.';
+  static String memoryStep(int step, int all) => 'Krok $step z $all';
+  static const memoryStepHint = [
+    'celý text',
+    'skrytá některá slova',
+    'skrytá polovina',
+    'jen první písmena',
+    'zpaměti',
+  ];
+  static const memoryTapHint = 'Klepnutím na skryté slovo ho odkryjete.';
+  static const memoryShow = 'Ukázat celý text';
+  static const memoryHide = 'Znovu skrýt';
+  static const memoryEasier = 'Ještě ne';
+  static const memoryKnow = 'Umím';
+  static const memoryLearned = 'Výborně! Verš je naučený.';
+  static const memoryAdded = 'Přidáno k učení nazpaměť';
+  static const memoryAlready = 'Tento verš už se učíte';
+  static const open = 'Otevřít';
   static const byStory = 'Podle příběhu';
   static const alphabetical = 'Abecedně';
   static const eraPatriarchs = 'Praotcové (Genesis)';

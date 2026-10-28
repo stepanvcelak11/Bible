@@ -15,6 +15,8 @@ import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/situations_screen.dart';
 import '../../content/presentation/tables_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
+import '../../memory/application/memory_controller.dart';
+import '../../memory/presentation/memory_screen.dart';
 import '../../search/application/reference_parser.dart';
 import '../../today/presentation/plans_sheet.dart';
 import '../../today/presentation/timeline_screen.dart';
@@ -55,6 +57,9 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
         ref.watch(situationsProvider).value?.$2 ?? const <Situation>[];
     final notesCount = ref.watch(notesProvider).value?.length;
     final tablesCount = ref.watch(tablesProvider).value?.length;
+    final memory = ref.watch(memoryProvider);
+    final memoryCount = memory.length;
+    final memoryLearned = memory.where((m) => m.learned).length;
 
     Widget header(String title) => SectionLabel(title);
 
@@ -140,6 +145,18 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 count: situations.length,
                 onAll: () => _push(const SituationsScreen()),
               ),
+              const SizedBox(height: 12),
+              group([
+                _Entry(
+                  Icons.psychology_outlined,
+                  const Color(0xFF8C6BA8),
+                  S.memory,
+                  memoryCount == 0
+                      ? S.memoryHint
+                      : S.memoryProgress(memoryLearned, memoryCount),
+                  () => openMemory(context),
+                ),
+              ]),
               // --- Lidé a příběhy -----------------------------------------
               header(S.studyPeopleStories),
               group([

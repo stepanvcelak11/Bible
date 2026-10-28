@@ -22,6 +22,7 @@ class AppPreferences {
   static const _readerTabs = 'reader.tabs';
   static const _readerActiveTab = 'reader.activeTab';
   static const _readerSettings = 'reader.settings';
+  static const _memoryVerses = 'memory.verses';
   static const _searchTestament = 'search.testament';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
@@ -61,6 +62,12 @@ class AppPreferences {
     ]);
     await _prefs.setInt(_readerActiveTab, active);
   }
+
+  /// Verše k učení nazpaměť (zakódované, viz `MemoryVerse`).
+  List<String> get memoryVerses =>
+      _prefs.getStringList(_memoryVerses) ?? const [];
+  Future<void> setMemoryVerses(List<String> values) =>
+      _prefs.setStringList(_memoryVerses, values);
 
   ReaderSettings get readerSettings {
     final raw = _prefs.getString(_readerSettings);

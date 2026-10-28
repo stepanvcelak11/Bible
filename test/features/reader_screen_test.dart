@@ -3,6 +3,7 @@ import 'package:bible_reader/core/providers.dart';
 import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
+import 'package:bible_reader/features/memory/application/memory_controller.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
 import 'package:bible_reader/features/reader/application/reader_tabs_controller.dart';
 import 'package:bible_reader/features/reader/application/reading_position_controller.dart';
@@ -251,6 +252,26 @@ void main() {
     await settle(tester);
     expect(find.text('Průvodce aplikací'), findsNothing);
     expect(find.text('Genesis 1'), findsOneWidget);
+  });
+
+  appTest('verše nazpaměť: přidání z Bible a procvičení', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Učit se'));
+    await settle(tester);
+    expect(container.read(memoryProvider), hasLength(1));
+    await tester.tap(find.text('Otevřít'));
+    await settle(tester);
+    expect(find.text('Verše nazpaměť'), findsOneWidget);
+    expect(find.text('Naučeno 0 z 1'), findsOneWidget);
+    await tester.tap(find.text('Jan 3,16'));
+    await settle(tester);
+    expect(find.text('Krok 1 z 5'), findsOneWidget);
+    await tester.tap(find.text('Umím'));
+    await settle(tester);
+    expect(find.text('Krok 2 z 5'), findsOneWidget);
+    expect(container.read(memoryProvider).single.level, 1);
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

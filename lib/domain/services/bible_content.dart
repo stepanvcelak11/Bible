@@ -75,6 +75,35 @@ class ReadingPlan {
 
 List<int> _range(int a, int b) => [for (var i = a; i <= b; i++) i];
 
+/// Kapitoly knih [books] rozdělené rovnoměrně do [days] dní.
+List<List<VerseRef>> _spread(List<int> books, int days, Map<int, int> counts) {
+  final chapters = [
+    for (final b in books)
+      for (var c = 1; c <= (counts[b] ?? 0); c++) VerseRef(b, c),
+  ];
+  return [
+    for (var d = 0; d < days; d++)
+      chapters.sublist(
+        (chapters.length * d / days).round(),
+        (chapters.length * (d + 1) / days).round(),
+      ),
+  ];
+}
+
+/// Klíčové kapitoly celého biblického příběhu (číslování kapitol je
+/// v českých překladech shodné).
+const _keyChapters = [
+  (1, 1), (1, 3), (1, 6), (1, 12), (1, 22), (1, 37), (1, 45), //
+  (2, 3), (2, 12), (2, 14), (2, 20), (4, 14), (5, 6), //
+  (6, 1), (6, 6), (7, 2), (8, 1), //
+  (9, 3), (9, 16), (9, 17), (10, 7), (10, 11), (11, 3), (11, 18), //
+  (12, 17), (12, 25), (19, 23), (19, 51), (23, 53), (24, 31), //
+  (27, 6), (32, 3), (15, 1), (16, 8), //
+  (42, 1), (42, 2), (40, 5), (43, 3), (42, 15), (43, 11), //
+  (43, 19), (42, 24), (44, 2), (44, 9), (45, 8), (46, 13), //
+  (49, 2), (50, 2), (58, 11), (66, 21),
+];
+
 final readingPlans = [
   ReadingPlan(
     id: 'nt90',
@@ -115,6 +144,41 @@ final readingPlans = [
     description: 'Od Genesis po Zjevení – asi 3–4 kapitoly denně.',
     days: 365,
     books: _range(1, 66),
+  ),
+  ReadingPlan(
+    id: 'both365',
+    name: 'Celá Bible za rok – SZ i NZ souběžně',
+    description:
+        'Každý den kousek Starého a kousek Nového zákona – pestřejší než '
+        'čtení od začátku do konce.',
+    days: 365,
+    books: _range(1, 66),
+    dailyPattern: (counts) {
+      final ot = _spread(_range(1, 39), 365, counts);
+      final nt = _spread(_range(40, 66), 365, counts);
+      return [
+        for (var d = 0; d < 365; d++) [...ot[d], ...nt[d]],
+      ];
+    },
+  ),
+  ReadingPlan(
+    id: 'story50',
+    name: 'Bible v kostce (50 dní)',
+    description:
+        'Každý den jedna klíčová kapitola – od stvoření přes Abrahama, '
+        'Mojžíše, Davida a proroky až k Ježíši, církvi a novému stvoření.',
+    days: 50,
+    books: const [],
+    dailyPattern: (_) => [
+      for (final (b, c) in _keyChapters) [VerseRef(b, c)],
+    ],
+  ),
+  ReadingPlan(
+    id: 'paul30',
+    name: 'Pavlovy listy za 30 dní',
+    description: 'Od listu Římanům po Filemona – asi 3 kapitoly denně.',
+    days: 30,
+    books: _range(45, 57),
   ),
   ReadingPlan(
     id: 'start14',

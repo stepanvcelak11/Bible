@@ -12,6 +12,8 @@ import '../../../domain/services/versification.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/chapter_content_provider.dart';
 import '../application/reader_state.dart';
+import '../../memory/application/memory_controller.dart';
+import '../../memory/presentation/memory_screen.dart';
 import '../../study/presentation/verse_study_sheet.dart';
 import 'note_editor_sheet.dart';
 import 'verse_image_sheet.dart';
@@ -121,6 +123,12 @@ class VerseActionPanel extends ConsumerWidget {
                         onTap: actions.note,
                       ),
                       _ActionButton(
+                        icon: Icons.psychology_outlined,
+                        label: S.memoryShort,
+                        tooltip: S.memory,
+                        onTap: actions.memorize,
+                      ),
+                      _ActionButton(
                         icon: Icons.copy_rounded,
                         label: S.copy,
                         onTap: actions.copy,
@@ -211,6 +219,30 @@ class _Actions {
       verseEnd: refs.last.chapter == refs.first.chapter
           ? refs.last.verse
           : refs.first.verse,
+    );
+  }
+
+  /// Přidá výběr k učení nazpaměť.
+  void memorize() {
+    final refs = _canonicalRefs();
+    final messenger = ScaffoldMessenger.of(context);
+    final navigatorContext = Navigator.of(context).context;
+    final first = refs.first;
+    final last = refs.lastWhere((r) => r.chapter == first.chapter);
+    final added = ref
+        .read(memoryProvider.notifier)
+        .add(MemoryVerse(first, last.verse));
+    clear();
+    HapticFeedback.lightImpact();
+    messenger.showSnackBar(
+      SnackBar(
+        content: Text(added ? S.memoryAdded : S.memoryAlready),
+        behavior: SnackBarBehavior.floating,
+        action: SnackBarAction(
+          label: S.open,
+          onPressed: () => openMemory(navigatorContext),
+        ),
+      ),
     );
   }
 

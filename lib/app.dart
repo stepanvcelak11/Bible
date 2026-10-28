@@ -20,6 +20,7 @@ class BibleApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final mode = ref.watch(readerSettingsProvider.select((s) => s.themeMode));
+    final accent = ref.watch(readerSettingsProvider.select((s) => s.accent));
     return MaterialApp(
       title: S.appName,
       debugShowCheckedModeBanner: false,
@@ -27,8 +28,8 @@ class BibleApp extends ConsumerWidget {
       supportedLocales: const [_czech],
       // Systémové texty (kopírovat/vložit, dialogy…) také česky.
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      theme: withAppBackground(AppTheme.forMode(mode)),
-      darkTheme: withAppBackground(AppTheme.dark()),
+      theme: withAppBackground(AppTheme.forMode(mode, accent)),
+      darkTheme: withAppBackground(AppTheme.dark(accent)),
       themeMode: switch (mode) {
         AppThemeMode.system => ThemeMode.system,
         AppThemeMode.dark => ThemeMode.dark,

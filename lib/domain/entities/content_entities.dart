@@ -274,3 +274,28 @@ class BibleTopic {
   final List<Passage> passages;
   final List<String> labels;
 }
+
+/// Otázka biblického kvízu; `answers.first` je správná odpověď.
+@immutable
+class QuizQuestion {
+  const QuizQuestion({
+    required this.category,
+    required this.question,
+    required this.answers,
+    required this.passage,
+  });
+
+  factory QuizQuestion.fromJson(Map<String, Object?> j) => QuizQuestion(
+    category: j['category']! as String,
+    question: j['question']! as String,
+    answers: (j['answers']! as List<Object?>).cast<String>(),
+    passage: Passage.fromJson(j['ref']),
+  );
+
+  final String category;
+  final String question;
+  final List<String> answers;
+  final Passage passage;
+
+  String get correct => answers.first;
+}

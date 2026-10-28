@@ -7,6 +7,9 @@ enum AppThemeMode { system, light, sepia, dark }
 /// skvrny) a obloha (svítání, v tmavém motivu hvězdná noc).
 enum AppBackgroundStyle { plain, paper, glow, sky }
 
+/// Barevný akcent rozhraní (tlačítka, čísla veršů, hlavní karty).
+enum AppAccent { gold, olive, ocean, plum, terracotta }
+
 /// Typografické nastavení čtečky.
 @immutable
 class ReaderSettings {
@@ -18,6 +21,7 @@ class ReaderSettings {
     this.showVerseNumbers = true,
     this.paragraphMode = true,
     this.background = AppBackgroundStyle.glow,
+    this.accent = AppAccent.gold,
   });
 
   static const minFontSize = 14.0;
@@ -38,6 +42,7 @@ class ReaderSettings {
   final bool paragraphMode;
 
   final AppBackgroundStyle background;
+  final AppAccent accent;
 
   ReaderSettings copyWith({
     AppThemeMode? themeMode,
@@ -47,6 +52,7 @@ class ReaderSettings {
     bool? showVerseNumbers,
     bool? paragraphMode,
     AppBackgroundStyle? background,
+    AppAccent? accent,
   }) => ReaderSettings(
     themeMode: themeMode ?? this.themeMode,
     fontSize: (fontSize ?? this.fontSize).clamp(minFontSize, maxFontSize),
@@ -61,6 +67,7 @@ class ReaderSettings {
     showVerseNumbers: showVerseNumbers ?? this.showVerseNumbers,
     paragraphMode: paragraphMode ?? this.paragraphMode,
     background: background ?? this.background,
+    accent: accent ?? this.accent,
   );
 
   Map<String, Object> toJson() => {
@@ -71,6 +78,7 @@ class ReaderSettings {
     'showVerseNumbers': showVerseNumbers,
     'paragraphMode': paragraphMode,
     'background': background.name,
+    'accent': accent.name,
   };
 
   /// Tolerantní načtení – neznámé nebo poškozené hodnoty se nahradí výchozími.
@@ -86,6 +94,7 @@ class ReaderSettings {
       showVerseNumbers: json['showVerseNumbers'] as bool?,
       paragraphMode: json['paragraphMode'] as bool?,
       background: AppBackgroundStyle.values.asNameMap()[json['background']],
+      accent: AppAccent.values.asNameMap()[json['accent']],
     );
   }
 
@@ -98,7 +107,8 @@ class ReaderSettings {
       other.horizontalMargin == horizontalMargin &&
       other.showVerseNumbers == showVerseNumbers &&
       other.paragraphMode == paragraphMode &&
-      other.background == background;
+      other.background == background &&
+      other.accent == accent;
 
   @override
   int get hashCode => Object.hash(
@@ -109,5 +119,6 @@ class ReaderSettings {
     showVerseNumbers,
     paragraphMode,
     background,
+    accent,
   );
 }

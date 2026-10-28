@@ -116,95 +116,170 @@ class AppPalette extends ThemeExtension<AppPalette> {
 /// Písmo rozhraní (text Bible a nadpisy používají [appFontFamily]).
 const uiFontFamily = 'Inter';
 
-/// Motivy: světlý (papír), teplá sépie a tmavý (noční čtení).
-abstract final class AppTheme {
-  static const _ink = Color(0xFF2B2622);
-  static const _gold = Color(0xFFB0813B);
+/// Odstíny jednoho barevného akcentu.
+@immutable
+class AccentTones {
+  const AccentTones({
+    required this.primary,
+    required this.mid,
+    required this.bright,
+    required this.heroStart,
+    required this.heroEnd,
+  });
 
-  static ThemeData light() => _build(
-    ColorScheme.fromSeed(
-      seedColor: _gold,
-      primary: const Color(0xFF8A5A1F),
-      surface: const Color(0xFFFBF8F3),
-      onSurface: _ink,
-      surfaceContainerLowest: Colors.white,
-      surfaceContainerLow: const Color(0xFFF6F1E9),
-      surfaceContainer: const Color(0xFFF1EADF),
-      surfaceContainerHigh: const Color(0xFFEBE3D6),
-      surfaceContainerHighest: const Color(0xFFE4DACB),
-    ),
-    text: const Color(0xFF221E1A),
-    verseNumber: const Color(0xFFB0813B),
-    highlightAlpha: 0.38,
-    palette: const AppPalette(
-      gold: Color(0xFFB0813B),
+  /// Tlačítka a odkazy ve světlém motivu.
+  final Color primary;
+
+  /// Čísla veršů, ikony a zvýraznění ve světlém motivu.
+  final Color mid;
+
+  /// Akcent v tmavém motivu.
+  final Color bright;
+
+  /// Přechod hlavních karet.
+  final Color heroStart;
+  final Color heroEnd;
+
+  static AccentTones of(AppAccent accent) => switch (accent) {
+    AppAccent.gold => const AccentTones(
+      primary: Color(0xFF8A5A1F),
+      mid: Color(0xFFB0813B),
+      bright: Color(0xFFE2B26A),
       heroStart: Color(0xFF3A2C1E),
       heroEnd: Color(0xFF7A5428),
-      onHero: Color(0xFFFFF6E6),
-      card: Colors.white,
-      cardBorder: Color(0xFFEDE5D8),
-      muted: Color(0xFF8C8276),
-      water: Color(0xFFDCE7EC),
-      land: Color(0xFFF4EEE3),
     ),
-  );
+    AppAccent.olive => const AccentTones(
+      primary: Color(0xFF55652A),
+      mid: Color(0xFF7E8F45),
+      bright: Color(0xFFBCCB7E),
+      heroStart: Color(0xFF242A17),
+      heroEnd: Color(0xFF52612C),
+    ),
+    AppAccent.ocean => const AccentTones(
+      primary: Color(0xFF2C5B7A),
+      mid: Color(0xFF4F85A6),
+      bright: Color(0xFF8FC1DE),
+      heroStart: Color(0xFF16232F),
+      heroEnd: Color(0xFF2D5672),
+    ),
+    AppAccent.plum => const AccentTones(
+      primary: Color(0xFF6B3D68),
+      mid: Color(0xFF94608E),
+      bright: Color(0xFFD3A4CD),
+      heroStart: Color(0xFF29192A),
+      heroEnd: Color(0xFF5E3459),
+    ),
+    AppAccent.terracotta => const AccentTones(
+      primary: Color(0xFF94472A),
+      mid: Color(0xFFC0704C),
+      bright: Color(0xFFEBA285),
+      heroStart: Color(0xFF381D15),
+      heroEnd: Color(0xFF7E3D25),
+    ),
+  };
+}
 
-  static ThemeData sepia() => _build(
-    ColorScheme.fromSeed(
-      seedColor: _gold,
-      primary: const Color(0xFF7C5320),
-      surface: const Color(0xFFF4ECD8),
-      onSurface: const Color(0xFF4A3B2A),
-      surfaceContainerLowest: const Color(0xFFFAF4E6),
-      surfaceContainerLow: const Color(0xFFEFE5CD),
-      surfaceContainer: const Color(0xFFEADFC4),
-      surfaceContainerHigh: const Color(0xFFE5D9BC),
-      surfaceContainerHighest: const Color(0xFFDFD2B3),
-    ),
-    text: const Color(0xFF4A3B2A),
-    verseNumber: const Color(0xFFA07E4F),
-    highlightAlpha: 0.42,
-    palette: const AppPalette(
-      gold: Color(0xFFA0702E),
-      heroStart: Color(0xFF4A3520),
-      heroEnd: Color(0xFF8A6332),
-      onHero: Color(0xFFFFF3DC),
-      card: Color(0xFFFAF4E6),
-      cardBorder: Color(0xFFE2D5B8),
-      muted: Color(0xFF8A7A62),
-      water: Color(0xFFD5DCD2),
-      land: Color(0xFFF1E7D0),
-    ),
-  );
+/// Motivy: světlý (papír), teplá sépie a tmavý (noční čtení), každý
+/// v barvě zvoleného akcentu.
+abstract final class AppTheme {
+  static const _ink = Color(0xFF2B2622);
 
-  static ThemeData dark() => _build(
-    ColorScheme.fromSeed(
-      seedColor: _gold,
-      brightness: Brightness.dark,
-      primary: const Color(0xFFE2B26A),
-      surface: const Color(0xFF12110F),
-      onSurface: const Color(0xFFECE5D9),
-      surfaceContainerLowest: const Color(0xFF0C0B0A),
-      surfaceContainerLow: const Color(0xFF1A1816),
-      surfaceContainer: const Color(0xFF201E1B),
-      surfaceContainerHigh: const Color(0xFF292622),
-      surfaceContainerHighest: const Color(0xFF332F2A),
-    ),
-    text: const Color(0xFFE6DFD3),
-    verseNumber: const Color(0xFFC9A46A),
-    highlightAlpha: 0.30,
-    palette: const AppPalette(
-      gold: Color(0xFFD9AA62),
-      heroStart: Color(0xFF2A2117),
-      heroEnd: Color(0xFF5A3F1E),
-      onHero: Color(0xFFFFF1DA),
-      card: Color(0xFF1C1A17),
-      cardBorder: Color(0xFF2C2925),
-      muted: Color(0xFF9A9083),
-      water: Color(0xFF1B2629),
-      land: Color(0xFF24211D),
-    ),
-  );
+  static Color _mix(Color a, Color b, double t) => Color.lerp(a, b, t)!;
+
+  static ThemeData light([AppAccent accent = AppAccent.gold]) {
+    final a = AccentTones.of(accent);
+    return _build(
+      ColorScheme.fromSeed(
+        seedColor: a.mid,
+        primary: a.primary,
+        surface: const Color(0xFFFBF8F3),
+        onSurface: _ink,
+        surfaceContainerLowest: Colors.white,
+        surfaceContainerLow: const Color(0xFFF6F1E9),
+        surfaceContainer: const Color(0xFFF1EADF),
+        surfaceContainerHigh: const Color(0xFFEBE3D6),
+        surfaceContainerHighest: const Color(0xFFE4DACB),
+      ),
+      text: const Color(0xFF221E1A),
+      verseNumber: a.mid,
+      highlightAlpha: 0.38,
+      palette: AppPalette(
+        gold: a.mid,
+        heroStart: a.heroStart,
+        heroEnd: a.heroEnd,
+        onHero: const Color(0xFFFFF6E6),
+        card: Colors.white,
+        cardBorder: const Color(0xFFEDE5D8),
+        muted: const Color(0xFF8C8276),
+        water: const Color(0xFFDCE7EC),
+        land: const Color(0xFFF4EEE3),
+      ),
+    );
+  }
+
+  static ThemeData sepia([AppAccent accent = AppAccent.gold]) {
+    final a = AccentTones.of(accent);
+    const brown = Color(0xFF6B5030);
+    return _build(
+      ColorScheme.fromSeed(
+        seedColor: a.mid,
+        primary: _mix(a.primary, brown, 0.15),
+        surface: const Color(0xFFF4ECD8),
+        onSurface: const Color(0xFF4A3B2A),
+        surfaceContainerLowest: const Color(0xFFFAF4E6),
+        surfaceContainerLow: const Color(0xFFEFE5CD),
+        surfaceContainer: const Color(0xFFEADFC4),
+        surfaceContainerHigh: const Color(0xFFE5D9BC),
+        surfaceContainerHighest: const Color(0xFFDFD2B3),
+      ),
+      text: const Color(0xFF4A3B2A),
+      verseNumber: _mix(a.mid, brown, 0.2),
+      highlightAlpha: 0.42,
+      palette: AppPalette(
+        gold: _mix(a.mid, brown, 0.15),
+        heroStart: _mix(a.heroStart, brown, 0.15),
+        heroEnd: _mix(a.heroEnd, brown, 0.1),
+        onHero: const Color(0xFFFFF3DC),
+        card: const Color(0xFFFAF4E6),
+        cardBorder: const Color(0xFFE2D5B8),
+        muted: const Color(0xFF8A7A62),
+        water: const Color(0xFFD5DCD2),
+        land: const Color(0xFFF1E7D0),
+      ),
+    );
+  }
+
+  static ThemeData dark([AppAccent accent = AppAccent.gold]) {
+    final a = AccentTones.of(accent);
+    return _build(
+      ColorScheme.fromSeed(
+        seedColor: a.mid,
+        brightness: Brightness.dark,
+        primary: a.bright,
+        surface: const Color(0xFF12110F),
+        onSurface: const Color(0xFFECE5D9),
+        surfaceContainerLowest: const Color(0xFF0C0B0A),
+        surfaceContainerLow: const Color(0xFF1A1816),
+        surfaceContainer: const Color(0xFF201E1B),
+        surfaceContainerHigh: const Color(0xFF292622),
+        surfaceContainerHighest: const Color(0xFF332F2A),
+      ),
+      text: const Color(0xFFE6DFD3),
+      verseNumber: _mix(a.bright, a.mid, 0.4),
+      highlightAlpha: 0.30,
+      palette: AppPalette(
+        gold: _mix(a.bright, a.mid, 0.25),
+        heroStart: _mix(a.heroStart, Colors.black, 0.25),
+        heroEnd: _mix(a.heroEnd, Colors.black, 0.25),
+        onHero: const Color(0xFFFFF1DA),
+        card: const Color(0xFF1C1A17),
+        cardBorder: const Color(0xFF2C2925),
+        muted: const Color(0xFF9A9083),
+        water: const Color(0xFF1B2629),
+        land: const Color(0xFF24211D),
+      ),
+    );
+  }
 
   static ThemeData _build(
     ColorScheme scheme, {
@@ -293,9 +368,12 @@ abstract final class AppTheme {
 
   /// Motiv podle volby uživatele; `system` řeší MaterialApp přes
   /// `themeMode` (světlý/tmavý podle telefonu).
-  static ThemeData forMode(AppThemeMode mode) => switch (mode) {
-    AppThemeMode.sepia => sepia(),
-    AppThemeMode.dark => dark(),
-    _ => light(),
+  static ThemeData forMode(
+    AppThemeMode mode, [
+    AppAccent accent = AppAccent.gold,
+  ]) => switch (mode) {
+    AppThemeMode.sepia => sepia(accent),
+    AppThemeMode.dark => dark(accent),
+    _ => light(accent),
   };
 }

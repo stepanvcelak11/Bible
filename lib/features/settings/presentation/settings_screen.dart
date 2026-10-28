@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../guide/presentation/guide_screen.dart';
 import '../../memory/application/memory_controller.dart';
+import '../../prayer/application/prayer_controller.dart';
 
 import 'package:share_plus/share_plus.dart';
 
@@ -67,6 +68,8 @@ class SettingsScreen extends ConsumerWidget {
                 onSelectionChanged: (s) => ctl.setThemeMode(s.single),
               ),
             ),
+            const _Header(S.accentColor),
+            const _AccentPicker(),
             const _Header(S.background),
             const _BackgroundPicker(),
             // Živý náhled textu.
@@ -236,8 +239,9 @@ class SettingsScreen extends ConsumerWidget {
     final box = context.findRenderObject() as RenderBox?;
     final data = {
       ...await ref.read(userDataRepositoryProvider).exportBackup(),
-      // Verše nazpaměť jsou v nastavení, ne v databázi – přidáme je zvlášť.
+      // Verše nazpaměť a modlitby jsou v nastavení, ne v databázi – přidáme je zvlášť.
       'memoryVerses': ref.read(memoryProvider.notifier).exportList(),
+      'prayers': ref.read(prayerProvider.notifier).exportList(),
     };
     final bytes = utf8.encode(const JsonEncoder.withIndent('  ').convert(data));
     final date = DateTime.now().toIso8601String().substring(0, 10);
@@ -283,7 +287,10 @@ class SettingsScreen extends ConsumerWidget {
       final memory = ref
           .read(memoryProvider.notifier)
           .importList(json['memoryVerses']);
-      say(S.backupImported(result.total + memory));
+      final prayers = ref
+          .read(prayerProvider.notifier)
+          .importList(json['prayers']);
+      say(S.backupImported(result.total + memory + prayers));
     } on InvalidBackupException {
       say(S.backupInvalid);
     } on FormatException {
@@ -376,6 +383,125 @@ class _SliderTile extends StatelessWidget {
 }
 
 /// Výběr pozadí – malé živé náhledy.
+class _AccentPicker extends ConsumerWidget {
+  const _AccentPicker();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = ref.watch(readerSettingsProvider.select((s) => s.accent));
+    final theme = Theme.of(context);
+    final dark = theme.brightness == Brightness.dark;
+    const labels = {
+      AppAccent.gold: S.accentGold,
+      AppAccent.olive: S.accentOlive,
+      AppAccent.ocean: S.accentOcean,
+      AppAccent.plum: S.accentPlum,
+      AppAccent.terracotta: S.accentTerracotta,
+    };
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 4),
+      child: Row(
+        children: [
+          for (final accent in AppAccent.values)
+            Expanded(
+              child: Semantics(
+                button: true,
+                selected: accent == selected,
+                label: labels[accent],
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () => ref
+                      .read(readerSettingsProvider.notifier)
+                      .setAccent(accent),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: Column(
+                      children: [
+                        _AccentSwatch(
+                          tones: AccentTones.of(accent),
+                          dark: dark,
+                          selected: accent == selected,
+                        ),
+                        const SizedBox(height: 6),
+                        ExcludeSemantics(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              labels[accent]!,
+                              maxLines: 1,
+                              style: theme.textTheme.labelMedium?.copyWith(
+                                fontWeight: accent == selected
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Kruhový vzorek akcentu: přechod hlavní karty s tečkou akcentu.
+class _AccentSwatch extends StatelessWidget {
+  const _AccentSwatch({
+    required this.tones,
+    required this.dark,
+    required this.selected,
+  });
+
+  final AccentTones tones;
+  final bool dark;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final ring = dark ? tones.bright : tones.mid;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 180),
+      width: 52,
+      height: 52,
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: selected ? ring : Colors.transparent,
+          width: 2.5,
+        ),
+      ),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [tones.heroEnd, tones.heroStart],
+          ),
+        ),
+        child: Center(
+          child: selected
+              ? const Icon(Icons.check, color: Colors.white, size: 22)
+              : Container(
+                  width: 14,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: dark ? tones.bright : tones.mid,
+                  ),
+                ),
+        ),
+      ),
+    );
+  }
+}
+
 class _BackgroundPicker extends ConsumerWidget {
   const _BackgroundPicker();
 

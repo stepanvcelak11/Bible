@@ -23,6 +23,8 @@ class AppPreferences {
   static const _readerActiveTab = 'reader.activeTab';
   static const _readerSettings = 'reader.settings';
   static const _memoryVerses = 'memory.verses';
+  static const _prayers = 'prayers';
+  static const _quizBest = 'quiz.best';
   static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
 
@@ -74,6 +76,22 @@ class AppPreferences {
       _prefs.getStringList(_memoryVerses) ?? const [];
   Future<void> setMemoryVerses(List<String> values) =>
       _prefs.setStringList(_memoryVerses, values);
+
+  /// Modlitební seznam (každá položka jako JSON, viz `Prayer`).
+  List<String> get prayers => _prefs.getStringList(_prayers) ?? const [];
+  Future<void> setPrayers(List<String> values) =>
+      _prefs.setStringList(_prayers, values);
+
+  /// Nejlepší výsledky kvízu podle kategorie (`all` = vše).
+  Map<String, int> get quizBest => {
+    for (final s in _prefs.getStringList(_quizBest) ?? const <String>[])
+      if (s.split(':') case [final k, final v] when int.tryParse(v) != null)
+        k: int.parse(v),
+  };
+  Future<void> setQuizBest(Map<String, int> values) => _prefs.setStringList(
+    _quizBest,
+    [for (final e in values.entries) '${e.key}:${e.value}'],
+  );
 
   ReaderSettings get readerSettings {
     final raw = _prefs.getString(_readerSettings);

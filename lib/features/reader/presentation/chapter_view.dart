@@ -207,6 +207,20 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
       );
     }
 
+    // Délka kapitoly pro záhlaví (~180 slov za minutu).
+    final verses = switch (content) {
+      SingleChapter(:final text) => text.verses,
+      ParallelChapter(:final rows) => [
+        for (final r in rows)
+          if (r.primary != null) r.primary!,
+      ],
+    };
+    final words = verses.fold<int>(
+      0,
+      (n, v) => n + v.text.split(RegExp(r'\s+')).length,
+    );
+    final minutes = (words / 180).ceil().clamp(1, 99);
+
     final List<Widget Function()> items;
     switch (content) {
       case SingleChapter(:final text):
@@ -271,7 +285,12 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
             ),
             itemCount: items.length + 2,
             itemBuilder: (context, i) => i == 0
-                ? _ChapterHeader(bookId: widget.bookId, chapter: widget.chapter)
+                ? _ChapterHeader(
+                    bookId: widget.bookId,
+                    chapter: widget.chapter,
+                    verseCount: verses.length,
+                    minutes: minutes,
+                  )
                 : i > items.length
                 ? ChapterFooter(
                     bookId: widget.bookId,
@@ -311,10 +330,17 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
 /// Záhlaví kapitoly: název knihy, velké číslo kapitoly, úvod ke knize a
 /// místa zmíněná v kapitole.
 class _ChapterHeader extends ConsumerWidget {
-  const _ChapterHeader({required this.bookId, required this.chapter});
+  const _ChapterHeader({
+    required this.bookId,
+    required this.chapter,
+    required this.verseCount,
+    required this.minutes,
+  });
 
   final int bookId;
   final int chapter;
+  final int verseCount;
+  final int minutes;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -323,6 +349,11 @@ class _ChapterHeader extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final theme = Theme.of(context);
     final category = categoryOf(bookId);
+    final read = ref.watch(
+      readChaptersProvider.select(
+        (m) => m.value?[bookId]?.contains(chapter) ?? false,
+      ),
+    );
     final translationId = ref.watch(
       translationControllerProvider.select((s) => s.primaryId),
     );
@@ -388,7 +419,35 @@ class _ChapterHeader extends ConsumerWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
+          Text.rich(
+            TextSpan(
+              text: S.chapterLength(verseCount, minutes),
+              children: [
+                if (read) ...[
+                  const TextSpan(text: '  ·  '),
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: Icon(
+                      Icons.check_circle,
+                      size: 14,
+                      color: palette.gold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' ${S.chapterAlreadyRead}',
+                    style: TextStyle(
+                      color: palette.gold,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+          ),
+          const SizedBox(height: 12),
           Wrap(
             spacing: 8,
             runSpacing: 8,

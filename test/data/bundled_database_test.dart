@@ -112,6 +112,9 @@ void main() {
           addPassage('téma ${t['id']} $r', r);
         }
       }
+      for (final x in (load('quiz.json')! as Map)['questions'] as List) {
+        addPassage('kvíz ${x['question']}', x['ref']);
+      }
       for (final t in (load('tables.json')! as Map)['tables'] as List) {
         for (final row in t['rows'] as List) {
           for (final c in row as List) {

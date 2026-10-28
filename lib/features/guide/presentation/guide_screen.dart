@@ -58,8 +58,8 @@ const _parts = [
     [
       'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
           'i poznámky.',
-      'Pro život – verše do situací, verše nazpaměť a biblická témata '
-          '(milost, modlitba, odpuštění…).',
+      'Pro život – verše do situací, verše nazpaměť, biblická témata, '
+          'kvíz a modlitební seznam.',
       'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',
       'Knihy Bible – úvody ke knihám, aplikační poznámky, tabulky.',
       'Mapy, původní text se slovníkem, plány čtení a překlady.',
@@ -77,13 +77,15 @@ const _parts = [
     'Deník',
     [
       'Vaše záložky, poznámky a zvýraznění na jednom místě.',
+      'Modlitby – zapisujte prosby, označujte vyslyšené; „Čas modlitby“ '
+          'vás jimi provede.',
       'Položku smažete přejetím doleva (lze vrátit).',
       'Zálohu uložíte v Nastavení.',
     ],
   ),
   _GuidePart(null, Icons.tune, Color(0xFF4E9A8A), 'Nastavení', [
     'Najdete je vpravo nahoře na stránce Dnes.',
-    'Vzhled (světlý, sépie, tmavý), pozadí, písmo a řádkování.',
+    'Vzhled (světlý, sépie, tmavý), barva, pozadí, písmo a řádkování.',
     'Stažení dalších překladů (B21, ČEP, ČSP…) a studijního balíčku.',
     'Záloha a obnovení dat.',
   ]),

@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
 from content import (harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
-                     notes, people, situations, tables, topics)
+                     notes, people, quiz, situations, tables, topics)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -61,6 +61,14 @@ def build_topics() -> dict:
              "labels": [label for _, label in t["refs"]]}
             for t in topics.T
         ],
+    }
+
+
+def build_quiz() -> dict:
+    return {
+        "categories": [{"id": c, "name": n} for c, n in quiz.CATEGORIES],
+        "questions": [{**{k: v for k, v in x.items() if k != "ref"},
+                       "ref": ref(x["ref"])} for x in quiz.Q],
     }
 
 
@@ -153,7 +161,8 @@ def main() -> None:
             "harmony.json": build_harmony(),
             "notes.json": build_notes(),
             "tables.json": build_tables(),
-            "topics.json": build_topics()}
+            "topics.json": build_topics(),
+            "quiz.json": build_quiz()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -173,6 +182,12 @@ def main() -> None:
                 print(f"\n## {s['title']}")
                 for r in s["refs"]:
                     print(f"  {ABBR[r[0]-1]} {r[1]},{r[2]}: {text(*r)[:140]}")
+        if what == "quiz":
+            for x in data["quiz.json"]["questions"]:
+                r = x["ref"]
+                print(f"{x['question']} → {x['answers'][0]}\n   "
+                      f"{ABBR[r[0]-1]} {r[1]},{r[2]}: "
+                      f"{text(r[0], r[1], r[2], r[2])[:150]}")
         if what == "topics":
             for t in data["topics.json"]["topics"]:
                 print(f"\n## {t['title']}")

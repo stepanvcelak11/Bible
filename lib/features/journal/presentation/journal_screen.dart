@@ -12,6 +12,8 @@ import '../../../domain/services/citation.dart';
 import '../../reader/application/reader_state.dart';
 import '../../shell/home_shell.dart';
 import '../../reader/presentation/note_editor_sheet.dart';
+import '../../prayer/application/prayer_controller.dart';
+import '../../prayer/presentation/prayers_view.dart';
 import '../../translations/application/translation_controller.dart';
 
 final _bookmarksProvider = StreamProvider.autoDispose<List<Bookmark>>(
@@ -24,7 +26,8 @@ final _highlightsProvider = StreamProvider.autoDispose<List<Highlight>>(
   (ref) => ref.watch(userDataRepositoryProvider).watchAllHighlights(),
 );
 
-/// Osobní deník: Záložky, Poznámky, Zvýraznění (nejnovější nahoře).
+/// Osobní deník: Záložky, Poznámky, Zvýraznění (nejnovější nahoře)
+/// a modlitební seznam.
 class JournalScreen extends ConsumerWidget {
   const JournalScreen({super.key});
 
@@ -36,7 +39,7 @@ class JournalScreen extends ConsumerWidget {
     String label(String name, int? n) =>
         n == null || n == 0 ? name : '$name ($n)';
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         body: ReadableWidth(
           child: Column(
@@ -82,11 +85,25 @@ class JournalScreen extends ConsumerWidget {
                       ref.watch(_highlightsProvider).value?.length,
                     ),
                   ),
+                  Tab(
+                    text: label(
+                      S.prayers,
+                      ref
+                          .watch(prayerProvider)
+                          .where((p) => !p.isAnswered)
+                          .length,
+                    ),
+                  ),
                 ],
               ),
               const Expanded(
                 child: TabBarView(
-                  children: [_BookmarksTab(), _NotesTab(), _HighlightsTab()],
+                  children: [
+                    _BookmarksTab(),
+                    _NotesTab(),
+                    _HighlightsTab(),
+                    PrayersView(),
+                  ],
                 ),
               ),
             ],

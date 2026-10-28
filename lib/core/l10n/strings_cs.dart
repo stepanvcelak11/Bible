@@ -66,6 +66,10 @@ abstract final class S {
   static const delete = 'Smazat';
   static const deleted = 'Smazáno';
   static const undo = 'Zpět';
+  static const close = 'Zavřít';
+  static String chapterLength(int verses, int minutes) =>
+      '$verses ${_plural(verses, 'verš', 'verše', 'veršů')} · ≈ $minutes min';
+  static const chapterAlreadyRead = 'přečteno';
   static const deleteNoteQuestion = 'Smazat poznámku?';
   static const cancel = 'Zrušit';
 
@@ -87,7 +91,7 @@ abstract final class S {
 
   // Deník
   static const journalIntro =
-      'Vaše záložky, poznámky a zvýraznění. Vše zůstává jen v tomto '
+      'Vaše záložky, poznámky, zvýraznění a modlitby. Vše zůstává jen v tomto '
       'zařízení; smazání = přejetí doleva.';
   static const journalEmptyBookmarks =
       'Zatím žádné záložky.\nPřidáte je klepnutím na verš.';
@@ -104,6 +108,12 @@ abstract final class S {
   static const themeSepia = 'Sépie';
   static const themeDark = 'Tmavý';
   static const background = 'Pozadí';
+  static const accentColor = 'Barva';
+  static const accentGold = 'Zlatá';
+  static const accentOlive = 'Olivová';
+  static const accentOcean = 'Modrá';
+  static const accentPlum = 'Švestková';
+  static const accentTerracotta = 'Terakota';
   static const readAloud = 'Předčítání';
   static const shareVerse = 'Sdílet verš';
   static const shareAsImage = 'Obrázek';
@@ -319,6 +329,77 @@ abstract final class S {
   static const findTopic = 'Hledat téma';
   static const keyPassages = 'Klíčová místa';
   static const memory = 'Verše nazpaměť';
+  static String _plural(int n, String one, String few, String many) =>
+      n == 1 ? one : (n >= 2 && n <= 4 ? few : many);
+  static const quiz = 'Biblický kvíz';
+  static const quizHint = 'Otestujte se – po každé otázce verš';
+  static const quizIntro =
+      'Deset otázek z celé Bible. Po každé odpovědi uvidíte místo, kde se '
+      'odpověď najde – kvíz je tak i rychlé opakování.';
+  static const quizAll = 'Celá Bible';
+  static const quizChoose = 'Vyberte oblast';
+  static String quizQuestions(int n) =>
+      '$n ${_plural(n, 'otázka', 'otázky', 'otázek')}';
+  static String quizBest(int score, int total) => 'nejlépe $score/$total';
+  static String quizProgress(int i, int n) => 'Otázka $i z $n';
+  static const quizNext = 'Další otázka';
+  static const quizShowResult = 'Výsledek';
+  static const quizCorrect = 'Správně!';
+  static String quizWrong(String correct) => 'Správně je: $correct';
+  static const quizAgain = 'Hrát znovu';
+  static const quizDone = 'Hotovo';
+  static const quizNewBest = 'Nový osobní rekord!';
+  static const quizReview = 'K zopakování';
+  static String quizResultTitle(int score, int total) =>
+      switch (score / total) {
+        >= 0.9 => 'Výborně!',
+        >= 0.7 => 'Velmi dobře!',
+        >= 0.5 => 'Dobrá práce',
+        _ => 'Pokračujte ve čtení',
+      };
+  static String quizResultBody(int score, int total) =>
+      'Správně $score z $total. ${score == total ? 'Bez jediné chyby!' : 'Odpovědi najdete níže i s místem v Bibli.'}';
+  static const prayers = 'Modlitby';
+  static const prayerList = 'Modlitební seznam';
+  static const prayerIntro =
+      'Zapisujte si, za co se modlíte. Až přijde odpověď, označte modlitbu '
+      'jako vyslyšenou – časem uvidíte, kolikrát Bůh jednal.';
+  static const prayerHint = 'Za co se modlíte a co Bůh vyslyšel';
+  static String prayerSummary(int active, int answered) =>
+      '$active ${_plural(active, 'modlitba', 'modlitby', 'modliteb')} · '
+      '$answered ${_plural(answered, 'vyslyšená', 'vyslyšené', 'vyslyšených')}';
+  static const prayerAdd = 'Nová modlitba';
+  static const prayerEdit = 'Upravit modlitbu';
+  static const prayerTextHint = 'Za co se chcete modlit?';
+  static const prayerTime = 'Čas modlitby';
+  static const prayerActive = 'Modlím se';
+  static const prayerAnsweredSection = 'Vyslyšené';
+  static const prayerAnswered = 'Vyslyšeno';
+  static const prayerAnswerHint = 'Jak Bůh odpověděl? (nepovinné)';
+  static const prayerPrayed = 'Pomodleno';
+  static String prayerPrayedTimes(int n) => 'pomodleno $n×';
+  static String prayerAddedOn(String date) => 'přidáno $date';
+  static String prayerAnsweredOn(String date) => 'vyslyšeno $date';
+  static const prayerSave = 'Uložit';
+  static const prayerDelete = 'Smazat';
+  static const prayerSuggestions = 'Za co se modlit';
+  static const prayerIdeas = [
+    'Za rodinu',
+    'Za přátele',
+    'Za zdraví',
+    'Za práci a školu',
+    'Za církev',
+    'Za ty, kdo Boha neznají',
+    'Za moudrost v rozhodování',
+    'Poděkování za…',
+  ];
+  static String prayerStep(int i, int n) => '$i / $n';
+  static const prayerNext = 'Pomodleno, další';
+  static const prayerFinish = 'Amen';
+  static const prayerDoneTitle = 'Amen';
+  static const prayerDoneBody = 'Svěřili jste Bohu všechno, co máte na srdci.';
+  static const prayerEmptyActive =
+      'Žádné modlitby. Přidejte první prosbu nebo poděkování.';
   static const memoryShort = 'Učit se';
   static const memoryHint = 'Naučte se verše krok za krokem';
   static const memoryIntro =

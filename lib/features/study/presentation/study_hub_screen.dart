@@ -18,6 +18,8 @@ import '../../content/presentation/topics_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../memory/presentation/memory_screen.dart';
+import '../../prayer/presentation/prayers_view.dart';
+import '../../content/presentation/quiz_screen.dart';
 import '../../search/application/reference_parser.dart';
 import '../../today/presentation/plans_sheet.dart';
 import '../../today/presentation/timeline_screen.dart';
@@ -290,6 +292,20 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                       ? S.topicsHint
                       : S.topicsCount(topicsCount),
                   () => _push(const TopicsScreen()),
+                ),
+                _Entry(
+                  Icons.emoji_events_outlined,
+                  const Color(0xFFC08A2E),
+                  S.quiz,
+                  S.quizHint,
+                  () => openQuiz(context),
+                ),
+                _Entry(
+                  Icons.volunteer_activism_outlined,
+                  const Color(0xFF3E8E5E),
+                  S.prayers,
+                  S.prayerHint,
+                  () => openPrayers(context),
                 ),
               ]),
               // --- Lidé a příběhy -----------------------------------------

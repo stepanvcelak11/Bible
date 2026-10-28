@@ -5,9 +5,33 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 2;
+const whatsNewVersion = 3;
 
 const _items = [
+  (
+    Icons.palette_outlined,
+    'Barvy aplikace',
+    'V Nastavení si vyberte barvu: zlatou, olivovou, modrou, švestkovou '
+        'nebo terakotu.',
+  ),
+  (
+    Icons.volunteer_activism_outlined,
+    'Modlitební seznam',
+    'V Deníku zapisujte, za co se modlíte, a označujte vyslyšené '
+        'modlitby. „Čas modlitby“ vás jimi provede jednu po druhé.',
+  ),
+  (
+    Icons.emoji_events_outlined,
+    'Biblický kvíz',
+    '77 otázek ve Studiu – po každé odpovědi uvidíte verš, kde je '
+        'odpověď.',
+  ),
+  (
+    Icons.timer_outlined,
+    'Délka kapitoly',
+    'V záhlaví kapitoly počet veršů, odhad času čtení a značka '
+        '„přečteno“.',
+  ),
   (
     Icons.playlist_add_check,
     'Označení přečteného',

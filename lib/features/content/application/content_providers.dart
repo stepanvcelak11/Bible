@@ -116,3 +116,21 @@ final topicsProvider =
         ],
       );
     });
+
+/// Biblický kvíz: (kategorie (id, název), otázky).
+final quizProvider =
+    FutureProvider<(List<(String, String)>, List<QuizQuestion>)>((ref) async {
+      final j = await _loadJson('quiz.json');
+      return (
+        [
+          for (final c
+              in (j['categories']! as List<Object?>)
+                  .cast<Map<String, Object?>>())
+            (c['id']! as String, c['name']! as String),
+        ],
+        [
+          for (final x in j['questions']! as List<Object?>)
+            QuizQuestion.fromJson(x! as Map<String, Object?>),
+        ],
+      );
+    });

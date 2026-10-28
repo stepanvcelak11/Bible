@@ -5,6 +5,8 @@ import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/content/application/content_providers.dart';
 import 'package:bible_reader/features/progress/presentation/progress_screen.dart';
+import 'package:bible_reader/features/content/presentation/quiz_screen.dart';
+import 'package:bible_reader/features/prayer/application/prayer_controller.dart';
 import 'package:bible_reader/features/today/application/today_providers.dart';
 import 'package:bible_reader/features/memory/application/memory_controller.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
@@ -452,6 +454,67 @@ void main() {
     await tester.tap(find.text('Deník'));
     await settle(tester);
     expect(find.text('Záložky'), findsOneWidget);
+  });
+
+  appTest('biblický kvíz: kolo deseti otázek s výsledkem', (tester) async {
+    await pumpApp(tester, openBible: false);
+    final quiz = (await tester.runAsync(
+      () => container.read(quizProvider.future),
+    ))!;
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await scrollStudyTo(tester, 'Biblický kvíz');
+    await tester.tap(find.text('Biblický kvíz'));
+    await settle(tester);
+    await tester.tap(find.text('Celá Bible'));
+    await settle(tester);
+
+    for (var i = 0; i < quizRoundLength; i++) {
+      expect(find.text('Otázka ${i + 1} z $quizRoundLength'), findsOneWidget);
+      final q = quiz.$2.firstWhere(
+        (q) => find.text(q.question).evaluate().isNotEmpty,
+      );
+      await tester.tap(find.text(q.correct));
+      await settle(tester);
+      expect(find.text('Správně!'), findsOneWidget);
+      final next = find.text(
+        i + 1 < quizRoundLength ? 'Další otázka' : 'Výsledek',
+      );
+      await tester.ensureVisible(next);
+      await tester.pumpAndSettle();
+      await tester.tap(next);
+      await settle(tester);
+    }
+    expect(find.text('10/10'), findsOneWidget);
+    expect(find.text('Výborně!'), findsOneWidget);
+    expect(container.read(appPreferencesProvider).quizBest['all'], 10);
+  });
+
+  appTest('modlitební seznam: přidání a čas modlitby', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
+    await tester.ensureVisible(find.text('Modlitby'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Modlitby'));
+    await settle(tester);
+    await tester.tap(find.text('Za rodinu'));
+    await settle(tester);
+    await tester.tap(find.text('Uložit'));
+    await settle(tester);
+    expect(find.text('Modlitby (1)'), findsOneWidget);
+    expect(find.text('MODLÍM SE (1)'), findsOneWidget);
+
+    await tester.tap(find.text('Čas modlitby'));
+    await settle(tester);
+    expect(find.text('1 / 1'), findsOneWidget);
+    await tester.tap(find.text('Pomodleno, další'));
+    await settle(tester);
+    expect(find.text('Amen'), findsOneWidget);
+    await tester.tap(find.text('Zavřít'));
+    await settle(tester);
+    expect(container.read(prayerProvider).single.prayed, 1);
+    expect(find.textContaining('pomodleno 1×'), findsOneWidget);
   });
 }
 

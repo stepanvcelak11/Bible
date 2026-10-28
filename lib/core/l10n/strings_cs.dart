@@ -293,7 +293,7 @@ abstract final class S {
   static const more = 'více';
   static const reflection = 'Zamyšlení nad kapitolou';
   static const reflectionHintShort =
-      'Čtyři otázky – odpovědi se uloží do Deníku';
+      'Sedm kroků s otázkami právě k této kapitole';
   static String reflectionTitle(String book, int chapter) =>
       'Zamyšlení: $book $chapter';
   static const reflectionIntro =
@@ -302,6 +302,25 @@ abstract final class S {
   static const reflectionHint = 'Vaše odpověď…';
   static const reflectionSave = 'Uložit do Deníku';
   static const reflectionSaved = 'Zamyšlení uloženo do Deníku';
+  static const reflectionAbout = 'O kapitole';
+  static const reflectionNext = 'Další';
+  static const reflectionBack = 'Zpět';
+  static const reflectionSkip = 'Přeskočit';
+  static const reflectionDone = 'Shrnutí';
+  static const reflectionSaveShort = 'Uložit';
+  static const reflectionPrevious = 'Navazuje na vaši odpověď';
+  static const reflectionSummary = 'Vaše zamyšlení';
+  static const reflectionEmpty =
+      'Zatím jste nic nenapsali. Vraťte se k otázkám – stačí pár slov.';
+  static const reflectionAddPrayer = 'Přidat poslední odpověď do modliteb';
+  static String reflectionStep(int i, int n) => 'Krok $i z $n';
+  static const stepNotice = 'Všímej si';
+  static const stepObserve = 'Pozoruj';
+  static const stepUnderstand = 'Pochop';
+  static const stepGod = 'O Bohu';
+  static const stepHuman = 'O člověku';
+  static const stepLife = 'Pro můj život';
+  static const stepPray = 'Krok a modlitba';
   static const customPlan = 'Vlastní plán';
   static const customPlanHint = 'Vyberte knihy a za kolik dní je přečtete';
   static const customPlanIntro =

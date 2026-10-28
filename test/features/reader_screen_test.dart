@@ -344,9 +344,15 @@ void main() {
     await tester.tap(find.text('Zamyšlení nad kapitolou'));
     await settle(tester);
     expect(find.text('Zamyšlení: Jan 3'), findsOneWidget);
+    expect(find.textContaining('Nikodém'), findsWidgets);
     await tester.enterText(find.byType(TextField).first, 'Boží láska');
     await settle(tester);
-    await tester.tap(find.text('Uložit do Deníku'));
+    await tester.tap(find.text('Další'));
+    await settle(tester);
+    // Otázka přímo ke kapitole navazuje na předchozí odpověď.
+    expect(find.text('Proč Nikodém přichází v noci?'), findsOneWidget);
+    expect(find.text('Navazuje na vaši odpověď'), findsOneWidget);
+    await tester.tap(find.text('Uložit'));
     await settle(tester);
     final notes = await tester.runAsync(
       () => container.read(userDataRepositoryProvider).watchAllNotes().first,

@@ -171,3 +171,23 @@ final storyProvider = FutureProvider<List<StoryEra>>((ref) async {
 final connectionsProvider = FutureProvider<BibleConnections>((ref) async {
   return BibleConnections.fromJson(await _loadJson('connections.json'));
 });
+
+/// Zamyšlení ke kapitolám (kanonické číslování): kniha → kapitoly.
+final reflectionsProvider = FutureProvider<Map<int, List<ChapterReflection>>>((
+  ref,
+) async {
+  final j = await _loadJson('reflections.json');
+  return {
+    for (final e in (j['books']! as Map<String, Object?>).entries)
+      int.parse(e.key): [
+        for (final r in e.value! as List<Object?>)
+          if ((r! as List<Object?>).cast<String>() case [
+            final f,
+            final o,
+            final u,
+            final l,
+          ])
+            ChapterReflection(f, o, u, l),
+      ],
+  };
+});

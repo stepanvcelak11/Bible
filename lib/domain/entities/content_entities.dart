@@ -481,3 +481,14 @@ class BibleConnections {
   List<List<int>> examplesFor(int a, int b) =>
       examples[a < b ? '$a-$b' : '$b-$a'] ?? const [];
 }
+
+/// Zamyšlení ke kapitole: o čem kapitola je a tři vlastní otázky
+/// (pozoruj, pochop, pro život).
+class ChapterReflection {
+  const ChapterReflection(this.focus, this.observe, this.understand, this.life);
+
+  final String focus;
+  final String observe;
+  final String understand;
+  final String life;
+}

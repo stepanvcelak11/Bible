@@ -103,6 +103,44 @@ def build_story() -> dict:
     ]}
 
 
+# Kanonické (hebrejské) počty kapitol.
+CHAPTERS = [50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13,
+            10, 42, 150, 31, 12, 8, 66, 52, 5, 48, 12, 14, 4, 9, 1, 4, 7, 3,
+            3, 3, 2, 14, 3, 28, 16, 24, 21, 28, 16, 16, 13, 6, 6, 4, 4, 5, 3,
+            6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
+
+
+def build_reflections() -> dict:
+    """Zamyšlení ke kapitolám: tool/content/reflect/*.py obsahují BOOKS =
+    {"Gn": \"\"\"řádek na kapitolu\"\"\"}; řádek = zaměření | pozoruj | pochop
+    | pro život."""
+    import importlib
+    import pkgutil
+    from content import reflect
+    books: dict[str, list] = {}
+    for m in pkgutil.iter_modules(reflect.__path__):
+        mod = importlib.import_module(f"content.reflect.{m.name}")
+        for abbr, text in mod.BOOKS.items():
+            b = BOOK[abbr]
+            rows = [ln.strip() for ln in text.strip().splitlines()
+                    if ln.strip()]
+            if len(rows) != CHAPTERS[b - 1]:
+                raise SystemExit(f"{abbr}: {len(rows)} řádků, kapitol "
+                                 f"{CHAPTERS[b - 1]}")
+            parsed = []
+            for i, row in enumerate(rows):
+                parts = [x.strip() for x in row.split("|")]
+                if len(parts) != 4 or not all(parts):
+                    raise SystemExit(f"{abbr} {i + 1}: čekám 4 části: {row}")
+                for q in parts[1:]:
+                    if "?" not in q[-3:]:
+                        raise SystemExit(f"{abbr} {i + 1}: otázka bez "
+                                         f"otazníku: {q}")
+                parsed.append(parts)
+            books[str(b)] = parsed
+    return {"books": books}
+
+
 def build_people() -> dict:
     return {"people": [
         {**{k: v for k, v in p.items() if k not in ("key", "story", "books")},
@@ -196,7 +234,8 @@ def main() -> None:
             "quiz.json": build_quiz(),
             "church_year.json": build_church_year(),
             "threads.json": build_threads(),
-            "story.json": build_story()}
+            "story.json": build_story(),
+            "reflections.json": build_reflections()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -237,6 +276,14 @@ def main() -> None:
                     r = k["ref"]
                     print(f"  {ABBR[r[0]-1]} {r[1]} [{k['label']}]: "
                           f"{text(r[0], r[1], 1, 3)[:150]}")
+        if what.startswith("reflect"):
+            only = what.split(":")[1] if ":" in what else None
+            for b, rows in data["reflections.json"]["books"].items():
+                if only and ABBR[int(b) - 1] != only:
+                    continue
+                for i, r in enumerate(rows):
+                    print(f"{ABBR[int(b)-1]} {i + 1}: {r[0]}\n   "
+                          f"{text(int(b), i + 1, 1, 3)[:160]}")
         if what == "quiz":
             for x in data["quiz.json"]["questions"]:
                 r = x["ref"]

@@ -417,9 +417,8 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
 }
 
 /// Měřítko v rovině (getMaxScaleOnAxis by vrátil 1 z osy Z).
-double scaleOf(Matrix4 m) => math.sqrt(
-  m.entry(0, 0) * m.entry(0, 0) + m.entry(1, 0) * m.entry(1, 0),
-);
+double scaleOf(Matrix4 m) =>
+    math.sqrt(m.entry(0, 0) * m.entry(0, 0) + m.entry(1, 0) * m.entry(1, 0));
 
 /// Průhlednost úrovně podle přiblížení (z = 1 je celá Bible na obrazovce).
 double levelAlpha(TreeLevel level, double z) {

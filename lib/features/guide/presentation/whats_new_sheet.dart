@@ -9,6 +9,13 @@ const whatsNewVersion = 7;
 
 const _items = [
   (
+    Icons.self_improvement,
+    'Zamyšlení ke každé kapitole',
+    'Na konci kapitoly sedm kroků: obecné otázky i tři otázky napsané '
+        'právě k této kapitole (pozoruj, pochop, pro můj život). Každá '
+        'otázka navazuje na vaši předchozí odpověď.',
+  ),
+  (
     Icons.hub_outlined,
     'Strom Bible',
     'Myšlenková mapa celé Bible: přibližováním se větví zákony, období, '

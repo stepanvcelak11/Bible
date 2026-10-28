@@ -46,14 +46,19 @@ class AppPreferences {
   Future<void> setReadingPosition(VerseRef ref) =>
       _prefs.setString(_readingPosition, ref.encode());
 
-  /// Čtecí karty (otevřená místa) a index aktivní karty.
-  List<VerseRef> get readerTabs => [
+  /// Čtecí karty (otevřená místa s překladem) a index aktivní karty.
+  /// Formát položky: `kniha:kapitola:verš|překlad` (překlad je volitelný).
+  List<(VerseRef, String?)> get readerTabs => [
     for (final s in _prefs.getStringList(_readerTabs) ?? const <String>[])
-      ?VerseRef.tryDecode(s),
+      if (VerseRef.tryDecode(s.split('|').first) case final ref?)
+        (ref, s.contains('|') ? s.split('|')[1] : null),
   ];
   int get readerActiveTab => _prefs.getInt(_readerActiveTab) ?? 0;
-  Future<void> setReaderTabs(List<VerseRef> tabs, int active) async {
-    await _prefs.setStringList(_readerTabs, [for (final t in tabs) t.encode()]);
+  Future<void> setReaderTabs(List<(VerseRef, String?)> tabs, int active) async {
+    await _prefs.setStringList(_readerTabs, [
+      for (final (ref, translation) in tabs)
+        translation == null ? ref.encode() : '${ref.encode()}|$translation',
+    ]);
     await _prefs.setInt(_readerActiveTab, active);
   }
 

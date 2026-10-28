@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/user_entities.dart';
@@ -24,26 +25,72 @@ final _highlightsProvider = StreamProvider.autoDispose<List<Highlight>>(
 );
 
 /// Osobní deník: Záložky, Poznámky, Zvýraznění (nejnovější nahoře).
-class JournalScreen extends StatelessWidget {
+class JournalScreen extends ConsumerWidget {
   const JournalScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final top = MediaQuery.paddingOf(context).top;
+    String label(String name, int? n) =>
+        n == null || n == 0 ? name : '$name ($n)';
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(S.journal),
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: S.bookmarks),
-              Tab(text: S.notes),
-              Tab(text: S.highlights),
+        body: ReadableWidth(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, top + 14, 20, 4),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(S.journal, style: theme.textTheme.headlineMedium),
+                    const SizedBox(height: 4),
+                    Text(
+                      S.journalIntro,
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: palette.muted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              TabBar(
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                dividerColor: palette.cardBorder,
+                tabs: [
+                  Tab(
+                    text: label(
+                      S.bookmarks,
+                      ref.watch(_bookmarksProvider).value?.length,
+                    ),
+                  ),
+                  Tab(
+                    text: label(
+                      S.notes,
+                      ref.watch(_notesProvider).value?.length,
+                    ),
+                  ),
+                  Tab(
+                    text: label(
+                      S.highlights,
+                      ref.watch(_highlightsProvider).value?.length,
+                    ),
+                  ),
+                ],
+              ),
+              const Expanded(
+                child: TabBarView(
+                  children: [_BookmarksTab(), _NotesTab(), _HighlightsTab()],
+                ),
+              ),
             ],
           ),
-        ),
-        body: const TabBarView(
-          children: [_BookmarksTab(), _NotesTab(), _HighlightsTab()],
         ),
       ),
     );
@@ -73,6 +120,7 @@ class _BookmarksTab extends ConsumerWidget {
     final items = ref.watch(_bookmarksProvider).value;
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
+      icon: Icons.bookmark_outline,
       empty: S.journalEmptyBookmarks,
       length: items?.length,
       itemBuilder: (context, i) {
@@ -108,6 +156,7 @@ class _NotesTab extends ConsumerWidget {
     final items = ref.watch(_notesProvider).value;
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
+      icon: Icons.sticky_note_2_outlined,
       empty: S.journalEmptyNotes,
       length: items?.length,
       itemBuilder: (context, i) {
@@ -147,6 +196,7 @@ class _HighlightsTab extends ConsumerWidget {
     final items = ref.watch(_highlightsProvider).value;
     final repo = ref.read(userDataRepositoryProvider);
     return _List(
+      icon: Icons.format_color_fill,
       empty: S.journalEmptyHighlights,
       length: items?.length,
       itemBuilder: (context, i) {
@@ -173,11 +223,13 @@ class _HighlightsTab extends ConsumerWidget {
 
 class _List extends StatelessWidget {
   const _List({
+    required this.icon,
     required this.empty,
     required this.length,
     required this.itemBuilder,
   });
 
+  final IconData icon;
   final String empty;
   final int? length;
   final IndexedWidgetBuilder itemBuilder;
@@ -188,15 +240,31 @@ class _List extends StatelessWidget {
     if (n == null) return const Center(child: CircularProgressIndicator());
     if (n == 0) {
       final theme = Theme.of(context);
+      final palette = AppPalette.of(context);
       return Center(
         child: Padding(
-          padding: const EdgeInsets.all(40),
-          child: Text(
-            empty,
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.colorScheme.onSurfaceVariant,
-            ),
+          padding: const EdgeInsets.fromLTRB(40, 40, 40, 120),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 72,
+                height: 72,
+                decoration: BoxDecoration(
+                  color: palette.gold.withValues(alpha: 0.14),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, size: 32, color: palette.gold),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                empty,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -204,7 +272,8 @@ class _List extends StatelessWidget {
     return ListView.separated(
       padding: EdgeInsets.only(
         top: 8,
-        bottom: MediaQuery.paddingOf(context).bottom + 16,
+        // Pod plovoucí navigací.
+        bottom: MediaQuery.paddingOf(context).bottom + 110,
       ),
       itemCount: n,
       separatorBuilder: (_, _) => const Divider(indent: 64),

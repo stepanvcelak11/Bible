@@ -5,6 +5,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/section_label.dart';
 import '../../../domain/services/versification.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
@@ -15,7 +16,14 @@ import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/situations_screen.dart';
+import '../../content/presentation/notes_screen.dart';
+import '../../content/presentation/people_screen.dart';
+import '../../content/presentation/tables_screen.dart';
+import '../../maps/presentation/maps_screen.dart';
+import '../../study/presentation/book_intros_screen.dart';
+import '../../guide/presentation/guide_screen.dart';
 import 'plans_sheet.dart';
+import 'timeline_screen.dart';
 
 const _months = [
   'ledna', 'února', 'března', 'dubna', 'května', 'června', //
@@ -76,6 +84,11 @@ class TodayScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            IconButton(
+              tooltip: S.guide,
+              onPressed: () => openGuide(context),
+              icon: const Icon(Icons.help_outline),
+            ),
             IconButton.filledTonal(
               tooltip: S.settings,
               onPressed: () => Navigator.of(context).push(
@@ -87,17 +100,14 @@ class TodayScreen extends ConsumerWidget {
         ),
         const SizedBox(height: 20),
         const _VerseOfDayCard(),
-        const SizedBox(height: 16),
-        const _ContinueCard(),
-        const SizedBox(height: 22),
         const _SituationsStrip(),
-        const SizedBox(height: 16),
+        const SectionLabel(S.myReading),
+        const _ContinueCard(),
+        const SizedBox(height: 10),
         const _StatsRow(),
-        const SizedBox(height: 16),
+        const SizedBox(height: 10),
         const _PlanCard(),
-        const SizedBox(height: 24),
         const _StudyTeaser(),
-        const SizedBox(height: 24),
         const _RecentList(),
       ],
     );
@@ -330,37 +340,45 @@ class _StatsRow extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(readingStatsProvider).value;
     final percent = ((stats?.chaptersTotal ?? 0) / 1189 * 100);
-    return Row(
-      children: [
-        Expanded(
-          child: _StatTile(
-            icon: Icons.local_fire_department,
-            iconColor: const Color(0xFFE0782F),
-            value: '${stats?.streakDays ?? 0}',
-            label: S.streak,
-            active: stats?.readToday ?? false,
-          ),
+    final palette = AppPalette.of(context);
+    Widget divider() =>
+        Container(width: 1, height: 40, color: palette.cardBorder);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        child: Row(
+          children: [
+            Expanded(
+              child: _StatTile(
+                icon: Icons.local_fire_department,
+                iconColor: const Color(0xFFE0782F),
+                value: '${stats?.streakDays ?? 0}',
+                label: S.streak,
+                active: stats?.readToday ?? false,
+              ),
+            ),
+            divider(),
+            Expanded(
+              child: _StatTile(
+                icon: Icons.calendar_today,
+                iconColor: const Color(0xFF3F7CAC),
+                value: '${stats?.chaptersThisWeek ?? 0}',
+                label: S.thisWeek,
+              ),
+            ),
+            divider(),
+            Expanded(
+              child: _StatTile(
+                icon: Icons.donut_large,
+                iconColor: const Color(0xFF4E9A8A),
+                value:
+                    '${percent.toStringAsFixed(percent < 10 ? 1 : 0).replaceAll('.', ',')} %',
+                label: S.totalRead,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _StatTile(
-            icon: Icons.calendar_today,
-            iconColor: const Color(0xFF3F7CAC),
-            value: '${stats?.chaptersThisWeek ?? 0}',
-            label: S.thisWeek,
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: _StatTile(
-            icon: Icons.donut_large,
-            iconColor: const Color(0xFF4E9A8A),
-            value:
-                '${percent.toStringAsFixed(percent < 10 ? 1 : 0).replaceAll('.', ',')} %',
-            label: S.totalRead,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -384,40 +402,41 @@ class _StatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    return Card(
-      child: Container(
-        height: 112,
-        padding: const EdgeInsets.fromLTRB(14, 12, 10, 12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              icon,
-              size: 20,
-              color: active ? iconColor : palette.muted.withValues(alpha: 0.6),
-            ),
-            const Spacer(),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.centerLeft,
-              child: Text(
-                value,
-                maxLines: 1,
-                style: theme.textTheme.headlineSmall?.copyWith(height: 1.1),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 18,
+                color: active
+                    ? iconColor
+                    : palette.muted.withValues(alpha: 0.6),
               ),
-            ),
-            SizedBox(
-              height: 30,
-              child: Text(
-                label,
-                maxLines: 2,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: palette.muted,
+              const SizedBox(width: 6),
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    value,
+                    maxLines: 1,
+                    style: theme.textTheme.titleLarge?.copyWith(height: 1.1),
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.labelSmall?.copyWith(color: palette.muted),
+          ),
+        ],
       ),
     );
   }
@@ -531,67 +550,112 @@ class _PlanCard extends ConsumerWidget {
 }
 
 /// Odkaz do záložky Studium s ukázkou obsahu.
+/// Rychlé zkratky do studijních materiálů (otevřou se rovnou).
 class _StudyTeaser extends ConsumerWidget {
   const _StudyTeaser();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    void open() => ref.read(shellTabProvider.notifier).select(AppTab.study);
-    const items = [
-      (Icons.diversity_3_outlined, S.people),
-      (Icons.sticky_note_2_outlined, S.applicationNotes),
-      (Icons.table_chart_outlined, S.tables),
-      (Icons.view_week_outlined, S.harmony),
-      (Icons.view_timeline_outlined, S.timeline),
-      (Icons.map_outlined, S.exploreMaps),
+    void push(Widget page) =>
+        Navigator.of(context)
+            .push(MaterialPageRoute<void>(builder: (_) => page));
+    final items = [
+      (
+        Icons.diversity_3_outlined,
+        const Color(0xFF8C4A6B),
+        S.people,
+        () => push(const PeopleScreen()),
+      ),
+      (
+        Icons.auto_stories_outlined,
+        const Color(0xFFB0813B),
+        S.exploreIntros,
+        () => push(const BookIntrosScreen()),
+      ),
+      (
+        Icons.sticky_note_2_outlined,
+        const Color(0xFF3F7CAC),
+        S.applicationNotes,
+        () => push(const NotesScreen()),
+      ),
+      (
+        Icons.view_timeline_outlined,
+        const Color(0xFFB0603A),
+        S.timeline,
+        () => push(const TimelineScreen()),
+      ),
+      (
+        Icons.table_chart_outlined,
+        const Color(0xFF5B7A3A),
+        S.tables,
+        () => push(const TablesScreen()),
+      ),
+      (
+        Icons.map_outlined,
+        const Color(0xFF4E9A8A),
+        S.exploreMaps,
+        () => openMaps(context),
+      ),
     ];
-    return Card(
-      child: InkWell(
-        onTap: open,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 16, 14, 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(Icons.school_outlined, color: palette.gold),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Text(
-                      S.studyTeaserTitle,
-                      style: theme.textTheme.titleLarge,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SectionLabel(
+          S.studyTeaserTitle,
+          action: S.all,
+          onAction: () =>
+              ref.read(shellTabProvider.notifier).select(AppTab.study),
+        ),
+        SizedBox(
+          height: 104,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            itemCount: items.length,
+            separatorBuilder: (_, _) => const SizedBox(width: 10),
+            itemBuilder: (context, i) {
+              final (icon, color, label, onTap) = items[i];
+              return SizedBox(
+                width: 108,
+                child: Card(
+                  margin: EdgeInsets.zero,
+                  child: InkWell(
+                    onTap: onTap,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 10, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: color.withValues(alpha: 0.14),
+                              borderRadius: BorderRadius.circular(11),
+                            ),
+                            child: Icon(icon, size: 20, color: color),
+                          ),
+                          const Spacer(),
+                          Text(
+                            label,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              height: 1.2,
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const Icon(Icons.chevron_right),
-                ],
-              ),
-              const SizedBox(height: 4),
-              Text(
-                S.studyTeaserHint,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: palette.muted,
                 ),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final (icon, label) in items)
-                    Chip(
-                      avatar: Icon(icon, size: 16, color: palette.gold),
-                      label: Text(label),
-                      visualDensity: VisualDensity.compact,
-                    ),
-                ],
-              ),
-            ],
+              );
+            },
           ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -626,32 +690,30 @@ class _SituationsStrip extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(S.situationsToday, style: theme.textTheme.titleLarge),
-            ),
-            TextButton(onPressed: openAll, child: const Text(S.all)),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final s in featured)
-              ActionChip(
+        SectionLabel(S.situationsToday, action: S.all, onAction: openAll),
+        SizedBox(
+          height: 40,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            clipBehavior: Clip.none,
+            itemCount: featured.length,
+            separatorBuilder: (_, _) => const SizedBox(width: 8),
+            itemBuilder: (context, i) {
+              final s = featured[i];
+              return ActionChip(
                 avatar: Icon(
                   situationIcons[s.icon],
                   size: 18,
                   color: situationColor(s),
                 ),
                 label: Text(s.title),
+                labelStyle: theme.textTheme.labelLarge,
                 backgroundColor: palette.card,
                 side: BorderSide(color: palette.cardBorder),
                 onPressed: () => openSituation(context, s),
-              ),
-          ],
+              );
+            },
+          ),
         ),
       ],
     );
@@ -665,13 +727,11 @@ class _RecentList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final recent = ref.watch(recentReadingProvider).value ?? const [];
     if (recent.isEmpty) return const SizedBox.shrink();
-    final theme = Theme.of(context);
     final books = ref.watch(booksProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(S.recentlyRead, style: theme.textTheme.titleLarge),
-        const SizedBox(height: 8),
+        const SectionLabel(S.recentlyRead),
         Card(
           child: Column(
             children: [

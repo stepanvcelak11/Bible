@@ -86,6 +86,9 @@ abstract final class S {
   };
 
   // Deník
+  static const journalIntro =
+      'Vaše záložky, poznámky a zvýraznění. Vše zůstává jen v tomto '
+      'zařízení; smazání = přejetí doleva.';
   static const journalEmptyBookmarks =
       'Zatím žádné záložky.\nPřidáte je klepnutím na verš.';
   static const journalEmptyNotes =
@@ -225,6 +228,13 @@ abstract final class S {
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
+  static const myReading = 'Moje čtení';
+  static const guide = 'Průvodce aplikací';
+  static const guideHint = 'Co kde najdete a jak se aplikace ovládá';
+  static const guideIntro =
+      'Aplikace má dole pět záložek. Tady je stručně, co v každé najdete.';
+  static const guideOpen = 'Otevřít';
+  static const recentlyReadShort = 'Nedávno čtené';
   static const studyTeaserHint =
       'Medailony postav, aplikační poznámky, tabulky, harmonie evangelií, '
       'časová osa a mapy – vše najdete v záložce Studium dole.';
@@ -240,7 +250,14 @@ abstract final class S {
   static const readerTabsHint =
       'Otevřete si víc míst v Bibli najednou – třeba Jana a Matouše – '
       'a přepínejte mezi nimi jedním klepnutím v liště nahoře. Každá '
-      'karta si pamatuje, kde jste skončili.';
+      'karta si pamatuje, kde jste skončili, i svůj překlad.';
+  static const tabOtherPlace = 'Jiné místo v Bibli';
+  static const tabOtherPlaceHint = 'Vyberete knihu a kapitolu';
+  static const tabOtherTranslation = 'Stejné místo v jiném překladu';
+  static const tabOtherTranslationHint =
+      'Přepínáním karet pak porovnáte překlady verš po verši';
+  static const moreTranslations = 'Stáhnout další překlady';
+  static String tabTranslation(String name) => 'Překlad karty: $name';
   static const newTab = 'Nová karta';
   static const closeTab = 'Zavřít kartu';
   static const fromStudy = 'Ve studijních materiálech';

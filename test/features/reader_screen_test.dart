@@ -13,6 +13,7 @@ import 'package:bible_reader/features/study/application/study_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:bible_reader/features/translations/application/translation_controller.dart';
 
 import '../helpers/test_databases.dart';
 
@@ -46,7 +47,7 @@ void main() {
     expect(find.text('VERŠ DNE'), findsOneWidget);
     expect(find.text('Pokračovat ve čtení'), findsOneWidget);
     expect(find.text('Jan 3,16'), findsOneWidget);
-    expect(find.text('Verše pro tuto chvíli'), findsOneWidget);
+    expect(find.text('VERŠE PRO TUTO CHVÍLI'), findsOneWidget);
 
     await tester.tap(find.text('Jan 3,16'));
     await settle(tester);
@@ -201,7 +202,7 @@ void main() {
     await pumpApp(tester, at: const VerseRef(43, 3, 16));
     await tester.tap(find.byTooltip('Čtecí karty'));
     await settle(tester);
-    await tester.tap(find.text('Nová karta'));
+    await tester.tap(find.text('Jiné místo v Bibli'));
     await settle(tester);
     // Ve výběru knihy zvolit Genesis 1.
     await tester.enterText(find.byType(TextField).first, 'Gn 1');
@@ -214,6 +215,42 @@ void main() {
     await tester.tap(find.text('J 3'));
     await settle(tester);
     expect(container.read(readingPositionProvider).bookId, 43);
+  });
+
+  appTest('čtecí karty: stejné místo v jiném překladu', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    expect(container.read(translationControllerProvider).primaryId, 'BKR');
+    await tester.tap(find.byTooltip('Čtecí karty'));
+    await settle(tester);
+    await tester.tap(find.textContaining('Český studijní překlad'));
+    await settle(tester);
+    expect(container.read(translationControllerProvider).primaryId, 'CSP');
+    expect(
+      find.textContaining('Neboť tak Bůh miluje svět', findRichText: true),
+      findsOneWidget,
+    );
+    // Karty ukazují i překlad; návrat na BKR jedním klepnutím.
+    expect(find.text('J 3 · ČSP'), findsOneWidget);
+    await tester.tap(find.text('J 3 · BKR'));
+    await settle(tester);
+    expect(container.read(translationControllerProvider).primaryId, 'BKR');
+    expect(container.read(readingPositionProvider).chapter, 3);
+    expect(
+      container.read(readerTabsProvider).tabs.map((t) => t.translationId),
+      ['BKR', 'CSP'],
+    );
+  });
+
+  appTest('průvodce aplikací: přehled a přechod do záložky', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.byTooltip('Průvodce aplikací'));
+    await settle(tester);
+    expect(find.text('Průvodce aplikací'), findsOneWidget);
+    // Druhá část = Bible.
+    await tester.tap(find.text('Otevřít').at(1));
+    await settle(tester);
+    expect(find.text('Průvodce aplikací'), findsNothing);
+    expect(find.text('Genesis 1'), findsOneWidget);
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

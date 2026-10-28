@@ -62,12 +62,18 @@ class TranslationController extends Notifier<TranslationSelection> {
 
   /// Nastaví hlavní překlad. Pokud je zvolený překlad právě druhým
   /// (porovnávaným), oba se prohodí – porovnání tak zůstane zachováno.
-  void selectPrimary(String id) {
+  ///
+  /// [convertPosition] = `false`, když volající hned poté skočí na místo
+  /// zapsané už v číslování nového překladu (přepnutí čtecí karty).
+  void selectPrimary(String id, {bool convertPosition = true}) {
     if (!_exists(id) || id == state.primaryId) return;
     final secondary = state.secondaryId == id
         ? state.primaryId
         : state.secondaryId;
-    _update(TranslationSelection(primaryId: id, secondaryId: secondary));
+    _update(
+      TranslationSelection(primaryId: id, secondaryId: secondary),
+      convertPosition: convertPosition,
+    );
   }
 
   /// Nastaví druhý překlad pro porovnání; `null` porovnání vypne.
@@ -99,7 +105,7 @@ class TranslationController extends Notifier<TranslationSelection> {
     );
   }
 
-  void _update(TranslationSelection next) {
+  void _update(TranslationSelection next, {bool convertPosition = true}) {
     final previousPrimary = state.primaryId;
     state = next;
 
@@ -114,7 +120,10 @@ class TranslationController extends Notifier<TranslationSelection> {
       // Nový překlad může mít jiný počet kapitol – pozici případně upravíme.
       ref
           .read(readingPositionProvider.notifier)
-          .ensureValidFor(next.primaryId, from: previousPrimary);
+          .ensureValidFor(
+            next.primaryId,
+            from: convertPosition ? previousPrimary : null,
+          );
     }
   }
 }

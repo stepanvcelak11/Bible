@@ -5,6 +5,7 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/readable_width.dart';
+import '../../../core/widgets/section_label.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../../domain/services/timeline.dart';
 import '../../content/application/content_providers.dart';
@@ -55,17 +56,7 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
     final notesCount = ref.watch(notesProvider).value?.length;
     final tablesCount = ref.watch(tablesProvider).value?.length;
 
-    Widget header(String title) => Padding(
-      padding: const EdgeInsets.fromLTRB(4, 24, 4, 10),
-      child: Text(
-        title.toUpperCase(),
-        style: theme.textTheme.labelMedium?.copyWith(
-          color: palette.muted,
-          letterSpacing: 1.3,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
-    );
+    Widget header(String title) => SectionLabel(title);
 
     Widget group(List<_Entry> entries) => Card(
       child: Column(

@@ -4,6 +4,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../guide/presentation/guide_screen.dart';
+
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -185,6 +188,13 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () => _import(context, ref),
             ),
             const _Header(S.about),
+            ListTile(
+              leading: const Icon(Icons.help_outline),
+              title: const Text(S.guide),
+              subtitle: const Text(S.guideHint),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => openGuide(context),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
               child: Text(S.aboutBody, style: theme.textTheme.bodyMedium),

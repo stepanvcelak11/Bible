@@ -179,9 +179,7 @@ class _TopBar extends ConsumerWidget {
                       label: Text('${tabs.tabs.length}'),
                       child: const Icon(Icons.tab_outlined),
                     ),
-                    onPressed: () => tabs.hasMany
-                        ? newReaderTab(context, ref)
-                        : _showTabsHint(context, ref),
+                    onPressed: () => newReaderTab(context, ref),
                   ),
                   IconButton(
                     tooltip: S.search,
@@ -278,6 +276,9 @@ class _TabStrip extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(readerTabsProvider);
     final books = ref.watch(booksProvider);
+    final translations = {
+      for (final t in ref.watch(translationsProvider)) t.id: t.abbreviation,
+    };
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final ctl = ref.read(readerTabsProvider.notifier);
@@ -296,7 +297,12 @@ class _TabStrip extends ConsumerWidget {
                 selectedColor: palette.gold.withValues(alpha: 0.22),
                 visualDensity: VisualDensity.compact,
                 label: Text(
-                  '${books[t.bookId - 1].abbreviation} ${t.chapter}',
+                  state.mixedTranslations
+                      ? '${books[t.position.bookId - 1].abbreviation} '
+                            '${t.position.chapter} · '
+                            '${translations[t.translationId] ?? ''}'
+                      : '${books[t.position.bookId - 1].abbreviation} '
+                            '${t.position.chapter}',
                   style: theme.textTheme.labelLarge?.copyWith(
                     fontWeight: i == state.active
                         ? FontWeight.w700
@@ -320,42 +326,132 @@ class _TabStrip extends ConsumerWidget {
   }
 }
 
-/// Otevře novou kartu a hned výběr knihy pro ni.
+/// Nabídka nové karty: jiné místo v Bibli, nebo totéž místo v jiném
+/// překladu (pro porovnání překladů přepínáním karet).
 void newReaderTab(BuildContext context, WidgetRef ref) {
-  ref.read(readerTabsProvider.notifier).open(ref.read(readingPositionProvider));
-  openBookPicker(context);
+  final first = !ref.read(readerTabsProvider).hasMany;
+  final translations = ref.read(translationsProvider);
+  final current = ref.read(translationControllerProvider).primaryId;
+  final position = ref.read(readingPositionProvider);
+  final ctl = ref.read(readerTabsProvider.notifier);
+  showModalBottomSheet<void>(
+    context: context,
+    isScrollControlled: true,
+    builder: (sheet) {
+      final theme = Theme.of(sheet);
+      final palette = AppPalette.of(sheet);
+      return SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(S.newTab, style: theme.textTheme.titleLarge),
+              if (first) ...[
+                const SizedBox(height: 6),
+                Text(
+                  S.readerTabsHint,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 14),
+              _SheetOption(
+                icon: Icons.menu_book_outlined,
+                title: S.tabOtherPlace,
+                subtitle: S.tabOtherPlaceHint,
+                onTap: () {
+                  Navigator.of(sheet).pop();
+                  ctl.open(position);
+                  openBookPicker(context);
+                },
+              ),
+              const SizedBox(height: 18),
+              Text(S.tabOtherTranslation, style: theme.textTheme.titleSmall),
+              const SizedBox(height: 2),
+              Text(
+                S.tabOtherTranslationHint,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: theme.colorScheme.onSurfaceVariant,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final t in translations)
+                    if (t.id != current)
+                      ActionChip(
+                        avatar: Icon(
+                          Icons.translate,
+                          size: 18,
+                          color: palette.gold,
+                        ),
+                        label: Text('${t.abbreviation} · ${t.name}'),
+                        onPressed: () {
+                          Navigator.of(sheet).pop();
+                          ctl.open(position, translationId: t.id);
+                        },
+                      ),
+                  // Stažené mohou být jen některé překlady.
+                  ActionChip(
+                    avatar: const Icon(Icons.download_outlined, size: 18),
+                    label: const Text(S.moreTranslations),
+                    onPressed: () {
+                      Navigator.of(sheet).pop();
+                      _push(context, const LibraryScreen());
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+class _SheetOption extends StatelessWidget {
+  const _SheetOption({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return Material(
+      color: theme.colorScheme.surfaceContainerLow,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: palette.cardBorder),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: ListTile(
+        leading: Icon(icon, color: palette.gold),
+        title: Text(title),
+        subtitle: Text(subtitle),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: onTap,
+      ),
+    );
+  }
 }
 
 Future<void> _push(BuildContext context, Widget page) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
-
-/// První klepnutí na karty: krátké vysvětlení a nová karta.
-void _showTabsHint(BuildContext context, WidgetRef ref) {
-  showModalBottomSheet<void>(
-    context: context,
-    builder: (sheet) => Padding(
-      padding: const EdgeInsets.fromLTRB(24, 0, 24, 28),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(S.readerTabs, style: Theme.of(sheet).textTheme.titleLarge),
-          const SizedBox(height: 8),
-          const Text(S.readerTabsHint),
-          const SizedBox(height: 16),
-          FilledButton.icon(
-            onPressed: () {
-              Navigator.of(sheet).pop();
-              newReaderTab(context, ref);
-            },
-            icon: const Icon(Icons.add),
-            label: const Text(S.newTab),
-          ),
-        ],
-      ),
-    ),
-  );
-}
 
 enum _MenuItem { readAloud, intro, map, translations, settings }
 

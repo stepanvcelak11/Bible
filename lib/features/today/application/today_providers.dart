@@ -73,7 +73,7 @@ class PlanController extends AsyncNotifier<PlanState?> {
     final prefs = ref.read(appPreferencesProvider);
     final id = prefs.planId;
     if (id == null) return null;
-    final plan = readingPlans.where((p) => p.id == id).firstOrNull;
+    final plan = planById(id);
     if (plan == null) return null;
     final translationId = ref.watch(
       translationControllerProvider.select((s) => s.primaryId),

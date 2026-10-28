@@ -189,6 +189,38 @@ final readingPlans = [
   ),
 ];
 
+/// Plán podle id: vestavěný, nebo vlastní (`custom:<dní>:<kniha,kniha…>`).
+ReadingPlan? planById(String id) {
+  for (final p in readingPlans) {
+    if (p.id == id) return p;
+  }
+  return customPlan(id);
+}
+
+/// Id vlastního plánu z vybraných knih a počtu dní.
+String customPlanId(List<int> books, int days) =>
+    'custom:$days:${books.join(',')}';
+
+ReadingPlan? customPlan(String id) {
+  final parts = id.split(':');
+  if (parts.length != 3 || parts[0] != 'custom') return null;
+  final days = int.tryParse(parts[1]);
+  final books = [
+    for (final b in parts[2].split(','))
+      if (int.tryParse(b) case final n? when n >= 1 && n <= 66) n,
+  ];
+  if (days == null || days < 1 || books.isEmpty) return null;
+  return ReadingPlan(
+    id: id,
+    name: 'Vlastní plán',
+    description: books.length == 1
+        ? 'Jedna kniha'
+        : '${books.length} knih podle vašeho výběru',
+    days: days,
+    books: books,
+  );
+}
+
 // --- Verš dne ----------------------------------------------------------------------
 
 /// Pečlivě vybrané verše (číslování platí shodně pro české překlady).

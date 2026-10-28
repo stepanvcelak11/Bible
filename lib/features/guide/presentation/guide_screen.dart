@@ -45,6 +45,8 @@ const _parts = [
           'i jiný překlad, takže překlady porovnáte přepnutím karty.',
       'Tlačítka nad kapitolou → úvod ke knize, aplikační poznámky, '
           'medailony postav a místa na mapě.',
+      'Na konci kapitoly → zamyšlení (čtyři otázky, odpovědi se uloží do '
+          'Deníku) a další kapitola.',
       'Menu ⋮ → předčítání nahlas, místa v kapitole, překlady, nastavení.',
     ],
   ),

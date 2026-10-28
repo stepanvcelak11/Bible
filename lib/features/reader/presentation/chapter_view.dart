@@ -27,6 +27,7 @@ import '../application/reader_blocks.dart';
 import '../application/reader_state.dart';
 import '../application/reading_position_controller.dart';
 import 'paragraph_view.dart';
+import 'reflection_sheet.dart';
 import 'reader_screen.dart' show readerTopBarHeight;
 import 'verse_tile.dart';
 
@@ -213,7 +214,11 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
           text,
           paragraphs: settings.paragraphMode,
         );
-        _itemVerses = [const [], for (final b in blocks) b.verseNumbers];
+        _itemVerses = [
+          const [],
+          for (final b in blocks) b.verseNumbers,
+          const [],
+        ];
         items = [
           for (final b in blocks)
             switch (b) {
@@ -230,6 +235,7 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
         _itemVerses = [
           const [],
           for (final r in rows) [r.number],
+          const [],
         ];
         items = [for (final r in rows) () => ParallelVerseTile(row: r)];
     }
@@ -263,9 +269,17 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
               left: side,
               right: side,
             ),
-            itemCount: items.length + 1,
+            itemCount: items.length + 2,
             itemBuilder: (context, i) => i == 0
                 ? _ChapterHeader(bookId: widget.bookId, chapter: widget.chapter)
+                : i > items.length
+                ? ChapterFooter(
+                    bookId: widget.bookId,
+                    chapter: widget.chapter,
+                    onNext: () => ref
+                        .read(readingPositionProvider.notifier)
+                        .nextChapter(),
+                  )
                 : items[i - 1](),
           ),
         ),

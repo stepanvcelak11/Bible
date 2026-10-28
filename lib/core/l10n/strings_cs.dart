@@ -229,6 +229,41 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const reflection = 'Zamyšlení nad kapitolou';
+  static const reflectionHintShort =
+      'Čtyři otázky – odpovědi se uloží do Deníku';
+  static String reflectionTitle(String book, int chapter) =>
+      'Zamyšlení: $book $chapter';
+  static const reflectionIntro =
+      'Odpovězte na kterékoli otázky – stačí pár slov. Odpovědi se uloží '
+      'jako poznámka do Deníku.';
+  static const reflectionHint = 'Vaše odpověď…';
+  static const reflectionSave = 'Uložit do Deníku';
+  static const reflectionSaved = 'Zamyšlení uloženo do Deníku';
+  static const customPlan = 'Vlastní plán';
+  static const customPlanHint = 'Vyberte knihy a za kolik dní je přečtete';
+  static const customPlanIntro =
+      'Vyberte knihy, které chcete přečíst, a za kolik dní. Kapitoly se '
+      'rovnoměrně rozdělí do jednotlivých dní.';
+  static const quickChoice = 'Rychlý výběr';
+  static const clearSelection = 'Zrušit výběr';
+  static const planLength = 'Délka plánu';
+  static String daysCount(int n) => n == 1
+      ? '1 den'
+      : n < 5
+      ? '$n dny'
+      : '$n dní';
+  static const customPlanPick = 'Vyberte alespoň jednu knihu.';
+  static String customPlanSummary(int books, int chapters, String perDay) =>
+      'Knih: $books · kapitol: $chapters · asi $perDay kapitoly denně';
+  static const presetNt = 'Nový zákon';
+  static const presetGospels = 'Evangelia';
+  static const presetPaul = 'Pavlovy listy';
+  static const presetOt = 'Starý zákon';
+  static const presetTorah = 'Pět knih Mojžíšových';
+  static const presetWisdom = 'Mudroslovné knihy';
+  static const presetProphets = 'Proroci';
+  static const presetBible = 'Celá Bible';
   static const topics = 'Biblická témata';
   static const topicsHint = 'Milost, modlitba, odpuštění, církev…';
   static String topicsCount(int n) => '$n témat – shrnutí a klíčová místa';

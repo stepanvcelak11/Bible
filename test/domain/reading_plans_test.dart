@@ -31,4 +31,17 @@ void main() {
     expect(all, hasLength(1189));
     expect(all.toSet(), hasLength(1189));
   });
+
+  test('vlastní plán: id ↔ plán, rovnoměrné rozdělení', () {
+    final id = customPlanId([40, 41], 11);
+    expect(id, 'custom:11:40,41');
+    final plan = planById(id)!;
+    final days = plan.schedule(counts);
+    expect(days, hasLength(11));
+    expect(days.expand((d) => d), hasLength(44)); // Mt 28 + Mk 16
+    expect(days.every((d) => d.length == 4), isTrue);
+    expect(planById('custom:x:1'), isNull);
+    expect(planById('custom:5:'), isNull);
+    expect(planById('nt90')!.id, 'nt90');
+  });
 }

@@ -294,6 +294,27 @@ void main() {
     expect(find.text('Ospravedlněni zdarma, z milosti'), findsOneWidget);
   });
 
+  appTest('zamyšlení nad kapitolou se uloží do Deníku', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16));
+    await tester.scrollUntilVisible(
+      find.text('Zamyšlení nad kapitolou'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.tap(find.text('Zamyšlení nad kapitolou'));
+    await settle(tester);
+    expect(find.text('Zamyšlení: Jan 3'), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, 'Boží láska');
+    await settle(tester);
+    await tester.tap(find.text('Uložit do Deníku'));
+    await settle(tester);
+    final notes = await tester.runAsync(
+      () => container.read(userDataRepositoryProvider).watchAllNotes().first,
+    );
+    expect(notes!.single.body, contains('Boží láska'));
+    expect(notes.single.ref, const VerseRef(43, 3, 1));
+  });
+
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {
     await pumpApp(tester);
     expect(find.text('Genesis 1'), findsOneWidget);

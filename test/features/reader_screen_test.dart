@@ -305,9 +305,10 @@ void main() {
     await tester.tap(find.textContaining('miloval svět', findRichText: true));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Studovat'));
-    await settle(tester);
+    // Záložka Originál může ukazovat nekonečný indikátor – bez pumpAndSettle.
+    await pumpFor(tester);
     await tester.tap(find.text('Překlady'));
-    await settle(tester);
+    await pumpFor(tester);
     final translations = container.read(translationsProvider);
     expect(translations.length, greaterThan(1));
     for (final t in translations) {
@@ -592,6 +593,16 @@ void appTest(String name, Future<void> Function(WidgetTester) body) {
     await body(tester);
     await tester.pump(const Duration(seconds: 30));
   });
+}
+
+/// Jako [settle], ale bez čekání na konec všech animací.
+Future<void> pumpFor(WidgetTester tester) async {
+  for (var i = 0; i < 4; i++) {
+    await tester.runAsync(
+      () => Future<void>.delayed(const Duration(milliseconds: 40)),
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+  }
 }
 
 /// Nechá doběhnout dotazy do SQLite (skutečné I/O) a animace.

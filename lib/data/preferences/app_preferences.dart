@@ -25,6 +25,7 @@ class AppPreferences {
   static const _memoryVerses = 'memory.verses';
   static const _prayers = 'prayers';
   static const _quizBest = 'quiz.best';
+  static const _quizOfDay = 'quiz.day';
   static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
 
@@ -92,6 +93,11 @@ class AppPreferences {
     _quizBest,
     [for (final e in values.entries) '${e.key}:${e.value}'],
   );
+
+  /// Odpověď na otázku dne: „rrrrmmdd|odpověď“.
+  String? get quizOfDay => _prefs.getString(_quizOfDay);
+  Future<void> setQuizOfDay(String value) =>
+      _prefs.setString(_quizOfDay, value);
 
   ReaderSettings get readerSettings {
     final raw = _prefs.getString(_readerSettings);

@@ -324,7 +324,7 @@
   },
   {
    "category": "ot",
-   "question": "Na které hoře se Elijáš utkal s Baalovými proroky?",
+   "question": "Na které hoře se Eliáš utkal s Baalovými proroky?",
    "answers": [
     "Karmel",
     "Sínaj",
@@ -342,7 +342,7 @@
    "category": "ot",
    "question": "Kdo byl vzat do nebe ve vichru?",
    "answers": [
-    "Elijáš",
+    "Eliáš",
     "Elíša",
     "Mojžíš",
     "Izajáš"
@@ -1129,7 +1129,7 @@
     "Nátan",
     "Gád",
     "Samuel",
-    "Elijáš"
+    "Eliáš"
    ],
    "ref": [
     10,
@@ -1236,7 +1236,7 @@
   },
   {
    "category": "people",
-   "question": "Čím obchodovala Lydie z Thyatir?",
+   "question": "Čím obchodovala Lýdie z Thyatir?",
    "answers": [
     "Purpurem",
     "Kořením",

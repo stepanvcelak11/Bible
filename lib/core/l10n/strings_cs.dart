@@ -337,6 +337,13 @@ abstract final class S {
       'Deset otázek z celé Bible. Po každé odpovědi uvidíte místo, kde se '
       'odpověď najde – kvíz je tak i rychlé opakování.';
   static const quizAll = 'Celá Bible';
+  static const forToday = 'Na dnešek';
+  static const quizOfDay = 'Otázka dne';
+  static const quizMore = 'Další otázky';
+  static String memoryDue(int n) =>
+      '$n ${_plural(n, 'verš', 'verše', 'veršů')} k opakování';
+  static String prayersDue(int n) =>
+      '$n ${_plural(n, 'prosba', 'prosby', 'proseb')} v seznamu';
   static const quizChoose = 'Vyberte oblast';
   static String quizQuestions(int n) =>
       '$n ${_plural(n, 'otázka', 'otázky', 'otázek')}';
@@ -514,6 +521,7 @@ abstract final class S {
   static const personWhere = 'Kde žil(a)';
   static const personOccupation = 'Povolání';
   static const personRelatives = 'Příbuzní';
+  static const personRelated = 'Související postavy';
   static const personBooks = 'Vystupuje v knihách';
   static const strengths = 'Silné stránky a úspěchy';
   static const weaknesses = 'Slabiny a selhání';

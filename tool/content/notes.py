@@ -779,7 +779,7 @@ note("Sk 1,6-11", "Budete mými svědky",
      "Kde je můj „Jeruzalém“ – nejbližší okolí, kde mohu žít a mluvit "
      "jako Ježíšův svědek?")
 note("Sk 2,1-13", "Letnice",
-     "O svátku letnic sestoupí na učedníky Duch svatý jako vichr a ohnivé "
+     "O svátku Letnic sestoupí na učedníky Duch svatý jako vichr a ohnivé "
      "jazyky. Mluví jinými jazyky a poutníci z mnoha národů slyší o Božích "
      "velikých činech ve své řeči.",
      "Duch svatý dává církvi moc a evangelium je pro všechny národy "

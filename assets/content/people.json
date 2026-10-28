@@ -227,7 +227,7 @@
     "Ve stáří porodila syna zaslíbení"
    ],
    "weaknesses": [
-    "Ve netrpělivosti navrhla Abrahamovi Hagar",
+    "V netrpělivosti navrhla Abrahamovi Hagar",
     "Zasmála se Božímu slibu a zapírala to",
     "Krutě jednala s Hagar"
    ],
@@ -1259,7 +1259,7 @@
     "Upřímně činil pokání"
    ],
    "weaknesses": [
-    "Cizoložství s Batšebou a vražda Uriáše",
+    "Cizoložství s Batšebou a vražda Urijáše",
     "Selhal jako otec (Amnón, Absalóm)",
     "Pyšně nechal sečíst lid"
    ],
@@ -2174,7 +2174,7 @@
    "relatives": "bratr Ondřej; manželka",
    "strengths": [
     "Vyznal Ježíše jako Mesiáše",
-    "Kázal o letnicích",
+    "Kázal o Letnicích",
     "Vedl jeruzalémskou církev",
     "Přijal pohany (Kornélius)"
    ],
@@ -2833,7 +2833,7 @@
    "role": "Pavlův mladý spolupracovník",
    "where": "Lystra, Efez",
    "occupation": "kazatel, vedoucí sboru",
-   "relatives": "matka Eunika; babička Lóis",
+   "relatives": "matka Euniké; babička Lóis",
    "strengths": [
     "Od dětství znal Písmo",
     "Věrný Pavlův spolupracovník",
@@ -3652,10 +3652,10 @@
   {
    "id": "batseba",
    "name": "Batšeba",
-   "role": "Uriášova manželka, matka Šalomouna",
+   "role": "Urijášova manželka, matka Šalomouna",
    "where": "Jeruzalém",
    "occupation": "královna matka",
-   "relatives": "manželé Uriáš a David; syn Šalomoun",
+   "relatives": "manželé Urijáš a David; syn Šalomoun",
    "strengths": [
     "Zajistila nástupnictví Šalomouna",
     "Je v Ježíšově rodokmenu"
@@ -4068,7 +4068,7 @@
     "Vyznal Boha Izraele"
    ],
    "weaknesses": [
-    "Pyšně se urazil, že má jen sedmkrát omýt v Jordánu"
+    "Pyšně se urazil, že se má jen sedmkrát omýt v Jordánu"
    ],
    "lessons": [
     "Pýcha nám může bránit přijmout jednoduchou pomoc.",
@@ -4740,7 +4740,7 @@
   {
    "id": "kornelius",
    "name": "Kornélius",
-   "role": "římský setník, první pohan v církvi",
+   "role": "římský setník, jeden z prvních pohanů v církvi",
    "where": "Cesarea",
    "occupation": "setník",
    "relatives": "jeho dům",
@@ -5295,7 +5295,7 @@
    "role": "Mojžíšova manželka",
    "where": "Midján",
    "occupation": "pastýřka",
-   "relatives": "otec Jitro (Reúel); manžel Mojžíš; synové Geršóm a Elíezer",
+   "relatives": "otec Jetro (Reúel); manžel Mojžíš; synové Geršóm a Elíezer",
    "strengths": [
     "Přijala uprchlíka Mojžíše do rodiny",
     "V kritické chvíli rychle jednala a obřezala syna"
@@ -5355,7 +5355,7 @@
    "lessons": [
     "Závist a touha po moci ničí společenství.",
     "Bůh dává každému jeho místo – nemusíme bojovat o cizí.",
-    "Jeho synové nezahynuli – z jejich rodu jsou autoři žalmů (Ž 42–49)."
+    "Jeho synové nezahynuli – z jejich rodu jsou autoři žalmů (např. Ž 42–49)."
    ],
    "books": [
     4
@@ -5609,7 +5609,7 @@
    "relatives": "milovaná Samsonem",
    "strengths": [],
    "weaknesses": [
-    "Za peníze se dala najmout filištínskými knížaty",
+    "Za peníze se dala najmout pelištejskými knížaty",
     "Opakovaně naléhala, dokud Samson neprozradil své tajemství"
    ],
    "lessons": [
@@ -5851,7 +5851,7 @@
    "occupation": "královský rádce",
    "relatives": "pravděpodobně děd Batšeby",
    "strengths": [
-    "Jeho rada byla pokládána, jako by člověk tázal se Boha"
+    "Jeho rada byla pokládána, jako by se člověk tázal Boha"
    ],
    "weaknesses": [
     "Zradil Davida a přidal se k Absalómově vzpouře",
@@ -5903,11 +5903,11 @@
    "role": "judský král, reformátor",
    "where": "Jeruzalém",
    "occupation": "král Judy (asi 911–870 př. Kr.)",
-   "relatives": "otec Abijáš; syn Jóšafat",
+   "relatives": "otec Abijám; syn Jóšafat",
    "strengths": [
     "Odstranil modly a obnovil bohoslužbu Hospodinu",
     "Sesadil i vlastní babičku za modlářství",
-    "V bitvě se Kúšijci volal k Bohu a zvítězil"
+    "V bitvě s Kúšijci volal k Bohu a zvítězil"
    ],
    "weaknesses": [
     "Ve stáří se spolehl na aramejského krále místo na Boha",
@@ -6065,11 +6065,11 @@
   },
   {
    "id": "menases",
-   "name": "Menaše",
+   "name": "Manases",
    "role": "nejhorší judský král, který se obrátil",
    "where": "Jeruzalém, Babylón",
    "occupation": "král Judy (asi 697–642 př. Kr.)",
-   "relatives": "otec Chizkijáš; syn Ámón",
+   "relatives": "otec Chizkijáš; syn Amón",
    "strengths": [
     "V úzkosti se pokořil a Bůh ho vyslyšel",
     "Po návratu odstranil cizí bohy a obnovil oltář Hospodinův"
@@ -6514,9 +6514,9 @@
   },
   {
    "id": "haman",
-   "name": "Hámán",
+   "name": "Haman",
    "role": "nepřítel Židů v Persii",
-   "where": "Šúšan",
+   "where": "Súsy",
    "occupation": "první ministr krále Achašveróše",
    "relatives": "manželka Zereš; deset synů",
    "strengths": [],
@@ -6527,7 +6527,7 @@
    ],
    "lessons": [
     "Pýcha předchází pád (Př 16,18).",
-    "Bůh chrání svůj lid, i když ho v knize Ester ani nikdo nejmenuje."
+    "Bůh chrání svůj lid, i když ho kniha Ester ani nejmenuje."
    ],
    "books": [
     17
@@ -6769,7 +6769,7 @@
    "id": "jairos",
    "name": "Jairos",
    "role": "představený synagogy",
-   "where": "Kafarnaum (u Galilejského jezera)",
+   "where": "Galilea (u Galilejského jezera)",
    "occupation": "představený synagogy",
    "relatives": "dvanáctiletá dcera",
    "strengths": [
@@ -6861,7 +6861,7 @@
     "Skrze její svědectví uvěřili mnozí Samařané"
    ],
    "weaknesses": [
-    "Žila v rozbitých vztazích a vyhýbala se lidem (šla pro vodu v poledne)"
+    "Měla za sebou rozbité vztahy – možná proto šla pro vodu až v poledne, kdy u studny nikdo nebyl"
    ],
    "lessons": [
     "Ježíš boří bariéry národa, pohlaví i minulosti.",
@@ -7007,7 +7007,7 @@
   {
    "id": "dvoran",
    "name": "Etiopský dvořan",
-   "role": "první pokřtěný Afričan",
+   "role": "dvořan etiopské královny pokřtěný Filipem",
    "where": "Etiopie (Kúš), cesta z Jeruzaléma do Gázy",
    "occupation": "správce pokladu etiopské královny (kandaké)",
    "relatives": "",

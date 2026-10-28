@@ -145,7 +145,7 @@ OT = {
         "země, a vyzvat k věrnosti.",
         recipients="Izraelský lid",
         setting="Kenaan",
-        people=["Jozue", "Rachab", "Káleb", "Akan"],
+        people=["Jozue", "Rachab", "Káleb", "Akán"],
         places=["Jordán", "Jericho", "Aj", "Gibeón", "Šíló", "Šekem"],
         features="Rozdělení země mezi kmeny (kap. 13–21); závěrečná výzva "
         "„Já a můj dům budeme sloužit Hospodinu“.",
@@ -168,7 +168,7 @@ OT = {
         "posílá zachránce.",
         recipients="Izraelský lid v době královské",
         setting="Kenaan v době kmenů",
-        people=["Debora", "Barák", "Gedeón", "Jefte", "Samson", "Dalila"],
+        people=["Debora", "Barák", "Gedeón", "Jefte", "Samson", "Delila"],
         places=["Šíló", "Bét-el", "Gibea"],
         features="Opakující se kruh: odpadnutí – útlak – volání – záchrana. "
         "Kniha nic nepřikrášluje.",
@@ -234,7 +234,7 @@ OT = {
         "trvalého království.",
         recipients="Izraelský lid",
         setting="Juda a celý Izrael, Jeruzalém",
-        people=["David", "Batšeba", "Nátan", "Absalóm", "Jóab", "Uriáš"],
+        people=["David", "Batšeba", "Nátan", "Absalóm", "Jóab", "Urijáš"],
         places=["Chebrón", "Jeruzalém"],
         features="Boží smlouva s Davidem (kap. 7) je základem mesiášské "
         "naděje.",
@@ -631,7 +631,7 @@ OT = {
         setting="Juda po zničující pohromě",
         people=["Jóel"],
         places=["Jeruzalém", "Sijón"],
-        features="Petr citoval Jóele o letnicích (Sk 2).",
+        features="Petr citoval Jóele o Letnicích (Sk 2).",
         themes=[
             ("Pokání", "„Roztrhněte svá srdce, ne roucha“ (2,13)."),
             ("Duch pro všechny", "Bůh vyleje svého Ducha na každé tělo (3,1)."),

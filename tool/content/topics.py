@@ -112,7 +112,7 @@ topic("resurrection", "jesus", "sun", "Vzkříšení",
       [("Mt 28,5-6", "Není zde, byl vzkříšen"),
        ("L 24,36-43", "Vzkříšený jí s učedníky"),
        ("J 11,25", "Já jsem vzkříšení a život"),
-       ("1K 15,3-8", "Nejstarší vyznání o vzkříšení"),
+       ("1K 15,3-8", "Starobylé vyznání o vzkříšení"),
        ("1K 15,20", "Kristus je prvotina zesnulých"),
        ("1K 15,54-57", "Smrt pohlcena ve vítězství"),
        ("1Pt 1,3", "Znovuzrozeni k živé naději")])

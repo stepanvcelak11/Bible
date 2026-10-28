@@ -150,8 +150,8 @@ NT = {
         setting="Pavel píše z Efezu",
         people=["Pavel", "Apollos", "Petr (Kéfas)", "Sóstenés"],
         places=["Korint", "Efez"],
-        features="Píseň o lásce (kap. 13) a nejstarší písemné svědectví "
-        "o vzkříšení (15,3–8).",
+        features="Píseň o lásce (kap. 13) a jedno z nejstarších písemných "
+        "svědectví o vzkříšení (15,3–8).",
         themes=[
             ("Jednota", "Církev je jedno tělo s mnoha údy (kap. 12)."),
             ("Láska", "Bez lásky nejsem nic (13,2)."),
@@ -292,7 +292,7 @@ NT = {
         purpose="Povzbudit Timotea k věrnosti a odvaze; Pavlovo rozloučení.",
         recipients="Timoteus",
         setting="Pavel ve vězení v Římě před popravou",
-        people=["Pavel", "Timoteus", "Lukáš", "Marek", "Lóis a Eunika"],
+        people=["Pavel", "Timoteus", "Lukáš", "Marek", "Lóis a Euniké"],
         places=["Řím", "Efez"],
         features="Pavlův poslední dopis: „Dobrý boj jsem bojoval“ (4,7).",
         themes=[
@@ -337,7 +337,7 @@ NT = {
         "a povzbudit k vytrvalosti ve víře.",
         recipients="Křesťané židovského původu",
         setting="Nejisté; pravděpodobně před zničením chrámu",
-        people=["Ježíš (velekněz)", "Melchisedek", "hrdinové víry"],
+        people=["Ježíš (velekněz)", "Melchisedech", "hrdinové víry"],
         places=["Jeruzalém"],
         features="Galerie víry (kap. 11); autor neznámý.",
         themes=[

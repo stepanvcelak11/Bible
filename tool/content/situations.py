@@ -37,7 +37,7 @@ SITUATIONS = [
      ["Ef 4,26-27", "Jk 1,19-20", "Př 15,1", "Př 16,32", "Ž 37,8",
       "Ř 12,19", "Ko 3,13"]),
     ("guilt", "feelings", "refresh", "Selhal jsem",
-     "Selhání není konečná. Bůh nabízí odpuštění a nový začátek.",
+     "Selhání není konec. Bůh nabízí odpuštění a nový začátek.",
      ["1J 1,9", "Ž 51,3-4", "Ř 8,1", "Iz 1,18", "Ž 103,10-12", "Mi 7,18-19",
       "L 15,20"]),
     ("worthless", "feelings", "heart", "Cítím se bezcenný",

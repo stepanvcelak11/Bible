@@ -24,6 +24,7 @@ import '../../study/presentation/book_intros_screen.dart';
 import '../../guide/presentation/guide_screen.dart';
 import '../../progress/presentation/progress_screen.dart';
 import 'day_scene.dart';
+import 'for_today.dart';
 import 'plans_sheet.dart';
 import 'timeline_screen.dart';
 
@@ -154,6 +155,7 @@ class TodayScreen extends ConsumerWidget {
               const _StatsRow(),
               const SizedBox(height: 10),
               const _PlanCard(),
+              const ForTodaySection(),
               const _StudyTeaser(),
               const _RecentList(),
             ],

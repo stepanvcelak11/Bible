@@ -207,6 +207,41 @@ class _PeopleScreenState extends ConsumerState<PeopleScreen> {
 }
 
 /// Medailon jedné postavy.
+/// Postavy, které medailon zmiňuje mezi příbuznými (nebo které zmiňují
+/// tuto postavu). Jméno se odkazuje jen tehdy, když je jednoznačné –
+/// „Marie“ nebo „Josef“ by mohly znamenat víc lidí.
+List<BiblePerson> relatedPeople(BiblePerson person, List<BiblePerson> all) {
+  // Jmenovci: Josefův syn Manases × král Manases, Élího syn Pinchas
+  // × Áronův vnuk Pinchas, Absalómova sestra Támar × Judova snacha Támar.
+  const homonyms = {
+    {'josef', 'menases'},
+    {'eli', 'pinchas'},
+    {'absalom', 'tamar'},
+  };
+  String short(BiblePerson p) => p.name.split(' (').first;
+  bool ambiguous(String name) =>
+      all.where((p) => short(p).startsWith('$name ')).isNotEmpty ||
+      all.where((p) => short(p) == name).length > 1;
+  bool mentions(String text, String name) => RegExp(
+    '(^|[^\\p{L}])${RegExp.escape(name)}(\$|[^\\p{L}])',
+    unicode: true,
+  ).hasMatch(text);
+  final result = <BiblePerson>[];
+  for (final p in all) {
+    if (p.id == person.id) continue;
+    if (homonyms.any((h) => h.contains(p.id) && h.contains(person.id))) {
+      continue;
+    }
+    final other = short(p);
+    final mine = short(person);
+    if ((!ambiguous(other) && mentions(person.relatives, other)) ||
+        (!ambiguous(mine) && mentions(p.relatives, mine))) {
+      result.add(p);
+    }
+  }
+  return result;
+}
+
 class PersonScreen extends ConsumerWidget {
   const PersonScreen({super.key, required this.person});
 
@@ -218,6 +253,10 @@ class PersonScreen extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final books = ref.watch(booksProvider);
     final color = person.isNewTestament ? _ntColor : _otColor;
+    final related = relatedPeople(
+      person,
+      ref.watch(peopleProvider).value ?? const [],
+    );
 
     Widget list(String title, IconData icon, Color c, List<String> items) =>
         Card(
@@ -321,6 +360,34 @@ class PersonScreen extends ConsumerWidget {
             fact(S.personWhere, person.where),
             fact(S.personOccupation, person.occupation),
             fact(S.personRelatives, person.relatives),
+            if (related.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Text(
+                      '${S.personRelated}:',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: palette.muted,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    for (final p in related)
+                      ActionChip(
+                        avatar: Icon(
+                          Icons.person_outline,
+                          size: 18,
+                          color: p.isNewTestament ? _ntColor : _otColor,
+                        ),
+                        label: Text(p.name.split(' (').first),
+                        onPressed: () => openPerson(context, p),
+                      ),
+                  ],
+                ),
+              ),
             fact(
               S.personBooks,
               person.books.map((b) => books[b - 1].name).join(', '),

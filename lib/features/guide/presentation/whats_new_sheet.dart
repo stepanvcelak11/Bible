@@ -9,6 +9,18 @@ const whatsNewVersion = 3;
 
 const _items = [
   (
+    Icons.today_outlined,
+    'Na dnešek',
+    'Na stránce Dnes otázka dne z kvízu a připomínka veršů k opakování '
+        'a modliteb.',
+  ),
+  (
+    Icons.diversity_1_outlined,
+    'Související postavy',
+    'V medailonu postavy klepnete na příbuzné a přejdete na jejich '
+        'medailon.',
+  ),
+  (
     Icons.palette_outlined,
     'Barvy aplikace',
     'V Nastavení si vyberte barvu: zlatou, olivovou, modrou, švestkovou '
@@ -78,7 +90,7 @@ const _items = [
   (
     Icons.diversity_3_outlined,
     'Víc studijního obsahu',
-    '160 medailonů postav, 129 aplikačních poznámek, 15 tabulek.',
+    '160 medailonů postav, 128 aplikačních poznámek, 15 tabulek.',
   ),
 ];
 

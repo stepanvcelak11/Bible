@@ -63,10 +63,10 @@ q("ot", "Čím David porazil Goliáše?",
   "Prakem a kamenem", ["Mečem", "Kopím", "Lukem"], "1S 17,50")
 q("ot", "Kdo postavil první chrám v Jeruzalémě?",
   "Šalomoun", ["David", "Saul", "Chizkijáš"], "1Kr 6,14")
-q("ot", "Na které hoře se Elijáš utkal s Baalovými proroky?",
+q("ot", "Na které hoře se Eliáš utkal s Baalovými proroky?",
   "Karmel", ["Sínaj", "Olivová hora", "Tábor"], "1Kr 18,20")
 q("ot", "Kdo byl vzat do nebe ve vichru?",
-  "Elijáš", ["Elíša", "Mojžíš", "Izajáš"], "2Kr 2,11")
+  "Eliáš", ["Elíša", "Mojžíš", "Izajáš"], "2Kr 2,11")
 q("ot", "Který prorok byl tři dny a tři noci v břiše ryby?",
   "Jonáš", ["Daniel", "Ezechiel", "Ámos"], "Jon 2,1")
 q("ot", "Kam byl Daniel hozen za to, že se modlil?",
@@ -178,7 +178,7 @@ q("people", "Kdo byl prvním izraelským králem?",
 q("people", "Který Saulův syn byl Davidovým věrným přítelem?",
   "Jónatan", ["Abšalóm", "Jóab", "Nátan"], "1S 18,1")
 q("people", "Který prorok pokáral Davida příběhem o ovečce?",
-  "Nátan", ["Gád", "Samuel", "Elijáš"], "2S 12,1")
+  "Nátan", ["Gád", "Samuel", "Eliáš"], "2S 12,1")
 q("people", "Kdo byli hozeni do rozpálené pece a vyšli bez úhony?",
   "Šadrak, Méšak a Abed-nego", ["Daniel a jeho strážci",
                                 "Ezdráš a Nehemjáš",
@@ -194,5 +194,5 @@ q("people", "Čím byl Matouš, než šel za Ježíšem?",
   "Celníkem", ["Rybářem", "Tesařem", "Lékařem"], "Mt 9,9")
 q("people", "Jaké řemeslo měl apoštol Pavel?",
   "Stanař", ["Rybář", "Tesař", "Hrnčíř"], "Sk 18,3")
-q("people", "Čím obchodovala Lydie z Thyatir?",
+q("people", "Čím obchodovala Lýdie z Thyatir?",
   "Purpurem", ["Kořením", "Olejem", "Stříbrem"], "Sk 16,14")

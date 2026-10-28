@@ -76,7 +76,8 @@ DEEP = {
     8: ("Příběh se odehrává v době soudců, v Betlémě a v Moábu. Zákon "
         "o paběrkování a o příbuzném-vykupiteli chránil vdovy a chudé "
         "(Lv 19,9–10; 25,25; Dt 25,5–10).",
-        "Rút je jednou ze čtyř žen v Ježíšově rodokmenu (Mt 1,5). Bóaz "
+        "Rút patří k ženám, které jsou výslovně jmenovány v Ježíšově "
+        "rodokmenu (Mt 1,5). Bóaz "
         "jako vykupitel bývá chápán jako obraz Krista.",
         "Kniha je krátká – přečtěte ji najednou (asi 15 minut). Všímejte "
         "si, kde jedná Bůh skrytě a kde skrze laskavost lidí."),
@@ -232,7 +233,7 @@ DEEP = {
     29: ("Datace je nejistá. Pohroma kobylek byla v zemědělské "
          "společnosti katastrofou a prorok ji chápe jako výzvu "
          "k pokání.",
-         "Petr cituje Jóele o letnicích (Sk 2,16–21); Pavel cituje "
+         "Petr cituje Jóele o Letnicích (Sk 2,16–21); Pavel cituje "
          "„každý, kdo vzývá jméno Páně, bude spasen“ (Ř 10,13).",
          "Krátká kniha – přečtěte ji najednou. Klíčem je 2,12–13."),
     30: ("Ámos byl pastýř z Judska, který kázal v severním Izraeli za "

@@ -229,6 +229,38 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const markReadEarlier = 'Co už mám přečtené';
+  static String finishEstimate(String date, String pace) =>
+      'Při současném tempu ($pace kapitoly denně za poslední měsíc) '
+      'dočtete celou Bibli kolem $date.';
+  static const longPressToMark =
+      'Podržením kapitoly ji označíte jako přečtenou.';
+  static const markReadEarlierShort = 'Označit přečtené';
+  static const markReadHint =
+      'Četli jste něco dřív mimo aplikaci? Klepněte na knihu a odškrtněte '
+      'kapitoly, nebo použijte „Označit přečtené“.';
+  static const markReadEarlierIntro =
+      'Označte, co jste přečetli dříve mimo aplikaci. Započítá se to do '
+      'přečtené Bible i do odznaků, ale ne do kalendáře a série dní.';
+  static const byParts = 'Po oddílech';
+  static const markPartDone = 'Označit';
+  static String chaptersOf(int done, int all) => '$done z $all kapitol';
+  static const confirm = 'Potvrdit';
+  static const markSingleBooksHint =
+      'Jednotlivé knihy a kapitoly označíte klepnutím na knihu v přehledu '
+      '„Bible po knihách“.';
+  static String markPartConfirm(String name) =>
+      'Označit „$name“ jako přečtené?';
+  static String chaptersDone(int done, int all) =>
+      'Přečteno $done z $all kapitol';
+  static const markWholeBook = 'Celá kniha';
+  static const unmarkAll = 'Zrušit vše';
+  static String unmarkBookConfirm(String name) =>
+      'Zrušit záznamy o přečtení celé knihy $name? Smaže to i kapitoly '
+      'přečtené v aplikaci.';
+  static const tapChapterHint =
+      'Klepnutím na kapitolu ji označíte jako přečtenou (nebo označení '
+      'zrušíte).';
   static const whatsNew = 'Co je nového';
   static const whatsNewIntro = 'Velká aktualizace aplikace – přehled novinek.';
   static const letsGo = 'Začít';

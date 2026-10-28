@@ -65,6 +65,41 @@ class ReadingProgressRepository {
         );
   }
 
+  /// Datum ručně označených kapitol („přečteno dříve, mimo aplikaci“).
+  /// Takové záznamy se počítají do přečtené Bible, ale ne do kalendáře
+  /// ani série dní.
+  static final manualDate = DateTime.fromMillisecondsSinceEpoch(0, isUtc: true);
+
+  /// Ručně označí kapitoly jako přečtené (již přečtené přeskočí).
+  Future<void> markRead(int bookId, Iterable<int> chapters) =>
+      _db.transaction(() async {
+        final existing = {
+          for (final r in await (_db.select(
+            _db.readingLog,
+          )..where((r) => r.bookId.equals(bookId))).get())
+            r.chapter,
+        };
+        for (final c in chapters) {
+          if (existing.contains(c)) continue;
+          await _db
+              .into(_db.readingLog)
+              .insert(
+                ReadingLogCompanion.insert(
+                  bookId: bookId,
+                  chapter: c,
+                  readAt: Value(manualDate),
+                ),
+              );
+        }
+      });
+
+  /// Zruší záznamy o přečtení kapitol (ruční i ze čtení v aplikaci).
+  Future<void> markUnread(int bookId, Iterable<int> chapters) =>
+      (_db.delete(_db.readingLog)..where(
+            (r) => r.bookId.equals(bookId) & r.chapter.isIn(chapters.toList()),
+          ))
+          .go();
+
   /// Všechny kapitoly, které byly někdy přečteny (`bookId → kapitoly`).
   Stream<Map<int, Set<int>>> watchReadChapters() {
     return _db
@@ -87,7 +122,8 @@ class ReadingProgressRepository {
     return _db
         .customSelect(
           'SELECT book_id, chapter, MAX(read_at) AS last FROM reading_log '
-          'GROUP BY book_id, chapter ORDER BY last DESC LIMIT ?',
+          'WHERE read_at > 0 GROUP BY book_id, chapter ORDER BY last DESC '
+          'LIMIT ?',
           variables: [Variable.withInt(limit)],
           readsFrom: {_db.readingLog},
         )
@@ -114,6 +150,7 @@ class ReadingProgressRepository {
         .map((rows) {
           final perDay = <DateTime, Set<(int, int)>>{};
           for (final r in rows) {
+            if (r.read<int>('read_at') <= 0) continue; // ruční označení
             final at = DateTime.fromMillisecondsSinceEpoch(
               r.read<int>('read_at') * 1000,
             );
@@ -144,10 +181,11 @@ class ReadingProgressRepository {
             final at = DateTime.fromMillisecondsSinceEpoch(
               r.read<int>('read_at') * 1000,
             );
-            final day = DateTime(at.year, at.month, at.day);
-            days.add(day);
             final key = (r.read<int>('book_id'), r.read<int>('chapter'));
             distinct.add(key);
+            if (r.read<int>('read_at') <= 0) continue; // ruční označení
+            final day = DateTime(at.year, at.month, at.day);
+            days.add(day);
             if (!day.isBefore(weekStart)) thisWeek.add((key.$1, key.$2, day));
           }
           var streak = 0;

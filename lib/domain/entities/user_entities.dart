@@ -41,13 +41,17 @@ class BackupImportResult {
     required this.highlights,
     required this.bookmarks,
     required this.notes,
+    this.readings = 0,
   });
 
   final int highlights;
   final int bookmarks;
   final int notes;
 
-  int get total => highlights + bookmarks + notes;
+  /// Nově doplněné záznamy o přečtených kapitolách.
+  final int readings;
+
+  int get total => highlights + bookmarks + notes + readings;
 }
 
 /// Chyba: soubor není platná záloha této aplikace.

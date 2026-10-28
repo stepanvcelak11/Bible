@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../progress/presentation/progress_screen.dart';
 
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/widgets/readable_width.dart';
@@ -389,6 +392,14 @@ class _ChapterSheet extends ConsumerWidget {
                     ref.read(translationControllerProvider).primaryId,
                   ),
                 ),
+                // Dlouhé podržení: označit / zrušit „přečteno“.
+                onLongPress: () {
+                  HapticFeedback.mediumImpact();
+                  final repo = ref.read(readingProgressRepositoryProvider);
+                  isRead
+                      ? repo.markUnread(book.id, [chapter])
+                      : repo.markRead(book.id, [chapter]);
+                },
                 child: Center(
                   child: Text(
                     '$chapter',
@@ -403,6 +414,24 @@ class _ChapterSheet extends ConsumerWidget {
               ),
             );
           },
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                S.longPressToMark,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+            ),
+            TextButton.icon(
+              onPressed: () => showBookProgress(context, book.id),
+              icon: const Icon(Icons.playlist_add_check, size: 18),
+              label: const Text(S.markReadEarlierShort),
+            ),
+          ],
         ),
       ],
     );

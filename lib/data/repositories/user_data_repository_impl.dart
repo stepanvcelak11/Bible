@@ -152,10 +152,11 @@ class UserDataRepositoryImpl implements UserDataRepository {
 
   @override
   Future<Map<String, Object?>> exportBackup() async {
-    final (highlights, bookmarks, notes) = await (
+    final (highlights, bookmarks, notes, readings) = await (
       _db.select(_db.highlights).get(),
       _db.select(_db.bookmarks).get(),
       _db.select(_db.notes).get(),
+      _db.select(_db.readingLog).get(),
     ).wait;
     return {
       'app': _backupApp,
@@ -186,6 +187,16 @@ class UserDataRepositoryImpl implements UserDataRepository {
             'body': n.body,
             'createdAt': n.createdAt.toUtc().toIso8601String(),
             'updatedAt': n.updatedAt.toUtc().toIso8601String(),
+          },
+      ],
+      // Přečtené kapitoly (i ručně označené – ty mají datum 1970-01-01).
+      'readingLog': [
+        for (final r in readings)
+          {
+            'book': r.bookId,
+            'chapter': r.chapter,
+            'translationId': r.translationId,
+            'readAt': r.readAt.toUtc().toIso8601String(),
           },
       ],
     };
@@ -274,6 +285,15 @@ class UserDataRepositoryImpl implements UserDataRepository {
         ),
     ];
 
+    final readings = [
+      for (final r in list('readingLog'))
+        if ((r['book'], r['chapter']) case (final int b, final int c)
+            when b >= 1 && b <= 66 && c >= 1)
+          (b, c, r['translationId'] as String?, date(r['readAt']))
+        else
+          throw const InvalidBackupException('Chybný záznam čtení.'),
+    ];
+
     // 2) Zapsat v jedné transakci.
     return _db.transaction(() async {
       for (final (r, color, created) in highlights) {
@@ -339,10 +359,36 @@ class UserDataRepositoryImpl implements UserDataRepository {
             );
         addedNotes++;
       }
+      var addedReadings = 0;
+      for (final (b, c, translationId, at) in readings) {
+        final exists =
+            await (_db.select(_db.readingLog)
+                  ..where(
+                    (r) =>
+                        r.bookId.equals(b) &
+                        r.chapter.equals(c) &
+                        r.readAt.equals(at),
+                  )
+                  ..limit(1))
+                .getSingleOrNull();
+        if (exists != null) continue;
+        await _db
+            .into(_db.readingLog)
+            .insert(
+              db.ReadingLogCompanion.insert(
+                bookId: b,
+                chapter: c,
+                translationId: Value(translationId),
+                readAt: Value(at),
+              ),
+            );
+        addedReadings++;
+      }
       return BackupImportResult(
         highlights: highlights.length,
         bookmarks: bookmarks.length,
         notes: addedNotes,
+        readings: addedReadings,
       );
     });
   }

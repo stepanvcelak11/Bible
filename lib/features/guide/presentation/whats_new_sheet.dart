@@ -5,9 +5,15 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 1;
+const whatsNewVersion = 2;
 
 const _items = [
+  (
+    Icons.playlist_add_check,
+    'Označení přečteného',
+    'Co jste četli dřív mimo aplikaci, si odškrtnete v Mém pokroku – '
+        'po kapitolách, knihách i celých oddílech.',
+  ),
   (
     Icons.landscape_outlined,
     'Nový vzhled',

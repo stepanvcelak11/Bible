@@ -5,6 +5,7 @@ import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/content/application/content_providers.dart';
 import 'package:bible_reader/features/progress/presentation/progress_screen.dart';
+import 'package:bible_reader/features/today/application/today_providers.dart';
 import 'package:bible_reader/features/memory/application/memory_controller.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
 import 'package:bible_reader/features/reader/application/reader_tabs_controller.dart';
@@ -337,6 +338,30 @@ void main() {
       scrollable: list,
     );
     expect(find.text('Zákon (Tóra)'), findsOneWidget);
+  });
+
+  appTest('můj pokrok: ruční označení přečtené knihy', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Můj pokrok'));
+    await settle(tester);
+    final list = find
+        .descendant(
+          of: find.byType(ProgressScreen),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(find.text('Gn'), 300, scrollable: list);
+    await tester.tap(find.text('Gn'));
+    await settle(tester);
+    expect(find.text('Přečteno 0 z 2 kapitol'), findsOneWidget);
+    await tester.tap(find.text('Celá kniha'));
+    await settle(tester);
+    expect(find.text('Přečteno 2 z 2 kapitol'), findsOneWidget);
+    // Jednu kapitolu zase odškrtnout.
+    await tester.tap(find.text('2').last);
+    await settle(tester);
+    expect(find.text('Přečteno 1 z 2 kapitol'), findsOneWidget);
+    expect(container.read(readChaptersProvider).value?[1], {1});
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

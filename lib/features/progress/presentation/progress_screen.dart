@@ -22,7 +22,7 @@ const _badgeIcons = {
   'spark': Icons.auto_awesome,
   'flame': Icons.local_fire_department,
   'book': Icons.menu_book,
-  'cross': Icons.add,
+  'cross': Icons.auto_stories,
   'music': Icons.music_note,
   'scroll': Icons.history_edu,
   'star': Icons.star,
@@ -57,9 +57,32 @@ class ProgressScreen extends ConsumerWidget {
       streak: math.max(longest, stats?.streakDays ?? 0),
     );
     final earned = badges.where((b) => b.earned).length;
+    // Tempo za posledních 30 dní → odhad dočtení celé Bible.
+    final now = DateTime.now();
+    final monthAgo = DateTime(now.year, now.month, now.day - 30);
+    final recent = daily.entries
+        .where((e) => e.key.isAfter(monthAgo))
+        .fold<int>(0, (s, e) => s + e.value);
+    final remaining = allChapters - readCount;
+    final finish = recent == 0 || remaining <= 0
+        ? null
+        : DateTime(
+            now.year,
+            now.month,
+            now.day + (remaining / (recent / 30)).ceil(),
+          );
 
     return Scaffold(
-      appBar: AppBar(title: const Text(S.progress)),
+      appBar: AppBar(
+        title: const Text(S.progress),
+        actions: [
+          IconButton(
+            tooltip: S.markReadEarlier,
+            icon: const Icon(Icons.playlist_add_check),
+            onPressed: () => _showBulkMark(context),
+          ),
+        ],
+      ),
       body: ReadableWidth(
         child: ListView(
           padding: EdgeInsets.fromLTRB(
@@ -162,6 +185,27 @@ class ProgressScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            if (finish != null)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+                child: Row(
+                  children: [
+                    Icon(Icons.flag_outlined, size: 18, color: palette.gold),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        S.finishEstimate(
+                          '${finish.day}. ${finish.month}. ${finish.year}',
+                          (recent / 30).toStringAsFixed(1).replaceAll('.', ','),
+                        ),
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: palette.muted,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             // --- Kalendář -------------------------------------------------
             const SectionLabel(S.readingCalendar),
             Card(
@@ -182,7 +226,20 @@ class ProgressScreen extends ConsumerWidget {
               children: [for (final b in badges) _BadgeTile(badge: b)],
             ),
             // --- Knihy ----------------------------------------------------
-            const SectionLabel(S.bibleByBooks),
+            SectionLabel(
+              S.bibleByBooks,
+              action: S.markReadEarlierShort,
+              onAction: () => _showBulkMark(context),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+              child: Text(
+                S.markReadHint,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+            ),
             for (final cat in bookCategories) ...[
               Padding(
                 padding: const EdgeInsets.fromLTRB(4, 6, 4, 6),
@@ -205,7 +262,7 @@ class ProgressScreen extends ConsumerWidget {
                       fraction: (counts[b] ?? 0) == 0
                           ? 0
                           : (read[b]?.length ?? 0) / counts[b]!,
-                      onTap: () => showBookIntro(context, b),
+                      onTap: () => showBookProgress(context, b),
                     ),
                 ],
               ),
@@ -523,6 +580,264 @@ class _BookCell extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Kapitoly knihy k odškrtnutí (přečteno dříve, mimo aplikaci).
+Future<void> showBookProgress(BuildContext context, int bookId) =>
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (_) => _BookProgressSheet(bookId: bookId),
+    );
+
+class _BookProgressSheet extends ConsumerWidget {
+  const _BookProgressSheet({required this.bookId});
+
+  final int bookId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final book = ref.watch(bookByIdProvider(bookId));
+    final translationId = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
+    final total =
+        ref.watch(chapterCountsProvider(translationId)).value?[bookId] ?? 0;
+    final read = ref.watch(readChaptersProvider).value?[bookId] ?? const {};
+    final repo = ref.read(readingProgressRepositoryProvider);
+    final color = Color(categoryOf(bookId).color);
+    final all = [for (var c = 1; c <= total; c++) c];
+    final done = all.where(read.contains).length;
+
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(book.name, style: theme.textTheme.headlineSmall),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.of(context).pop();
+                showBookIntro(context, bookId);
+              },
+              icon: const Icon(Icons.auto_stories_outlined, size: 18),
+              label: const Text(S.bookIntro),
+            ),
+          ],
+        ),
+        Text(
+          S.chaptersDone(done, total),
+          style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+        ),
+        const SizedBox(height: 4),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: LinearProgressIndicator(
+            value: total == 0 ? 0 : done / total,
+            minHeight: 6,
+            color: color,
+            backgroundColor: color.withValues(alpha: 0.15),
+          ),
+        ),
+        const SizedBox(height: 14),
+        Row(
+          children: [
+            Expanded(
+              child: FilledButton.tonalIcon(
+                onPressed: done == total
+                    ? null
+                    : () => repo.markRead(bookId, all),
+                icon: const Icon(Icons.done_all),
+                label: const Text(S.markWholeBook),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: OutlinedButton.icon(
+                onPressed: done == 0
+                    ? null
+                    : () async {
+                        final ok = await _confirm(
+                          context,
+                          S.unmarkBookConfirm(book.name),
+                        );
+                        if (ok) await repo.markUnread(bookId, all);
+                      },
+                icon: const Icon(Icons.remove_done),
+                label: const Text(S.unmarkAll),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 14),
+        Text(
+          S.tapChapterHint,
+          style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+        ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final c in all)
+              Material(
+                color: read.contains(c) ? color : color.withValues(alpha: 0.08),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: color.withValues(alpha: 0.35)),
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  onTap: () => read.contains(c)
+                      ? repo.markUnread(bookId, [c])
+                      : repo.markRead(bookId, [c]),
+                  child: SizedBox(
+                    width: 44,
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        '$c',
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          color: read.contains(c) ? Colors.white : color,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+Future<bool> _confirm(BuildContext context, String text) async =>
+    await showDialog<bool>(
+      context: context,
+      builder: (dialog) => AlertDialog(
+        content: Text(text),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialog).pop(false),
+            child: const Text(S.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(dialog).pop(true),
+            child: const Text(S.confirm),
+          ),
+        ],
+      ),
+    ) ??
+    false;
+
+/// Hromadné označení oddílů Bible jako přečtených.
+Future<void> _showBulkMark(BuildContext context) => showModalBottomSheet<void>(
+  context: context,
+  isScrollControlled: true,
+  useSafeArea: true,
+  builder: (_) => const _BulkMarkSheet(),
+);
+
+class _BulkMarkSheet extends ConsumerWidget {
+  const _BulkMarkSheet();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final translationId = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
+    final counts =
+        ref.watch(chapterCountsProvider(translationId)).value ?? const {};
+    final read = ref.watch(readChaptersProvider).value ?? const {};
+    final repo = ref.read(readingProgressRepositoryProvider);
+
+    int done(int from, int to) {
+      var n = 0;
+      for (var b = from; b <= to; b++) {
+        n += (read[b] ?? const {}).where((c) => c <= (counts[b] ?? 0)).length;
+      }
+      return n;
+    }
+
+    int size(int from, int to) {
+      var n = 0;
+      for (var b = from; b <= to; b++) {
+        n += counts[b] ?? 0;
+      }
+      return n;
+    }
+
+    Future<void> mark(int from, int to) async {
+      for (var b = from; b <= to; b++) {
+        await repo.markRead(b, [for (var c = 1; c <= (counts[b] ?? 0); c++) c]);
+      }
+    }
+
+    final groups = [
+      (S.presetBible, 1, 66, palette.gold),
+      (S.presetOt, 1, 39, const Color(0xFFB0813B)),
+      (S.presetNt, 40, 66, const Color(0xFF3F7CAC)),
+      for (final c in bookCategories) (c.name, c.first, c.last, Color(c.color)),
+    ];
+
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+      children: [
+        Text(S.markReadEarlier, style: theme.textTheme.headlineSmall),
+        const SizedBox(height: 6),
+        Text(
+          S.markReadEarlierIntro,
+          style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+        ),
+        const SizedBox(height: 12),
+        for (final (i, (name, from, to, color)) in groups.indexed) ...[
+          if (i == 3) const SectionLabel(S.byParts),
+          Card(
+            margin: const EdgeInsets.only(bottom: 8),
+            child: ListTile(
+              title: Text(name),
+              subtitle: Text(S.chaptersOf(done(from, to), size(from, to))),
+              leading: CircleAvatar(
+                backgroundColor: color.withValues(alpha: 0.15),
+                foregroundColor: color,
+                child: done(from, to) >= size(from, to) && size(from, to) > 0
+                    ? const Icon(Icons.check)
+                    : const Icon(Icons.menu_book_outlined, size: 20),
+              ),
+              trailing: done(from, to) >= size(from, to)
+                  ? null
+                  : FilledButton.tonal(
+                      onPressed: () async {
+                        final ok = await _confirm(
+                          context,
+                          S.markPartConfirm(name),
+                        );
+                        if (ok) await mark(from, to);
+                      },
+                      child: const Text(S.markPartDone),
+                    ),
+            ),
+          ),
+        ],
+        const SizedBox(height: 4),
+        Text(
+          S.markSingleBooksHint,
+          style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+        ),
+      ],
     );
   }
 }

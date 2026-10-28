@@ -26,6 +26,7 @@ import '../../search/application/reference_parser.dart';
 import '../../today/presentation/plans_sheet.dart';
 import '../../today/presentation/timeline_screen.dart';
 import '../../translations/presentation/library_screen.dart';
+import '../../shell/home_shell.dart';
 import 'book_intro_sheet.dart';
 import 'book_intros_screen.dart';
 import 'study_pack_screen.dart';
@@ -40,14 +41,10 @@ class StudyHubScreen extends ConsumerStatefulWidget {
 }
 
 class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
-  final _search = TextEditingController();
-  String _query = '';
-
-  @override
-  void dispose() {
-    _search.dispose();
-    super.dispose();
-  }
+  final _wholeKey = GlobalKey();
+  final _lifeKey = GlobalKey();
+  final _booksKey = GlobalKey();
+  final _toolsKey = GlobalKey();
 
   void _push(Widget page) =>
       Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
@@ -219,7 +216,12 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
       );
     }
 
-    final q = foldCzech(_query.trim());
+    final sections = [
+      (S.connectionsWhole, Icons.hub_outlined, _wholeKey),
+      (S.studyForLife, Icons.favorite_border, _lifeKey),
+      (S.studyBooksPeople, Icons.auto_stories_outlined, _booksKey),
+      (S.studyTools, Icons.handyman_outlined, _toolsKey),
+    ];
 
     return Scaffold(
       body: ReadableWidth(
@@ -238,177 +240,202 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
               style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
             ),
             const SizedBox(height: 14),
-            TextField(
-              controller: _search,
-              onChanged: (v) => setState(() => _query = v),
-              decoration: InputDecoration(
-                hintText: S.studySearchHint,
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _query.isEmpty
-                    ? null
-                    : IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () {
-                          _search.clear();
-                          setState(() => _query = '');
-                        },
-                      ),
-                filled: true,
-                fillColor: palette.card,
-                border: OutlineInputBorder(
+            // Jedno hledání pro celou aplikaci – v záložce Hledat.
+            Material(
+              color: palette.card,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18),
+                side: BorderSide(color: palette.cardBorder),
+              ),
+              child: InkWell(
+                customBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: palette.cardBorder),
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide(color: palette.cardBorder),
+                onTap: () =>
+                    ref.read(shellTabProvider.notifier).select(AppTab.search),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 14,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(Icons.search, color: palette.muted),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          S.studySearchHint,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: palette.muted,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-            if (q.isNotEmpty)
-              StudySearchResults(query: q)
-            else ...[
-              // --- Bible jako celek --------------------------------------
-              header(S.connectionsWhole),
-              const ConnectionsHeroCard(),
-              // --- Pro život ---------------------------------------------
-              header(S.studyForLife),
-              _SituationsCard(
-                featured: situations.take(8).toList(),
-                count: situations.length,
-                onAll: () => _push(const SituationsScreen()),
+            const SizedBox(height: 12),
+            // Rychlé skoky na oddíly.
+            SizedBox(
+              height: 40,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (final (title, icon, key) in sections)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ActionChip(
+                        avatar: Icon(icon, size: 18, color: palette.gold),
+                        label: Text(title),
+                        onPressed: () {
+                          final c = key.currentContext;
+                          if (c != null) {
+                            Scrollable.ensureVisible(
+                              c,
+                              duration: const Duration(milliseconds: 400),
+                              curve: Curves.easeOutCubic,
+                            );
+                          }
+                        },
+                      ),
+                    ),
+                ],
               ),
-              const SizedBox(height: 12),
-              group([
-                _Entry(
-                  Icons.psychology_outlined,
-                  const Color(0xFF8C6BA8),
-                  S.memory,
-                  memoryCount == 0
-                      ? S.memoryHint
-                      : S.memoryProgress(memoryLearned, memoryCount),
-                  () => openMemory(context),
-                ),
-                _Entry(
-                  Icons.lightbulb_outline,
-                  const Color(0xFFB0603A),
-                  S.topics,
-                  topicsCount == null
-                      ? S.topicsHint
-                      : S.topicsCount(topicsCount),
-                  () => _push(const TopicsScreen()),
-                ),
-                _Entry(
-                  Icons.emoji_events_outlined,
-                  const Color(0xFFC08A2E),
-                  S.quiz,
-                  S.quizHint,
-                  () => openQuiz(context),
-                ),
-                _Entry(
-                  Icons.volunteer_activism_outlined,
-                  const Color(0xFF3E8E5E),
-                  S.prayers,
-                  S.prayerHint,
-                  () => openPrayers(context),
-                ),
-                _Entry(
-                  Icons.donut_large,
-                  const Color(0xFF7A55A8),
-                  S.churchYear,
-                  S.churchYearHint,
-                  () => openChurchYear(context),
-                ),
-              ]),
-              // --- Lidé a příběhy -----------------------------------------
-              header(S.studyPeopleStories),
-              group([
-                _Entry(
-                  Icons.diversity_3_outlined,
-                  const Color(0xFF8C4A6B),
-                  S.people,
-                  peopleCount == null
-                      ? S.peopleHint
-                      : S.peopleCount(peopleCount),
-                  () => _push(const PeopleScreen()),
-                ),
-                _Entry(
-                  Icons.view_week_outlined,
-                  const Color(0xFF2E8B57),
-                  S.harmony,
-                  S.harmonyHint,
-                  () => _push(const HarmonyScreen()),
-                ),
-                _Entry(
-                  Icons.view_timeline_outlined,
-                  const Color(0xFFB0603A),
-                  S.timeline,
-                  S.timelineHint,
-                  () => _push(const TimelineScreen()),
-                ),
-              ]),
-              // --- Knihy Bible --------------------------------------------
-              header(S.studyBooks),
-              group([
-                _Entry(
-                  Icons.auto_stories_outlined,
-                  const Color(0xFFB0813B),
-                  S.exploreIntros,
-                  S.introsHint,
-                  () => _push(const BookIntrosScreen()),
-                ),
-                _Entry(
-                  Icons.sticky_note_2_outlined,
-                  const Color(0xFF3F7CAC),
-                  S.applicationNotes,
-                  notesCount == null
-                      ? S.applicationNotesHint
-                      : S.notesCount(notesCount),
-                  () => _push(const NotesScreen()),
-                ),
-                _Entry(
-                  Icons.table_chart_outlined,
-                  const Color(0xFF5B7A3A),
-                  S.tables,
-                  tablesCount == null
-                      ? S.tablesHint
-                      : S.tablesCount(tablesCount),
-                  () => _push(const TablesScreen()),
-                ),
-              ]),
-              // --- Mapy, jazyky, čtení ----------------------------------
-              header(S.studyMore),
-              group([
-                _Entry(
-                  Icons.map_outlined,
-                  const Color(0xFF3F7CAC),
-                  S.exploreMaps,
-                  S.exploreMapsHint,
-                  () => openMaps(context),
-                ),
-                _Entry(
-                  Icons.history_edu,
-                  const Color(0xFF8C6BA8),
-                  S.exploreStudy,
-                  S.exploreStudyHint,
-                  () => _push(const StudyPackScreen()),
-                ),
-                _Entry(
-                  Icons.event_note_outlined,
-                  const Color(0xFF5B7A3A),
-                  S.readingPlans,
-                  S.readingPlansHint,
-                  () => showPlansSheet(context),
-                ),
-                _Entry(
-                  Icons.translate,
-                  const Color(0xFF4E9A8A),
-                  S.exploreTranslations,
-                  S.exploreTranslationsHint,
-                  () => _push(const LibraryScreen()),
-                ),
-              ]),
-            ],
+            ),
+            // --- Bible jako celek ----------------------------------------
+            KeyedSubtree(key: _wholeKey, child: header(S.connectionsWhole)),
+            const ConnectionsHeroCard(),
+            const SizedBox(height: 10),
+            group([
+              _Entry(
+                Icons.view_timeline_outlined,
+                const Color(0xFFB0603A),
+                S.timeline,
+                S.timelineHint,
+                () => _push(const TimelineScreen()),
+              ),
+              _Entry(
+                Icons.map_outlined,
+                const Color(0xFF3F7CAC),
+                S.exploreMaps,
+                S.exploreMapsHint,
+                () => openMaps(context),
+              ),
+            ]),
+            // --- Pro život -----------------------------------------------
+            KeyedSubtree(key: _lifeKey, child: header(S.studyForLife)),
+            _SituationsCard(
+              featured: situations.take(8).toList(),
+              count: situations.length,
+              onAll: () => _push(const SituationsScreen()),
+            ),
+            const SizedBox(height: 10),
+            group([
+              _Entry(
+                Icons.lightbulb_outline,
+                const Color(0xFFB0603A),
+                S.topics,
+                topicsCount == null ? S.topicsHint : S.topicsCount(topicsCount),
+                () => _push(const TopicsScreen()),
+              ),
+              _Entry(
+                Icons.psychology_outlined,
+                const Color(0xFF8C6BA8),
+                S.memory,
+                memoryCount == 0
+                    ? S.memoryHint
+                    : S.memoryProgress(memoryLearned, memoryCount),
+                () => openMemory(context),
+              ),
+              _Entry(
+                Icons.volunteer_activism_outlined,
+                const Color(0xFF3E8E5E),
+                S.prayers,
+                S.prayerHint,
+                () => openPrayers(context),
+              ),
+              _Entry(
+                Icons.emoji_events_outlined,
+                const Color(0xFFC08A2E),
+                S.quiz,
+                S.quizHint,
+                () => openQuiz(context),
+              ),
+              _Entry(
+                Icons.donut_large,
+                const Color(0xFF7A55A8),
+                S.churchYear,
+                S.churchYearHint,
+                () => openChurchYear(context),
+              ),
+              _Entry(
+                Icons.event_note_outlined,
+                const Color(0xFF5B7A3A),
+                S.readingPlans,
+                S.readingPlansHint,
+                () => showPlansSheet(context),
+              ),
+            ]),
+            // --- Knihy a postavy -----------------------------------------
+            KeyedSubtree(key: _booksKey, child: header(S.studyBooksPeople)),
+            group([
+              _Entry(
+                Icons.auto_stories_outlined,
+                const Color(0xFFB0813B),
+                S.exploreIntros,
+                S.introsHint,
+                () => _push(const BookIntrosScreen()),
+              ),
+              _Entry(
+                Icons.diversity_3_outlined,
+                const Color(0xFF8C4A6B),
+                S.people,
+                peopleCount == null ? S.peopleHint : S.peopleCount(peopleCount),
+                () => _push(const PeopleScreen()),
+              ),
+              _Entry(
+                Icons.sticky_note_2_outlined,
+                const Color(0xFF3F7CAC),
+                S.applicationNotes,
+                notesCount == null
+                    ? S.applicationNotesHint
+                    : S.notesCount(notesCount),
+                () => _push(const NotesScreen()),
+              ),
+              _Entry(
+                Icons.table_chart_outlined,
+                const Color(0xFF5B7A3A),
+                S.tables,
+                tablesCount == null ? S.tablesHint : S.tablesCount(tablesCount),
+                () => _push(const TablesScreen()),
+              ),
+              _Entry(
+                Icons.view_week_outlined,
+                const Color(0xFF2E8B57),
+                S.harmony,
+                S.harmonyHint,
+                () => _push(const HarmonyScreen()),
+              ),
+            ]),
+            // --- Nástroje ------------------------------------------------
+            KeyedSubtree(key: _toolsKey, child: header(S.studyTools)),
+            group([
+              _Entry(
+                Icons.history_edu,
+                const Color(0xFF8C6BA8),
+                S.exploreStudy,
+                S.exploreStudyHint,
+                () => _push(const StudyPackScreen()),
+              ),
+              _Entry(
+                Icons.translate,
+                const Color(0xFF4E9A8A),
+                S.exploreTranslations,
+                S.exploreTranslationsHint,
+                () => _push(const LibraryScreen()),
+              ),
+            ]),
           ],
         ),
       ),

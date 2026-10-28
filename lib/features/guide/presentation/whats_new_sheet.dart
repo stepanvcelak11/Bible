@@ -5,9 +5,15 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 7;
+const whatsNewVersion = 8;
 
 const _items = [
+  (
+    Icons.dashboard_customize_outlined,
+    'Přehlednější aplikace',
+    'Studium má čtyři oddíly se štítky nahoře, Hledat hledá všude, '
+        'Deník má rychlé odkazy na pokrok, verše nazpaměť a plán čtení.',
+  ),
   (
     Icons.self_improvement,
     'Zamyšlení ke každé kapitole',

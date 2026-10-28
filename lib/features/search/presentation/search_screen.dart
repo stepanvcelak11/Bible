@@ -10,15 +10,10 @@ import '../../../domain/services/versification.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
-import '../../../domain/entities/content_entities.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../study/presentation/study_hub_screen.dart';
 import '../application/reference_parser.dart';
-import '../../../core/widgets/section_label.dart';
-import '../../content/application/content_providers.dart';
-import '../../content/presentation/situations_screen.dart';
-import '../../content/presentation/topics_screen.dart';
 
 const _pageSize = 100;
 
@@ -518,11 +513,12 @@ class _EmptyStateState extends ConsumerState<_EmptyState> {
     final palette = AppPalette.of(context);
     const examples = [
       'láska',
-      'pokoj',
       '„dobrý pastýř“',
-      'Ž 23',
       'J 3,16',
-      'Ř 8,28',
+      'Ž 23',
+      'David',
+      'strach',
+      'Velikonoce',
     ];
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
@@ -569,9 +565,11 @@ class _EmptyStateState extends ConsumerState<_EmptyState> {
                         color: palette.gold,
                       ),
                       const SizedBox(width: 8),
-                      Text(
-                        S.searchEmptyTitle,
-                        style: theme.textTheme.titleMedium,
+                      Expanded(
+                        child: Text(
+                          S.searchEmptyTitle,
+                          style: theme.textTheme.titleMedium,
+                        ),
                       ),
                     ],
                   ),
@@ -593,112 +591,8 @@ class _EmptyStateState extends ConsumerState<_EmptyState> {
               ),
             ),
           ),
-          const _ExploreTopics(),
         ],
       ),
-    );
-  }
-}
-
-/// Inspirace pod prázdným hledáním: témata (každý den jiný výběr)
-/// a situace.
-class _ExploreTopics extends ConsumerWidget {
-  const _ExploreTopics();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final topics = ref.watch(topicsProvider).value?.$2;
-    final situations = ref.watch(situationsProvider).value?.$2;
-    final theme = Theme.of(context);
-    final day = DateTime.now().difference(DateTime(2024)).inDays;
-    final picked = <BibleTopic>[
-      if (topics != null && topics.isNotEmpty)
-        for (var i = 0; i < 6 && i < topics.length; i++)
-          topics[(day * 7 + i * 5) % topics.length],
-    ];
-    final unique = {for (final t in picked) t.id: t}.values.toList();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (unique.isNotEmpty) ...[
-          SectionLabel(
-            S.topics,
-            action: S.all,
-            onAction: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const TopicsScreen()),
-            ),
-          ),
-          LayoutBuilder(
-            builder: (context, c) {
-              final w = (c.maxWidth - 10) / 2;
-              return Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: [
-                  for (final t in unique)
-                    SizedBox(
-                      width: w,
-                      child: Material(
-                        color: topicColor(t).withValues(alpha: 0.12),
-                        borderRadius: BorderRadius.circular(16),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(16),
-                          onTap: () => openTopic(context, t),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  situationIcons[t.icon] ??
-                                      Icons.menu_book_outlined,
-                                  color: topicColor(t),
-                                  size: 22,
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    t.title,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: theme.textTheme.labelLarge,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            },
-          ),
-        ],
-        if (situations != null && situations.isNotEmpty) ...[
-          SectionLabel(
-            S.situations,
-            action: S.all,
-            onAction: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const SituationsScreen()),
-            ),
-          ),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final s in situations.take(10))
-                ActionChip(
-                  avatar: Icon(
-                    situationIcons[s.icon] ?? Icons.menu_book_outlined,
-                    size: 18,
-                  ),
-                  label: Text(s.title),
-                  onPressed: () => openSituation(context, s),
-                ),
-            ],
-          ),
-        ],
-      ],
     );
   }
 }

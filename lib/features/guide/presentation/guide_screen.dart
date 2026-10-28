@@ -22,11 +22,10 @@ class _GuidePart {
 const _parts = [
   _GuidePart(AppTab.today, Icons.wb_sunny_outlined, Color(0xFFE0782F), 'Dnes', [
     'Verš dne – klepnutím na sdílení z něj uděláte obrázek.',
-    'Verše pro tuto chvíli – vyberte, co právě prožíváte (strach, '
-        'starosti, radost…).',
     'Moje čtení – pokračování tam, kde jste skončili, statistiky '
         'a plán čtení.',
-    'Zkratky do studia – postavy, úvody ke knihám, poznámky, mapy.',
+    'Na dnešek – otázka dne, verše k opakování a modlitby.',
+    'Verše pro tuto chvíli a církevní rok s nejbližším svátkem.',
   ]),
   _GuidePart(
     AppTab.bible,
@@ -45,8 +44,8 @@ const _parts = [
           'i jiný překlad, takže překlady porovnáte přepnutím karty.',
       'Tlačítka nad kapitolou → úvod ke knize, aplikační poznámky, '
           'medailony postav a místa na mapě.',
-      'Na konci kapitoly → zamyšlení (čtyři otázky, odpovědi se uloží do '
-          'Deníku) a další kapitola.',
+      'Na konci kapitoly → zamyšlení krok za krokem s otázkami přímo '
+          'k této kapitole (uloží se do Deníku) a další kapitola.',
       'Menu ⋮ → předčítání nahlas, místa v kapitole, překlady, nastavení.',
     ],
   ),
@@ -56,21 +55,21 @@ const _parts = [
     Color(0xFF8C4A6B),
     'Studium',
     [
-      'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
-          'i poznámky.',
-      'Bible jako celek – velký příběh, červené nitě a mapa odkazů '
-          'ukazují, jak spolu části Bible souvisejí.',
-      'Pro život – verše do situací, verše nazpaměť, biblická témata, '
-          'kvíz, modlitební seznam a církevní rok.',
-      'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',
-      'Knihy Bible – úvody ke knihám, aplikační poznámky, tabulky.',
-      'Mapy, původní text se slovníkem, plány čtení a překlady.',
+      'Čtyři oddíly – skočíte na ně štítky nahoře:',
+      'Bible jako celek – strom Bible, velký příběh, červené nitě, mapa '
+          'odkazů, časová osa a mapy.',
+      'Pro život – verše do situací, témata, verše nazpaměť, modlitby, '
+          'kvíz, církevní rok a plány čtení.',
+      'Knihy a postavy – úvody ke knihám, medailony, aplikační poznámky, '
+          'tabulky a harmonie evangelií.',
+      'Nástroje – původní text se slovníkem a překlady.',
     ],
   ),
   _GuidePart(AppTab.search, Icons.search, Color(0xFF3F7CAC), 'Hledat', [
     'Diakritiku psát nemusíte – „laska“ najde i „láska“.',
     'Přesnou frázi dejte do uvozovek, odkaz napište jako J 3,16.',
-    'Najde i studijní materiály (postavy, situace…).',
+    'Jedno hledání pro celou aplikaci – verše i postavy, témata, '
+        'situace a úvody ke knihám.',
   ]),
   _GuidePart(
     AppTab.journal,
@@ -80,6 +79,8 @@ const _parts = [
     [
       'Vaše záložky, poznámky a zvýraznění na jednom místě; lupa '
           'v nich hledá.',
+      'Nahoře rychlé odkazy: Můj pokrok, Verše nazpaměť a Plán čtení; '
+          'vpravo nastavení.',
       'Modlitby – zapisujte prosby, označujte vyslyšené; „Čas modlitby“ '
           'vás jimi provede.',
       'Položku smažete přejetím doleva (lze vrátit).',

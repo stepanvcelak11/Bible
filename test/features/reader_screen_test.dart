@@ -165,6 +165,14 @@ void main() {
 
   appTest('verše do situací: výběr situace zobrazí verše', (tester) async {
     await pumpApp(tester, openBible: false);
+    await tester.scrollUntilVisible(
+      find.text('Mám strach'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    // Ať není schovaný pod plovoucí navigací.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -250));
+    await settle(tester);
     await tester.tap(find.text('Mám strach'));
     await settle(tester);
     expect(find.text('Mám strach'), findsOneWidget, reason: 'nadpis stránky');
@@ -178,7 +186,7 @@ void main() {
     await pumpApp(tester, openBible: false);
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    expect(find.text('Verše do situací'), findsWidgets);
+    expect(find.text('Souvislosti v Bibli'), findsWidgets);
     for (final t in [
       'Biblické postavy',
       'Aplikační poznámky',
@@ -197,10 +205,14 @@ void main() {
       const Offset(0, 3000),
     );
     await settle(tester);
-    await tester.enterText(find.byType(TextField).first, 'david');
+    // Hledání ve Studiu vede do jednotného hledání v celé aplikaci.
+    await tester.tap(find.text('Hledat verše, postavy, témata…'));
     await settle(tester);
-    expect(find.text('David'), findsOneWidget);
-    await tester.tap(find.text('David'));
+    await tester.enterText(find.byType(TextField).last, 'david');
+    await tester.pump(const Duration(milliseconds: 400));
+    await settle(tester);
+    expect(find.text('David'), findsWidgets);
+    await tester.tap(find.text('David').first);
     await settle(tester);
     expect(find.text('Silné stránky a úspěchy'), findsOneWidget);
   });

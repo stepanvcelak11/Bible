@@ -17,17 +17,11 @@ import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/situations_screen.dart';
 import '../../content/presentation/church_year_screen.dart';
-import '../../content/presentation/notes_screen.dart';
-import '../../content/presentation/people_screen.dart';
-import '../../content/presentation/tables_screen.dart';
-import '../../maps/presentation/maps_screen.dart';
-import '../../study/presentation/book_intros_screen.dart';
 import '../../guide/presentation/guide_screen.dart';
 import '../../progress/presentation/progress_screen.dart';
 import 'day_scene.dart';
 import 'for_today.dart';
 import 'plans_sheet.dart';
-import 'timeline_screen.dart';
 
 const _months = [
   'ledna', 'února', 'března', 'dubna', 'května', 'června', //
@@ -149,7 +143,6 @@ class TodayScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const _SituationsStrip(),
               const SectionLabel(S.myReading),
               const _ContinueCard(),
               const SizedBox(height: 10),
@@ -157,8 +150,8 @@ class TodayScreen extends ConsumerWidget {
               const SizedBox(height: 10),
               const _PlanCard(),
               const ForTodaySection(),
+              const _SituationsStrip(),
               const ChurchYearCard(),
-              const _StudyTeaser(),
               const _RecentList(),
             ],
           ),
@@ -642,115 +635,6 @@ class _PlanCard extends ConsumerWidget {
 
 /// Odkaz do záložky Studium s ukázkou obsahu.
 /// Rychlé zkratky do studijních materiálů (otevřou se rovnou).
-class _StudyTeaser extends ConsumerWidget {
-  const _StudyTeaser();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    void push(Widget page) =>
-        Navigator.of(context)
-            .push(MaterialPageRoute<void>(builder: (_) => page));
-    final items = [
-      (
-        Icons.diversity_3_outlined,
-        const Color(0xFF8C4A6B),
-        S.people,
-        () => push(const PeopleScreen()),
-      ),
-      (
-        Icons.auto_stories_outlined,
-        const Color(0xFFB0813B),
-        S.exploreIntros,
-        () => push(const BookIntrosScreen()),
-      ),
-      (
-        Icons.sticky_note_2_outlined,
-        const Color(0xFF3F7CAC),
-        S.applicationNotes,
-        () => push(const NotesScreen()),
-      ),
-      (
-        Icons.view_timeline_outlined,
-        const Color(0xFFB0603A),
-        S.timeline,
-        () => push(const TimelineScreen()),
-      ),
-      (
-        Icons.table_chart_outlined,
-        const Color(0xFF5B7A3A),
-        S.tables,
-        () => push(const TablesScreen()),
-      ),
-      (
-        Icons.map_outlined,
-        const Color(0xFF4E9A8A),
-        S.exploreMaps,
-        () => openMaps(context),
-      ),
-    ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SectionLabel(
-          S.studyTeaserTitle,
-          action: S.all,
-          onAction: () =>
-              ref.read(shellTabProvider.notifier).select(AppTab.study),
-        ),
-        SizedBox(
-          height: 104,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            clipBehavior: Clip.none,
-            itemCount: items.length,
-            separatorBuilder: (_, _) => const SizedBox(width: 10),
-            itemBuilder: (context, i) {
-              final (icon, color, label, onTap) = items[i];
-              return SizedBox(
-                width: 108,
-                child: Card(
-                  margin: EdgeInsets.zero,
-                  child: InkWell(
-                    onTap: onTap,
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 12, 10, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              color: color.withValues(alpha: 0.14),
-                              borderRadius: BorderRadius.circular(11),
-                            ),
-                            child: Icon(icon, size: 20, color: color),
-                          ),
-                          const Spacer(),
-                          Text(
-                            label,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.labelMedium?.copyWith(
-                              height: 1.2,
-                              color: theme.colorScheme.onSurface,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _SituationsStrip extends ConsumerWidget {
   const _SituationsStrip();
 

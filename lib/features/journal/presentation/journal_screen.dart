@@ -14,6 +14,10 @@ import '../../shell/home_shell.dart';
 import '../../reader/presentation/note_editor_sheet.dart';
 import '../../prayer/application/prayer_controller.dart';
 import '../../prayer/presentation/prayers_view.dart';
+import '../../memory/presentation/memory_screen.dart';
+import '../../progress/presentation/progress_screen.dart';
+import '../../settings/presentation/settings_screen.dart';
+import '../../today/presentation/plans_sheet.dart';
 import '../../translations/application/translation_controller.dart';
 
 final _bookmarksProvider = StreamProvider.autoDispose<List<Bookmark>>(
@@ -119,6 +123,15 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                           onPressed: _toggleSearch,
                           icon: Icon(_searching ? Icons.close : Icons.search),
                         ),
+                        IconButton(
+                          tooltip: S.settings,
+                          onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const SettingsScreen(),
+                            ),
+                          ),
+                          icon: const Icon(Icons.tune),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 4),
@@ -149,6 +162,44 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                                 color: palette.muted,
                               ),
                             ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 38,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          for (final (text, icon, onTap) in [
+                            (
+                              S.journalQuickProgress,
+                              Icons.insights,
+                              () => openProgress(context),
+                            ),
+                            (
+                              S.memory,
+                              Icons.psychology_outlined,
+                              () => openMemory(context),
+                            ),
+                            (
+                              S.journalQuickPlan,
+                              Icons.event_note_outlined,
+                              () => showPlansSheet(context),
+                            ),
+                          ])
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: ActionChip(
+                                avatar: Icon(
+                                  icon,
+                                  size: 18,
+                                  color: palette.gold,
+                                ),
+                                label: Text(text),
+                                onPressed: onTap,
+                              ),
+                            ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

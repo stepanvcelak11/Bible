@@ -77,12 +77,13 @@ abstract final class S {
   static const cancel = 'Zrušit';
 
   // Hledání
-  static const searchHint = 'Slovo, frázi nebo odkaz (J 3,16)…';
+  static const searchHint = 'Verš, slovo, postava, téma (J 3,16)…';
   static const searchAll = 'Celá Bible';
-  static const searchEmptyTitle = 'Hledání v Bibli';
+  static const searchEmptyTitle = 'Hledání v celé aplikaci';
   static const searchEmptyBody =
-      'Diakritiku psát nemusíte – „laska“ najde i „láska“. '
-      'Přesnou frázi dejte do uvozovek.';
+      'Najde verše v Bibli i postavy, témata, situace, úvody ke knihám '
+      'a tabulky. Diakritiku psát nemusíte – „laska“ najde i „láska“. '
+      'Přesnou frázi dejte do uvozovek, odkaz napište jako J 3,16.';
   static const searchNoResults = 'Nic nenalezeno';
   static String searchResultCount(int n, {required bool limited}) =>
       limited ? 'Zobrazeno prvních $n výsledků' : _results(n);
@@ -243,7 +244,6 @@ abstract final class S {
   static const exploreTranslations = 'Překlady';
   static const exploreTranslationsHint = 'B21, ČEP, ČSP…';
   static const situations = 'Verše do situací';
-  static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
   static const markReadEarlier = 'Co už mám přečtené';
   static String finishEstimate(String date, String pace) =>
@@ -370,6 +370,8 @@ abstract final class S {
   static const planOnTrack = 'Přesně podle plánu';
   static const quizOfDay = 'Otázka dne';
   static const journalSearch = 'Hledat v deníku';
+  static const journalQuickProgress = 'Můj pokrok';
+  static const journalQuickPlan = 'Plán čtení';
   static const journalSearchHint = 'Kniha, odkaz nebo text poznámky…';
   static const journalNoMatch = 'Nic neodpovídá hledání.';
   static const journalAllColors = 'Vše';
@@ -554,13 +556,11 @@ abstract final class S {
       'Aplikace má dole pět záložek. Tady je stručně, co v každé najdete.';
   static const guideOpen = 'Otevřít';
   static const recentlyReadShort = 'Nedávno čtené';
-  static const studyTeaserHint =
-      'Medailony postav, aplikační poznámky, tabulky, harmonie evangelií, '
-      'časová osa a mapy – vše najdete v záložce Studium dole.';
   static const studyHubIntro =
-      'Všechny studijní materiály na jednom místě. Hledat můžete postavy, '
-      'situace, knihy, tabulky i poznámky.';
-  static const studySearchHint = 'Hledat: David, strach, svátky, Marek…';
+      'Všechno, co pomáhá Bibli porozumět – rozdělené do čtyř oddílů.';
+  static const studySearchHint = 'Hledat verše, postavy, témata…';
+  static const studyBooksPeople = 'Knihy a postavy';
+  static const studyTools = 'Nástroje';
   static const studyForLife = 'Pro život';
   static const historicalBackground = 'Historické pozadí';
   static const christConnection = 'Souvislost s Ježíšem a Novým zákonem';

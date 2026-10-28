@@ -22,6 +22,8 @@ import '../../content/presentation/tables_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../study/presentation/book_intros_screen.dart';
 import '../../guide/presentation/guide_screen.dart';
+import '../../progress/presentation/progress_screen.dart';
+import 'day_scene.dart';
 import 'plans_sheet.dart';
 import 'timeline_screen.dart';
 
@@ -52,63 +54,111 @@ class TodayScreen extends ConsumerWidget {
         ? S.goodDay
         : S.goodEvening;
     final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
     final insets = MediaQuery.paddingOf(context);
 
+    final time = dayTimeOf(now);
+    final darkScene = theme.brightness == Brightness.dark;
+    // Na obrázku: v noci a za soumraku světlý text, jinak tmavý.
+    final onScene = time == DayTime.night || time == DayTime.dusk || darkScene
+        ? Colors.white
+        : const Color(0xFF2A2018);
+    final heroHeight = insets.top + 270;
+
     return ListView(
-      padding: EdgeInsets.fromLTRB(
-        20,
-        insets.top + 16,
-        20,
-        insets.bottom + 110,
-      ),
+      padding: EdgeInsets.only(bottom: insets.bottom + 110),
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Stack(
           children: [
-            Expanded(
-              child: Column(
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: heroHeight,
+              // Spodní okraj obrázku se rozplyne do pozadí aplikace.
+              child: ShaderMask(
+                blendMode: BlendMode.dstIn,
+                shaderCallback: (r) => const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.0, 0.72, 1.0],
+                  colors: [Colors.black, Colors.black, Colors.transparent],
+                ).createShader(r),
+                child: DayScene(time: time, dark: darkScene),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, insets.top + 12, 12, 0),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '${_weekdays[now.weekday - 1]} ${now.day}. ${_months[now.month - 1]}'
-                        .toUpperCase(),
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      color: palette.gold,
-                      letterSpacing: 1.6,
-                      fontWeight: FontWeight.w700,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${_weekdays[now.weekday - 1]} ${now.day}. ${_months[now.month - 1]}'
+                              .toUpperCase(),
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: onScene.withValues(alpha: 0.8),
+                            letterSpacing: 1.6,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          greeting,
+                          style: theme.textTheme.headlineLarge?.copyWith(
+                            color: onScene,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 4),
-                  Text(greeting, style: theme.textTheme.headlineLarge),
+                  IconButton(
+                    tooltip: S.guide,
+                    color: onScene,
+                    onPressed: () => openGuide(context),
+                    icon: const Icon(Icons.help_outline),
+                  ),
+                  IconButton(
+                    tooltip: S.settings,
+                    color: onScene,
+                    style: IconButton.styleFrom(
+                      backgroundColor: onScene.withValues(alpha: 0.14),
+                    ),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => const SettingsScreen(),
+                      ),
+                    ),
+                    icon: const Icon(Icons.tune),
+                  ),
                 ],
               ),
             ),
-            IconButton(
-              tooltip: S.guide,
-              onPressed: () => openGuide(context),
-              icon: const Icon(Icons.help_outline),
-            ),
-            IconButton.filledTonal(
-              tooltip: S.settings,
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(builder: (_) => const SettingsScreen()),
-              ),
-              icon: const Icon(Icons.tune),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, heroHeight - 92, 20, 0),
+              child: const _VerseOfDayCard(),
             ),
           ],
         ),
-        const SizedBox(height: 20),
-        const _VerseOfDayCard(),
-        const _SituationsStrip(),
-        const SectionLabel(S.myReading),
-        const _ContinueCard(),
-        const SizedBox(height: 10),
-        const _StatsRow(),
-        const SizedBox(height: 10),
-        const _PlanCard(),
-        const _StudyTeaser(),
-        const _RecentList(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const _SituationsStrip(),
+              const SectionLabel(S.myReading),
+              const _ContinueCard(),
+              const SizedBox(height: 10),
+              const _StatsRow(),
+              const SizedBox(height: 10),
+              const _PlanCard(),
+              const _StudyTeaser(),
+              const _RecentList(),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -344,39 +394,60 @@ class _StatsRow extends ConsumerWidget {
     Widget divider() =>
         Container(width: 1, height: 40, color: palette.cardBorder);
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        child: Row(
-          children: [
-            Expanded(
-              child: _StatTile(
-                icon: Icons.local_fire_department,
-                iconColor: const Color(0xFFE0782F),
-                value: '${stats?.streakDays ?? 0}',
-                label: S.streak,
-                active: stats?.readToday ?? false,
+      child: InkWell(
+        onTap: () => openProgress(context),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 14, 0, 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: _StatTile(
+                      icon: Icons.local_fire_department,
+                      iconColor: const Color(0xFFE0782F),
+                      value: '${stats?.streakDays ?? 0}',
+                      label: S.streak,
+                      active: stats?.readToday ?? false,
+                    ),
+                  ),
+                  divider(),
+                  Expanded(
+                    child: _StatTile(
+                      icon: Icons.calendar_today,
+                      iconColor: const Color(0xFF3F7CAC),
+                      value: '${stats?.chaptersThisWeek ?? 0}',
+                      label: S.thisWeek,
+                    ),
+                  ),
+                  divider(),
+                  Expanded(
+                    child: _StatTile(
+                      icon: Icons.donut_large,
+                      iconColor: const Color(0xFF4E9A8A),
+                      value:
+                          '${percent.toStringAsFixed(percent < 10 ? 1 : 0).replaceAll('.', ',')} %',
+                      label: S.totalRead,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            divider(),
-            Expanded(
-              child: _StatTile(
-                icon: Icons.calendar_today,
-                iconColor: const Color(0xFF3F7CAC),
-                value: '${stats?.chaptersThisWeek ?? 0}',
-                label: S.thisWeek,
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    S.progress,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: palette.gold,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Icon(Icons.chevron_right, size: 16, color: palette.gold),
+                ],
               ),
-            ),
-            divider(),
-            Expanded(
-              child: _StatTile(
-                icon: Icons.donut_large,
-                iconColor: const Color(0xFF4E9A8A),
-                value:
-                    '${percent.toStringAsFixed(percent < 10 ? 1 : 0).replaceAll('.', ',')} %',
-                label: S.totalRead,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

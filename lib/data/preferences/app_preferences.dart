@@ -23,6 +23,7 @@ class AppPreferences {
   static const _readerActiveTab = 'reader.activeTab';
   static const _readerSettings = 'reader.settings';
   static const _memoryVerses = 'memory.verses';
+  static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
@@ -62,6 +63,11 @@ class AppPreferences {
     ]);
     await _prefs.setInt(_readerActiveTab, active);
   }
+
+  /// Poslední verze přehledu „Co je nového“, kterou uživatel viděl.
+  int get whatsNewSeen => _prefs.getInt(_whatsNewSeen) ?? 0;
+  Future<void> setWhatsNewSeen(int version) =>
+      _prefs.setInt(_whatsNewSeen, version);
 
   /// Verše k učení nazpaměť (zakódované, viz `MemoryVerse`).
   List<String> get memoryVerses =>

@@ -229,6 +229,20 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const whatsNew = 'Co je nového';
+  static const whatsNewIntro = 'Velká aktualizace aplikace – přehled novinek.';
+  static const letsGo = 'Začít';
+  static const progress = 'Můj pokrok';
+  static const progressHint = 'Kalendář čtení, odznaky, přečtené knihy';
+  static const ofBible = 'Bible';
+  static const longestStreak = 'nejdelší série';
+  static const chaptersReadLabel = 'přečtených kapitol';
+  static const daysRead = 'dní se čtením';
+  static const readingCalendar = 'Kalendář čtení';
+  static String badgesCount(int earned, int all) => 'Odznaky $earned/$all';
+  static const bibleByBooks = 'Bible po knihách';
+  static const less = 'méně';
+  static const more = 'více';
   static const reflection = 'Zamyšlení nad kapitolou';
   static const reflectionHintShort =
       'Čtyři otázky – odpovědi se uloží do Deníku';

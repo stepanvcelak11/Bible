@@ -114,7 +114,8 @@ Future<ProviderContainer> createTestContainer({
   Map<String, Object> prefs = const {},
   List<Override> overrides = const [],
 }) async {
-  SharedPreferences.setMockInitialValues(prefs);
+  // Přehled „Co je nového“ v testech neruší.
+  SharedPreferences.setMockInitialValues({'whatsnew.seen': 999, ...prefs});
   final sharedPrefs = await SharedPreferences.getInstance();
   final bibleDb = await createTestBibleDb();
   final downloadsDb = BibleDatabase(NativeDatabase.memory(), downloads: true);

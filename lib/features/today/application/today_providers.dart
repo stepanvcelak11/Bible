@@ -17,6 +17,11 @@ final readChaptersProvider = StreamProvider<Map<int, Set<int>>>(
   (ref) => ref.watch(readingProgressRepositoryProvider).watchReadChapters(),
 );
 
+/// Kolik kapitol bylo přečteno v jednotlivých dnech.
+final dailyReadingProvider = StreamProvider<Map<DateTime, int>>(
+  (ref) => ref.watch(readingProgressRepositoryProvider).watchDailyCounts(),
+);
+
 final recentReadingProvider = StreamProvider<List<(VerseRef, DateTime)>>(
   (ref) => ref.watch(readingProgressRepositoryProvider).watchRecent(),
 );

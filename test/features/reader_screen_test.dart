@@ -4,6 +4,7 @@ import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/content/application/content_providers.dart';
+import 'package:bible_reader/features/progress/presentation/progress_screen.dart';
 import 'package:bible_reader/features/memory/application/memory_controller.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
 import 'package:bible_reader/features/reader/application/reader_tabs_controller.dart';
@@ -275,9 +276,7 @@ void main() {
     expect(container.read(memoryProvider).single.level, 1);
   });
 
-  appTest('biblická témata: rejstřík a téma s klíčovými místy', (
-    tester,
-  ) async {
+  appTest('biblická témata: rejstřík a téma s klíčovými místy', (tester) async {
     await pumpApp(tester, openBible: false);
     await tester.runAsync(() => container.read(topicsProvider.future));
     await tester.tap(find.text('Studium'));
@@ -313,6 +312,31 @@ void main() {
     );
     expect(notes!.single.body, contains('Boží láska'));
     expect(notes.single.ref, const VerseRef(43, 3, 1));
+  });
+
+  appTest('můj pokrok: kalendář, odznaky a knihy', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Můj pokrok'));
+    await settle(tester);
+    expect(find.text('KALENDÁŘ ČTENÍ'), findsOneWidget);
+    final list = find
+        .descendant(
+          of: find.byType(ProgressScreen),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(
+      find.text('První krok'),
+      300,
+      scrollable: list,
+    );
+    expect(find.text('První krok'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('BIBLE PO KNIHÁCH'),
+      300,
+      scrollable: list,
+    );
+    expect(find.text('Zákon (Tóra)'), findsOneWidget);
   });
 
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {

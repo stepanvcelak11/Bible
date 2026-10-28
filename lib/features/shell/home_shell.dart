@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/providers.dart';
+import '../guide/presentation/whats_new_sheet.dart';
+
 import '../../core/l10n/strings_cs.dart';
 import '../../core/theme/app_theme.dart';
 import '../../core/widgets/readable_width.dart';
@@ -61,6 +64,19 @@ class HomeShell extends ConsumerStatefulWidget {
 class _HomeShellState extends ConsumerState<HomeShell> {
   /// Sekce se sestaví až při první návštěvě (pak zůstávají v paměti).
   final _visited = <AppTab>{};
+
+  @override
+  void initState() {
+    super.initState();
+    // Po velké aktualizaci jednou ukázat přehled novinek.
+    final prefs = ref.read(appPreferencesProvider);
+    if (prefs.whatsNewSeen < whatsNewVersion) {
+      prefs.setWhatsNewSeen(whatsNewVersion);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) showWhatsNew(context);
+      });
+    }
+  }
 
   Widget _page(AppTab tab) => switch (tab) {
     AppTab.today => const ReadableWidth(child: TodayScreen()),

@@ -65,31 +65,155 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
 
     Widget header(String title) => SectionLabel(title);
 
-    Widget group(List<_Entry> entries) => Card(
-      child: Column(
-        children: [
-          for (final (i, e) in entries.indexed) ...[
-            if (i > 0) const Divider(height: 1, indent: 72),
-            ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(16, 6, 12, 6),
-              leading: Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: e.color.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Icon(e.icon, color: e.color),
-              ),
-              title: Text(e.title, style: theme.textTheme.titleMedium),
-              subtitle: Text(e.subtitle),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: e.onTap,
+    // Barevné dlaždice ve dvou sloupcích (na tabletu ve třech).
+    final columns = MediaQuery.sizeOf(context).width >= 700 ? 3 : 2;
+    Widget tile(_Entry e, {bool wide = false}) => Material(
+      color: palette.card,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(color: palette.cardBorder),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: e.onTap,
+        child: Ink(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                e.color.withValues(alpha: 0.16),
+                e.color.withValues(alpha: 0.02),
+              ],
             ),
-          ],
-        ],
+          ),
+          padding: const EdgeInsets.fromLTRB(14, 14, 12, 14),
+          child: wide
+              ? Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: e.color,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: e.color.withValues(alpha: 0.35),
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Icon(e.icon, color: Colors.white, size: 22),
+                    ),
+                    const SizedBox(width: 14),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            e.title,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w700,
+                              height: 1.2,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            e.subtitle,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: palette.muted,
+                              height: 1.3,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Icon(Icons.chevron_right),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: e.color,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: e.color.withValues(alpha: 0.35),
+                            blurRadius: 8,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Icon(e.icon, color: Colors.white, size: 22),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      e.title,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        height: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      e.subtitle,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: palette.muted,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
+
+    Widget group(List<_Entry> entries) {
+      // Když dlaždice nevyjdou do celých řádků, první je přes celou šířku.
+      final wide = entries.length % columns == 0 ? 0 : 1;
+      final rest = entries.sublist(wide);
+      return Column(
+        children: [
+          if (wide == 1)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: SizedBox(
+                width: double.infinity,
+                child: tile(entries.first, wide: true),
+              ),
+            ),
+          for (var i = 0; i < rest.length; i += columns)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (var j = i; j < i + columns; j++) ...[
+                      if (j > i) const SizedBox(width: 10),
+                      Expanded(
+                        child: j < rest.length
+                            ? tile(rest[j])
+                            : const SizedBox.shrink(),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+        ],
+      );
+    }
 
     final q = foldCzech(_query.trim());
 

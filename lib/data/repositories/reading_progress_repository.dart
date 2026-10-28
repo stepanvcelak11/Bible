@@ -103,6 +103,29 @@ class ReadingProgressRepository {
         );
   }
 
+  /// Kolik různých kapitol bylo přečteno v jednotlivých dnech.
+  Stream<Map<DateTime, int>> watchDailyCounts() {
+    return _db
+        .customSelect(
+          'SELECT book_id, chapter, read_at FROM reading_log',
+          readsFrom: {_db.readingLog},
+        )
+        .watch()
+        .map((rows) {
+          final perDay = <DateTime, Set<(int, int)>>{};
+          for (final r in rows) {
+            final at = DateTime.fromMillisecondsSinceEpoch(
+              r.read<int>('read_at') * 1000,
+            );
+            (perDay[DateTime(at.year, at.month, at.day)] ??= {}).add((
+              r.read<int>('book_id'),
+              r.read<int>('chapter'),
+            ));
+          }
+          return {for (final e in perDay.entries) e.key: e.value.length};
+        });
+  }
+
   Stream<ReadingStats> watchStats() {
     return _db
         .customSelect(

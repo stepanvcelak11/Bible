@@ -229,6 +229,16 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const byStory = 'Podle příběhu';
+  static const alphabetical = 'Abecedně';
+  static const eraPatriarchs = 'Praotcové (Genesis)';
+  static const eraExodus = 'Mojžíš a cesta pouští';
+  static const eraJudges = 'Dobytí země a soudci';
+  static const eraKingdom = 'Království';
+  static const eraExile = 'Exil a návrat';
+  static const eraProphets = 'Proroci a mudrci';
+  static const eraGospels = 'Ježíšův život';
+  static const eraChurch = 'První církev';
   static const guide = 'Průvodce aplikací';
   static const guideHint = 'Co kde najdete a jak se aplikace ovládá';
   static const guideIntro =

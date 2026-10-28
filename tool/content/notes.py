@@ -400,3 +400,290 @@ note("1K 13,1-13", "Píseň o lásce",
      "nejsou dary nic. Láska je trpělivá, laskavá, nezávidí…",
      "Láska je měřítkem všeho duchovního.",
      "Dosadit své jméno místo slova „láska“ (v. 4–7) – kde to nesedí?")
+
+
+# --- Genesis: Josef ------------------------------------------------------------
+note("Gn 37,1-11", "Oblíbený syn a závist bratrů",
+     "Jákob dává najevo, že Josefa miluje víc než ostatní syny, a daruje mu "
+     "zvláštní suknici. Josef navíc bratrům vypráví sny, v nichž se mu "
+     "klanějí. Bratři ho začnou nenávidět.",
+     "Nadržování v rodině a nerozvážná pýcha živí závist, která může "
+     "přerůst v něco mnohem horšího.",
+     "Je v mé rodině nebo práci někdo, komu nevědomky nadržuji – nebo "
+     "naopak někdo, komu závidím? Závist je lepší pojmenovat před Bohem "
+     "dřív, než začne řídit moje jednání.")
+note("Gn 39,1-23", "Věrnost, když se nikdo nedívá",
+     "Josef je prodán do Egypta, ale Hospodin je s ním a Potífar mu svěří "
+     "celý dům. Když ho Potífarova žena svádí, odmítá: „Jak bych mohl "
+     "spáchat tak velké zlo a zhřešit proti Bohu?“ Je křivě obviněn a "
+     "skončí ve vězení – a i tam je Hospodin s ním.",
+     "Bezúhonnost se rozhoduje v soukromí. Bůh je s námi i tehdy, když "
+     "nám věrnost přinese nespravedlnost.",
+     "Kde mám dnes pokušení, o kterém by nikdo nevěděl? Josef pokušení "
+     "neanalyzoval – utekl. Pomáhá předem vědět, kde jsou mé hranice.")
+note("Gn 45,1-15", "Odpuštění, které obejme",
+     "Josef, nyní druhý muž Egypta, se dá bratrům poznat. Místo pomsty "
+     "pláče a říká: „Netrapte se… k zachování života mě Bůh poslal před "
+     "vámi.“ Objímá je a líbá.",
+     "Odpuštění je možné, když v příběhu vidíme Boží ruku větší než "
+     "křivdu, která se nám stala.",
+     "Komu potřebuji odpustit? Odpuštění neznamená tvrdit, že se nic "
+     "nestalo, ale rozhodnout se nesplácet zlo zlem a nechat soud Bohu.")
+note("Gn 50,15-21", "Bůh to obrátil k dobrému",
+     "Po Jákobově smrti se bratři bojí Josefovy pomsty. Josef odpovídá: "
+     "„Zamýšleli jste proti mně zlo, ale Bůh to zamýšlel k dobrému.“",
+     "Bůh dokáže použít i zlé úmysly lidí k naplnění svých dobrých cílů "
+     "(srv. Ř 8,28).",
+     "Které těžké období mého života vidím dnes jinak? Do toho, co ještě "
+     "nechápu, můžu vložit stejnou důvěru.")
+
+# --- Evangelium podle Jana ------------------------------------------------------
+note("J 1,1-18", "Slovo se stalo tělem",
+     "Jan začíná „na počátku“ jako Genesis: Slovo bylo u Boha a bylo Bůh, "
+     "skrze něj vše vzniklo. Toto Slovo se stalo člověkem – Ježíšem – a "
+     "„přebývalo mezi námi“ (doslova „postavilo stan“). Kdo ho přijmou, "
+     "stávají se Božími dětmi.",
+     "Bůh není vzdálený; v Ježíši přišel až k nám a ukázal, jaký je.",
+     "Když přemýšlím, jaký je Bůh, dívám se na Ježíše? Přijmout ho "
+     "znamená důvěřovat mu – a to dává novou identitu: jsem Boží dítě.")
+note("J 2,1-11", "Víno na svatbě v Káni",
+     "Na svatbě dojde víno – pro hostitele velká ostuda. Marie řekne "
+     "služebníkům: „Udělejte, cokoli vám řekne.“ Ježíš promění vodu v "
+     "kamenných nádobách na nejlepší víno. Je to první „znamení“.",
+     "Ježíš se zajímá i o obyčejné lidské radosti a starosti; jeho dary "
+     "jsou štědré.",
+     "Kde mi „došlo víno“ – síla, radost, nápady? Mariina rada platí: "
+     "udělat, co Ježíš řekne, i když se to zdá obyčejné (nosit vodu).")
+note("J 4,1-26", "Živá voda u studny",
+     "Ježíš prosí Samařanku o vodu – Žid mluví se Samařankou, muž se ženou "
+     "s pošramocenou pověstí. Nabízí jí „živou vodu“, která uhasí žízeň "
+     "navždy, a odhaluje jí, že je Mesiáš.",
+     "Lidská duše má žízeň, kterou nic jiného nenasytí. Ježíš překračuje "
+     "bariéry, aby ji uhasil.",
+     "Čím se snažím uhasit vnitřní žízeň? A koho přehlížím kvůli jeho "
+     "původu nebo minulosti, ačkoli Ježíš by s ním mluvil?")
+note("J 5,1-15", "Chceš být zdráv?",
+     "U rybníka Bethesda leží muž nemocný 38 let. Ježíš se ho ptá: „Chceš "
+     "být zdráv?“ Muž se vymlouvá, že nemá nikoho, kdo by mu pomohl. Ježíš "
+     "ho uzdraví slovem: „Vstaň, vezmi své lůžko a choď.“",
+     "Ježíš oslovuje i dlouholetou beznaděj a přináší změnu, kterou "
+     "bychom sami nezvládli.",
+     "Zvykl jsem si na něco, co mě ochromuje? Ježíšova otázka je osobní – "
+     "můžu mu upřímně odpovědět a dovolit mu, aby věci změnil.")
+note("J 6,35-40", "Chléb života",
+     "Po nasycení zástupů Ježíš říká: „Já jsem chléb života. Kdo přichází "
+     "ke mně, nebude nikdy hladovět.“ Zástupy chtěly další jídlo; Ježíš "
+     "nabízí sám sebe.",
+     "Ježíš není jen dárce věcí, které potřebujeme – on sám je tím, co "
+     "potřebujeme nejvíc.",
+     "Hledám u Ježíše hlavně řešení problémů, nebo jeho samotného? "
+     "„Každodenní chléb“ vztahu s ním je modlitba a jeho slovo.")
+note("J 9,1-12", "Kdo zhřešil?",
+     "Učedníci se ptají, čí hřích způsobil, že se muž narodil slepý. Ježíš "
+     "odpovídá: ani on, ani rodiče – „ale aby se na něm zjevily skutky "
+     "Boží“, a uzdraví ho.",
+     "Utrpení není vždy trestem za konkrétní hřích. Ježíš místo hledání "
+     "viníka jedná.",
+     "Hledám u druhých (nebo u sebe) viníka všeho zlého? Lepší otázka "
+     "než „proč“ bývá „co tu chce Bůh udělat a jak můžu pomoct?“")
+note("J 10,1-18", "Dobrý pastýř",
+     "Ježíš je „dveře“ k ovcím i „dobrý pastýř“, který zná své ovce jménem "
+     "a ony znají jeho hlas. Na rozdíl od najatého pomocníka neuteče – "
+     "položí za ovce život.",
+     "Ježíš vede osobně, zná nás a jeho péče jde až k obětování sebe.",
+     "Jak se učím rozpoznávat jeho hlas mezi ostatními hlasy? Čas v "
+     "Písmu a modlitbě je jako poslouchat pastýře, dokud ho nepoznám.")
+note("J 11,17-44", "Já jsem vzkříšení a život",
+     "Lazar je čtyři dny v hrobě. Marta říká: „Pane, kdybys tu byl…“ "
+     "Ježíš odpovídá: „Já jsem vzkříšení a život.“ U hrobu pláče – a pak "
+     "Lazara zavolá ven.",
+     "Ježíš sdílí náš zármutek, a přitom má moc nad smrtí.",
+     "Smím před Ježíšem plakat i se ptát „proč jsi nepřišel dřív?“. "
+     "A zároveň slyšet jeho otázku: „Věříš tomu?“")
+note("J 13,1-17", "Umývání nohou",
+     "Při poslední večeři Ježíš vstane, opáše se ručníkem a umývá "
+     "učedníkům nohy – práce otroka. Petr se brání. Ježíš říká: „Dal jsem "
+     "vám příklad.“",
+     "Ve vedení podle Ježíše je velikost ve službě.",
+     "Komu můžu tento týden „umýt nohy“ – udělat nenápadnou, nepopulární "
+     "službu? A umím si nechat posloužit, jako se to musel naučit Petr?")
+note("J 14,1-14", "Cesta, pravda a život",
+     "Učedníci jsou zneklidnění, že Ježíš odchází. Ježíš je ujišťuje, že "
+     "jim připravuje místo. Na Tomášovu otázku odpovídá: „Já jsem ta cesta, "
+     "pravda i život; nikdo nepřichází k Otci než skrze mne.“",
+     "Ježíš není jen ukazatel cesty – je sám cestou k Bohu. Kdo vidí jeho, "
+     "vidí Otce.",
+     "Co mi „nedá spát“? Ježíš říká: „Ať se vaše srdce nechvěje.“ Důvěra "
+     "v něj neodstraní všechny otázky, ale dává pevný bod.")
+note("J 15,1-17", "Zůstaňte ve mně",
+     "Ježíš je vinný kmen, učedníci ratolesti. Ovoce nevzniká snahou "
+     "ratolesti, ale tím, že zůstává na kmeni. Ovoce je hlavně láska: "
+     "„Milujte se navzájem, jako jsem já miloval vás.“",
+     "Plodný život je výsledek spojení s Kristem, ne vlastního vypětí.",
+     "Co pro mě znamená „zůstávat“ v Ježíši – v běžném dni? Možná začít "
+     "den krátkou modlitbou a během dne se k němu vracet.")
+note("J 17,20-26", "Ježíšova modlitba za nás",
+     "Ježíš se modlí nejen za učedníky, ale i za ty, kdo uvěří skrze "
+     "jejich slovo – tedy i za nás. Prosí, „aby všichni byli jedno“, aby "
+     "svět poznal Boží lásku.",
+     "Jednota křesťanů je svědectvím pro svět; Ježíš se za ni modlil.",
+     "Jak přispívám k jednotě – ve sboru, mezi církvemi, v rodině? "
+     "Ježíš se za mě modlil; můžu se modlit za ty, s nimiž si nerozumím.")
+note("J 20,24-29", "Tomášovy pochybnosti",
+     "Tomáš nebyl s ostatními, když se jim ukázal vzkříšený Ježíš, a "
+     "nevěří. O týden později Ježíš přijde a nabídne mu své rány. Tomáš "
+     "vyzná: „Můj Pán a můj Bůh!“",
+     "Ježíš se nepohoršuje nad upřímnými pochybnostmi; vychází jim vstříc.",
+     "S jakými otázkami zápasím? Můžu je přinést Ježíši i do společenství "
+     "věřících – Tomáš zůstal s ostatními a tam Ježíše potkal.")
+note("J 21,15-19", "Miluješ mě?",
+     "Petr Ježíše třikrát zapřel. Vzkříšený Ježíš se ho u jezera třikrát "
+     "ptá: „Miluješ mě?“ a třikrát mu svěřuje: „Pas mé ovce.“",
+     "Ježíš obnovuje ty, kdo selhali, a dává jim nové poslání.",
+     "Selhání nemusí být konec mého příběhu s Bohem. Na jakou Ježíšovu "
+     "otázku dnes potřebuji odpovědět?")
+
+# --- List Římanům ---------------------------------------------------------------
+note("Ř 1,16-17", "Nestydím se za evangelium",
+     "Pavel píše do Říma, centra moci: evangelium je Boží moc ke spasení "
+     "pro každého, kdo věří. Odhaluje se v něm Boží spravedlnost – "
+     "„spravedlivý z víry bude žít“ (Abk 2,4).",
+     "Evangelium není jen myšlenka, ale Boží moc, která mění lidi.",
+     "Kde se za víru stydím? Nemusím být kazatel – stačí se nebát říct, "
+     "proč věřím, když se mě někdo zeptá.")
+note("Ř 3,21-26", "Spravedlnost darem",
+     "Všichni zhřešili a nedosahují Boží slávy. Ale Bůh nás ospravedlňuje "
+     "zdarma, svou milostí, skrze vykoupení v Kristu Ježíši. Kristova "
+     "smrt ukazuje, že Bůh je spravedlivý a zároveň ospravedlňuje.",
+     "Před Bohem nemáme na co ukázat; dostáváme všechno jako dar.",
+     "Snažím se Bohu „zasloužit“ jeho přijetí? Milost znamená, že můžu "
+     "přestat počítat body a z vděčnosti začít jednat.")
+note("Ř 5,1-11", "Pokoj s Bohem",
+     "Ospravedlněni z víry máme pokoj s Bohem. Proto se můžeme chlubit "
+     "i v souženích, protože vedou k vytrvalosti, osvědčenosti a naději. "
+     "Bůh prokázal lásku tím, že Kristus zemřel za nás, když jsme ještě "
+     "byli hříšníci.",
+     "Boží láska nezačala ve chvíli, kdy jsme se polepšili. Proto ani "
+     "těžkosti nejsou důkazem, že nás Bůh opustil.",
+     "Jakou těžkost dnes prožívám? Můžu ji dát do Pavlova řetězu: "
+     "soužení – vytrvalost – osvědčenost – naděje.")
+note("Ř 6,1-14", "Mrtví hříchu, živí Bohu",
+     "Znamená milost, že můžeme dál hřešit? Pavel odpovídá: rozhodně ne. "
+     "Při křtu jsme byli spojeni s Kristovou smrtí i vzkříšením. Starý "
+     "člověk byl ukřižován; máme se pokládat za mrtvé hříchu a živé Bohu.",
+     "Milost není povolení hřešit, ale moc žít nový život.",
+     "Ve které oblasti se mi nechce věřit, že „to už nemusí vládnout“? "
+     "Můžu dnes vědomě „dát své údy“ do služby Bohu – ruce, jazyk, čas.")
+note("Ř 7,14-25", "Vnitřní boj",
+     "„Nedělám dobro, které chci, ale zlo, které nechci.“ Pavel popisuje "
+     "rozpolcenost člověka, který zná Boží zákon, ale nemá sílu ho "
+     "naplnit. Končí výkřikem: „Kdo mě vysvobodí?“ a díkůvzdáním za "
+     "Ježíše Krista.",
+     "Boj s hříchem znají i zralí věřící; vysvobození nepřichází z vlastní "
+     "síly, ale skrze Krista.",
+     "Nejsem v boji divný ani sám. Místo zoufalství nebo rezignace můžu "
+     "dělat totéž co Pavel: nazvat věci pravdivě a obrátit se ke Kristu.")
+note("Ř 8,1-17", "Žádné odsouzení",
+     "„Nyní tedy není žádného odsouzení pro ty, kdo jsou v Kristu Ježíši.“ "
+     "Duch svatý v nás dává život a sílu. Nejsme otroci ve strachu, ale "
+     "děti, které volají „Abba, Otče“.",
+     "Křesťanský život nestojí na výkonu ze strachu, ale na vztahu "
+     "s Otcem skrze Ducha.",
+     "Slyším v sobě častěji hlas odsouzení, nebo hlas Otce? Můžu si dnes "
+     "nahlas přečíst Ř 8,1 a 8,15.")
+note("Ř 8,28-39", "Nic nás neodloučí",
+     "Bůh působí všechno k dobrému těm, kdo ho milují. Pavel vypočítává "
+     "soužení, hlad, nebezpečí, meč – a končí jistotou, že nic, ani smrt "
+     "ani život, nás nemůže odloučit od Boží lásky v Kristu.",
+     "Boží láska je pevnější než všechno, co nás může potkat.",
+     "Čeho se nejvíc bojím? Můžu to „dosadit“ do Pavlova výčtu: ani "
+     "tohle mě neodloučí od Boží lásky.")
+note("Ř 12,1-2", "Živá oběť",
+     "Na základě Božího milosrdenství máme vydat svá těla jako živou "
+     "oběť – to je naše pravá bohoslužba. Nepřizpůsobovat se tomuto "
+     "věku, ale proměňovat se obnovou mysli.",
+     "Bohoslužba není jen neděle; je to celý život dávaný Bohu.",
+     "Co formuje moje myšlení nejvíc – zprávy, sociální sítě, nebo Boží "
+     "slovo? Jaký jeden zvyk by pomohl „obnově mysli“?")
+note("Ř 12,9-21", "Láska bez přetvářky",
+     "Pavel dává praktický portrét lásky: bratrská náklonnost, "
+     "pohostinnost, radost s radujícími a pláč s plačícími, žít v pokoji "
+     "se všemi. Nesplácet zlo zlem, ale přemáhat zlo dobrem.",
+     "Láska je konkrétní jednání, i vůči nepřátelům.",
+     "Komu můžu dnes udělat dobro, i když si ho „nezaslouží“? Kdo "
+     "potřebuje, abych se s ním radoval, nebo s ním plakal?")
+note("Ř 14,1-13", "Nesuďte se navzájem",
+     "V římském sboru se lidé přeli o jídlo a sváteční dny. Pavel říká: "
+     "kdo jí, ať nepohrdá tím, kdo nejí, a kdo nejí, ať nesoudí toho, kdo "
+     "jí. Každý bude skládat účet Bohu.",
+     "V otázkách, které nejsou jádrem víry, platí svoboda svědomí a "
+     "ohleduplnost.",
+     "O jakých „vedlejších“ věcech se s druhými křesťany přu? Můžu svůj "
+     "názor podržet a přitom druhého přijmout jako bratra či sestru.")
+
+# --- List Galatským -------------------------------------------------------------
+note("Ga 5,16-26", "Ovoce Ducha",
+     "Pavel staví proti sobě „skutky těla“ (nemravnost, nepřátelství, "
+     "svárlivost, závist…) a „ovoce Ducha“: lásku, radost, pokoj, "
+     "trpělivost, laskavost, dobrotu, věrnost, tichost a sebeovládání.",
+     "Křesťanský charakter roste jako ovoce – postupně, z života v Duchu, "
+     "ne jen snahou o pravidla.",
+     "Která část ovoce Ducha mi dnes chybí nejvíc? Můžu za ni prosit a "
+     "hledat, kde ji dnes mohu konkrétně projevit.")
+note("Ga 6,1-10", "Neste břemena jedni druhých",
+     "Když někdo upadne, mají ho ti duchovní napravovat v duchu tichosti. "
+     "„Neste břemena jedni druhých.“ Co člověk zaseje, to také sklidí; "
+     "nepolevujme v konání dobra.",
+     "Společenství víry je místo, kde si navzájem pomáháme nést těžkosti.",
+     "Čí břemeno můžu tento týden pomoci nést? A komu dovolím, aby "
+     "pomohl nést to moje?")
+
+# --- List Efezským --------------------------------------------------------------
+note("Ef 2,1-10", "Milostí jste spaseni",
+     "Byli jsme „mrtví ve vinách“, ale Bůh bohatý v milosrdenství nás "
+     "obživil s Kristem. Spasení je z milosti skrze víru, ne ze skutků. "
+     "Jsme Boží dílo, stvořeni k dobrým skutkům, které Bůh připravil.",
+     "Dobré skutky nejsou cenou za spasení, ale jeho ovocem.",
+     "Jsem „Boží dílo“ (doslova umělecké dílo). Které dobré skutky mi "
+     "Bůh dnes možná připravil do cesty?")
+note("Ef 3,14-21", "Šíře a hloubka Kristovy lásky",
+     "Pavel klečí a modlí se, aby věřící byli posíleni Duchem, Kristus "
+     "přebýval v jejich srdcích a aby poznali šíři, délku, výšku i hloubku "
+     "Kristovy lásky, která převyšuje poznání.",
+     "Boží láska je větší, než dokážeme pochopit; poznáváme ji celý život.",
+     "Můžu se touto modlitbou modlit za sebe i za konkrétní lidi – "
+     "dosadit jejich jména.")
+note("Ef 4,1-16", "Jedno tělo, mnoho darů",
+     "Pavel vyzývá k pokoře, tichosti a trpělivosti, aby se zachovala "
+     "jednota Ducha. Kristus dal církvi různé služebníky, aby vystrojili "
+     "všechny k službě a tělo rostlo v lásce.",
+     "Každý křesťan má dar a místo v Kristově těle; jednota není "
+     "jednotvárnost.",
+     "Jaký dar mi Bůh dal a jak ho používám pro druhé? Kde mohu svou "
+     "trpělivostí chránit jednotu?")
+note("Ef 4,25-32", "Nový člověk v praxi",
+     "Odložte lež a mluvte pravdu. Hněvejte se, ale nehřešte – ať nad "
+     "vaším hněvem nezapadá slunce. Kdo kradl, ať pracuje. Ať z úst "
+     "nevychází špatné slovo, ale to, co buduje. Buďte k sobě laskaví a "
+     "odpouštějte si.",
+     "Víra se ukazuje ve slovech, v práci, v zacházení s hněvem a "
+     "v odpouštění.",
+     "Nezapadlo mi slunce nad nějakým hněvem? Které moje slovo dnes může "
+     "druhého budovat?")
+note("Ef 5,15-21", "Moudře využívat čas",
+     "Pavel vybízí žít moudře, „vykupovat čas“, protože dny jsou zlé. "
+     "Místo opojení vínem být naplněn Duchem – zpívat, děkovat Bohu za "
+     "všechno a podřizovat se jedni druhým v úctě ke Kristu.",
+     "Čas je dar, se kterým máme hospodařit; Duch svatý dává život "
+     "plný vděčnosti.",
+     "Kam mi utíká nejvíc času? Za co můžu dnes Bohu poděkovat – i za "
+     "něco malého?")
+note("Ef 6,10-18", "Boží výzbroj",
+     "Pavel, sám ve vězení pod dozorem římského vojáka, popisuje duchovní "
+     "výzbroj: opasek pravdy, pancíř spravedlnosti, obuv pohotovosti pro "
+     "evangelium pokoje, štít víry, přilbu spasení a meč Ducha – Boží "
+     "slovo. Vše provází modlitba.",
+     "Křesťanský život je i duchovní zápas; Bůh nám dává vše, co "
+     "potřebujeme, abychom obstáli.",
+     "Která část výzbroje mi chybí? Můžu se ráno „obléct“ – projít si "
+     "jednotlivé části v modlitbě.")

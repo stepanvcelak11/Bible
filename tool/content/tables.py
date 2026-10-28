@@ -310,3 +310,97 @@ table("pavlovy-listy", "Pavlovy listy",
           ["2. Timoteovi@2Tm 1", "Timoteus", "vězení v Římě", "66–67", "věrnost do "
            "konce"],
       ])
+
+table("svaty-tyden", "Poslední týden Ježíšova života",
+      "Události od vjezdu do Jeruzaléma po vzkříšení v jednotlivých "
+      "evangeliích.",
+      ["Den", "Událost", "Mt", "Mk", "L", "J"],
+      [
+          ["Neděle", "Slavný vjezd do Jeruzaléma", "@Mt 21,1-11",
+           "@Mk 11,1-11", "@L 19,28-44", "@J 12,12-19"],
+          ["Pondělí", "Neplodný fíkovník, vyčištění chrámu", "@Mt 21,12-19",
+           "@Mk 11,12-19", "@L 19,45-48", ""],
+          ["Úterý", "Spory v chrámu, řeč o posledních věcech",
+           "@Mt 24,1-14", "@Mk 13,1-13", "@L 21,5-19", ""],
+          ["Středa", "Jidáš se domlouvá s velekněžími", "@Mt 26,14-16",
+           "@Mk 14,10-11", "@L 22,3-6", ""],
+          ["Čtvrtek", "Poslední večeře, umývání nohou", "@Mt 26,17-30",
+           "@Mk 14,12-26", "@L 22,7-23", "@J 13,1-17"],
+          ["Čtvrtek v noci", "Getsemane a zatčení", "@Mt 26,36-56",
+           "@Mk 14,32-52", "@L 22,39-53", "@J 18,1-11"],
+          ["Pátek", "Výslechy, ukřižování a pohřeb", "@Mt 27,27-61",
+           "@Mk 15,16-47", "@L 23,26-56", "@J 19,16-42"],
+          ["Sobota", "Stráž u hrobu, odpočinek", "@Mt 27,62-66", "",
+           "@L 23,56", ""],
+          ["Neděle", "Vzkříšení", "@Mt 28,1-10", "@Mk 16,1-8",
+           "@L 24,1-12", "@J 20,1-18"],
+      ],
+      "Přiřazení některých událostí ke dnům (pondělí–středa) je tradiční; "
+      "evangelia je vždy přesně nedatují.")
+
+table("jmena-bozi", "Jména Boží",
+      "Jak Bible oslovuje a popisuje Boha. Hebrejská jména často "
+      "vyjadřují zkušenost, kterou s Bohem lidé udělali.",
+      ["Jméno", "Význam", "Odkaz"],
+      [
+          ["Elohim", "Bůh – mocný Stvořitel", "@Gn 1,1"],
+          ["Jahve (Hospodin)", "„Jsem, který jsem“ – Boží vlastní jméno "
+           "smlouvy", "@Ex 3,14-15"],
+          ["Adonaj", "Pán, Panovník", "@Ž 8,2"],
+          ["El Šaddaj", "Bůh všemohoucí", "@Gn 17,1"],
+          ["El Eljon", "Bůh Nejvyšší", "@Gn 14,19"],
+          ["El Olam", "Bůh věčný", "@Gn 21,33"],
+          ["El Roí", "Bůh, který mě vidí", "@Gn 16,13"],
+          ["Jahve jire", "Hospodin opatří", "@Gn 22,14"],
+          ["Jahve rofeka", "Hospodin, tvůj lékař", "@Ex 15,26"],
+          ["Jahve nisi", "Hospodin je můj prapor", "@Ex 17,15"],
+          ["Jahve šalom", "Hospodin je pokoj", "@Sd 6,24"],
+          ["Jahve cebaot", "Hospodin zástupů (nebeských vojsk)", "@1S 1,3"],
+          ["Jahve roí", "Hospodin je můj pastýř", "@Ž 23,1"],
+          ["Jahve cidkenu", "Hospodin, naše spravedlnost", "@Jr 23,6"],
+          ["Jahve šama", "Hospodin je tam", "@Ez 48,35"],
+          ["Immanuel", "Bůh s námi", "@Iz 7,14"],
+          ["Abba, Otče", "Důvěrné oslovení Otce", "@Ř 8,15"],
+      ],
+      "České překlady obvykle píší Boží jméno Jahve jako „Hospodin“ – "
+      "podle židovského zvyku jméno nevyslovovat.")
+
+table("smlouvy", "Smlouvy v Bibli",
+      "Bůh se k lidem váže smlouvami – slibuje, co udělá, a ukazuje, jak "
+      "s ním žít.",
+      ["Smlouva", "S kým", "Znamení", "Co Bůh slibuje", "Odkaz"],
+      [
+          ["S Noem", "všechno živé na zemi", "duha", "zemi už nezničí "
+           "potopa", "@Gn 9,8-17"],
+          ["S Abrahamem", "Abraham a jeho potomci", "obřízka", "potomstvo, "
+           "zemi a požehnání pro všechny národy", "@Gn 15,1-21"],
+          ["Na Sínaji", "Izrael", "sobota", "„budete mým zvláštním "
+           "vlastnictvím“; Zákon jako cesta života", "@Ex 19,3-8"],
+          ["S Davidem", "David a jeho dům", "", "věčný trůn – naplněn "
+           "v Mesiáši", "@2S 7,8-16"],
+          ["Nová smlouva", "všichni, kdo věří", "chléb a kalich", "zákon "
+           "v srdci, odpuštění hříchů, poznání Boha", "@Jr 31,31-34"],
+          ["Nová smlouva v Ježíšově krvi", "učedníci a církev", "večeře "
+           "Páně", "vykoupení skrze Kristovu smrt", "@L 22,19-20"],
+      ])
+
+table("miry-vahy", "Míry, váhy a peníze",
+      "Přibližné hodnoty jednotek, se kterými se v Bibli setkáte.",
+      ["Jednotka", "Přibližně", "Příklad"],
+      [
+          ["Loket", "asi 45 cm", "Rozměry archy@Gn 6,15"],
+          ["Píď", "asi 22 cm (půl lokte)", "Goliášova výška@1S 17,4"],
+          ["Dlaň", "asi 7,5 cm", "@Ex 25,25"],
+          ["Stadie", "asi 185 m", "Cesta do Emauz@L 24,13"],
+          ["Sobotní cesta", "asi 1 km", "@Sk 1,12"],
+          ["Šekel", "asi 11,5 g stříbra", "Abraham kupuje hrob@Gn 23,15-16"],
+          ["Mina", "asi 0,6 kg (50–60 šekelů)", "Podobenství o hřivnách@L 19,13"],
+          ["Talent (hřivna)", "asi 34 kg (3 000 šekelů)", "@Mt 25,15"],
+          ["Denár", "denní mzda dělníka", "Dělníci na vinici@Mt 20,2"],
+          ["Drachma", "asi jeden denár", "Ztracená mince@L 15,8"],
+          ["Lepton (haléř)", "nejmenší mince", "Dar chudé vdovy@Mk 12,42"],
+          ["Efa", "asi 22 l (sypké látky)", "Rút sbírá ječmen@Rt 2,17"],
+          ["Bat", "asi 22 l (tekutiny)", "@1Kr 7,26"],
+          ["Chómer", "asi 220 l (10 ef)", "@Ez 45,11"],
+      ],
+      "Hodnoty se v různých dobách a oblastech lišily; čísla jsou orientační.")

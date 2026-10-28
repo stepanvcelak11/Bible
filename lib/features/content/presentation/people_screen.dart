@@ -26,8 +26,42 @@ class PeopleScreen extends ConsumerStatefulWidget {
   ConsumerState<PeopleScreen> createState() => _PeopleScreenState();
 }
 
+/// Období biblických dějin podle knihy, kde příběh postavy začíná.
+const _eras = [
+  (1, S.eraPatriarchs),
+  (2, S.eraExodus),
+  (6, S.eraJudges),
+  (9, S.eraKingdom),
+  (15, S.eraExile),
+  (18, S.eraProphets),
+  (40, S.eraGospels),
+  (44, S.eraChurch),
+];
+
+int _eraOf(BiblePerson p) {
+  final first = p.story.isEmpty ? p.key : p.story.first;
+  // Postava SZ se začátkem příběhu v NZ (zmínka) patří k prorokům.
+  final book = !p.isNewTestament && first.bookId >= 40 ? 18 : first.bookId;
+  var era = 0;
+  for (final (i, (from, _)) in _eras.indexed) {
+    if (book >= from) era = i;
+  }
+  return era;
+}
+
+int _biblicalOrder(BiblePerson a, BiblePerson b) {
+  Passage first(BiblePerson p) => p.story.isEmpty ? p.key : p.story.first;
+  final x = first(a), y = first(b);
+  return x.bookId != y.bookId
+      ? x.bookId - y.bookId
+      : x.chapter != y.chapter
+      ? x.chapter - y.chapter
+      : x.verse - y.verse;
+}
+
 class _PeopleScreenState extends ConsumerState<PeopleScreen> {
   String _query = '';
+  bool _alphabetical = false;
 
   @override
   Widget build(BuildContext context) {
@@ -126,16 +160,45 @@ class _PeopleScreenState extends ConsumerState<PeopleScreen> {
                       ),
                     ),
                   ),
-                  if (filtered.any((p) => !p.isNewTestament))
-                    group(S.oldTestament, _otColor, [
-                      for (final p in filtered)
-                        if (!p.isNewTestament) p,
-                    ]),
-                  if (filtered.any((p) => p.isNewTestament))
-                    group(S.newTestament, _ntColor, [
-                      for (final p in filtered)
-                        if (p.isNewTestament) p,
-                    ]),
+                  const SizedBox(height: 10),
+                  SegmentedButton<bool>(
+                    showSelectedIcon: false,
+                    segments: const [
+                      ButtonSegment(
+                        value: false,
+                        icon: Icon(Icons.timeline, size: 18),
+                        label: Text(S.byStory),
+                      ),
+                      ButtonSegment(
+                        value: true,
+                        icon: Icon(Icons.sort_by_alpha, size: 18),
+                        label: Text(S.alphabetical),
+                      ),
+                    ],
+                    selected: {_alphabetical},
+                    onSelectionChanged: (v) =>
+                        setState(() => _alphabetical = v.first),
+                  ),
+                  if (_alphabetical)
+                    group(
+                      S.alphabetical,
+                      palette.gold,
+                      [...filtered]..sort(
+                        (a, b) =>
+                            foldCzech(a.name).compareTo(foldCzech(b.name)),
+                      ),
+                    )
+                  else
+                    for (final (i, (_, title)) in _eras.indexed)
+                      if (filtered.any((p) => _eraOf(p) == i))
+                        group(
+                          title,
+                          i >= 6 ? _ntColor : _otColor,
+                          [
+                            for (final p in filtered)
+                              if (_eraOf(p) == i) p,
+                          ]..sort(_biblicalOrder),
+                        ),
                 ],
               ),
       ),

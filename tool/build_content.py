@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
 from content import (church_year, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
-                     notes, people, quiz, situations, tables, topics)
+                     notes, people, quiz, situations, story, tables, threads,
+                     topics)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -79,6 +80,27 @@ def build_church_year() -> dict:
 
     return {"seasons": [item(*s) for s in church_year.SEASONS],
             "feasts": [item(*f) for f in church_year.FEASTS]}
+
+
+def build_threads() -> dict:
+    return {"threads": [
+        {"id": i, "color": color, "icon": icon, "title": title,
+         "intro": intro,
+         "stations": [{"ref": ref(r), "title": t, "text": x}
+                      for r, t, x in stations]}
+        for i, color, icon, title, intro, stations in threads.THREADS
+    ]}
+
+
+def build_story() -> dict:
+    return {"eras": [
+        {"id": i, "title": title, "period": period, "summary": summary,
+         "books": [BOOK[b] for b in books],
+         "branches": [{"label": label, "books": [BOOK[b] for b in bs]}
+                      for label, bs in branches],
+         "key": [{"ref": ref(r), "label": label} for r, label in key]}
+        for i, title, period, summary, books, branches, key in story.ERAS
+    ]}
 
 
 def build_people() -> dict:
@@ -172,7 +194,9 @@ def main() -> None:
             "tables.json": build_tables(),
             "topics.json": build_topics(),
             "quiz.json": build_quiz(),
-            "church_year.json": build_church_year()}
+            "church_year.json": build_church_year(),
+            "threads.json": build_threads(),
+            "story.json": build_story()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -199,6 +223,20 @@ def main() -> None:
                 for r in s["refs"]:
                     print(f"  {ABBR[r[0]-1]} {r[1]},{r[2]}-{r[3]}: "
                           f"{text(*r)[:230]}")
+        if what == "threads":
+            for t in data["threads.json"]["threads"]:
+                print(f"\n## {t['title']}")
+                for st in t["stations"]:
+                    r = st["ref"]
+                    print(f"  {ABBR[r[0]-1]} {r[1]},{r[2]}-{r[3]} "
+                          f"[{st['title']}]: {text(*r)[:200]}")
+        if what == "story":
+            for e in data["story.json"]["eras"]:
+                print(f"\n## {e['title']}")
+                for k in e["key"]:
+                    r = k["ref"]
+                    print(f"  {ABBR[r[0]-1]} {r[1]} [{k['label']}]: "
+                          f"{text(r[0], r[1], 1, 3)[:150]}")
         if what == "quiz":
             for x in data["quiz.json"]["questions"]:
                 r = x["ref"]

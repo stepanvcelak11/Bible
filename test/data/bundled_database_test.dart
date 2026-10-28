@@ -112,6 +112,16 @@ void main() {
           addPassage('téma ${t['id']} $r', r);
         }
       }
+      for (final t in (load('threads.json')! as Map)['threads'] as List) {
+        for (final st in t['stations'] as List) {
+          addPassage('nit ${t['id']} ${st['title']}', st['ref']);
+        }
+      }
+      for (final e in (load('story.json')! as Map)['eras'] as List) {
+        for (final k in e['key'] as List) {
+          addPassage('příběh ${e['id']} ${k['label']}', k['ref']);
+        }
+      }
       final church = load('church_year.json')! as Map;
       for (final x in [
         ...church['seasons'] as List,

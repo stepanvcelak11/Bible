@@ -19,6 +19,7 @@ import '../../maps/presentation/maps_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../memory/presentation/memory_screen.dart';
 import '../../prayer/presentation/prayers_view.dart';
+import '../../connections/presentation/connections_screen.dart';
 import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/quiz_screen.dart';
 import '../../search/application/reference_parser.dart';
@@ -267,6 +268,9 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
             if (q.isNotEmpty)
               StudySearchResults(query: q)
             else ...[
+              // --- Bible jako celek --------------------------------------
+              header(S.connectionsWhole),
+              const ConnectionsHeroCard(),
               // --- Pro život ---------------------------------------------
               header(S.studyForLife),
               _SituationsCard(

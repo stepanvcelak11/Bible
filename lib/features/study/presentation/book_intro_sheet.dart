@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../connections/presentation/connections_screen.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -319,6 +320,16 @@ class BookIntroView extends ConsumerWidget {
           onPressed: () => openBookMap(context, bookId),
           icon: const Icon(Icons.map_outlined),
           label: const Text(S.showBookMap),
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          onPressed: () => openConnections(
+            context,
+            view: ConnectionsView.arcs,
+            book: bookId,
+          ),
+          icon: const Icon(Icons.blur_on),
+          label: const Text(S.bookConnections),
         ),
         const SizedBox(height: 10),
         FilledButton.icon(

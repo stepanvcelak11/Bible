@@ -596,6 +596,38 @@ void main() {
     await pumpFor(tester);
     expect(find.textContaining('Kristus nesl hřích světa'), findsOneWidget);
   });
+
+  appTest('souvislosti: příběh, nitě a mapa odkazů', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await tester.tap(find.text('Příběh'));
+    await settle(tester);
+    expect(find.text('Stvoření a pád'), findsOneWidget);
+    await tester.tap(find.text('Stvoření a pád'));
+    await settle(tester);
+    expect(find.text('Pád'), findsOneWidget);
+    await tester.tapAt(const Offset(200, 60));
+    await settle(tester);
+
+    await tester.tap(find.text('Nitě'));
+    await settle(tester);
+    await tester.tap(find.text('Beránek'));
+    await settle(tester);
+    expect(find.text('Bůh si vyhlédne beránka'), findsOneWidget);
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
+
+    await tester.tap(find.text('Odkazy'));
+    await settle(tester);
+    expect(
+      find.text('Nejsilněji propojené knihy'.toUpperCase()),
+      findsOneWidget,
+    );
+    await tester.tap(find.textContaining(' ↔ ').first);
+    await settle(tester);
+    expect(find.text('Příklady spojení'.toUpperCase()), findsOneWidget);
+  });
 }
 
 /// Posune záložku Studium, až je text vidět.

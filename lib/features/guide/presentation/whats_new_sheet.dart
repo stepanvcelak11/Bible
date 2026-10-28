@@ -5,9 +5,30 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 5;
+const whatsNewVersion = 6;
 
 const _items = [
+  (
+    Icons.account_tree_outlined,
+    'Souvislosti v Bibli – velký příběh',
+    'Studium → Bible jako celek: strom dvanácti období od stvoření po '
+        'nové stvoření a ke každému knihy, proroci, listy a klíčové '
+        'kapitoly.',
+  ),
+  (
+    Icons.timeline,
+    'Červené nitě',
+    'Jedenáct motivů napříč Biblí (Beránek, Král z Davidova rodu, Voda '
+        'života…). U každého místa je vysvětleno, proč navazuje na '
+        'předchozí.',
+  ),
+  (
+    Icons.blur_on,
+    'Mapa odkazů',
+    'Obloukový graf všech kapitol: 3 500 nejsilnějších spojení. Vyberte '
+        'knihu a uvidíte, s čím souvisí, včetně konkrétních veršů. '
+        'Najdete ho i v úvodu každé knihy.',
+  ),
   (
     Icons.donut_large,
     'Církevní rok',

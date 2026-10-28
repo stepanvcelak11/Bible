@@ -327,3 +327,157 @@ class ChurchYearItem {
   final String text;
   final List<Passage> passages;
 }
+
+/// Zastavení „červené nitě“: místo, nadpis a proč sem patří.
+class ThreadStation {
+  const ThreadStation(this.passage, this.title, this.text);
+
+  final Passage passage;
+  final String title;
+  final String text;
+}
+
+/// Červená nit Bible – motiv, který se táhne mnoha knihami.
+class BibleThread {
+  const BibleThread({
+    required this.id,
+    required this.color,
+    required this.icon,
+    required this.title,
+    required this.intro,
+    required this.stations,
+  });
+
+  factory BibleThread.fromJson(Map<String, Object?> j) => BibleThread(
+    id: j['id']! as String,
+    color: j['color']! as int,
+    icon: j['icon']! as String,
+    title: j['title']! as String,
+    intro: j['intro']! as String,
+    stations: [
+      for (final s
+          in (j['stations']! as List<Object?>).cast<Map<String, Object?>>())
+        ThreadStation(
+          Passage.fromJson(s['ref']),
+          s['title']! as String,
+          s['text']! as String,
+        ),
+    ],
+  );
+
+  final String id;
+
+  /// Barva (ARGB).
+  final int color;
+  final String icon;
+  final String title;
+  final String intro;
+  final List<ThreadStation> stations;
+}
+
+/// Období velkého příběhu Bible.
+class StoryEra {
+  const StoryEra({
+    required this.id,
+    required this.title,
+    required this.period,
+    required this.summary,
+    required this.books,
+    required this.branches,
+    required this.key,
+  });
+
+  factory StoryEra.fromJson(Map<String, Object?> j) => StoryEra(
+    id: j['id']! as String,
+    title: j['title']! as String,
+    period: j['period']! as String,
+    summary: j['summary']! as String,
+    books: (j['books']! as List<Object?>).cast<int>(),
+    branches: [
+      for (final b
+          in (j['branches']! as List<Object?>).cast<Map<String, Object?>>())
+        (b['label']! as String, (b['books']! as List<Object?>).cast<int>()),
+    ],
+    key: [
+      for (final k in (j['key']! as List<Object?>).cast<Map<String, Object?>>())
+        (Passage.fromJson(k['ref']), k['label']! as String),
+    ],
+  );
+
+  final String id;
+  final String title;
+  final String period;
+  final String summary;
+
+  /// Knihy, které o období vyprávějí.
+  final List<int> books;
+
+  /// Knihy, které k období patří (proroci, žalmy, listy…).
+  final List<(String, List<int>)> branches;
+
+  /// Klíčové kapitoly.
+  final List<(Passage, String)> key;
+}
+
+/// Souhrn křížových odkazů (OpenBible.info) v anglickém číslování.
+class BibleConnections {
+  BibleConnections({
+    required this.verses,
+    required this.arcs,
+    required this.pairs,
+    required this.examples,
+  }) : chapterStart = [
+         for (var b = 0, s = 0; b < verses.length; s += verses[b].length, b++)
+           s,
+       ];
+
+  factory BibleConnections.fromJson(Map<String, Object?> j) {
+    List<List<int>> ints(Object? o) => [
+      for (final x in o! as List<Object?>) (x! as List<Object?>).cast<int>(),
+    ];
+    return BibleConnections(
+      verses: ints(j['verses']),
+      arcs: ints(j['arcs']),
+      pairs: ints(j['pairs']),
+      examples: {
+        for (final e in (j['examples']! as Map<String, Object?>).entries)
+          e.key: ints(e.value),
+      },
+    );
+  }
+
+  /// Počty veršů v kapitolách po knihách.
+  final List<List<int>> verses;
+
+  /// [kapitola A, kapitola B, váha] – globální index kapitoly.
+  final List<List<int>> arcs;
+
+  /// [kniha A, kniha B, váha], A < B, od nejsilnějších.
+  final List<List<int>> pairs;
+
+  /// "A-B" → [kniha, kap., verš, kniha, kap., verš, konec].
+  final Map<String, List<List<int>>> examples;
+
+  /// Globální index první kapitoly knihy (0-based podle knihy).
+  final List<int> chapterStart;
+
+  int get chapterCount => chapterStart.last + verses.last.length;
+
+  /// Kniha (1–66) kapitoly s globálním indexem [index].
+  int bookOfChapter(int index) {
+    var b = 0;
+    while (b + 1 < chapterStart.length && chapterStart[b + 1] <= index) {
+      b++;
+    }
+    return b + 1;
+  }
+
+  /// Nejsilnější spojení knihy [book]: (druhá kniha, váha).
+  List<(int, int)> partnersOf(int book) => [
+    for (final p in pairs)
+      if (p[0] == book) (p[1], p[2]) else if (p[1] == book) (p[0], p[2]),
+  ];
+
+  List<List<int>> examplesFor(int a, int b) =>
+      examples[a < b ? '$a-$b' : '$b-$a'] ?? const [];
+}

@@ -1,0 +1,656 @@
+{
+ "eras": [
+  {
+   "id": "creation",
+   "title": "Stvoření a pád",
+   "period": "počátek",
+   "summary": "Bůh tvoří dobrý svět a člověka ke svému obrazu. Lidé však Bohu nedůvěřují a hřích se šíří – od Kaina přes potopu až k Babylonské věži. Otázka zní: jak Bůh svět zachrání?",
+   "books": [
+    1
+   ],
+   "branches": [],
+   "key": [
+    {
+     "ref": [
+      1,
+      1,
+      0,
+      0
+     ],
+     "label": "Stvoření"
+    },
+    {
+     "ref": [
+      1,
+      3,
+      0,
+      0
+     ],
+     "label": "Pád"
+    },
+    {
+     "ref": [
+      1,
+      6,
+      0,
+      0
+     ],
+     "label": "Potopa"
+    },
+    {
+     "ref": [
+      1,
+      11,
+      0,
+      0
+     ],
+     "label": "Babylonská věž"
+    }
+   ]
+  },
+  {
+   "id": "patriarchs",
+   "title": "Praotcové",
+   "period": "asi 2000–1700 př. Kr.",
+   "summary": "Bůh povolává Abrahama a slibuje mu zemi, potomstvo a požehnání pro všechny národy. Slib se předává Izákovi, Jákobovi a jeho dvanácti synům. Josef se dostane do Egypta a zachrání rodinu před hladem.",
+   "books": [
+    1
+   ],
+   "branches": [
+    {
+     "label": "Jób – příběh z podobně dávné doby",
+     "books": [
+      18
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      1,
+      12,
+      0,
+      0
+     ],
+     "label": "Povolání Abrahama"
+    },
+    {
+     "ref": [
+      1,
+      22,
+      0,
+      0
+     ],
+     "label": "Obětování Izáka"
+    },
+    {
+     "ref": [
+      1,
+      28,
+      0,
+      0
+     ],
+     "label": "Jákobův žebřík"
+    },
+    {
+     "ref": [
+      1,
+      45,
+      0,
+      0
+     ],
+     "label": "Josef se dává poznat"
+    }
+   ]
+  },
+  {
+   "id": "exodus",
+   "title": "Vyjití a putování pouští",
+   "period": "asi 15.–13. stol. př. Kr.",
+   "summary": "Izraelité se v Egyptě stali otroky. Bůh je skrze Mojžíše vyvádí, na Sinaji s nimi uzavírá smlouvu a dává Zákon. Kvůli nedůvěře putují čtyřicet let pouští.",
+   "books": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "branches": [],
+   "key": [
+    {
+     "ref": [
+      2,
+      3,
+      0,
+      0
+     ],
+     "label": "Hořící keř"
+    },
+    {
+     "ref": [
+      2,
+      14,
+      0,
+      0
+     ],
+     "label": "Přechod moře"
+    },
+    {
+     "ref": [
+      2,
+      20,
+      0,
+      0
+     ],
+     "label": "Desatero"
+    },
+    {
+     "ref": [
+      5,
+      6,
+      0,
+      0
+     ],
+     "label": "Slyš, Izraeli"
+    }
+   ]
+  },
+  {
+   "id": "land",
+   "title": "Země zaslíbená a soudci",
+   "period": "asi 13.–11. stol. př. Kr.",
+   "summary": "Pod Jozuovým vedením vstupuje Izrael do země. Pak přichází doba soudců: lid opakovaně opouští Boha, upadá do útlaku a Bůh posílá zachránce. Uprostřed temné doby svítí příběh věrné Rút.",
+   "books": [
+    6,
+    7,
+    8
+   ],
+   "branches": [],
+   "key": [
+    {
+     "ref": [
+      6,
+      1,
+      0,
+      0
+     ],
+     "label": "Buď rozhodný a statečný"
+    },
+    {
+     "ref": [
+      6,
+      24,
+      0,
+      0
+     ],
+     "label": "Volba: komu sloužit"
+    },
+    {
+     "ref": [
+      7,
+      2,
+      0,
+      0
+     ],
+     "label": "Kruh odpadnutí"
+    },
+    {
+     "ref": [
+      8,
+      1,
+      0,
+      0
+     ],
+     "label": "Věrnost Rút"
+    }
+   ]
+  },
+  {
+   "id": "kingdom",
+   "title": "Sjednocené království",
+   "period": "asi 1050–930 př. Kr.",
+   "summary": "Izrael chce krále. Po Saulovi přichází David, kterému Bůh slibuje věčný trůn. Jeho syn Šalomoun staví v Jeruzalémě chrám. Je to zlatý věk – ale už v něm klíčí rozpad.",
+   "books": [
+    9,
+    10,
+    11,
+    13,
+    14
+   ],
+   "branches": [
+    {
+     "label": "Žalmy a moudrost – spojené s Davidem a Šalomounem",
+     "books": [
+      19,
+      20,
+      21,
+      22
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      9,
+      16,
+      0,
+      0
+     ],
+     "label": "Pomazání Davida"
+    },
+    {
+     "ref": [
+      9,
+      17,
+      0,
+      0
+     ],
+     "label": "David a Goliáš"
+    },
+    {
+     "ref": [
+      10,
+      7,
+      0,
+      0
+     ],
+     "label": "Slib věčného trůnu"
+    },
+    {
+     "ref": [
+      11,
+      8,
+      0,
+      0
+     ],
+     "label": "Posvěcení chrámu"
+    }
+   ]
+  },
+  {
+   "id": "divided",
+   "title": "Rozdělené království",
+   "period": "930–586 př. Kr.",
+   "summary": "Po Šalomounovi se říše rozpadne na Izrael (sever) a Judu (jih). Většina králů vede lid k modlám. Bůh posílá proroky, kteří volají k návratu. Sever padne roku 722 př. Kr. pod Asýrii, Jeruzalém roku 586 př. Kr. pod Babylon.",
+   "books": [
+    11,
+    12,
+    14
+   ],
+   "branches": [
+    {
+     "label": "Proroci této doby",
+     "books": [
+      23,
+      24,
+      28,
+      30,
+      32,
+      33,
+      34,
+      35,
+      36
+     ]
+    },
+    {
+     "label": "Doba sepsání nejistá",
+     "books": [
+      29,
+      31
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      11,
+      12,
+      0,
+      0
+     ],
+     "label": "Rozdělení říše"
+    },
+    {
+     "ref": [
+      11,
+      18,
+      0,
+      0
+     ],
+     "label": "Eliáš na Karmelu"
+    },
+    {
+     "ref": [
+      12,
+      17,
+      0,
+      0
+     ],
+     "label": "Pád Samaří"
+    },
+    {
+     "ref": [
+      12,
+      25,
+      0,
+      0
+     ],
+     "label": "Pád Jeruzaléma"
+    }
+   ]
+  },
+  {
+   "id": "exile",
+   "title": "Babylonské zajetí",
+   "period": "586–538 př. Kr.",
+   "summary": "Chrám leží v troskách, lid žije v cizině. Zdá se, že Boží sliby skončily. Proroci však v zajetí ohlašují naději: Bůh svůj lid neopustil a přivede ho zpět.",
+   "books": [
+    12,
+    27
+   ],
+   "branches": [
+    {
+     "label": "Nářek a naděje v zajetí",
+     "books": [
+      25,
+      26,
+      27
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      19,
+      137,
+      0,
+      0
+     ],
+     "label": "U řek babylonských"
+    },
+    {
+     "ref": [
+      26,
+      37,
+      0,
+      0
+     ],
+     "label": "Údolí suchých kostí"
+    },
+    {
+     "ref": [
+      27,
+      6,
+      0,
+      0
+     ],
+     "label": "Daniel v jámě lvové"
+    },
+    {
+     "ref": [
+      23,
+      40,
+      0,
+      0
+     ],
+     "label": "Potěšte můj lid"
+    }
+   ]
+  },
+  {
+   "id": "return",
+   "title": "Návrat a obnova",
+   "period": "538–asi 430 př. Kr.",
+   "summary": "Perský král Kýros dovolí návrat. Lid obnovuje chrám a hradby Jeruzaléma a znovu čte Zákon. Ester zatím v Persii zachraňuje svůj národ. Proroci povzbuzují, ale velký Mesiáš ještě nepřišel.",
+   "books": [
+    15,
+    16,
+    17
+   ],
+   "branches": [
+    {
+     "label": "Proroci po návratu",
+     "books": [
+      37,
+      38,
+      39
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      15,
+      3,
+      0,
+      0
+     ],
+     "label": "Základy chrámu"
+    },
+    {
+     "ref": [
+      16,
+      8,
+      0,
+      0
+     ],
+     "label": "Čtení Zákona"
+    },
+    {
+     "ref": [
+      17,
+      4,
+      0,
+      0
+     ],
+     "label": "„Pro takovou chvíli“"
+    },
+    {
+     "ref": [
+      39,
+      3,
+      0,
+      0
+     ],
+     "label": "Posel před Pánem"
+    }
+   ]
+  },
+  {
+   "id": "silence",
+   "title": "Mezi zákony",
+   "period": "asi 430–5 př. Kr.",
+   "summary": "Asi čtyři sta let bez nových knih hebrejské Bible. Vládnou Peršané, Řekové a nakonec Římané. Vznikají synagogy, Písmo se překládá do řečtiny a lid čeká na zaslíbeného Mesiáše.",
+   "books": [],
+   "branches": [],
+   "key": []
+  },
+  {
+   "id": "jesus",
+   "title": "Ježíš",
+   "period": "asi 5 př. Kr. – 30 po Kr.",
+   "summary": "V Betlémě se narodí Ježíš. Káže o Božím království, uzdravuje, odpouští a povolává učedníky. Je ukřižován v Jeruzalémě a třetího dne vstává z mrtvých. V něm se setkávají nitě celého Starého zákona.",
+   "books": [
+    40,
+    41,
+    42,
+    43
+   ],
+   "branches": [],
+   "key": [
+    {
+     "ref": [
+      42,
+      2,
+      0,
+      0
+     ],
+     "label": "Narození"
+    },
+    {
+     "ref": [
+      40,
+      5,
+      0,
+      0
+     ],
+     "label": "Kázání na hoře"
+    },
+    {
+     "ref": [
+      43,
+      3,
+      0,
+      0
+     ],
+     "label": "Rozhovor s Nikodémem"
+    },
+    {
+     "ref": [
+      43,
+      19,
+      0,
+      0
+     ],
+     "label": "Kříž"
+    },
+    {
+     "ref": [
+      42,
+      24,
+      0,
+      0
+     ],
+     "label": "Vzkříšení"
+    }
+   ]
+  },
+  {
+   "id": "church",
+   "title": "Církev",
+   "period": "asi 30–100 po Kr.",
+   "summary": "O Letnicích sestupuje Duch svatý a z Jeruzaléma se zvěst šíří do celé římské říše. Pavel zakládá sbory a píše jim dopisy. Evangelium přestává být věcí jednoho národa.",
+   "books": [
+    44
+   ],
+   "branches": [
+    {
+     "label": "Pavlovy listy",
+     "books": [
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57
+     ]
+    },
+    {
+     "label": "Další listy",
+     "books": [
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+     ]
+    }
+   ],
+   "key": [
+    {
+     "ref": [
+      44,
+      2,
+      0,
+      0
+     ],
+     "label": "Letnice"
+    },
+    {
+     "ref": [
+      44,
+      9,
+      0,
+      0
+     ],
+     "label": "Obrácení Pavla"
+    },
+    {
+     "ref": [
+      44,
+      15,
+      0,
+      0
+     ],
+     "label": "Sněm v Jeruzalémě"
+    },
+    {
+     "ref": [
+      44,
+      28,
+      0,
+      0
+     ],
+     "label": "Pavel v Římě"
+    }
+   ]
+  },
+  {
+   "id": "newcreation",
+   "title": "Nové stvoření",
+   "period": "naděje do budoucna",
+   "summary": "Bible končí tam, kde začala – ale lépe: nové nebe a nová země, Bůh bydlí s lidmi, strom života a řeka vody života. Zlo, smrt a pláč skončí.",
+   "books": [
+    66
+   ],
+   "branches": [],
+   "key": [
+    {
+     "ref": [
+      66,
+      1,
+      0,
+      0
+     ],
+     "label": "Vidění Krista"
+    },
+    {
+     "ref": [
+      66,
+      5,
+      0,
+      0
+     ],
+     "label": "Beránek"
+    },
+    {
+     "ref": [
+      66,
+      21,
+      0,
+      0
+     ],
+     "label": "Nové nebe a nová země"
+    },
+    {
+     "ref": [
+      66,
+      22,
+      0,
+      0
+     ],
+     "label": "Strom života"
+    }
+   ]
+  }
+ ]
+}

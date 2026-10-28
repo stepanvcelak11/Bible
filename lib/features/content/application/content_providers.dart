@@ -148,3 +148,26 @@ final churchYearProvider =
       };
       return (items('seasons'), items('feasts'));
     });
+
+/// Červené nitě Bible.
+final threadsProvider = FutureProvider<List<BibleThread>>((ref) async {
+  final j = await _loadJson('threads.json');
+  return [
+    for (final t in j['threads']! as List<Object?>)
+      BibleThread.fromJson(t! as Map<String, Object?>),
+  ];
+});
+
+/// Velký příběh Bible po obdobích.
+final storyProvider = FutureProvider<List<StoryEra>>((ref) async {
+  final j = await _loadJson('story.json');
+  return [
+    for (final e in j['eras']! as List<Object?>)
+      StoryEra.fromJson(e! as Map<String, Object?>),
+  ];
+});
+
+/// Souhrn křížových odkazů pro obloukový graf.
+final connectionsProvider = FutureProvider<BibleConnections>((ref) async {
+  return BibleConnections.fromJson(await _loadJson('connections.json'));
+});

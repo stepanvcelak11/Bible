@@ -354,6 +354,42 @@ abstract final class S {
   static const journalSearchHint = 'Kniha, odkaz nebo text poznámky…';
   static const journalNoMatch = 'Nic neodpovídá hledání.';
   static const journalAllColors = 'Vše';
+  static const connections = 'Souvislosti v Bibli';
+  static const connectionsHint =
+      'Velký příběh, červené nitě a mapa odkazů – jak spolu části Bible '
+      'souvisejí';
+  static const connectionsWhole = 'Bible jako celek';
+  static const tabStory = 'Příběh';
+  static const tabThreads = 'Nitě';
+  static const tabArcs = 'Odkazy';
+  static const storyIntro =
+      'Knihy Bible nejsou seřazené podle času. Tady je vidíte v pořadí '
+      'příběhu – od stvoření po nové stvoření. Klepněte na období.';
+  static const storyKey = 'Klíčové kapitoly';
+  static const storyBooks = 'Knihy o tomto období';
+  static const storyNoBooks =
+      'Z této doby nemáme žádnou knihu Bible – příběh pokračuje '
+      'v evangeliích.';
+  static const threadsIntro =
+      'Motivy, které se táhnou celou Biblí. Každá nit vede od prvního '
+      'náznaku ke splnění – a u každého místa je vysvětleno, proč na '
+      'předchozí navazuje.';
+  static String threadSpan(int stations, int books) =>
+      '$stations ${_plural(stations, 'zastavení', 'zastavení', 'zastavení')}'
+      ' · $books ${_plural(books, 'kniha', 'knihy', 'knih')}';
+  static const arcsIntro =
+      'Každý oblouk spojuje dvě kapitoly, které na sebe odkazují nebo se '
+      'navzájem vysvětlují. Dole jsou všechny kapitoly Bible od Genesis po '
+      'Zjevení. Klepněte do grafu nebo vyberte knihu.';
+  static const arcsTop = 'Nejsilněji propojené knihy';
+  static String arcsPartners(String book) => '$book se nejvíc pojí s';
+  static const arcsExamples = 'Příklady spojení';
+  static const arcsCredit =
+      'Křížové odkazy: OpenBible.info (CC BY 4.0), shrnuto po kapitolách.';
+  static const arcsChooseBook = 'Vybrat knihu';
+  static const bookConnections = 'Souvislosti knihy';
+  static const oldTestamentShort = 'Starý zákon';
+  static const newTestamentShort = 'Nový zákon';
   static const churchYear = 'Církevní rok';
   static const churchYearHint = 'Doby a svátky s čteními';
   static String churchYearSpan(int a) => 'Církevní rok $a/${(a + 1) % 100}';

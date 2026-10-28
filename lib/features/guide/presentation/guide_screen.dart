@@ -58,6 +58,8 @@ const _parts = [
     [
       'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
           'i poznámky.',
+      'Bible jako celek – velký příběh, červené nitě a mapa odkazů '
+          'ukazují, jak spolu části Bible souvisejí.',
       'Pro život – verše do situací, verše nazpaměť, biblická témata, '
           'kvíz, modlitební seznam a církevní rok.',
       'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',

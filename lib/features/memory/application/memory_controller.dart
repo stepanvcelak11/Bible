@@ -59,6 +59,25 @@ class MemoryController extends Notifier<List<MemoryVerse>> {
     return true;
   }
 
+  /// Pro zálohu: zakódovaný seznam.
+  List<String> exportList() => [for (final m in state) m.encode()];
+
+  /// Ze zálohy: doplní chybějící verše (stávající pokrok zůstává).
+  /// Vrací počet nově přidaných.
+  int importList(Object? json) {
+    if (json is! List) return 0;
+    var added = 0;
+    final list = [...state];
+    for (final item in json) {
+      final m = item is String ? MemoryVerse.tryDecode(item) : null;
+      if (m == null || list.any(m.sameAs)) continue;
+      list.add(m);
+      added++;
+    }
+    if (added > 0) _set(list);
+    return added;
+  }
+
   void remove(MemoryVerse verse) => _set([
     for (final m in state)
       if (!m.sameAs(verse)) m,

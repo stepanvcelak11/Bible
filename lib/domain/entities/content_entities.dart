@@ -243,3 +243,34 @@ class ContentTable {
   final List<List<TableCellData>> rows;
   final String note;
 }
+
+/// Biblické téma: shrnutí a klíčová místa s popiskem.
+class BibleTopic {
+  const BibleTopic({
+    required this.id,
+    required this.category,
+    required this.icon,
+    required this.title,
+    required this.summary,
+    required this.passages,
+    required this.labels,
+  });
+
+  factory BibleTopic.fromJson(Map<String, Object?> j) => BibleTopic(
+    id: j['id']! as String,
+    category: j['category']! as String,
+    icon: j['icon']! as String,
+    title: j['title']! as String,
+    summary: j['summary']! as String,
+    passages: parsePassages(j['refs']),
+    labels: (j['labels']! as List<Object?>).cast<String>(),
+  );
+
+  final String id;
+  final String category;
+  final String icon;
+  final String title;
+  final String summary;
+  final List<Passage> passages;
+  final List<String> labels;
+}

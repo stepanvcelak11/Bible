@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../guide/presentation/guide_screen.dart';
+import '../../memory/application/memory_controller.dart';
 
 import 'package:share_plus/share_plus.dart';
 
@@ -233,7 +234,11 @@ class SettingsScreen extends ConsumerWidget {
 
   Future<void> _export(BuildContext context, WidgetRef ref) async {
     final box = context.findRenderObject() as RenderBox?;
-    final data = await ref.read(userDataRepositoryProvider).exportBackup();
+    final data = {
+      ...await ref.read(userDataRepositoryProvider).exportBackup(),
+      // Verše nazpaměť jsou v nastavení, ne v databázi – přidáme je zvlášť.
+      'memoryVerses': ref.read(memoryProvider.notifier).exportList(),
+    };
     final bytes = utf8.encode(const JsonEncoder.withIndent('  ').convert(data));
     final date = DateTime.now().toIso8601String().substring(0, 10);
     final name = 'bible-zaloha-$date.json';
@@ -275,7 +280,10 @@ class SettingsScreen extends ConsumerWidget {
       final result = await ref
           .read(userDataRepositoryProvider)
           .importBackup(json);
-      say(S.backupImported(result.total));
+      final memory = ref
+          .read(memoryProvider.notifier)
+          .importList(json['memoryVerses']);
+      say(S.backupImported(result.total + memory));
     } on InvalidBackupException {
       say(S.backupInvalid);
     } on FormatException {

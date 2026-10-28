@@ -3,6 +3,7 @@ import 'package:bible_reader/core/providers.dart';
 import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
+import 'package:bible_reader/features/content/application/content_providers.dart';
 import 'package:bible_reader/features/memory/application/memory_controller.dart';
 import 'package:bible_reader/features/reader/application/reader_state.dart';
 import 'package:bible_reader/features/reader/application/reader_tabs_controller.dart';
@@ -274,6 +275,25 @@ void main() {
     expect(container.read(memoryProvider).single.level, 1);
   });
 
+  appTest('biblická témata: rejstřík a téma s klíčovými místy', (
+    tester,
+  ) async {
+    await pumpApp(tester, openBible: false);
+    await tester.runAsync(() => container.read(topicsProvider.future));
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await scrollStudyTo(tester, 'Biblická témata');
+    await tester.tap(find.text('Biblická témata'));
+    await settle(tester);
+    expect(find.text('BŮH'), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, 'milost');
+    await settle(tester);
+    await tester.tap(find.text('Milost'));
+    await settle(tester);
+    expect(find.text('KLÍČOVÁ MÍSTA'), findsOneWidget);
+    expect(find.text('Ospravedlněni zdarma, z milosti'), findsOneWidget);
+  });
+
   appTest('výběr knihy: mřížka, hledání a kapitola', (tester) async {
     await pumpApp(tester);
     expect(find.text('Genesis 1'), findsOneWidget);
@@ -366,7 +386,26 @@ void main() {
 }
 
 /// Posune záložku Studium, až je text vidět.
-Future<void> scrollStudyTo(WidgetTester tester, String text) =>
+Future<void> scrollStudyTo(WidgetTester tester, String text) async {
+  await _scrollStudy(tester, text);
+  await tester.ensureVisible(find.text(text));
+  await tester.pumpAndSettle();
+  // Položka u spodního okraje by byla pod plovoucí navigací.
+  if (tester.getCenter(find.text(text)).dy > 650) {
+    await tester.drag(
+      find
+          .descendant(
+            of: find.byType(StudyHubScreen),
+            matching: find.byType(Scrollable),
+          )
+          .first,
+      const Offset(0, -250),
+    );
+    await tester.pumpAndSettle();
+  }
+}
+
+Future<void> _scrollStudy(WidgetTester tester, String text) =>
     tester.scrollUntilVisible(
       find.text(text),
       300,

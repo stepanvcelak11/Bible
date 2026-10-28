@@ -12,10 +12,18 @@ import '../application/content_providers.dart';
 /// Karta s textem biblického místa v hlavním překladu; klepnutí otevře
 /// čtečku.
 class PassageCard extends ConsumerWidget {
-  const PassageCard({super.key, required this.passage, this.accent});
+  const PassageCard({
+    super.key,
+    required this.passage,
+    this.accent,
+    this.title,
+  });
 
   final Passage passage;
   final Color? accent;
+
+  /// Volitelný popisek místa (např. u témat).
+  final String? title;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -49,6 +57,10 @@ class PassageCard extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              if (title != null) ...[
+                Text(title!, style: theme.textTheme.titleMedium),
+                const SizedBox(height: 2),
+              ],
               Row(
                 children: [
                   Expanded(

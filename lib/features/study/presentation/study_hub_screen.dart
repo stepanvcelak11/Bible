@@ -14,6 +14,7 @@ import '../../content/presentation/notes_screen.dart';
 import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/situations_screen.dart';
 import '../../content/presentation/tables_screen.dart';
+import '../../content/presentation/topics_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../memory/presentation/memory_screen.dart';
@@ -57,6 +58,7 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
         ref.watch(situationsProvider).value?.$2 ?? const <Situation>[];
     final notesCount = ref.watch(notesProvider).value?.length;
     final tablesCount = ref.watch(tablesProvider).value?.length;
+    final topicsCount = ref.watch(topicsProvider).value?.$2.length;
     final memory = ref.watch(memoryProvider);
     final memoryCount = memory.length;
     final memoryLearned = memory.where((m) => m.learned).length;
@@ -155,6 +157,15 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                       ? S.memoryHint
                       : S.memoryProgress(memoryLearned, memoryCount),
                   () => openMemory(context),
+                ),
+                _Entry(
+                  Icons.lightbulb_outline,
+                  const Color(0xFFB0603A),
+                  S.topics,
+                  topicsCount == null
+                      ? S.topicsHint
+                      : S.topicsCount(topicsCount),
+                  () => _push(const TopicsScreen()),
                 ),
               ]),
               // --- Lidé a příběhy -----------------------------------------
@@ -402,6 +413,15 @@ class StudySearchResults extends ConsumerWidget {
             s.title,
             S.situations,
             () => openSituation(context, s),
+          ),
+      for (final t
+          in ref.watch(topicsProvider).value?.$2 ?? const <BibleTopic>[])
+        if (hit(t.title))
+          (
+            situationIcons[t.icon] ?? Icons.lightbulb_outline,
+            t.title,
+            S.topics,
+            () => openTopic(context, t),
           ),
       for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
         if (hit(p.name) || hit(p.role))

@@ -98,3 +98,21 @@ final tablesProvider = FutureProvider<List<ContentTable>>((ref) async {
       ContentTable.fromJson(t),
   ];
 });
+
+/// Biblická témata: (kategorie (id, název), témata).
+final topicsProvider =
+    FutureProvider<(List<(String, String)>, List<BibleTopic>)>((ref) async {
+      final j = await _loadJson('topics.json');
+      return (
+        [
+          for (final c
+              in (j['categories']! as List<Object?>)
+                  .cast<Map<String, Object?>>())
+            (c['id']! as String, c['name']! as String),
+        ],
+        [
+          for (final t in j['topics']! as List<Object?>)
+            BibleTopic.fromJson(t! as Map<String, Object?>),
+        ],
+      );
+    });

@@ -1,0 +1,2293 @@
+{
+ "categories": [
+  {
+   "id": "god",
+   "name": "Bůh"
+  },
+  {
+   "id": "jesus",
+   "name": "Ježíš Kristus a Duch svatý"
+  },
+  {
+   "id": "salvation",
+   "name": "Člověk, hřích a spasení"
+  },
+  {
+   "id": "life",
+   "name": "Život víry"
+  },
+  {
+   "id": "relations",
+   "name": "Vztahy a společnost"
+  },
+  {
+   "id": "church",
+   "name": "Církev"
+  },
+  {
+   "id": "future",
+   "name": "Budoucnost a naděje"
+  }
+ ],
+ "topics": [
+  {
+   "id": "creator",
+   "category": "god",
+   "icon": "sun",
+   "title": "Bůh Stvořitel",
+   "summary": "Bible začíná Bohem, který slovem stvořil svět a nazval ho dobrým. Stvoření ukazuje jeho moc a krásu, ale není samo bohem. Bůh svůj svět dál udržuje a pečuje o něj.",
+   "refs": [
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     31,
+     31
+    ],
+    [
+     19,
+     19,
+     2,
+     2
+    ],
+    [
+     19,
+     104,
+     24,
+     24
+    ],
+    [
+     23,
+     40,
+     26,
+     26
+    ],
+    [
+     43,
+     1,
+     3,
+     3
+    ],
+    [
+     51,
+     1,
+     16,
+     17
+    ],
+    [
+     58,
+     11,
+     3,
+     3
+    ]
+   ],
+   "labels": [
+    "Na počátku stvořil Bůh",
+    "Všechno bylo velmi dobré",
+    "Nebesa vypravují o Boží slávě",
+    "Jak mnohá jsou tvá díla",
+    "Kdo stvořil hvězdy",
+    "Všechno povstalo skrze Slovo",
+    "Vše stvořeno skrze Krista a pro něj",
+    "Vírou chápeme stvoření"
+   ]
+  },
+  {
+   "id": "love",
+   "category": "god",
+   "icon": "heart",
+   "title": "Boží láska",
+   "summary": "„Bůh je láska“ – to není jen jedna z jeho vlastností, ale jádro toho, kým je. Jeho láska je věrná, nezasloužená a nejjasněji se ukázala v tom, že dal svého Syna.",
+   "refs": [
+    [
+     2,
+     34,
+     6,
+     6
+    ],
+    [
+     24,
+     31,
+     3,
+     3
+    ],
+    [
+     25,
+     3,
+     22,
+     23
+    ],
+    [
+     43,
+     3,
+     16,
+     16
+    ],
+    [
+     45,
+     5,
+     8,
+     8
+    ],
+    [
+     45,
+     8,
+     38,
+     39
+    ],
+    [
+     62,
+     4,
+     8,
+     10
+    ],
+    [
+     62,
+     3,
+     1,
+     1
+    ]
+   ],
+   "labels": [
+    "Bůh milosrdný a milostivý",
+    "Láskou věčnou jsem tě miloval",
+    "Jeho milosrdenství nekončí",
+    "Tak Bůh miluje svět",
+    "Kristus zemřel za nás hříšné",
+    "Nic nás neodloučí",
+    "Bůh je láska",
+    "Jsme nazváni Božími dětmi"
+   ]
+  },
+  {
+   "id": "holiness",
+   "category": "god",
+   "icon": "flame",
+   "title": "Boží svatost",
+   "summary": "Svatost znamená, že Bůh je naprosto jiný než my – čistý, dokonalý a vznešený. Proto se před ním člověk cítí malý. Bůh však svatost nedrží pro sebe: volá svůj lid, aby byl svatý jako on.",
+   "refs": [
+    [
+     2,
+     15,
+     11,
+     11
+    ],
+    [
+     3,
+     19,
+     2,
+     2
+    ],
+    [
+     23,
+     6,
+     1,
+     8
+    ],
+    [
+     19,
+     99,
+     9,
+     9
+    ],
+    [
+     58,
+     12,
+     14,
+     14
+    ],
+    [
+     60,
+     1,
+     15,
+     16
+    ],
+    [
+     66,
+     4,
+     8,
+     8
+    ]
+   ],
+   "labels": [
+    "Kdo je jako ty, vznešený svatostí",
+    "Buďte svatí, neboť já jsem svatý",
+    "Svatý, svatý, svatý",
+    "Hospodin, náš Bůh, je svatý",
+    "Usilujte o posvěcení",
+    "Buďte svatí v celém svém jednání",
+    "Svatý je Pán Bůh všemohoucí"
+   ]
+  },
+  {
+   "id": "trinity",
+   "category": "god",
+   "icon": "spa",
+   "title": "Trojice",
+   "summary": "Bible učí, že Bůh je jeden, a zároveň mluví o Otci, Synu a Duchu svatém jako o Bohu. Křesťané to vyjadřují slovem Trojice: jeden Bůh ve třech osobách. Je to tajemství, které se zjevuje hlavně v Ježíšově životě.",
+   "refs": [
+    [
+     5,
+     6,
+     4,
+     4
+    ],
+    [
+     40,
+     3,
+     16,
+     17
+    ],
+    [
+     40,
+     28,
+     19,
+     19
+    ],
+    [
+     43,
+     1,
+     1,
+     1
+    ],
+    [
+     43,
+     14,
+     16,
+     17
+    ],
+    [
+     47,
+     13,
+     13,
+     13
+    ]
+   ],
+   "labels": [
+    "Hospodin je jediný",
+    "Při Ježíšově křtu: Syn, Duch i Otcův hlas",
+    "Křtěte ve jméno Otce i Syna i Ducha",
+    "Slovo bylo Bůh",
+    "Otec dá jiného Přímluvce",
+    "Milost Pána, láska Boží, společenství Ducha"
+   ]
+  },
+  {
+   "id": "faithfulness",
+   "category": "god",
+   "icon": "shield",
+   "title": "Boží věrnost",
+   "summary": "Bůh dodržuje, co slíbil. Celý příběh Bible je příběhem jeho věrnosti, i když lidé věrní nebyli. Na jeho slib se lze spolehnout i v nejistých časech.",
+   "refs": [
+    [
+     5,
+     7,
+     9,
+     9
+    ],
+    [
+     6,
+     21,
+     45,
+     45
+    ],
+    [
+     19,
+     36,
+     6,
+     6
+    ],
+    [
+     25,
+     3,
+     23,
+     23
+    ],
+    [
+     46,
+     10,
+     13,
+     13
+    ],
+    [
+     55,
+     2,
+     13,
+     13
+    ],
+    [
+     58,
+     10,
+     23,
+     23
+    ]
+   ],
+   "labels": [
+    "Bůh věrný, který zachovává smlouvu",
+    "Nepadlo ani jedno slovo",
+    "Tvá věrnost až k oblakům",
+    "Veliká je tvá věrnost",
+    "Bůh je věrný v pokušení",
+    "Jsme-li nevěrní, on zůstává věrný",
+    "Věrný je ten, který dal zaslíbení"
+   ]
+  },
+  {
+   "id": "jesus",
+   "category": "jesus",
+   "icon": "person",
+   "title": "Kdo je Ježíš",
+   "summary": "Ježíš z Nazareta je podle Nového zákona zaslíbený Mesiáš (Kristus), Syn Boží a zároveň plně člověk. Ukazuje, jaký je Bůh, učí o Božím království, uzdravuje a dává svůj život za druhé.",
+   "refs": [
+    [
+     23,
+     9,
+     5,
+     5
+    ],
+    [
+     43,
+     1,
+     14,
+     14
+    ],
+    [
+     40,
+     16,
+     15,
+     16
+    ],
+    [
+     43,
+     14,
+     9,
+     9
+    ],
+    [
+     50,
+     2,
+     5,
+     11
+    ],
+    [
+     51,
+     1,
+     15,
+     15
+    ],
+    [
+     58,
+     4,
+     15,
+     15
+    ]
+   ],
+   "labels": [
+    "Dítě se nám narodilo",
+    "Slovo se stalo tělem",
+    "Ty jsi Mesiáš, Syn živého Boha",
+    "Kdo vidí mne, vidí Otce",
+    "Ponížil sám sebe",
+    "Obraz neviditelného Boha",
+    "Byl pokoušen jako my, ale bez hříchu"
+   ]
+  },
+  {
+   "id": "cross",
+   "category": "jesus",
+   "icon": "heart",
+   "title": "Kříž a smíření",
+   "summary": "Ježíšova smrt na kříži je středem křesťanské víry. Bible ji popisuje mnoha obrazy: oběť za hříchy, výkupné, smíření s Bohem, vítězství nad zlem. Ježíš vzal na sebe to, co patřilo nám.",
+   "refs": [
+    [
+     23,
+     53,
+     4,
+     6
+    ],
+    [
+     41,
+     10,
+     45,
+     45
+    ],
+    [
+     43,
+     1,
+     29,
+     29
+    ],
+    [
+     45,
+     5,
+     10,
+     10
+    ],
+    [
+     47,
+     5,
+     21,
+     21
+    ],
+    [
+     60,
+     2,
+     24,
+     24
+    ],
+    [
+     51,
+     2,
+     15,
+     15
+    ]
+   ],
+   "labels": [
+    "On nesl naše nemoci",
+    "Dát svůj život jako výkupné",
+    "Beránek Boží",
+    "Smířeni s Bohem smrtí jeho Syna",
+    "Učinil ho hříchem za nás",
+    "Vynesl naše hříchy na dřevo",
+    "Zvítězil nad mocnostmi"
+   ]
+  },
+  {
+   "id": "resurrection",
+   "category": "jesus",
+   "icon": "sun",
+   "title": "Vzkříšení",
+   "summary": "Třetího dne Ježíš vstal z mrtvých – to je základ, na kterém stojí celá víra. Vzkříšení potvrzuje, kým Ježíš je, a dává naději, že smrt nemá poslední slovo ani pro nás.",
+   "refs": [
+    [
+     40,
+     28,
+     5,
+     6
+    ],
+    [
+     42,
+     24,
+     36,
+     43
+    ],
+    [
+     43,
+     11,
+     25,
+     25
+    ],
+    [
+     46,
+     15,
+     3,
+     8
+    ],
+    [
+     46,
+     15,
+     20,
+     20
+    ],
+    [
+     46,
+     15,
+     54,
+     57
+    ],
+    [
+     60,
+     1,
+     3,
+     3
+    ]
+   ],
+   "labels": [
+    "Není zde, byl vzkříšen",
+    "Vzkříšený jí s učedníky",
+    "Já jsem vzkříšení a život",
+    "Nejstarší vyznání o vzkříšení",
+    "Kristus je prvotina zesnulých",
+    "Smrt pohlcena ve vítězství",
+    "Znovuzrozeni k živé naději"
+   ]
+  },
+  {
+   "id": "spirit",
+   "category": "jesus",
+   "icon": "flame",
+   "title": "Duch svatý",
+   "summary": "Duch svatý je Boží přítomnost v člověku a v církvi. Dává nový život, utěšuje, vede do pravdy, dává sílu ke svědectví a mění charakter – přináší „ovoce Ducha“.",
+   "refs": [
+    [
+     26,
+     36,
+     26,
+     27
+    ],
+    [
+     43,
+     14,
+     26,
+     26
+    ],
+    [
+     43,
+     16,
+     13,
+     13
+    ],
+    [
+     44,
+     1,
+     8,
+     8
+    ],
+    [
+     44,
+     2,
+     1,
+     4
+    ],
+    [
+     45,
+     8,
+     26,
+     26
+    ],
+    [
+     48,
+     5,
+     22,
+     23
+    ],
+    [
+     46,
+     12,
+     4,
+     7
+    ]
+   ],
+   "labels": [
+    "Dám vám nového ducha",
+    "Přímluvce vás naučí všemu",
+    "Uvede vás do veškeré pravdy",
+    "Přijmete moc",
+    "Letnice",
+    "Duch se za nás přimlouvá",
+    "Ovoce Ducha",
+    "Rozdílná obdarování, týž Duch"
+   ]
+  },
+  {
+   "id": "image",
+   "category": "salvation",
+   "icon": "person",
+   "title": "Člověk k Božímu obrazu",
+   "summary": "Každý člověk je stvořen k Božímu obrazu – muž i žena. Odtud pramení jeho důstojnost a hodnota, nezávislá na výkonu, zdraví nebo postavení. Člověk dostal úkol pečovat o stvoření.",
+   "refs": [
+    [
+     1,
+     1,
+     26,
+     28
+    ],
+    [
+     1,
+     2,
+     7,
+     7
+    ],
+    [
+     19,
+     8,
+     5,
+     6
+    ],
+    [
+     19,
+     139,
+     13,
+     14
+    ],
+    [
+     59,
+     3,
+     9,
+     9
+    ],
+    [
+     51,
+     3,
+     10,
+     10
+    ]
+   ],
+   "labels": [
+    "Učiňme člověka k našemu obrazu",
+    "Bůh vdechl dech života",
+    "Co je člověk?",
+    "Utkal jsi mě v lůně matky",
+    "I bližní je stvořen k Boží podobě",
+    "Obnovován k obrazu Stvořitele"
+   ]
+  },
+  {
+   "id": "sin",
+   "category": "salvation",
+   "icon": "cloud",
+   "title": "Hřích",
+   "summary": "Hřích není jen porušení pravidla, ale porušený vztah s Bohem – člověk se staví do středu místo Boha. Týká se všech a má následky pro jednotlivce i svět. Bible o hříchu mluví otevřeně, protože nabízí cestu ven.",
+   "refs": [
+    [
+     1,
+     3,
+     6,
+     8
+    ],
+    [
+     23,
+     59,
+     2,
+     2
+    ],
+    [
+     24,
+     17,
+     9,
+     9
+    ],
+    [
+     45,
+     3,
+     23,
+     23
+    ],
+    [
+     45,
+     6,
+     23,
+     23
+    ],
+    [
+     59,
+     1,
+     14,
+     15
+    ],
+    [
+     62,
+     1,
+     8,
+     9
+    ]
+   ],
+   "labels": [
+    "První neposlušnost",
+    "Vaše viny vás oddělily od Boha",
+    "Srdce je nevyzpytatelné",
+    "Všichni zhřešili",
+    "Mzdou hříchu je smrt, darem věčný život",
+    "Jak vzniká hřích",
+    "Vyznání a odpuštění"
+   ]
+  },
+  {
+   "id": "repentance",
+   "category": "salvation",
+   "icon": "refresh",
+   "title": "Pokání a obrácení",
+   "summary": "Pokání znamená obrat – změnu myšlení i směru života. Není to jen lítost, ale návrat k Bohu. Bible ho popisuje jako radostnou věc: Bůh čeká jako otec na marnotratného syna.",
+   "refs": [
+    [
+     26,
+     18,
+     31,
+     32
+    ],
+    [
+     29,
+     2,
+     12,
+     13
+    ],
+    [
+     41,
+     1,
+     15,
+     15
+    ],
+    [
+     42,
+     15,
+     7,
+     7
+    ],
+    [
+     42,
+     15,
+     17,
+     24
+    ],
+    [
+     44,
+     3,
+     19,
+     19
+    ],
+    [
+     47,
+     7,
+     10,
+     10
+    ]
+   ],
+   "labels": [
+    "Proč byste měli zemřít? Obraťte se",
+    "Roztrhněte svá srdce",
+    "Čiňte pokání a věřte evangeliu",
+    "Radost v nebi nad hříšníkem",
+    "Marnotratný syn se vrací",
+    "Obraťte se, aby byly smazány hříchy",
+    "Zármutek podle Boží vůle"
+   ]
+  },
+  {
+   "id": "grace",
+   "category": "salvation",
+   "icon": "heart",
+   "title": "Milost",
+   "summary": "Milost je Boží nezasloužená přízeň. Spasení není odměna za zásluhy, ale dar, který přijímáme vírou. Milost však člověka nenechává stejného – učí ho žít nově.",
+   "refs": [
+    [
+     45,
+     3,
+     24,
+     24
+    ],
+    [
+     45,
+     5,
+     20,
+     20
+    ],
+    [
+     47,
+     12,
+     9,
+     9
+    ],
+    [
+     49,
+     2,
+     8,
+     9
+    ],
+    [
+     56,
+     2,
+     11,
+     12
+    ],
+    [
+     43,
+     1,
+     16,
+     16
+    ]
+   ],
+   "labels": [
+    "Ospravedlněni zdarma, z milosti",
+    "Kde se rozmohl hřích, rozhojnila se milost",
+    "Stačí ti má milost",
+    "Milostí jste spaseni skrze víru",
+    "Milost nás vychovává",
+    "Milost za milostí"
+   ]
+  },
+  {
+   "id": "faith",
+   "category": "salvation",
+   "icon": "shield",
+   "title": "Víra",
+   "summary": "Víra je důvěra v Boha a v jeho slovo – ne jen souhlas s myšlenkami, ale spolehnutí se na něj. Roste nasloucháním, zkouškami i poslušností. Živá víra se projevuje skutky.",
+   "refs": [
+    [
+     1,
+     15,
+     6,
+     6
+    ],
+    [
+     35,
+     2,
+     4,
+     4
+    ],
+    [
+     41,
+     9,
+     24,
+     24
+    ],
+    [
+     45,
+     10,
+     17,
+     17
+    ],
+    [
+     58,
+     11,
+     1,
+     1
+    ],
+    [
+     58,
+     11,
+     6,
+     6
+    ],
+    [
+     59,
+     2,
+     17,
+     17
+    ]
+   ],
+   "labels": [
+    "Abram uvěřil Hospodinu",
+    "Spravedlivý bude žít z víry",
+    "Věřím, pomoz mé nevíře",
+    "Víra je ze slyšení",
+    "Víra je jistota toho, v co doufáme",
+    "Bez víry se nelze Bohu líbit",
+    "Víra bez skutků je mrtvá"
+   ]
+  },
+  {
+   "id": "forgiveness",
+   "category": "salvation",
+   "icon": "refresh",
+   "title": "Odpuštění",
+   "summary": "Bůh odpouští každému, kdo se k němu obrátí – úplně a navždy. Kdo zakusil odpuštění, je volán odpouštět i druhým. Odpustit neznamená schválit křivdu, ale vzdát se pomsty.",
+   "refs": [
+    [
+     19,
+     103,
+     10,
+     12
+    ],
+    [
+     23,
+     1,
+     18,
+     18
+    ],
+    [
+     33,
+     7,
+     18,
+     19
+    ],
+    [
+     40,
+     6,
+     12,
+     12
+    ],
+    [
+     40,
+     18,
+     21,
+     22
+    ],
+    [
+     49,
+     4,
+     32,
+     32
+    ],
+    [
+     62,
+     1,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Jak daleko je východ od západu",
+    "Budou bílé jako sníh",
+    "Hodí naše hříchy do hlubin moře",
+    "Odpusť nám, jako i my odpouštíme",
+    "Sedmasedmdesátkrát",
+    "Odpouštějte si, jako Bůh odpustil vám",
+    "Vyznáváme-li hříchy, odpustí"
+   ]
+  },
+  {
+   "id": "newbirth",
+   "category": "salvation",
+   "icon": "sun",
+   "title": "Nový život v Kristu",
+   "summary": "Kdo uvěří, dostává nový začátek – Ježíš mluví o novém narození. Pavel říká, že je „nové stvoření“. Nový život roste postupně, ale jeho začátek je Boží dar.",
+   "refs": [
+    [
+     43,
+     3,
+     3,
+     7
+    ],
+    [
+     43,
+     1,
+     12,
+     13
+    ],
+    [
+     47,
+     5,
+     17,
+     17
+    ],
+    [
+     48,
+     2,
+     20,
+     20
+    ],
+    [
+     49,
+     4,
+     22,
+     24
+    ],
+    [
+     56,
+     3,
+     5,
+     5
+    ]
+   ],
+   "labels": [
+    "Musíte se narodit znovu",
+    "Moc stát se Božími dětmi",
+    "Kdo je v Kristu, je nové stvoření",
+    "Už nežiji já, ale žije ve mně Kristus",
+    "Obléci nového člověka",
+    "Obmytí znovuzrození"
+   ]
+  },
+  {
+   "id": "prayer",
+   "category": "life",
+   "icon": "help",
+   "title": "Modlitba",
+   "summary": "Modlitba je rozhovor s Bohem – chvála, díky, prosba, přímluva i nářek. Ježíš učil modlit se jednoduše a důvěrně jako k Otci. Modlit se lze kdykoli a kdekoli.",
+   "refs": [
+    [
+     19,
+     62,
+     9,
+     9
+    ],
+    [
+     40,
+     6,
+     6,
+     13
+    ],
+    [
+     40,
+     7,
+     7,
+     8
+    ],
+    [
+     42,
+     18,
+     1,
+     1
+    ],
+    [
+     50,
+     4,
+     6,
+     7
+    ],
+    [
+     52,
+     5,
+     17,
+     17
+    ],
+    [
+     59,
+     5,
+     16,
+     16
+    ]
+   ],
+   "labels": [
+    "Vylévejte před ním srdce",
+    "Modlitba Páně",
+    "Proste a bude vám dáno",
+    "Modlit se vytrvale",
+    "Se vším se obracejte k Bohu",
+    "V modlitbách neustávejte",
+    "Modlitba spravedlivého má velkou moc"
+   ]
+  },
+  {
+   "id": "word",
+   "category": "life",
+   "icon": "signpost",
+   "title": "Boží slovo",
+   "summary": "Bible je podle své vlastní výpovědi slovo, skrze které Bůh mluví. Je světlem na cestu, vyučuje, napomíná a vede k Ježíši. Nestačí ho jen číst – má se podle něj žít.",
+   "refs": [
+    [
+     5,
+     6,
+     6,
+     7
+    ],
+    [
+     19,
+     1,
+     2,
+     3
+    ],
+    [
+     19,
+     119,
+     105,
+     105
+    ],
+    [
+     23,
+     40,
+     8,
+     8
+    ],
+    [
+     40,
+     4,
+     4,
+     4
+    ],
+    [
+     55,
+     3,
+     16,
+     17
+    ],
+    [
+     58,
+     4,
+     12,
+     12
+    ],
+    [
+     59,
+     1,
+     22,
+     22
+    ]
+   ],
+   "labels": [
+    "Ať jsou ta slova v tvém srdci",
+    "Kdo rozjímá o Zákoně",
+    "Svítilnou mým nohám je tvé slovo",
+    "Slovo našeho Boha trvá navěky",
+    "Nejen chlebem bude člověk živ",
+    "Celé Písmo je inspirováno Bohem",
+    "Slovo Boží je živé",
+    "Buďte činiteli slova"
+   ]
+  },
+  {
+   "id": "humility",
+   "category": "life",
+   "icon": "person",
+   "title": "Pokora",
+   "summary": "Pokora není podceňování sebe, ale pravdivý pohled na sebe před Bohem. Ježíš sám se ponížil a umýval nohy. Bůh pyšným odporuje, ale pokorným dává milost.",
+   "refs": [
+    [
+     20,
+     11,
+     2,
+     2
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ],
+    [
+     40,
+     18,
+     4,
+     4
+    ],
+    [
+     43,
+     13,
+     14,
+     15
+    ],
+    [
+     50,
+     2,
+     3,
+     4
+    ],
+    [
+     59,
+     4,
+     6,
+     6
+    ],
+    [
+     60,
+     5,
+     5,
+     6
+    ]
+   ],
+   "labels": [
+    "S pokornými je moudrost",
+    "Pokorně chodit se svým Bohem",
+    "Kdo se poníží jako dítě",
+    "Dal jsem vám příklad",
+    "V pokoře pokládejte druhé za přednější",
+    "Pokorným dává milost",
+    "Oblecte se pokorou"
+   ]
+  },
+  {
+   "id": "temptation",
+   "category": "life",
+   "icon": "shield",
+   "title": "Pokušení",
+   "summary": "Pokušení přichází na každého, i Ježíš byl pokoušen. Pokušení samo není hřích; Bůh slibuje sílu a cestu ven. Pomáhá znát své slabé chvíle a nebýt na boj sám.",
+   "refs": [
+    [
+     1,
+     39,
+     9,
+     12
+    ],
+    [
+     40,
+     4,
+     1,
+     11
+    ],
+    [
+     40,
+     26,
+     41,
+     41
+    ],
+    [
+     46,
+     10,
+     13,
+     13
+    ],
+    [
+     58,
+     2,
+     18,
+     18
+    ],
+    [
+     59,
+     1,
+     12,
+     14
+    ],
+    [
+     59,
+     4,
+     7,
+     7
+    ]
+   ],
+   "labels": [
+    "Josef utíká před pokušením",
+    "Ježíš odolává ďáblovi slovem Písma",
+    "Bděte a modlete se",
+    "Bůh dá i východisko",
+    "Může pomoci pokoušeným",
+    "Blahoslavený, kdo obstojí",
+    "Vzepřete se ďáblu"
+   ]
+  },
+  {
+   "id": "suffering",
+   "category": "life",
+   "icon": "rain",
+   "title": "Utrpení",
+   "summary": "Bible utrpení nevysvětluje jednoduše. Jób, žalmy i Ježíš dávají prostor nářku i otázkám „proč“. Zároveň ukazuje Boha, který v utrpení není daleko, sám trpěl a jednou setře každou slzu.",
+   "refs": [
+    [
+     18,
+     1,
+     20,
+     22
+    ],
+    [
+     19,
+     22,
+     2,
+     2
+    ],
+    [
+     19,
+     34,
+     19,
+     19
+    ],
+    [
+     23,
+     43,
+     2,
+     2
+    ],
+    [
+     45,
+     8,
+     18,
+     18
+    ],
+    [
+     47,
+     4,
+     16,
+     18
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ]
+   ],
+   "labels": [
+    "Hospodin dal, Hospodin vzal",
+    "Bože můj, proč jsi mě opustil?",
+    "Blízko je zkroušeným",
+    "Půjdeš-li přes vody, budu s tebou",
+    "Utrpení nelze srovnat s budoucí slávou",
+    "Vnitřně se obnovujeme den ze dne",
+    "Setře každou slzu"
+   ]
+  },
+  {
+   "id": "peace",
+   "category": "life",
+   "icon": "cloud",
+   "title": "Pokoj",
+   "summary": "Biblický pokoj (šalom) je víc než klid – je to celistvost, smíření a dobrý vztah s Bohem, lidmi i sebou. Ježíš dává pokoj, který není závislý na okolnostech.",
+   "refs": [
+    [
+     4,
+     6,
+     24,
+     26
+    ],
+    [
+     23,
+     26,
+     3,
+     3
+    ],
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     43,
+     16,
+     33,
+     33
+    ],
+    [
+     45,
+     5,
+     1,
+     1
+    ],
+    [
+     50,
+     4,
+     7,
+     7
+    ],
+    [
+     40,
+     5,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Ať ti Hospodin dá pokoj",
+    "Pokoj tomu, kdo na tebe spoléhá",
+    "Pokoj vám zanechávám",
+    "Ve mně máte pokoj",
+    "Pokoj s Bohem",
+    "Pokoj, který převyšuje rozum",
+    "Blahoslavení tvůrci pokoje"
+   ]
+  },
+  {
+   "id": "joy",
+   "category": "life",
+   "icon": "sun",
+   "title": "Radost a vděčnost",
+   "summary": "Radost je v Bibli ovocem Ducha, ne jen dobrou náladou. Pramení z Boží blízkosti, a proto je možná i v těžkostech. Vděčnost je cesta, jak radost pěstovat.",
+   "refs": [
+    [
+     16,
+     8,
+     10,
+     10
+    ],
+    [
+     19,
+     16,
+     11,
+     11
+    ],
+    [
+     19,
+     100,
+     4,
+     4
+    ],
+    [
+     35,
+     3,
+     17,
+     18
+    ],
+    [
+     43,
+     15,
+     11,
+     11
+    ],
+    [
+     50,
+     4,
+     4,
+     4
+    ],
+    [
+     52,
+     5,
+     16,
+     18
+    ]
+   ],
+   "labels": [
+    "Radost z Hospodina je vaše síla",
+    "Hojnost radostí u tebe",
+    "Vcházejte s díkůvzdáním",
+    "I kdyby fíkovník nekvetl",
+    "Aby vaše radost byla plná",
+    "Radujte se v Pánu vždycky",
+    "Za všech okolností děkujte"
+   ]
+  },
+  {
+   "id": "money",
+   "category": "life",
+   "icon": "battery",
+   "title": "Peníze a štědrost",
+   "summary": "Bible nevidí majetek jako zlý, ale varuje před láskou k penězům a chamtivostí. Učí spokojenosti, poctivosti a štědrosti – vše, co máme, je svěřené od Boha.",
+   "refs": [
+    [
+     20,
+     3,
+     9,
+     10
+    ],
+    [
+     40,
+     6,
+     19,
+     21
+    ],
+    [
+     40,
+     6,
+     24,
+     24
+    ],
+    [
+     42,
+     12,
+     15,
+     15
+    ],
+    [
+     47,
+     9,
+     6,
+     7
+    ],
+    [
+     54,
+     6,
+     6,
+     10
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ]
+   ],
+   "labels": [
+    "Cti Hospodina svým majetkem",
+    "Kde je tvůj poklad",
+    "Nemůžete sloužit Bohu i mamonu",
+    "Varujte se chamtivosti",
+    "Ochotného dárce miluje Bůh",
+    "Láska k penězům je kořen zla",
+    "Buďte spokojeni s tím, co máte"
+   ]
+  },
+  {
+   "id": "work",
+   "category": "life",
+   "icon": "mountain",
+   "title": "Práce a odpočinek",
+   "summary": "Práce je součástí Božího záměru od stvoření – Adam měl zahradu obdělávat a střežit. Bůh však dal i den odpočinku. Křesťan má pracovat poctivě „jako pro Pána“ a umět si odpočinout v Bohu.",
+   "refs": [
+    [
+     1,
+     2,
+     15,
+     15
+    ],
+    [
+     2,
+     20,
+     8,
+     11
+    ],
+    [
+     19,
+     127,
+     1,
+     2
+    ],
+    [
+     21,
+     3,
+     1,
+     1
+    ],
+    [
+     41,
+     2,
+     27,
+     27
+    ],
+    [
+     40,
+     11,
+     28,
+     30
+    ],
+    [
+     51,
+     3,
+     23,
+     23
+    ],
+    [
+     53,
+     3,
+     10,
+     12
+    ]
+   ],
+   "labels": [
+    "Obdělávat a střežit zahradu",
+    "Pamatuj na den odpočinku",
+    "Nestaví-li dům Hospodin",
+    "Všechno má svůj čas",
+    "Sobota je pro člověka",
+    "Pojďte ke mně, já vám dám odpočinout",
+    "Pracujte jako pro Pána",
+    "Kdo nechce pracovat"
+   ]
+  },
+  {
+   "id": "neighbor",
+   "category": "relations",
+   "icon": "person",
+   "title": "Láska k bližnímu",
+   "summary": "Ježíš shrnul Zákon do dvou přikázání: milovat Boha a bližního jako sebe. Bližním je každý, komu můžu pomoci – i cizinec nebo nepřítel. Láska se ukazuje v činech.",
+   "refs": [
+    [
+     3,
+     19,
+     18,
+     18
+    ],
+    [
+     40,
+     22,
+     37,
+     40
+    ],
+    [
+     42,
+     10,
+     30,
+     37
+    ],
+    [
+     40,
+     5,
+     44,
+     44
+    ],
+    [
+     43,
+     13,
+     34,
+     35
+    ],
+    [
+     46,
+     13,
+     4,
+     7
+    ],
+    [
+     62,
+     3,
+     18,
+     18
+    ]
+   ],
+   "labels": [
+    "Miluj bližního jako sám sebe",
+    "Největší přikázání",
+    "Milosrdný Samařan",
+    "Milujte své nepřátele",
+    "Podle toho poznají, že jste moji",
+    "Láska je trpělivá",
+    "Milujme skutkem a pravdou"
+   ]
+  },
+  {
+   "id": "marriage",
+   "category": "relations",
+   "icon": "heart",
+   "title": "Manželství",
+   "summary": "Bible představuje manželství jako smlouvu věrnosti mezi mužem a ženou, kteří se stávají „jedním tělem“. Má být místem lásky, vzájemné úcty, služby a odpuštění.",
+   "refs": [
+    [
+     1,
+     2,
+     18,
+     24
+    ],
+    [
+     20,
+     18,
+     22,
+     22
+    ],
+    [
+     22,
+     8,
+     6,
+     7
+    ],
+    [
+     40,
+     19,
+     4,
+     6
+    ],
+    [
+     49,
+     5,
+     21,
+     33
+    ],
+    [
+     51,
+     3,
+     18,
+     19
+    ],
+    [
+     58,
+     13,
+     4,
+     4
+    ]
+   ],
+   "labels": [
+    "Není dobré, aby byl člověk sám",
+    "Kdo nalezl manželku, nalezl dobro",
+    "Láska je silná jako smrt",
+    "Co Bůh spojil",
+    "Podřizujte se jeden druhému",
+    "Manželé, milujte své ženy",
+    "Manželství ať mají všichni v úctě"
+   ]
+  },
+  {
+   "id": "family",
+   "category": "relations",
+   "icon": "person",
+   "title": "Rodina a výchova",
+   "summary": "Rodina je místem, kde se předává víra – hlavně příkladem a rozhovorem v běžném dni. Děti mají rodiče ctít, rodiče mají děti vést s láskou a nedráždit je.",
+   "refs": [
+    [
+     2,
+     20,
+     12,
+     12
+    ],
+    [
+     5,
+     6,
+     6,
+     7
+    ],
+    [
+     19,
+     127,
+     3,
+     3
+    ],
+    [
+     20,
+     22,
+     6,
+     6
+    ],
+    [
+     41,
+     10,
+     13,
+     16
+    ],
+    [
+     49,
+     6,
+     1,
+     4
+    ],
+    [
+     55,
+     1,
+     5,
+     5
+    ]
+   ],
+   "labels": [
+    "Cti otce i matku",
+    "Mluv o tom doma i na cestě",
+    "Synové jsou dědictví od Hospodina",
+    "Vychovávej chlapce",
+    "Nechte děti přicházet ke mně",
+    "Děti a otcové",
+    "Víra babičky a matky"
+   ]
+  },
+  {
+   "id": "friendship",
+   "category": "relations",
+   "icon": "person",
+   "title": "Přátelství",
+   "summary": "Bible zná hluboká přátelství – David a Jonatan, Rút a Noemi. Přítel miluje v každé době, říká pravdu a stojí při druhém. Ježíš nazval své učedníky přáteli.",
+   "refs": [
+    [
+     9,
+     18,
+     1,
+     3
+    ],
+    [
+     8,
+     1,
+     16,
+     17
+    ],
+    [
+     20,
+     17,
+     17,
+     17
+    ],
+    [
+     20,
+     27,
+     6,
+     6
+    ],
+    [
+     21,
+     4,
+     9,
+     12
+    ],
+    [
+     43,
+     15,
+     13,
+     15
+    ]
+   ],
+   "labels": [
+    "David a Jonatan",
+    "Kam půjdeš ty, půjdu i já",
+    "Přítel miluje v každé době",
+    "Rány od přítele jsou věrné",
+    "Dva jsou lepší než jeden",
+    "Nazval jsem vás přáteli"
+   ]
+  },
+  {
+   "id": "justice",
+   "category": "relations",
+   "icon": "signpost",
+   "title": "Spravedlnost a chudí",
+   "summary": "Bůh se v Bibli opakovaně zastává chudých, vdov, sirotků a cizinců. Proroci ostře kritizují útlak a prázdnou zbožnost. Starost o potřebné je zkouškou pravé víry.",
+   "refs": [
+    [
+     5,
+     10,
+     18,
+     19
+    ],
+    [
+     19,
+     82,
+     3,
+     4
+    ],
+    [
+     20,
+     31,
+     8,
+     9
+    ],
+    [
+     23,
+     1,
+     17,
+     17
+    ],
+    [
+     30,
+     5,
+     24,
+     24
+    ],
+    [
+     40,
+     25,
+     35,
+     40
+    ],
+    [
+     59,
+     1,
+     27,
+     27
+    ]
+   ],
+   "labels": [
+    "Bůh se ujímá cizince",
+    "Zjednejte právo slabým",
+    "Otevři ústa za němého",
+    "Učte se konat dobro",
+    "Ať se valí právo jako voda",
+    "Cokoli jste učinili jednomu z nejmenších",
+    "Zbožnost čistá: pečovat o sirotky a vdovy"
+   ]
+  },
+  {
+   "id": "authority",
+   "category": "relations",
+   "icon": "mountain",
+   "title": "Křesťan a společnost",
+   "summary": "Křesťané mají hledat dobro města, kde žijí, modlit se za vládnoucí a respektovat řád. Zároveň platí, že víc je třeba poslouchat Boha než lidi. Mají být „solí a světlem“ uprostřed společnosti.",
+   "refs": [
+    [
+     24,
+     29,
+     7,
+     7
+    ],
+    [
+     40,
+     5,
+     13,
+     16
+    ],
+    [
+     40,
+     22,
+     21,
+     21
+    ],
+    [
+     44,
+     5,
+     29,
+     29
+    ],
+    [
+     45,
+     13,
+     1,
+     7
+    ],
+    [
+     54,
+     2,
+     1,
+     2
+    ]
+   ],
+   "labels": [
+    "Hledejte pokoj města",
+    "Sůl země a světlo světa",
+    "Dejte císaři, co je císařovo",
+    "Více poslouchat Boha než lidi",
+    "Podřizovat se vládnoucí moci",
+    "Modlitby za vládce"
+   ]
+  },
+  {
+   "id": "church",
+   "category": "church",
+   "icon": "person",
+   "title": "Církev",
+   "summary": "Církev nejsou budovy, ale lidé, kteří patří Kristu – jeho tělo. Má různé dary a služby, ale jednoho Pána. Schází se ke slovu, modlitbě, večeři Páně a vzájemné péči.",
+   "refs": [
+    [
+     40,
+     16,
+     18,
+     18
+    ],
+    [
+     40,
+     18,
+     20,
+     20
+    ],
+    [
+     44,
+     2,
+     42,
+     47
+    ],
+    [
+     46,
+     12,
+     12,
+     27
+    ],
+    [
+     49,
+     4,
+     11,
+     16
+    ],
+    [
+     58,
+     10,
+     24,
+     25
+    ],
+    [
+     60,
+     2,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Na té skále zbuduji svou církev",
+    "Kde jsou dva nebo tři",
+    "Život prvních křesťanů",
+    "Jedno tělo, mnoho údů",
+    "Dary pro budování těla",
+    "Neopouštějme společná shromáždění",
+    "Vyvolený rod, královské kněžstvo"
+   ]
+  },
+  {
+   "id": "baptism",
+   "category": "church",
+   "icon": "rain",
+   "title": "Křest",
+   "summary": "Křest je znamení, které ustanovil Ježíš: vyjadřuje očištění, spojení s Kristovou smrtí a vzkříšením a začlenění do církve. Církve se liší v tom, kdy a jak křtí, ale všechny ho slaví.",
+   "refs": [
+    [
+     40,
+     3,
+     13,
+     17
+    ],
+    [
+     40,
+     28,
+     19,
+     19
+    ],
+    [
+     44,
+     2,
+     38,
+     38
+    ],
+    [
+     44,
+     8,
+     36,
+     38
+    ],
+    [
+     45,
+     6,
+     3,
+     4
+    ],
+    [
+     48,
+     3,
+     27,
+     27
+    ]
+   ],
+   "labels": [
+    "Ježíšův křest",
+    "Křtěte všechny národy",
+    "Čiňte pokání a dejte se pokřtít",
+    "Křest etiopského dvořana",
+    "Pohřbeni s ním křtem",
+    "Oblékli jste Krista"
+   ]
+  },
+  {
+   "id": "supper",
+   "category": "church",
+   "icon": "heart",
+   "title": "Večeře Páně",
+   "summary": "Při poslední večeři dal Ježíš učedníkům chléb a kalich jako znamení svého těla a krve – nové smlouvy. Církev ji slaví na jeho památku, ve společenství a v očekávání jeho příchodu. Tradice se liší v jejím chápání, ne v jejím významu pro víru.",
+   "refs": [
+    [
+     2,
+     12,
+     13,
+     14
+    ],
+    [
+     40,
+     26,
+     26,
+     29
+    ],
+    [
+     42,
+     22,
+     19,
+     20
+    ],
+    [
+     43,
+     6,
+     35,
+     35
+    ],
+    [
+     46,
+     10,
+     16,
+     17
+    ],
+    [
+     46,
+     11,
+     23,
+     26
+    ]
+   ],
+   "labels": [
+    "Pascha – předobraz",
+    "Ustanovení večeře",
+    "To čiňte na mou památku",
+    "Já jsem chléb života",
+    "Jeden chléb, jedno tělo",
+    "Zvěstujete smrt Páně, dokud nepřijde"
+   ]
+  },
+  {
+   "id": "witness",
+   "category": "church",
+   "icon": "signpost",
+   "title": "Svědectví a misie",
+   "summary": "Ježíš poslal své učedníky, aby nesli evangelium všem národům. Svědectví není jen úkolem kazatelů – každý může vyprávět, co s Bohem prožil, a žít tak, aby se druzí ptali.",
+   "refs": [
+    [
+     23,
+     52,
+     7,
+     7
+    ],
+    [
+     40,
+     28,
+     18,
+     20
+    ],
+    [
+     44,
+     1,
+     8,
+     8
+    ],
+    [
+     45,
+     10,
+     14,
+     15
+    ],
+    [
+     47,
+     5,
+     20,
+     20
+    ],
+    [
+     51,
+     4,
+     5,
+     6
+    ],
+    [
+     60,
+     3,
+     15,
+     15
+    ]
+   ],
+   "labels": [
+    "Jak krásné jsou nohy posla",
+    "Jděte a získávejte učedníky",
+    "Budete mými svědky",
+    "Jak uvěří, neuslyší-li",
+    "Jsme Kristovi vyslanci",
+    "Vaše řeč ať je vždy laskavá",
+    "Připraveni vydat počet z naděje"
+   ]
+  },
+  {
+   "id": "return",
+   "category": "future",
+   "icon": "sun",
+   "title": "Ježíšův druhý příchod",
+   "summary": "Nový zákon s jistotou očekává, že Ježíš se vrátí ve slávě. Kdy to bude, nikdo neví – proto vybízí bdít a žít věrně. Je to zpráva naděje, ne strachu.",
+   "refs": [
+    [
+     40,
+     24,
+     36,
+     36
+    ],
+    [
+     40,
+     25,
+     13,
+     13
+    ],
+    [
+     43,
+     14,
+     2,
+     3
+    ],
+    [
+     44,
+     1,
+     11,
+     11
+    ],
+    [
+     52,
+     4,
+     16,
+     18
+    ],
+    [
+     56,
+     2,
+     13,
+     13
+    ],
+    [
+     66,
+     22,
+     20,
+     20
+    ]
+   ],
+   "labels": [
+    "O tom dni nikdo neví",
+    "Bděte",
+    "Zase přijdu a vezmu vás k sobě",
+    "Přijde stejně, jak odešel",
+    "Potěšujte se těmito slovy",
+    "Očekáváme blahoslavenou naději",
+    "Ano, přijdu brzy"
+   ]
+  },
+  {
+   "id": "judgment",
+   "category": "future",
+   "icon": "flame",
+   "title": "Soud",
+   "summary": "Bible mluví o Božím soudu, při kterém vyjde najevo pravda a bude zjednána spravedlnost. Pro oběti křivd je to naděje. Kdo je v Kristu, nemusí se soudu bát – soudcem je ten, který za nás zemřel.",
+   "refs": [
+    [
+     21,
+     12,
+     14,
+     14
+    ],
+    [
+     40,
+     25,
+     31,
+     46
+    ],
+    [
+     43,
+     5,
+     24,
+     24
+    ],
+    [
+     45,
+     2,
+     6,
+     6
+    ],
+    [
+     45,
+     8,
+     1,
+     1
+    ],
+    [
+     47,
+     5,
+     10,
+     10
+    ],
+    [
+     58,
+     9,
+     27,
+     27
+    ]
+   ],
+   "labels": [
+    "Bůh přivede na soud každý čin",
+    "Syn člověka bude soudit národy",
+    "Kdo věří, nepřichází na soud",
+    "Odplatí každému podle jeho skutků",
+    "Žádné odsouzení v Kristu",
+    "Všichni se ukážeme před soudnou stolicí",
+    "Lidem je určeno jednou zemřít, potom soud"
+   ]
+  },
+  {
+   "id": "newcreation",
+   "category": "future",
+   "icon": "mountain",
+   "title": "Věčný život a nové stvoření",
+   "summary": "Věčný život začíná už teď poznáním Boha a vrcholí vzkříšením. Bible končí obrazem nového nebe a nové země, kde Bůh přebývá s lidmi, kde nebude smrt ani pláč. Křesťanská naděje je naděje pro celé stvoření.",
+   "refs": [
+    [
+     23,
+     65,
+     17,
+     17
+    ],
+    [
+     43,
+     17,
+     3,
+     3
+    ],
+    [
+     45,
+     8,
+     19,
+     21
+    ],
+    [
+     46,
+     2,
+     9,
+     9
+    ],
+    [
+     50,
+     3,
+     20,
+     21
+    ],
+    [
+     66,
+     21,
+     1,
+     5
+    ],
+    [
+     66,
+     22,
+     1,
+     5
+    ]
+   ],
+   "labels": [
+    "Stvořím nová nebesa a novou zemi",
+    "Věčný život je poznávat Boha",
+    "Stvoření bude osvobozeno",
+    "Co oko nevidělo",
+    "Naše domovská obec je v nebesích",
+    "Hle, všechno činím nové",
+    "Řeka života"
+   ]
+  }
+ ]
+}

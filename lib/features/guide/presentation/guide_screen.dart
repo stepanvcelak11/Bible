@@ -56,7 +56,8 @@ const _parts = [
     [
       'Nahoře hledání napříč vším: postavy, situace, knihy, tabulky '
           'i poznámky.',
-      'Pro život – verše do situací a verše nazpaměť.',
+      'Pro život – verše do situací, verše nazpaměť a biblická témata '
+          '(milost, modlitba, odpuštění…).',
       'Lidé a příběhy – medailony postav, harmonie evangelií, časová osa.',
       'Knihy Bible – úvody ke knihám, aplikační poznámky, tabulky.',
       'Mapy, původní text se slovníkem, plány čtení a překlady.',

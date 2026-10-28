@@ -107,6 +107,11 @@ void main() {
       for (final n in (load('notes.json')! as Map)['notes'] as List) {
         addPassage('poznámka ${n['title']}', n['ref']);
       }
+      for (final t in (load('topics.json')! as Map)['topics'] as List) {
+        for (final r in t['refs'] as List) {
+          addPassage('téma ${t['id']} $r', r);
+        }
+      }
       for (final t in (load('tables.json')! as Map)['tables'] as List) {
         for (final row in t['rows'] as List) {
           for (final c in row as List) {

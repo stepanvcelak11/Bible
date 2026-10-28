@@ -229,6 +229,14 @@ abstract final class S {
   static const situations = 'Verše do situací';
   static const studyTeaserTitle = 'Studium';
   static const myReading = 'Moje čtení';
+  static const topics = 'Biblická témata';
+  static const topicsHint = 'Milost, modlitba, odpuštění, církev…';
+  static String topicsCount(int n) => '$n témat – shrnutí a klíčová místa';
+  static const topicsIntro =
+      'Co Bible říká o hlavních tématech víry a života: krátké shrnutí '
+      'a klíčová místa, na která můžete klepnout a číst dál.';
+  static const findTopic = 'Hledat téma';
+  static const keyPassages = 'Klíčová místa';
   static const memory = 'Verše nazpaměť';
   static const memoryShort = 'Učit se';
   static const memoryHint = 'Naučte se verše krok za krokem';

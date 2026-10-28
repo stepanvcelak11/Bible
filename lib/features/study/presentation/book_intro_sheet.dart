@@ -9,6 +9,7 @@ import '../../../domain/services/bible_content.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/harmony_screen.dart';
+import '../../content/presentation/notes_screen.dart';
 import '../../content/presentation/people_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../shell/home_shell.dart';
@@ -44,6 +45,10 @@ class BookIntroView extends ConsumerWidget {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final category = categoryOf(bookId);
+    final bookNotes = [
+      for (final n in ref.watch(notesProvider).value ?? const <AppNote>[])
+        if (n.passage.bookId == bookId) n,
+    ];
     final profiles = [
       for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
         if (p.books.contains(bookId)) p,
@@ -133,6 +138,48 @@ class BookIntroView extends ConsumerWidget {
             color: theme.colorScheme.onSurface,
           ),
         ),
+        // --- Pozadí, souvislosti, jak číst --------------------------
+        for (final (icon, title, text) in [
+          (
+            Icons.history_edu_outlined,
+            S.historicalBackground,
+            intro.background,
+          ),
+          (Icons.link, S.christConnection, intro.connection),
+          (Icons.tips_and_updates_outlined, S.howToRead, intro.howToRead),
+        ])
+          if (text.isNotEmpty)
+            Card(
+              margin: const EdgeInsets.only(top: 12),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(icon, size: 20, color: accent),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: accent,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      text,
+                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.5),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         // --- Základní údaje -------------------------------------------
         section(S.basicFacts),
         if (intro.purpose.isNotEmpty)
@@ -222,6 +269,21 @@ class BookIntroView extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ),
+            ),
+        ],
+        // --- Aplikační poznámky ------------------------------------------
+        if (bookNotes.isNotEmpty) ...[
+          section(S.applicationNotes),
+          for (final n in bookNotes)
+            Card(
+              margin: const EdgeInsets.only(bottom: 8),
+              child: ListTile(
+                leading: Icon(Icons.sticky_note_2_outlined, color: accent),
+                title: Text(n.title),
+                subtitle: Text(n.passage.label(book.abbreviation)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => showNoteSheet(context, n),
               ),
             ),
         ],

@@ -534,3 +534,353 @@ person("lukas", "Lukáš", "lékař a dějepisec", ["L", "Sk"], "Antiochie(?), "
        ["Víra a pečlivé zkoumání jdou dohromady.",
         "Věrnost v těžkých časech – „jen Lukáš je se mnou“ (2Tm 4,11)."],
        "L 1,3", ["L 1,1-4", "Ko 4,14", "2Tm 4,11"])
+
+# --- Další postavy Starého zákona ------------------------------------------
+person("kain", "Kain", "první syn Adama a Evy", ["Gn"], "východně od Edenu",
+       "zemědělec", "rodiče Adam a Eva; bratr Ábel",
+       ["Přinášel Bohu oběť", "Bůh s ním mluvil i po jeho činu"],
+       ["Ze závisti zabil bratra", "Lhal Bohu („Jsem snad strážcem svého "
+        "bratra?“)"],
+       ["Závist a hněv je třeba ovládnout dřív, než ovládnou nás (Gn 4,7).",
+        "Bůh chrání i provinilce (Kainovo znamení)."],
+       "Gn 4,7", ["Gn 4,1-16", "1J 3,12"])
+person("abel", "Ábel", "spravedlivý syn Adama", ["Gn"], "mimo Eden",
+       "pastýř", "rodiče Adam a Eva; bratr Kain",
+       ["Přinesl Bohu to nejlepší", "Žd 11 ho uvádí jako vzor víry"],
+       [],
+       ["Bůh hledí na srdce dárce.",
+        "Spravedlivý život může vyvolat nenávist druhých."],
+       "Žd 11,4", ["Gn 4,1-10", "Žd 11,4"])
+person("lot", "Lot", "Abrahamův synovec", ["Gn"], "Cháran, Sodoma, Sóar",
+       "pastevec", "strýc Abraham; manželka a dvě dcery",
+       ["Doprovázel Abrahama", "Pohostinný k andělům", "Petr ho nazývá "
+        "spravedlivým (2Pt 2,7)"],
+       ["Vybral si nejúrodnější kraj u zkažené Sodomy",
+        "Váhal opustit město", "Selhal jako otec"],
+       ["Rozhodnutí podle výhody mohou vést do nebezpečného prostředí.",
+        "Bůh zachraňuje i váhavé."],
+       "Gn 19,16", ["Gn 13", "Gn 14", "Gn 19"])
+person("hagar", "Hagar", "egyptská otrokyně, matka Izmaele", ["Gn"],
+       "Kenaan, poušť", "otrokyně", "syn Izmael",
+       ["Poznala Boha jako toho, „který vidí“", "Přežila v poušti se "
+        "synem"],
+       ["Pohrdla neplodnou Sárou"],
+       ["Bůh vidí i ty, které ostatní přehlížejí (Gn 16,13).",
+        "Bůh slyší pláč dítěte i matky v poušti."],
+       "Gn 16,13", ["Gn 16", "Gn 21,8-21"])
+person("ezau", "Ezau", "Jákobův bratr, praotec Edómců", ["Gn"],
+       "Kenaan, Seír", "lovec", "rodiče Izák a Rebeka; bratr Jákob",
+       ["Nakonec bratrovi odpustil a přijal ho"],
+       ["Prodal prvorozenství za misku jídla", "Chtěl Jákoba zabít"],
+       ["Okamžitá touha může zastínit to cenné (Žd 12,16).",
+        "Smíření je možné i po letech hněvu."],
+       "Gn 33,4", ["Gn 25,27-34", "Gn 27", "Gn 33"])
+person("lea", "Lea", "Jákobova první manželka", ["Gn"], "Cháran, Kenaan",
+       "", "otec Lában; sestra Ráchel; manžel Jákob; šest synů a dcera",
+       ["Ve své bolesti se obracela k Bohu", "Matka Judy, z jehož rodu "
+        "vzešel David i Ježíš"],
+       ["Podílela se na otcově podvodu"],
+       ["Bůh vidí nemilované (Gn 29,31).",
+        "Hodnota člověka nezávisí na tom, jak ho vidí druzí."],
+       "Gn 29,35", ["Gn 29", "Gn 30"])
+person("rachel", "Ráchel", "Jákobova milovaná manželka", ["Gn"],
+       "Cháran, Kenaan", "pastýřka", "otec Lában; sestra Lea; synové "
+       "Josef a Benjamín",
+       ["Jákob ji velmi miloval", "Matka Josefa"],
+       ["Závistivá vůči sestře", "Ukradla otcovy domácí bůžky"],
+       ["Soupeření v rodině přináší bolest všem.",
+        "Bůh pamatuje na toho, kdo čeká (Gn 30,22)."],
+       "Gn 30,22", ["Gn 29", "Gn 30", "Gn 35,16-20"])
+person("juda", "Juda", "Jákobův syn, praotec kmene Juda", ["Gn"], "Kenaan, "
+       "Egypt", "pastevec", "otec Jákob; matka Lea; synové",
+       ["Nabídl sám sebe místo Benjamína", "Z jeho rodu vzešel David "
+        "i Ježíš"],
+       ["Navrhl prodat Josefa", "Nespravedlivě jednal s Tamar"],
+       ["Člověk se může změnit – od zrady k obětavosti.",
+        "Bůh používá i lidi s temnou minulostí."],
+       "Gn 44,33", ["Gn 37,26-27", "Gn 38", "Gn 44,18-34", "Gn 49,8-12"])
+person("jetro", "Jetro", "midjánský kněz, Mojžíšův tchán", ["Ex"],
+       "Midján", "kněz, pastevec", "dcera Sipora; zeť Mojžíš",
+       ["Přijal Mojžíše na útěku", "Moudře poradil, jak sdílet vedení"],
+       [],
+       ["Dobrá rada zvenčí může zachránit od vyhoření.",
+        "Vůdce má umět delegovat."],
+       "Ex 18,17-18", ["Ex 2,15-22", "Ex 18"])
+person("bileam", "Bileám", "věštec najatý proti Izraeli", ["Nu"],
+       "Petor u Eufratu, Moáb", "věštec", "",
+       ["Nakonec vyslovil jen to, co mu dal Bůh – požehnání Izraeli"],
+       ["Lákala ho odměna", "Později radil, jak svést Izrael "
+        "k modloslužbě (Nu 31,16)"],
+       ["Touha po penězích dokáže zaslepit (2Pt 2,15).",
+        "Bůh obrátí kletbu v požehnání."],
+       "Nu 23,19", ["Nu 22", "Nu 23", "Nu 24"])
+person("jefte", "Jefte", "soudce z Gileádu", ["Sd"], "Gileád", "vojevůdce",
+       "otec Gileád",
+       ["Ač odvržený rodinou, stal se vůdcem", "Porazil Amónce"],
+       ["Ukvapený slib, který měl tragický následek pro jeho dceru"],
+       ["Minulost člověka neurčuje, co s ním Bůh udělá.",
+        "Ukvapené sliby mohou mít těžké následky."],
+       "Sd 11,29", ["Sd 11", "Žd 11,32"])
+person("noemi", "Noemi", "Rútina tchyně", ["Rt"], "Betlém, Moáb", "",
+       "manžel Elímelek; synové Machlón a Kiljón; snacha Rút",
+       ["Laskavá k snachám", "Moudře vedla Rút"],
+       ["V hořkosti si říkala Mara („hořká“)"],
+       ["Bůh nezapomíná ani na ty, kdo propadli hořkosti.",
+        "Prázdnota se může proměnit v plnost."],
+       "Rt 1,20-21", ["Rt 1", "Rt 4,14-17"])
+person("boaz", "Bóaz", "zámožný muž z Betléma, Rútin manžel", ["Rt"],
+       "Betlém", "statkář", "manželka Rút; syn Óbed; pravnuk David",
+       ["Laskavý ke chudým a cizincům", "Jednal čestně a podle Zákona"],
+       [],
+       ["Bezúhonnost se ukazuje v obyčejných rozhodnutích.",
+        "Bůh jedná skrze laskavé lidi."],
+       "Rt 2,12", ["Rt 2", "Rt 3", "Rt 4"])
+person("eli", "Élí", "kněz v Šílu", ["1S"], "Šíló", "kněz a soudce",
+       "synové Chofní a Pinchas",
+       ["Pomohl malému Samuelovi rozpoznat Boží hlas"],
+       ["Nekáral své syny, kteří zneužívali kněžství"],
+       ["Rodiče mají odpovědnost za výchovu.",
+        "I chybující člověk může pomoci druhým slyšet Boha."],
+       "1S 3,9", ["1S 1", "1S 2", "1S 3", "1S 4"])
+person("abigail", "Abigail", "moudrá žena, později Davidova manželka",
+       ["1S"], "Karmel v Judsku", "", "první manžel Nábal; později David",
+       ["Rozvážná a odvážná", "Zabránila Davidovi prolít krev"],
+       [],
+       ["Moudré slovo ve správnou chvíli může zabránit neštěstí.",
+        "Pokora a laskavost odzbrojí hněv."],
+       "1S 25,32-33", ["1S 25"])
+person("batseba", "Batšeba", "Uriášova manželka, matka Šalomouna",
+       ["2S", "1Kr"], "Jeruzalém", "královna matka",
+       "manželé Uriáš a David; syn Šalomoun",
+       ["Zajistila nástupnictví Šalomouna", "Je v Ježíšově rodokmenu"],
+       [],
+       ["Bůh dokáže dát novou budoucnost i po tragédii.",
+        "V jejím příběhu nese hlavní vinu mocný král."],
+       "1Kr 1,30", ["2S 11", "2S 12,24", "1Kr 1", "Mt 1,6"])
+person("natan", "Nátan", "prorok na Davidově dvoře", ["2S", "1Kr"],
+       "Jeruzalém", "prorok", "",
+       ["Odvážně ukázal králi jeho hřích", "Ohlásil Boží smlouvu "
+        "s Davidem"],
+       [],
+       ["Láska někdy znamená říct těžkou pravdu.",
+        "Moudrý příběh může otevřít srdce."],
+       "2S 12,7", ["2S 7", "2S 12", "1Kr 1"])
+person("absalom", "Absalóm", "Davidův vzbouřený syn", ["2S"], "Jeruzalém, "
+       "Gešúr, Chebrón", "princ", "otec David; sestra Támar",
+       ["Pohledný a oblíbený", "Zastal se sestry"],
+       ["Zavraždil bratra Amnóna", "Lstí získal lid a vzbouřil se proti "
+        "otci"],
+       ["Hořkost a pomsta ničí rodinu.",
+        "Popularita bez charakteru nevydrží."],
+       "2S 15,6", ["2S 13", "2S 15", "2S 18"])
+person("mefiboset", "Mefíbóšet", "Jonatanův ochrnutý syn", ["2S"],
+       "Lódebar, Jeruzalém", "", "otec Jonatan; dědeček Saul",
+       ["Přijal Davidovu laskavost s pokorou"],
+       [],
+       ["Milost dává místo u královského stolu tomu, kdo si ho nezaslouží.",
+        "David splnil slib příteli."],
+       "2S 9,7", ["2S 4,4", "2S 9", "2S 19,25-31"])
+person("rechabeam", "Rechabeám", "Šalomounův syn, první král Judska",
+       ["1Kr", "2Pa"], "Jeruzalém", "král", "otec Šalomoun",
+       ["Na čas se Bohu pokořil (2Pa 12)"],
+       ["Odmítl radu starších a říše se rozdělila"],
+       ["Dobrá rada zkušených má cenu.",
+        "Tvrdost vůči lidem rozděluje."],
+       "1Kr 12,14", ["1Kr 12", "2Pa 10", "2Pa 12"])
+person("jarobeam", "Jarobeám", "první král severního Izraele", ["1Kr"],
+       "Efrajim, Šekem", "úředník, král", "",
+       ["Schopný organizátor; Bůh mu nabídl trvalý dům"],
+       ["Ze strachu o moc zavedl zlatá telata v Bét-elu a Danu"],
+       ["Strach o moc vede ke kompromisům ve víře.",
+        "Hřích vůdce může ovlivnit generace."],
+       "1Kr 12,28", ["1Kr 11,26-40", "1Kr 12", "1Kr 13", "1Kr 14"])
+person("achab", "Achab", "izraelský král Eliášovy doby", ["1Kr"],
+       "Samaří, Jizreel", "král", "otec Omrí; manželka Jezábel",
+       ["Schopný vojevůdce", "Po Eliášově varování se na čas pokořil"],
+       ["Podporoval kult Baala", "S Jezábel zavinil Nábotovu smrt"],
+       ["Nečinnost vůči zlu je také hřích.",
+        "Bůh dává šanci k pokání i zlým."],
+       "1Kr 21,29", ["1Kr 16,29-34", "1Kr 18", "1Kr 21", "1Kr 22"])
+person("jezabel", "Jezábel", "Achabova manželka, sidónská princezna",
+       ["1Kr", "2Kr"], "Samaří, Jizreel", "královna", "manžel Achab",
+       ["Silná osobnost"],
+       ["Pronásledovala proroky", "Zosnovala Nábotovu vraždu",
+        "Šířila modloslužbu"],
+       ["Moc bez bázně před Bohem ničí.",
+        "Zlo nakonec neobstojí."],
+       "1Kr 21,25", ["1Kr 18,4", "1Kr 19,1-3", "1Kr 21", "2Kr 9,30-37"])
+person("naaman", "Naamán", "aramejský velitel uzdravený z malomocenství",
+       ["2Kr"], "Damašek", "velitel armády", "",
+       ["Udatný a vážený", "Nechal se přemluvit služebníky", "Vyznal "
+        "Boha Izraele"],
+       ["Pyšně se urazil, že má jen sedmkrát omýt v Jordánu"],
+       ["Pýcha nám může bránit přijmout jednoduchou pomoc.",
+        "Bůh uzdravuje i cizince (L 4,27)."],
+       "2Kr 5,15", ["2Kr 5"])
+person("ezechiel", "Ezechiel", "kněz a prorok v babylonském zajetí",
+       ["Ez"], "Babylónie, řeka Kebar", "kněz, prorok", "otec Buzí",
+       ["Věrně mluvil k vyhnancům", "Měl mocná vidění Boží slávy"],
+       [],
+       ["Bůh je s námi i „v cizině“.",
+        "Bůh dokáže oživit i to, co se zdá mrtvé (Ez 37)."],
+       "Ez 36,26", ["Ez 1", "Ez 2", "Ez 37"])
+person("mordokaj", "Mordokaj", "Esterin bratranec a poručník", ["Est"],
+       "Súsy", "úředník v královské bráně", "sestřenice Ester",
+       ["Vychoval Ester", "Odhalil spiknutí proti králi",
+        "Nesklonil se před Hamanem"],
+       [],
+       ["Věrnost se nakonec ukáže, i když dlouho nikdo nevidí.",
+        "Je třeba mít odvahu povzbudit druhé k jednání."],
+       "Est 10,3", ["Est 2", "Est 3", "Est 4", "Est 6"])
+person("zerubabel", "Zerubábel", "vůdce navrátilců ze zajetí",
+       ["Ezd", "Ag", "Za"], "Babylón, Jeruzalém", "místodržitel Judska",
+       "potomek krále Davida",
+       ["Vedl návrat a stavbu chrámu", "Povzbuzován proroky dokončil "
+        "dílo"],
+       ["Stavba se na léta zastavila"],
+       ["„Ne mocí ani silou, ale mým Duchem“ (Za 4,6).",
+        "Malé začátky nejsou bezvýznamné (Za 4,10)."],
+       "Za 4,6", ["Ezd 3", "Ag 1", "Ag 2", "Za 4"])
+
+# --- Další postavy Nového zákona --------------------------------------------
+person("zachariasz", "Zachariáš a Alžběta", "rodiče Jana Křtitele", ["L"],
+       "judské hory", "kněz", "syn Jan Křtitel; Alžběta příbuzná Marie",
+       ["Oba spravedliví před Bohem", "Alžběta s radostí přijala Marii",
+        "Zachariášův chvalozpěv (Benedictus)"],
+       ["Zachariáš nevěřil andělovi a oněměl"],
+       ["Bůh odpovídá na modlitby i po letech.",
+        "Pochybnost Bůh neodmítá, ale vychovává."],
+       "L 1,68", ["L 1,5-25", "L 1,39-45", "L 1,57-80"])
+person("simeon", "Simeon", "zbožný stařec v chrámu", ["L"], "Jeruzalém",
+       "", "",
+       ["Čekal na Mesiáše a poznal ho v dítěti", "Prorocky mluvil "
+        "o Ježíši jako světle pro národy"],
+       [],
+       ["Trpělivé čekání na Boha se vyplácí.",
+        "Ježíš je spása pro všechny národy."],
+       "L 2,30-32", ["L 2,25-35"])
+person("ondrej", "Ondřej", "apoštol, Petrův bratr", ["J", "Mk"],
+       "Betsaida, Kafarnaum", "rybář", "bratr Šimon Petr",
+       ["Přivedl k Ježíši bratra Petra", "Přivedl chlapce s chleby "
+        "a rybami", "Přivedl k Ježíši Řeky"],
+       [],
+       ["Velká služba často spočívá v tom, přivést druhé k Ježíši.",
+        "Nemusíme být v popředí, abychom byli užiteční."],
+       "J 1,41", ["J 1,35-42", "J 6,8-9", "J 12,20-22"])
+person("filip", "Filip", "apoštol z Betsaidy", ["J"], "Betsaida",
+       "apoštol", "",
+       ["Ihned přivedl Natanaela", "Upřímně se ptal"],
+       ["Počítal, místo aby důvěřoval (J 6,7)"],
+       ["„Pojď a podívej se“ – nejlepší svědectví.",
+        "Kdo vidí Ježíše, vidí Otce (J 14,9)."],
+       "J 14,9", ["J 1,43-46", "J 6,5-7", "J 14,8-11"])
+person("matous", "Matouš (Levi)", "celník a apoštol, autor evangelia",
+       ["Mt", "Mk", "L"], "Kafarnaum", "celník", "otec Alfeus",
+       ["Okamžitě opustil celnici", "Pozval přátele k Ježíši"],
+       ["Jako celník spolupracoval s okupanty a byl nenáviděn"],
+       ["Ježíš povolává i ty, které ostatní odepsali.",
+        "Nový život chce člověk sdílet s přáteli."],
+       "Mt 9,9", ["Mt 9,9-13", "L 5,27-32"])
+person("lazar", "Lazar", "Ježíšův přítel vzkříšený z mrtvých", ["J"],
+       "Betanie", "", "sestry Marta a Marie",
+       ["Ježíšův přítel", "Jeho vzkříšení přivedlo mnohé k víře"],
+       [],
+       ["Ježíš pláče s námi a má moc nad smrtí.",
+        "Svědectví života mění druhé (J 12,11)."],
+       "J 11,25", ["J 11", "J 12,1-11"])
+person("marie-betanie", "Marie z Betanie", "sestra Marty a Lazara",
+       ["L", "J"], "Betanie", "", "sourozenci Marta a Lazar",
+       ["Seděla u Ježíšových nohou a naslouchala", "Pomazala Ježíše "
+        "drahým olejem"],
+       [],
+       ["Naslouchat Ježíši je „dobrá část“ (L 10,42).",
+        "Láska k Ježíši se může projevit štědře."],
+       "L 10,42", ["L 10,38-42", "J 11,28-33", "J 12,1-8"])
+person("pilat", "Pontius Pilát", "římský prefekt Judska (26–36)",
+       ["Mt", "Mk", "L", "J"], "Cesarea, Jeruzalém", "prefekt", "manželka",
+       ["Opakovaně prohlásil Ježíše za nevinného"],
+       ["Ze strachu z davu a o kariéru vydal nevinného na smrt"],
+       ["Umýt si ruce neznamená zbavit se odpovědnosti.",
+        "Otázka „Co je pravda?“ vyžaduje odpověď."],
+       "J 18,38", ["Mt 27,11-26", "J 18,28-19,16"])
+person("herodes", "Herodes Veliký", "král Judska (37–4 př. Kr.)", ["Mt"],
+       "Jeruzalém", "král", "synové mj. Archelaos, Antipas",
+       ["Velký stavitel (přestavba chrámu)"],
+       ["Krutý a paranoidní – dal zabít i vlastní syny",
+        "Nechal vyvraždit děti v Betlémě"],
+       ["Strach o moc vede ke krutosti.",
+        "Boží plán nelze zastavit."],
+       "Mt 2,16", ["Mt 2"])
+person("kaifas", "Kaifáš", "velekněz v době Ježíšova procesu",
+       ["Mt", "J"], "Jeruzalém", "velekněz (18–36 po Kr.)", "tchán Annáš",
+       ["Nevědomky prorokoval, že jeden zemře za lid (J 11,50)"],
+       ["Vedl proces s Ježíšem a usiloval o jeho smrt"],
+       ["Náboženská moc se může stát nástrojem bezpráví.",
+        "Bůh dokáže obrátit i zlé záměry k dobrému."],
+       "J 11,50", ["J 11,47-53", "Mt 26,57-68", "J 18,13-14"])
+person("josef-arimatie", "Josef z Arimatie", "člen veleradý, který "
+       "pohřbil Ježíše", ["Mt", "Mk", "L", "J"], "Arimatie, Jeruzalém",
+       "člen veleradý", "",
+       ["Nesouhlasil s odsouzením Ježíše", "Odvážně požádal o tělo "
+        "a dal svůj hrob"],
+       ["Zpočátku byl učedníkem tajně ze strachu"],
+       ["Odvaha přichází někdy později, ale počítá se.",
+        "I tichá víra se může ukázat v pravou chvíli."],
+       "Mk 15,43", ["Mt 27,57-60", "L 23,50-53", "J 19,38-42"])
+person("kornelius", "Kornélius", "římský setník, první pohan v církvi",
+       ["Sk"], "Cesarea", "setník", "jeho dům",
+       ["Bohabojný, štědrý, modlil se", "Přijal evangelium s celým domem"],
+       [],
+       ["Bůh nestraní nikomu (Sk 10,34–35).",
+        "Upřímné hledání Bůh odměňuje."],
+       "Sk 10,34-35", ["Sk 10", "Sk 11,1-18"])
+person("lydie", "Lýdie", "obchodnice s purpurem, první křesťanka v Evropě",
+       ["Sk"], "Thyatira, Filipy", "obchodnice s purpurem", "její dům",
+       ["Otevřela srdce i dům", "Pohostinná k misionářům"],
+       [],
+       ["Bůh otevírá srdce (Sk 16,14).",
+        "Pohostinnost je služba evangeliu."],
+       "Sk 16,14", ["Sk 16,11-15", "Sk 16,40"])
+person("apollos", "Apollos", "výmluvný kazatel z Alexandrie",
+       ["Sk", "1K"], "Alexandrie, Efez, Korint", "kazatel",
+       "",
+       ["Vzdělaný a znalý Písma", "Pokorně přijal poučení od Prisky "
+        "a Akvily"],
+       [],
+       ["I nadaný člověk se má nechat poučit.",
+        "Služebníci nejsou soupeři – Bůh dává růst (1K 3,6)."],
+       "1K 3,6", ["Sk 18,24-28", "1K 3,4-9"])
+person("silas", "Silas (Silvanus)", "Pavlův spolupracovník", ["Sk"],
+       "Jeruzalém, Makedonie", "prorok, misionář", "",
+       ["Doprovázel Pavla na 2. misijní cestě", "Ve vězení ve Filipech "
+        "zpíval chvály"],
+       [],
+       ["Chvála v těžkých chvílích je svědectvím.",
+        "Věrný spolupracovník má velkou cenu."],
+       "Sk 16,25", ["Sk 15,22-40", "Sk 16,19-40"])
+person("jan-marek", "Jan Marek", "autor evangelia, Barnabášův bratranec",
+       ["Sk", "Mk"], "Jeruzalém, Kypr, Řím", "misionář, autor",
+       "matka Marie; bratranec Barnabáš",
+       ["Dostal druhou šanci a stal se užitečným (2Tm 4,11)",
+        "Podle tradice zapsal Petrovo kázání"],
+       ["Opustil misijní cestu v Pamfylii"],
+       ["Selhání nemusí být konec služby.",
+        "Druhá šance může změnit život."],
+       "2Tm 4,11", ["Sk 12,12", "Sk 13,13", "Sk 15,36-40", "2Tm 4,11"])
+person("jakub-bratr", "Jakub, bratr Páně", "vůdce jeruzalémské církve",
+       ["Sk", "Jk"], "Nazaret, Jeruzalém", "starší církve", "nevlastní "
+       "bratr Ježíše",
+       ["Po vzkříšení uvěřil", "Moudře vedl apoštolský sněm",
+        "Napsal Jakubův list"],
+       ["Zpočátku v Ježíše nevěřil (J 7,5)"],
+       ["Rodina nemusí hned porozumět – ale může uvěřit.",
+        "Víra se má projevit skutky."],
+       "Jk 2,17", ["J 7,5", "1K 15,7", "Sk 15,13-21", "Ga 2,9"])
+person("tabita", "Tabita (Dorkas)", "učednice známá dobrými skutky", ["Sk"],
+       "Jafo (Joppe)", "šila oděvy pro vdovy", "",
+       ["Byla plná dobrých skutků a almužen", "Šila oděvy pro chudé "
+        "vdovy", "Petr ji vzkřísil a mnozí uvěřili"],
+       [],
+       ["Obyčejná služba rukama má v Božích očích velkou cenu.",
+        "Láska se pozná podle toho, co po člověku zůstane."],
+       "Sk 9,36", ["Sk 9,36-42"])

@@ -311,17 +311,36 @@ class _SituationsCard extends StatelessWidget {
             runSpacing: 8,
             children: [
               for (final s in featured)
-                ActionChip(
-                  avatar: Icon(
-                    situationIcons[s.icon],
-                    size: 18,
-                    color: palette.onHero,
+                Material(
+                  color: palette.onHero.withValues(alpha: 0.14),
+                  shape: const StadiumBorder(),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () => openSituation(context, s),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 8,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            situationIcons[s.icon],
+                            size: 18,
+                            color: palette.onHero,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            s.title,
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: palette.onHero,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  label: Text(s.title),
-                  labelStyle: TextStyle(color: palette.onHero),
-                  backgroundColor: palette.onHero.withValues(alpha: 0.12),
-                  side: BorderSide.none,
-                  onPressed: () => openSituation(context, s),
                 ),
             ],
           ),

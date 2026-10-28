@@ -143,6 +143,9 @@ class BookIntro {
     this.themes = const [],
     this.timeline = const [],
     this.timelineNote,
+    this.background = '',
+    this.connection = '',
+    this.howToRead = '',
   });
 
   factory BookIntro.fromJson(Map<String, Object?> j) {
@@ -173,6 +176,9 @@ class BookIntro {
           (date: t['date']! as String, event: t['event']! as String),
       ],
       timelineNote: j['timelineNote'] as String?,
+      background: j['background'] as String? ?? '',
+      connection: j['connection'] as String? ?? '',
+      howToRead: j['howToRead'] as String? ?? '',
     );
   }
 
@@ -194,4 +200,9 @@ class BookIntro {
   final List<({String title, String text})> themes;
   final List<({String date, String event})> timeline;
   final String? timelineNote;
+
+  /// Historické pozadí, souvislost s Ježíšem a NZ, jak knihu číst.
+  final String background;
+  final String connection;
+  final String howToRead;
 }

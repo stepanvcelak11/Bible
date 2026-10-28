@@ -233,6 +233,9 @@ abstract final class S {
       'situace, knihy, tabulky i poznámky.';
   static const studySearchHint = 'Hledat: David, strach, svátky, Marek…';
   static const studyForLife = 'Pro život';
+  static const historicalBackground = 'Historické pozadí';
+  static const christConnection = 'Souvislost s Ježíšem a Novým zákonem';
+  static const howToRead = 'Jak knihu číst';
   static const readerTabs = 'Čtecí karty';
   static const readerTabsHint =
       'Otevřete si víc míst v Bibli najednou – třeba Jana a Matouše – '
@@ -275,7 +278,7 @@ abstract final class S {
       'o nich píší jednotlivá evangelia. Evangelisté často řadí látku '
       'tematicky, proto je pořadí místy jen pravděpodobné.';
   static const people = 'Biblické postavy';
-  static const peopleHint = 'Medailony 55 postav';
+  static const peopleHint = 'Medailony postav: silné i slabé stránky';
   static const peopleIntro =
       'Medailony hlavních postav Bible – jejich silné stránky i selhání '
       'a co se z jejich života můžeme naučit.';

@@ -17,8 +17,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (harmony, intros_nt, intros_ot, notes, people,  # noqa: E402
-                     situations, tables)
+from content import (harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+                     notes, people, situations, tables)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -125,6 +125,9 @@ def build_intros(out: Path) -> dict:
             "themes": [{"title": t, "text": x} for t, x in e["themes"]],
             "timeline": [{"date": d, "event": x} for d, x in e["timeline"]],
         })
+        bg, conn, how = intros_deep.DEEP[book_id]
+        intro.update({"background": bg, "connection": conn,
+                      "howToRead": how})
         if e.get("timeline_note"):
             intro["timelineNote"] = e["timeline_note"]
     return data

@@ -5,9 +5,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 6;
+const whatsNewVersion = 7;
 
 const _items = [
+  (
+    Icons.hub_outlined,
+    'Strom Bible',
+    'Myšlenková mapa celé Bible: přibližováním se větví zákony, období, '
+        'knihy a nakonec postavy a klíčové události. Nitě ukazují, jak '
+        'spolu vzdálené větve souvisejí.',
+  ),
   (
     Icons.account_tree_outlined,
     'Souvislosti v Bibli – velký příběh',

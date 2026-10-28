@@ -16,13 +16,14 @@ import '../../content/application/content_providers.dart';
 import '../../content/presentation/passage_card.dart';
 import '../../shell/home_shell.dart';
 import '../../study/presentation/book_intro_sheet.dart';
+import 'bible_tree_view.dart';
 
 /// Pohledy obrazovky Souvislosti.
-enum ConnectionsView { story, threads, arcs }
+enum ConnectionsView { tree, story, threads, arcs }
 
 void openConnections(
   BuildContext context, {
-  ConnectionsView view = ConnectionsView.story,
+  ConnectionsView view = ConnectionsView.tree,
   int? book,
 }) => Navigator.of(context).push(
   MaterialPageRoute<void>(
@@ -47,7 +48,7 @@ int chapterIndexOf(BibleConnections data, VerseRef canonical) {
 class ConnectionsScreen extends StatelessWidget {
   const ConnectionsScreen({
     super.key,
-    this.initial = ConnectionsView.story,
+    this.initial = ConnectionsView.tree,
     this.book,
   });
 
@@ -59,27 +60,29 @@ class ConnectionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       initialIndex: initial.index,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(S.connections),
           bottom: const TabBar(
             tabs: [
+              Tab(text: S.tabTree),
               Tab(text: S.tabStory),
               Tab(text: S.tabThreads),
               Tab(text: S.tabArcs),
             ],
           ),
         ),
-        body: ReadableWidth(
-          child: TabBarView(
-            children: [
-              const _StoryView(),
-              const _ThreadsView(),
-              _ArcsView(initialBook: book),
-            ],
-          ),
+        body: TabBarView(
+          // Posouvání mezi záložkami by se bilo s posouváním stromu.
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            const BibleTreeView(),
+            ReadableWidth(child: const _StoryView()),
+            ReadableWidth(child: const _ThreadsView()),
+            ReadableWidth(child: _ArcsView(initialBook: book)),
+          ],
         ),
       ),
     );
@@ -219,7 +222,7 @@ class _EraCard extends ConsumerWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: InkWell(
-        onTap: () => _showEra(context, era),
+        onTap: () => showEra(context, era),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
           child: Column(
@@ -383,7 +386,7 @@ class _BookChips extends ConsumerWidget {
   }
 }
 
-Future<void> _showEra(BuildContext context, StoryEra era) {
+Future<void> showEra(BuildContext context, StoryEra era) {
   return showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
@@ -1326,6 +1329,7 @@ class ConnectionsHeroCard extends ConsumerWidget {
                 runSpacing: 8,
                 children: [
                   for (final (view, label, icon) in [
+                    (ConnectionsView.tree, S.tabTree, Icons.hub_outlined),
                     (ConnectionsView.story, S.tabStory, Icons.account_tree),
                     (ConnectionsView.threads, S.tabThreads, Icons.timeline),
                     (ConnectionsView.arcs, S.tabArcs, Icons.blur_on),

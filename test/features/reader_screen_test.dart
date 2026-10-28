@@ -3,6 +3,7 @@ import 'package:bible_reader/core/providers.dart';
 import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
+import 'package:bible_reader/features/connections/presentation/bible_tree_view.dart';
 import 'package:bible_reader/features/content/application/content_providers.dart';
 import 'package:bible_reader/features/progress/presentation/progress_screen.dart';
 import 'package:bible_reader/features/content/presentation/quiz_screen.dart';
@@ -618,6 +619,9 @@ void main() {
     await tester.tap(find.byType(BackButton));
     await settle(tester);
 
+    await tester.tap(find.text('Strom'));
+    await settle(tester);
+    expect(find.byType(BibleTreeView), findsOneWidget);
     await tester.tap(find.text('Odkazy'));
     await settle(tester);
     expect(

@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/install/browser_chrome.dart';
 import 'core/l10n/strings_cs.dart';
 import 'core/theme/app_background.dart';
 import 'core/theme/app_theme.dart';
@@ -36,6 +37,14 @@ class BibleApp extends ConsumerWidget {
         _ => ThemeMode.light,
       },
       themeAnimationDuration: const Duration(milliseconds: 350),
+      builder: (context, child) {
+        // Stavový řádek nainstalované aplikace v barvě pozadí.
+        final color = Theme.of(context).colorScheme.surface;
+        WidgetsBinding.instance.addPostFrameCallback(
+          (_) => setBrowserThemeColor(color),
+        );
+        return child!;
+      },
       home: const HomeShell(),
     );
   }

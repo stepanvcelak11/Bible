@@ -243,18 +243,22 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
         child: ListView(
           padding: EdgeInsets.fromLTRB(
             16,
-            insets.top + 14,
+            insets.top + (isCompactHeight(context) ? 8 : 14),
             16,
             insets.bottom + 110,
           ),
           children: [
-            Text(S.tabStudy, style: theme.textTheme.headlineMedium),
-            const SizedBox(height: 4),
-            Text(
-              S.studyHubIntro,
-              style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
-            ),
-            const SizedBox(height: 14),
+            if (!isCompactHeight(context)) ...[
+              Text(S.tabStudy, style: theme.textTheme.headlineMedium),
+              const SizedBox(height: 4),
+              Text(
+                S.studyHubIntro,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+              const SizedBox(height: 14),
+            ],
             // Jedno hledání pro celou aplikaci – v záložce Hledat.
             Material(
               color: palette.card,

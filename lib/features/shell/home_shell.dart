@@ -197,21 +197,23 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   Widget _splitBody(BuildContext context, {required bool sideBySide}) {
     return LayoutBuilder(
       builder: (context, c) {
-        const handle = 14.0;
+        const handle = 20.0;
         final total = sideBySide ? c.maxWidth : c.maxHeight;
         final first = ((total - handle) * _ratio).roundToDouble();
         final second = total - handle - first;
+        // Na tabletu je druhý panel vlevo (u boční navigace) a Bible
+        // vpravo, na telefonu Bible nahoře.
         final reader = _pane(
           context,
           sideBySide ? Size(first, c.maxHeight) : Size(c.maxWidth, first),
-          removeRight: sideBySide,
+          removeLeft: sideBySide,
           removeBottom: !sideBySide,
           child: const ReaderScreen(),
         );
         final pane = _pane(
           context,
           sideBySide ? Size(second, c.maxHeight) : Size(c.maxWidth, second),
-          removeLeft: sideBySide,
+          removeRight: sideBySide,
           removeTop: !sideBySide,
           child: HeroControllerScope.none(
             child: Navigator(
@@ -225,14 +227,16 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         final divider = _SplitHandle(
           vertical: sideBySide,
           onDrag: (delta) => setState(() {
-            _ratio = (_ratio + delta / (total - handle)).clamp(0.3, 0.7);
+            // Vodorovně leží Bible vpravo – tažení doleva ji zvětší.
+            final d = sideBySide ? -delta : delta;
+            _ratio = (_ratio + d / (total - handle)).clamp(0.3, 0.7);
           }),
           onDragEnd: () =>
               ref.read(appPreferencesProvider).setSplitRatio(_ratio),
           onClose: () => ref.read(splitViewProvider.notifier).set(false),
         );
         return sideBySide
-            ? Row(children: [reader, divider, pane])
+            ? Row(children: [pane, divider, reader])
             : Column(children: [reader, divider, pane]);
       },
     );
@@ -307,7 +311,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                 ? Padding(
                     // Místo pro plovoucí navigaci pod druhým panelem.
                     padding: EdgeInsets.only(
-                      bottom: MediaQuery.paddingOf(context).bottom + 76,
+                      bottom: MediaQuery.paddingOf(context).bottom + 62,
                     ),
                     child: MediaQuery.removePadding(
                       context: context,
@@ -439,13 +443,18 @@ class _NavBar extends StatelessWidget {
     final palette = AppPalette.of(context);
     final bottom = MediaQuery.paddingOf(context).bottom;
     return Padding(
-      padding: EdgeInsets.fromLTRB(14, 0, 14, bottom > 0 ? bottom : 12),
+      padding: EdgeInsets.fromLTRB(
+        14,
+        0,
+        14,
+        bottom > 0 ? bottom : (split ? 6 : 12),
+      ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
           child: Container(
-            height: 64,
+            height: split ? 52 : 64,
             decoration: BoxDecoration(
               color: theme.colorScheme.surfaceContainerLow.withValues(
                 alpha: 0.86,
@@ -572,8 +581,8 @@ class _SplitHandle extends StatelessWidget {
         onVerticalDragUpdate: vertical ? null : (d) => onDrag(d.delta.dy),
         onVerticalDragEnd: vertical ? null : (_) => onDragEnd(),
         child: Container(
-          width: vertical ? 14 : double.infinity,
-          height: vertical ? double.infinity : 14,
+          width: vertical ? 20 : double.infinity,
+          height: vertical ? double.infinity : 20,
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainerLow,
             border: vertical
@@ -585,35 +594,30 @@ class _SplitHandle extends StatelessWidget {
                   ),
           ),
           child: Stack(
-            clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: [
               grip,
-              Align(
-                alignment: vertical
-                    ? const Alignment(0, -0.97)
-                    : const Alignment(0.97, 0),
-                child: OverflowBox(
-                  maxWidth: 36,
-                  maxHeight: 36,
-                  child: Material(
-                    color: theme.colorScheme.surfaceContainerHigh,
-                    shape: CircleBorder(
-                      side: BorderSide(color: palette.cardBorder),
-                    ),
-                    child: InkWell(
-                      customBorder: const CircleBorder(),
-                      onTap: onClose,
-                      child: Tooltip(
-                        message: S.splitOff,
-                        child: SizedBox(
-                          width: 28,
-                          height: 28,
-                          child: Icon(
-                            Icons.close,
-                            size: 16,
-                            color: palette.muted,
-                          ),
+              // Křížek na konci předělu – mimo text obou panelů.
+              Positioned(
+                right: vertical ? null : 12,
+                top: vertical ? 12 : null,
+                child: Material(
+                  color: theme.colorScheme.surfaceContainerHigh,
+                  shape: CircleBorder(
+                    side: BorderSide(color: palette.cardBorder),
+                  ),
+                  child: InkWell(
+                    customBorder: const CircleBorder(),
+                    onTap: onClose,
+                    child: Tooltip(
+                      message: S.splitOff,
+                      child: SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: Icon(
+                          Icons.close,
+                          size: 13,
+                          color: palette.muted,
                         ),
                       ),
                     ),

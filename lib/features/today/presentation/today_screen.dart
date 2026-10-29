@@ -6,6 +6,7 @@ import '../../../core/install/install_banner.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/widgets/section_label.dart';
 import '../../../domain/services/versification.dart';
 import '../../../domain/services/bible_content.dart';
@@ -80,94 +81,122 @@ class TodayScreen extends ConsumerWidget {
       _RecentList(),
     ];
 
+    final compact = isCompactHeight(context);
+    final settingsButton = IconButton(
+      tooltip: S.settings,
+      onPressed: () => Navigator.of(
+        context,
+      ).push(MaterialPageRoute<void>(builder: (_) => const SettingsScreen())),
+      icon: const Icon(Icons.tune),
+    );
+
     return ListView(
       padding: EdgeInsets.only(bottom: insets.bottom + 110),
       children: [
-        Stack(
-          children: [
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              height: heroHeight,
-              // Spodní okraj obrázku se rozplyne do pozadí aplikace.
-              child: ShaderMask(
-                blendMode: BlendMode.dstIn,
-                shaderCallback: (r) => const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: [0.0, 0.72, 1.0],
-                  colors: [Colors.black, Colors.black, Colors.transparent],
-                ).createShader(r),
-                child: DayScene(time: time, dark: darkScene),
-              ),
+        // Malý panel (rozdělená obrazovka na telefonu): bez obrázku dne.
+        if (compact)
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, insets.top + 4, 8, 4),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(greeting, style: theme.textTheme.titleLarge),
+                ),
+                settingsButton,
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, insets.top + 12, 12, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${_weekdays[now.weekday - 1]} ${now.day}. ${_months[now.month - 1]}'
-                              .toUpperCase(),
-                          style: theme.textTheme.labelMedium?.copyWith(
-                            color: onScene.withValues(alpha: 0.8),
-                            letterSpacing: 1.6,
-                            fontWeight: FontWeight.w700,
+          ),
+        if (compact)
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: _VerseOfDayCard(),
+          )
+        else
+          Stack(
+            children: [
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                height: heroHeight,
+                // Spodní okraj obrázku se rozplyne do pozadí aplikace.
+                child: ShaderMask(
+                  blendMode: BlendMode.dstIn,
+                  shaderCallback: (r) => const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.0, 0.72, 1.0],
+                    colors: [Colors.black, Colors.black, Colors.transparent],
+                  ).createShader(r),
+                  child: DayScene(time: time, dark: darkScene),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, insets.top + 12, 12, 0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${_weekdays[now.weekday - 1]} ${now.day}. ${_months[now.month - 1]}'
+                                .toUpperCase(),
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              color: onScene.withValues(alpha: 0.8),
+                              letterSpacing: 1.6,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          greeting,
-                          style: theme.textTheme.headlineLarge?.copyWith(
-                            color: onScene,
+                          const SizedBox(height: 4),
+                          Text(
+                            greeting,
+                            style: theme.textTheme.headlineLarge?.copyWith(
+                              color: onScene,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  IconButton(
-                    tooltip: S.guide,
-                    color: onScene,
-                    onPressed: () => openGuide(context),
-                    icon: const Icon(Icons.help_outline),
-                  ),
-                  IconButton(
-                    tooltip: S.settings,
-                    color: onScene,
-                    style: IconButton.styleFrom(
-                      backgroundColor: onScene.withValues(alpha: 0.14),
-                    ),
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => const SettingsScreen(),
+                        ],
                       ),
                     ),
-                    icon: const Icon(Icons.tune),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(20, heroHeight - 92, 20, 0),
-              child: twoColumns
-                  ? LayoutBuilder(
-                      builder: (context, c) => Align(
-                        alignment: Alignment.centerLeft,
-                        child: SizedBox(
-                          width: (c.maxWidth - gutter) / 2,
-                          child: const _VerseOfDayCard(),
+                    IconButton(
+                      tooltip: S.guide,
+                      color: onScene,
+                      onPressed: () => openGuide(context),
+                      icon: const Icon(Icons.help_outline),
+                    ),
+                    IconButton(
+                      tooltip: S.settings,
+                      color: onScene,
+                      style: IconButton.styleFrom(
+                        backgroundColor: onScene.withValues(alpha: 0.14),
+                      ),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const SettingsScreen(),
                         ),
                       ),
-                    )
-                  : const _VerseOfDayCard(),
-            ),
-          ],
-        ),
+                      icon: const Icon(Icons.tune),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, heroHeight - 92, 20, 0),
+                child: twoColumns
+                    ? LayoutBuilder(
+                        builder: (context, c) => Align(
+                          alignment: Alignment.centerLeft,
+                          child: SizedBox(
+                            width: (c.maxWidth - gutter) / 2,
+                            child: const _VerseOfDayCard(),
+                          ),
+                        ),
+                      )
+                    : const _VerseOfDayCard(),
+              ),
+            ],
+          ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: twoColumns

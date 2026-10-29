@@ -7,7 +7,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Soukromá offline čtečka Bible v češtině.">
-  <meta name="theme-color" content="#6B5B45">
+  <meta name="theme-color" content="#F7F1E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1A17" media="(prefers-color-scheme: dark)">
 
   <!-- iPhone: „Přidat na plochu“ → aplikace na celou obrazovku -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -43,6 +44,13 @@
           r.active && r.active.postMessage('precache'));
       });
     }
+    // Barva stavového řádku podle motivu aplikace (volá Flutter).
+    window.bibleSetThemeColor = (color) => {
+      document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+        m.removeAttribute('media');
+        m.setAttribute('content', color);
+      });
+    };
     // Instalace jako aplikace (Android, Chrome na počítači): prohlížeč
     // nabídne událost, aplikace pak ukáže vlastní tlačítko „Nainstalovat“.
     window.bibleInstallEvent = null;

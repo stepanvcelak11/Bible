@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -156,12 +157,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(16, insets.top + 14, 16, 6),
+              padding: EdgeInsets.fromLTRB(
+                16,
+                insets.top + (isCompactHeight(context) ? 8 : 14),
+                16,
+                6,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(S.search, style: theme.textTheme.headlineMedium),
-                  const SizedBox(height: 12),
+                  if (!isCompactHeight(context)) ...[
+                    Text(S.search, style: theme.textTheme.headlineMedium),
+                    const SizedBox(height: 12),
+                  ],
                   TextField(
                     controller: _controller,
                     focusNode: _focus,

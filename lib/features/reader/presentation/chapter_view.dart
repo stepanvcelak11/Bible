@@ -12,6 +12,7 @@ import '../../../domain/entities/content_entities.dart';
 
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import '../../../core/widgets/readable_width.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -389,6 +390,22 @@ class _ChapterHeader extends ConsumerWidget {
         if (p.story.any(covers) || covers(p.key)) p,
     ];
 
+    if (isCompactHeight(context)) {
+      // Malý panel: jen skromný řádek místo velkého záhlaví.
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(6, 10, 6, 8),
+        child: Text(
+          '${book.name.toUpperCase()} $chapter  ·  '
+          '${S.chapterLength(verseCount, minutes)}',
+          textAlign: TextAlign.center,
+          style: theme.textTheme.labelMedium?.copyWith(
+            letterSpacing: 1.2,
+            color: colors.verseNumber,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      );
+    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(6, 28, 6, 18),
       child: Column(

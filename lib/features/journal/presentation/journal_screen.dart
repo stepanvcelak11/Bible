@@ -106,7 +106,12 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.fromLTRB(20, top + 14, 20, 4),
+                padding: EdgeInsets.fromLTRB(
+                  20,
+                  top + (isCompactHeight(context) ? 4 : 14),
+                  20,
+                  4,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -115,7 +120,9 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                         Expanded(
                           child: Text(
                             S.journal,
-                            style: theme.textTheme.headlineMedium,
+                            style: isCompactHeight(context)
+                                ? theme.textTheme.titleLarge
+                                : theme.textTheme.headlineMedium,
                           ),
                         ),
                         IconButton(
@@ -155,6 +162,8 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                                 ),
                               ),
                             )
+                          : isCompactHeight(context)
+                          ? const SizedBox.shrink(key: ValueKey('none'))
                           : Text(
                               S.journalIntro,
                               key: const ValueKey('intro'),

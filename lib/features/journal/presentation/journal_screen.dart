@@ -504,9 +504,15 @@ class _List extends StatelessWidget {
     if (n == 0) {
       final theme = Theme.of(context);
       final palette = AppPalette.of(context);
+      // Posouvatelné – v nízkém panelu by se jinak nevešlo.
       return Center(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(40, 40, 40, 120),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(
+            40,
+            isCompactHeight(context) ? 12 : 40,
+            40,
+            isCompactHeight(context) ? 12 : 120,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

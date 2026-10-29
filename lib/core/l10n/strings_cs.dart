@@ -391,6 +391,92 @@ abstract final class S {
   static const treeRead = 'Číst';
   static const treePerson = 'Medailon';
   static const treeLinks = 'Souvisí s';
+  // Příprava kázání a programů.
+  static const preps = 'Příprava kázání a programů';
+  static const prepsShort = 'Přípravy';
+  static const prepsHint =
+      'Kázání, biblická hodina, mládež – osnova a poznámky';
+  static const prepNew = 'Nová příprava';
+  static const prepAction = 'Příprava';
+  static const prepIntro =
+      'Místo pro tvorbu kázání, biblické hodiny nebo programu: zapisujte '
+      'nápady, skládejte osnovu, přidávejte verše a ověřujte myšlenky '
+      'v Bibli.';
+  static const prepHowTitle = 'Jak na to';
+  static const prepHow = [
+    'Založte přípravu – osnova podle druhu se vloží sama.',
+    'Pište body, poznámky, otázky a ilustrace; bloky jde přetahovat.',
+    'Verše přidáte tlačítkem „+ Verš“ nebo v Bibli: vyberte verše → '
+        '„Příprava“.',
+    'Pomocník (žárovka nahoře) hledá v Bibli, ukazuje souvislosti '
+        'a podklady k textu.',
+    'Tip: rozdělená obrazovka – příprava vlevo, Bible vpravo.',
+    'Při kázání otevřete prezentační režim s velkým písmem a stopkami.',
+  ];
+  static const prepUntitled = 'Bez názvu';
+  static String prepBlocks(int n) => n == 1
+      ? '1 blok'
+      : n >= 2 && n <= 4
+      ? '$n bloky'
+      : '$n bloků';
+  static const prepTitle = 'Název';
+  static const prepTitleHint = 'Název nebo hlavní myšlenka…';
+  static const prepMainPassage = 'Hlavní text';
+  static const prepPassageHelp = 'Zapište odkaz, např. J 3,16 nebo Ž 23';
+  static const prepUseTemplate = 'Vložit osnovu';
+  static const prepCreate = 'Založit';
+  static const prepAddVerse = 'Přidat verš';
+  static const add = 'Přidat';
+  static const prepHelper = 'Pomocník';
+  static const prepPresent = 'Prezentační režim';
+  static const prepCopyText = 'Kopírovat jako text';
+  static const prepDeleteTitle = 'Smazat tuto přípravu?';
+  static const prepDate = 'Datum';
+  static String prepStats(int blocks, int words, int minutes) =>
+      '${prepBlocks(blocks)} · $words slov · asi $minutes min';
+  static const prepConnections = 'Souvislosti';
+  static const prepChangeTo = 'Změnit na';
+  static const prepHintHeading = 'Název bodu…';
+  static const prepHintNote = 'Poznámka, výklad, myšlenka…';
+  static const prepHintVerse = 'Komentář k verši…';
+  static const prepHintQuestion = 'Otázka pro posluchače nebo do diskuze…';
+  static const prepHintIllustration = 'Příběh, příklad, obraz ze života…';
+  static const prepHintIdea = 'Rychlý nápad – rozpracujete později…';
+  static const prepAddTo = 'Přidat do přípravy';
+  static const prepAddToPrep = 'Přidat do přípravy';
+  static const prepAdded = 'Přidáno do přípravy';
+  static const prepTabSearch = 'Hledat';
+  static const prepTabContext = 'K textu';
+  static const prepTabOutline = 'Osnovy';
+  static const prepSearchHint = 'Slovo nebo fráze, např. odpuštění';
+  static const prepSearchIntro =
+      'Ověřte myšlenku: kde o tom Bible mluví? Výsledek přidáte do '
+      'přípravy tlačítkem +.';
+  static const prepConnectionsIntro =
+      'Křížové odkazy – místa, která s veršem souvisejí. Vyberte verš '
+      'z přípravy.';
+  static const prepOtherVerse = 'Jiný verš';
+  static const prepNoVerse = 'Přidejte do přípravy verš nebo hlavní text.';
+  static const prepNoMainPassage =
+      'Zadejte hlavní text přípravy (nahoře v přípravě) – pak tu uvidíte '
+      'otázky ke kapitole, aplikační poznámky a postavy.';
+  static const prepQuestions = 'Otázky ke kapitole';
+  static const prepAppNotes = 'Aplikační poznámky';
+  static const prepPeople = 'Postavy v kapitole';
+  static const prepCheckTitle = 'Ověření myšlenky';
+  static const prepCheck = [
+    'Opravdu to text říká, nebo to do něj vkládám?',
+    'Co říká okolí – celá kapitola a kniha? Komu a proč byla psána?',
+    'Potvrzuje to i jiné místo Bible (souvislosti)?',
+    'Jak tomu rozuměli první posluchači?',
+    'Co z toho plyne pro posluchače dnes – konkrétně?',
+    'Dá se hlavní myšlenka říct jednou větou?',
+  ];
+  static const prepOutlineIntro =
+      'Osnovy pro různé druhy příprav. „Vložit“ přidá body na konec.';
+  static const prepInsertOutline = 'Vložit';
+  static const smallerText = 'Menší písmo';
+  static const largerText = 'Větší písmo';
   static const splitOn = 'Rozdělit';
   static const splitOff = 'Celá obrazovka';
   static const splitMenu = 'Rozdělená obrazovka';

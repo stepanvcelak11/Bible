@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../prep/application/prep_controller.dart';
 import '../../guide/presentation/guide_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../prayer/application/prayer_controller.dart';
@@ -251,6 +252,7 @@ class SettingsScreen extends ConsumerWidget {
       // Verše nazpaměť a modlitby jsou v nastavení, ne v databázi – přidáme je zvlášť.
       'memoryVerses': ref.read(memoryProvider.notifier).exportList(),
       'prayers': ref.read(prayerProvider.notifier).exportList(),
+      'preps': ref.read(prepProvider.notifier).exportList(),
     };
     final bytes = utf8.encode(const JsonEncoder.withIndent('  ').convert(data));
     final date = DateTime.now().toIso8601String().substring(0, 10);
@@ -299,7 +301,8 @@ class SettingsScreen extends ConsumerWidget {
       final prayers = ref
           .read(prayerProvider.notifier)
           .importList(json['prayers']);
-      say(S.backupImported(result.total + memory + prayers));
+      final preps = ref.read(prepProvider.notifier).importList(json['preps']);
+      say(S.backupImported(result.total + memory + prayers + preps));
     } on InvalidBackupException {
       say(S.backupInvalid);
     } on FormatException {

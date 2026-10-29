@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../prep/presentation/prep_screen.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -179,6 +180,11 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
                         scrollDirection: Axis.horizontal,
                         children: [
                           for (final (text, icon, onTap) in [
+                            (
+                              S.prepsShort,
+                              Icons.edit_note,
+                              () => openPreps(context),
+                            ),
                             (
                               S.journalQuickProgress,
                               Icons.insights,

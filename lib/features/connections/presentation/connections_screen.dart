@@ -67,6 +67,8 @@ class ConnectionsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(S.connections),
+          // V malém panelu rozdělené obrazovky nižší záhlaví.
+          toolbarHeight: isCompactHeight(context) ? 44 : null,
           bottom: const TabBar(
             tabs: [
               Tab(text: S.tabTree),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/entities/content_entities.dart';
+import '../../prep/presentation/prep_screen.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -117,7 +119,7 @@ class VerseActionPanel extends ConsumerWidget {
                         onTap: actions.study,
                       ),
                       _ActionButton(
-                        icon: Icons.edit_note,
+                        icon: Icons.sticky_note_2_outlined,
                         label: S.note,
                         tooltip: S.addNote,
                         onTap: actions.note,
@@ -127,6 +129,12 @@ class VerseActionPanel extends ConsumerWidget {
                         label: S.memoryShort,
                         tooltip: S.memory,
                         onTap: actions.memorize,
+                      ),
+                      _ActionButton(
+                        icon: Icons.edit_note,
+                        label: S.prepAction,
+                        tooltip: S.prepAddTo,
+                        onTap: actions.prep,
                       ),
                       _ActionButton(
                         icon: Icons.copy_rounded,
@@ -219,6 +227,20 @@ class _Actions {
       verseEnd: refs.last.chapter == refs.first.chapter
           ? refs.last.verse
           : refs.first.verse,
+    );
+  }
+
+  /// Přidá výběr do přípravy kázání/programu.
+  void prep() {
+    final refs = _canonicalRefs();
+    final navigatorContext = Navigator.of(context).context;
+    final first = refs.first;
+    final last = refs.lastWhere((r) => r.chapter == first.chapter);
+    clear();
+    addPassageToPrep(
+      navigatorContext,
+      ref,
+      Passage(first.bookId, first.chapter, first.verse, last.verse),
     );
   }
 

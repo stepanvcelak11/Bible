@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
+import '../../../core/widgets/readable_width.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../content/application/content_providers.dart';
@@ -260,6 +261,9 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
   double _fit = 1;
   Size _viewport = Size.zero;
 
+  /// Nápověda zmizí po prvním dotyku (už je jasné, jak strom funguje).
+  bool _hintSeen = false;
+
   @override
   void initState() {
     super.initState();
@@ -306,6 +310,7 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
   double get _zoom => scaleOf(_transform.value) / _fit;
 
   void _onTap(Offset p) {
+    if (!_hintSeen) setState(() => _hintSeen = true);
     final scale = scaleOf(_transform.value);
     final z = _zoom;
     TreeNode? hit;
@@ -369,6 +374,9 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
                   minScale: _fit * 0.8,
                   maxScale: _fit * 14,
                   boundaryMargin: const EdgeInsets.all(treeCanvas / 2),
+                  onInteractionStart: (_) {
+                    if (!_hintSeen) setState(() => _hintSeen = true);
+                  },
                   child: GestureDetector(
                     onTapUp: (d) => _onTap(d.localPosition),
                     child: CustomPaint(
@@ -409,7 +417,9 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 200),
                       child: _selected == null
-                          ? const _Hint()
+                          ? (_hintSeen || isCompactHeight(context)
+                                ? const SizedBox.shrink()
+                                : const _Hint())
                           : _NodePanel(
                               key: ValueKey(_selected!.id),
                               node: _selected!,

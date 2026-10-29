@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../prep/presentation/prep_screen.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -440,6 +441,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
             // --- Nástroje ------------------------------------------------
             KeyedSubtree(key: _toolsKey, child: header(S.studyTools)),
             group([
+              _Entry(
+                Icons.edit_note,
+                const Color(0xFFB07A2A),
+                S.preps,
+                S.prepsHint,
+                () => openPreps(context),
+              ),
               _Entry(
                 Icons.history_edu,
                 const Color(0xFF8C6BA8),

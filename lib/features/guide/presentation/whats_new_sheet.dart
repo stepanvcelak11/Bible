@@ -5,9 +5,18 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 10;
+const whatsNewVersion = 11;
 
 const _items = [
+  (
+    Icons.edit_note,
+    'Příprava kázání a programů',
+    'Nová sekce pro tvorbu kázání, biblické hodiny nebo programu: osnova, '
+        'poznámky, verše s textem, otázky a ilustrace. Pomocník hledá '
+        'v Bibli, ukazuje souvislosti a otázky ke kapitole, prezentační '
+        'režim pomůže při kázání. Najdete ji ve Studiu → Nástroje, v Deníku '
+        'a v Bibli u vybraných veršů („Příprava“).',
+  ),
   (
     Icons.vertical_split_outlined,
     'Rozdělená obrazovka',

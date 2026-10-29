@@ -29,6 +29,7 @@ class AppPreferences {
   static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
   static const _splitView = 'shell.split';
+  static const _preps = 'prep.items';
   static const _splitRatio = 'shell.splitRatio';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
@@ -70,6 +71,11 @@ class AppPreferences {
   }
 
   /// Poslední verze přehledu „Co je nového“, kterou uživatel viděl.
+  /// Přípravy kázání a programů (JSON, viz `Prep`).
+  List<String> get preps => _prefs.getStringList(_preps) ?? const [];
+  Future<void> setPreps(List<String> value) =>
+      _prefs.setStringList(_preps, value);
+
   /// Rozdělená obrazovka: Bible vedle Studia (nebo jiné sekce).
   bool get splitView => _prefs.getBool(_splitView) ?? false;
   Future<void> setSplitView(bool value) => _prefs.setBool(_splitView, value);

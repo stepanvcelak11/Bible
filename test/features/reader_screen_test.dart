@@ -19,6 +19,7 @@ import 'package:bible_reader/features/study/presentation/study_hub_screen.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
 import 'package:bible_reader/features/shell/home_shell.dart';
 import 'package:bible_reader/features/reader/presentation/reader_screen.dart';
+import 'package:bible_reader/features/prep/application/prep_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -69,6 +70,45 @@ void main() {
     await settle(tester);
     expect(container.read(splitViewProvider), isFalse);
     expect(container.read(shellTabProvider), AppTab.bible);
+  });
+
+  appTest('příprava: založení, bloky, pomocník a prezentace', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
+    await tester.tap(find.text('Přípravy'));
+    await settle(tester);
+    expect(find.text('Jak na to'), findsOneWidget);
+    await tester.tap(find.text('Nová příprava'));
+    await settle(tester);
+    await tester.enterText(find.byType(TextField).first, 'Dobrý pastýř');
+    await tester.enterText(find.byType(TextField).at(1), 'J 3,16');
+    await settle(tester);
+    expect(find.textContaining('✓'), findsOneWidget);
+    await tester.tap(find.text('Založit'));
+    await settle(tester);
+    // Editor: název, hlavní text, osnova kázání.
+    expect(find.text('Dobrý pastýř'), findsOneWidget);
+    expect(find.text('Úvod – čím zaujmout, o čem to bude'), findsOneWidget);
+    await tester.tap(find.text('+ Poznámka'));
+    await settle(tester);
+    expect(
+      container.read(prepProvider).single.blocks.last.kind,
+      PrepBlockKind.note,
+    );
+    // Pomocník: osnovy a podklady.
+    await tester.tap(find.byTooltip('Pomocník'));
+    await settle(tester);
+    expect(find.text('Hledat'), findsWidgets);
+    await tester.tap(find.text('K textu'));
+    await settle(tester);
+    expect(find.text('OTÁZKY KE KAPITOLE'), findsOneWidget);
+    await tester.tapAt(const Offset(200, 40));
+    await settle(tester);
+    // Prezentace.
+    await tester.tap(find.byTooltip('Prezentační režim'));
+    await settle(tester);
+    expect(find.textContaining('1/'), findsOneWidget);
   });
 
   appTest('obrazovka Dnes: pozdrav, verš dne, pokračování ve čtení', (

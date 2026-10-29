@@ -97,8 +97,47 @@ EdgeInsets _listPadding(BuildContext context) =>
 Color _eraColor(StoryEra era, AppPalette palette) =>
     era.books.isEmpty ? palette.muted : _bookColor(era.books.first);
 
+/// Kniha, která vypráví souvislý úsek období (od–do, indexy období),
+/// a její dráha v levém sloupci.
+typedef _BookSpan = ({int book, int from, int to, int lane});
+
+/// Rozdělí vyprávějící knihy do drah tak, aby se souběžné knihy
+/// (Samuel, Královská, Paralipomenon…) nepřekrývaly.
+List<_BookSpan> _bookSpans(List<StoryEra> eras) {
+  final spans = <({int book, int from, int to})>[];
+  final seen = <int>{};
+  for (final (i, era) in eras.indexed) {
+    for (final b in era.books) {
+      if (!seen.add(b)) continue;
+      var to = i;
+      for (var j = i + 1; j < eras.length; j++) {
+        if (eras[j].books.contains(b)) to = j;
+      }
+      spans.add((book: b, from: i, to: to));
+    }
+  }
+  final laneEnd = <int>[];
+  final out = <_BookSpan>[];
+  for (final sp in spans) {
+    var lane = laneEnd.indexWhere((end) => end < sp.from);
+    if (lane < 0) {
+      lane = laneEnd.length;
+      laneEnd.add(sp.to);
+    } else {
+      laneEnd[lane] = sp.to;
+    }
+    out.add((book: sp.book, from: sp.from, to: sp.to, lane: lane));
+  }
+  return out;
+}
+
+/// Velký příběh jako řeka dějin: uprostřed proud období, vlevo pruhy
+/// knih, které dobu vyprávějí (přes všechna období, která pokrývají),
+/// vpravo knihy, které k době patří.
 class _StoryView extends ConsumerWidget {
   const _StoryView();
+
+  static const _laneWidth = 24.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -106,23 +145,62 @@ class _StoryView extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final eras = ref.watch(storyProvider).value;
     if (eras == null) return const Center(child: CircularProgressIndicator());
+    final spans = _bookSpans(eras);
+    final lanes = spans.fold(0, (m, s) => math.max(m, s.lane + 1));
     return ListView(
       padding: _listPadding(context),
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(4, 0, 4, 14),
+          padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
           child: Text(
             S.storyIntro,
             style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
           ),
         ),
+        const _StoryLegend(),
+        const SizedBox(height: 12),
         for (final (i, era) in eras.indexed)
           IntrinsicHeight(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  width: 40,
+                  width: lanes * _laneWidth,
+                  child: Stack(
+                    children: [
+                      // Vodorovná linka od období přes dráhy knih.
+                      Positioned.fill(
+                        child: CustomPaint(
+                          painter: _GuidePainter(
+                            _eraColor(era, palette).withValues(alpha: 0.35),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          for (var lane = 0; lane < lanes; lane++)
+                            SizedBox(
+                              width: _laneWidth,
+                              child: _LaneSlice(
+                                span: spans
+                                    .where(
+                                      (s) =>
+                                          s.lane == lane &&
+                                          s.from <= i &&
+                                          i <= s.to,
+                                    )
+                                    .firstOrNull,
+                                era: i,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 36,
                   child: CustomPaint(
                     painter: _TrunkPainter(
                       color: _eraColor(era, palette),
@@ -132,15 +210,154 @@ class _StoryView extends ConsumerWidget {
                           : _eraColor(eras[i + 1], palette),
                       background: theme.scaffoldBackgroundColor,
                       label: '${i + 1}',
+                      wide: era.books.isNotEmpty,
                     ),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 Expanded(child: _EraCard(era: era)),
               ],
             ),
           ),
       ],
+    );
+  }
+}
+
+class _GuidePainter extends CustomPainter {
+  _GuidePainter(this.color);
+
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.5;
+    // Přerušovaná linka ve výšce uzlu období (_TrunkPainter._nodeY).
+    for (var x = 0.0; x < size.width; x += 7) {
+      canvas.drawLine(
+        Offset(x, 30),
+        Offset(math.min(x + 4, size.width), 30),
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_GuidePainter old) => old.color != color;
+}
+
+/// Úsek dráhy knihy v řádku jednoho období: barevný pruh, na začátku
+/// svisle zkratka knihy. Klepnutí otevře úvod ke knize.
+class _LaneSlice extends ConsumerWidget {
+  const _LaneSlice({required this.span, required this.era});
+
+  final _BookSpan? span;
+  final int era;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sp = span;
+    if (sp == null) return const SizedBox.shrink();
+    final books = ref.watch(booksProvider);
+    final color = _bookColor(sp.book);
+    final first = sp.from == era, last = sp.to == era;
+    const r = Radius.circular(9);
+    return Padding(
+      padding: EdgeInsets.fromLTRB(2, first ? 14 : 0, 2, last ? 14 : 0),
+      child: Material(
+        color: color.withValues(alpha: 0.85),
+        borderRadius: BorderRadius.vertical(
+          top: first ? r : Radius.zero,
+          bottom: last ? r : Radius.zero,
+        ),
+        child: InkWell(
+          onTap: () => showBookIntro(context, sp.book),
+          child: first
+              ? Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: RotatedBox(
+                      quarterTurns: 3,
+                      child: Text(
+                        books[sp.book - 1].abbreviation,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : null,
+        ),
+      ),
+    );
+  }
+}
+
+/// Jak číst řeku dějin.
+class _StoryLegend extends StatelessWidget {
+  const _StoryLegend();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    Widget row(Widget mark, String text) => Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Row(
+        children: [
+          SizedBox(width: 28, child: Center(child: mark)),
+          const SizedBox(width: 8),
+          Expanded(child: Text(text, style: theme.textTheme.bodySmall)),
+        ],
+      ),
+    );
+    return Container(
+      padding: const EdgeInsets.fromLTRB(10, 10, 12, 4),
+      decoration: BoxDecoration(
+        color: palette.gold.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        children: [
+          row(
+            Container(
+              width: 12,
+              height: 26,
+              decoration: BoxDecoration(
+                color: _bookColor(9),
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+            S.storyLegendLanes,
+          ),
+          row(
+            Container(
+              width: 18,
+              height: 18,
+              decoration: BoxDecoration(
+                color: palette.gold,
+                shape: BoxShape.circle,
+              ),
+            ),
+            S.storyLegendRiver,
+          ),
+          row(
+            Icon(
+              Icons.subdirectory_arrow_right,
+              size: 18,
+              color: palette.muted,
+            ),
+            S.storyLegendBranches,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -153,6 +370,7 @@ class _TrunkPainter extends CustomPainter {
     required this.next,
     required this.background,
     required this.label,
+    this.wide = true,
   });
 
   final Color color;
@@ -161,13 +379,16 @@ class _TrunkPainter extends CustomPainter {
   final Color background;
   final String label;
 
+  /// Široký proud; úzký, přerušovaný v době bez knih (mezi zákony).
+  final bool wide;
+
   static const _nodeY = 30.0;
 
   @override
   void paint(Canvas canvas, Size size) {
     final x = size.width / 2;
     final line = Paint()
-      ..strokeWidth = 4
+      ..strokeWidth = wide ? 8 : 3
       ..strokeCap = StrokeCap.round;
     if (previous case final p?) {
       line.shader = LinearGradient(
@@ -206,6 +427,7 @@ class _TrunkPainter extends CustomPainter {
       old.color != color ||
       old.previous != previous ||
       old.next != next ||
+      old.wide != wide ||
       old.background != background;
 }
 
@@ -247,9 +469,26 @@ class _EraCard extends ConsumerWidget {
                   height: 1.4,
                 ),
               ),
+              if (era.key.isNotEmpty) ...[
+                const SizedBox(height: 8),
+                Text(
+                  [for (final (_, label) in era.key) label].join(' · '),
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: color,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
               if (era.books.isNotEmpty) ...[
                 const SizedBox(height: 10),
-                _BookChips(books: era.books),
+                Text(
+                  S.storyTells,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: palette.muted,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                _BookChips(books: era.books, small: true),
               ],
               for (final (label, books) in era.branches)
                 _Branch(label: label, books: books, color: color),

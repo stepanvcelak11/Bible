@@ -399,8 +399,19 @@ abstract final class S {
   static const tabThreads = 'Nitě';
   static const tabArcs = 'Odkazy';
   static const storyIntro =
-      'Knihy Bible nejsou seřazené podle času. Tady je vidíte v pořadí '
-      'příběhu – od stvoření po nové stvoření. Klepněte na období.';
+      'Knihy Bible nejsou v Bibli seřazené podle času. Tady je vidíte '
+      'v pořadí příběhu: proud dějin teče shora dolů od stvoření po nové '
+      'stvoření a u každé doby vidíte, které knihy o ní vyprávějí a které '
+      'k ní patří.';
+  static const storyLegendLanes =
+      'Pruh vlevo = kniha, která dobu vypráví. Táhne se přes všechna '
+      'období, která pokrývá; souběžné pruhy vyprávějí stejnou dobu.';
+  static const storyLegendRiver =
+      'Proud uprostřed = období dějin. V době bez knih se zúží.';
+  static const storyLegendBranches =
+      'Větve v kartě = knihy, které v té době vznikly nebo k ní patří '
+      '(proroci, žalmy, listy).';
+  static const storyTells = 'Dobu vyprávějí';
   static const storyKey = 'Klíčové kapitoly';
   static const storyBooks = 'Knihy o tomto období';
   static const storyNoBooks =

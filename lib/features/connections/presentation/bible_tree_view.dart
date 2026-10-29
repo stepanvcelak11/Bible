@@ -284,7 +284,10 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
         0,
         1,
       )
-      ..scaleByDouble(s, s, 1, 1);
+      // Stejné měřítko i v ose Z: InteractiveViewer čte aktuální zoom
+      // přes getMaxScaleOnAxis, a s osou Z = 1 by se ruční zoom zasekl
+      // na maxScale.
+      ..scaleByDouble(s, s, s, 1);
   }
 
   void _animateTo(Offset point, double zoom) {
@@ -432,7 +435,7 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
   }
 }
 
-/// Měřítko v rovině (getMaxScaleOnAxis by vrátil 1 z osy Z).
+/// Měřítko v rovině (nezávislé na ose Z).
 double scaleOf(Matrix4 m) =>
     math.sqrt(m.entry(0, 0) * m.entry(0, 0) + m.entry(1, 0) * m.entry(1, 0));
 

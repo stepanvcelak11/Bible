@@ -26,6 +26,19 @@ String? buildFtsQuery(String input) {
   return parts.isEmpty ? null : parts.join(' ');
 }
 
+/// Dotaz „aspoň jedno z“: `slovo` = předpona, `slovo=` = celé slovo,
+/// `dve_slova` = fráze (poslední slovo jako předpona).
+String? buildFtsAnyQuery(Iterable<String> terms) {
+  final parts = <String>[];
+  for (final t in terms) {
+    final exact = t.endsWith('=');
+    final words = _words(t.replaceAll('_', ' '));
+    if (words.isEmpty) continue;
+    parts.add('"${words.join(' ')}"${exact ? '' : '*'}');
+  }
+  return parts.isEmpty ? null : parts.join(' OR ');
+}
+
 /// Rozdělí text na slova (písmena a číslice libovolné abecedy).
 List<String> _words(String text) => RegExp(
   r'[\p{L}\p{N}]+',

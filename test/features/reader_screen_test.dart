@@ -82,20 +82,46 @@ void main() {
     await tester.tap(find.text('Nová příprava'));
     await settle(tester);
     await tester.enterText(find.byType(TextField).first, 'Dobrý pastýř');
-    await tester.enterText(find.byType(TextField).at(1), 'J 3,16');
+    // Hlavní text zapsaný odkazem ve výběru z Bible.
+    await tester.tap(find.text('Vybrat z Bible'));
     await settle(tester);
-    expect(find.textContaining('✓'), findsOneWidget);
+    await tester.enterText(find.byType(TextField).first, 'J 3,16');
+    await settle(tester);
+    await tester.tap(find.text('Přidat Jan 3,16'));
+    await settle(tester);
+    expect(find.text('Jan 3,16'), findsOneWidget);
     await tester.tap(find.text('Založit'));
     await settle(tester);
-    // Editor: název, hlavní text, osnova kázání.
+    // Editor: název, hlavní text, osnova kázání s místem pro psaní.
     expect(find.text('Dobrý pastýř'), findsOneWidget);
-    expect(find.text('Úvod – čím zaujmout, o čem to bude'), findsOneWidget);
-    await tester.tap(find.text('+ Poznámka'));
-    await settle(tester);
-    expect(
-      container.read(prepProvider).single.blocks.last.kind,
-      PrepBlockKind.note,
+    expect(find.text('Úvod'), findsOneWidget);
+    expect(find.text('Čím zaujmout? O čem to dnes bude?'), findsOneWidget);
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Čím zaujmout? O čem to dnes bude?'),
+      'Kdo z vás někdy pásl ovce?',
     );
+    await settle(tester);
+    // „+ Poznámka“ v bodu Úvod vloží poznámku přímo pod něj.
+    await tester.tap(find.text('+ Poznámka').first);
+    await settle(tester);
+    final blocks = container.read(prepProvider).single.blocks;
+    expect(blocks[1].body, 'Kdo z vás někdy pásl ovce?');
+    expect(blocks[2].kind, PrepBlockKind.note);
+    // Další hlavní text: kniha → kapitola → klepnutí na verš.
+    await tester.tap(find.text('Další text'));
+    await settle(tester);
+    await tester.tap(find.text('Jan'));
+    await settle(tester);
+    await tester.tap(find.text('3'));
+    await settle(tester);
+    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    await tester.tap(
+      find.textContaining('aby odsoudil svět', findRichText: true),
+    );
+    await settle(tester);
+    await tester.tap(find.text('Přidat: J 3,16–17'));
+    await settle(tester);
+    expect(container.read(prepProvider).single.passages, hasLength(2));
     // Pomocník: osnovy a podklady.
     await tester.tap(find.byTooltip('Pomocník'));
     await settle(tester);

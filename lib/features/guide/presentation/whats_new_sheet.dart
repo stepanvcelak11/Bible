@@ -5,9 +5,19 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 11;
+const whatsNewVersion = 12;
 
 const _items = [
+  (
+    Icons.psychology_alt_outlined,
+    'Příprava: hledání podle myšlenky',
+    'Pomocník přípravy hledá podle myšlenky, ne jen podle slov: napište '
+        '„Bůh nás nenechá samotné, když máme strach“ a najde místa, kde to '
+        'Bible říká jinými slovy. Do bodů osnovy se teď píše přímo a tlačítky '
+        '„+ Verš / Poznámka / Otázka“ přidáte věci rovnou do bodu. Verše se '
+        'vybírají v Bibli (kniha → kapitola → verše) a hlavních textů může '
+        'být víc.',
+  ),
   (
     Icons.edit_note,
     'Příprava kázání a programů',

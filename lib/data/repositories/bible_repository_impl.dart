@@ -390,6 +390,57 @@ class BibleRepositoryImpl implements BibleRepository {
   }
 
   @override
+  Future<List<SearchHit>> searchAny(
+    List<String> terms, {
+    required String translationId,
+    int limit = 150,
+  }) async {
+    final match = buildFtsAnyQuery(terms);
+    if (match == null) return const [];
+    final groups = await _group({translationId});
+    final hits = <SearchHit>[];
+    for (final MapEntry(key: d, value: ids) in groups.entries) {
+      final (filters, vars) = _filters(ids, null, null);
+      final rows = await d
+          .customSelect(
+            '''
+            SELECT v.translation_id, v.book_id, v.chapter, v.verse, v.text,
+                   highlight(verses_fts, 0, char(2), char(3)) AS marked
+            FROM verses_fts
+            JOIN verses v ON v.id = verses_fts.rowid
+            WHERE verses_fts MATCH ? $filters
+            ORDER BY rank
+            LIMIT ?
+            ''',
+            variables: [
+              Variable.withString(match),
+              ...vars,
+              Variable.withInt(limit),
+            ],
+            readsFrom: {d.verses, d.versesFts},
+          )
+          .get();
+      for (final row in rows) {
+        hits.add(
+          SearchHit(
+            verse: Verse(
+              translationId: row.read<String>('translation_id'),
+              ref: VerseRef(
+                row.read<int>('book_id'),
+                row.read<int>('chapter'),
+                row.read<int>('verse'),
+              ),
+              text: row.read<String>('text'),
+            ),
+            snippet: row.read<String>('marked'),
+          ),
+        );
+      }
+    }
+    return hits;
+  }
+
+  @override
   Future<Map<int, int>> searchCounts(
     String query, {
     Set<String>? translationIds,

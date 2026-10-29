@@ -53,6 +53,14 @@ abstract interface class BibleRepository {
     int offset = 0,
   });
 
+  /// Verše, které obsahují aspoň jeden z [terms] (předpony slov; `a_b` =
+  /// fráze, `slovo=` = celé slovo), seřazené podle relevance (BM25).
+  Future<List<SearchHit>> searchAny(
+    List<String> terms, {
+    required String translationId,
+    int limit = 150,
+  });
+
   /// Počet nalezených veršů v jednotlivých knihách (`bookId → počet`).
   Future<Map<int, int>> searchCounts(
     String query, {

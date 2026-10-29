@@ -52,6 +52,18 @@ class Passage {
       : end > verse
       ? '$chapter,$verse–$end'
       : '$chapter,$verse';
+
+  @override
+  bool operator ==(Object other) =>
+      other is Passage &&
+      other.bookId == bookId &&
+      other.chapter == chapter &&
+      other.verse == verse &&
+      other.end == end &&
+      other.endChapter == endChapter;
+
+  @override
+  int get hashCode => Object.hash(bookId, chapter, verse, end, endChapter);
 }
 
 List<Passage> parsePassages(Object? json) => [

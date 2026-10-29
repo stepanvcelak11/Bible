@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (church_year, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+from content import (church_year, concepts, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
                      notes, people, quiz, situations, situations_more,
                      stories, story, tables, threads, topics)
 
@@ -149,6 +149,35 @@ CHAPTERS = [50, 40, 27, 36, 34, 24, 21, 4, 31, 24, 22, 25, 29, 36, 10, 13,
             6, 4, 3, 1, 13, 5, 5, 3, 5, 1, 1, 1, 22]
 
 
+def fold(s: str) -> str:
+    """Malá písmena bez diakritiky (jako tokenizer FTS5)."""
+    import unicodedata
+    return "".join(ch for ch in unicodedata.normalize("NFD", s.lower())
+                   if not unicodedata.combining(ch))
+
+
+def build_concepts() -> dict:
+    topics_ = {t["id"] for t in topics.T}
+    sits = {s[0] for s in situations.SITUATIONS}
+    threads_ = {t[0] for t in threads.THREADS}
+    ids = set()
+    out = []
+    for c in concepts.C:
+        assert c["id"] not in ids, c["id"]
+        ids.add(c["id"])
+        for link in c["links"]:
+            kind, _, lid = link.partition(":")
+            pool = {"t": topics_, "s": sits, "h": threads_}[kind]
+            assert lid in pool, f"{c['id']}: neznámý odkaz {link}"
+        assert c["triggers"] and c["terms"], c["id"]
+        out.append({"id": c["id"], "label": c["label"],
+                    "triggers": sorted({fold(t) for t in c["triggers"]}),
+                    "terms": sorted({fold(t) for t in c["terms"]}),
+                    "links": c["links"]})
+    return {"stop": sorted({fold(w) for w in concepts.STOP}),
+            "concepts": out}
+
+
 def build_reflections() -> dict:
     """Zamyšlení ke kapitolám: tool/content/reflect/*.py obsahují BOOKS =
     {"Gn": \"\"\"řádek na kapitolu\"\"\"}; řádek = zaměření | pozoruj | pochop
@@ -275,7 +304,8 @@ def main() -> None:
             "threads.json": build_threads(),
             "story.json": build_story(),
             "stories.json": build_stories(),
-            "reflections.json": build_reflections()}
+            "reflections.json": build_reflections(),
+            "concepts.json": build_concepts()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -316,6 +346,27 @@ def main() -> None:
                     r = k["ref"]
                     print(f"  {ABBR[r[0]-1]} {r[1]} [{k['label']}]: "
                           f"{text(r[0], r[1], 1, 3)[:150]}")
+        if what == "concepts":
+            import sqlite3
+            bkr = [fold(r[0]) for r in sqlite3.connect(
+                ROOT / "assets/db/bible.db").execute("SELECT text FROM verses")]
+            csp = [fold(v["text"]) for bk in books for ch in bk["chapters"]
+                   for v in ch["verses"]]
+
+            def hits(verses, term):
+                words = term.split("_")
+                exact = words[-1].endswith("=")
+                words[-1] = words[-1].rstrip("=")
+                pat = re.compile(r"\b" + r"\W+".join(map(re.escape, words))
+                                 + (r"\b" if exact else ""))
+                return sum(1 for t in verses if pat.search(t))
+            for c in data["concepts.json"]["concepts"]:
+                row = []
+                for t in c["terms"]:
+                    a, b = hits(bkr, t), hits(csp, t)
+                    flag = " !!!" if a == 0 or b == 0 else ""
+                    row.append(f"{t}={a}/{b}{flag}")
+                print(f"{c['id']}: " + "  ".join(row))
         if what == "stories":
             for st in data["stories.json"]["stories"]:
                 r = st["ref"]

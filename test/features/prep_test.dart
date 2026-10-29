@@ -48,10 +48,13 @@ void main() {
     final prep = ctrl.create(
       title: 'Dobrý pastýř',
       kind: PrepKind.sermon,
-      passage: const Passage(43, 10, 1, 18),
+      passages: const [Passage(43, 10, 1, 18), Passage(19, 23, 0, 0)],
     );
-    // Hlavní text + osnova kázání.
-    expect(prep.blocks.first.kind, PrepBlockKind.verse);
+    // Hlavní texty + osnova kázání.
+    expect(prep.blocks.take(2).map((b) => b.kind), [
+      PrepBlockKind.verse,
+      PrepBlockKind.verse,
+    ]);
     expect(
       prep.blocks.where((b) => b.kind == PrepBlockKind.heading),
       hasLength(prepTemplates[PrepKind.sermon]!.length),
@@ -72,11 +75,49 @@ void main() {
     expect(saved, hasLength(1));
     final restored = Prep.fromJson(jsonDecode(saved.single));
     expect(restored!.title, 'Dobrý pastýř');
-    expect(restored.passage!.end, 18);
+    expect(restored.passages.map((p) => p.end), [18, 0]);
     final exported = ctrl.exportList();
     ctrl.remove(prep.id);
     expect(c.read(prepProvider), isEmpty);
     expect(ctrl.importList(exported), 1);
     expect(ctrl.importList(exported), 0, reason: 'bez duplicit');
+  });
+
+  test('příprava: psaní do bodu a vkládání do bodu osnovy', () async {
+    final c = await container();
+    final ctrl = c.read(prepProvider.notifier);
+    final prep = ctrl.create(kind: PrepKind.sermon);
+    final headings = prep.blocks;
+    expect(headings.first.hint, isNotEmpty);
+    // Do 1. bodu: poznámka a verš se vloží na konec bodu, před 2. bod.
+    final first = headings[1];
+    final note = ctrl.addBlock(prep.id, PrepBlockKind.note, section: first.id);
+    final verse = ctrl.addBlock(
+      prep.id,
+      PrepBlockKind.verse,
+      passage: const Passage(43, 10, 11, 11),
+      section: first.id,
+    );
+    final ids = ctrl.byId(prep.id)!.blocks.map((b) => b.id).toList();
+    expect(ids.sublist(1, 5), [first.id, note.id, verse.id, headings[2].id]);
+    // Za konkrétní blok.
+    final q = ctrl.addBlock(prep.id, PrepBlockKind.question, after: note.id);
+    expect(ctrl.byId(prep.id)!.blocks[3].id, q.id);
+    // Text pod bodem se uloží.
+    ctrl.updateBlock(prep.id, first.copyWith(body: 'Ježíš zná své ovce'));
+    final json = jsonEncode(ctrl.byId(prep.id)!.toJson());
+    final back = Prep.fromJson(jsonDecode(json))!;
+    expect(back.blocks[1].body, 'Ježíš zná své ovce');
+    expect(back.words, greaterThan(3));
+  });
+
+  test('starší záloha s jedním hlavním textem', () {
+    final p = Prep.fromJson({
+      'id': 1,
+      'title': 'x',
+      'ref': [43, 3, 16, 16, 3],
+      'blocks': <Object>[],
+    })!;
+    expect(p.passages.single.verse, 16);
   });
 }

@@ -405,11 +405,12 @@ abstract final class S {
   static const prepHowTitle = 'Jak na to';
   static const prepHow = [
     'Založte přípravu – osnova podle druhu se vloží sama.',
-    'Pište body, poznámky, otázky a ilustrace; bloky jde přetahovat.',
-    'Verše přidáte tlačítkem „+ Verš“ nebo v Bibli: vyberte verše → '
-        '„Příprava“.',
-    'Pomocník (žárovka nahoře) hledá v Bibli, ukazuje souvislosti '
-        'a podklady k textu.',
+    'Do každého bodu pište přímo pod jeho název; tlačítky „+ Verš“, '
+        '„+ Poznámka“ a „+ Otázka“ přidáte další věci přímo do bodu.',
+    'Verš vyberete v Bibli: kniha → kapitola → klepněte na verše. '
+        'Nebo v Bibli vyberte verše → „Příprava“.',
+    'Pomocník (žárovka nahoře) hledá podle myšlenky – i když ji Bible '
+        'říká jinými slovy – a ukazuje souvislosti a podklady k textu.',
     'Tip: rozdělená obrazovka – příprava vlevo, Bible vpravo.',
     'Při kázání otevřete prezentační režim s velkým písmem a stopkami.',
   ];
@@ -422,10 +423,8 @@ abstract final class S {
   static const prepTitle = 'Název';
   static const prepTitleHint = 'Název nebo hlavní myšlenka…';
   static const prepMainPassage = 'Hlavní text';
-  static const prepPassageHelp = 'Zapište odkaz, např. J 3,16 nebo Ž 23';
   static const prepUseTemplate = 'Vložit osnovu';
   static const prepCreate = 'Založit';
-  static const prepAddVerse = 'Přidat verš';
   static const add = 'Přidat';
   static const prepHelper = 'Pomocník';
   static const prepPresent = 'Prezentační režim';
@@ -450,8 +449,32 @@ abstract final class S {
   static const prepTabOutline = 'Osnovy';
   static const prepSearchHint = 'Slovo nebo fráze, např. odpuštění';
   static const prepSearchIntro =
-      'Ověřte myšlenku: kde o tom Bible mluví? Výsledek přidáte do '
-      'přípravy tlačítkem +.';
+      'Hledá přesně zadaná slova. Výsledek přidáte do přípravy tlačítkem +.';
+  static const prepThoughtMode = 'Podle myšlenky';
+  static const prepWordsMode = 'Přesná slova';
+  static const prepThoughtHint = 'Napište myšlenku vlastními slovy…';
+  static const prepThoughtIntro =
+      'Ověřte myšlenku: kde o tom Bible mluví? Napište ji vlastními slovy, '
+      'třeba „Bůh nás nenechá samotné, když máme strach“. Hledají se '
+      'verše se stejnou myšlenkou, i když je Bible říká jinými slovy.';
+  static const prepThoughtUnderstood = 'Rozumím jako';
+  static const prepThoughtNone =
+      'Nerozpoznal jsem téma – hledám jen podle slov. Zkuste myšlenku '
+      'napsat jinak nebo přidat slovo jako strach, odpuštění, naděje…';
+  static const prepThoughtToggle = 'Klepnutím pojem vypnete nebo zapnete.';
+  static const prepKeyPassages = 'Klíčová místa k tématu';
+  static const prepSimilar = 'Verše s podobnou myšlenkou';
+  static const prepPickTitle = 'Vybrat text z Bible';
+  static const prepPickSearch = 'Kniha nebo odkaz, např. J 3,16';
+  static const prepPickVersesHint =
+      'Klepněte na první verš, pak na poslední. Bez výběru se přidá celá '
+      'kapitola.';
+  static const prepWholeChapter = 'celá kapitola';
+  static const prepMainPassages = 'Hlavní texty';
+  static const prepPickFromBible = 'Vybrat z Bible';
+  static const prepAnotherText = 'Další text';
+  static const prepBodyHint = 'Sem pište, co chcete v tomto bodě říct…';
+  static const prepMore = 'Další';
   static const prepConnectionsIntro =
       'Křížové odkazy – místa, která s veršem souvisejí. Vyberte verš '
       'z přípravy.';

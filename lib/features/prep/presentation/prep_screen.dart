@@ -23,6 +23,8 @@ import '../../study/application/study_providers.dart';
 import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/prep_controller.dart';
+import '../application/thought_search.dart';
+import 'passage_picker.dart';
 
 void openPreps(BuildContext context) =>
     Navigator.of(context)
@@ -169,7 +171,7 @@ class PrepListScreen extends ConsumerWidget {
                   subtitle: Text(
                     [
                       p.kind.label,
-                      if (p.passage case final ps?)
+                      for (final ps in p.passages)
                         ps.label(books[ps.bookId - 1].abbreviation),
                       if (p.date case final d?) _date(d),
                       S.prepBlocks(p.blocks.length),
@@ -188,10 +190,9 @@ class PrepListScreen extends ConsumerWidget {
 
 Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
   final title = TextEditingController();
-  final passageText = TextEditingController();
   var kind = PrepKind.sermon;
   var template = true;
-  final books = ref.read(booksProvider);
+  final passages = <Passage>[];
   final created = await showModalBottomSheet<Prep>(
     context: context,
     isScrollControlled: true,
@@ -199,7 +200,7 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
     builder: (context) => StatefulBuilder(
       builder: (context, setState) {
         final theme = Theme.of(context);
-        final passage = parsePassageInput(passageText.text, books);
+        final palette = AppPalette.of(context);
         return Padding(
           padding: EdgeInsets.fromLTRB(
             20,
@@ -215,7 +216,6 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
               const SizedBox(height: 12),
               TextField(
                 controller: title,
-                autofocus: true,
                 textCapitalization: TextCapitalization.sentences,
                 decoration: const InputDecoration(
                   labelText: S.prepTitle,
@@ -235,17 +235,38 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                     ),
                 ],
               ),
-              const SizedBox(height: 12),
-              TextField(
-                controller: passageText,
-                onChanged: (_) => setState(() {}),
-                decoration: InputDecoration(
-                  labelText: S.prepMainPassage,
-                  hintText: 'např. J 3,1-21',
-                  helperText: passage == null
-                      ? S.prepPassageHelp
-                      : '✓ ${passage.label(books[passage.bookId - 1].name)}',
-                ),
+              const SizedBox(height: 14),
+              Text(S.prepMainPassages, style: theme.textTheme.labelLarge),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final p in passages)
+                    InputChip(
+                      avatar: Icon(
+                        Icons.menu_book,
+                        size: 18,
+                        color: palette.gold,
+                      ),
+                      label: Text(passageLabel(ref, p)),
+                      onDeleted: () => setState(() => passages.remove(p)),
+                    ),
+                  ActionChip(
+                    avatar: const Icon(Icons.add, size: 18),
+                    label: Text(
+                      passages.isEmpty
+                          ? S.prepPickFromBible
+                          : S.prepAnotherText,
+                    ),
+                    onPressed: () async {
+                      final p = await pickPassage(context);
+                      if (p != null && !passages.contains(p)) {
+                        setState(() => passages.add(p));
+                      }
+                    },
+                  ),
+                ],
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -255,8 +276,8 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                     : (v) => setState(() => template = v),
                 title: const Text(S.prepUseTemplate),
                 subtitle: Text(
-                  prepTemplates[kind]!.map((e) => e.$2).take(3).join(' · '),
-                  maxLines: 1,
+                  prepTemplates[kind]!.map((e) => e.$1).join(' · '),
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -270,7 +291,7 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                         .create(
                           title: title.text.trim(),
                           kind: kind,
-                          passage: passage,
+                          passages: passages,
                           template: template,
                         ),
                   ),
@@ -286,56 +307,81 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
   if (created != null && context.mounted) openPrep(context, created.id);
 }
 
-/// Zeptá se na biblické místo (s okamžitou kontrolou zápisu).
-Future<Passage?> askPassage(BuildContext context, WidgetRef ref) {
-  final books = ref.read(booksProvider);
-  final c = TextEditingController();
-  return showDialog<Passage>(
-    context: context,
-    builder: (context) => StatefulBuilder(
-      builder: (context, setState) {
-        final p = parsePassageInput(c.text, books);
-        return AlertDialog(
-          title: const Text(S.prepAddVerse),
-          content: TextField(
-            controller: c,
-            autofocus: true,
-            onChanged: (_) => setState(() {}),
-            onSubmitted: (_) {
-              if (p != null) Navigator.of(context).pop(p);
-            },
-            decoration: InputDecoration(
-              hintText: 'např. Ř 8,28-39',
-              helperText: p == null
-                  ? S.prepPassageHelp
-                  : '✓ ${p.label(books[p.bookId - 1].name)}',
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text(S.cancel),
-            ),
-            FilledButton(
-              onPressed: p == null ? null : () => Navigator.of(context).pop(p),
-              child: const Text(S.add),
-            ),
-          ],
-        );
-      },
-    ),
-  );
+/// Vybere verš z Bible a přidá ho do přípravy (za [after] nebo do bodu
+/// [section]).
+Future<void> _addVerse(
+  BuildContext context,
+  WidgetRef ref,
+  int prepId, {
+  int? after,
+  int? section,
+}) async {
+  final p = await pickPassage(context);
+  if (p == null) return;
+  ref
+      .read(prepProvider.notifier)
+      .addBlock(
+        prepId,
+        PrepBlockKind.verse,
+        passage: p,
+        after: after,
+        section: section,
+      );
 }
 
 // --- Editor -------------------------------------------------------------------
 
-class PrepEditorScreen extends ConsumerWidget {
+class PrepEditorScreen extends ConsumerStatefulWidget {
   const PrepEditorScreen({super.key, required this.prepId});
 
   final int prepId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PrepEditorScreen> createState() => _PrepEditorScreenState();
+}
+
+class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
+  /// Blok, ve kterém se naposledy psalo – nové bloky z dolní lišty se
+  /// vloží za něj (u bodu osnovy na konec bodu).
+  final _active = ValueNotifier<int?>(null);
+
+  /// Blok, do kterého se má po vytvoření přesunout kurzor.
+  int? _focusNew;
+
+  int get prepId => widget.prepId;
+
+  @override
+  void dispose() {
+    _active.dispose();
+    super.dispose();
+  }
+
+  void _add(PrepBlockKind k, {int? section}) {
+    final prep = ref.read(prepProvider.notifier).byId(prepId);
+    if (prep == null) return;
+    int? after;
+    if (section == null) {
+      final active = prep.blocks
+          .where((b) => b.id == _active.value)
+          .firstOrNull;
+      if (active?.kind == PrepBlockKind.heading) {
+        section = active!.id;
+      } else {
+        after = active?.id;
+      }
+    }
+    if (k == PrepBlockKind.verse) {
+      _addVerse(context, ref, prepId, after: after, section: section);
+      return;
+    }
+    final b = ref
+        .read(prepProvider.notifier)
+        .addBlock(prepId, k, after: after, section: section);
+    setState(() => _focusNew = b.id);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final prep = ref.watch(
       prepProvider.select((l) => l.where((p) => p.id == prepId).firstOrNull),
     );
@@ -343,6 +389,8 @@ class PrepEditorScreen extends ConsumerWidget {
       return Scaffold(appBar: AppBar());
     }
     final controller = ref.read(prepProvider.notifier);
+    final focusNew = _focusNew;
+    _focusNew = null;
     return ReadableWidth(
       child: Scaffold(
         appBar: AppBar(
@@ -428,19 +476,30 @@ class PrepEditorScreen extends ConsumerWidget {
             ),
           ],
         ),
-        bottomNavigationBar: _AddBar(prepId: prepId),
+        bottomNavigationBar: _AddBar(onAdd: _add),
         body: ReorderableListView.builder(
           buildDefaultDragHandles: false,
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
           header: _PrepHeader(prep: prep),
           itemCount: prep.blocks.length,
           onReorderItem: (a, b) => controller.moveBlock(prepId, a, b),
-          itemBuilder: (context, i) => _BlockCard(
-            key: ValueKey(prep.blocks[i].id),
-            prepId: prepId,
-            block: prep.blocks[i],
-            index: i,
-          ),
+          itemBuilder: (context, i) {
+            final b = prep.blocks[i];
+            return _BlockCard(
+              key: ValueKey(b.id),
+              prepId: prepId,
+              block: b,
+              index: i,
+              inSection:
+                  b.kind != PrepBlockKind.heading &&
+                  prep.blocks
+                      .take(i)
+                      .any((x) => x.kind == PrepBlockKind.heading),
+              autofocus: b.id == focusNew,
+              active: _active,
+              onAdd: (k) => _add(k, section: b.id),
+            );
+          },
         ),
       ),
     );
@@ -494,18 +553,33 @@ class _PrepHeaderState extends ConsumerState<_PrepHeader> {
             spacing: 6,
             runSpacing: 6,
             children: [
+              for (final p in prep.passages)
+                InputChip(
+                  avatar: Icon(Icons.menu_book, size: 18, color: palette.gold),
+                  label: Text(passageLabel(ref, p)),
+                  tooltip: S.treeRead,
+                  onPressed: () => openReaderAt(context, ref, p.start),
+                  onDeleted: () => controller.update(
+                    prep.copyWith(
+                      passages: [
+                        for (final x in prep.passages)
+                          if (x != p) x,
+                      ],
+                    ),
+                  ),
+                ),
               ActionChip(
-                avatar: Icon(Icons.menu_book, size: 18, color: palette.gold),
+                avatar: Icon(Icons.add, size: 18, color: palette.gold),
                 label: Text(
-                  prep.passage == null
-                      ? S.prepMainPassage
-                      : passageLabel(ref, prep.passage!),
+                  prep.passages.isEmpty ? S.prepMainPassage : S.prepAnotherText,
                 ),
                 onPressed: () async {
-                  final p = await askPassage(context, ref);
-                  if (p != null) {
-                    controller.update(prep.copyWith(passage: () => p));
-                  }
+                  final p = await pickPassage(context);
+                  if (p == null || prep.passages.contains(p)) return;
+                  final now = controller.byId(prep.id) ?? prep;
+                  controller.update(
+                    now.copyWith(passages: [...now.passages, p]),
+                  );
                 },
               ),
               ActionChip(
@@ -548,25 +622,16 @@ class _PrepHeaderState extends ConsumerState<_PrepHeader> {
   }
 }
 
-class _AddBar extends ConsumerWidget {
-  const _AddBar({required this.prepId});
+/// Dolní lišta: přidat blok za místo, kde se právě píše.
+class _AddBar extends StatelessWidget {
+  const _AddBar({required this.onAdd});
 
-  final int prepId;
+  final void Function(PrepBlockKind) onAdd;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    Future<void> add(PrepBlockKind k) async {
-      final controller = ref.read(prepProvider.notifier);
-      if (k == PrepBlockKind.verse) {
-        final p = await askPassage(context, ref);
-        if (p != null) controller.addBlock(prepId, k, passage: p);
-      } else {
-        controller.addBlock(prepId, k);
-      }
-    }
-
     return Material(
       color: theme.colorScheme.surfaceContainerLow,
       child: SafeArea(
@@ -580,7 +645,14 @@ class _AddBar extends ConsumerWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 9),
             children: [
-              for (final k in PrepBlockKind.values)
+              for (final k in const [
+                PrepBlockKind.verse,
+                PrepBlockKind.note,
+                PrepBlockKind.heading,
+                PrepBlockKind.question,
+                PrepBlockKind.illustration,
+                PrepBlockKind.idea,
+              ])
                 Padding(
                   padding: const EdgeInsets.only(right: 6),
                   child: ActionChip(
@@ -590,7 +662,7 @@ class _AddBar extends ConsumerWidget {
                       color: _blockColor(k),
                     ),
                     label: Text('+ ${k.label}'),
-                    onPressed: () => add(k),
+                    onPressed: () => onAdd(k),
                   ),
                 ),
             ],
@@ -607,11 +679,23 @@ class _BlockCard extends ConsumerStatefulWidget {
     required this.prepId,
     required this.block,
     required this.index,
+    required this.inSection,
+    required this.autofocus,
+    required this.active,
+    required this.onAdd,
   });
 
   final int prepId;
   final PrepBlock block;
   final int index;
+
+  /// Patří pod bod osnovy (odsazení).
+  final bool inSection;
+  final bool autofocus;
+  final ValueNotifier<int?> active;
+
+  /// Přidat blok do tohoto bodu (jen u bodu osnovy).
+  final void Function(PrepBlockKind) onAdd;
 
   @override
   ConsumerState<_BlockCard> createState() => _BlockCardState();
@@ -619,10 +703,29 @@ class _BlockCard extends ConsumerStatefulWidget {
 
 class _BlockCardState extends ConsumerState<_BlockCard> {
   late final _text = TextEditingController(text: widget.block.text);
+  late final _body = TextEditingController(text: widget.block.body);
+  final _focus = FocusNode();
+  final _bodyFocus = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    void track() {
+      if (_focus.hasFocus || _bodyFocus.hasFocus) {
+        widget.active.value = widget.block.id;
+      }
+    }
+
+    _focus.addListener(track);
+    _bodyFocus.addListener(track);
+  }
 
   @override
   void dispose() {
     _text.dispose();
+    _body.dispose();
+    _focus.dispose();
+    _bodyFocus.dispose();
     super.dispose();
   }
 
@@ -634,8 +737,13 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
     final color = _blockColor(b.kind);
     final controller = ref.read(prepProvider.notifier);
     final heading = b.kind == PrepBlockKind.heading;
+    PrepBlock current() => b.copyWith(text: _text.text, body: _body.text);
     return Padding(
-      padding: EdgeInsets.only(bottom: 8, top: heading ? 8 : 0),
+      padding: EdgeInsets.only(
+        bottom: 8,
+        top: heading ? 10 : 0,
+        left: widget.inSection ? 14 : 0,
+      ),
       child: Material(
         color: heading ? color.withValues(alpha: 0.12) : palette.card,
         borderRadius: BorderRadius.circular(14),
@@ -690,7 +798,7 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                       } else if (v case final PrepBlockKind k) {
                         controller.updateBlock(
                           widget.prepId,
-                          b.copyWith(kind: k, text: _text.text),
+                          current().copyWith(kind: k),
                         );
                       }
                     },
@@ -722,6 +830,8 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                 padding: const EdgeInsets.only(right: 12),
                 child: TextField(
                   controller: _text,
+                  focusNode: _focus,
+                  autofocus: widget.autofocus,
                   maxLines: null,
                   textCapitalization: TextCapitalization.sentences,
                   style: heading
@@ -734,14 +844,107 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                     border: InputBorder.none,
                     isDense: true,
                   ),
-                  onChanged: (v) => controller.updateBlock(
-                    widget.prepId,
-                    b.copyWith(text: v),
-                  ),
+                  onChanged: (_) =>
+                      controller.updateBlock(widget.prepId, current()),
                 ),
               ),
+              if (heading) ...[
+                Container(
+                  margin: const EdgeInsets.fromLTRB(0, 4, 12, 0),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: palette.card,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: palette.cardBorder),
+                  ),
+                  child: TextField(
+                    controller: _body,
+                    focusNode: _bodyFocus,
+                    minLines: 2,
+                    maxLines: null,
+                    textCapitalization: TextCapitalization.sentences,
+                    style: theme.textTheme.bodyLarge,
+                    decoration: InputDecoration(
+                      hintText: b.hint.isEmpty ? S.prepBodyHint : b.hint,
+                      hintMaxLines: 3,
+                      border: InputBorder.none,
+                    ),
+                    onChanged: (_) =>
+                        controller.updateBlock(widget.prepId, current()),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6, right: 8),
+                  child: Wrap(
+                    spacing: 6,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      for (final k in const [
+                        PrepBlockKind.verse,
+                        PrepBlockKind.note,
+                        PrepBlockKind.question,
+                      ])
+                        _SmallAdd(kind: k, onTap: () => widget.onAdd(k)),
+                      PopupMenuButton<PrepBlockKind>(
+                        tooltip: S.prepMore,
+                        onSelected: widget.onAdd,
+                        itemBuilder: (_) => [
+                          for (final k in const [
+                            PrepBlockKind.illustration,
+                            PrepBlockKind.idea,
+                          ])
+                            PopupMenuItem(
+                              value: k,
+                              child: Text('+ ${k.label}'),
+                            ),
+                        ],
+                        child: const Padding(
+                          padding: EdgeInsets.all(6),
+                          child: Icon(Icons.more_horiz, size: 18),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Malé tlačítko „+ Verš“ v bodu osnovy.
+class _SmallAdd extends StatelessWidget {
+  const _SmallAdd({required this.kind, required this.onTap});
+
+  final PrepBlockKind kind;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = _blockColor(kind);
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color.withValues(alpha: 0.45)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(_blockIcon(kind), size: 15, color: color),
+            const SizedBox(width: 4),
+            Text(
+              '+ ${kind.label}',
+              style: Theme.of(context).textTheme.labelMedium,
+            ),
+          ],
         ),
       ),
     );
@@ -788,7 +991,7 @@ Future<String> _exportText(WidgetRef ref, Prep prep) async {
     ..writeln(
       [
         prep.kind.label,
-        if (prep.passage case final p?) passageLabel(ref, p),
+        for (final p in prep.passages) passageLabel(ref, p),
         if (prep.date case final d?) _date(d),
       ].join(' · '),
     )
@@ -799,6 +1002,7 @@ Future<String> _exportText(WidgetRef ref, Prep prep) async {
         out
           ..writeln()
           ..writeln(b.text.toUpperCase());
+        if (b.body.isNotEmpty) out.writeln(b.body);
       case PrepBlockKind.verse:
         final verses = await ref.read(
           passageTextProvider((translation.id, b.passage!)).future,
@@ -863,7 +1067,7 @@ Future<void> addPassageToPrep(
   if (chosen == null) return;
   final controller = ref.read(prepProvider.notifier);
   final id = chosen == -1
-      ? controller.create(passage: passage, template: false).id
+      ? controller.create(passages: [passage], template: false).id
       : (controller..addBlock(chosen, PrepBlockKind.verse, passage: passage))
             .byId(chosen)!
             .id;
@@ -977,6 +1181,8 @@ class _HelperSearch extends ConsumerStatefulWidget {
 
 class _HelperSearchState extends ConsumerState<_HelperSearch> {
   String _q = '';
+  bool _thought = true;
+  final Set<String> _excluded = {};
   Timer? _debounce;
 
   @override
@@ -985,32 +1191,51 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
     super.dispose();
   }
 
+  void _add(Passage p) {
+    ref
+        .read(prepProvider.notifier)
+        .addBlock(widget.prepId, PrepBlockKind.verse, passage: p);
+    _added(context);
+  }
+
+  void _addHit(SearchHit h) =>
+      _add(_canonical(h.verse.ref, h.verse.ref.verse, h.verse.translationId));
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    final tid = ref.watch(
-      translationControllerProvider.select((s) => s.primaryId),
-    );
-    final hits = _q.length < 2
-        ? null
-        : ref.watch(
-            searchResultsProvider((
-              text: _q,
-              testament: null,
-              bookId: null,
-              limit: 40,
-              translations: tid,
-            )),
-          );
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
       children: [
+        SegmentedButton<bool>(
+          showSelectedIcon: false,
+          segments: const [
+            ButtonSegment(
+              value: true,
+              icon: Icon(Icons.psychology_alt_outlined, size: 18),
+              label: Text(S.prepThoughtMode),
+            ),
+            ButtonSegment(
+              value: false,
+              icon: Icon(Icons.text_fields, size: 18),
+              label: Text(S.prepWordsMode),
+            ),
+          ],
+          selected: {_thought},
+          onSelectionChanged: (s) => setState(() => _thought = s.single),
+        ),
+        const SizedBox(height: 10),
         TextField(
           autofocus: true,
+          minLines: 1,
+          maxLines: _thought ? 3 : 1,
+          textCapitalization: TextCapitalization.sentences,
           decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search),
-            hintText: S.prepSearchHint,
+            prefixIcon: Icon(
+              _thought ? Icons.psychology_alt_outlined : Icons.search,
+            ),
+            hintText: _thought ? S.prepThoughtHint : S.prepSearchHint,
             filled: true,
             fillColor: palette.gold.withValues(alpha: 0.08),
             border: OutlineInputBorder(
@@ -1021,54 +1246,183 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
           onChanged: (v) {
             _debounce?.cancel();
             _debounce = Timer(
-              const Duration(milliseconds: 300),
-              () => setState(() => _q = v.trim()),
+              const Duration(milliseconds: 400),
+              () => setState(() {
+                _q = v.trim();
+                _excluded.clear();
+              }),
             );
           },
         ),
         const SizedBox(height: 8),
-        if (hits == null)
+        if (_q.length < 2)
           Text(
-            S.prepSearchIntro,
+            _thought ? S.prepThoughtIntro : S.prepSearchIntro,
             style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
           )
+        else if (_thought)
+          ..._thoughtResults(theme, palette)
         else
-          ...hits.when(
-            loading: () => [const LinearProgressIndicator()],
-            error: (e, _) => [Text('$e')],
-            data: (list) => list.isEmpty
-                ? [const Text(S.searchNoResults)]
-                : [
-                    for (final h in list)
-                      _HitTile(
-                        hit: h,
-                        onAdd: () {
-                          ref
-                              .read(prepProvider.notifier)
-                              .addBlock(
-                                widget.prepId,
-                                PrepBlockKind.verse,
-                                passage: _canonical(
-                                  h.verse.ref,
-                                  h.verse.ref.verse,
-                                  h.verse.translationId,
-                                ),
-                              );
-                          _added(context);
-                        },
-                      ),
-                  ],
+          ..._wordResults(),
+      ],
+    );
+  }
+
+  List<Widget> _wordResults() {
+    final tid = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
+    return ref
+        .watch(
+          searchResultsProvider((
+            text: _q,
+            testament: null,
+            bookId: null,
+            limit: 40,
+            translations: tid,
+          )),
+        )
+        .when(
+          loading: () => [const LinearProgressIndicator()],
+          error: (e, _) => [Text('$e')],
+          data: (list) => list.isEmpty
+              ? [const Text(S.searchNoResults)]
+              : [
+                  for (final h in list)
+                    _HitTile(hit: h, onAdd: () => _addHit(h)),
+                ],
+        );
+  }
+
+  List<Widget> _thoughtResults(ThemeData theme, AppPalette palette) {
+    final tid = ref.watch(
+      translationControllerProvider.select((s) => s.primaryId),
+    );
+    final result = ref.watch(
+      thoughtSearchProvider((
+        text: _q,
+        translationId: tid,
+        excluded: (_excluded.toList()..sort()).join(','),
+      )),
+    );
+    Widget label(String t) => Padding(
+      padding: const EdgeInsets.fromLTRB(0, 14, 0, 4),
+      child: Text(
+        t.toUpperCase(),
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: palette.muted,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.1,
+        ),
+      ),
+    );
+    return result.when(
+      loading: () => [const LinearProgressIndicator()],
+      error: (e, _) => [Text('$e')],
+      data: (r) => [
+        if (r.concepts.isEmpty)
+          Text(
+            S.prepThoughtNone,
+            style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+          )
+        else ...[
+          label(S.prepThoughtUnderstood),
+          Wrap(
+            spacing: 6,
+            runSpacing: 6,
+            children: [
+              for (final c in r.concepts)
+                FilterChip(
+                  label: Text(c.label),
+                  selected: !_excluded.contains(c.id),
+                  onSelected: (on) => setState(
+                    () => on ? _excluded.remove(c.id) : _excluded.add(c.id),
+                  ),
+                ),
+            ],
           ),
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              S.prepThoughtToggle,
+              style: theme.textTheme.labelSmall?.copyWith(color: palette.muted),
+            ),
+          ),
+        ],
+        if (r.keyPassages.isNotEmpty) ...[
+          label(S.prepKeyPassages),
+          for (final k in r.keyPassages)
+            _KeyPassageTile(item: k, onAdd: () => _add(k.passage)),
+        ],
+        if (r.hits.isNotEmpty) ...[
+          label(S.prepSimilar),
+          for (final h in r.hits)
+            _HitTile(
+              hit: h.hit,
+              concepts: h.concepts,
+              onAdd: () => _addHit(h.hit),
+            ),
+        ] else if (r.keyPassages.isEmpty)
+          const Text(S.searchNoResults),
       ],
     );
   }
 }
 
+class _KeyPassageTile extends ConsumerWidget {
+  const _KeyPassageTile({required this.item, required this.onAdd});
+
+  final KeyPassage item;
+  final VoidCallback onAdd;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final t = ref.watch(primaryTranslationProvider);
+    final verses = ref.watch(passageTextProvider((t.id, item.passage))).value;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: passageLabel(ref, item.passage),
+              style: TextStyle(color: palette.gold),
+            ),
+            TextSpan(
+              text: '  ${item.label.isEmpty ? item.source : item.label}',
+              style: TextStyle(
+                color: palette.muted,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
+        style: theme.textTheme.labelLarge,
+      ),
+      subtitle: Text(
+        verses?.map((v) => v.text.replaceAll('\n', ' ')).join(' ') ?? '…',
+        maxLines: 3,
+        overflow: TextOverflow.ellipsis,
+      ),
+      trailing: _AddButton(onTap: onAdd),
+    );
+  }
+}
+
 class _HitTile extends ConsumerWidget {
-  const _HitTile({required this.hit, required this.onAdd});
+  const _HitTile({
+    required this.hit,
+    required this.onAdd,
+    this.concepts = const [],
+  });
 
   final SearchHit hit;
   final VoidCallback onAdd;
+
+  /// Pojmy myšlenky, které verš obsahuje.
+  final List<String> concepts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -1090,9 +1444,25 @@ class _HitTile extends ConsumerWidget {
     }
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(
-        '${book.name} ${hit.verse.ref.chapter},${hit.verse.ref.verse}',
-        style: theme.textTheme.labelLarge?.copyWith(color: palette.gold),
+      title: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text:
+                  '${book.name} ${hit.verse.ref.chapter},${hit.verse.ref.verse}',
+              style: TextStyle(color: palette.gold),
+            ),
+            if (concepts.length > 1)
+              TextSpan(
+                text: '  ${concepts.join(' · ')}',
+                style: TextStyle(
+                  color: palette.muted,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+          ],
+        ),
+        style: theme.textTheme.labelLarge,
       ),
       subtitle: Text.rich(TextSpan(children: spans)),
       trailing: _AddButton(onTap: onAdd),
@@ -1120,7 +1490,7 @@ class _HelperConnectionsState extends ConsumerState<_HelperConnections> {
     final palette = AppPalette.of(context);
     final prep = ref.watch(prepProvider.notifier).byId(widget.prepId);
     final sources = <Passage>[
-      ?prep?.passage,
+      ...?prep?.passages,
       for (final b in prep?.blocks ?? const <PrepBlock>[]) ?b.passage,
     ];
     final focus = _focus ?? sources.firstOrNull;
@@ -1150,7 +1520,7 @@ class _HelperConnectionsState extends ConsumerState<_HelperConnections> {
               avatar: const Icon(Icons.add, size: 18),
               label: const Text(S.prepOtherVerse),
               onPressed: () async {
-                final p = await askPassage(context, ref);
+                final p = await pickPassage(context);
                 if (p != null) setState(() => _focus = p);
               },
             ),
@@ -1437,7 +1807,7 @@ class _HelperOutline extends ConsumerWidget {
                   children: [
                     Text(kind.label, style: theme.textTheme.titleMedium),
                     const SizedBox(height: 4),
-                    for (final (_, t) in items)
+                    for (final (t, _) in items)
                       Text('•  $t', style: theme.textTheme.bodySmall),
                     Align(
                       alignment: Alignment.centerRight,
@@ -1446,8 +1816,13 @@ class _HelperOutline extends ConsumerWidget {
                         label: const Text(S.prepInsertOutline),
                         onPressed: () {
                           final c = ref.read(prepProvider.notifier);
-                          for (final (k, t) in items) {
-                            c.addBlock(prepId, k, text: t);
+                          for (final (t, hint) in items) {
+                            c.addBlock(
+                              prepId,
+                              PrepBlockKind.heading,
+                              text: t,
+                              hint: hint,
+                            );
                           }
                           _added(context);
                         },
@@ -1560,9 +1935,11 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                 child: i == 0
                     ? _Slide(
                         title: prep.title.isEmpty ? S.prepUntitled : prep.title,
-                        subtitle: prep.passage == null
+                        subtitle: prep.passages.isEmpty
                             ? prep.kind.label
-                            : passageLabel(ref, prep.passage!),
+                            : prep.passages
+                                  .map((p) => passageLabel(ref, p))
+                                  .join(' · '),
                         scale: _scale,
                         big: true,
                       )
@@ -1656,7 +2033,13 @@ class _BlockSlide extends ConsumerWidget {
       );
     }
     if (b.kind == PrepBlockKind.heading) {
-      return _Slide(title: b.text, scale: scale, big: true, color: color);
+      return _Slide(
+        title: b.text,
+        body: b.body.isEmpty ? null : b.body,
+        scale: scale,
+        big: true,
+        color: color,
+      );
     }
     return _Slide(
       title: b.kind.label,

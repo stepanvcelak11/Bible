@@ -9,7 +9,7 @@ import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../../domain/services/versification.dart';
 import '../../content/application/content_providers.dart';
-import '../../search/application/reference_parser.dart';
+import 'reference_parser.dart';
 
 /// Pojem ze slovníku pro hledání podle myšlenky (assets/content/concepts.json).
 @immutable

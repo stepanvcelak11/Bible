@@ -560,6 +560,31 @@ void main() {
     expect(container.read(readingPositionProvider), const VerseRef(43, 3, 17));
   });
 
+  appTest('hledání podle myšlenky', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.tap(find.text('Hledat').last);
+    await settle(tester);
+    // Delší dotaz nabídne hledání podle myšlenky.
+    await tester.enterText(
+      find.byType(TextField),
+      'Bůh miloval svět i když máme strach',
+    );
+    await tester.pump(const Duration(milliseconds: 400));
+    await settle(tester);
+    await tester.tap(find.text('Hledat podle myšlenky'));
+    await settle(tester);
+    expect(find.text('ROZUMÍM JAKO'), findsOneWidget);
+    expect(find.text('Strach'), findsOneWidget);
+    expect(find.text('Boží láska'), findsOneWidget);
+    expect(find.text('KLÍČOVÁ MÍSTA K TÉMATU'), findsOneWidget);
+    expect(
+      find.textContaining('miloval svět', findRichText: true),
+      findsWidgets,
+    );
+    // Režim si aplikace pamatuje.
+    expect(container.read(appPreferencesProvider).searchByThought, isTrue);
+  });
+
   appTest('přejetí prstem = další kapitola', (tester) async {
     await pumpApp(tester);
     await tester.fling(find.byType(PageView), const Offset(-300, 0), 1500);

@@ -85,4 +85,21 @@ void main() {
     expect(rows[1].secondary!.text, 'CEP51:4');
     expect(rows[1].secondaryLabel, '4');
   });
+
+  test('BKR žalm 22: nadpis je verš 1, verše 31–32 spojené', () {
+    VerseRef c(int v) =>
+        Versification.fromCanonical(VerseRef(19, 22, v), 'BKR');
+    expect(c(1), const VerseRef(19, 22, 1));
+    expect(c(2), const VerseRef(19, 22, 2), reason: 'Bože můj, Bože můj');
+    expect(c(32), const VerseRef(19, 22, 31));
+    expect(
+      Versification.toCanonical(const VerseRef(19, 22, 2), 'BKR'),
+      const VerseRef(19, 22, 2),
+    );
+    // Ostatní žalmy s nadpisem dál posunuté (Ž 23 nemá nadpis zvlášť).
+    expect(
+      Versification.fromCanonical(const VerseRef(19, 34, 19), 'BKR'),
+      const VerseRef(19, 34, 18),
+    );
+  });
 }

@@ -5,9 +5,17 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 12;
+const whatsNewVersion = 13;
 
 const _items = [
+  (
+    Icons.manage_search,
+    'Hledání podle myšlenky i v Hledat',
+    'V Hledat přepněte na „Podle myšlenky“ a napište myšlenku vlastními '
+        'slovy. Aplikace pozná přes 200 témat (strach, odpuštění, závist, '
+        'stáří, Vánoce, pomsta…) a najde místa, kde o nich Bible mluví, '
+        'i když jinými slovy. U delšího dotazu to nabídne sama.',
+  ),
   (
     Icons.psychology_alt_outlined,
     'Příprava: hledání podle myšlenky',

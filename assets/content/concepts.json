@@ -263,8 +263,6 @@
     "nikoho",
     "opust",
     "osaml",
-    "sam",
-    "sama",
     "samot",
     "zapomen",
     "zapomn"
@@ -1611,7 +1609,6 @@
    "label": "Láska k bližnímu",
    "triggers": [
     "blizni",
-    "druh",
     "laskav",
     "ostatni",
     "pomah",
@@ -1748,12 +1745,13 @@
     "manzel",
     "manzelk",
     "partner",
-    "svatb",
-    "vztah"
+    "svatb"
    ],
    "terms": [
     "manzel",
-    "nevest",
+    "nevesta=",
+    "nevestu=",
+    "nevesty=",
     "zena=",
     "zenich",
     "zenu="
@@ -2239,9 +2237,7 @@
    "triggers": [
     "cas",
     "kratk",
-    "mladi",
     "pomij",
-    "stari",
     "zivot_je"
    ],
    "terms": [
@@ -2334,6 +2330,1830 @@
    "links": [
     "h:rest",
     "t:work"
+   ]
+  },
+  {
+   "id": "glory",
+   "label": "Boží sláva",
+   "triggers": [
+    "majest",
+    "nadher",
+    "slav",
+    "velebn"
+   ],
+   "terms": [
+    "slava=",
+    "slavu",
+    "slavy=",
+    "velebnost"
+   ],
+   "links": [
+    "t:holiness",
+    "h:presence"
+   ]
+  },
+  {
+   "id": "trinity",
+   "label": "Trojice",
+   "triggers": [
+    "tri_osoby",
+    "trojic",
+    "trojjedin"
+   ],
+   "terms": [
+    "otce_i_syna",
+    "ve_jmeno_otce"
+   ],
+   "links": [
+    "t:trinity"
+   ]
+  },
+  {
+   "id": "sovereign",
+   "label": "Bůh vládne dějinám",
+   "triggers": [
+    "kontrol",
+    "nahod",
+    "osud",
+    "plan",
+    "ridi_svet",
+    "vladne_svet"
+   ],
+   "terms": [
+    "kraluje",
+    "rada=",
+    "radu=",
+    "umysl",
+    "ustanovil"
+   ],
+   "links": [
+    "t:faithfulness"
+   ]
+  },
+  {
+   "id": "godpatience",
+   "label": "Boží trpělivost",
+   "triggers": [
+    "dalsi_sanci",
+    "dava_sanci",
+    "shovivav",
+    "trpelivost_bozi"
+   ],
+   "terms": [
+    "dlouhocekaj",
+    "pomaly_k_hnevu",
+    "shovivav"
+   ],
+   "links": [
+    "t:love"
+   ]
+  },
+  {
+   "id": "omniscience",
+   "label": "Bůh mě zná",
+   "triggers": [
+    "me_zna",
+    "mne_zna",
+    "vi_o_mne",
+    "vidi_me",
+    "vsechno_vi",
+    "vseved",
+    "zna_me"
+   ],
+   "terms": [
+    "zkoumas",
+    "znas",
+    "zpytuj"
+   ],
+   "links": [
+    "s:worthless"
+   ]
+  },
+  {
+   "id": "covenant",
+   "label": "Smlouva",
+   "triggers": [
+    "smlouv",
+    "umluv",
+    "zavaz"
+   ],
+   "terms": [
+    "smlouv",
+    "umluv"
+   ],
+   "links": [
+    "h:covenant"
+   ]
+  },
+  {
+   "id": "law",
+   "label": "Zákon a přikázání",
+   "triggers": [
+    "desater",
+    "pravidl",
+    "prikaz",
+    "zakon"
+   ],
+   "terms": [
+    "prikazan",
+    "ustanoven",
+    "zakon"
+   ],
+   "links": [
+    "t:word"
+   ]
+  },
+  {
+   "id": "works",
+   "label": "Víra a skutky",
+   "triggers": [
+    "skutk",
+    "snaha",
+    "vydelat",
+    "zaslouzit",
+    "zasluh"
+   ],
+   "terms": [
+    "skutk",
+    "skutku_zakona"
+   ],
+   "links": [
+    "t:grace",
+    "t:faith"
+   ]
+  },
+  {
+   "id": "justify",
+   "label": "Ospravedlnění",
+   "triggers": [
+    "ospravedl",
+    "spravedlivy_pred"
+   ],
+   "terms": [
+    "ospravedl"
+   ],
+   "links": [
+    "t:grace"
+   ]
+  },
+  {
+   "id": "election",
+   "label": "Vyvolení",
+   "triggers": [
+    "vybral_si",
+    "vybran",
+    "vyvol"
+   ],
+   "terms": [
+    "vyvol",
+    "vyvolen"
+   ],
+   "links": [
+    "h:weak"
+   ]
+  },
+  {
+   "id": "christmas",
+   "label": "Vánoce a narození Ježíše",
+   "triggers": [
+    "advent",
+    "betlem",
+    "jesl",
+    "narozen_jezis",
+    "vanoc",
+    "vtelen"
+   ],
+   "terms": [
+    "betlem",
+    "detatko",
+    "jesl",
+    "narodil"
+   ],
+   "links": []
+  },
+  {
+   "id": "ascension",
+   "label": "Nanebevstoupení",
+   "triggers": [
+    "nanebe"
+   ],
+   "terms": [
+    "na_nebe",
+    "vstoupil",
+    "vzat",
+    "vzhuru"
+   ],
+   "links": []
+  },
+  {
+   "id": "pentecost",
+   "label": "Letnice",
+   "triggers": [
+    "letnic",
+    "seslani_ducha"
+   ],
+   "terms": [
+    "jazyk",
+    "letnic",
+    "ohniv"
+   ],
+   "links": [
+    "t:spirit",
+    "h:spirit"
+   ]
+  },
+  {
+   "id": "miracles",
+   "label": "Zázraky a znamení",
+   "triggers": [
+    "nadpriroz",
+    "zazrak",
+    "znameni="
+   ],
+   "terms": [
+    "divu=",
+    "divy=",
+    "zazrak",
+    "znamen"
+   ],
+   "links": []
+  },
+  {
+   "id": "parables",
+   "label": "Podobenství",
+   "triggers": [
+    "podobenst"
+   ],
+   "terms": [
+    "podobenst"
+   ],
+   "links": []
+  },
+  {
+   "id": "prophecy",
+   "label": "Proroctví a proroci",
+   "triggers": [
+    "predpove",
+    "proroct",
+    "prorok"
+   ],
+   "terms": [
+    "proroct",
+    "prorok"
+   ],
+   "links": []
+  },
+  {
+   "id": "angels",
+   "label": "Andělé",
+   "triggers": [
+    "andel"
+   ],
+   "terms": [
+    "andel"
+   ],
+   "links": []
+  },
+  {
+   "id": "warfare",
+   "label": "Duchovní boj",
+   "triggers": [
+    "boj_viry",
+    "duchovni_boj",
+    "utok",
+    "zbroj"
+   ],
+   "terms": [
+    "odeni",
+    "odolat",
+    "stit",
+    "zbroj"
+   ],
+   "links": [
+    "h:victory"
+   ]
+  },
+  {
+   "id": "will",
+   "label": "Boží vůle",
+   "triggers": [
+    "bozi_vule",
+    "co_buh_chce",
+    "co_chce_buh",
+    "vule_bozi"
+   ],
+   "terms": [
+    "vule=",
+    "vuli",
+    "vuli="
+   ],
+   "links": [
+    "s:decision"
+   ]
+  },
+  {
+   "id": "wrath",
+   "label": "Boží hněv",
+   "triggers": [
+    "bozi_hnev",
+    "rozhnev"
+   ],
+   "terms": [
+    "hnev",
+    "prchliv",
+    "rozhnev"
+   ],
+   "links": [
+    "t:judgment"
+   ]
+  },
+  {
+   "id": "feargod",
+   "label": "Bázeň Boží",
+   "triggers": [
+    "bazen",
+    "respekt_k",
+    "ucta_k_bohu"
+   ],
+   "terms": [
+    "bazen",
+    "bazne"
+   ],
+   "links": [
+    "t:holiness"
+   ]
+  },
+  {
+   "id": "hell",
+   "label": "Zatracení",
+   "triggers": [
+    "pekl",
+    "peklo",
+    "vecny_trest",
+    "zatracen"
+   ],
+   "terms": [
+    "pekel",
+    "zatracen"
+   ],
+   "links": [
+    "t:judgment"
+   ]
+  },
+  {
+   "id": "newearth",
+   "label": "Nové nebe a nová země",
+   "triggers": [
+    "apokalyps",
+    "konec_sveta",
+    "nova_zeme",
+    "nove_nebe",
+    "zjeven"
+   ],
+   "terms": [
+    "nova_zeme",
+    "nove_nebe"
+   ],
+   "links": [
+    "t:newcreation"
+   ]
+  },
+  {
+   "id": "reward",
+   "label": "Odměna",
+   "triggers": [
+    "koruna",
+    "ocene",
+    "odmen"
+   ],
+   "terms": [
+    "korun",
+    "odmen",
+    "odplat"
+   ],
+   "links": []
+  },
+  {
+   "id": "soul",
+   "label": "Duše",
+   "triggers": [
+    "duse",
+    "dusi",
+    "vnitrni_clovek"
+   ],
+   "terms": [
+    "duse=",
+    "duse_ma",
+    "dusi="
+   ],
+   "links": []
+  },
+  {
+   "id": "mind",
+   "label": "Mysl a myšlenky",
+   "triggers": [
+    "mysl",
+    "myslen",
+    "premysl"
+   ],
+   "terms": [
+    "mysl",
+    "smysl"
+   ],
+   "links": []
+  },
+  {
+   "id": "conscience",
+   "label": "Svědomí",
+   "triggers": [
+    "svedom"
+   ],
+   "terms": [
+    "svedom"
+   ],
+   "links": [
+    "s:guilt"
+   ]
+  },
+  {
+   "id": "choice",
+   "label": "Rozhodnutí a volba",
+   "triggers": [
+    "rozhodnut",
+    "volba",
+    "volit",
+    "vybrat_si"
+   ],
+   "terms": [
+    "vyvolte",
+    "zvolil"
+   ],
+   "links": [
+    "s:decision"
+   ]
+  },
+  {
+   "id": "death",
+   "label": "Smrt a umírání",
+   "triggers": [
+    "konec_zivota",
+    "smrt",
+    "umir",
+    "umru",
+    "zemru"
+   ],
+   "terms": [
+    "smrt",
+    "umr",
+    "zemr"
+   ],
+   "links": [
+    "t:resurrection"
+   ]
+  },
+  {
+   "id": "aging",
+   "label": "Stáří",
+   "triggers": [
+    "duchod",
+    "sedin",
+    "senior",
+    "star",
+    "stari",
+    "stary_clovek"
+   ],
+   "terms": [
+    "sedin",
+    "star",
+    "starec"
+   ],
+   "links": []
+  },
+  {
+   "id": "youth",
+   "label": "Mládí",
+   "triggers": [
+    "mlad",
+    "mladi",
+    "mlady",
+    "student",
+    "teenag"
+   ],
+   "terms": [
+    "mlad",
+    "mladenc",
+    "mladenec"
+   ],
+   "links": []
+  },
+  {
+   "id": "children",
+   "label": "Děti",
+   "triggers": [
+    "deti",
+    "dite",
+    "ditek"
+   ],
+   "terms": [
+    "dite=",
+    "ditk",
+    "ditky=",
+    "malick"
+   ],
+   "links": [
+    "t:family",
+    "s:family"
+   ]
+  },
+  {
+   "id": "parents",
+   "label": "Rodiče a výchova",
+   "triggers": [
+    "rodic",
+    "vychov"
+   ],
+   "terms": [
+    "cti_otce",
+    "cti_sveho",
+    "kazen",
+    "vychov"
+   ],
+   "links": [
+    "t:family",
+    "s:family"
+   ]
+  },
+  {
+   "id": "divorce",
+   "label": "Rozvod a rozpad vztahu",
+   "triggers": [
+    "rozchod",
+    "rozpad",
+    "rozved",
+    "rozvod"
+   ],
+   "terms": [
+    "rozluk",
+    "zapuz"
+   ],
+   "links": [
+    "t:marriage"
+   ]
+  },
+  {
+   "id": "adultery",
+   "label": "Nevěra a věrnost v manželství",
+   "triggers": [
+    "cizoloz",
+    "never",
+    "podvad_manzel"
+   ],
+   "terms": [
+    "cizoloz"
+   ],
+   "links": [
+    "t:marriage"
+   ]
+  },
+  {
+   "id": "sexuality",
+   "label": "Sexualita a čistota",
+   "triggers": [
+    "cistot",
+    "porno",
+    "sex",
+    "smilst"
+   ],
+   "terms": [
+    "necistot",
+    "smilnik",
+    "smilstv"
+   ],
+   "links": [
+    "s:temptation"
+   ]
+  },
+  {
+   "id": "addiction",
+   "label": "Závislost a opilost",
+   "triggers": [
+    "alkohol",
+    "drog",
+    "hazard",
+    "kour",
+    "opil",
+    "zavisl"
+   ],
+   "terms": [
+    "opil",
+    "opilstv",
+    "opojn"
+   ],
+   "links": [
+    "s:temptation"
+   ]
+  },
+  {
+   "id": "envy",
+   "label": "Závist",
+   "triggers": [
+    "srovnav",
+    "zarliv",
+    "zavid",
+    "zavist"
+   ],
+   "terms": [
+    "zavid",
+    "zavist"
+   ],
+   "links": []
+  },
+  {
+   "id": "greed",
+   "label": "Chamtivost",
+   "triggers": [
+    "chamtiv",
+    "hrabiv",
+    "lakom",
+    "vic_a_vic"
+   ],
+   "terms": [
+    "hrabiv",
+    "lakom"
+   ],
+   "links": [
+    "t:money"
+   ]
+  },
+  {
+   "id": "content",
+   "label": "Spokojenost",
+   "triggers": [
+    "dost_mi",
+    "spokoj",
+    "staci"
+   ],
+   "terms": [
+    "dosti_mas",
+    "postaci",
+    "spokoj"
+   ],
+   "links": [
+    "t:money"
+   ]
+  },
+  {
+   "id": "gossip",
+   "label": "Pomluvy",
+   "triggers": [
+    "drb",
+    "klep",
+    "pomluv"
+   ],
+   "terms": [
+    "klevet",
+    "pomluv",
+    "utrh"
+   ],
+   "links": []
+  },
+  {
+   "id": "honesty",
+   "label": "Poctivost",
+   "triggers": [
+    "ferov",
+    "poctiv",
+    "podvad"
+   ],
+   "terms": [
+    "falesn",
+    "poctiv",
+    "podvod"
+   ],
+   "links": []
+  },
+  {
+   "id": "stealing",
+   "label": "Krádež",
+   "triggers": [
+    "krad",
+    "kradez",
+    "zlodej"
+   ],
+   "terms": [
+    "krad",
+    "zlodej"
+   ],
+   "links": []
+  },
+  {
+   "id": "violence",
+   "label": "Násilí",
+   "triggers": [
+    "nasil",
+    "vrazd",
+    "zabij",
+    "zabit"
+   ],
+   "terms": [
+    "nasil",
+    "vrazd",
+    "zabij"
+   ],
+   "links": [
+    "t:justice"
+   ]
+  },
+  {
+   "id": "war",
+   "label": "Válka a mír mezi národy",
+   "triggers": [
+    "armad",
+    "valk",
+    "vojak"
+   ],
+   "terms": [
+    "mec",
+    "valk",
+    "vojsk"
+   ],
+   "links": [
+    "t:peace"
+   ]
+  },
+  {
+   "id": "revenge",
+   "label": "Pomsta",
+   "triggers": [
+    "oplatit",
+    "pomst",
+    "vratit_to"
+   ],
+   "terms": [
+    "pomst"
+   ],
+   "links": [
+    "t:forgiveness",
+    "s:hurt"
+   ]
+  },
+  {
+   "id": "bitter",
+   "label": "Hořkost a zatrpklost",
+   "triggers": [
+    "hork",
+    "zatrpkl"
+   ],
+   "terms": [
+    "hork"
+   ],
+   "links": [
+    "s:hurt"
+   ]
+  },
+  {
+   "id": "patience",
+   "label": "Trpělivost s druhými",
+   "triggers": [
+    "snas",
+    "snest",
+    "trpeliv"
+   ],
+   "terms": [
+    "snas",
+    "trpeliv"
+   ],
+   "links": [
+    "s:waiting"
+   ]
+  },
+  {
+   "id": "kindness",
+   "label": "Laskavost",
+   "triggers": [
+    "laskav",
+    "mily_k",
+    "vlidn"
+   ],
+   "terms": [
+    "dobrotiv",
+    "laskav",
+    "vlidn"
+   ],
+   "links": [
+    "t:neighbor"
+   ]
+  },
+  {
+   "id": "gentle",
+   "label": "Mírnost a tichost",
+   "triggers": [
+    "klidn",
+    "mirn",
+    "tich"
+   ],
+   "terms": [
+    "krotk",
+    "mirn",
+    "tich"
+   ],
+   "links": [
+    "t:humility"
+   ]
+  },
+  {
+   "id": "selfcontrol",
+   "label": "Sebeovládání",
+   "triggers": [
+    "disciplin",
+    "ovladn",
+    "sebeovlad"
+   ],
+   "terms": [
+    "stridm",
+    "zdrzenliv"
+   ],
+   "links": []
+  },
+  {
+   "id": "spiritfruit",
+   "label": "Ovoce Ducha",
+   "triggers": [
+    "ovoce_ducha"
+   ],
+   "terms": [
+    "ovoce_ducha"
+   ],
+   "links": [
+    "t:spirit",
+    "h:vine"
+   ]
+  },
+  {
+   "id": "gifts",
+   "label": "Dary a obdarování",
+   "triggers": [
+    "dary_ducha",
+    "obdarov",
+    "schopnost",
+    "talent"
+   ],
+   "terms": [
+    "dary=",
+    "obdarovan"
+   ],
+   "links": [
+    "t:spirit",
+    "t:church"
+   ]
+  },
+  {
+   "id": "lazy",
+   "label": "Lenost",
+   "triggers": [
+    "lenost",
+    "liny",
+    "prokrastin"
+   ],
+   "terms": [
+    "lenivy",
+    "lenoch",
+    "lenost",
+    "liny"
+   ],
+   "links": [
+    "t:work"
+   ]
+  },
+  {
+   "id": "diligent",
+   "label": "Pracovitost",
+   "triggers": [
+    "pile",
+    "pilny",
+    "pracovit",
+    "snaziv"
+   ],
+   "terms": [
+    "mravenc",
+    "pilnost",
+    "pilny"
+   ],
+   "links": [
+    "t:work"
+   ]
+  },
+  {
+   "id": "plans",
+   "label": "Plány do budoucna",
+   "triggers": [
+    "budoucnost_v",
+    "plan",
+    "planov"
+   ],
+   "terms": [
+    "srdce_cloveka",
+    "umysl",
+    "zitr"
+   ],
+   "links": [
+    "s:decision"
+   ]
+  },
+  {
+   "id": "listen",
+   "label": "Naslouchání",
+   "triggers": [
+    "mluvit_mene",
+    "naslouch",
+    "poslouch",
+    "slyset"
+   ],
+   "terms": [
+    "poslouchej",
+    "slys"
+   ],
+   "links": []
+  },
+  {
+   "id": "stillness",
+   "label": "Ztišení a rozjímání",
+   "triggers": [
+    "meditac",
+    "rozjiman",
+    "ticho",
+    "ztis"
+   ],
+   "terms": [
+    "premysl",
+    "rozjim",
+    "ztis"
+   ],
+   "links": [
+    "s:peace"
+   ]
+  },
+  {
+   "id": "tithe",
+   "label": "Desátky a dávání Bohu",
+   "triggers": [
+    "desat",
+    "desetin"
+   ],
+   "terms": [
+    "desat"
+   ],
+   "links": [
+    "t:money"
+   ]
+  },
+  {
+   "id": "leaders",
+   "label": "Vedení a odpovědnost",
+   "triggers": [
+    "lidr",
+    "pastor",
+    "starsi",
+    "vedouc",
+    "vest_lidi",
+    "vudc"
+   ],
+   "terms": [
+    "spravce",
+    "starsi=",
+    "vudce"
+   ],
+   "links": [
+    "t:church"
+   ]
+  },
+  {
+   "id": "teaching",
+   "label": "Učení a učitelé",
+   "triggers": [
+    "ucit",
+    "ucitel",
+    "vyucov"
+   ],
+   "terms": [
+    "ucil",
+    "ucitel",
+    "vyucov"
+   ],
+   "links": [
+    "t:word"
+   ]
+  },
+  {
+   "id": "preaching",
+   "label": "Kázání a zvěstování",
+   "triggers": [
+    "kazan",
+    "kazatel",
+    "zvest"
+   ],
+   "terms": [
+    "kazal",
+    "kazat",
+    "zvestov"
+   ],
+   "links": [
+    "t:witness"
+   ]
+  },
+  {
+   "id": "persecution",
+   "label": "Pronásledování pro víru",
+   "triggers": [
+    "kvuli_vire",
+    "posmech",
+    "pronasled",
+    "vysmech"
+   ],
+   "terms": [
+    "potupa",
+    "pronasled",
+    "protivenst"
+   ],
+   "links": [
+    "t:suffering"
+   ]
+  },
+  {
+   "id": "endurance",
+   "label": "Vytrvalost",
+   "triggers": [
+    "dotahn",
+    "nevzda",
+    "vydrz",
+    "vytrval"
+   ],
+   "terms": [
+    "setrv",
+    "vytrval"
+   ],
+   "links": [
+    "t:suffering",
+    "s:waiting"
+   ]
+  },
+  {
+   "id": "discipline",
+   "label": "Boží výchova",
+   "triggers": [
+    "kazen",
+    "trest_od_boha",
+    "vychova_bozi"
+   ],
+   "terms": [
+    "kazen",
+    "tresce",
+    "tresta"
+   ],
+   "links": []
+  },
+  {
+   "id": "testing",
+   "label": "Zkoušky víry",
+   "triggers": [
+    "zkous",
+    "zkousk"
+   ],
+   "terms": [
+    "zkous",
+    "zkusen"
+   ],
+   "links": [
+    "t:suffering"
+   ]
+  },
+  {
+   "id": "despair",
+   "label": "Beznaděj",
+   "triggers": [
+    "beznad",
+    "deprese",
+    "dno",
+    "nema_smysl",
+    "zoufal"
+   ],
+   "terms": [
+    "sklicen",
+    "zoufal"
+   ],
+   "links": [
+    "s:hope",
+    "s:sadness"
+   ]
+  },
+  {
+   "id": "rejection",
+   "label": "Odmítnutí",
+   "triggers": [
+    "nechtej",
+    "neprij",
+    "odmitn",
+    "zavrzen"
+   ],
+   "terms": [
+    "odmit",
+    "pohrd",
+    "zavrhl",
+    "zavrz"
+   ],
+   "links": [
+    "s:worthless"
+   ]
+  },
+  {
+   "id": "belong",
+   "label": "Kam patřím",
+   "triggers": [
+    "domov",
+    "patrim",
+    "patrit",
+    "prijeti",
+    "rodina_bozi"
+   ],
+   "terms": [
+    "lid_muj",
+    "muj_lid"
+   ],
+   "links": [
+    "t:church"
+   ]
+  },
+  {
+   "id": "home",
+   "label": "Domov",
+   "triggers": [
+    "doma",
+    "domov"
+   ],
+   "terms": [
+    "domov",
+    "dum=",
+    "pribytk"
+   ],
+   "links": [
+    "h:home"
+   ]
+  },
+  {
+   "id": "pilgrim",
+   "label": "Putování a cesta víry",
+   "triggers": [
+    "cestov",
+    "poutn",
+    "putov"
+   ],
+   "terms": [
+    "poutnik",
+    "putov"
+   ],
+   "links": [
+    "h:home"
+   ]
+  },
+  {
+   "id": "harvest",
+   "label": "Žeň a úroda",
+   "triggers": [
+    "dozink",
+    "sklize",
+    "urod",
+    "zen"
+   ],
+   "terms": [
+    "urod",
+    "zen=",
+    "zne="
+   ],
+   "links": []
+  },
+  {
+   "id": "seed",
+   "label": "Semeno a rozsévání",
+   "triggers": [
+    "rozsev",
+    "semin",
+    "zasi"
+   ],
+   "terms": [
+    "rozsev",
+    "seme",
+    "semen",
+    "sime"
+   ],
+   "links": [
+    "h:vine"
+   ]
+  },
+  {
+   "id": "salt",
+   "label": "Sůl a světlo",
+   "triggers": [
+    "soli",
+    "sul"
+   ],
+   "terms": [
+    "soli",
+    "sul="
+   ],
+   "links": [
+    "h:light"
+   ]
+  },
+  {
+   "id": "fire",
+   "label": "Oheň",
+   "triggers": [
+    "hori",
+    "ohen",
+    "plamen"
+   ],
+   "terms": [
+    "ohen",
+    "ohne",
+    "plamen"
+   ],
+   "links": []
+  },
+  {
+   "id": "mountain",
+   "label": "Setkání na hoře",
+   "triggers": [
+    "hora",
+    "hory",
+    "kopec"
+   ],
+   "terms": [
+    "hora=",
+    "hore=",
+    "horu=",
+    "hory="
+   ],
+   "links": [
+    "h:mountain"
+   ]
+  },
+  {
+   "id": "desert",
+   "label": "Poušť",
+   "triggers": [
+    "divocin",
+    "poust",
+    "pustin"
+   ],
+   "terms": [
+    "poust",
+    "pusti",
+    "pustin"
+   ],
+   "links": [
+    "h:exodus"
+   ]
+  },
+  {
+   "id": "storm",
+   "label": "Bouře",
+   "triggers": [
+    "bour",
+    "vichr",
+    "vln"
+   ],
+   "terms": [
+    "bour",
+    "vichr"
+   ],
+   "links": [
+    "s:fear"
+   ]
+  },
+  {
+   "id": "garden",
+   "label": "Zahrada a ráj",
+   "triggers": [
+    "eden",
+    "raj",
+    "zahrad"
+   ],
+   "terms": [
+    "eden",
+    "raj",
+    "zahrad"
+   ],
+   "links": [
+    "h:tree"
+   ]
+  },
+  {
+   "id": "jerusalem",
+   "label": "Jeruzalém a Sión",
+   "triggers": [
+    "jeruzal",
+    "sion"
+   ],
+   "terms": [
+    "jeruzalem",
+    "sion"
+   ],
+   "links": [
+    "h:presence"
+   ]
+  },
+  {
+   "id": "temple",
+   "label": "Chrám",
+   "triggers": [
+    "chram",
+    "kostel",
+    "svatyn"
+   ],
+   "terms": [
+    "chram",
+    "stank",
+    "svatyn"
+   ],
+   "links": [
+    "h:presence"
+   ]
+  },
+  {
+   "id": "priest",
+   "label": "Kněz a prostředník",
+   "triggers": [
+    "knez",
+    "prostred"
+   ],
+   "terms": [
+    "knez",
+    "prostred",
+    "veleknez"
+   ],
+   "links": [
+    "h:priest"
+   ]
+  },
+  {
+   "id": "israel",
+   "label": "Izrael, Boží lid",
+   "triggers": [
+    "izrael",
+    "zid",
+    "zide"
+   ],
+   "terms": [
+    "izraeli=",
+    "izraelsti"
+   ],
+   "links": [
+    "h:covenant"
+   ]
+  },
+  {
+   "id": "nations",
+   "label": "Všechny národy",
+   "triggers": [
+    "cely_svet",
+    "narodu",
+    "narodum",
+    "narody",
+    "vsem_lidem"
+   ],
+   "terms": [
+    "narod",
+    "pohan"
+   ],
+   "links": [
+    "h:nations"
+   ]
+  },
+  {
+   "id": "exile",
+   "label": "Vyhnanství a návrat",
+   "triggers": [
+    "babylon",
+    "exil",
+    "vyhnan"
+   ],
+   "terms": [
+    "babylon",
+    "zajet"
+   ],
+   "links": [
+    "h:home"
+   ]
+  },
+  {
+   "id": "steward",
+   "label": "Správcovství",
+   "triggers": [
+    "hrivn",
+    "spravc",
+    "zodpoved"
+   ],
+   "terms": [
+    "hrivn",
+    "spravce"
+   ],
+   "links": [
+    "t:money",
+    "t:work"
+   ]
+  },
+  {
+   "id": "faithfulhuman",
+   "label": "Věrnost v malém",
+   "triggers": [
+    "spolehliv",
+    "verny_v"
+   ],
+   "terms": [
+    "verne",
+    "verny="
+   ],
+   "links": []
+  },
+  {
+   "id": "debt",
+   "label": "Dluhy",
+   "triggers": [
+    "dluh",
+    "pujck"
+   ],
+   "terms": [
+    "dluh",
+    "pujc",
+    "veritel"
+   ],
+   "links": [
+    "s:money"
+   ]
+  },
+  {
+   "id": "equality",
+   "label": "Rovnost lidí",
+   "triggers": [
+    "diskrimin",
+    "predsud",
+    "rasis",
+    "rovnost",
+    "vsichni_stejn"
+   ],
+   "terms": [
+    "neni_zid",
+    "prijimani_osob"
+   ],
+   "links": [
+    "t:neighbor"
+   ]
+  },
+  {
+   "id": "prisoners",
+   "label": "Vězni",
+   "triggers": [
+    "kriminal",
+    "vezen",
+    "vezn"
+   ],
+   "terms": [
+    "vezen",
+    "vezn",
+    "zalar"
+   ],
+   "links": [
+    "t:justice"
+   ]
+  },
+  {
+   "id": "taxes",
+   "label": "Daně",
+   "triggers": [
+    "dan=",
+    "dane",
+    "dani"
+   ],
+   "terms": [
+    "clo=",
+    "dan=",
+    "dane="
+   ],
+   "links": [
+    "t:authority"
+   ]
+  },
+  {
+   "id": "confess",
+   "label": "Vyznání hříchů",
+   "triggers": [
+    "priznat",
+    "vyznan",
+    "vyznat",
+    "zpoved"
+   ],
+   "terms": [
+    "prizn",
+    "vyzn"
+   ],
+   "links": [
+    "t:repentance",
+    "s:guilt"
+   ]
+  },
+  {
+   "id": "answered",
+   "label": "Vyslyšená modlitba",
+   "triggers": [
+    "odpoved_na_modlitbu",
+    "vyslys"
+   ],
+   "terms": [
+    "vyslys"
+   ],
+   "links": [
+    "t:prayer",
+    "s:prayer"
+   ]
+  },
+  {
+   "id": "intercede",
+   "label": "Přímluva",
+   "triggers": [
+    "modlit_se_za",
+    "primluv"
+   ],
+   "terms": [
+    "primlouv",
+    "primluv"
+   ],
+   "links": [
+    "t:prayer"
+   ]
+  },
+  {
+   "id": "lament",
+   "label": "Nářek a stížnost Bohu",
+   "triggers": [
+    "jak_dlouho",
+    "narek",
+    "stezov",
+    "stiznost"
+   ],
+   "terms": [
+    "dokudz",
+    "jak_dlouho",
+    "kvil",
+    "narek"
+   ],
+   "links": [
+    "s:sadness",
+    "s:waiting"
+   ]
+  },
+  {
+   "id": "foolish",
+   "label": "Pošetilost",
+   "triggers": [
+    "blazn",
+    "hloup",
+    "posetil"
+   ],
+   "terms": [
+    "blazn",
+    "nemoudr",
+    "posetil"
+   ],
+   "links": []
+  },
+  {
+   "id": "knowledge",
+   "label": "Poznání",
+   "triggers": [
+    "poznan",
+    "vedeni"
+   ],
+   "terms": [
+    "poznan",
+    "umeni"
+   ],
+   "links": []
+  },
+  {
+   "id": "evil",
+   "label": "Proč je zlo",
+   "triggers": [
+    "dopust",
+    "proc_zlo",
+    "zlo_ve_svete"
+   ],
+   "terms": [
+    "bezbozn",
+    "zly"
+   ],
+   "links": [
+    "t:suffering"
+   ]
+  },
+  {
+   "id": "encourage",
+   "label": "Povzbuzování druhých",
+   "triggers": [
+    "podporit_druh",
+    "povzbu"
+   ],
+   "terms": [
+    "napomin",
+    "potesuj",
+    "povzbuz"
+   ],
+   "links": [
+    "t:church"
+   ]
+  },
+  {
+   "id": "celebrate",
+   "label": "Oslava a svátky",
+   "triggers": [
+    "oslavit",
+    "party=",
+    "slavnost",
+    "svatek"
+   ],
+   "terms": [
+    "slavnost",
+    "svatek"
+   ],
+   "links": [
+    "s:joy"
+   ]
+  },
+  {
+   "id": "beauty",
+   "label": "Krása",
+   "triggers": [
+    "kras",
+    "krasn"
+   ],
+   "terms": [
+    "kras",
+    "ozdob"
+   ],
+   "links": [
+    "t:creator"
+   ]
+  },
+  {
+   "id": "dreams",
+   "label": "Sny a vidění",
+   "triggers": [
+    "snil",
+    "sny=",
+    "videni"
+   ],
+   "terms": [
+    "sen=",
+    "snu=",
+    "sny=",
+    "videni"
+   ],
+   "links": []
+  },
+  {
+   "id": "race",
+   "label": "Závod víry",
+   "triggers": [
+    "beha",
+    "bezec",
+    "bezet",
+    "cil=",
+    "sport",
+    "zavod"
+   ],
+   "terms": [
+    "beh=",
+    "bezi",
+    "cil=",
+    "zavod"
+   ],
+   "links": []
+  },
+  {
+   "id": "curse",
+   "label": "Prokletí",
+   "triggers": [
+    "kletb",
+    "prokl"
+   ],
+   "terms": [
+    "kletb",
+    "proklet",
+    "zlorec"
+   ],
+   "links": []
+  },
+  {
+   "id": "occult",
+   "label": "Okultismus a pověry",
+   "triggers": [
+    "carod",
+    "horoskop",
+    "magie",
+    "okult",
+    "povera",
+    "povery",
+    "vesten"
+   ],
+   "terms": [
+    "carod",
+    "hadac",
+    "kouzel",
+    "vest"
+   ],
+   "links": []
+  },
+  {
+   "id": "idols",
+   "label": "Modly",
+   "triggers": [
+    "idol",
+    "modlam",
+    "modlarst",
+    "modly="
+   ],
+   "terms": [
+    "buzk",
+    "modlam",
+    "modlarstv",
+    "modly=",
+    "rytin"
+   ],
+   "links": []
+  },
+  {
+   "id": "busy",
+   "label": "Shon a uspěchanost",
+   "triggers": [
+    "nestiham",
+    "shon",
+    "spech",
+    "zaneprazdn"
+   ],
+   "terms": [
+    "pecliv",
+    "rozptyl"
+   ],
+   "links": [
+    "s:anxiety",
+    "h:rest"
+   ]
+  },
+  {
+   "id": "barren",
+   "label": "Touha po dítěti",
+   "triggers": [
+    "neplod",
+    "otehotn",
+    "tehoten"
+   ],
+   "terms": [
+    "neplodn",
+    "pocala"
+   ],
+   "links": [
+    "s:family"
+   ]
+  },
+  {
+   "id": "remember",
+   "label": "Pamatovat na Boží skutky",
+   "triggers": [
+    "pamat",
+    "vzpomin"
+   ],
+   "terms": [
+    "pamatuj",
+    "pripomin",
+    "rozpomen"
+   ],
+   "links": [
+    "t:faithfulness"
+   ]
+  },
+  {
+   "id": "surrender",
+   "label": "Odevzdání Bohu",
+   "triggers": [
+    "nechat_na_bohu",
+    "odevzd",
+    "vzdat_se"
+   ],
+   "terms": [
+    "poruc",
+    "uval"
+   ],
+   "links": [
+    "s:anxiety"
    ]
   }
  ]

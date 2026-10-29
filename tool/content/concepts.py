@@ -50,7 +50,7 @@ c("presence", "Bůh je blízko",
   "blízk blízko přítomn se_mnou s_námi nablízku vedle provází doprovod",
   "blízk s_tebou s_vámi uprostřed přebýv", "h:presence h:name")
 c("abandon", "Opuštěnost a samota",
-  "opušt opust samot sám sama osaml nenechá nechal zapomn zapomen nikoho",
+  "opušt opust samot osaml nenechá nechal zapomn zapomen nikoho",
   "opust opouš zapomen sám= sama= osiř osamě", "s:lonely h:home")
 c("care", "Bůh se stará",
   "postar pečuj péče zaopatř potřeb chybí nedostat živob jídlo",
@@ -229,7 +229,7 @@ c("failure", "Selhání a nový začátek",
 
 # --- Vztahy a společnost ------------------------------------------------------
 c("neighbor", "Láska k bližnímu",
-  "bližní ostatní druh pomoc pomáh služ laskav",
+  "bližní ostatní pomoc pomáh služ laskav",
   "bližní milovati_bližní milovat_bližní", "t:neighbor")
 c("enemy", "Nepřátelé",
   "nepřít nepřátel nenávid nesnáší pronásled",
@@ -247,8 +247,8 @@ c("family", "Rodina a děti",
   "rodin rodič dět dítě syn dcer výchov máma otec",
   "matk dcer dítk děti= dětí= rodiče= rodičů", "t:family s:family")
 c("marriage", "Manželství a láska",
-  "manžel manželk svatb vztah partner láska_mezi",
-  "manžel ženich nevěst žena= ženu=", "t:marriage s:love h:bride")
+  "manžel manželk svatb partner láska_mezi",
+  "manžel ženich nevěsta= nevěstu= nevěsty= žena= ženu=", "t:marriage s:love h:bride")
 c("friend", "Přátelství",
   "přítel přátel kamarád",
   "přítel přátel", "t:friendship")
@@ -321,7 +321,7 @@ c("return", "Ježíšův návrat",
   "návrat_ježíše druhý_příchod přijde konec_světa apokalyps",
   "příchod přijde den_páně", "t:return")
 c("time", "Čas a pomíjivost",
-  "čas pomíj krátk stáří mládí život_je",
+  "čas pomíj krátk život_je",
   "čas pomíj tráva stín= dnové", "")
 c("heart", "Srdce a nitro",
   "srdc nitro myšlen motiv uvnitř",
@@ -338,3 +338,337 @@ c("supper", "Večeře Páně",
 c("sabbath", "Odpočinutí a sobota",
   "sobot neděl odpočinut volno",
   "sobot odpočin", "h:rest t:work")
+
+# --- Bůh a jeho jednání (další) ----------------------------------------------
+c("glory", "Boží sláva",
+  "sláv velebn majest nádher",
+  "slávu velebnost sláva= slávy=", "t:holiness h:presence")
+c("trinity", "Trojice",
+  "trojic tři_osoby trojjedin",
+  "otce_i_syna ve_jméno_otce", "t:trinity")
+c("sovereign", "Bůh vládne dějinám",
+  "kontrol plán osud náhod řídí_svět vládne_svět",
+  "úmysl rada= radu= ustanovil kraluje", "t:faithfulness")
+c("godpatience", "Boží trpělivost",
+  "shovívav trpělivost_boží dává_šanci další_šanci",
+  "dlouhočekaj shovívav pomalý_k_hněvu", "t:love")
+c("omniscience", "Bůh mě zná",
+  "zná_mě mě_zná mne_zná zná_mé ví_o_mně vidí_mě vševěd všechno_ví",
+  "zpytuj znáš zkoumáš", "s:worthless")
+c("covenant", "Smlouva",
+  "smlouv úmluv závaz",
+  "smlouv úmluv", "h:covenant")
+c("law", "Zákon a přikázání",
+  "zákon přikáz desater pravidl",
+  "zákon přikázán ustanoven", "t:word")
+c("works", "Víra a skutky",
+  "skutk zásluh zasloužit vydělat snaha",
+  "skutk skutků_zákona", "t:grace t:faith")
+c("justify", "Ospravedlnění",
+  "ospravedl spravedlivý_před",
+  "ospravedl", "t:grace")
+c("election", "Vyvolení",
+  "vyvol vybral_si vybrán",
+  "vyvol vyvolen", "h:weak")
+c("christmas", "Vánoce a narození Ježíše",
+  "vánoc narozen_ježíš betlém jesl vtělen advent",
+  "betlém jesl děťátko narodil", "")
+c("ascension", "Nanebevstoupení",
+  "nanebe",
+  "vzhůru vzat na_nebe vstoupil", "")
+c("pentecost", "Letnice",
+  "letnic seslání_ducha",
+  "letnic ohniv jazyk", "t:spirit h:spirit")
+c("miracles", "Zázraky a znamení",
+  "zázrak znamení= nadpřiroz",
+  "znamen divy= divů= zázrak", "")
+c("parables", "Podobenství",
+  "podobenst",
+  "podobenst", "")
+c("prophecy", "Proroctví a proroci",
+  "proroct prorok předpově",
+  "prorok proroct", "")
+c("angels", "Andělé",
+  "anděl",
+  "anděl", "")
+c("warfare", "Duchovní boj",
+  "duchovní_boj zbroj boj_víry útok",
+  "odění zbroj odolat štít", "h:victory")
+c("will", "Boží vůle",
+  "boží_vůle vůle_boží co_chce_bůh co_bůh_chce",
+  "vůle= vůli= vůlí", "s:decision")
+c("wrath", "Boží hněv",
+  "boží_hněv rozhněv",
+  "hněv prchliv rozhněv", "t:judgment")
+c("feargod", "Bázeň Boží",
+  "bázeň úcta_k_bohu respekt_k",
+  "bázeň bázně", "t:holiness")
+c("hell", "Zatracení",
+  "peklo pekl zatracen věčný_trest",
+  "pekel zatracen", "t:judgment")
+c("newearth", "Nové nebe a nová země",
+  "nová_země nové_nebe konec_světa apokalyps zjeven",
+  "nové_nebe nová_země", "t:newcreation")
+c("reward", "Odměna",
+  "odměn koruna oceně",
+  "odplat odměn korun", "")
+
+# --- Člověk a jeho nitro ------------------------------------------------------
+c("soul", "Duše",
+  "duše duši vnitřní_člověk",
+  "duše= duši= duší= duše_má", "")
+c("mind", "Mysl a myšlenky",
+  "myšlen přemýšl mysl",
+  "mysl smýšl", "")
+c("conscience", "Svědomí",
+  "svědom",
+  "svědom", "s:guilt")
+c("choice", "Rozhodnutí a volba",
+  "rozhodnut volba volit vybrat_si",
+  "vyvolte zvolil", "s:decision")
+c("death", "Smrt a umírání",
+  "smrt umír zemřu umřu konec_života",
+  "smrt umř zemř", "t:resurrection")
+c("aging", "Stáří",
+  "stář staří starý_člověk důchod šedin senior",
+  "stář šedin stařec", "")
+c("youth", "Mládí",
+  "mlád mladí mladý teenag student",
+  "mlád mládenec mládenc", "")
+c("children", "Děti",
+  "děti dítě dítek",
+  "dítk dítě= dítky= maličk", "t:family s:family")
+c("parents", "Rodiče a výchova",
+  "rodič výchov vychov",
+  "cti_otce cti_svého kázeň vychov", "t:family s:family")
+c("divorce", "Rozvod a rozpad vztahu",
+  "rozvod rozved rozchod rozpad",
+  "zapuz rozluk", "t:marriage")
+c("adultery", "Nevěra a věrnost v manželství",
+  "nevěr cizolož podvád_manžel",
+  "cizolož", "t:marriage")
+c("sexuality", "Sexualita a čistota",
+  "sex smilst porno čistot",
+  "smilstv nečistot smilník", "s:temptation")
+c("addiction", "Závislost a opilost",
+  "závisl alkohol drog opil kouř hazard",
+  "opil opilstv opojn", "s:temptation")
+c("envy", "Závist",
+  "závid závist žárliv srovnáv",
+  "závid závist", "")
+c("greed", "Chamtivost",
+  "chamtiv lakom hrabiv víc_a_víc",
+  "lakom hrabiv", "t:money")
+c("content", "Spokojenost",
+  "spokoj stačí dost_mi",
+  "spokoj dosti_máš postačí", "t:money")
+c("gossip", "Pomluvy",
+  "pomluv drb klep",
+  "pomluv utrh klevet", "")
+c("honesty", "Poctivost",
+  "poctiv férov podvád",
+  "poctiv falešn podvod", "")
+c("stealing", "Krádež",
+  "krad krádež zloděj",
+  "krad zloděj", "")
+c("violence", "Násilí",
+  "násil vražd zabít zabij",
+  "násil vražd zabij", "t:justice")
+c("war", "Válka a mír mezi národy",
+  "válk voják armád",
+  "válk vojsk meč", "t:peace")
+c("revenge", "Pomsta",
+  "pomst oplatit vrátit_to",
+  "pomst", "t:forgiveness s:hurt")
+c("bitter", "Hořkost a zatrpklost",
+  "hořk zatrpkl",
+  "hořk", "s:hurt")
+c("patience", "Trpělivost s druhými",
+  "trpěliv snáš snést",
+  "snáš trpěliv", "s:waiting")
+c("kindness", "Laskavost",
+  "laskav vlídn milý_k",
+  "dobrotiv laskav vlídn", "t:neighbor")
+c("gentle", "Mírnost a tichost",
+  "mírn tich klidn",
+  "tich mírn krotk", "t:humility")
+c("selfcontrol", "Sebeovládání",
+  "sebeovlád ovládn disciplín",
+  "zdrženliv střídm", "")
+c("spiritfruit", "Ovoce Ducha",
+  "ovoce_ducha",
+  "ovoce_ducha", "t:spirit h:vine")
+c("gifts", "Dary a obdarování",
+  "obdarov dary_ducha talent schopnost",
+  "dary= obdarován", "t:spirit t:church")
+c("lazy", "Lenost",
+  "lenost líný prokrastin",
+  "lenoch lenost líný lenivý", "t:work")
+c("diligent", "Pracovitost",
+  "pracovit píle pilný snaživ",
+  "pilný pilnost mravenc mravenč", "t:work")
+c("plans", "Plány do budoucna",
+  "plán plánov budoucnost_v",
+  "úmysl zítř srdce_člověka", "s:decision")
+c("listen", "Naslouchání",
+  "naslouch poslouch slyšet mluvit_méně",
+  "slyš poslouchej", "")
+c("stillness", "Ztišení a rozjímání",
+  "ztiš ticho meditac rozjímán",
+  "ztiš rozjím přemýšl", "s:peace")
+c("tithe", "Desátky a dávání Bohu",
+  "desát desetin",
+  "desát", "t:money")
+c("leaders", "Vedení a odpovědnost",
+  "vedouc vůdc vést_lidi lídr pastoř starší",
+  "starší= vůdce správce", "t:church")
+c("teaching", "Učení a učitelé",
+  "učit učitel vyučov",
+  "učitel učil vyučov", "t:word")
+c("preaching", "Kázání a zvěstování",
+  "kázán kazatel zvěst",
+  "kázal kázat zvěstov", "t:witness")
+c("persecution", "Pronásledování pro víru",
+  "pronásled posměch výsměch kvůli_víře",
+  "pronásled potupa protivenst", "t:suffering")
+c("endurance", "Vytrvalost",
+  "vytrval vydrž nevzdá dotáhn",
+  "vytrval setrv", "t:suffering s:waiting")
+c("discipline", "Boží výchova",
+  "výchova_boží kázeň trest_od_boha",
+  "kázeň tresce trestá", "")
+c("testing", "Zkoušky víry",
+  "zkouš zkoušk",
+  "zkouš zkušen", "t:suffering")
+c("despair", "Beznaděj",
+  "beznad deprese zoufal nemá_smysl dno",
+  "zoufal sklíčen", "s:hope s:sadness")
+c("rejection", "Odmítnutí",
+  "odmítn zavržen nechtěj nepřij",
+  "zavrhl zavrž odmít pohrd", "s:worthless")
+c("belong", "Kam patřím",
+  "patřit patřím domov přijetí rodina_boží",
+  "lid_můj můj_lid", "t:church")
+c("home", "Domov",
+  "domov doma",
+  "dům= domov příbytk", "h:home")
+c("pilgrim", "Putování a cesta víry",
+  "cestov putov poutn",
+  "poutník putov", "h:home")
+c("harvest", "Žeň a úroda",
+  "sklize žeň úrod dožínk",
+  "žeň= žně= úrod", "")
+c("seed", "Semeno a rozsévání",
+  "semín zasí rozsév",
+  "sémě símě semen rozsév", "h:vine")
+c("salt", "Sůl a světlo",
+  "sůl solí",
+  "sůl= solí", "h:light")
+c("fire", "Oheň",
+  "oheň plamen hoří",
+  "oheň ohně plamen", "")
+c("mountain", "Setkání na hoře",
+  "hora hory kopec",
+  "hora= hoře= hory= horu=", "h:mountain")
+c("desert", "Poušť",
+  "poušť pustin divočin",
+  "poušť pušti pustin", "h:exodus")
+c("storm", "Bouře",
+  "bouř vichř vln",
+  "bouř vichř", "s:fear")
+c("garden", "Zahrada a ráj",
+  "zahrad ráj eden",
+  "zahrad ráj eden", "h:tree")
+c("jerusalem", "Jeruzalém a Sión",
+  "jeruzal sion sión",
+  "jeruzalém sion", "h:presence")
+c("temple", "Chrám",
+  "chrám kostel svatyn",
+  "chrám svatyn stánk", "h:presence")
+c("priest", "Kněz a prostředník",
+  "kněz prostřed",
+  "kněz velekněz prostřed", "h:priest")
+c("israel", "Izrael, Boží lid",
+  "izrael žid židé",
+  "izraeli= izraelští", "h:covenant")
+c("nations", "Všechny národy",
+  "národy národů národům celý_svět všem_lidem",
+  "národ pohan", "h:nations")
+c("exile", "Vyhnanství a návrat",
+  "vyhnan exil babylon",
+  "zajet babylon", "h:home")
+c("steward", "Správcovství",
+  "správc hřivn zodpověd",
+  "hřivn správce", "t:money t:work")
+c("faithfulhuman", "Věrnost v malém",
+  "věrný_v spolehliv",
+  "věrný= věrně", "")
+c("debt", "Dluhy",
+  "dluh půjčk",
+  "dluh půjč věřitel", "s:money")
+c("equality", "Rovnost lidí",
+  "rovnost rasis diskrimin předsud všichni_stejn",
+  "přijímání_osob není_žid", "t:neighbor")
+c("prisoners", "Vězni",
+  "vězen vězn kriminál",
+  "vězen vězn žalář", "t:justice")
+c("taxes", "Daně",
+  "daň= daně daní",
+  "daň= daně= clo=", "t:authority")
+c("confess", "Vyznání hříchů",
+  "vyznat vyznán zpověď přiznat",
+  "vyzn přizn", "t:repentance s:guilt")
+c("answered", "Vyslyšená modlitba",
+  "vyslyš odpověď_na_modlitbu",
+  "vyslyš", "t:prayer s:prayer")
+c("intercede", "Přímluva",
+  "přímluv modlit_se_za",
+  "přimlouv přímluv", "t:prayer")
+c("lament", "Nářek a stížnost Bohu",
+  "nářek stěžov stížnost jak_dlouho",
+  "nářek kvíl jak_dlouho dokudž", "s:sadness s:waiting")
+c("foolish", "Pošetilost",
+  "hloup blázn pošetil",
+  "blázn pošetil nemoudr", "")
+c("knowledge", "Poznání",
+  "poznán vědění",
+  "poznán umění", "")
+c("evil", "Proč je zlo",
+  "zlo_ve_světě proč_zlo dopust",
+  "bezbožn zlý", "t:suffering")
+c("encourage", "Povzbuzování druhých",
+  "povzbu podpořit_druh",
+  "napomín potěšuj povzbuz", "t:church")
+c("celebrate", "Oslava a svátky",
+  "slavnost svátek párty= oslavit",
+  "slavnost svátek", "s:joy")
+c("beauty", "Krása",
+  "krás krásn",
+  "krás ozdob", "t:creator")
+c("dreams", "Sny a vidění",
+  "snil sny= vidění",
+  "sen= sny= snu= vidění", "")
+c("race", "Závod víry",
+  "závod běhá běžet běžec sport cíl=",
+  "běh= běží závod cíl=", "")
+c("curse", "Prokletí",
+  "prokl kletb",
+  "zlořeč proklet kletb", "")
+c("occult", "Okultismus a pověry",
+  "okult magie věštěn horoskop čarod pověra pověry",
+  "čarod kouzel hadač věšt", "")
+c("idols", "Modly",
+  "modly= modlám modlářst idol",
+  "modly= modlám modlářstv rytin bůžk", "")
+c("busy", "Shon a uspěchanost",
+  "shon spěch nestíhám zaneprázdn",
+  "pečliv rozptyl", "s:anxiety h:rest")
+c("barren", "Touha po dítěti",
+  "neplod těhoten otěhotn",
+  "neplodn počala", "s:family")
+c("remember", "Pamatovat na Boží skutky",
+  "vzpomín pamat",
+  "pamatuj rozpomeň připomín", "t:faithfulness")
+c("surrender", "Odevzdání Bohu",
+  "odevzd vzdát_se nechat_na_bohu",
+  "uval poruč", "s:anxiety")

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bible_reader/core/utils/fts_query.dart';
-import 'package:bible_reader/features/prep/application/thought_search.dart';
+import 'package:bible_reader/features/search/application/thought_search.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -32,6 +32,12 @@ void main() {
     );
     expect(ids('Kdo se cítí bezcenný, je pro Boha drahý'), contains('worth'));
     expect(ids('Jsem vyčerpaný a potřebuju odpočinek'), contains('tired'));
+    expect(ids('Mám závislost na alkoholu'), contains('addiction'));
+    expect(ids('Jak se vyrovnat se závistí'), contains('envy'));
+    expect(ids('Narození Ježíše v Betlémě'), contains('christmas'));
+    expect(ids('Proč Bůh dopouští zlo ve světě'), contains('evil'));
+    expect(ids('Starost o stáří rodičů'), containsAll(['aging', 'parents']));
+    expect(lexicon.concepts.length, greaterThanOrEqualTo(200));
     // Obecná slova sama téma neurčují.
     expect(ids('Bůh je a Ježíš řekl'), isEmpty);
   });

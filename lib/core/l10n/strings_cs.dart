@@ -451,6 +451,17 @@ abstract final class S {
   static const prepSearchIntro =
       'Hledá přesně zadaná slova. Výsledek přidáte do přípravy tlačítkem +.';
   static const prepThoughtMode = 'Podle myšlenky';
+  static const searchWordsMode = 'Slova a odkazy';
+  static const searchTryThought = 'Hledat podle myšlenky';
+  static const searchThoughtExamples = 'Zkuste třeba';
+  static const searchThoughtSamples = [
+    'Bůh mě nenechá samotného',
+    'Jak odpustit, když to bolí',
+    'Mám strach z budoucnosti',
+    'Bůh používá slabé lidi',
+    'Jsem vyčerpaný a potřebuji odpočinek',
+    'Peníze mě nenaplní',
+  ];
   static const prepWordsMode = 'Přesná slova';
   static const prepThoughtHint = 'Napište myšlenku vlastními slovy…';
   static const prepThoughtIntro =

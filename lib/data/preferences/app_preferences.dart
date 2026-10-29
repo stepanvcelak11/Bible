@@ -28,6 +28,7 @@ class AppPreferences {
   static const _quizOfDay = 'quiz.day';
   static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
+  static const _searchByThought = 'search.thought';
   static const _splitView = 'shell.split';
   static const _preps = 'prep.items';
   static const _splitRatio = 'shell.splitRatio';
@@ -136,6 +137,11 @@ class AppPreferences {
   Future<void> setSearchTestament(String? code) => code == null
       ? _prefs.remove(_searchTestament)
       : _prefs.setString(_searchTestament, code);
+
+  /// Hledat podle myšlenky (místo přesných slov).
+  bool get searchByThought => _prefs.getBool(_searchByThought) ?? false;
+  Future<void> setSearchByThought(bool on) =>
+      _prefs.setBool(_searchByThought, on);
 
   // --- Studijní balíček --------------------------------------------------------
   static const _studyVersion = 'study.version';

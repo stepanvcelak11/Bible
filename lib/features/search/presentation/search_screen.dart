@@ -15,6 +15,8 @@ import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../study/presentation/study_hub_screen.dart';
 import '../application/reference_parser.dart';
+import '../application/thought_search.dart';
+import 'thought_results.dart';
 
 const _pageSize = 100;
 
@@ -67,6 +69,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
   String _text = '';
   int? _bookId;
   int _limit = _pageSize;
+
+  /// Hledání podle myšlenky místo přesných slov.
+  late bool _thought = ref.read(appPreferencesProvider).searchByThought;
   late Testament? _testament = switch (ref
       .read(appPreferencesProvider)
       .searchTestament) {
@@ -108,6 +113,11 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     }
   }
 
+  void _setThought(bool on) {
+    setState(() => _thought = on);
+    ref.read(appPreferencesProvider).setSearchByThought(on);
+  }
+
   void _setTestament(Testament? t) {
     setState(() {
       _testament = t;
@@ -133,10 +143,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final palette = AppPalette.of(context);
     final insets = MediaQuery.paddingOf(context);
     final reference = _text.isEmpty ? null : parseReference(_text, books);
-    final results = _text.isEmpty
+    final results = _text.isEmpty || _thought
         ? null
         : ref.watch(searchResultsProvider(_query));
-    final counts = _text.isEmpty
+    final counts = _text.isEmpty || _thought
         ? null
         : ref
               .watch(
@@ -180,8 +190,10 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     },
                     textInputAction: TextInputAction.search,
                     decoration: InputDecoration(
-                      hintText: S.searchHint,
-                      prefixIcon: const Icon(Icons.search),
+                      hintText: _thought ? S.prepThoughtHint : S.searchHint,
+                      prefixIcon: Icon(
+                        _thought ? Icons.psychology_alt_outlined : Icons.search,
+                      ),
                       suffixIcon: _controller.text.isEmpty
                           ? null
                           : IconButton(
@@ -203,54 +215,79 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: SegmentedButton<bool>(
+                      showSelectedIcon: false,
+                      style: const ButtonStyle(
+                        visualDensity: VisualDensity.compact,
+                      ),
+                      segments: const [
+                        ButtonSegment(
+                          value: false,
+                          icon: Icon(Icons.text_fields, size: 18),
+                          label: Text(S.searchWordsMode),
+                        ),
+                        ButtonSegment(
+                          value: true,
+                          icon: Icon(Icons.psychology_alt_outlined, size: 18),
+                          label: Text(S.prepThoughtMode),
+                        ),
+                      ],
+                      selected: {_thought},
+                      onSelectionChanged: (v) => _setThought(v.single),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 50,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                children: [
-                  for (final (label, t) in [
-                    (S.searchAll, null),
-                    (S.oldTestament, Testament.oldTestament),
-                    (S.newTestament, Testament.newTestament),
-                  ])
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ChoiceChip(
-                        label: Text(label),
-                        selected: _testament == t,
-                        onSelected: (_) => _setTestament(t),
-                      ),
-                    ),
-                  if (translations.length > 1) ...[
-                    const VerticalDivider(width: 16, indent: 8, endIndent: 8),
-                    for (final t in translations)
+          if (!_thought)
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 50,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  children: [
+                    for (final (label, t) in [
+                      (S.searchAll, null),
+                      (S.oldTestament, Testament.oldTestament),
+                      (S.newTestament, Testament.newTestament),
+                    ])
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
-                        child: FilterChip(
-                          label: Text(t.abbreviation),
-                          selected: _translations.contains(t.id),
-                          onSelected: (on) => setState(() {
-                            final next = {..._translations};
-                            on ? next.add(t.id) : next.remove(t.id);
-                            if (next.isNotEmpty) _translations = next;
-                            _limit = _pageSize;
-                          }),
+                        child: ChoiceChip(
+                          label: Text(label),
+                          selected: _testament == t,
+                          onSelected: (_) => _setTestament(t),
                         ),
                       ),
+                    if (translations.length > 1) ...[
+                      const VerticalDivider(width: 16, indent: 8, endIndent: 8),
+                      for (final t in translations)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: FilterChip(
+                            label: Text(t.abbreviation),
+                            selected: _translations.contains(t.id),
+                            onSelected: (on) => setState(() {
+                              final next = {..._translations};
+                              on ? next.add(t.id) : next.remove(t.id);
+                              if (next.isNotEmpty) _translations = next;
+                              _limit = _pageSize;
+                            }),
+                          ),
+                        ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
-          ),
           if (reference != null)
             SliverToBoxAdapter(
               child: Padding(
@@ -280,7 +317,21 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ),
               ),
             ),
-          if (_text.isEmpty)
+          if (_thought)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(16, 4, 16, insets.bottom + 110),
+                child: _text.length < 2
+                    ? _ThoughtIntro(
+                        onPick: (q) {
+                          _controller.text = q;
+                          _setText(q, immediate: true);
+                        },
+                      )
+                    : ThoughtResults(text: _text),
+              ),
+            )
+          else if (_text.isEmpty)
             SliverToBoxAdapter(
               child: _EmptyState(
                 onPick: (q) {
@@ -299,6 +350,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     query: foldCzech(_text.trim()),
                     compact: true,
                   ),
+                ),
+              ),
+            if (_text.split(' ').where((w) => w.length > 1).length >= 3)
+              SliverToBoxAdapter(
+                child: _ThoughtSuggestion(
+                  text: _text,
+                  onTap: () => _setThought(true),
                 ),
               ),
             if (counts != null && counts.isNotEmpty)
@@ -413,6 +471,82 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
             },
           ],
         ],
+      ),
+    );
+  }
+}
+
+/// Úvod k hledání podle myšlenky s příklady.
+class _ThoughtIntro extends StatelessWidget {
+  const _ThoughtIntro({required this.onPick});
+
+  final ValueChanged<String> onPick;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          S.prepThoughtIntro,
+          style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+        ),
+        const SizedBox(height: 14),
+        Text(
+          S.searchThoughtExamples.toUpperCase(),
+          style: theme.textTheme.labelSmall?.copyWith(
+            color: palette.muted,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.1,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          children: [
+            for (final q in S.searchThoughtSamples)
+              ActionChip(
+                avatar: Icon(
+                  Icons.psychology_alt_outlined,
+                  size: 18,
+                  color: palette.gold,
+                ),
+                label: Text(q),
+                onPressed: () => onPick(q),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// U delšího dotazu nabídne hledání podle myšlenky (když v něm pozná téma).
+class _ThoughtSuggestion extends ConsumerWidget {
+  const _ThoughtSuggestion({required this.text, required this.onTap});
+
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = AppPalette.of(context);
+    final concepts =
+        ref.watch(conceptLexiconProvider).value?.detect(text) ?? const [];
+    if (concepts.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 0),
+      child: Card(
+        child: ListTile(
+          leading: Icon(Icons.psychology_alt_outlined, color: palette.gold),
+          title: const Text(S.searchTryThought),
+          subtitle: Text(concepts.map((c) => c.label).join(' · ')),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: onTap,
+        ),
       ),
     );
   }

@@ -23,7 +23,7 @@ import '../../study/application/study_providers.dart';
 import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/prep_controller.dart';
-import '../application/thought_search.dart';
+import '../../search/presentation/thought_results.dart';
 import 'passage_picker.dart';
 
 void openPreps(BuildContext context) =>
@@ -1182,7 +1182,6 @@ class _HelperSearch extends ConsumerStatefulWidget {
 class _HelperSearchState extends ConsumerState<_HelperSearch> {
   String _q = '';
   bool _thought = true;
-  final Set<String> _excluded = {};
   Timer? _debounce;
 
   @override
@@ -1247,10 +1246,7 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
             _debounce?.cancel();
             _debounce = Timer(
               const Duration(milliseconds: 400),
-              () => setState(() {
-                _q = v.trim();
-                _excluded.clear();
-              }),
+              () => setState(() => _q = v.trim()),
             );
           },
         ),
@@ -1261,7 +1257,7 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
             style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
           )
         else if (_thought)
-          ..._thoughtResults(theme, palette)
+          ThoughtResults(text: _q, onAdd: _add)
         else
           ..._wordResults(),
       ],
@@ -1293,136 +1289,13 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
                 ],
         );
   }
-
-  List<Widget> _thoughtResults(ThemeData theme, AppPalette palette) {
-    final tid = ref.watch(
-      translationControllerProvider.select((s) => s.primaryId),
-    );
-    final result = ref.watch(
-      thoughtSearchProvider((
-        text: _q,
-        translationId: tid,
-        excluded: (_excluded.toList()..sort()).join(','),
-      )),
-    );
-    Widget label(String t) => Padding(
-      padding: const EdgeInsets.fromLTRB(0, 14, 0, 4),
-      child: Text(
-        t.toUpperCase(),
-        style: theme.textTheme.labelSmall?.copyWith(
-          color: palette.muted,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 1.1,
-        ),
-      ),
-    );
-    return result.when(
-      loading: () => [const LinearProgressIndicator()],
-      error: (e, _) => [Text('$e')],
-      data: (r) => [
-        if (r.concepts.isEmpty)
-          Text(
-            S.prepThoughtNone,
-            style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
-          )
-        else ...[
-          label(S.prepThoughtUnderstood),
-          Wrap(
-            spacing: 6,
-            runSpacing: 6,
-            children: [
-              for (final c in r.concepts)
-                FilterChip(
-                  label: Text(c.label),
-                  selected: !_excluded.contains(c.id),
-                  onSelected: (on) => setState(
-                    () => on ? _excluded.remove(c.id) : _excluded.add(c.id),
-                  ),
-                ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              S.prepThoughtToggle,
-              style: theme.textTheme.labelSmall?.copyWith(color: palette.muted),
-            ),
-          ),
-        ],
-        if (r.keyPassages.isNotEmpty) ...[
-          label(S.prepKeyPassages),
-          for (final k in r.keyPassages)
-            _KeyPassageTile(item: k, onAdd: () => _add(k.passage)),
-        ],
-        if (r.hits.isNotEmpty) ...[
-          label(S.prepSimilar),
-          for (final h in r.hits)
-            _HitTile(
-              hit: h.hit,
-              concepts: h.concepts,
-              onAdd: () => _addHit(h.hit),
-            ),
-        ] else if (r.keyPassages.isEmpty)
-          const Text(S.searchNoResults),
-      ],
-    );
-  }
-}
-
-class _KeyPassageTile extends ConsumerWidget {
-  const _KeyPassageTile({required this.item, required this.onAdd});
-
-  final KeyPassage item;
-  final VoidCallback onAdd;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    final t = ref.watch(primaryTranslationProvider);
-    final verses = ref.watch(passageTextProvider((t.id, item.passage))).value;
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(
-              text: passageLabel(ref, item.passage),
-              style: TextStyle(color: palette.gold),
-            ),
-            TextSpan(
-              text: '  ${item.label.isEmpty ? item.source : item.label}',
-              style: TextStyle(
-                color: palette.muted,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-          ],
-        ),
-        style: theme.textTheme.labelLarge,
-      ),
-      subtitle: Text(
-        verses?.map((v) => v.text.replaceAll('\n', ' ')).join(' ') ?? '…',
-        maxLines: 3,
-        overflow: TextOverflow.ellipsis,
-      ),
-      trailing: _AddButton(onTap: onAdd),
-    );
-  }
 }
 
 class _HitTile extends ConsumerWidget {
-  const _HitTile({
-    required this.hit,
-    required this.onAdd,
-    this.concepts = const [],
-  });
+  const _HitTile({required this.hit, required this.onAdd});
 
   final SearchHit hit;
   final VoidCallback onAdd;
-
-  /// Pojmy myšlenky, které verš obsahuje.
-  final List<String> concepts;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -1444,25 +1317,9 @@ class _HitTile extends ConsumerWidget {
     }
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text.rich(
-        TextSpan(
-          children: [
-            TextSpan(
-              text:
-                  '${book.name} ${hit.verse.ref.chapter},${hit.verse.ref.verse}',
-              style: TextStyle(color: palette.gold),
-            ),
-            if (concepts.length > 1)
-              TextSpan(
-                text: '  ${concepts.join(' · ')}',
-                style: TextStyle(
-                  color: palette.muted,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-          ],
-        ),
-        style: theme.textTheme.labelLarge,
+      title: Text(
+        '${book.name} ${hit.verse.ref.chapter},${hit.verse.ref.verse}',
+        style: theme.textTheme.labelLarge?.copyWith(color: palette.gold),
       ),
       subtitle: Text.rich(TextSpan(children: spans)),
       trailing: _AddButton(onTap: onAdd),

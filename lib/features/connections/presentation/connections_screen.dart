@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -98,7 +100,7 @@ Color _eraColor(StoryEra era, AppPalette palette) =>
     era.books.isEmpty ? palette.muted : _bookColor(era.books.first);
 
 /// Kniha, která vypráví souvislý úsek období (od–do, indexy období),
-/// a její dráha v levém sloupci.
+/// a její dráha (řádek) v diagramu.
 typedef _BookSpan = ({int book, int from, int to, int lane});
 
 /// Rozdělí vyprávějící knihy do drah tak, aby se souběžné knihy
@@ -131,13 +133,14 @@ List<_BookSpan> _bookSpans(List<StoryEra> eras) {
   return out;
 }
 
-/// Velký příběh jako řeka dějin: uprostřed proud období, vlevo pruhy
-/// knih, které dobu vyprávějí (přes všechna období, která pokrývají),
-/// vpravo knihy, které k době patří.
+/// Velký příběh jako vodorovná řeka dějin: období jsou sloupce zleva
+/// doprava, pod proudem leží pruhy knih, které dobu vyprávějí (přes
+/// všechna období, která pokrývají), a dole knihy, které k době patří.
 class _StoryView extends ConsumerWidget {
   const _StoryView();
 
-  static const _laneWidth = 24.0;
+  static const _col = 160.0;
+  static const _lane = 34.0;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -145,155 +148,383 @@ class _StoryView extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final eras = ref.watch(storyProvider).value;
     if (eras == null) return const Center(child: CircularProgressIndicator());
+    final books = ref.watch(booksProvider);
     final spans = _bookSpans(eras);
     final lanes = spans.fold(0, (m, s) => math.max(m, s.lane + 1));
+    final colors = [for (final e in eras) _eraColor(e, palette)];
+    final width = eras.length * _col;
+
+    Widget label(String text) => Padding(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 6),
+      child: Text(
+        text.toUpperCase(),
+        style: theme.textTheme.labelSmall?.copyWith(
+          color: palette.muted,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.1,
+        ),
+      ),
+    );
+
     return ListView(
-      padding: _listPadding(context),
+      padding: EdgeInsets.fromLTRB(
+        0,
+        12,
+        0,
+        MediaQuery.paddingOf(context).bottom + 32,
+      ),
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           child: Text(
             S.storyIntro,
             style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
           ),
         ),
-        const _StoryLegend(),
-        const SizedBox(height: 12),
-        for (final (i, era) in eras.indexed)
-          IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  width: lanes * _laneWidth,
-                  child: Stack(
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: _StoryLegend(),
+        ),
+        const SizedBox(height: 8),
+        ScrollConfiguration(
+          // Diagram jde táhnout i myší (na počítači).
+          behavior: ScrollConfiguration.of(context)
+              .copyWith(dragDevices: PointerDeviceKind.values.toSet()),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: SizedBox(
+              width: width,
+              child: Stack(
+                children: [
+                  // Svislé předěly mezi obdobími.
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: _ColumnsPainter(
+                        count: eras.length,
+                        width: _col,
+                        color: palette.muted.withValues(alpha: 0.15),
+                      ),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Vodorovná linka od období přes dráhy knih.
-                      Positioned.fill(
+                      // Názvy období.
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (final (i, era) in eras.indexed)
+                            SizedBox(
+                              width: _col,
+                              child: _EraHeader(
+                                era: era,
+                                number: i + 1,
+                                color: colors[i],
+                              ),
+                            ),
+                        ],
+                      ),
+                      // Proud dějin.
+                      SizedBox(
+                        width: width,
+                        height: 34,
                         child: CustomPaint(
-                          painter: _GuidePainter(
-                            _eraColor(era, palette).withValues(alpha: 0.35),
+                          painter: _RiverPainter(
+                            colors: colors,
+                            thin: [for (final e in eras) e.books.isEmpty],
+                            column: _col,
+                            background: theme.scaffoldBackgroundColor,
                           ),
                         ),
                       ),
+                      label(S.storyTells),
+                      // Dráhy knih.
+                      for (var lane = 0; lane < lanes; lane++)
+                        SizedBox(
+                          width: width,
+                          height: _lane,
+                          child: Stack(
+                            children: [
+                              for (final sp in spans.where(
+                                (s) => s.lane == lane,
+                              ))
+                                Positioned(
+                                  left: sp.from * _col + 6,
+                                  width: (sp.to - sp.from + 1) * _col - 12,
+                                  top: 3,
+                                  bottom: 3,
+                                  child: _BookBar(
+                                    book: sp.book,
+                                    name: books[sp.book - 1].name,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                      label(S.storyBelongs),
+                      // Knihy, které k době patří.
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          for (var lane = 0; lane < lanes; lane++)
+                          for (final era in eras)
                             SizedBox(
-                              width: _laneWidth,
-                              child: _LaneSlice(
-                                span: spans
-                                    .where(
-                                      (s) =>
-                                          s.lane == lane &&
-                                          s.from <= i &&
-                                          i <= s.to,
-                                    )
-                                    .firstOrNull,
-                                era: i,
+                              width: _col,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                  10,
+                                  0,
+                                  10,
+                                  0,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    for (final (text, b) in era.branches) ...[
+                                      Text(
+                                        text,
+                                        style: theme.textTheme.labelSmall
+                                            ?.copyWith(color: palette.muted),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      _BookChips(books: b, small: true),
+                                      const SizedBox(height: 10),
+                                    ],
+                                  ],
+                                ),
                               ),
                             ),
                         ],
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  width: 36,
-                  child: CustomPaint(
-                    painter: _TrunkPainter(
-                      color: _eraColor(era, palette),
-                      previous: i == 0 ? null : _eraColor(eras[i - 1], palette),
-                      next: i == eras.length - 1
-                          ? null
-                          : _eraColor(eras[i + 1], palette),
-                      background: theme.scaffoldBackgroundColor,
-                      label: '${i + 1}',
-                      wide: era.books.isNotEmpty,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 6),
-                Expanded(child: _EraCard(era: era)),
-              ],
+                ],
+              ),
             ),
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+          child: Row(
+            children: [
+              Icon(Icons.swipe, size: 18, color: palette.muted),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  S.storyScrollHint,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: palette.muted,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
 }
 
-class _GuidePainter extends CustomPainter {
-  _GuidePainter(this.color);
+/// Záhlaví sloupce: číslo, název a doba období a klíčové události.
+class _EraHeader extends StatelessWidget {
+  const _EraHeader({
+    required this.era,
+    required this.number,
+    required this.color,
+  });
 
+  final StoryEra era;
+  final int number;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () => showEra(context, era),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 6, 10, 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 40,
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  era.title,
+                  maxLines: 2,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    height: 1.15,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              era.period,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: color,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 6),
+            SizedBox(
+              height: 48,
+              child: Text(
+                era.key.isEmpty
+                    ? S.storyNoBooksShort
+                    : [for (final (_, l) in era.key) l].join(' · '),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: palette.muted,
+                  height: 1.3,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Proud dějin: pás, který plynule mění barvu podle období, s očíslovanými
+/// uzly; v době bez knih se zúží.
+class _RiverPainter extends CustomPainter {
+  _RiverPainter({
+    required this.colors,
+    required this.thin,
+    required this.column,
+    required this.background,
+  });
+
+  final List<Color> colors;
+  final List<bool> thin;
+  final double column;
+  final Color background;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final y = size.height / 2;
+    for (var i = 0; i < colors.length; i++) {
+      final x0 = i * column, x1 = x0 + column;
+      final prev = i == 0 ? colors[i] : colors[i - 1];
+      final next = i == colors.length - 1 ? colors[i] : colors[i + 1];
+      final h = thin[i] ? 4.0 : 12.0;
+      final rect = Rect.fromLTRB(x0, y - h / 2, x1, y + h / 2);
+      canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = LinearGradient(
+            colors: [
+              Color.lerp(prev, colors[i], 0.5)!,
+              colors[i],
+              Color.lerp(colors[i], next, 0.5)!,
+            ],
+          ).createShader(rect),
+      );
+    }
+    for (var i = 0; i < colors.length; i++) {
+      final c = Offset(i * column + 26, y);
+      canvas.drawCircle(c, 15, Paint()..color = background);
+      canvas.drawCircle(c, 13, Paint()..color = colors[i]);
+      final tp = TextPainter(
+        text: TextSpan(
+          text: '${i + 1}',
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      tp.paint(canvas, c - Offset(tp.width / 2, tp.height / 2));
+    }
+    // Šipka na konci: příběh pokračuje.
+    final end = Offset(size.width - 4, y);
+    canvas.drawPath(
+      Path()
+        ..moveTo(end.dx - 12, y - 10)
+        ..lineTo(end.dx, y)
+        ..lineTo(end.dx - 12, y + 10)
+        ..close(),
+      Paint()..color = colors.last,
+    );
+  }
+
+  @override
+  bool shouldRepaint(_RiverPainter old) =>
+      old.colors != colors || old.background != background;
+}
+
+class _ColumnsPainter extends CustomPainter {
+  _ColumnsPainter({
+    required this.count,
+    required this.width,
+    required this.color,
+  });
+
+  final int count;
+  final double width;
   final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = color
-      ..strokeWidth = 1.5;
-    // Přerušovaná linka ve výšce uzlu období (_TrunkPainter._nodeY).
-    for (var x = 0.0; x < size.width; x += 7) {
-      canvas.drawLine(
-        Offset(x, 30),
-        Offset(math.min(x + 4, size.width), 30),
-        paint,
-      );
+      ..strokeWidth = 1;
+    for (var i = 1; i < count; i++) {
+      final x = i * width;
+      for (var y = 0.0; y < size.height; y += 8) {
+        canvas.drawLine(Offset(x, y), Offset(x, y + 4), paint);
+      }
     }
   }
 
   @override
-  bool shouldRepaint(_GuidePainter old) => old.color != color;
+  bool shouldRepaint(_ColumnsPainter old) =>
+      old.count != count || old.color != color;
 }
 
-/// Úsek dráhy knihy v řádku jednoho období: barevný pruh, na začátku
-/// svisle zkratka knihy. Klepnutí otevře úvod ke knize.
-class _LaneSlice extends ConsumerWidget {
-  const _LaneSlice({required this.span, required this.era});
+/// Pruh knihy přes období, která vypráví; klepnutí otevře úvod ke knize.
+class _BookBar extends StatelessWidget {
+  const _BookBar({required this.book, required this.name});
 
-  final _BookSpan? span;
-  final int era;
+  final int book;
+  final String name;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final sp = span;
-    if (sp == null) return const SizedBox.shrink();
-    final books = ref.watch(booksProvider);
-    final color = _bookColor(sp.book);
-    final first = sp.from == era, last = sp.to == era;
-    const r = Radius.circular(9);
-    return Padding(
-      padding: EdgeInsets.fromLTRB(2, first ? 14 : 0, 2, last ? 14 : 0),
-      child: Material(
-        color: color.withValues(alpha: 0.85),
-        borderRadius: BorderRadius.vertical(
-          top: first ? r : Radius.zero,
-          bottom: last ? r : Radius.zero,
-        ),
-        child: InkWell(
-          onTap: () => showBookIntro(context, sp.book),
-          child: first
-              ? Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 6),
-                    child: RotatedBox(
-                      quarterTurns: 3,
-                      child: Text(
-                        books[sp.book - 1].abbreviation,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              : null,
+  Widget build(BuildContext context) {
+    final color = _bookColor(book);
+    return Material(
+      color: color.withValues(alpha: 0.88),
+      borderRadius: BorderRadius.circular(10),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: () => showBookIntro(context, book),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -312,7 +543,7 @@ class _StoryLegend extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 6),
       child: Row(
         children: [
-          SizedBox(width: 28, child: Center(child: mark)),
+          SizedBox(width: 30, child: Center(child: mark)),
           const SizedBox(width: 8),
           Expanded(child: Text(text, style: theme.textTheme.bodySmall)),
         ],
@@ -328,8 +559,19 @@ class _StoryLegend extends StatelessWidget {
         children: [
           row(
             Container(
-              width: 12,
-              height: 26,
+              width: 26,
+              height: 18,
+              decoration: BoxDecoration(
+                color: palette.gold,
+                borderRadius: BorderRadius.circular(9),
+              ),
+            ),
+            S.storyLegendRiver,
+          ),
+          row(
+            Container(
+              width: 30,
+              height: 12,
               decoration: BoxDecoration(
                 color: _bookColor(9),
                 borderRadius: BorderRadius.circular(6),
@@ -338,22 +580,7 @@ class _StoryLegend extends StatelessWidget {
             S.storyLegendLanes,
           ),
           row(
-            Container(
-              width: 18,
-              height: 18,
-              decoration: BoxDecoration(
-                color: palette.gold,
-                shape: BoxShape.circle,
-              ),
-            ),
-            S.storyLegendRiver,
-          ),
-          row(
-            Icon(
-              Icons.subdirectory_arrow_right,
-              size: 18,
-              color: palette.muted,
-            ),
+            Icon(Icons.library_books_outlined, size: 18, color: palette.muted),
             S.storyLegendBranches,
           ),
         ],
@@ -370,7 +597,6 @@ class _TrunkPainter extends CustomPainter {
     required this.next,
     required this.background,
     required this.label,
-    this.wide = true,
   });
 
   final Color color;
@@ -379,16 +605,13 @@ class _TrunkPainter extends CustomPainter {
   final Color background;
   final String label;
 
-  /// Široký proud; úzký, přerušovaný v době bez knih (mezi zákony).
-  final bool wide;
-
   static const _nodeY = 30.0;
 
   @override
   void paint(Canvas canvas, Size size) {
     final x = size.width / 2;
     final line = Paint()
-      ..strokeWidth = wide ? 8 : 3
+      ..strokeWidth = 4
       ..strokeCap = StrokeCap.round;
     if (previous case final p?) {
       line.shader = LinearGradient(
@@ -427,77 +650,7 @@ class _TrunkPainter extends CustomPainter {
       old.color != color ||
       old.previous != previous ||
       old.next != next ||
-      old.wide != wide ||
       old.background != background;
-}
-
-class _EraCard extends ConsumerWidget {
-  const _EraCard({required this.era});
-
-  final StoryEra era;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    final color = _eraColor(era, palette);
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: InkWell(
-        onTap: () => showEra(context, era),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(era.title, style: theme.textTheme.titleMedium),
-              const SizedBox(height: 2),
-              Text(
-                era.period,
-                style: theme.textTheme.labelSmall?.copyWith(
-                  color: color,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                era.summary,
-                maxLines: 3,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: palette.muted,
-                  height: 1.4,
-                ),
-              ),
-              if (era.key.isNotEmpty) ...[
-                const SizedBox(height: 8),
-                Text(
-                  [for (final (_, label) in era.key) label].join(' · '),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: color,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-              if (era.books.isNotEmpty) ...[
-                const SizedBox(height: 10),
-                Text(
-                  S.storyTells,
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: palette.muted,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                _BookChips(books: era.books, small: true),
-              ],
-              for (final (label, books) in era.branches)
-                _Branch(label: label, books: books, color: color),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 /// Větev stromu: zahnutá čára a knihy, které k období patří.

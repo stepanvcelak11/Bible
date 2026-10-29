@@ -484,6 +484,17 @@ const _threadIcons = {
   'shepherd': Icons.nature_people_outlined,
   'serpent': Icons.shield_outlined,
   'spirit': Icons.air,
+  'light': Icons.wb_sunny_outlined,
+  'bread': Icons.bakery_dining_outlined,
+  'mountain': Icons.landscape_outlined,
+  'rest': Icons.bedtime_outlined,
+  'home': Icons.home_outlined,
+  'priest': Icons.local_fire_department_outlined,
+  'name': Icons.record_voice_over_outlined,
+  'bride': Icons.favorite_border,
+  'vine': Icons.wine_bar_outlined,
+  'weak': Icons.spa_outlined,
+  'rock': Icons.terrain_outlined,
 };
 
 class _ThreadsView extends ConsumerWidget {

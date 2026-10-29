@@ -177,9 +177,16 @@ void main() {
     await settle(tester);
     expect(find.text('Mám strach'), findsOneWidget, reason: 'nadpis stránky');
     expect(find.textContaining('Strach k životu patří'), findsOneWidget);
+    expect(find.text('ZAMYŠLENÍ'), findsOneWidget);
     // Testovací data obsahují Jana 3; ostatní místa jsou prázdná, ale
     // stránka se nesmí rozbít.
+    for (var i = 0; i < 6; i++) {
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -300));
+      await tester.pump(const Duration(milliseconds: 100));
+    }
     expect(find.byType(Card), findsWidgets);
+    expect(find.text('CO MŮŽU UDĚLAT'), findsOneWidget);
+    expect(find.text('Krátká modlitba'), findsOneWidget);
   });
 
   appTest('Studium: rozcestník a hledání v materiálech', (tester) async {

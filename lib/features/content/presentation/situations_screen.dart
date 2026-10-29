@@ -199,9 +199,109 @@ class SituationScreen extends StatelessWidget {
                 ],
               ),
             ),
+            if (situation.thoughts.isNotEmpty) ...[
+              _Heading(S.situationThoughts, color: color),
+              for (final t in situation.thoughts)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    t,
+                    style: theme.textTheme.bodyLarge?.copyWith(height: 1.5),
+                  ),
+                ),
+              const SizedBox(height: 8),
+              _Heading(S.situationVerses, color: color),
+            ],
             for (final p in situation.passages)
               PassageCard(passage: p, accent: color),
+            if (situation.steps.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              _Heading(S.situationSteps, color: color),
+              for (final (i, step) in situation.steps.indexed)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 13,
+                        backgroundColor: color.withValues(alpha: 0.18),
+                        child: Text(
+                          '${i + 1}',
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: color,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 3),
+                          child: Text(step, style: theme.textTheme.bodyLarge),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+            if (situation.prayer case final prayer?) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(color: color.withValues(alpha: 0.4)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.volunteer_activism_outlined, color: color),
+                        const SizedBox(width: 8),
+                        Text(
+                          S.situationPrayer,
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            color: color,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      prayer,
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        fontStyle: FontStyle.italic,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _Heading extends StatelessWidget {
+  const _Heading(this.text, {required this.color});
+
+  final String text;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Text(
+        text.toUpperCase(),
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+          color: color,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.1,
         ),
       ),
     );

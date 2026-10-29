@@ -383,12 +383,19 @@ abstract final class S {
   static const tabStory = 'Příběh';
   static const tabTree = 'Strom';
   static const treeHint =
-      'Přibližujte prsty: z celé Bible se větví zákony, období, knihy '
-      'a nakonec postavy a události. Klepněte na uzel.';
+      'Přibližujte prsty: z celé Bible se větví zákony, období, příběhy '
+      'a nakonec postavy. Oblouky spojují příběhy, které spolu souvisejí. '
+      'Klepněte na uzel.';
   static const treeWhole = 'Celá Bible';
   static const treeEraDetail = 'Podrobnosti';
   static const treeRead = 'Číst';
   static const treePerson = 'Medailon';
+  static const treeLinks = 'Souvisí s';
+  static const situationThoughts = 'Zamyšlení';
+  static const situationVerses = 'Verše';
+  static const situationSteps = 'Co můžu udělat';
+  static const situationPrayer = 'Krátká modlitba';
+  static const treeAlsoIn = 'Vystupuje také v';
   static const tabThreads = 'Nitě';
   static const tabArcs = 'Odkazy';
   static const storyIntro =

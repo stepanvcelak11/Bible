@@ -75,6 +75,9 @@ class Situation {
     required this.title,
     required this.intro,
     required this.passages,
+    this.thoughts = const [],
+    this.steps = const [],
+    this.prayer,
   });
 
   factory Situation.fromJson(Map<String, Object?> j) => Situation(
@@ -84,6 +87,9 @@ class Situation {
     title: j['title']! as String,
     intro: j['intro']! as String,
     passages: parsePassages(j['refs']),
+    thoughts: (j['thoughts'] as List<Object?>? ?? const []).cast<String>(),
+    steps: (j['steps'] as List<Object?>? ?? const []).cast<String>(),
+    prayer: j['prayer'] as String?,
   );
 
   final String id;
@@ -92,6 +98,15 @@ class Situation {
   final String title;
   final String intro;
   final List<Passage> passages;
+
+  /// Rozšířené zamyšlení (odstavce).
+  final List<String> thoughts;
+
+  /// Praktické kroky „Co můžu udělat“.
+  final List<String> steps;
+
+  /// Krátká modlitba.
+  final String? prayer;
 }
 
 /// Medailon biblické postavy.
@@ -417,6 +432,55 @@ class StoryEra {
 
   /// Klíčové kapitoly.
   final List<(Passage, String)> key;
+}
+
+/// Příběh Bible v myšlenkové mapě: patří k období, má postavy
+/// a souvislosti s jinými příběhy.
+class BibleStory {
+  const BibleStory({
+    required this.id,
+    required this.era,
+    required this.title,
+    required this.span,
+    required this.passage,
+    required this.summary,
+    required this.people,
+    required this.links,
+  });
+
+  factory BibleStory.fromJson(Map<String, Object?> j) => BibleStory(
+    id: j['id']! as String,
+    era: j['era']! as String,
+    title: j['title']! as String,
+    span: j['span']! as String,
+    passage: Passage.fromJson(j['ref']),
+    summary: j['summary']! as String,
+    people: (j['people']! as List<Object?>).cast<String>(),
+    links: [
+      for (final l
+          in (j['links']! as List<Object?>).cast<Map<String, Object?>>())
+        (l['to']! as String, l['label']! as String),
+    ],
+  );
+
+  final String id;
+
+  /// Id období ([StoryEra.id]).
+  final String era;
+  final String title;
+
+  /// Rozsah kapitol k zobrazení („Gn 12–15“).
+  final String span;
+
+  /// První kapitola příběhu.
+  final Passage passage;
+  final String summary;
+
+  /// Id postav ([BiblePerson.id]).
+  final List<String> people;
+
+  /// Souvislosti zapsané u tohoto příběhu: (id příběhu, proč).
+  final List<(String, String)> links;
 }
 
 /// Souhrn křížových odkazů (OpenBible.info) v anglickém číslování.

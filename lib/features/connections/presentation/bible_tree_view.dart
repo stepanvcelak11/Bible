@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
-import '../../../core/providers.dart';
-import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../content/application/content_providers.dart';
@@ -15,7 +13,7 @@ import '../../study/presentation/book_intro_sheet.dart';
 import 'connections_screen.dart';
 
 /// Úroveň uzlu ve stromu.
-enum TreeLevel { bible, testament, era, book, leaf }
+enum TreeLevel { bible, testament, era, story, leaf }
 
 /// Uzel myšlenkové mapy Bible.
 class TreeNode {
@@ -26,9 +24,8 @@ class TreeNode {
     required this.color,
     this.subtitle,
     this.era,
-    this.book,
+    this.story,
     this.person,
-    this.passage,
   });
 
   final String id;
@@ -37,30 +34,33 @@ class TreeNode {
   final String? subtitle;
   final Color color;
   final StoryEra? era;
-  final int? book;
+  final BibleStory? story;
   final BiblePerson? person;
-
-  /// Klíčová kapitola (list stromu).
-  final Passage? passage;
 
   final children = <TreeNode>[];
   TreeNode? parent;
 
+  /// Souvislosti s jinými příběhy (oběma směry): (uzel, proč).
+  final links = <(TreeNode, String)>[];
+
   /// Úhel (radiány, 0 = vpravo, po směru hodinových ručiček) a poloha.
   double angle = 0;
   Offset pos = Offset.zero;
-  TextPainter? label;
 }
 
-const treeCanvas = 3300.0;
-const _radii = [0.0, 610.0, 920.0, 1180.0, 1430.0];
-const _fontSizes = [190.0, 92.0, 44.0, 25.0, 15.0];
+const treeCanvas = 3900.0;
+const _radii = [0.0, 640.0, 990.0, 1250.0, 1720.0];
+const _fontSizes = [200.0, 96.0, 46.0, 23.0, 15.0];
 
-/// Postaví strom: Bible → zákony → období → knihy → postavy a události.
+/// Nejdelší popisek příběhu (vejde se mezi příběh a postavy).
+const _storyLabelWidth = 420.0;
+
+/// Postaví strom: Bible → zákony → období → příběhy → postavy.
+/// Příběhy navíc propojí jejich souvislosti.
 TreeNode buildBibleTree({
   required List<StoryEra> eras,
+  required List<BibleStory> stories,
   required List<BiblePerson> people,
-  required List<Book> books,
 }) {
   final root = TreeNode(
     id: 'bible',
@@ -84,8 +84,8 @@ TreeNode buildBibleTree({
   );
   root.children.addAll([ot, nt]);
 
-  // Kniha → uzly knihy v obdobích (Genesis je ve dvou obdobích…).
-  final bookNodes = <int, List<(TreeNode, StoryEra)>>{};
+  final personById = {for (final p in people) p.id: p};
+  final storyNodes = <String, TreeNode>{};
   for (final era in eras) {
     final testament = era.books.isNotEmpty && era.books.first >= 40 ? nt : ot;
     final eraNode = TreeNode(
@@ -99,66 +99,73 @@ TreeNode buildBibleTree({
       era: era,
     );
     testament.children.add(eraNode);
-    final ids = <int>{...era.books, for (final (_, b) in era.branches) ...b};
-    for (final b in ids) {
+    for (final st in stories.where((s) => s.era == era.id)) {
+      final color = Color(categoryOf(st.passage.bookId).color);
       final node = TreeNode(
-        id: 'book:${era.id}:$b',
-        level: TreeLevel.book,
-        title: books[b - 1].name,
-        subtitle: categoryOf(b).name,
-        color: Color(categoryOf(b).color),
-        book: b,
+        id: 'story:${st.id}',
+        level: TreeLevel.story,
+        title: st.title,
+        subtitle: st.span,
+        color: color,
+        story: st,
       );
       eraNode.children.add(node);
-      (bookNodes[b] ??= []).add((node, era));
-    }
-    for (final (p, label) in era.key) {
-      final leaf = TreeNode(
-        id: 'key:${era.id}:${p.bookId}:${p.chapter}',
-        level: TreeLevel.leaf,
-        title: label,
-        subtitle: S.chapterTitle(books[p.bookId - 1].name, p.chapter),
-        color: Color(categoryOf(p.bookId).color),
-        passage: p,
-      );
-      final owner = [
-        for (final (n, e)
-            in bookNodes[p.bookId] ?? const <(TreeNode, StoryEra)>[])
-          if (e == era) n,
-      ];
-      (owner.isEmpty ? eraNode : owner.first).children.add(leaf);
-    }
-  }
-
-  // Postavy k uzlu knihy svého klíčového verše; u knih ve více obdobích
-  // rozhodne nejbližší klíčová kapitola.
-  for (final p in people) {
-    final r = p.key.start;
-    final options = bookNodes[r.bookId];
-    if (options == null || options.isEmpty) continue;
-    var best = options.first.$1;
-    var bestDist = 1 << 30;
-    for (final (node, era) in options) {
-      for (final (k, _) in era.key) {
-        if (k.bookId != r.bookId) continue;
-        final d = (k.chapter - r.chapter).abs();
-        if (d < bestDist) (best, bestDist) = (node, d);
+      storyNodes[st.id] = node;
+      for (final pid in st.people) {
+        final person = personById[pid];
+        if (person == null) continue;
+        node.children.add(
+          TreeNode(
+            id: 'person:${st.id}:$pid',
+            level: TreeLevel.leaf,
+            // Na mapě bez jiného jména v závorce: „Abraham (Abram)“.
+            title: person.name.replaceAll(RegExp(r' \(.*\)$'), ''),
+            subtitle: person.role,
+            color: color,
+            person: person,
+          ),
+        );
       }
     }
-    best.children.add(
-      TreeNode(
-        id: 'person:${p.id}',
-        level: TreeLevel.leaf,
-        title: p.name,
-        subtitle: p.role,
-        color: Color(categoryOf(r.bookId).color),
-        person: p,
-      ),
-    );
+  }
+  for (final st in stories) {
+    final a = storyNodes[st.id]!;
+    for (final (to, why) in st.links) {
+      final b = storyNodes[to];
+      if (b == null) continue;
+      a.links.add((b, why));
+      b.links.add((a, why));
+    }
   }
 
   _layout(root);
   return root;
+}
+
+/// Uzel stromu, kam patří biblické místo: příběh, který kapitolu
+/// obsahuje (nebo je nejblíž), jinak období, ke kterému kniha patří.
+TreeNode? anchorFor(Passage p, List<TreeNode> nodes) {
+  TreeNode? best;
+  var bestDist = 1 << 30;
+  for (final n in nodes) {
+    final st = n.story;
+    if (st == null || n.level != TreeLevel.story) continue;
+    if (st.passage.bookId != p.bookId) continue;
+    final d = p.chapter < st.passage.chapter
+        ? st.passage.chapter - p.chapter
+        : math.max(0, p.chapter - st.passage.endChapter);
+    if (d < bestDist) (best, bestDist) = (n, d);
+  }
+  if (best != null) return best;
+  for (final n in nodes) {
+    final era = n.era;
+    if (era == null) continue;
+    if (era.books.contains(p.bookId) ||
+        era.branches.any((b) => b.$2.contains(p.bookId))) {
+      return n;
+    }
+  }
+  return null;
 }
 
 /// Radiální rozložení: listy rovnoměrně po kruhu (s mezerami mezi
@@ -175,17 +182,20 @@ void _layout(TreeNode root) {
       cursor += 1;
       return;
     }
-    // Malá období dostanou místo navíc, aby se jejich popisky nepřekrývaly.
-    final pad = n.level == TreeLevel.era
-        ? math.max(0, 22 - _leafCount(n)) / 2
-        : 0.0;
+    // Malá období a příběhy dostanou místo navíc, aby se jejich popisky
+    // nepřekrývaly.
+    final pad = switch (n.level) {
+      TreeLevel.era => math.max(0, 16 - _leafCount(n)) / 2,
+      TreeLevel.story => math.max(0, 2.2 - _leafCount(n)) / 2,
+      _ => 0.0,
+    };
     cursor += pad;
     for (final (i, c) in n.children.indexed) {
       if (i > 0) {
         cursor += switch (n.level) {
           TreeLevel.bible => 12.0,
           TreeLevel.testament => 4.0,
-          TreeLevel.era => 0.5,
+          TreeLevel.era => 0.8,
           _ => 0.0,
         };
       }
@@ -303,30 +313,34 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
       if (d < best) (hit, best) = (n, d);
     }
     if (hit == null) return;
-    setState(() => _selected = hit);
-    final zoom = switch (hit.level) {
+    _focus(hit);
+  }
+
+  void _focus(TreeNode n) {
+    setState(() => _selected = n);
+    final zoom = switch (n.level) {
       TreeLevel.bible => 1.0,
       TreeLevel.testament => 2.0,
-      TreeLevel.era => 3.4,
-      TreeLevel.book => 5.6,
-      TreeLevel.leaf => math.max(z, 6.5),
+      TreeLevel.era => 3.2,
+      TreeLevel.story => 5.2,
+      TreeLevel.leaf => math.max(_zoom, 6.5),
     };
-    _animateTo(hit.pos, zoom);
+    _animateTo(n.pos, zoom);
   }
 
   @override
   Widget build(BuildContext context) {
     final eras = ref.watch(storyProvider).value;
+    final stories = ref.watch(storiesProvider).value;
     final people = ref.watch(peopleProvider).value;
     final threads = ref.watch(threadsProvider).value;
-    final books = ref.watch(booksProvider);
-    if (eras == null || people == null || threads == null) {
+    if (eras == null || stories == null || people == null || threads == null) {
       return const Center(child: CircularProgressIndicator());
     }
     final root = _root ??= buildBibleTree(
       eras: eras,
+      stories: stories,
       people: people,
-      books: books,
     );
     if (_nodes.isEmpty) _nodes = _all(root).toList();
 
@@ -396,6 +410,8 @@ class _BibleTreeViewState extends ConsumerState<BibleTreeView>
                           : _NodePanel(
                               key: ValueKey(_selected!.id),
                               node: _selected!,
+                              nodes: _nodes,
+                              onFocus: _focus,
                             ),
                     ),
                   ),
@@ -426,7 +442,7 @@ double levelAlpha(TreeLevel level, double z) {
   return switch (level) {
     TreeLevel.bible || TreeLevel.testament => 1,
     TreeLevel.era => ramp(1.25, 1.75),
-    TreeLevel.book => ramp(2.3, 3.0),
+    TreeLevel.story => ramp(2.3, 3.0),
     TreeLevel.leaf => ramp(4.0, 5.0),
   };
 }
@@ -454,26 +470,16 @@ class BibleTreePainter extends CustomPainter {
 
   static const _center = Offset(treeCanvas / 2, treeCanvas / 2);
 
-  /// Uzel knihy, kam patří místo nitě (nejbližší podle klíčových kapitol).
-  TreeNode? _bookNode(Passage p) {
-    TreeNode? best;
-    var bestDist = 1 << 30;
-    for (final n in nodes) {
-      if (n.book != p.bookId) continue;
-      best ??= n;
-      final era = n.parent?.era;
-      for (final (k, _) in era?.key ?? const <(Passage, String)>[]) {
-        if (k.bookId != p.bookId) continue;
-        final d = (k.chapter - p.chapter).abs();
-        if (d < bestDist) (best, bestDist) = (n, d);
-      }
-    }
-    return best;
-  }
-
   late final Map<String, List<TreeNode>> _threadNodes = {
     for (final t in threads)
-      t.id: [for (final s in t.stations) ?_bookNode(s.passage)],
+      t.id: [for (final s in t.stations) ?anchorFor(s.passage, nodes)],
+  };
+
+  /// Příběh, k němuž patří vybraný uzel (příběh sám nebo jeho postava).
+  TreeNode? get _selectedStory => switch (selected) {
+    final n? when n.level == TreeLevel.story => n,
+    final n? when n.level == TreeLevel.leaf => n.parent,
+    _ => null,
   };
 
   @override
@@ -524,7 +530,7 @@ class BibleTreePainter extends CustomPainter {
             (switch (n.level) {
               TreeLevel.testament => 10.0,
               TreeLevel.era => 6.0,
-              TreeLevel.book => 3.0,
+              TreeLevel.story => 3.0,
               _ => 1.4,
             }) *
             (onPath ? 1.6 : 1);
@@ -539,8 +545,36 @@ class BibleTreePainter extends CustomPainter {
       canvas.drawPath(path, edge);
     }
 
-    // Nitě: spojnice mezi knihami (svazované směrem ke středu).
-    final bookAlpha = levelAlpha(TreeLevel.book, z);
+    // Souvislosti mezi příběhy (oblouky svazované směrem ke středu).
+    final storyAlpha = levelAlpha(TreeLevel.story, z);
+    final focus = _selectedStory;
+    if (storyAlpha > 0 && thread == null) {
+      final link = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeCap = StrokeCap.round;
+      for (final n in nodes) {
+        for (final (o, _) in n.links) {
+          // Každou dvojici kreslíme jednou.
+          if (o.id.compareTo(n.id) < 0) continue;
+          final hot = focus != null && (focus == n || focus == o);
+          final a = storyAlpha * (hot ? 0.95 : (focus == null ? 0.28 : 0.07));
+          link
+            ..strokeWidth = (hot ? 3.4 : 1.6) / math.sqrt(scale) * 1.6
+            ..color = Color.lerp(n.color, o.color, 0.5)!.withValues(alpha: a);
+          final mid = Offset.lerp(n.pos, o.pos, 0.5)!;
+          final ctrl = _center + (mid - _center) * 0.3;
+          canvas.drawPath(
+            Path()
+              ..moveTo(n.pos.dx, n.pos.dy)
+              ..quadraticBezierTo(ctrl.dx, ctrl.dy, o.pos.dx, o.pos.dy),
+            link,
+          );
+        }
+      }
+    }
+
+    // Nitě: témata, která se táhnou napříč příběhy.
+    final bookAlpha = storyAlpha;
     for (final t in threads) {
       final active = thread?.id == t.id;
       final a = active ? 0.95 : (thread == null ? bookAlpha * 0.22 : 0.0);
@@ -582,7 +616,7 @@ class BibleTreePainter extends CustomPainter {
     for (final n in nodes) {
       final a = levelAlpha(n.level, z);
       if (a <= 0) continue;
-      if (!visible.contains(n.pos) && n.level.index >= TreeLevel.book.index) {
+      if (!visible.contains(n.pos) && n.level.index >= TreeLevel.story.index) {
         continue;
       }
       _node(canvas, n, a, scale);
@@ -647,15 +681,18 @@ class BibleTreePainter extends CustomPainter {
           );
         }
         tp.paint(canvas, n.pos - Offset(tp.width / 2, tp.height / 2));
-      case TreeLevel.book || TreeLevel.leaf:
+      case TreeLevel.story || TreeLevel.leaf:
         final leaf = n.level == TreeLevel.leaf;
-        final r = leaf ? 6.0 : 11.0;
-        if (n.passage != null) {
-          // Klíčová událost: kosočtverec.
+        final r = leaf ? 6.0 : 12.0;
+        if (!leaf) {
+          // Příběh: kosočtverec.
           canvas.save();
           canvas.translate(n.pos.dx, n.pos.dy);
           canvas.rotate(math.pi / 4);
-          canvas.drawRect(Rect.fromCircle(center: Offset.zero, radius: r), dot);
+          canvas.drawRect(
+            Rect.fromCircle(center: Offset.zero, radius: r * 0.8),
+            dot,
+          );
           canvas.restore();
         } else {
           canvas.drawCircle(n.pos, r, dot);
@@ -673,14 +710,16 @@ class BibleTreePainter extends CustomPainter {
         // Popisek po paprsku ven (na levé straně otočený, aby nebyl
         // vzhůru nohama).
         final font = _fontSizes[n.level.index];
+        final flip = math.cos(n.angle) < 0;
         final tp = _painter(
           n.title,
           font,
           (leaf ? Colors.white : Color.lerp(n.color, Colors.white, 0.45)!)
               .withValues(alpha: alpha * (leaf ? 0.9 : 1)),
           bold: !leaf,
+          maxWidth: leaf ? double.infinity : _storyLabelWidth,
+          align: flip ? TextAlign.right : TextAlign.left,
         );
-        final flip = math.cos(n.angle) < 0;
         canvas.save();
         canvas.translate(n.pos.dx, n.pos.dy);
         canvas.rotate(flip ? n.angle + math.pi : n.angle);
@@ -698,8 +737,9 @@ class BibleTreePainter extends CustomPainter {
     Color color, {
     double maxWidth = double.infinity,
     bool bold = false,
+    TextAlign align = TextAlign.center,
   }) {
-    final key = '$text|$size|${color.toARGB32()}|$maxWidth|$bold';
+    final key = '$text|$size|${color.toARGB32()}|$maxWidth|$bold|$align';
     return _cache[key] ??= TextPainter(
       text: TextSpan(
         text: text,
@@ -710,7 +750,7 @@ class BibleTreePainter extends CustomPainter {
           height: 1.15,
         ),
       ),
-      textAlign: TextAlign.center,
+      textAlign: align,
       textDirection: TextDirection.ltr,
     )..layout(maxWidth: maxWidth);
   }
@@ -813,20 +853,34 @@ class _Hint extends StatelessWidget {
   }
 }
 
-/// Panel vybraného uzlu: popis a akce (podrobnosti, úvod, čtení…).
+/// Panel vybraného uzlu: popis, souvislosti a akce (podrobnosti, čtení…).
 class _NodePanel extends ConsumerWidget {
-  const _NodePanel({super.key, required this.node});
+  const _NodePanel({
+    super.key,
+    required this.node,
+    required this.nodes,
+    required this.onFocus,
+  });
 
   final TreeNode node;
+  final List<TreeNode> nodes;
+  final ValueChanged<TreeNode> onFocus;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final era = node.era;
-    final book = node.book;
+    final story = node.story;
     final person = node.person;
-    final passage = node.passage;
-    final description = era?.summary ?? person?.lessons.firstOrNull;
+    final description =
+        era?.summary ?? story?.summary ?? person?.lessons.firstOrNull;
+    // Souvislosti příběhu, u postavy její další příběhy.
+    final related = <(TreeNode, String)>[
+      ...node.links,
+      if (person != null)
+        for (final n in nodes)
+          if (n.person?.id == person.id && n != node) (n.parent!, S.treeAlsoIn),
+    ];
     return Card(
       margin: EdgeInsets.zero,
       child: Padding(
@@ -847,7 +901,10 @@ class _NodePanel extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: Text(node.title, style: theme.textTheme.titleMedium),
+                  child: Text(
+                    person?.name ?? node.title,
+                    style: theme.textTheme.titleMedium,
+                  ),
                 ),
               ],
             ),
@@ -871,6 +928,32 @@ class _NodePanel extends ConsumerWidget {
                   style: theme.textTheme.bodySmall,
                 ),
               ),
+            if (related.isNotEmpty) ...[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(18, 10, 0, 4),
+                child: Text(
+                  person != null ? S.treeAlsoIn : S.treeLinks,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: person != null ? 40 : 64,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 14),
+                  children: [
+                    for (final (n, why) in related)
+                      _LinkCard(
+                        node: n,
+                        why: person != null ? null : why,
+                        onTap: () => onFocus(n),
+                      ),
+                  ],
+                ),
+              ),
+            ],
             Wrap(
               alignment: WrapAlignment.end,
               children: [
@@ -879,14 +962,15 @@ class _NodePanel extends ConsumerWidget {
                     onPressed: () => showEra(context, era),
                     child: const Text(S.treeEraDetail),
                   ),
-                if (book != null) ...[
+                if (story != null) ...[
                   TextButton(
-                    onPressed: () => showBookIntro(context, book),
+                    onPressed: () =>
+                        showBookIntro(context, story.passage.bookId),
                     child: const Text(S.bookIntro),
                   ),
                   TextButton(
                     onPressed: () =>
-                        openReaderAt(context, ref, VerseRef(book, 1)),
+                        openReaderAt(context, ref, story.passage.start),
                     child: const Text(S.treeRead),
                   ),
                 ],
@@ -895,14 +979,61 @@ class _NodePanel extends ConsumerWidget {
                     onPressed: () => openPerson(context, person),
                     child: const Text(S.treePerson),
                   ),
-                if (passage != null)
-                  TextButton(
-                    onPressed: () => openReaderAt(context, ref, passage.start),
-                    child: const Text(S.treeRead),
-                  ),
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Karta souvislosti: barevný proužek, název příběhu a proč souvisí.
+class _LinkCard extends StatelessWidget {
+  const _LinkCard({required this.node, required this.why, required this.onTap});
+
+  final TreeNode node;
+  final String? why;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(right: 8),
+      child: Material(
+        color: node.color.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(12),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: onTap,
+          child: Container(
+            width: why == null ? null : 230,
+            padding: const EdgeInsets.fromLTRB(10, 6, 10, 6),
+            decoration: BoxDecoration(
+              border: Border(left: BorderSide(color: node.color, width: 3)),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  node.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.labelLarge,
+                ),
+                if (why != null)
+                  Text(
+                    why!,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(height: 1.2),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -18,8 +18,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
 from content import (church_year, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
-                     notes, people, quiz, situations, story, tables, threads,
-                     topics)
+                     notes, people, quiz, situations, situations_more,
+                     stories, story, tables, threads, topics)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -43,11 +43,17 @@ def ref(s: str) -> list[int]:
 
 
 def build_situations() -> dict:
+    ids = {s[0] for s in situations.SITUATIONS}
+    if ids != set(situations_more.MORE):
+        raise SystemExit(f"situations_more: {ids ^ set(situations_more.MORE)}")
     return {
         "groups": [{"id": g, "name": n} for g, n in situations.GROUPS],
         "situations": [
             {"id": i, "group": g, "icon": icon, "title": t, "intro": intro,
-             "refs": [ref(r) for r in refs]}
+             "refs": [ref(r) for r in refs],
+             "thoughts": situations_more.MORE[i][0],
+             "steps": situations_more.MORE[i][1],
+             "prayer": situations_more.MORE[i][2]}
             for i, g, icon, t, intro, refs in situations.SITUATIONS
         ],
     }
@@ -101,6 +107,39 @@ def build_story() -> dict:
          "key": [{"ref": ref(r), "label": label} for r, label in key]}
         for i, title, period, summary, books, branches, key in story.ERAS
     ]}
+
+
+_SPAN = re.compile(r"^(\S+) (\d+)(?:-(\d+))?$")
+
+
+def build_stories() -> dict:
+    """Příběhy pro myšlenkovou mapu; kontroluje období, postavy, kapitoly
+    a souvislosti."""
+    eras = {e[0] for e in story.ERAS}
+    persons = {p["id"] for p in people.P}
+    ids = [s[0] for s in stories.S]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("stories: duplicitní id")
+    out = []
+    for i, era, title, span, summary, who, links in stories.S:
+        m = _SPAN.match(span)
+        if not m or m.group(1) not in BOOK:
+            raise SystemExit(f"{i}: neplatný rozsah {span}")
+        b, c1 = BOOK[m.group(1)], int(m.group(2))
+        c2 = int(m.group(3) or c1)
+        if era not in eras or not 1 <= c1 <= c2 <= CHAPTERS[b - 1]:
+            raise SystemExit(f"{i}: období nebo kapitoly mimo rozsah")
+        for w in who:
+            if w not in persons:
+                raise SystemExit(f"{i}: neznámá postava {w}")
+        for t, _ in links:
+            if t not in ids or t == i:
+                raise SystemExit(f"{i}: neznámá souvislost {t}")
+        out.append({"id": i, "era": era, "title": title,
+                    "span": span.replace("-", "–"), "ref": [b, c1, 0, 0, c2],
+                    "summary": summary, "people": who,
+                    "links": [{"to": t, "label": x} for t, x in links]})
+    return {"stories": out}
 
 
 # Kanonické (hebrejské) počty kapitol.
@@ -235,6 +274,7 @@ def main() -> None:
             "church_year.json": build_church_year(),
             "threads.json": build_threads(),
             "story.json": build_story(),
+            "stories.json": build_stories(),
             "reflections.json": build_reflections()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
@@ -276,6 +316,11 @@ def main() -> None:
                     r = k["ref"]
                     print(f"  {ABBR[r[0]-1]} {r[1]} [{k['label']}]: "
                           f"{text(r[0], r[1], 1, 3)[:150]}")
+        if what == "stories":
+            for st in data["stories.json"]["stories"]:
+                r = st["ref"]
+                print(f"{st['span']} [{st['title']}]: "
+                      f"{text(r[0], r[1], 1, 4)[:200]}")
         if what.startswith("reflect"):
             only = what.split(":")[1] if ":" in what else None
             for b, rows in data["reflections.json"]["books"].items():

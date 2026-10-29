@@ -167,6 +167,15 @@ final storyProvider = FutureProvider<List<StoryEra>>((ref) async {
   ];
 });
 
+/// Příběhy pro myšlenkovou mapu.
+final storiesProvider = FutureProvider<List<BibleStory>>((ref) async {
+  final j = await _loadJson('stories.json');
+  return [
+    for (final s in j['stories']! as List<Object?>)
+      BibleStory.fromJson(s! as Map<String, Object?>),
+  ];
+});
+
 /// Souhrn křížových odkazů pro obloukový graf.
 final connectionsProvider = FutureProvider<BibleConnections>((ref) async {
   return BibleConnections.fromJson(await _loadJson('connections.json'));

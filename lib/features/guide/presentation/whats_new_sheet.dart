@@ -5,9 +5,30 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 8;
+const whatsNewVersion = 9;
 
 const _items = [
+  (
+    Icons.hub_outlined,
+    'Strom příběhů',
+    'Strom Bible se teď větví na 119 příběhů a ty na postavy, které v nich '
+        'vystupují. Oblouky spojují příběhy, které spolu souvisejí '
+        '(Obětování Izáka ↔ Kříž, Mana ↔ Chléb života…). Klepněte na příběh '
+        'a uvidíte, s čím souvisí a proč.',
+  ),
+  (
+    Icons.timeline,
+    '22 červených nití',
+    'Nově Světlo, Chléb z nebe, Setkání na hoře, Odpočinutí, Cesta domů, '
+        'Kněz, Jméno „Já jsem“, Ženich a nevěsta, Vinice, Bůh si vybírá '
+        'slabé a Kámen a skála.',
+  ),
+  (
+    Icons.lightbulb_outline,
+    'Verše pro tuto chvíli – víc než verše',
+    'Ke každé situaci delší zamyšlení, tři praktické kroky „Co můžu '
+        'udělat“ a krátká modlitba.',
+  ),
   (
     Icons.dashboard_customize_outlined,
     'Přehlednější aplikace',
@@ -22,13 +43,6 @@ const _items = [
         'otázka navazuje na vaši předchozí odpověď.',
   ),
   (
-    Icons.hub_outlined,
-    'Strom Bible',
-    'Myšlenková mapa celé Bible: přibližováním se větví zákony, období, '
-        'knihy a nakonec postavy a klíčové události. Nitě ukazují, jak '
-        'spolu vzdálené větve souvisejí.',
-  ),
-  (
     Icons.account_tree_outlined,
     'Souvislosti v Bibli – velký příběh',
     'Studium → Bible jako celek: strom dvanácti období od stvoření po '
@@ -38,7 +52,7 @@ const _items = [
   (
     Icons.timeline,
     'Červené nitě',
-    'Jedenáct motivů napříč Biblí (Beránek, Král z Davidova rodu, Voda '
+    'Motivy napříč Biblí (Beránek, Král z Davidova rodu, Voda '
         'života…). U každého místa je vysvětleno, proč navazuje na '
         'předchozí.',
   ),

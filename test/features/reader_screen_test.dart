@@ -17,6 +17,8 @@ import 'package:bible_reader/features/reader/presentation/verse_image_sheet.dart
 import 'package:bible_reader/features/settings/application/reader_settings_controller.dart';
 import 'package:bible_reader/features/study/presentation/study_hub_screen.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
+import 'package:bible_reader/features/shell/home_shell.dart';
+import 'package:bible_reader/features/reader/presentation/reader_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -46,6 +48,28 @@ void main() {
       await settle(tester);
     }
   }
+
+  appTest('rozdělená obrazovka: Bible a další sekce zároveň', (tester) async {
+    await pumpApp(tester, at: const VerseRef(43, 3, 16), openBible: false);
+    container.read(splitViewProvider.notifier).set(true);
+    await settle(tester);
+    expect(find.byType(ReaderScreen), findsOneWidget);
+    expect(find.text('VERŠ DNE'), findsOneWidget);
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    expect(find.byType(StudyHubScreen), findsOneWidget);
+    expect(find.byType(ReaderScreen), findsOneWidget);
+    // Výběr sekce mění jen druhý panel, Bible zůstává.
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
+    expect(find.byType(ReaderScreen), findsOneWidget);
+    expect(container.read(shellTabProvider), AppTab.journal);
+    // „Bible“ v navigaci = zpět na celou obrazovku.
+    await tester.tap(find.text('Bible').last);
+    await settle(tester);
+    expect(container.read(splitViewProvider), isFalse);
+    expect(container.read(shellTabProvider), AppTab.bible);
+  });
 
   appTest('obrazovka Dnes: pozdrav, verš dne, pokračování ve čtení', (
     tester,

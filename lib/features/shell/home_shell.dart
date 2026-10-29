@@ -25,10 +25,40 @@ enum AppTab { today, bible, study, search, journal }
 
 class ShellTabController extends Notifier<AppTab> {
   @override
-  AppTab build() => AppTab.today;
+  AppTab build() =>
+      ref.read(appPreferencesProvider).splitView ? AppTab.study : AppTab.today;
 
-  void select(AppTab tab) => state = tab;
+  /// V rozdělené obrazovce je Bible vidět stále – vybírá se jen sekce
+  /// ve druhém panelu.
+  void select(AppTab tab) {
+    if (tab == AppTab.bible && ref.read(splitViewProvider)) return;
+    state = tab;
+  }
 }
+
+/// Rozdělená obrazovka: Bible a vedle (na telefonu pod ní) další sekce.
+class SplitViewController extends Notifier<bool> {
+  @override
+  bool build() => ref.read(appPreferencesProvider).splitView;
+
+  void set(bool value) {
+    if (value == state) return;
+    ref.read(appPreferencesProvider).setSplitView(value);
+    state = value;
+    final tabs = ref.read(shellTabProvider.notifier);
+    if (value && ref.read(shellTabProvider) == AppTab.bible) {
+      tabs.select(AppTab.study);
+    } else if (!value) {
+      tabs.select(AppTab.bible);
+    }
+  }
+
+  void toggle() => set(!state);
+}
+
+final splitViewProvider = NotifierProvider<SplitViewController, bool>(
+  SplitViewController.new,
+);
 
 final shellTabProvider = NotifierProvider<ShellTabController, AppTab>(
   ShellTabController.new,
@@ -49,6 +79,12 @@ void openReaderAt(
   target = Versification.convert(target, from, schemeOf(primaryId));
   ref.read(readingPositionProvider.notifier).jumpTo(target);
   ref.read(controlsVisibleProvider.notifier).show();
+  if (ref.read(splitViewProvider)) {
+    // Bible je vidět vedle – stránka ve druhém panelu zůstane otevřená,
+    // zavřou se jen vyskakovací okna a listy.
+    Navigator.of(context).popUntil((route) => route is! PopupRoute);
+    return;
+  }
   ref.read(shellTabProvider.notifier).select(AppTab.bible);
   Navigator.of(context).popUntil((route) => route.isFirst);
 }
@@ -65,6 +101,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   /// Sekce se sestaví až při první návštěvě (pak zůstávají v paměti).
   final _visited = <AppTab>{};
 
+  /// Navigace druhého panelu rozdělené obrazovky (stránky ze Studia se
+  /// otevírají v něm, Bible zůstává vedle).
+  final _paneNavigator = GlobalKey<NavigatorState>();
+  late double _ratio = ref.read(appPreferencesProvider).splitRatio;
+
   @override
   void initState() {
     super.initState();
@@ -79,30 +120,136 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   }
 
   Widget _page(AppTab tab) => switch (tab) {
-    AppTab.today => const ReadableWidth(child: TodayScreen()),
+    AppTab.today => const ReadableWidth(maxWidth: 1240, child: TodayScreen()),
     AppTab.bible => const ReaderScreen(),
     AppTab.study => const StudyHubScreen(),
-    AppTab.search => const ReadableWidth(child: SearchScreen()),
-    AppTab.journal => const ReadableWidth(child: JournalScreen()),
+    AppTab.search => const ReadableWidth(maxWidth: 960, child: SearchScreen()),
+    AppTab.journal => const ReadableWidth(
+      maxWidth: 960,
+      child: JournalScreen(),
+    ),
   };
 
   void _select(AppTab t) {
     HapticFeedback.selectionClick();
+    if (ref.read(splitViewProvider)) {
+      if (t == AppTab.bible) {
+        // „Bible“ v rozdělené obrazovce = Bible přes celou obrazovku.
+        ref.read(splitViewProvider.notifier).set(false);
+        return;
+      }
+      _paneNavigator.currentState?.popUntil((r) => r.isFirst);
+    }
     if (t == AppTab.bible) {
       ref.read(controlsVisibleProvider.notifier).show();
     }
     ref.read(shellTabProvider.notifier).select(t);
   }
 
+  /// Stránky sekcí kromě Bible (druhý panel rozdělené obrazovky).
+  Widget _panePages() => Consumer(
+    builder: (context, ref, _) {
+      final tab = ref.watch(shellTabProvider);
+      return Stack(
+        children: [
+          for (final t in AppTab.values)
+            if (t != AppTab.bible && _visited.contains(t))
+              Offstage(
+                offstage: t != tab,
+                child: TickerMode(enabled: t == tab, child: _page(t)),
+              ),
+        ],
+      );
+    },
+  );
+
+  /// Panel s vlastními rozměry: obrazovky v něm se chovají jako na
+  /// displeji velikosti panelu (telefon vs. tablet).
+  Widget _pane(
+    BuildContext context,
+    Size size, {
+    required Widget child,
+    bool removeTop = false,
+    bool removeBottom = false,
+    bool removeLeft = false,
+    bool removeRight = false,
+  }) {
+    final mq = MediaQuery.of(context);
+    EdgeInsets cut(EdgeInsets e) => e.copyWith(
+      top: removeTop ? 0 : null,
+      bottom: removeBottom ? 0 : null,
+      left: removeLeft ? 0 : null,
+      right: removeRight ? 0 : null,
+    );
+    return SizedBox.fromSize(
+      size: size,
+      child: MediaQuery(
+        data: mq.copyWith(
+          size: size,
+          padding: cut(mq.padding),
+          viewPadding: cut(mq.viewPadding),
+        ),
+        child: ClipRect(child: child),
+      ),
+    );
+  }
+
+  Widget _splitBody(BuildContext context, {required bool sideBySide}) {
+    return LayoutBuilder(
+      builder: (context, c) {
+        const handle = 14.0;
+        final total = sideBySide ? c.maxWidth : c.maxHeight;
+        final first = ((total - handle) * _ratio).roundToDouble();
+        final second = total - handle - first;
+        final reader = _pane(
+          context,
+          sideBySide ? Size(first, c.maxHeight) : Size(c.maxWidth, first),
+          removeRight: sideBySide,
+          removeBottom: !sideBySide,
+          child: const ReaderScreen(),
+        );
+        final pane = _pane(
+          context,
+          sideBySide ? Size(second, c.maxHeight) : Size(c.maxWidth, second),
+          removeLeft: sideBySide,
+          removeTop: !sideBySide,
+          child: HeroControllerScope.none(
+            child: Navigator(
+              key: _paneNavigator,
+              onGenerateRoute: (_) => PageRouteBuilder<void>(
+                pageBuilder: (_, _, _) => _panePages(),
+              ),
+            ),
+          ),
+        );
+        final divider = _SplitHandle(
+          vertical: sideBySide,
+          onDrag: (delta) => setState(() {
+            _ratio = (_ratio + delta / (total - handle)).clamp(0.3, 0.7);
+          }),
+          onDragEnd: () =>
+              ref.read(appPreferencesProvider).setSplitRatio(_ratio),
+          onClose: () => ref.read(splitViewProvider.notifier).set(false),
+        );
+        return sideBySide
+            ? Row(children: [reader, divider, pane])
+            : Column(children: [reader, divider, pane]);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tab = ref.watch(shellTabProvider);
+    final split = ref.watch(splitViewProvider);
     _visited.add(tab);
+    if (split) _visited.add(AppTab.bible);
     final controlsVisible = ref.watch(controlsVisibleProvider);
     final hasSelection = ref.watch(
       verseSelectionProvider.select((s) => !s.isEmpty),
     );
-    final hideNav = tab == AppTab.bible && (!controlsVisible || hasSelection);
+    final hideNav =
+        !split && tab == AppTab.bible && (!controlsVisible || hasSelection);
     final pages = Stack(
       children: [
         for (final t in AppTab.values)
@@ -116,7 +263,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
     // Tablet / telefon na šířku: navigace v boční liště.
     if (isWide(context)) {
-      final hideRail = tab == AppTab.bible && !controlsVisible;
+      final hideRail = !split && tab == AppTab.bible && !controlsVisible;
       return Scaffold(
         body: Row(
           children: [
@@ -126,13 +273,25 @@ class _HomeShellState extends ConsumerState<HomeShell> {
               alignment: Alignment.centerLeft,
               child: hideRail
                   ? const SizedBox(height: double.infinity)
-                  : _SideRail(current: tab, onSelect: _select),
+                  : _SideRail(
+                      current: tab,
+                      split: split,
+                      onSelect: _select,
+                      onToggleSplit: ref
+                          .read(splitViewProvider.notifier)
+                          .toggle,
+                    ),
             ),
             Expanded(
               child: MediaQuery.removePadding(
                 context: context,
                 removeLeft: !hideRail,
-                child: pages,
+                child: split
+                    ? Builder(
+                        builder: (context) =>
+                            _splitBody(context, sideBySide: true),
+                      )
+                    : pages,
               ),
             ),
           ],
@@ -143,7 +302,24 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(child: pages),
+          Positioned.fill(
+            child: split
+                ? Padding(
+                    // Místo pro plovoucí navigaci pod druhým panelem.
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.paddingOf(context).bottom + 76,
+                    ),
+                    child: MediaQuery.removePadding(
+                      context: context,
+                      removeBottom: true,
+                      child: Builder(
+                        builder: (context) =>
+                            _splitBody(context, sideBySide: false),
+                      ),
+                    ),
+                  )
+                : pages,
+          ),
           Positioned(
             left: 0,
             right: 0,
@@ -152,7 +328,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
               offset: hideNav ? const Offset(0, 1.4) : Offset.zero,
               duration: const Duration(milliseconds: 280),
               curve: Curves.easeOutCubic,
-              child: _NavBar(current: tab, onSelect: _select),
+              child: _NavBar(current: tab, split: split, onSelect: _select),
             ),
           ),
         ],
@@ -171,10 +347,17 @@ const _navItems = [
 
 /// Boční navigace pro široký displej.
 class _SideRail extends StatelessWidget {
-  const _SideRail({required this.current, required this.onSelect});
+  const _SideRail({
+    required this.current,
+    required this.split,
+    required this.onSelect,
+    required this.onToggleSplit,
+  });
 
   final AppTab current;
+  final bool split;
   final ValueChanged<AppTab> onSelect;
+  final VoidCallback onToggleSplit;
 
   @override
   Widget build(BuildContext context) {
@@ -216,11 +399,21 @@ class _SideRail extends StatelessWidget {
                 child: _NavItem(
                   icon: tab == current ? activeIcon : icon,
                   label: label,
-                  selected: tab == current,
+                  selected: tab == current || (split && tab == AppTab.bible),
                   onTap: () => onSelect(tab),
                 ),
               ),
             ),
+          const Spacer(),
+          SizedBox(
+            height: 62,
+            child: _NavItem(
+              icon: split ? Icons.fullscreen : Icons.vertical_split_outlined,
+              label: split ? S.splitOff : S.splitOn,
+              selected: false,
+              onTap: onToggleSplit,
+            ),
+          ),
         ],
       ),
     );
@@ -228,9 +421,14 @@ class _SideRail extends StatelessWidget {
 }
 
 class _NavBar extends StatelessWidget {
-  const _NavBar({required this.current, required this.onSelect});
+  const _NavBar({
+    required this.current,
+    required this.onSelect,
+    this.split = false,
+  });
 
   final AppTab current;
+  final bool split;
   final ValueChanged<AppTab> onSelect;
 
   static const _items = _navItems;
@@ -262,7 +460,8 @@ class _NavBar extends StatelessWidget {
                     child: _NavItem(
                       icon: tab == current ? activeIcon : icon,
                       label: label,
-                      selected: tab == current,
+                      selected:
+                          tab == current || (split && tab == AppTab.bible),
                       onTap: () => onSelect(tab),
                     ),
                   ),
@@ -328,6 +527,101 @@ class _NavItem extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Předěl rozdělené obrazovky: tažením se mění poměr, křížek rozdělení
+/// zruší.
+class _SplitHandle extends StatelessWidget {
+  const _SplitHandle({
+    required this.vertical,
+    required this.onDrag,
+    required this.onDragEnd,
+    required this.onClose,
+  });
+
+  /// Svislý předěl (panely vedle sebe).
+  final bool vertical;
+  final ValueChanged<double> onDrag;
+  final VoidCallback onDragEnd;
+  final VoidCallback onClose;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = AppPalette.of(context);
+    final theme = Theme.of(context);
+    final grip = Container(
+      width: vertical ? 4 : 44,
+      height: vertical ? 44 : 4,
+      decoration: BoxDecoration(
+        color: palette.muted.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(2),
+      ),
+    );
+    return MouseRegion(
+      cursor: vertical
+          ? SystemMouseCursors.resizeColumn
+          : SystemMouseCursors.resizeRow,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onHorizontalDragUpdate: vertical ? (d) => onDrag(d.delta.dx) : null,
+        onHorizontalDragEnd: vertical ? (_) => onDragEnd() : null,
+        onVerticalDragUpdate: vertical ? null : (d) => onDrag(d.delta.dy),
+        onVerticalDragEnd: vertical ? null : (_) => onDragEnd(),
+        child: Container(
+          width: vertical ? 14 : double.infinity,
+          height: vertical ? double.infinity : 14,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surfaceContainerLow,
+            border: vertical
+                ? Border.symmetric(
+                    vertical: BorderSide(color: palette.cardBorder),
+                  )
+                : Border.symmetric(
+                    horizontal: BorderSide(color: palette.cardBorder),
+                  ),
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              grip,
+              Align(
+                alignment: vertical
+                    ? const Alignment(0, -0.97)
+                    : const Alignment(0.97, 0),
+                child: OverflowBox(
+                  maxWidth: 36,
+                  maxHeight: 36,
+                  child: Material(
+                    color: theme.colorScheme.surfaceContainerHigh,
+                    shape: CircleBorder(
+                      side: BorderSide(color: palette.cardBorder),
+                    ),
+                    child: InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: onClose,
+                      child: Tooltip(
+                        message: S.splitOff,
+                        child: SizedBox(
+                          width: 28,
+                          height: 28,
+                          child: Icon(
+                            Icons.close,
+                            size: 16,
+                            color: palette.muted,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

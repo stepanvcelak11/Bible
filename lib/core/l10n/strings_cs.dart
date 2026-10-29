@@ -391,6 +391,14 @@ abstract final class S {
   static const treeRead = 'Číst';
   static const treePerson = 'Medailon';
   static const treeLinks = 'Souvisí s';
+  static const splitOn = 'Rozdělit';
+  static const splitOff = 'Celá obrazovka';
+  static const splitMenu = 'Rozdělená obrazovka';
+  static const installTitle = 'Nainstalovat jako aplikaci';
+  static const installText =
+      'Bible se pak otevírá z plochy jako samostatná aplikace – na celou '
+      'obrazovku, bez lišty prohlížeče, a funguje i offline.';
+  static const installAction = 'Nainstalovat';
   static const situationThoughts = 'Zamyšlení';
   static const situationVerses = 'Verše';
   static const situationSteps = 'Co můžu udělat';

@@ -66,8 +66,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
 
     Widget header(String title) => SectionLabel(title);
 
-    // Barevné dlaždice ve dvou sloupcích (na tabletu ve třech).
-    final columns = MediaQuery.sizeOf(context).width >= 700 ? 3 : 2;
+    // Barevné dlaždice: na telefonu dva sloupce, na tabletu tři až čtyři.
+    final width = MediaQuery.sizeOf(context).width;
+    final maxColumns = width >= 1100
+        ? 4
+        : width >= 700
+        ? 3
+        : 2;
     Widget tile(_Entry e, {bool wide = false}) => Material(
       color: palette.card,
       shape: RoundedRectangleBorder(
@@ -180,6 +185,15 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
     );
 
     Widget group(List<_Entry> entries) {
+      // Počet sloupců, se kterým skupina vyjde do celých řádků (na tabletu
+      // např. 2 dlaždice vedle sebe místo 1 + prázdných míst).
+      var columns = maxColumns;
+      for (var c = maxColumns; c >= 2; c--) {
+        if (entries.length % c == 0) {
+          columns = c;
+          break;
+        }
+      }
       // Když dlaždice nevyjdou do celých řádků, první je přes celou šířku.
       final wide = entries.length % columns == 0 ? 0 : 1;
       final rest = entries.sublist(wide);
@@ -225,6 +239,7 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
 
     return Scaffold(
       body: ReadableWidth(
+        maxWidth: 1240,
         child: ListView(
           padding: EdgeInsets.fromLTRB(
             16,

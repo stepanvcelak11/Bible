@@ -1692,80 +1692,101 @@ class ConnectionsHeroCard extends ConsumerWidget {
         onTap: () => openConnections(context),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(14, 16, 14, 14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (data != null)
-                LayoutBuilder(
-                  builder: (context, c) => RepaintBoundary(
-                    child: CustomPaint(
-                      size: Size(c.maxWidth, c.maxWidth / 2 + 34),
-                      painter: ArcDiagramPainter(
-                        data: data,
-                        arcBooks: [
-                          for (final a in data.arcs)
-                            (
-                              data.bookOfChapter(a[0]),
-                              data.bookOfChapter(a[1]),
-                            ),
-                        ],
-                        selected: null,
-                      ),
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 10),
-              Text(
-                S.connections,
-                style: theme.textTheme.titleLarge?.copyWith(color: ink),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                S.connectionsHint,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: ink.withValues(alpha: 0.75),
-                ),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final (view, label, icon) in [
-                    (ConnectionsView.tree, S.tabTree, Icons.hub_outlined),
-                    (ConnectionsView.story, S.tabStory, Icons.account_tree),
-                    (ConnectionsView.threads, S.tabThreads, Icons.timeline),
-                    (ConnectionsView.arcs, S.tabArcs, Icons.blur_on),
-                  ])
-                    Material(
-                      color: Colors.white.withValues(alpha: 0.1),
-                      shape: StadiumBorder(
-                        side: BorderSide(color: ink.withValues(alpha: 0.3)),
-                      ),
-                      child: InkWell(
-                        customBorder: const StadiumBorder(),
-                        onTap: () => openConnections(context, view: view),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 7, 14, 7),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(icon, size: 18, color: ink),
-                              const SizedBox(width: 6),
-                              Text(
-                                label,
-                                style: theme.textTheme.labelLarge?.copyWith(
-                                  color: ink,
+          child: LayoutBuilder(
+            builder: (context, c) {
+              final diagram = data == null
+                  ? const SizedBox.shrink()
+                  : LayoutBuilder(
+                      builder: (context, c) => RepaintBoundary(
+                        child: CustomPaint(
+                          size: Size(c.maxWidth, c.maxWidth / 2 + 34),
+                          painter: ArcDiagramPainter(
+                            data: data,
+                            arcBooks: [
+                              for (final a in data.arcs)
+                                (
+                                  data.bookOfChapter(a[0]),
+                                  data.bookOfChapter(a[1]),
                                 ),
-                              ),
                             ],
+                            selected: null,
                           ),
                         ),
                       ),
+                    );
+              final info = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    S.connections,
+                    style: theme.textTheme.titleLarge?.copyWith(color: ink),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    S.connectionsHint,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: ink.withValues(alpha: 0.75),
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final (view, label, icon) in [
+                        (ConnectionsView.tree, S.tabTree, Icons.hub_outlined),
+                        (ConnectionsView.story, S.tabStory, Icons.account_tree),
+                        (ConnectionsView.threads, S.tabThreads, Icons.timeline),
+                        (ConnectionsView.arcs, S.tabArcs, Icons.blur_on),
+                      ])
+                        Material(
+                          color: Colors.white.withValues(alpha: 0.1),
+                          shape: StadiumBorder(
+                            side: BorderSide(color: ink.withValues(alpha: 0.3)),
+                          ),
+                          child: InkWell(
+                            customBorder: const StadiumBorder(),
+                            onTap: () => openConnections(context, view: view),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(10, 7, 14, 7),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(icon, size: 18, color: ink),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    label,
+                                    style: theme.textTheme.labelLarge?.copyWith(
+                                      color: ink,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ],
-              ),
-            ],
+              );
+              // Na tabletu graf a text vedle sebe (jinak by karta byla
+              // přes celou obrazovku).
+              if (c.maxWidth >= 720) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(flex: 3, child: diagram),
+                    const SizedBox(width: 24),
+                    Expanded(flex: 2, child: info),
+                  ],
+                );
+              }
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [diagram, const SizedBox(height: 10), info],
+              );
+            },
           ),
         ),
       ),

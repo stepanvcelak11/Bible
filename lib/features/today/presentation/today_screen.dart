@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/install/install_banner.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -59,6 +60,25 @@ class TodayScreen extends ConsumerWidget {
         ? Colors.white
         : const Color(0xFF2A2018);
     final heroHeight = insets.top + 270;
+    // Tablet na šířku: dva sloupce pod obrázkem dne.
+    final twoColumns = MediaQuery.sizeOf(context).width >= 1100;
+    const gutter = 24.0;
+
+    const reading = [
+      InstallBanner(padding: EdgeInsets.only(top: 16)),
+      SectionLabel(S.myReading),
+      _ContinueCard(),
+      SizedBox(height: 10),
+      _StatsRow(),
+      SizedBox(height: 10),
+      _PlanCard(),
+    ];
+    const more = [
+      ForTodaySection(),
+      _SituationsStrip(),
+      ChurchYearCard(),
+      _RecentList(),
+    ];
 
     return ListView(
       padding: EdgeInsets.only(bottom: insets.bottom + 110),
@@ -134,27 +154,45 @@ class TodayScreen extends ConsumerWidget {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(20, heroHeight - 92, 20, 0),
-              child: const _VerseOfDayCard(),
+              child: twoColumns
+                  ? LayoutBuilder(
+                      builder: (context, c) => Align(
+                        alignment: Alignment.centerLeft,
+                        child: SizedBox(
+                          width: (c.maxWidth - gutter) / 2,
+                          child: const _VerseOfDayCard(),
+                        ),
+                      ),
+                    )
+                  : const _VerseOfDayCard(),
             ),
           ],
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SectionLabel(S.myReading),
-              const _ContinueCard(),
-              const SizedBox(height: 10),
-              const _StatsRow(),
-              const SizedBox(height: 10),
-              const _PlanCard(),
-              const ForTodaySection(),
-              const _SituationsStrip(),
-              const ChurchYearCard(),
-              const _RecentList(),
-            ],
-          ),
+          child: twoColumns
+              ? const Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: reading,
+                      ),
+                    ),
+                    SizedBox(width: gutter),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: more,
+                      ),
+                    ),
+                  ],
+                )
+              : const Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [...reading, ...more],
+                ),
         ),
       ],
     );

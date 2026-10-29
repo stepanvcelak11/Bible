@@ -11,6 +11,7 @@ import '../../prayer/application/prayer_controller.dart';
 
 import 'package:share_plus/share_plus.dart';
 
+import '../../../core/install/install_banner.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../core/providers.dart';
@@ -41,6 +42,7 @@ class SettingsScreen extends ConsumerWidget {
             bottom: MediaQuery.paddingOf(context).bottom + 24,
           ),
           children: [
+            const InstallBanner(padding: EdgeInsets.fromLTRB(16, 12, 16, 0)),
             const _Header(S.appearance),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

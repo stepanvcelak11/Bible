@@ -28,6 +28,8 @@ class AppPreferences {
   static const _quizOfDay = 'quiz.day';
   static const _whatsNewSeen = 'whatsnew.seen';
   static const _searchTestament = 'search.testament';
+  static const _splitView = 'shell.split';
+  static const _splitRatio = 'shell.splitRatio';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
   Future<void> setPrimaryTranslationId(String id) =>
@@ -68,6 +70,15 @@ class AppPreferences {
   }
 
   /// Poslední verze přehledu „Co je nového“, kterou uživatel viděl.
+  /// Rozdělená obrazovka: Bible vedle Studia (nebo jiné sekce).
+  bool get splitView => _prefs.getBool(_splitView) ?? false;
+  Future<void> setSplitView(bool value) => _prefs.setBool(_splitView, value);
+
+  /// Podíl prostoru pro Bibli v rozdělené obrazovce (0,3–0,7).
+  double get splitRatio => _prefs.getDouble(_splitRatio) ?? 0.5;
+  Future<void> setSplitRatio(double value) =>
+      _prefs.setDouble(_splitRatio, value);
+
   int get whatsNewSeen => _prefs.getInt(_whatsNewSeen) ?? 0;
   Future<void> setWhatsNewSeen(int version) =>
       _prefs.setInt(_whatsNewSeen, version);

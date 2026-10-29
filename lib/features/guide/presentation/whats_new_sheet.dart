@@ -5,9 +5,29 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 9;
+const whatsNewVersion = 10;
 
 const _items = [
+  (
+    Icons.vertical_split_outlined,
+    'Rozdělená obrazovka',
+    'Bible a vedle ní Studium, Hledat nebo Deník – na tabletu vedle sebe, '
+        'na telefonu nad sebou. Zapnete v Bibli v nabídce ⋮ (na tabletu '
+        'v boční liště „Rozdělit“). Předěl jde přetáhnout.',
+  ),
+  (
+    Icons.tablet_mac_outlined,
+    'Lepší na tabletu',
+    'Dnes ve dvou sloupcích, Studium ve více sloupcích, aplikace se otáčí '
+        'i na šířku. Na Androidu jde nainstalovat jako aplikace (tlačítko '
+        'na stránce Dnes).',
+  ),
+  (
+    Icons.account_tree,
+    'Příběh dějin vodorovně',
+    'Období zleva doprava a pod nimi pruhy knih přes všechna období, '
+        'která vyprávějí – na první pohled vidíte, kam která kniha patří.',
+  ),
   (
     Icons.hub_outlined,
     'Strom příběhů',

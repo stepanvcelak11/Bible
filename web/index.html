@@ -38,8 +38,32 @@
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch((e) =>
           console.warn('Service worker se nepodařilo zaregistrovat', e));
+        // Dotáhnout zbytek aplikace pro offline (kdyby se přerušilo).
+        navigator.serviceWorker.ready.then((r) =>
+          r.active && r.active.postMessage('precache'));
       });
     }
+    // Instalace jako aplikace (Android, Chrome na počítači): prohlížeč
+    // nabídne událost, aplikace pak ukáže vlastní tlačítko „Nainstalovat“.
+    window.bibleInstallEvent = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      window.bibleInstallEvent = e;
+      window.dispatchEvent(new Event('bible-install-changed'));
+    });
+    window.addEventListener('appinstalled', () => {
+      window.bibleInstallEvent = null;
+      window.dispatchEvent(new Event('bible-install-changed'));
+    });
+    window.bibleInstall = async () => {
+      const e = window.bibleInstallEvent;
+      if (!e) return false;
+      e.prompt();
+      const choice = await e.userChoice;
+      window.bibleInstallEvent = null;
+      window.dispatchEvent(new Event('bible-install-changed'));
+      return choice.outcome === 'accepted';
+    };
     // Skrýt úvodní text, jakmile Flutter vykreslí první snímek.
     window.addEventListener('flutter-first-frame', () => {
       const s = document.getElementById('splash');

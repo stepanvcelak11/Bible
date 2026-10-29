@@ -230,6 +230,8 @@ class _TopBar extends ConsumerWidget {
                         context,
                         const SettingsScreen(),
                       ),
+                      _MenuItem.split =>
+                        ref.read(splitViewProvider.notifier).toggle(),
                     },
                     itemBuilder: (_) => [
                       for (final (item, icon, label) in const [
@@ -246,6 +248,11 @@ class _TopBar extends ConsumerWidget {
                         (_MenuItem.map, Icons.map_outlined, S.chapterPlaces),
                         (_MenuItem.translations, Icons.translate, S.library),
                         (_MenuItem.settings, Icons.tune, S.settings),
+                        (
+                          _MenuItem.split,
+                          Icons.vertical_split_outlined,
+                          S.splitMenu,
+                        ),
                       ])
                         PopupMenuItem(
                           value: item,
@@ -453,7 +460,7 @@ class _SheetOption extends StatelessWidget {
 Future<void> _push(BuildContext context, Widget page) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
 
-enum _MenuItem { readAloud, intro, map, translations, settings }
+enum _MenuItem { readAloud, intro, map, translations, settings, split }
 
 Future<void> _startReadAloud(BuildContext context, WidgetRef ref) async {
   final controller = ref.read(readAloudProvider.notifier);

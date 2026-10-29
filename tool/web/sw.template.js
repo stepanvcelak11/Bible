@@ -8,12 +8,37 @@ const VERSION = '__VERSION__';
 const CACHE = `bible-${VERSION}`;
 const PRECACHE = __PRECACHE__;
 
+// Jádro aplikace (bez něj se nespustí) se uloží při instalaci – rychle, aby
+// se service worker hned aktivoval a prohlížeč nabídl instalaci aplikace.
+// Zbytek (databáze, písma…) se dotáhne na pozadí po aktivaci; soubory,
+// které se nepodaří stáhnout, se uloží při prvním použití.
+const CORE = ['./', 'index.html', 'manifest.json', 'flutter_bootstrap.js',
+  'main.dart.js', 'favicon.png', 'icons/Icon-192.png', 'icons/Icon-512.png']
+  .filter((p) => PRECACHE.includes(p));
+
+async function cacheRest() {
+  const cache = await caches.open(CACHE);
+  for (const p of PRECACHE) {
+    if (await cache.match(p)) continue;
+    try {
+      const response = await fetch(new Request(p, { cache: 'reload' }));
+      if (response.ok) await cache.put(p, response);
+    } catch (_) {
+      // Bez sítě – uloží se při prvním použití.
+    }
+  }
+}
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.addAll(PRECACHE.map((p) => new Request(p, { cache: 'reload' }))))
+      .then((cache) => cache.addAll(CORE.map((p) => new Request(p, { cache: 'reload' }))))
       .then(() => self.skipWaiting()),
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data === 'precache') event.waitUntil(cacheRest());
 });
 
 self.addEventListener('activate', (event) => {
@@ -22,7 +47,8 @@ self.addEventListener('activate', (event) => {
       .then((keys) => Promise.all(
         keys.filter((k) => k.startsWith('bible-') && k !== CACHE).map((k) => caches.delete(k)),
       ))
-      .then(() => self.clients.claim()),
+      .then(() => self.clients.claim())
+      .then(() => { cacheRest(); }),
   );
 });
 

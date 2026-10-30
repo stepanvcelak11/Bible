@@ -1,0 +1,682 @@
+{
+ "seasons": [
+  {
+   "id": "advent",
+   "color": "violet",
+   "name": "Advent",
+   "text": "Čas očekávání. Církev si připomíná, jak Izrael čekal na Mesiáše, a zároveň se dívá dopředu – ke Kristovu druhému příchodu. Advent zve ke ztišení, bdělosti a naději.",
+   "refs": [
+    [
+     23,
+     40,
+     3,
+     5
+    ],
+    [
+     23,
+     9,
+     1,
+     1
+    ],
+    [
+     42,
+     1,
+     30,
+     33
+    ],
+    [
+     45,
+     13,
+     11,
+     12
+    ],
+    [
+     40,
+     24,
+     42,
+     42
+    ]
+   ]
+  },
+  {
+   "id": "christmas",
+   "color": "white",
+   "name": "Vánoční doba",
+   "text": "Radost z narození Ježíše: Bůh se stal člověkem a přišel mezi nás. Vánoční doba trvá od Božího hodu do neděle Křtu Páně.",
+   "refs": [
+    [
+     42,
+     2,
+     10,
+     11
+    ],
+    [
+     43,
+     1,
+     14,
+     14
+    ],
+    [
+     23,
+     9,
+     5,
+     5
+    ],
+    [
+     48,
+     4,
+     4,
+     5
+    ],
+    [
+     56,
+     2,
+     11,
+     11
+    ]
+   ]
+  },
+  {
+   "id": "ordinary",
+   "color": "green",
+   "name": "Liturgické mezidobí",
+   "text": "Zelená barva naděje a růstu. Mezidobí nemá jeden velký svátek – je to čas, kdy se víra učí žít ve všedních dnech. Evangelia provázejí Ježíšovým učením a skutky.",
+   "refs": [
+    [
+     19,
+     1,
+     1,
+     3
+    ],
+    [
+     40,
+     13,
+     31,
+     32
+    ],
+    [
+     43,
+     15,
+     5,
+     5
+    ],
+    [
+     51,
+     2,
+     6,
+     7
+    ],
+    [
+     48,
+     6,
+     9,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "lent",
+   "color": "violet",
+   "name": "Postní doba",
+   "text": "Čtyřicet dní (bez nedělí) příprav na Velikonoce – podle Ježíšových čtyřiceti dní na poušti. Čas pokání, modlitby, odříkání a pomoci druhým.",
+   "refs": [
+    [
+     29,
+     2,
+     12,
+     13
+    ],
+    [
+     40,
+     4,
+     1,
+     4
+    ],
+    [
+     19,
+     51,
+     12,
+     14
+    ],
+    [
+     23,
+     58,
+     6,
+     7
+    ],
+    [
+     47,
+     6,
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "holyweek",
+   "color": "red",
+   "name": "Svatý týden",
+   "text": "Nejdůležitější týden roku: od Ježíšova vjezdu do Jeruzaléma přes poslední večeři, kříž a ticho hrobu až k velikonočnímu ránu.",
+   "refs": [
+    [
+     38,
+     9,
+     9,
+     9
+    ],
+    [
+     43,
+     13,
+     1,
+     1
+    ],
+    [
+     23,
+     53,
+     4,
+     5
+    ],
+    [
+     50,
+     2,
+     8,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "easter",
+   "color": "white",
+   "name": "Velikonoční doba",
+   "text": "Padesát dní radosti ze vzkříšení – od Velikonoc do Letnic. Čtou se zprávy o setkáních se vzkříšeným a o prvních krocích církve ve Skutcích apoštolů.",
+   "refs": [
+    [
+     46,
+     15,
+     20,
+     20
+    ],
+    [
+     43,
+     20,
+     19,
+     20
+    ],
+    [
+     42,
+     24,
+     30,
+     32
+    ],
+    [
+     60,
+     1,
+     3,
+     3
+    ],
+    [
+     44,
+     2,
+     42,
+     42
+    ]
+   ]
+  }
+ ],
+ "feasts": [
+  {
+   "id": "advent1",
+   "color": "violet",
+   "name": "1. neděle adventní",
+   "text": "Začátek nového církevního roku. Na adventním věnci se zapaluje první svíce – světlo, které roste, jak se blíží Vánoce.",
+   "refs": [
+    [
+     23,
+     2,
+     4,
+     5
+    ],
+    [
+     45,
+     13,
+     11,
+     12
+    ],
+    [
+     40,
+     24,
+     42,
+     44
+    ]
+   ]
+  },
+  {
+   "id": "christmas",
+   "color": "white",
+   "name": "Narození Páně (Boží hod vánoční)",
+   "text": "Slavnost Ježíšova narození v Betlémě. Pastýřům se zvěstuje „veliká radost pro všechen lid“ – Spasitel se narodil jako malé dítě.",
+   "refs": [
+    [
+     42,
+     2,
+     8,
+     14
+    ],
+    [
+     43,
+     1,
+     14,
+     14
+    ],
+    [
+     23,
+     9,
+     5,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "epiphany",
+   "color": "white",
+   "name": "Zjevení Páně (Tři králové)",
+   "text": "Mudrci z východu přicházejí k Ježíši. Svátek říká, že Kristus je světlo pro všechny národy, nejen pro jeden národ.",
+   "refs": [
+    [
+     40,
+     2,
+     1,
+     2
+    ],
+    [
+     40,
+     2,
+     10,
+     11
+    ],
+    [
+     23,
+     60,
+     1,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "baptism",
+   "color": "white",
+   "name": "Křest Páně",
+   "text": "Ježíš se nechává pokřtít od Jana v Jordánu a z nebe zaznívá: „Toto je můj milovaný Syn.“ Tímto svátkem končí vánoční doba.",
+   "refs": [
+    [
+     40,
+     3,
+     13,
+     17
+    ],
+    [
+     23,
+     42,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "presentation",
+   "color": "white",
+   "name": "Uvedení Páně do chrámu (Hromnice)",
+   "text": "Čtyřicet dní po narození přinášejí Marie a Josef Ježíše do chrámu. Starý Simeon v něm poznává „světlo k osvícení národů“.",
+   "refs": [
+    [
+     42,
+     2,
+     25,
+     32
+    ]
+   ]
+  },
+  {
+   "id": "ash",
+   "color": "violet",
+   "name": "Popeleční středa",
+   "text": "Začátek postní doby. Popel připomíná lidskou pomíjivost i pokání – a Boží milosrdenství, které na pokání odpovídá.",
+   "refs": [
+    [
+     29,
+     2,
+     12,
+     13
+    ],
+    [
+     19,
+     51,
+     3,
+     4
+    ],
+    [
+     40,
+     6,
+     16,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "palm",
+   "color": "red",
+   "name": "Květná neděle",
+   "text": "Ježíš vjíždí do Jeruzaléma na oslátku a zástupy ho vítají palmovými ratolestmi a voláním „Hosanna!“. Začíná Svatý týden.",
+   "refs": [
+    [
+     40,
+     21,
+     8,
+     9
+    ],
+    [
+     38,
+     9,
+     9,
+     9
+    ],
+    [
+     50,
+     2,
+     6,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "thursday",
+   "color": "white",
+   "name": "Zelený čtvrtek",
+   "text": "Večer poslední večeře. Ježíš myje učedníkům nohy, dává jim chléb a kalich a nové přikázání lásky. V noci je zatčen v Getsemane.",
+   "refs": [
+    [
+     43,
+     13,
+     14,
+     15
+    ],
+    [
+     46,
+     11,
+     23,
+     26
+    ],
+    [
+     43,
+     13,
+     34,
+     35
+    ]
+   ]
+  },
+  {
+   "id": "friday",
+   "color": "red",
+   "name": "Velký pátek",
+   "text": "Den Ježíšovy smrti na kříži. Křesťané si v tichu připomínají, že Kristus nesl hřích světa a zemřel z lásky.",
+   "refs": [
+    [
+     23,
+     53,
+     4,
+     6
+    ],
+    [
+     43,
+     19,
+     28,
+     30
+    ],
+    [
+     58,
+     4,
+     15,
+     16
+    ]
+   ]
+  },
+  {
+   "id": "saturday",
+   "color": "violet",
+   "name": "Bílá sobota",
+   "text": "Den ticha u hrobu. Ježíšovo tělo leží v hrobě; církev čeká a bdí. Večer začíná velikonoční vigilie.",
+   "refs": [
+    [
+     40,
+     27,
+     59,
+     61
+    ],
+    [
+     19,
+     16,
+     9,
+     10
+    ]
+   ]
+  },
+  {
+   "id": "easter",
+   "color": "white",
+   "name": "Zmrtvýchvstání Páně (Velikonoce)",
+   "text": "Největší svátek křesťanů: Ježíš vstal z mrtvých. Prázdný hrob je znamením, že smrt nemá poslední slovo.",
+   "refs": [
+    [
+     40,
+     28,
+     5,
+     7
+    ],
+    [
+     46,
+     15,
+     3,
+     4
+    ],
+    [
+     43,
+     11,
+     25,
+     26
+    ]
+   ]
+  },
+  {
+   "id": "ascension",
+   "color": "white",
+   "name": "Nanebevstoupení Páně",
+   "text": "Čtyřicátý den po Velikonocích. Vzkříšený Ježíš se loučí s učedníky, posílá je do světa a slibuje jim Ducha svatého.",
+   "refs": [
+    [
+     44,
+     1,
+     8,
+     11
+    ],
+    [
+     40,
+     28,
+     18,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "pentecost",
+   "color": "red",
+   "name": "Seslání Ducha svatého (Letnice)",
+   "text": "Padesátý den po Velikonocích sestupuje na učedníky Duch svatý. Petr káže a z jeruzalémského shromáždění se rodí církev.",
+   "refs": [
+    [
+     44,
+     2,
+     1,
+     4
+    ],
+    [
+     29,
+     3,
+     1,
+     1
+    ],
+    [
+     48,
+     5,
+     22,
+     23
+    ]
+   ]
+  },
+  {
+   "id": "trinity",
+   "color": "white",
+   "name": "Nejsvětější Trojice",
+   "text": "Neděle po Letnicích. Svátek tajemství jednoho Boha – Otce, Syna a Ducha svatého.",
+   "refs": [
+    [
+     40,
+     28,
+     19,
+     19
+    ],
+    [
+     47,
+     13,
+     13,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "cyrilmethod",
+   "color": "red",
+   "name": "Cyril a Metoděj",
+   "text": "Slovanští věrozvěsti, kteří v 9. století přišli na Velkou Moravu, přeložili části Bible do slovanského jazyka a hlásali evangelium srozumitelnou řečí.",
+   "refs": [
+    [
+     45,
+     10,
+     14,
+     15
+    ],
+    [
+     19,
+     117,
+     1,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "hus",
+   "color": "red",
+   "name": "Mistr Jan Hus",
+   "text": "Den upálení Mistra Jana Husa v Kostnici (1415). Kazatel, který zdůrazňoval autoritu Písma, věrnost pravdě a svědomí.",
+   "refs": [
+    [
+     43,
+     8,
+     31,
+     32
+    ],
+    [
+     44,
+     5,
+     29,
+     29
+    ]
+   ]
+  },
+  {
+   "id": "reformation",
+   "color": "red",
+   "name": "Den reformace",
+   "text": "Výročí Lutherových tezí (1517). Evangelické církve si připomínají návrat k Písmu a ke zvěsti o milosti, kterou člověk přijímá vírou.",
+   "refs": [
+    [
+     45,
+     1,
+     16,
+     17
+    ],
+    [
+     49,
+     2,
+     8,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "allsaints",
+   "color": "white",
+   "name": "Všech svatých",
+   "text": "Svátek všech, kdo žili s Bohem – známých i neznámých. Bible jim říká „veliký oblak svědků“.",
+   "refs": [
+    [
+     58,
+     12,
+     1,
+     2
+    ],
+    [
+     66,
+     7,
+     9,
+     10
+    ]
+   ]
+  },
+  {
+   "id": "allsouls",
+   "color": "violet",
+   "name": "Památka zesnulých (Dušičky)",
+   "text": "Den vzpomínky na zemřelé. Křesťané truchlí, ale „ne jako ti, kdo nemají naději“.",
+   "refs": [
+    [
+     52,
+     4,
+     13,
+     14
+    ],
+    [
+     43,
+     14,
+     1,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "lastsunday",
+   "color": "white",
+   "name": "Poslední neděle církevního roku",
+   "text": "Rok končí pohledem k cíli: ke Kristu, který vládne, a k novému nebi a nové zemi, kde Bůh setře každou slzu.",
+   "refs": [
+    [
+     66,
+     21,
+     3,
+     5
+    ],
+    [
+     40,
+     25,
+     34,
+     36
+    ],
+    [
+     51,
+     1,
+     15,
+     17
+    ]
+   ]
+  }
+ ]
+}

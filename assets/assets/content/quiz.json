@@ -1,0 +1,1254 @@
+{
+ "categories": [
+  {
+   "id": "ot",
+   "name": "Starý zákon"
+  },
+  {
+   "id": "gospels",
+   "name": "Ježíš a evangelia"
+  },
+  {
+   "id": "church",
+   "name": "Skutky a listy"
+  },
+  {
+   "id": "people",
+   "name": "Biblické postavy"
+  }
+ ],
+ "questions": [
+  {
+   "category": "ot",
+   "question": "Kterého dne Bůh odpočinul od svého díla stvoření?",
+   "answers": [
+    "Sedmého",
+    "Šestého",
+    "Prvního",
+    "Osmého"
+   ],
+   "ref": [
+    1,
+    2,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Jak se jmenoval prvorozený syn Adama a Evy?",
+   "answers": [
+    "Kain",
+    "Ábel",
+    "Šét",
+    "Enóš"
+   ],
+   "ref": [
+    1,
+    4,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kolik dní a nocí pršelo při potopě?",
+   "answers": [
+    "40",
+    "7",
+    "100",
+    "150"
+   ],
+   "ref": [
+    1,
+    7,
+    12,
+    12
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Co dal Bůh Noemu jako znamení smlouvy?",
+   "answers": [
+    "Duhu",
+    "Holubici",
+    "Olivovou ratolest",
+    "Oltář"
+   ],
+   "ref": [
+    1,
+    9,
+    13,
+    13
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kolik let bylo Abrahamovi, když se mu narodil Izák?",
+   "answers": [
+    "100",
+    "75",
+    "90",
+    "120"
+   ],
+   "ref": [
+    1,
+    21,
+    5,
+    5
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kterého syna měl Abraham obětovat v zemi Mórija?",
+   "answers": [
+    "Izáka",
+    "Izmaele",
+    "Jákoba",
+    "Ezaua"
+   ],
+   "ref": [
+    1,
+    22,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Za co Ezau prodal své prvorozenství?",
+   "answers": [
+    "Za jídlo z čočovice",
+    "Za stříbrný prsten",
+    "Za stádo ovcí",
+    "Za plášť"
+   ],
+   "ref": [
+    1,
+    25,
+    34,
+    34
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kolik synů měl Jákob?",
+   "answers": [
+    "12",
+    "10",
+    "7",
+    "14"
+   ],
+   "ref": [
+    1,
+    35,
+    22,
+    22
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Jak se Bůh zjevil Mojžíšovi na poušti?",
+   "answers": [
+    "V hořícím keři",
+    "Ve snu",
+    "V oblakovém sloupu",
+    "Ve stánku"
+   ],
+   "ref": [
+    2,
+    3,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Která rána na Egypt byla poslední?",
+   "answers": [
+    "Smrt prvorozených",
+    "Kobylky",
+    "Tma",
+    "Vředy"
+   ],
+   "ref": [
+    2,
+    12,
+    29,
+    29
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Čím Bůh sytil Izraelce na poušti?",
+   "answers": [
+    "Manou",
+    "Chlebem z Egypta",
+    "Fíky",
+    "Medem"
+   ],
+   "ref": [
+    2,
+    16,
+    35,
+    35
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Na které hoře dostal Mojžíš kamenné desky?",
+   "answers": [
+    "Sínaj",
+    "Karmel",
+    "Sijón",
+    "Tábor"
+   ],
+   "ref": [
+    2,
+    31,
+    18,
+    18
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kolik let putoval Izrael pouští?",
+   "answers": [
+    "40",
+    "7",
+    "12",
+    "70"
+   ],
+   "ref": [
+    4,
+    14,
+    33,
+    33
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Hradby kterého města padly po troubení a křiku lidu?",
+   "answers": [
+    "Jericha",
+    "Aje",
+    "Jeruzaléma",
+    "Gibeónu"
+   ],
+   "ref": [
+    6,
+    6,
+    20,
+    20
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "S kolika muži porazil Gedeón Midjánce?",
+   "answers": [
+    "300",
+    "12",
+    "3 000",
+    "10 000"
+   ],
+   "ref": [
+    7,
+    7,
+    7,
+    7
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Na čem závisela Samsonova síla?",
+   "answers": [
+    "Na neostříhaných vlasech",
+    "Na zbroji",
+    "Na postu",
+    "Na prstenu od otce"
+   ],
+   "ref": [
+    7,
+    16,
+    17,
+    17
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Koho Bůh v noci volal ve svatyni v Šílu?",
+   "answers": [
+    "Samuela",
+    "Élího",
+    "Saula",
+    "Davida"
+   ],
+   "ref": [
+    9,
+    3,
+    10,
+    10
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Čím David porazil Goliáše?",
+   "answers": [
+    "Prakem a kamenem",
+    "Mečem",
+    "Kopím",
+    "Lukem"
+   ],
+   "ref": [
+    9,
+    17,
+    50,
+    50
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kdo postavil první chrám v Jeruzalémě?",
+   "answers": [
+    "Šalomoun",
+    "David",
+    "Saul",
+    "Chizkijáš"
+   ],
+   "ref": [
+    11,
+    6,
+    14,
+    14
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Na které hoře se Eliáš utkal s Baalovými proroky?",
+   "answers": [
+    "Karmel",
+    "Sínaj",
+    "Olivová hora",
+    "Tábor"
+   ],
+   "ref": [
+    11,
+    18,
+    20,
+    20
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kdo byl vzat do nebe ve vichru?",
+   "answers": [
+    "Eliáš",
+    "Elíša",
+    "Mojžíš",
+    "Izajáš"
+   ],
+   "ref": [
+    12,
+    2,
+    11,
+    11
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Který prorok byl tři dny a tři noci v břiše ryby?",
+   "answers": [
+    "Jonáš",
+    "Daniel",
+    "Ezechiel",
+    "Ámos"
+   ],
+   "ref": [
+    32,
+    2,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kam byl Daniel hozen za to, že se modlil?",
+   "answers": [
+    "Do lví jámy",
+    "Do ohnivé pece",
+    "Do vězení",
+    "Do studny"
+   ],
+   "ref": [
+    27,
+    6,
+    17,
+    17
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Který žalm začíná slovy „Hospodin je můj pastýř“?",
+   "answers": [
+    "23",
+    "1",
+    "91",
+    "119"
+   ],
+   "ref": [
+    19,
+    23,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Který prorok předpověděl, že Mesiáš vzejde z Betléma?",
+   "answers": [
+    "Micheáš",
+    "Izajáš",
+    "Jeremjáš",
+    "Malachiáš"
+   ],
+   "ref": [
+    33,
+    5,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Kdo vedl obnovu jeruzalémských hradeb po exilu?",
+   "answers": [
+    "Nehemjáš",
+    "Ezdráš",
+    "Zerubábel",
+    "Daniel"
+   ],
+   "ref": [
+    16,
+    2,
+    17,
+    17
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Ve kterém městě se Ježíš narodil?",
+   "answers": [
+    "V Betlémě",
+    "V Nazaretu",
+    "V Jeruzalémě",
+    "V Kafarnaum"
+   ],
+   "ref": [
+    40,
+    2,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Ve kterém městě Ježíš vyrůstal?",
+   "answers": [
+    "V Nazaretu",
+    "V Betlémě",
+    "V Kafarnaum",
+    "V Jerichu"
+   ],
+   "ref": [
+    42,
+    2,
+    51,
+    51
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kdo pokřtil Ježíše v Jordánu?",
+   "answers": [
+    "Jan Křtitel",
+    "Petr",
+    "Ondřej",
+    "Zachariáš"
+   ],
+   "ref": [
+    40,
+    3,
+    13,
+    13
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolik dní se Ježíš postil na poušti?",
+   "answers": [
+    "40",
+    "3",
+    "7",
+    "12"
+   ],
+   "ref": [
+    40,
+    4,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Jaké bylo podle Jana Ježíšovo první znamení?",
+   "answers": [
+    "Proměnil vodu ve víno",
+    "Uzdravil slepého",
+    "Nasytil zástup",
+    "Utišil bouři"
+   ],
+   "ref": [
+    43,
+    2,
+    11,
+    11
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolik apoštolů si Ježíš vyvolil?",
+   "answers": [
+    "12",
+    "7",
+    "10",
+    "70"
+   ],
+   "ref": [
+    42,
+    6,
+    13,
+    13
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolik mužů Ježíš nasytil pěti chleby a dvěma rybami?",
+   "answers": [
+    "Asi 5 000",
+    "Asi 500",
+    "Asi 3 000",
+    "Asi 10 000"
+   ],
+   "ref": [
+    40,
+    14,
+    21,
+    21
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Komu Ježíš řekl, že se člověk musí narodit znovu?",
+   "answers": [
+    "Nikodémovi",
+    "Zacheovi",
+    "Petrovi",
+    "Pilátovi"
+   ],
+   "ref": [
+    43,
+    3,
+    3,
+    3
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kdo vylezl na strom, aby Ježíše viděl?",
+   "answers": [
+    "Zacheus",
+    "Nikodém",
+    "Bartimaios",
+    "Lazar"
+   ],
+   "ref": [
+    42,
+    19,
+    4,
+    4
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kterého přítele Ježíš vzkřísil čtvrtý den po pohřbu?",
+   "answers": [
+    "Lazara",
+    "Jaira",
+    "Zachea",
+    "Šimona"
+   ],
+   "ref": [
+    43,
+    11,
+    43,
+    43
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kdo v podobenství pomohl přepadenému muži?",
+   "answers": [
+    "Samařan",
+    "Kněz",
+    "Levita",
+    "Hostinský"
+   ],
+   "ref": [
+    42,
+    10,
+    33,
+    33
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolik ovcí nechal pastýř, aby hledal jednu ztracenou?",
+   "answers": [
+    "99",
+    "9",
+    "49",
+    "100"
+   ],
+   "ref": [
+    42,
+    15,
+    4,
+    4
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Které přikázání označil Ježíš za největší?",
+   "answers": [
+    "Milovat Boha celým srdcem",
+    "Nezabiješ",
+    "Světit sobotu",
+    "Ctít otce a matku"
+   ],
+   "ref": [
+    40,
+    22,
+    37,
+    37
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kde Ježíš říká: „Já jsem ta cesta, pravda i život“?",
+   "answers": [
+    "Jan 14",
+    "Matouš 5",
+    "Lukáš 15",
+    "Marek 1"
+   ],
+   "ref": [
+    43,
+    14,
+    6,
+    6
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Za kolik stříbrných zradil Jidáš Ježíše?",
+   "answers": [
+    "30",
+    "10",
+    "40",
+    "100"
+   ],
+   "ref": [
+    40,
+    26,
+    15,
+    15
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolikrát Petr zapřel Ježíše?",
+   "answers": [
+    "Třikrát",
+    "Jednou",
+    "Dvakrát",
+    "Sedmkrát"
+   ],
+   "ref": [
+    40,
+    26,
+    75,
+    75
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kterého vězně propustil Pilát místo Ježíše?",
+   "answers": [
+    "Barabáše",
+    "Šimona",
+    "Jidáše",
+    "Lazara"
+   ],
+   "ref": [
+    40,
+    27,
+    26,
+    26
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kdo musel nést Ježíšův kříž?",
+   "answers": [
+    "Šimon z Kyrény",
+    "Josef z Arimatie",
+    "Jan",
+    "Petr"
+   ],
+   "ref": [
+    41,
+    15,
+    21,
+    21
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Komu se podle Jana vzkříšený Ježíš ukázal u hrobu jako prvnímu?",
+   "answers": [
+    "Marii Magdalské",
+    "Petrovi",
+    "Tomášovi",
+    "Ježíšově matce"
+   ],
+   "ref": [
+    43,
+    20,
+    16,
+    16
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Který učedník chtěl nejdřív vidět Ježíšovy rány?",
+   "answers": [
+    "Tomáš",
+    "Filip",
+    "Jakub",
+    "Natanael"
+   ],
+   "ref": [
+    43,
+    20,
+    27,
+    27
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Co se stalo o Letnicích po Ježíšově odchodu?",
+   "answers": [
+    "Sestoupil Duch svatý",
+    "Pavel uvěřil",
+    "Petr byl vysvobozen",
+    "Byl zvolen Matyáš"
+   ],
+   "ref": [
+    44,
+    2,
+    4,
+    4
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kolik lidí bylo o Letnicích pokřtěno?",
+   "answers": [
+    "Asi 3 000",
+    "120",
+    "Asi 500",
+    "Asi 10 000"
+   ],
+   "ref": [
+    44,
+    2,
+    41,
+    41
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kdo byl prvním křesťanským mučedníkem?",
+   "answers": [
+    "Štěpán",
+    "Jakub",
+    "Petr",
+    "Filip"
+   ],
+   "ref": [
+    44,
+    7,
+    59,
+    59
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kde se Saul setkal se vzkříšeným Ježíšem?",
+   "answers": [
+    "Na cestě do Damašku",
+    "V Jeruzalémě",
+    "V Antiochii",
+    "V Tarsu"
+   ],
+   "ref": [
+    44,
+    9,
+    3,
+    3
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kde byli učedníci poprvé nazváni křesťany?",
+   "answers": [
+    "V Antiochii",
+    "V Jeruzalémě",
+    "V Římě",
+    "V Korintu"
+   ],
+   "ref": [
+    44,
+    11,
+    26,
+    26
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kdo vyšel s Pavlem na první misijní cestu?",
+   "answers": [
+    "Barnabáš",
+    "Timotej",
+    "Lukáš",
+    "Silas"
+   ],
+   "ref": [
+    44,
+    13,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Kde Pavel a Silas o půlnoci zpívali ve vězení?",
+   "answers": [
+    "Ve Filipech",
+    "V Efezu",
+    "V Athénách",
+    "V Římě"
+   ],
+   "ref": [
+    44,
+    16,
+    25,
+    25
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Na kterém ostrově Pavel ztroskotal?",
+   "answers": [
+    "Na Maltě",
+    "Na Krétě",
+    "Na Kypru",
+    "Na Patmu"
+   ],
+   "ref": [
+    44,
+    28,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Ve které kapitole je chvalozpěv na lásku?",
+   "answers": [
+    "1. Korintským 13",
+    "Římanům 8",
+    "Efezským 2",
+    "Jakubův 1"
+   ],
+   "ref": [
+    46,
+    13,
+    4,
+    4
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Co je podle Galatským první z ovoce Ducha?",
+   "answers": [
+    "Láska",
+    "Víra",
+    "Pokoj",
+    "Trpělivost"
+   ],
+   "ref": [
+    48,
+    5,
+    22,
+    22
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Komu napsal Pavel dva listy jako „vlastnímu synu ve víře“?",
+   "answers": [
+    "Timoteovi",
+    "Titovi",
+    "Filemonovi",
+    "Lukášovi"
+   ],
+   "ref": [
+    54,
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Na kterém ostrově přijal Jan Zjevení?",
+   "answers": [
+    "Na Patmu",
+    "Na Kypru",
+    "Na Krétě",
+    "Na Maltě"
+   ],
+   "ref": [
+    66,
+    1,
+    9,
+    9
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Čím je člověk podle listu Efezským spasen?",
+   "answers": [
+    "Milostí skrze víru",
+    "Dodržováním Zákona",
+    "Obřízkou",
+    "Dobrými skutky"
+   ],
+   "ref": [
+    49,
+    2,
+    8,
+    8
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo se podle Bible dožil nejvyššího věku?",
+   "answers": [
+    "Metuzalém",
+    "Adam",
+    "Noe",
+    "Abraham"
+   ],
+   "ref": [
+    1,
+    5,
+    27,
+    27
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Jak se jmenovala Abrahamova manželka?",
+   "answers": [
+    "Sára",
+    "Rebeka",
+    "Ráchel",
+    "Lea"
+   ],
+   "ref": [
+    1,
+    17,
+    15,
+    15
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Za kterou ženu sloužil Jákob sedm let?",
+   "answers": [
+    "Ráchel",
+    "Lea",
+    "Rebeka",
+    "Dína"
+   ],
+   "ref": [
+    1,
+    29,
+    18,
+    18
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Komu bratři prodali Josefa?",
+   "answers": [
+    "Izmaelcům",
+    "Egypťanům",
+    "Pelištejcům",
+    "Kenaancům"
+   ],
+   "ref": [
+    1,
+    37,
+    28,
+    28
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo byl Mojžíšovým bratrem a mluvčím?",
+   "answers": [
+    "Áron",
+    "Jozue",
+    "Kálef",
+    "Chúr"
+   ],
+   "ref": [
+    2,
+    4,
+    14,
+    14
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo převzal vedení Izraele po Mojžíšovi?",
+   "answers": [
+    "Jozue",
+    "Áron",
+    "Kálef",
+    "Gedeón"
+   ],
+   "ref": [
+    6,
+    1,
+    2,
+    2
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Která prorokyně soudila Izrael pod palmou?",
+   "answers": [
+    "Debora",
+    "Mirjam",
+    "Chulda",
+    "Jael"
+   ],
+   "ref": [
+    7,
+    4,
+    5,
+    5
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo řekla: „Tvůj lid je můj lid a tvůj Bůh je můj Bůh“?",
+   "answers": [
+    "Rút",
+    "Noemi",
+    "Orpa",
+    "Ester"
+   ],
+   "ref": [
+    8,
+    1,
+    16,
+    16
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo byl prvním izraelským králem?",
+   "answers": [
+    "Saul",
+    "David",
+    "Samuel",
+    "Šalomoun"
+   ],
+   "ref": [
+    9,
+    10,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Který Saulův syn byl Davidovým věrným přítelem?",
+   "answers": [
+    "Jónatan",
+    "Abšalóm",
+    "Jóab",
+    "Nátan"
+   ],
+   "ref": [
+    9,
+    18,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Který prorok pokáral Davida příběhem o ovečce?",
+   "answers": [
+    "Nátan",
+    "Gád",
+    "Samuel",
+    "Eliáš"
+   ],
+   "ref": [
+    10,
+    12,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo byli hozeni do rozpálené pece a vyšli bez úhony?",
+   "answers": [
+    "Šadrak, Méšak a Abed-nego",
+    "Daniel a jeho strážci",
+    "Ezdráš a Nehemjáš",
+    "Tři Danielovi synové"
+   ],
+   "ref": [
+    27,
+    3,
+    23,
+    23
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Která královna se zastala svého lidu před Hamanem?",
+   "answers": [
+    "Ester",
+    "Vašti",
+    "Jezábel",
+    "Královna ze Sáby"
+   ],
+   "ref": [
+    17,
+    7,
+    3,
+    3
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo byl otcem Jana Křtitele?",
+   "answers": [
+    "Zachariáš",
+    "Josef",
+    "Simeón",
+    "Zebedeus"
+   ],
+   "ref": [
+    42,
+    1,
+    13,
+    13
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Čím se živili Petr a Ondřej, když je Ježíš povolal?",
+   "answers": [
+    "Byli rybáři",
+    "Byli celníci",
+    "Byli tesaři",
+    "Byli pastýři"
+   ],
+   "ref": [
+    40,
+    4,
+    18,
+    18
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Čím byl Matouš, než šel za Ježíšem?",
+   "answers": [
+    "Celníkem",
+    "Rybářem",
+    "Tesařem",
+    "Lékařem"
+   ],
+   "ref": [
+    40,
+    9,
+    9,
+    9
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Jaké řemeslo měl apoštol Pavel?",
+   "answers": [
+    "Stanař",
+    "Rybář",
+    "Tesař",
+    "Hrnčíř"
+   ],
+   "ref": [
+    44,
+    18,
+    3,
+    3
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Čím obchodovala Lýdie z Thyatir?",
+   "answers": [
+    "Purpurem",
+    "Kořením",
+    "Olejem",
+    "Stříbrem"
+   ],
+   "ref": [
+    44,
+    16,
+    14,
+    14
+   ]
+  }
+ ]
+}

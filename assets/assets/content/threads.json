@@ -1,0 +1,1942 @@
+{
+ "threads": [
+  {
+   "id": "lamb",
+   "color": 4290793530,
+   "icon": "lamb",
+   "title": "Beránek",
+   "intro": "Od Abrahamovy otázky „kde je beránek?“ až k Beránkovi na trůnu. Obraz oběti, která zachraňuje, provází celou Bibli.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      22,
+      7,
+      8
+     ],
+     "title": "Bůh si vyhlédne beránka",
+     "text": "Izák se ptá, kde je beránek k oběti. Abraham odpovídá vírou: Bůh se postará. Otázka zůstává otevřená na celé dějiny."
+    },
+    {
+     "ref": [
+      2,
+      12,
+      13,
+      13
+     ],
+     "title": "Krev na veřejích",
+     "text": "V noci vyjití z Egypta chrání krev beránka izraelské domy. Pesach se stává každoroční památkou vysvobození."
+    },
+    {
+     "ref": [
+      23,
+      53,
+      7,
+      7
+     ],
+     "title": "Jako beránek na porážku",
+     "text": "Prorok popisuje Služebníka, který mlčky trpí za vinu druhých. Obětí tu už není zvíře, ale člověk."
+    },
+    {
+     "ref": [
+      43,
+      1,
+      29,
+      29
+     ],
+     "title": "Hle, Beránek Boží",
+     "text": "Jan Křtitel ukazuje na Ježíše: on je odpovědí na Izákovu otázku – beránek, který snímá hřích světa."
+    },
+    {
+     "ref": [
+      46,
+      5,
+      7,
+      7
+     ],
+     "title": "Náš velikonoční beránek",
+     "text": "Pavel čte Ježíšovu smrt jako nový Pesach. Ježíš zemřel právě v době velikonočních svátků."
+    },
+    {
+     "ref": [
+      60,
+      1,
+      18,
+      19
+     ],
+     "title": "Drahá krev beránka bez vady",
+     "text": "Petr připomíná, že vykoupení nestálo stříbro ani zlato, ale Kristovu krev – jako krev beránka bez vady."
+    },
+    {
+     "ref": [
+      66,
+      5,
+      12,
+      12
+     ],
+     "title": "Hoden je Beránek",
+     "text": "Na konci Bible stojí uprostřed trůnu zabitý, ale živý Beránek. Oběť se ukazuje jako vítězství."
+    }
+   ]
+  },
+  {
+   "id": "presence",
+   "color": 4291928634,
+   "icon": "temple",
+   "title": "Bůh uprostřed lidí",
+   "intro": "Příběh o tom, jak Bůh hledá místo, kde by mohl bydlet se svým lidem – od zahrady přes stan a chrám až k novému městu.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      3,
+      8,
+      8
+     ],
+     "title": "Bůh v zahradě",
+     "text": "Bůh se prochází zahradou blízko lidí. Hřích tuto blízkost přetrhne a člověk se schovává."
+    },
+    {
+     "ref": [
+      2,
+      25,
+      8,
+      8
+     ],
+     "title": "Udělají mi svatyni",
+     "text": "Na poušti Bůh dává pokyny ke stavbě stánku, „abych přebýval uprostřed nich“. Bůh putuje se svým lidem."
+    },
+    {
+     "ref": [
+      2,
+      40,
+      34,
+      34
+     ],
+     "title": "Sláva naplnila příbytek",
+     "text": "Když je stánek hotový, přikryje ho oblak a Hospodinova sláva naplní příbytek."
+    },
+    {
+     "ref": [
+      11,
+      8,
+      10,
+      11
+     ],
+     "title": "Oblak v Šalomounově chrámu",
+     "text": "Při posvěcení chrámu se opakuje totéž: oblak naplní dům Hospodinův. Jeruzalém se stává středem víry."
+    },
+    {
+     "ref": [
+      26,
+      10,
+      18,
+      18
+     ],
+     "title": "Sláva odchází",
+     "text": "Před babylonským zajetím vidí Ezechiel, jak Boží sláva opouští chrám. Chrám je pak zničen."
+    },
+    {
+     "ref": [
+      43,
+      1,
+      14,
+      14
+     ],
+     "title": "Slovo přebývalo mezi námi",
+     "text": "Řecké slovo znamená doslova „rozbilo stan“. V Ježíši je Bůh přítomen v lidském těle – nový stánek setkání."
+    },
+    {
+     "ref": [
+      46,
+      3,
+      16,
+      16
+     ],
+     "title": "Vy jste Boží chrám",
+     "text": "Po Letnicích přebývá Boží Duch v lidech. Chrámem je společenství těch, kdo patří Kristu."
+    },
+    {
+     "ref": [
+      66,
+      21,
+      3,
+      3
+     ],
+     "title": "Boží stánek s lidmi",
+     "text": "Na konci se plní to, co začalo v zahradě: Bůh bydlí se svým lidem natrvalo a bez překážek."
+    }
+   ]
+  },
+  {
+   "id": "king",
+   "color": 4284313520,
+   "icon": "crown",
+   "title": "Král z Davidova rodu",
+   "intro": "Bůh slíbil Davidovi věčného krále. Když královské dynastie padly, Izrael čekal na Mesiáše – pomazaného krále.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      49,
+      10,
+      10
+     ],
+     "title": "Žezlo od Judy",
+     "text": "Jákob požehná synům a Judovi slibuje královskou vládu. Z Judova kmene pak pochází David."
+    },
+    {
+     "ref": [
+      10,
+      7,
+      12,
+      13
+     ],
+     "title": "Zaslíbení Davidovi",
+     "text": "Prorok Nátan přináší Davidovi slib: jeho potomek bude vládnout a jeho trůn bude pevný navěky."
+    },
+    {
+     "ref": [
+      19,
+      2,
+      6,
+      7
+     ],
+     "title": "Ty jsi můj syn",
+     "text": "Žalm o králi na Sijónu, kterého Bůh nazývá svým synem. Nový zákon ho opakovaně vztahuje na Ježíše."
+    },
+    {
+     "ref": [
+      23,
+      9,
+      5,
+      6
+     ],
+     "title": "Na Davidově trůnu bez konce",
+     "text": "Dítě, které se narodí, ponese jména Božího krále. Jeho vláda a pokoj nebudou mít konce."
+    },
+    {
+     "ref": [
+      23,
+      11,
+      1,
+      1
+     ],
+     "title": "Výhonek z pařezu",
+     "text": "Davidova dynastie skončí jako pokácený strom. Z pařezu však vyraší výhonek – nový král plný Božího Ducha."
+    },
+    {
+     "ref": [
+      42,
+      1,
+      32,
+      33
+     ],
+     "title": "Trůn jeho otce Davida",
+     "text": "Anděl Gabriel vysvětluje Marii, že její syn je ten slíbený král z Nátanova proroctví."
+    },
+    {
+     "ref": [
+      40,
+      21,
+      9,
+      9
+     ],
+     "title": "Hosana synu Davidovu",
+     "text": "Při vjezdu do Jeruzaléma zástupy vítají Ježíše jako Davidova potomka a krále."
+    },
+    {
+     "ref": [
+      66,
+      22,
+      16,
+      16
+     ],
+     "title": "Kořen a potomek Davidův",
+     "text": "V poslední kapitole Bible se Ježíš sám představuje jako naplnění slibu daného Davidovi."
+    }
+   ]
+  },
+  {
+   "id": "covenant",
+   "color": 4283341450,
+   "icon": "handshake",
+   "title": "Smlouva",
+   "intro": "Bůh opakovaně uzavírá s lidmi smlouvu – závazek věrnosti. Každá další navazuje na předchozí a míří k „nové smlouvě“.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      9,
+      11,
+      13
+     ],
+     "title": "Noe a duha",
+     "text": "Po potopě Bůh slibuje, že už nezničí zemi. Duha je znamením smlouvy se vším živým."
+    },
+    {
+     "ref": [
+      1,
+      15,
+      5,
+      6
+     ],
+     "title": "Abraham a hvězdy",
+     "text": "Bůh slibuje Abrahamovi potomstvo jako hvězd. Abraham uvěří a Bůh mu to počítá za spravedlnost."
+    },
+    {
+     "ref": [
+      2,
+      24,
+      7,
+      8
+     ],
+     "title": "Krev smlouvy na Sinaji",
+     "text": "Izrael slibuje poslouchat Boží slova. Mojžíš kropí lid krví a mluví o „krvi smlouvy“."
+    },
+    {
+     "ref": [
+      10,
+      7,
+      16,
+      16
+     ],
+     "title": "Smlouva s Davidem",
+     "text": "Slib trvalého domu a království pro Davidovy potomky."
+    },
+    {
+     "ref": [
+      24,
+      31,
+      31,
+      33
+     ],
+     "title": "Nová smlouva",
+     "text": "Lid smlouvu opakovaně porušil. Jeremjáš ohlašuje novou: Bůh vepíše svůj zákon lidem do srdce."
+    },
+    {
+     "ref": [
+      42,
+      22,
+      20,
+      20
+     ],
+     "title": "Kalich nové smlouvy",
+     "text": "Při poslední večeři Ježíš používá Jeremjášova slova i slova ze Sinaje: nová smlouva v jeho krvi."
+    },
+    {
+     "ref": [
+      58,
+      8,
+      10,
+      10
+     ],
+     "title": "Zákon v srdci",
+     "text": "List Židům cituje Jeremjáše a ukazuje, že nová smlouva je skrze Krista skutečností."
+    }
+   ]
+  },
+  {
+   "id": "exodus",
+   "color": 4282350764,
+   "icon": "waves",
+   "title": "Vysvobození (exodus)",
+   "intro": "Vyjití z Egypta je vzor, podle kterého Bible vypráví o záchraně: Bůh slyší, vyvádí z otroctví a vede ke svobodě.",
+   "stations": [
+    {
+     "ref": [
+      2,
+      3,
+      7,
+      8
+     ],
+     "title": "Viděl jsem trápení",
+     "text": "Bůh se zjevuje Mojžíšovi v hořícím keři: vidí útlak svého lidu a sestupuje, aby ho vysvobodil."
+    },
+    {
+     "ref": [
+      2,
+      14,
+      21,
+      22
+     ],
+     "title": "Cesta mořem",
+     "text": "Izrael prochází mořem po suchu. Tento zázrak se stane základním vyznáním víry Izraele."
+    },
+    {
+     "ref": [
+      23,
+      43,
+      16,
+      19
+     ],
+     "title": "Nový exodus",
+     "text": "V babylonském zajetí prorok slibuje nové vyjití – ještě větší než to první: „Hle, já činím nové věci.“"
+    },
+    {
+     "ref": [
+      28,
+      11,
+      1,
+      1
+     ],
+     "title": "Z Egypta jsem povolal syna",
+     "text": "Ozeáš vzpomíná na exodus jako na Boží lásku k Izraeli – synovi, kterého Bůh vyvedl."
+    },
+    {
+     "ref": [
+      40,
+      2,
+      15,
+      15
+     ],
+     "title": "Ježíš a Egypt",
+     "text": "Matouš vztahuje Ozeášova slova na Ježíše, který se jako dítě vrací z Egypta. Ježíš prožívá příběh Izraele."
+    },
+    {
+     "ref": [
+      42,
+      9,
+      30,
+      31
+     ],
+     "title": "Ježíšův „odchod“",
+     "text": "Na hoře proměnění mluví Mojžíš a Eliáš o Ježíšově odchodu – řecky „exodos“ – který se naplní v Jeruzalémě."
+    },
+    {
+     "ref": [
+      46,
+      10,
+      1,
+      2
+     ],
+     "title": "Prošli mořem",
+     "text": "Pavel vykládá průchod mořem jako obraz křtu: přechod ze staré služby do nového života."
+    },
+    {
+     "ref": [
+      66,
+      15,
+      3,
+      3
+     ],
+     "title": "Píseň Mojžíšova a Beránkova",
+     "text": "Vykoupení na konci času zpívají píseň, která spojuje Mojžíše u moře s Beránkem."
+    }
+   ]
+  },
+  {
+   "id": "water",
+   "color": 4282289838,
+   "icon": "drop",
+   "title": "Voda života",
+   "intro": "Voda v Bibli znamená život, očištění i Boží Ducha. Řeka teče od první zahrady až do nového Jeruzaléma.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      2,
+      10,
+      10
+     ],
+     "title": "Řeka v zahradě",
+     "text": "Z Edenu vytéká řeka a dělí se na čtyři ramena. Život začíná u vody."
+    },
+    {
+     "ref": [
+      2,
+      17,
+      6,
+      6
+     ],
+     "title": "Voda ze skály",
+     "text": "Na poušti Bůh napojí žíznivý lid ze skály. Pavel později napíše, že tou skálou byl Kristus (1K 10,4)."
+    },
+    {
+     "ref": [
+      19,
+      42,
+      2,
+      2
+     ],
+     "title": "Jako laň touží po vodě",
+     "text": "Žalmista žízní po Bohu tak, jako zvíře v suché krajině touží po potoku."
+    },
+    {
+     "ref": [
+      23,
+      55,
+      1,
+      1
+     ],
+     "title": "Pojďte k vodám",
+     "text": "Bůh zve žíznivé, ať přijdou a pijí zadarmo. Nabídka platí všem."
+    },
+    {
+     "ref": [
+      26,
+      47,
+      9,
+      9
+     ],
+     "title": "Řeka z chrámu",
+     "text": "Ezechiel vidí řeku, která vytéká z chrámu a všude, kam doteče, přináší život – i do Mrtvého moře."
+    },
+    {
+     "ref": [
+      43,
+      4,
+      14,
+      14
+     ],
+     "title": "Voda, kterou dám já",
+     "text": "Ježíš u studny nabízí Samařance vodu, po které už nikdo nebude žíznit."
+    },
+    {
+     "ref": [
+      43,
+      7,
+      37,
+      39
+     ],
+     "title": "Proudy živé vody",
+     "text": "O svátku stánků Ježíš volá žíznivé k sobě. Jan vysvětluje, že mluvil o Duchu."
+    },
+    {
+     "ref": [
+      66,
+      22,
+      1,
+      1
+     ],
+     "title": "Řeka vody života",
+     "text": "V novém Jeruzalémě teče řeka od Božího trůnu – Ezechielovo vidění se plní."
+    }
+   ]
+  },
+  {
+   "id": "tree",
+   "color": 4282289758,
+   "icon": "tree",
+   "title": "Strom života",
+   "intro": "Strom života stojí na začátku i na konci Bible. Mezi nimi je jiný strom – kříž.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      2,
+      9,
+      9
+     ],
+     "title": "Strom života v zahradě",
+     "text": "Uprostřed zahrady roste strom života. Člověk je stvořen k životu v Boží blízkosti."
+    },
+    {
+     "ref": [
+      1,
+      3,
+      22,
+      24
+     ],
+     "title": "Cesta ke stromu je zavřena",
+     "text": "Po pádu je cesta ke stromu života střežena cheruby. Lidé ztrácejí přístup k plnému životu."
+    },
+    {
+     "ref": [
+      20,
+      3,
+      18,
+      18
+     ],
+     "title": "Moudrost je strom života",
+     "text": "Kniha Přísloví říká, že kdo se drží Boží moudrosti, nachází kousek ztraceného života."
+    },
+    {
+     "ref": [
+      19,
+      1,
+      3,
+      3
+     ],
+     "title": "Strom u vody",
+     "text": "Člověk, který žije z Božího slova, je jako strom zasazený u potoků – nese ovoce."
+    },
+    {
+     "ref": [
+      48,
+      3,
+      13,
+      13
+     ],
+     "title": "Pověšen na dřevě",
+     "text": "Pavel cituje Zákon o tom, kdo visí na dřevě. Kříž – strom prokletí – se stává místem vykoupení."
+    },
+    {
+     "ref": [
+      66,
+      2,
+      7,
+      7
+     ],
+     "title": "Jíst ze stromu života",
+     "text": "Vzkříšený Kristus slibuje vítězům, že budou jíst ze stromu života. Cesta je znovu otevřená."
+    },
+    {
+     "ref": [
+      66,
+      22,
+      2,
+      2
+     ],
+     "title": "Listí ke zdraví národů",
+     "text": "Strom života roste po obou stranách řeky a jeho listí uzdravuje národy."
+    }
+   ]
+  },
+  {
+   "id": "nations",
+   "color": 4291791429,
+   "icon": "globe",
+   "title": "Požehnání pro všechny národy",
+   "intro": "Bůh si vyvolil Abrahama, aby skrze něj požehnal celému světu. Tato nit vede od jedné rodiny k zástupu ze všech národů.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      12,
+      2,
+      3
+     ],
+     "title": "V tobě budou požehnány",
+     "text": "Abrahamovo povolání má cíl: požehnání pro všechny rody země."
+    },
+    {
+     "ref": [
+      8,
+      1,
+      16,
+      16
+     ],
+     "title": "Tvůj Bůh je můj Bůh",
+     "text": "Moábka Rút se přidává k Izraeli. Stane se prababičkou krále Davida."
+    },
+    {
+     "ref": [
+      23,
+      49,
+      6,
+      6
+     ],
+     "title": "Světlo národům",
+     "text": "Boží služebník má přinést záchranu až na konec země, nejen Izraeli."
+    },
+    {
+     "ref": [
+      32,
+      4,
+      11,
+      11
+     ],
+     "title": "Bůh lituje Ninive",
+     "text": "Jonáš se zlobí, že Bůh odpustil nepřátelskému městu. Bůh mu ukazuje svůj soucit s každým národem."
+    },
+    {
+     "ref": [
+      40,
+      28,
+      19,
+      19
+     ],
+     "title": "Získejte všechny národy",
+     "text": "Vzkříšený Ježíš posílá učedníky do celého světa."
+    },
+    {
+     "ref": [
+      44,
+      2,
+      5,
+      6
+     ],
+     "title": "Každý ve svém jazyce",
+     "text": "O Letnicích slyší lidé z mnoha národů zvěst ve vlastním jazyce – opak zmatení jazyků v Babylonu (Gn 11)."
+    },
+    {
+     "ref": [
+      48,
+      3,
+      8,
+      8
+     ],
+     "title": "Evangelium dopředu",
+     "text": "Pavel vysvětluje, že slib Abrahamovi byl evangeliem pro pohany předem."
+    },
+    {
+     "ref": [
+      66,
+      7,
+      9,
+      9
+     ],
+     "title": "Zástup ze všech národů",
+     "text": "Na konci stojí před Bohem nespočetný zástup ze všech národů, kmenů a jazyků."
+    }
+   ]
+  },
+  {
+   "id": "shepherd",
+   "color": 4286352218,
+   "icon": "shepherd",
+   "title": "Pastýř",
+   "intro": "Bůh se v Bibli často představuje jako pastýř, který vede, chrání a hledá ztracené.",
+   "stations": [
+    {
+     "ref": [
+      19,
+      23,
+      1,
+      1
+     ],
+     "title": "Hospodin je můj pastýř",
+     "text": "Nejznámější žalm: s Bohem jako pastýřem člověku nic podstatného nechybí."
+    },
+    {
+     "ref": [
+      23,
+      40,
+      11,
+      11
+     ],
+     "title": "Beránky nese v náručí",
+     "text": "Prorok utěšuje lid v zajetí: Bůh pase své stádo jemně a slabé nese."
+    },
+    {
+     "ref": [
+      26,
+      34,
+      11,
+      12
+     ],
+     "title": "Sám budu hledat své ovce",
+     "text": "Izraelští vůdci selhali jako pastýři. Bůh slibuje, že se o rozptýlené ovce postará sám."
+    },
+    {
+     "ref": [
+      26,
+      34,
+      23,
+      23
+     ],
+     "title": "Jediný pastýř – David",
+     "text": "Bůh ustanoví jednoho pastýře z Davidova rodu – slib, který ukazuje k Mesiáši."
+    },
+    {
+     "ref": [
+      42,
+      15,
+      4,
+      6
+     ],
+     "title": "Ztracená ovce",
+     "text": "Ježíš vypráví o pastýři, který nechá devadesát devět ovcí a hledá tu jednu."
+    },
+    {
+     "ref": [
+      43,
+      10,
+      11,
+      11
+     ],
+     "title": "Dobrý pastýř",
+     "text": "Ježíš o sobě říká to, co proroci říkali o Bohu – a dodává, že pastýř dává život za ovce."
+    },
+    {
+     "ref": [
+      60,
+      5,
+      4,
+      4
+     ],
+     "title": "Nejvyšší pastýř",
+     "text": "Petr připomíná vedoucím církve, že sami slouží pod Kristem, nejvyšším pastýřem."
+    },
+    {
+     "ref": [
+      66,
+      7,
+      17,
+      17
+     ],
+     "title": "Beránek jejich pastýřem",
+     "text": "Paradox na konci: Beránek je zároveň pastýř a vede ke studnicím vod života."
+    }
+   ]
+  },
+  {
+   "id": "victory",
+   "color": 4289218395,
+   "icon": "serpent",
+   "title": "Vítězství nad zlem",
+   "intro": "Hned po pádu Bůh slibuje, že zlo nebude mít poslední slovo. Celá Bible pak vypráví, jak tento slib dochází naplnění.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      3,
+      15,
+      15
+     ],
+     "title": "Rozdrtí hlavu hada",
+     "text": "První slib naděje: potomek ženy rozdrtí hadovi hlavu, i když sám bude zraněn. Církev v tom od starověku vidí první zaslíbení Mesiáše."
+    },
+    {
+     "ref": [
+      4,
+      21,
+      8,
+      9
+     ],
+     "title": "Měděný had",
+     "text": "Na poušti, kdo pohlédne na měděného hada na tyči, zůstane naživu."
+    },
+    {
+     "ref": [
+      43,
+      3,
+      14,
+      15
+     ],
+     "title": "Vyvýšený Syn člověka",
+     "text": "Ježíš sám přirovnává svůj kříž k měděnému hadu: kdo v něj věří, má život."
+    },
+    {
+     "ref": [
+      51,
+      2,
+      15,
+      15
+     ],
+     "title": "Triumf nad mocnostmi",
+     "text": "Pavel popisuje kříž jako vítězný průvod, v němž Kristus odzbrojil mocnosti zla."
+    },
+    {
+     "ref": [
+      58,
+      2,
+      14,
+      14
+     ],
+     "title": "Zbavil moci ďábla",
+     "text": "Ježíš se stal člověkem, aby svou smrtí přemohl toho, kdo měl moc nad smrtí."
+    },
+    {
+     "ref": [
+      45,
+      16,
+      20,
+      20
+     ],
+     "title": "Satan pod vašima nohama",
+     "text": "Pavel ozvěnou Genesis 3 slibuje: Bůh pokoje brzy rozdrtí satana."
+    },
+    {
+     "ref": [
+      66,
+      20,
+      10,
+      10
+     ],
+     "title": "Konec zla",
+     "text": "Ďábel, starý had, je nakonec definitivně poražen."
+    }
+   ]
+  },
+  {
+   "id": "spirit",
+   "color": 4287392680,
+   "icon": "spirit",
+   "title": "Duch Boží",
+   "intro": "Boží Duch se vznáší nad vodami při stvoření, vede proroky a o Letnicích sestupuje na všechny, kdo věří.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      1,
+      2,
+      2
+     ],
+     "title": "Duch nad vodami",
+     "text": "Na počátku se Boží Duch vznáší nad prázdnotou – tam, kde Duch působí, vzniká život."
+    },
+    {
+     "ref": [
+      4,
+      11,
+      29,
+      29
+     ],
+     "title": "Kéž by všichni byli proroky",
+     "text": "Mojžíš si přeje, aby Bůh dal svého Ducha celému lidu, ne jen několika vyvoleným."
+    },
+    {
+     "ref": [
+      26,
+      36,
+      26,
+      27
+     ],
+     "title": "Nové srdce a nový duch",
+     "text": "Bůh slibuje vyměnit kamenné srdce za srdce z masa a vložit do lidí svého Ducha."
+    },
+    {
+     "ref": [
+      29,
+      3,
+      1,
+      1
+     ],
+     "title": "Vyleji svého Ducha",
+     "text": "Jóel slibuje Ducha pro všechny – syny i dcery, staré i mladé. Petr tento text cituje o Letnicích."
+    },
+    {
+     "ref": [
+      42,
+      3,
+      22,
+      22
+     ],
+     "title": "Duch sestupuje na Ježíše",
+     "text": "Při křtu sestupuje Duch na Ježíše v podobě holubice."
+    },
+    {
+     "ref": [
+      44,
+      2,
+      4,
+      4
+     ],
+     "title": "Letnice",
+     "text": "Mojžíšovo přání a Jóelův slib se plní: Duch je vylit na všechny učedníky."
+    },
+    {
+     "ref": [
+      45,
+      8,
+      11,
+      11
+     ],
+     "title": "Duch, který křísí",
+     "text": "Týž Duch, který vzkřísil Ježíše, dá život i nám."
+    },
+    {
+     "ref": [
+      48,
+      5,
+      22,
+      23
+     ],
+     "title": "Ovoce Ducha",
+     "text": "Duch proměňuje charakter: láska, radost, pokoj a další ovoce."
+    }
+   ]
+  },
+  {
+   "id": "light",
+   "color": 4292916033,
+   "icon": "light",
+   "title": "Světlo",
+   "intro": "První Boží slovo zní „Budiž světlo“. Světlo pak provází Boží lid pouští, svítí z Božího slova a nakonec září v Ježíši i v jeho lidech.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      1,
+      3,
+      3
+     ],
+     "title": "Budiž světlo",
+     "text": "Prvním Božím činem je světlo do tmy. Bůh začíná tím, že dává vidět."
+    },
+    {
+     "ref": [
+      2,
+      13,
+      21,
+      21
+     ],
+     "title": "Ohnivý sloup v noci",
+     "text": "Na poušti jde Bůh před lidem v noci jako světlo, aby mohli jít i ve tmě."
+    },
+    {
+     "ref": [
+      19,
+      119,
+      105,
+      105
+     ],
+     "title": "Svíce mým nohám",
+     "text": "Boží slovo nesvítí na celou cestu najednou, ale na další krok."
+    },
+    {
+     "ref": [
+      23,
+      9,
+      1,
+      1
+     ],
+     "title": "Lid ve tmě uvidí světlo",
+     "text": "Prorok slibuje velké světlo pro ty, kdo bydlí v zemi stínu smrti. Matouš to čte o Ježíšově působení v Galileji."
+    },
+    {
+     "ref": [
+      43,
+      8,
+      12,
+      12
+     ],
+     "title": "Já jsem světlo světa",
+     "text": "Ježíš o sobě říká to, co patřilo Bohu: kdo jde za ním, nebude chodit ve tmě."
+    },
+    {
+     "ref": [
+      40,
+      5,
+      14,
+      14
+     ],
+     "title": "Vy jste světlo světa",
+     "text": "Světlo se předává dál. Ježíšovi učedníci mají svítit tak, aby lidé viděli dobré skutky a chválili Otce."
+    },
+    {
+     "ref": [
+      47,
+      4,
+      6,
+      6
+     ],
+     "title": "Světlo v srdcích",
+     "text": "Týž Bůh, který řekl „ze tmy ať zazáří světlo“, rozsvítil i lidská srdce poznáním Krista."
+    },
+    {
+     "ref": [
+      66,
+      22,
+      5,
+      5
+     ],
+     "title": "Už nebude noc",
+     "text": "V novém světě není třeba lampy ani slunce. Světlem je sám Bůh."
+    }
+   ]
+  },
+  {
+   "id": "bread",
+   "color": 4290347594,
+   "icon": "bread",
+   "title": "Chléb z nebe",
+   "intro": "Bůh sytí svůj lid – manou na poušti, chlebem pro vdovu i chlebem, který láme Ježíš. Chléb se stává znamením Boží péče i společenství.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      14,
+      18,
+      18
+     ],
+     "title": "Chléb a víno",
+     "text": "Kněz Melchisedech vychází Abramovi naproti s chlebem a vínem a žehná mu."
+    },
+    {
+     "ref": [
+      2,
+      16,
+      4,
+      4
+     ],
+     "title": "Mana z nebe",
+     "text": "Bůh dává každé ráno chléb z nebe – tolik, kolik je potřeba na jeden den."
+    },
+    {
+     "ref": [
+      5,
+      8,
+      3,
+      3
+     ],
+     "title": "Nejen chlebem",
+     "text": "Mana měla naučit, že člověk žije z každého slova, které vychází z Božích úst. Ježíš tato slova cituje na poušti."
+    },
+    {
+     "ref": [
+      11,
+      17,
+      14,
+      14
+     ],
+     "title": "Mouka nedojde",
+     "text": "Vdova ze Sarepty dá poslední hrst mouky prorokovi a Bůh ji sytí po celou dobu sucha."
+    },
+    {
+     "ref": [
+      43,
+      6,
+      35,
+      35
+     ],
+     "title": "Já jsem chléb života",
+     "text": "Po nasycení zástupu Ježíš říká, že on sám je chléb, který utiší hlad nadobro."
+    },
+    {
+     "ref": [
+      42,
+      22,
+      19,
+      19
+     ],
+     "title": "Toto je mé tělo",
+     "text": "Při poslední večeři láme Ježíš chléb a dává ho učedníkům na památku své oběti."
+    },
+    {
+     "ref": [
+      42,
+      24,
+      30,
+      31
+     ],
+     "title": "Poznali ho při lámání chleba",
+     "text": "Učedníci v Emauzích poznají vzkříšeného ve chvíli, kdy jim láme chléb."
+    },
+    {
+     "ref": [
+      44,
+      2,
+      42,
+      42
+     ],
+     "title": "Lámání chleba",
+     "text": "První církev se pravidelně schází k učení, modlitbám a lámání chleba."
+    }
+   ]
+  },
+  {
+   "id": "mountain",
+   "color": 4287266674,
+   "icon": "mountain",
+   "title": "Setkání na hoře",
+   "intro": "Velké chvíle setkání s Bohem se často odehrávají na horách – od Mórija přes Sinaj a Karmel až k hoře proměnění a novému Jeruzalému.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      22,
+      14,
+      14
+     ],
+     "title": "Na hoře Hospodin vidí",
+     "text": "Na hoře Mórija si Bůh opatří oběť místo Izáka. Místo dostane jméno „Hospodin vidí“."
+    },
+    {
+     "ref": [
+      2,
+      19,
+      20,
+      20
+     ],
+     "title": "Sinaj",
+     "text": "Bůh sestupuje na horu v ohni a volá Mojžíše nahoru. Tady se rodí smlouva."
+    },
+    {
+     "ref": [
+      11,
+      18,
+      38,
+      38
+     ],
+     "title": "Karmel",
+     "text": "Na hoře Karmel sestoupí oheň na Eliášovu oběť a lid vyzná, že Hospodin je Bůh."
+    },
+    {
+     "ref": [
+      11,
+      19,
+      11,
+      12
+     ],
+     "title": "Tichý vánek na Chorébu",
+     "text": "Na téže hoře jako Mojžíš potkává Eliáš Boha ne ve vichru, zemětřesení ani ohni, ale v tichém vánku."
+    },
+    {
+     "ref": [
+      23,
+      2,
+      2,
+      3
+     ],
+     "title": "Hora, k níž proudí národy",
+     "text": "Prorok vidí Boží horu, ke které přicházejí všechny národy učit se Božím cestám."
+    },
+    {
+     "ref": [
+      40,
+      5,
+      1,
+      2
+     ],
+     "title": "Kázání na hoře",
+     "text": "Ježíš vystoupí na horu a učí – jako nový Mojžíš vykládá, jak žít s Bohem."
+    },
+    {
+     "ref": [
+      40,
+      17,
+      2,
+      2
+     ],
+     "title": "Hora proměnění",
+     "text": "Na hoře se Ježíš promění v záři a vedle něj stojí Mojžíš a Eliáš, muži Sinaje a Karmelu."
+    },
+    {
+     "ref": [
+      66,
+      21,
+      10,
+      10
+     ],
+     "title": "Velká a vysoká hora",
+     "text": "Z vysoké hory vidí Jan sestupovat nový Jeruzalém. Cesta na horu končí v Božím městě."
+    }
+   ]
+  },
+  {
+   "id": "rest",
+   "color": 4285501352,
+   "icon": "rest",
+   "title": "Odpočinutí",
+   "intro": "Bůh sedmý den odpočívá a zve k odpočinku i člověka. Sobota připomíná stvoření i vysvobození a ukazuje k odpočinutí, které dává Ježíš.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      2,
+      2,
+      3
+     ],
+     "title": "Sedmý den",
+     "text": "Bůh dokončí dílo, odpočine a sedmý den požehná. Odpočinek je součástí dobrého stvoření."
+    },
+    {
+     "ref": [
+      2,
+      20,
+      8,
+      10
+     ],
+     "title": "Pamatuj na sobotu",
+     "text": "Desatero dává odpočinek všem – dětem, otrokům, cizincům i zvířatům."
+    },
+    {
+     "ref": [
+      5,
+      5,
+      15,
+      15
+     ],
+     "title": "Byl jsi otrokem",
+     "text": "Sobota připomíná, že Bůh vyvedl lid z otroctví. Kdo odpočívá, žije jako svobodný."
+    },
+    {
+     "ref": [
+      19,
+      23,
+      2,
+      2
+     ],
+     "title": "Na travnatých nivách",
+     "text": "Dobrý pastýř dopřává odpočinek a vede k tichým vodám."
+    },
+    {
+     "ref": [
+      40,
+      11,
+      28,
+      28
+     ],
+     "title": "Pojďte ke mně",
+     "text": "Ježíš zve unavené a obtížené: „Já vám dám odpočinout.“"
+    },
+    {
+     "ref": [
+      41,
+      2,
+      27,
+      27
+     ],
+     "title": "Sobota pro člověka",
+     "text": "Ježíš připomíná, že sobota je dar pro člověka, ne břemeno."
+    },
+    {
+     "ref": [
+      58,
+      4,
+      9,
+      10
+     ],
+     "title": "Odpočinutí Božího lidu",
+     "text": "Pro Boží lid zbývá ještě sobotní odpočinutí – vstoupit do Božího pokoje."
+    },
+    {
+     "ref": [
+      66,
+      14,
+      13,
+      13
+     ],
+     "title": "Odpočinou od svých prací",
+     "text": "Ti, kdo umírají v Pánu, odpočinou od námah a jejich skutky jdou s nimi."
+    }
+   ]
+  },
+  {
+   "id": "home",
+   "color": 4288441230,
+   "icon": "home",
+   "title": "Vyhnanství a cesta domů",
+   "intro": "Od vyhnání ze zahrady je člověk na cestě. Abraham je poutník, Izrael zažije zajetí i návrat a Ježíš slibuje domov u Otce.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      3,
+      23,
+      24
+     ],
+     "title": "Vyhnání ze zahrady",
+     "text": "Člověk ztrácí domov v Boží blízkosti. Cesta zpět je střežena."
+    },
+    {
+     "ref": [
+      1,
+      12,
+      1,
+      1
+     ],
+     "title": "Odejdi do země, kterou ti ukážu",
+     "text": "Abram opouští domov a stává se poutníkem na cestě s Bohem."
+    },
+    {
+     "ref": [
+      2,
+      3,
+      8,
+      8
+     ],
+     "title": "Do dobré a prostorné země",
+     "text": "Bůh slibuje vyvést otroky z Egypta do země oplývající mlékem a medem."
+    },
+    {
+     "ref": [
+      19,
+      137,
+      1,
+      1
+     ],
+     "title": "U řek babylonských",
+     "text": "V zajetí lid pláče, když vzpomíná na Sijón. Stesk po domově se stává modlitbou."
+    },
+    {
+     "ref": [
+      24,
+      29,
+      10,
+      11
+     ],
+     "title": "Budoucnost a naděje",
+     "text": "Bůh slibuje vyhnancům návrat po sedmdesáti letech: má s nimi plány pokoje."
+    },
+    {
+     "ref": [
+      15,
+      1,
+      3,
+      3
+     ],
+     "title": "Kdo chce, ať se vrátí",
+     "text": "Perský král dovoluje návrat. Vyhnanci se vydávají domů stavět chrám."
+    },
+    {
+     "ref": [
+      42,
+      15,
+      20,
+      20
+     ],
+     "title": "Otec mu běží naproti",
+     "text": "Ztracený syn se vrací domů a otec ho vítá dřív, než stačí domluvit."
+    },
+    {
+     "ref": [
+      43,
+      14,
+      2,
+      2
+     ],
+     "title": "V domě mého Otce",
+     "text": "Ježíš jde připravit místo. Konečný domov není místo, ale bytí s ním."
+    },
+    {
+     "ref": [
+      58,
+      11,
+      13,
+      16
+     ],
+     "title": "Hledali lepší vlast",
+     "text": "Praotcové víry se cítili jako cizinci, protože toužili po nebeské vlasti."
+    }
+   ]
+  },
+  {
+   "id": "priest",
+   "color": 4290012746,
+   "icon": "priest",
+   "title": "Kněz a prostředník",
+   "intro": "Člověk potřebuje někoho, kdo ho přivede k Bohu. Kněží Izraele přinášejí oběti a přimlouvají se – až přijde velekněz, který obětuje sám sebe.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      14,
+      18,
+      20
+     ],
+     "title": "Melchisedech",
+     "text": "Tajemný král a kněz Boha Nejvyššího žehná Abramovi. List Židům v něm vidí obraz Krista."
+    },
+    {
+     "ref": [
+      2,
+      28,
+      1,
+      1
+     ],
+     "title": "Áron a jeho synové",
+     "text": "Bůh ustanoví kněze, aby sloužili ve svatyni a nesli jména kmenů před Bohem."
+    },
+    {
+     "ref": [
+      3,
+      16,
+      30,
+      30
+     ],
+     "title": "Den smíření",
+     "text": "Jednou za rok velekněz koná smíření, aby byl lid očištěn ode všech hříchů."
+    },
+    {
+     "ref": [
+      19,
+      110,
+      4,
+      4
+     ],
+     "title": "Kněz navěky",
+     "text": "Žalm ohlašuje kněze podle řádu Melchisedechova – ne na čas, ale navěky."
+    },
+    {
+     "ref": [
+      23,
+      53,
+      12,
+      12
+     ],
+     "title": "Za provinilce se přimlouval",
+     "text": "Trpící služebník nese hřích mnohých a přimlouvá se za ty, kdo selhali."
+    },
+    {
+     "ref": [
+      58,
+      4,
+      14,
+      16
+     ],
+     "title": "Velekněz, který soucítí",
+     "text": "Ježíš zná naše slabosti, a proto smíme přistupovat k trůnu milosti s důvěrou."
+    },
+    {
+     "ref": [
+      54,
+      2,
+      5,
+      5
+     ],
+     "title": "Jeden prostředník",
+     "text": "Mezi Bohem a lidmi je jediný prostředník – člověk Kristus Ježíš."
+    },
+    {
+     "ref": [
+      60,
+      2,
+      9,
+      9
+     ],
+     "title": "Královské kněžstvo",
+     "text": "Kněžská služba se rozšiřuje na celý Boží lid: všichni smějí přistoupit k Bohu a nést ho druhým."
+    }
+   ]
+  },
+  {
+   "id": "name",
+   "color": 4291405930,
+   "icon": "name",
+   "title": "Jméno „Já jsem“",
+   "intro": "Bůh se Mojžíšovi představí jménem „Jsem, který jsem“. Ježíš pak mluví o sobě slovy „Já jsem“ – a na konci zazní „Já jsem Alfa i Omega“.",
+   "stations": [
+    {
+     "ref": [
+      2,
+      3,
+      14,
+      14
+     ],
+     "title": "Jsem, který jsem",
+     "text": "U hořícího keře Bůh zjeví své jméno: je tu, je přítomen a je věrný."
+    },
+    {
+     "ref": [
+      2,
+      34,
+      6,
+      7
+     ],
+     "title": "Milosrdný a milostivý",
+     "text": "Po zlatém teleti Bůh vysvětlí, co jeho jméno znamená: milosrdenství, trpělivost a věrnost."
+    },
+    {
+     "ref": [
+      19,
+      8,
+      2,
+      2
+     ],
+     "title": "Jak vznešené je tvé jméno",
+     "text": "Žalmista žasne nad Božím jménem, které se zrcadlí v celém stvoření."
+    },
+    {
+     "ref": [
+      23,
+      43,
+      1,
+      3
+     ],
+     "title": "Volám tě tvým jménem",
+     "text": "Bůh, který má jméno, zná jménem i svůj lid: „Neboj se, jsi můj.“"
+    },
+    {
+     "ref": [
+      43,
+      8,
+      58,
+      58
+     ],
+     "title": "Dříve než byl Abraham, já jsem",
+     "text": "Ježíš použije Boží jméno o sobě. Posluchači pochopí a chtějí ho kamenovat."
+    },
+    {
+     "ref": [
+      43,
+      11,
+      25,
+      25
+     ],
+     "title": "Já jsem vzkříšení i život",
+     "text": "Jedno ze sedmi Ježíšových „Já jsem“ – u hrobu Lazara."
+    },
+    {
+     "ref": [
+      50,
+      2,
+      9,
+      10
+     ],
+     "title": "Jméno nad každé jméno",
+     "text": "Bůh dal Ježíši jméno, před kterým poklekne každé koleno."
+    },
+    {
+     "ref": [
+      66,
+      1,
+      8,
+      8
+     ],
+     "title": "Já jsem Alfa i Omega",
+     "text": "Bible končí tam, kde začala u keře: Bůh, který je, který byl a který přichází."
+    }
+   ]
+  },
+  {
+   "id": "bride",
+   "color": 4291324550,
+   "icon": "bride",
+   "title": "Ženich a nevěsta",
+   "intro": "Bible začíná svatbou v zahradě a končí svatbou Beránka. Mezi tím proroci líčí Boha jako věrného manžela nevěrného lidu.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      2,
+      23,
+      24
+     ],
+     "title": "První svatba",
+     "text": "Muž s radostí vítá ženu a stanou se jedním tělem. Manželství stojí na začátku příběhu."
+    },
+    {
+     "ref": [
+      22,
+      8,
+      6,
+      7
+     ],
+     "title": "Láska silná jako smrt",
+     "text": "Píseň písní opěvuje lásku, kterou nemohou uhasit ani velké vody."
+    },
+    {
+     "ref": [
+      28,
+      2,
+      21,
+      22
+     ],
+     "title": "Zasnoubím si tě navěky",
+     "text": "Bůh slibuje nevěrnému lidu nový začátek ve věrnosti, milosrdenství a lásce."
+    },
+    {
+     "ref": [
+      23,
+      62,
+      5,
+      5
+     ],
+     "title": "Radost ženicha",
+     "text": "Jako se ženich raduje z nevěsty, bude se Bůh radovat ze svého lidu."
+    },
+    {
+     "ref": [
+      43,
+      3,
+      29,
+      29
+     ],
+     "title": "Přítel ženicha",
+     "text": "Jan Křtitel se nazývá přítelem ženicha – ženichem je Ježíš."
+    },
+    {
+     "ref": [
+      49,
+      5,
+      31,
+      32
+     ],
+     "title": "Velké tajemství",
+     "text": "Pavel čte slova z Genesis o jednom těle jako obraz Krista a církve."
+    },
+    {
+     "ref": [
+      66,
+      19,
+      7,
+      7
+     ],
+     "title": "Přišla svatba Beránka",
+     "text": "Nebe jásá: nevěsta je připravena a začíná svatební hostina."
+    },
+    {
+     "ref": [
+      66,
+      21,
+      2,
+      2
+     ],
+     "title": "Město jako nevěsta",
+     "text": "Nový Jeruzalém sestupuje z nebe, připravený jako nevěsta ozdobená pro svého muže."
+    }
+   ]
+  },
+  {
+   "id": "vine",
+   "color": 4286205566,
+   "icon": "vine",
+   "title": "Vinice a vinný kmen",
+   "intro": "Izrael je Boží vinice, o kterou Bůh pečuje, ale nenese dobré ovoce. Ježíš se představí jako pravý vinný kmen, z něhož ovoce roste.",
+   "stations": [
+    {
+     "ref": [
+      19,
+      80,
+      9,
+      9
+     ],
+     "title": "Réva vysazená z Egypta",
+     "text": "Žalmista vypráví dějiny Izraele jako révu, kterou Bůh přenesl a zasadil."
+    },
+    {
+     "ref": [
+      23,
+      5,
+      1,
+      2
+     ],
+     "title": "Píseň o vinici",
+     "text": "Bůh udělal pro svou vinici všechno, a ona přesto vydala planá hrozna."
+    },
+    {
+     "ref": [
+      24,
+      2,
+      21,
+      21
+     ],
+     "title": "Zvrhlá réva",
+     "text": "Jeremjáš naříká, že ušlechtilá réva se zvrhla v cizí."
+    },
+    {
+     "ref": [
+      40,
+      21,
+      33,
+      33
+     ],
+     "title": "Podobenství o vinařích",
+     "text": "Nájemci vinice odmítají vydat úrodu a nakonec zabijí i majitelova syna."
+    },
+    {
+     "ref": [
+      42,
+      22,
+      18,
+      18
+     ],
+     "title": "Z plodu vinné révy",
+     "text": "Při poslední večeři Ježíš slibuje, že víno znovu bude pít v Božím království."
+    },
+    {
+     "ref": [
+      43,
+      15,
+      5,
+      5
+     ],
+     "title": "Já jsem vinný kmen",
+     "text": "Ježíš je pravá réva, učedníci ratolesti. Kdo v něm zůstává, nese mnoho ovoce."
+    },
+    {
+     "ref": [
+      48,
+      5,
+      22,
+      23
+     ],
+     "title": "Ovoce Ducha",
+     "text": "Ovoce, které Bůh hledal na vinici, roste v lidech skrze Ducha."
+    }
+   ]
+  },
+  {
+   "id": "weak",
+   "color": 4285505658,
+   "icon": "weak",
+   "title": "Bůh si vybírá slabé",
+   "intro": "Znovu a znovu Bůh volí mladší, menší a slabší – aby bylo vidět, že síla je jeho.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      25,
+      23,
+      23
+     ],
+     "title": "Starší bude sloužit mladšímu",
+     "text": "Už před narozením Jákoba a Ezaua Bůh obrací běžný řád prvorozenství."
+    },
+    {
+     "ref": [
+      2,
+      4,
+      10,
+      12
+     ],
+     "title": "Nejsem výmluvný",
+     "text": "Mojžíš se brání, že neumí mluvit. Bůh odpovídá: „Já budu s tvými ústy.“"
+    },
+    {
+     "ref": [
+      7,
+      6,
+      15,
+      15
+     ],
+     "title": "Nejmenší v domě svého otce",
+     "text": "Gedeón se cítí nejslabší, a právě jeho Bůh posílá zachránit Izrael."
+    },
+    {
+     "ref": [
+      9,
+      16,
+      7,
+      7
+     ],
+     "title": "Hospodin hledí na srdce",
+     "text": "Ze synů Jišajových je vybrán nejmladší pastýř, na kterého nikdo nepomyslel."
+    },
+    {
+     "ref": [
+      9,
+      17,
+      45,
+      45
+     ],
+     "title": "Ve jménu Hospodina",
+     "text": "David nejde proti Goliášovi s mečem, ale ve jménu Boha."
+    },
+    {
+     "ref": [
+      24,
+      1,
+      6,
+      7
+     ],
+     "title": "Jsem příliš mladý",
+     "text": "Jeremjáš namítá svůj věk. Bůh mu řekne: „Neříkej, že jsi mladý.“"
+    },
+    {
+     "ref": [
+      42,
+      1,
+      52,
+      52
+     ],
+     "title": "Povyšuje ponížené",
+     "text": "Marie zpívá o Bohu, který svrhává mocné z trůnů a povyšuje malé."
+    },
+    {
+     "ref": [
+      46,
+      1,
+      27,
+      27
+     ],
+     "title": "Co je slabé, vyvolil Bůh",
+     "text": "Bůh vybral to, co svět považuje za slabé, aby se nikdo nechlubil před ním."
+    },
+    {
+     "ref": [
+      47,
+      12,
+      9,
+      9
+     ],
+     "title": "Moc se dovršuje ve slabosti",
+     "text": "Pavlovi Bůh řekne: „Stačí ti má milost.“ Slabost se stává místem Boží síly."
+    }
+   ]
+  },
+  {
+   "id": "rock",
+   "color": 4287401100,
+   "icon": "rock",
+   "title": "Kámen a skála",
+   "intro": "Bůh je skála, na které se dá stavět. Z kamene teče voda na poušti, odmítnutý kámen se stává úhelným a z lidí se staví živý chrám.",
+   "stations": [
+    {
+     "ref": [
+      1,
+      28,
+      18,
+      18
+     ],
+     "title": "Kámen v Bét-elu",
+     "text": "Jákob postaví kámen, na kterém spal, jako památník setkání s Bohem."
+    },
+    {
+     "ref": [
+      2,
+      17,
+      6,
+      6
+     ],
+     "title": "Voda ze skály",
+     "text": "Na poušti udeří Mojžíš do skály a vyteče voda pro žíznivý lid."
+    },
+    {
+     "ref": [
+      19,
+      18,
+      3,
+      3
+     ],
+     "title": "Hospodin je má skála",
+     "text": "David vyznává Boha jako skálu, pevnost a útočiště."
+    },
+    {
+     "ref": [
+      23,
+      28,
+      16,
+      16
+     ],
+     "title": "Úhelný kámen na Sijónu",
+     "text": "Bůh klade pevný základní kámen: kdo věří, nebude ve spěchu utíkat."
+    },
+    {
+     "ref": [
+      27,
+      2,
+      34,
+      35
+     ],
+     "title": "Kámen, který se stal horou",
+     "text": "V Nebúkadnesarově snu kámen utržený bez lidských rukou rozbije sochu říší a naplní celou zemi."
+    },
+    {
+     "ref": [
+      40,
+      7,
+      24,
+      24
+     ],
+     "title": "Dům na skále",
+     "text": "Kdo slyší Ježíšova slova a jedná podle nich, staví na skále."
+    },
+    {
+     "ref": [
+      40,
+      21,
+      42,
+      42
+     ],
+     "title": "Kámen, který stavitelé zavrhli",
+     "text": "Ježíš vztahuje žalm o odmítnutém kameni na sebe."
+    },
+    {
+     "ref": [
+      46,
+      10,
+      4,
+      4
+     ],
+     "title": "Ta skála byla Kristus",
+     "text": "Pavel čte skálu na poušti jako obraz Krista, který dává pít."
+    },
+    {
+     "ref": [
+      60,
+      2,
+      4,
+      5
+     ],
+     "title": "Živé kameny",
+     "text": "Věřící se jako živé kameny stavějí na Kristu v duchovní dům."
+    }
+   ]
+  }
+ ]
+}

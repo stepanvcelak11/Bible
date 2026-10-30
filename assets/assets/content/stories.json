@@ -1,0 +1,2755 @@
+{
+ "stories": [
+  {
+   "id": "stvoreni",
+   "era": "creation",
+   "title": "Stvoření světa",
+   "span": "Gn 1–2",
+   "ref": [
+    1,
+    1,
+    0,
+    0,
+    2
+   ],
+   "summary": "Bůh slovem tvoří dobrý svět a člověka ke svému obrazu. Sedmý den odpočívá a dává lidem zahradu i úkol o ni pečovat.",
+   "people": [
+    "adam",
+    "eva"
+   ],
+   "links": [
+    {
+     "to": "nove-nebe",
+     "label": "Bible začíná zahradou a končí městem se stromem života – stvoření je obnoveno"
+    },
+    {
+     "to": "narozeni",
+     "label": "„Na počátku bylo Slovo“ – skrze Slovo, které se stalo tělem, vzniklo všechno (J 1)"
+    }
+   ]
+  },
+  {
+   "id": "pad",
+   "era": "creation",
+   "title": "Pád do hříchu",
+   "span": "Gn 3",
+   "ref": [
+    1,
+    3,
+    0,
+    0,
+    3
+   ],
+   "summary": "Had zpochybní Boží slovo a lidé jedí ze zakázaného stromu. Ztrácejí blízkost s Bohem, ale slyší první slib vítězství nad zlem.",
+   "people": [
+    "adam",
+    "eva"
+   ],
+   "links": [
+    {
+     "to": "pokuseni",
+     "label": "Kde Adam v zahradě podlehl, Ježíš na poušti obstál"
+    },
+    {
+     "to": "kriz",
+     "label": "Slib, že potomek ženy rozdrtí hadovi hlavu (Gn 3,15)"
+    },
+    {
+     "to": "drak",
+     "label": "„Starý had, zvaný ďábel“ je nakonec poražen"
+    }
+   ]
+  },
+  {
+   "id": "kain-abel",
+   "era": "creation",
+   "title": "Kain a Ábel",
+   "span": "Gn 4",
+   "ref": [
+    1,
+    4,
+    0,
+    0,
+    4
+   ],
+   "summary": "První bratři a první vražda. Bůh Kaina varuje, že hřích číhá u dveří, a i vraha chrání znamením.",
+   "people": [
+    "kain",
+    "abel"
+   ],
+   "links": [
+    {
+     "to": "hrdinove-viry",
+     "label": "Ábel je první v řadě hrdinů víry (Žd 11,4)"
+    }
+   ]
+  },
+  {
+   "id": "potopa",
+   "era": "creation",
+   "title": "Potopa a Noe",
+   "span": "Gn 6–9",
+   "ref": [
+    1,
+    6,
+    0,
+    0,
+    9
+   ],
+   "summary": "Svět je plný násilí, ale Noe chodí s Bohem. Bůh ho zachrání v arše a po potopě uzavírá smlouvu s duhou.",
+   "people": [
+    "noe",
+    "henoch"
+   ],
+   "links": [
+    {
+     "to": "krest",
+     "label": "Voda soudu i záchrany – Petr ji čte jako obraz křtu (1Pt 3,20-21)"
+    },
+    {
+     "to": "hrdinove-viry",
+     "label": "Henoch i Noe patří mezi svědky víry"
+    }
+   ]
+  },
+  {
+   "id": "babel",
+   "era": "creation",
+   "title": "Babylonská věž",
+   "span": "Gn 11",
+   "ref": [
+    1,
+    11,
+    0,
+    0,
+    11
+   ],
+   "summary": "Lidé chtějí stavbou dosáhnout nebe a udělat si jméno. Bůh zmate jejich jazyky a rozptýlí je po zemi.",
+   "people": [],
+   "links": [
+    {
+     "to": "letnice",
+     "label": "V Babelu se jazyky rozdělily, o Letnicích jim lidé z mnoha národů rozumějí"
+    },
+    {
+     "to": "abram",
+     "label": "Lidé si chtěli udělat jméno – Abramovi Bůh slibuje, že jeho jméno učiní velkým"
+    }
+   ]
+  },
+  {
+   "id": "abram",
+   "era": "patriarchs",
+   "title": "Povolání Abrama",
+   "span": "Gn 12–15",
+   "ref": [
+    1,
+    12,
+    0,
+    0,
+    15
+   ],
+   "summary": "Bůh volá Abrama z Cháranu do neznámé země a slibuje potomstvo a požehnání pro všechny národy. Abram uvěří a Bůh to počítá za spravedlnost.",
+   "people": [
+    "abraham",
+    "sara",
+    "lot",
+    "melchisedech"
+   ],
+   "links": [
+    {
+     "to": "kornelius",
+     "label": "Požehnání pro všechny národy se naplňuje, když evangelium přijímají pohané"
+    },
+    {
+     "to": "pavlovy-listy",
+     "label": "Abraham uvěřil – Pavel jím dokládá ospravedlnění z víry (Ř 4)"
+    }
+   ]
+  },
+  {
+   "id": "hagar",
+   "era": "patriarchs",
+   "title": "Hagar a Izmael",
+   "span": "Gn 16",
+   "ref": [
+    1,
+    16,
+    0,
+    0,
+    16
+   ],
+   "summary": "Sáraj nečeká na Boží slib a dá Abramovi svou otrokyni. Hagar utíká na poušť, kde ji najde Bůh, „který vidí“.",
+   "people": [
+    "hagar",
+    "izmael",
+    "sara"
+   ],
+   "links": []
+  },
+  {
+   "id": "sodoma",
+   "era": "patriarchs",
+   "title": "Sodoma a Gomora",
+   "span": "Gn 18–19",
+   "ref": [
+    1,
+    18,
+    0,
+    0,
+    19
+   ],
+   "summary": "Tři hosté slibují Sáře syna. Abraham pak prosí za Sodomu a Bůh z ní vyvede Lota s rodinou.",
+   "people": [
+    "abraham",
+    "sara",
+    "lot"
+   ],
+   "links": []
+  },
+  {
+   "id": "izak",
+   "era": "patriarchs",
+   "title": "Obětování Izáka",
+   "span": "Gn 21–22",
+   "ref": [
+    1,
+    21,
+    0,
+    0,
+    22
+   ],
+   "summary": "Slíbený syn se konečně narodí. Pak Bůh žádá Abrahama, aby ho obětoval – a na hoře Mórija si sám opatří beránka.",
+   "people": [
+    "abraham",
+    "izak",
+    "sara",
+    "izmael"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Otec, jediný syn a dřevo na hoře – Bůh si opatří beránka"
+    },
+    {
+     "to": "hrdinove-viry",
+     "label": "Abraham věřil, že Bůh může i mrtvé vzkřísit (Žd 11,17-19)"
+    }
+   ]
+  },
+  {
+   "id": "rebeka",
+   "era": "patriarchs",
+   "title": "Nevěsta pro Izáka",
+   "span": "Gn 24",
+   "ref": [
+    1,
+    24,
+    0,
+    0,
+    24
+   ],
+   "summary": "Abrahamův služebník prosí o znamení u studny a Bůh ho dovede k Rebece, která ochotně odchází za Izákem.",
+   "people": [
+    "izak",
+    "rebeka",
+    "laban"
+   ],
+   "links": [
+    {
+     "to": "samaritanka",
+     "label": "Setkání u studny – i Ježíš se u studny setká se ženou"
+    }
+   ]
+  },
+  {
+   "id": "jakob-ezau",
+   "era": "patriarchs",
+   "title": "Jákob a Ezau",
+   "span": "Gn 25–27",
+   "ref": [
+    1,
+    25,
+    0,
+    0,
+    27
+   ],
+   "summary": "Dvojčata soupeří už v lůně. Ezau prodá prvorozenství za misku jídla a Jákob lstí získá otcovo požehnání.",
+   "people": [
+    "jakob",
+    "ezau",
+    "rebeka",
+    "izak"
+   ],
+   "links": []
+  },
+  {
+   "id": "zebrik",
+   "era": "patriarchs",
+   "title": "Jákobův žebřík a léta u Lábana",
+   "span": "Gn 28–31",
+   "ref": [
+    1,
+    28,
+    0,
+    0,
+    31
+   ],
+   "summary": "Na útěku vidí Jákob žebřík do nebe a slyší Boží slib. U Lábana slouží za Ráchel, je sám oklamán a vrací se s velkou rodinou.",
+   "people": [
+    "jakob",
+    "rachel",
+    "lea",
+    "laban"
+   ],
+   "links": [
+    {
+     "to": "ucednici",
+     "label": "Ježíš slibuje Natanaelovi, že uvidí anděly vystupovat a sestupovat na Syna člověka (J 1,51)"
+    }
+   ]
+  },
+  {
+   "id": "jabok",
+   "era": "patriarchs",
+   "title": "Zápas u Jaboku a smíření",
+   "span": "Gn 32–33",
+   "ref": [
+    1,
+    32,
+    0,
+    0,
+    33
+   ],
+   "summary": "V noci před setkáním s Ezauem zápasí Jákob s Bohem a dostává jméno Izrael. Ezau mu pak běží naproti a objímá ho.",
+   "people": [
+    "jakob",
+    "ezau"
+   ],
+   "links": [
+    {
+     "to": "ztraceni",
+     "label": "Ezau běží bratrovi naproti a objímá ho – stejně jako otec marnotratného syna"
+    }
+   ]
+  },
+  {
+   "id": "josef-prodan",
+   "era": "patriarchs",
+   "title": "Josef prodán do Egypta",
+   "span": "Gn 37–39",
+   "ref": [
+    1,
+    37,
+    0,
+    0,
+    39
+   ],
+   "summary": "Otcův oblíbenec Josef má sny o budoucnosti. Bratři ho prodají do otroctví, ale Bůh je s ním i v Egyptě.",
+   "people": [
+    "josef",
+    "juda",
+    "jakob",
+    "tamar"
+   ],
+   "links": [
+    {
+     "to": "posledni-vecere",
+     "label": "Josef prodán bratry za stříbrné, Ježíš zrazen učedníkem za stříbrné"
+    }
+   ]
+  },
+  {
+   "id": "josef-egypt",
+   "era": "patriarchs",
+   "title": "Josef zachraňuje svou rodinu",
+   "span": "Gn 41–50",
+   "ref": [
+    1,
+    41,
+    0,
+    0,
+    50
+   ],
+   "summary": "Josef vyloží faraonovy sny a stane se správcem Egypta. Když bratři přijdou pro obilí, odpustí jim: „Bůh to zamýšlel k dobrému.“",
+   "people": [
+    "josef",
+    "juda",
+    "jakob"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Zlo, které Bůh obrací v záchranu mnoha lidí"
+    },
+    {
+     "to": "mojzis",
+     "label": "Josefova rodina v Egyptě – odtud o staletí později začíná vyjití"
+    }
+   ]
+  },
+  {
+   "id": "job",
+   "era": "patriarchs",
+   "title": "Jóbova zkouška",
+   "span": "Jb 1–42",
+   "ref": [
+    18,
+    1,
+    0,
+    0,
+    42
+   ],
+   "summary": "Spravedlivý Jób přijde o všechno. S přáteli zápasí s otázkou utrpení, až mu Bůh odpoví z bouře.",
+   "people": [
+    "job"
+   ],
+   "links": [
+    {
+     "to": "getsemane",
+     "label": "Nevinný trpící, který se v bolesti obrací k Bohu"
+    }
+   ]
+  },
+  {
+   "id": "mojzis",
+   "era": "exodus",
+   "title": "Mojžíš a hořící keř",
+   "span": "Ex 1–4",
+   "ref": [
+    2,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Izraelité jsou v Egyptě otroky. Zachráněný chlapec Mojžíš vyroste, uteče do Midjánu a u hořícího keře ho Bůh posílá vyvést svůj lid.",
+   "people": [
+    "mojzis",
+    "cipora",
+    "aron",
+    "mirjam"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "Faraon i Herodes vraždí chlapce – a budoucí zachránce unikne"
+    }
+   ]
+  },
+  {
+   "id": "rany",
+   "era": "exodus",
+   "title": "Rány a Pesach",
+   "span": "Ex 7–12",
+   "ref": [
+    2,
+    7,
+    0,
+    0,
+    12
+   ],
+   "summary": "Faraon odmítá propustit lid. Po deseti ranách přichází noc, kdy krev beránka na veřejích chrání izraelské domy.",
+   "people": [
+    "mojzis",
+    "aron"
+   ],
+   "links": [
+    {
+     "to": "posledni-vecere",
+     "label": "Ježíš slaví Pesach a sám se stává velikonočním Beránkem"
+    },
+    {
+     "to": "beranek",
+     "label": "Zabitý Beránek uprostřed trůnu"
+    }
+   ]
+  },
+  {
+   "id": "more",
+   "era": "exodus",
+   "title": "Přechod Rudého moře",
+   "span": "Ex 13–15",
+   "ref": [
+    2,
+    13,
+    0,
+    0,
+    15
+   ],
+   "summary": "Bůh vede lid v oblakovém a ohnivém sloupu. Moře se rozestoupí, Izrael projde suchou nohou a Mirjam zpívá Bohu píseň.",
+   "people": [
+    "mojzis",
+    "mirjam"
+   ],
+   "links": [
+    {
+     "to": "beranek",
+     "label": "Vítězové v nebi zpívají „píseň Mojžíše a Beránka“ (Zj 15,3)"
+    },
+    {
+     "to": "jericho",
+     "label": "Moře se rozestoupí – a o generaci později i Jordán"
+    }
+   ]
+  },
+  {
+   "id": "mana",
+   "era": "exodus",
+   "title": "Mana a voda ze skály",
+   "span": "Ex 16–18",
+   "ref": [
+    2,
+    16,
+    0,
+    0,
+    18
+   ],
+   "summary": "Na poušti lid reptá, a Bůh přesto dává každé ráno manu a vodu ze skály. Jetro radí Mojžíšovi, jak se o vedení podělit.",
+   "people": [
+    "mojzis",
+    "aron",
+    "jetro"
+   ],
+   "links": [
+    {
+     "to": "nasyceni",
+     "label": "„Já jsem chléb života“ – Ježíš navazuje na manu z nebe (J 6)"
+    }
+   ]
+  },
+  {
+   "id": "sinaj",
+   "era": "exodus",
+   "title": "Smlouva na Sinaji",
+   "span": "Ex 19–24",
+   "ref": [
+    2,
+    19,
+    0,
+    0,
+    24
+   ],
+   "summary": "U hory Sinaj Bůh uzavírá s Izraelem smlouvu a dává Desatero. Lid slibuje: „Všechno, co Hospodin mluvil, budeme dělat.“",
+   "people": [
+    "mojzis"
+   ],
+   "links": [
+    {
+     "to": "kazani",
+     "label": "Zákon z hory – a Ježíš ho na hoře vykládá"
+    },
+    {
+     "to": "letnice",
+     "label": "Oheň a hlas na Sinaji, oheň a Duch o Letnicích"
+    },
+    {
+     "to": "jeremjas",
+     "label": "Kamenné desky – a zaslíbená smlouva vepsaná do srdce"
+    }
+   ]
+  },
+  {
+   "id": "tele",
+   "era": "exodus",
+   "title": "Zlaté tele",
+   "span": "Ex 32–34",
+   "ref": [
+    2,
+    32,
+    0,
+    0,
+    34
+   ],
+   "summary": "Zatímco je Mojžíš na hoře, lid si udělá zlaté tele. Mojžíš se přimlouvá a Bůh se zjevuje jako milosrdný a milostivý.",
+   "people": [
+    "mojzis",
+    "aron"
+   ],
+   "links": [
+    {
+     "to": "rozdeleni",
+     "label": "Jarobeám staví dvě zlatá telata se stejnými slovy (1Kr 12,28)"
+    }
+   ]
+  },
+  {
+   "id": "den-smireni",
+   "era": "exodus",
+   "title": "Svatostánek a Den smíření",
+   "span": "Lv 16",
+   "ref": [
+    3,
+    16,
+    0,
+    0,
+    16
+   ],
+   "summary": "Jednou v roce vstupuje velekněz s krví oběti do svatyně svatých a kozel odnáší hříchy lidu na poušť.",
+   "people": [
+    "aron"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Kristus jako velekněz vstoupil s vlastní krví jednou provždy (Žd 9)"
+    }
+   ]
+  },
+  {
+   "id": "zvedove",
+   "era": "exodus",
+   "title": "Zvědové a čtyřicet let na poušti",
+   "span": "Nu 13–14",
+   "ref": [
+    4,
+    13,
+    0,
+    0,
+    14
+   ],
+   "summary": "Dvanáct zvědů prozkoumá zemi. Deset se bojí, jen Jozue a Káleb důvěřují Bohu. Nevěřící generace zůstane na poušti.",
+   "people": [
+    "jozue",
+    "kaleb",
+    "mojzis",
+    "aron"
+   ],
+   "links": [
+    {
+     "to": "pokuseni",
+     "label": "Čtyřicet let zkoušky na poušti – a Ježíšových čtyřicet dní"
+    }
+   ]
+  },
+  {
+   "id": "had",
+   "era": "exodus",
+   "title": "Vzpoury a měděný had",
+   "span": "Nu 16–21",
+   "ref": [
+    4,
+    16,
+    0,
+    0,
+    21
+   ],
+   "summary": "Kórach se bouří proti Mojžíšovi a Áronovi. Když lid uštknou hadi, zachrání ho pohled na měděného hada na tyči.",
+   "people": [
+    "korach",
+    "aron",
+    "mojzis"
+   ],
+   "links": [
+    {
+     "to": "nikodem",
+     "label": "„Jako Mojžíš vyvýšil hada na poušti, tak musí být vyvýšen Syn člověka“ (J 3,14)"
+    }
+   ]
+  },
+  {
+   "id": "bileam",
+   "era": "exodus",
+   "title": "Bileám a oslice",
+   "span": "Nu 22–25",
+   "ref": [
+    4,
+    22,
+    0,
+    0,
+    25
+   ],
+   "summary": "Moábský král najme Bileáma, aby proklel Izrael. Místo kletby však musí žehnat a vidí hvězdu, která vzejde z Jákoba.",
+   "people": [
+    "bileam",
+    "pinchas"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "Hvězda z Jákoba – mudrci jdou za hvězdou do Betléma"
+    }
+   ]
+  },
+  {
+   "id": "rozlouceni",
+   "era": "exodus",
+   "title": "Mojžíšovo rozloučení",
+   "span": "Dt 30–34",
+   "ref": [
+    5,
+    30,
+    0,
+    0,
+    34
+   ],
+   "summary": "Na prahu země Mojžíš předkládá lidu volbu mezi životem a smrtí, pověří Jozua a umírá na hoře Nebó.",
+   "people": [
+    "mojzis",
+    "jozue"
+   ],
+   "links": [
+    {
+     "to": "pokuseni",
+     "label": "Ježíš odpovídá pokušiteli slovy Deuteronomia"
+    },
+    {
+     "to": "promeneni",
+     "label": "Mojžíš do země nevstoupil – na hoře proměnění stojí s Ježíšem"
+    }
+   ]
+  },
+  {
+   "id": "rachab",
+   "era": "land",
+   "title": "Rachab a zvědové",
+   "span": "Joz 2",
+   "ref": [
+    6,
+    2,
+    0,
+    0,
+    2
+   ],
+   "summary": "Prostitutka z Jericha ukryje izraelské zvědy, protože uvěřila v Izraelova Boha. Šarlatová šňůra zachrání její rodinu.",
+   "people": [
+    "rachab",
+    "jozue"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "Rachab je v Ježíšově rodokmenu (Mt 1,5)"
+    },
+    {
+     "to": "hrdinove-viry",
+     "label": "Rachab mezi hrdiny víry (Žd 11,31)"
+    }
+   ]
+  },
+  {
+   "id": "jericho",
+   "era": "land",
+   "title": "Přes Jordán k Jerichu",
+   "span": "Joz 3–6",
+   "ref": [
+    6,
+    3,
+    0,
+    0,
+    6
+   ],
+   "summary": "Jordán se zastaví a lid vstoupí do země. Hradby Jericha padnou po sedmi dnech pochodu a troubení.",
+   "people": [
+    "jozue"
+   ],
+   "links": [
+    {
+     "to": "krest",
+     "label": "Jordán, kde Izrael vstoupil do země, je místem Ježíšova křtu"
+    }
+   ]
+  },
+  {
+   "id": "akan",
+   "era": "land",
+   "title": "Akánův hřích",
+   "span": "Joz 7",
+   "ref": [
+    6,
+    7,
+    0,
+    0,
+    7
+   ],
+   "summary": "Po vítězství přijde porážka u Aje. Akán si skrytě ponechal kořist a jeho hřích dopadá na celý lid.",
+   "people": [
+    "achan",
+    "jozue"
+   ],
+   "links": [
+    {
+     "to": "prvni-cirkev",
+     "label": "Skrytá lež na počátku nové etapy – Ananiáš a Safira"
+    }
+   ]
+  },
+  {
+   "id": "volba",
+   "era": "land",
+   "title": "Dědictví a Jozuova volba",
+   "span": "Joz 14–24",
+   "ref": [
+    6,
+    14,
+    0,
+    0,
+    24
+   ],
+   "summary": "Země se dělí mezi kmeny, Káleb dostává Hebron. Starý Jozue vyzývá: „Já a můj dům budeme sloužit Hospodinu.“",
+   "people": [
+    "kaleb",
+    "jozue"
+   ],
+   "links": []
+  },
+  {
+   "id": "debora",
+   "era": "land",
+   "title": "Ehúd, Debora a Jáel",
+   "span": "Sd 3–5",
+   "ref": [
+    7,
+    3,
+    0,
+    0,
+    5
+   ],
+   "summary": "Začíná kruh odpadnutí a záchrany. Levák Ehúd osvobodí lid od Moábců, prorokyně Debora s Bárakem porazí Síseru a Jáel ho zabije.",
+   "people": [
+    "ehud",
+    "debora",
+    "barak",
+    "jael"
+   ],
+   "links": []
+  },
+  {
+   "id": "gedeon",
+   "era": "land",
+   "title": "Gedeón a tři sta mužů",
+   "span": "Sd 6–8",
+   "ref": [
+    7,
+    6,
+    0,
+    0,
+    8
+   ],
+   "summary": "Nejmenší z rodu dostane od anděla jméno „udatný bohatýr“. Bůh zmenší jeho vojsko, aby bylo jasné, kdo vítězí.",
+   "people": [
+    "gedeon"
+   ],
+   "links": [
+    {
+     "to": "pavlovy-listy",
+     "label": "Bůh vybírá slabé, aby se nikdo nechlubil (1K 1,27)"
+    }
+   ]
+  },
+  {
+   "id": "jefte",
+   "era": "land",
+   "title": "Jefte a jeho slib",
+   "span": "Sd 11",
+   "ref": [
+    7,
+    11,
+    0,
+    0,
+    11
+   ],
+   "summary": "Vyhnaný syn se stane vůdcem a porazí Amónce. Jeho unáhlený slib ale skončí tragédií.",
+   "people": [
+    "jefte"
+   ],
+   "links": []
+  },
+  {
+   "id": "samson",
+   "era": "land",
+   "title": "Samson a Delila",
+   "span": "Sd 13–16",
+   "ref": [
+    7,
+    13,
+    0,
+    0,
+    16
+   ],
+   "summary": "Nazír s nadlidskou silou žije podle svých tužeb. Delila ho zradí, ale v poslední modlitbě ho Bůh ještě posílí.",
+   "people": [
+    "samson",
+    "delila"
+   ],
+   "links": []
+  },
+  {
+   "id": "rut",
+   "era": "land",
+   "title": "Rút a Bóaz",
+   "span": "Rt 1–4",
+   "ref": [
+    8,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Moábka Rút neopustí tchyni Noemi. Na poli potká Bóaze, který se stane jejich vykupitelem.",
+   "people": [
+    "rut",
+    "noemi",
+    "boaz"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "Rút je prababičkou Davida a předkyní Ježíše"
+    },
+    {
+     "to": "david-pomazani",
+     "label": "Z Rút a Bóaze pochází král David"
+    }
+   ]
+  },
+  {
+   "id": "samuel",
+   "era": "kingdom",
+   "title": "Chana a malý Samuel",
+   "span": "1S 1–3",
+   "ref": [
+    9,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Neplodná Chana vyprosí syna a zasvětí ho Bohu. Chlapec Samuel v noci slyší Boží hlas: „Mluv, tvůj služebník slyší.“",
+   "people": [
+    "chana",
+    "samuel",
+    "eli"
+   ],
+   "links": [
+    {
+     "to": "zvestovani",
+     "label": "Chanina píseň a Mariin chvalozpěv – Bůh ponižuje pyšné a povyšuje ponížené"
+    }
+   ]
+  },
+  {
+   "id": "saul",
+   "era": "kingdom",
+   "title": "Izrael chce krále: Saul",
+   "span": "1S 8–15",
+   "ref": [
+    9,
+    8,
+    0,
+    0,
+    15
+   ],
+   "summary": "Lid chce krále jako ostatní národy. Saul začne dobře, ale neposlouchá a Samuel mu řekne, že poslušnost je víc než oběť.",
+   "people": [
+    "samuel",
+    "saul",
+    "jonatan"
+   ],
+   "links": []
+  },
+  {
+   "id": "david-pomazani",
+   "era": "kingdom",
+   "title": "Pomazání Davida",
+   "span": "1S 16",
+   "ref": [
+    9,
+    16,
+    0,
+    0,
+    16
+   ],
+   "summary": "Samuel hledá krále mezi Jišajovými syny. Bůh nevybere nejvyššího, ale nejmladšího pastýře – „Hospodin hledí na srdce.“",
+   "people": [
+    "david",
+    "samuel"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "Betlém, Davidovo město, je místem Ježíšova narození"
+    }
+   ]
+  },
+  {
+   "id": "goliat",
+   "era": "kingdom",
+   "title": "David a Goliáš",
+   "span": "1S 17",
+   "ref": [
+    9,
+    17,
+    0,
+    0,
+    17
+   ],
+   "summary": "Celé vojsko se bojí obra. Pastýř David jde proti němu s prakem a jménem Hospodina zástupů.",
+   "people": [
+    "david",
+    "saul"
+   ],
+   "links": []
+  },
+  {
+   "id": "david-utek",
+   "era": "kingdom",
+   "title": "David na útěku před Saulem",
+   "span": "1S 18–26",
+   "ref": [
+    9,
+    18,
+    0,
+    0,
+    26
+   ],
+   "summary": "Saul žárlí a pronásleduje Davida. Jonatan zůstane věrným přítelem, Abigail zabrání krveprolití a David dvakrát ušetří Saulův život.",
+   "people": [
+    "david",
+    "jonatan",
+    "saul",
+    "mikal",
+    "abigail"
+   ],
+   "links": []
+  },
+  {
+   "id": "david-kral",
+   "era": "kingdom",
+   "title": "David králem a slib věčného trůnu",
+   "span": "2S 2–7",
+   "ref": [
+    10,
+    2,
+    0,
+    0,
+    7
+   ],
+   "summary": "David se stane králem, dobude Jeruzalém a s radostí tam přinese truhlu. Bůh mu slibuje dům a trůn navěky.",
+   "people": [
+    "david",
+    "mikal",
+    "natan",
+    "abner",
+    "joab"
+   ],
+   "links": [
+    {
+     "to": "zvestovani",
+     "label": "„Bůh mu dá trůn jeho otce Davida“ (L 1,32)"
+    },
+    {
+     "to": "vjezd",
+     "label": "„Hosana Synu Davidovu!“"
+    }
+   ]
+  },
+  {
+   "id": "mefiboset",
+   "era": "kingdom",
+   "title": "Laskavost k Mefíbóšetovi",
+   "span": "2S 9",
+   "ref": [
+    10,
+    9,
+    0,
+    0,
+    9
+   ],
+   "summary": "David hledá někoho ze Saulova domu, aby mu prokázal milosrdenství, a chromého Mefíbóšeta posadí ke svému stolu.",
+   "people": [
+    "mefiboset",
+    "david"
+   ],
+   "links": []
+  },
+  {
+   "id": "batseba",
+   "era": "kingdom",
+   "title": "David a Batšeba",
+   "span": "2S 11–12",
+   "ref": [
+    10,
+    11,
+    0,
+    0,
+    12
+   ],
+   "summary": "Král zhřeší s Batšebou a nechá zabít jejího muže. Prorok Nátan ho usvědčí příběhem a David činí pokání.",
+   "people": [
+    "david",
+    "batseba",
+    "urijas",
+    "natan",
+    "joab"
+   ],
+   "links": []
+  },
+  {
+   "id": "absalom",
+   "era": "kingdom",
+   "title": "Absalómova vzpoura",
+   "span": "2S 15–18",
+   "ref": [
+    10,
+    15,
+    0,
+    0,
+    18
+   ],
+   "summary": "Davidův syn mu ukradne srdce lidu a vyžene ho z Jeruzaléma. Vzpoura skončí Absalómovou smrtí a otcovým pláčem.",
+   "people": [
+    "absalom",
+    "david",
+    "achitofel",
+    "joab"
+   ],
+   "links": []
+  },
+  {
+   "id": "zalmy",
+   "era": "kingdom",
+   "title": "Davidovy žalmy",
+   "span": "Ž 22–23",
+   "ref": [
+    19,
+    22,
+    0,
+    0,
+    23
+   ],
+   "summary": "Žalmy jsou modlitby Izraele – nářek i chvála. Žalm 22 začíná výkřikem opuštěnosti, Žalm 23 vyznává: „Hospodin je můj pastýř.“",
+   "people": [
+    "david"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Ježíš se na kříži modlí Žalm 22: „Bože můj, proč jsi mě opustil?“"
+    },
+    {
+     "to": "nasyceni",
+     "label": "Dobrý pastýř, který vede k vodám a sytí"
+    }
+   ]
+  },
+  {
+   "id": "salomoun",
+   "era": "kingdom",
+   "title": "Šalomounova moudrost",
+   "span": "1Kr 1–4",
+   "ref": [
+    11,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Po zápasu o trůn se Šalomoun stane králem. Místo bohatství prosí o moudré srdce a Bůh mu dá obojí.",
+   "people": [
+    "salomoun",
+    "batseba",
+    "natan"
+   ],
+   "links": []
+  },
+  {
+   "id": "chram",
+   "era": "kingdom",
+   "title": "Stavba a posvěcení chrámu",
+   "span": "1Kr 6–8",
+   "ref": [
+    11,
+    6,
+    0,
+    0,
+    8
+   ],
+   "summary": "Šalomoun staví v Jeruzalémě chrám. Při jeho posvěcení naplní dům oblak Boží slávy.",
+   "people": [
+    "salomoun"
+   ],
+   "links": [
+    {
+     "to": "kana",
+     "label": "„Zbořte tento chrám…“ – Ježíš mluví o chrámu svého těla"
+    },
+    {
+     "to": "nove-nebe",
+     "label": "V novém Jeruzalémě už chrám není – chrámem je Bůh sám"
+    }
+   ]
+  },
+  {
+   "id": "rozdeleni",
+   "era": "divided",
+   "title": "Rozdělení říše",
+   "span": "1Kr 12",
+   "ref": [
+    11,
+    12,
+    0,
+    0,
+    12
+   ],
+   "summary": "Rechabeám odmítne ulehčit lidu a deset kmenů se odtrhne. Jarobeám na severu postaví zlatá telata.",
+   "people": [
+    "rechabeam",
+    "jarobeam"
+   ],
+   "links": []
+  },
+  {
+   "id": "elias",
+   "era": "divided",
+   "title": "Eliáš na Karmelu",
+   "span": "1Kr 17–19",
+   "ref": [
+    11,
+    17,
+    0,
+    0,
+    19
+   ],
+   "summary": "V době sucha Eliáš sytí vdovu ze Sarepty a na Karmelu vyzve Baalovy proroky. Pak utíká před Jezábel a slyší Boha v tichém vánku.",
+   "people": [
+    "elias",
+    "achab",
+    "jezabel",
+    "vdova-sarepta"
+   ],
+   "links": [
+    {
+     "to": "promeneni",
+     "label": "Eliáš s Mojžíšem mluví s Ježíšem na hoře"
+    },
+    {
+     "to": "krest",
+     "label": "Jan Křtitel přichází „v duchu a moci Eliášově“"
+    }
+   ]
+  },
+  {
+   "id": "nabot",
+   "era": "divided",
+   "title": "Nábotova vinice",
+   "span": "1Kr 21",
+   "ref": [
+    11,
+    21,
+    0,
+    0,
+    21
+   ],
+   "summary": "Achab touží po vinici svého souseda. Jezábel zařídí falešný soud a Nábotovu smrt, Eliáš vynese nad králem rozsudek.",
+   "people": [
+    "achab",
+    "jezabel",
+    "elias"
+   ],
+   "links": []
+  },
+  {
+   "id": "elisa",
+   "era": "divided",
+   "title": "Elíša a Naamán",
+   "span": "2Kr 2–5",
+   "ref": [
+    12,
+    2,
+    0,
+    0,
+    5
+   ],
+   "summary": "Eliáš je vzat do nebe a Elíša dostane jeho plášť. Pomáhá Šúnemce a syrský velitel Naamán je očištěn v Jordánu.",
+   "people": [
+    "elisa",
+    "elias",
+    "naaman",
+    "sunemka"
+   ],
+   "links": [
+    {
+     "to": "krest",
+     "label": "Očištění v Jordánu – Ježíš na Naamána upozorní v Nazaretu (L 4,27)"
+    }
+   ]
+  },
+  {
+   "id": "jonas",
+   "era": "divided",
+   "title": "Jonáš a Ninive",
+   "span": "Jon 1–4",
+   "ref": [
+    32,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Prorok utíká před Božím úkolem, skončí v útrobách ryby a nakonec zvěstuje Ninive. Zlobí se, že Bůh je k nepřátelům milosrdný.",
+   "people": [
+    "jonas"
+   ],
+   "links": [
+    {
+     "to": "vzkriseni",
+     "label": "Znamení Jonáše: tři dny a tři noci (Mt 12,40)"
+    },
+    {
+     "to": "kornelius",
+     "label": "Boží milosrdenství k cizím národům"
+    }
+   ]
+  },
+  {
+   "id": "ozeas",
+   "era": "divided",
+   "title": "Ozeáš a nevěrná žena",
+   "span": "Oz 1–3",
+   "ref": [
+    28,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Bůh posílá proroka, aby si vzal nevěrnou ženu. Jeho věrná láska je obrazem Boží lásky k nevěrnému Izraeli.",
+   "people": [
+    "ozeas"
+   ],
+   "links": [
+    {
+     "to": "ztraceni",
+     "label": "Láska, která čeká na návrat nevěrného"
+    },
+    {
+     "to": "svatba",
+     "label": "Bůh jako ženich svého lidu – svatba Beránka"
+    }
+   ]
+  },
+  {
+   "id": "amos",
+   "era": "divided",
+   "title": "Ámos a Micheáš: volání po právu",
+   "span": "Am 5",
+   "ref": [
+    30,
+    5,
+    0,
+    0,
+    5
+   ],
+   "summary": "Proroci odsuzují zbožnost bez spravedlnosti: ať se valí právo jako voda. Micheáš shrne, co Bůh žádá, a ohlašuje vládce z Betléma.",
+   "people": [
+    "amos",
+    "micheas"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "„Z tebe, Betléme, vzejde vládce“ (Mi 5,1)"
+    }
+   ]
+  },
+  {
+   "id": "izajas",
+   "era": "divided",
+   "title": "Izajášovo povolání",
+   "span": "Iz 6–9",
+   "ref": [
+    23,
+    6,
+    0,
+    0,
+    9
+   ],
+   "summary": "Ve smutném roce Uzijášovy smrti vidí Izajáš Boha na trůnu. Ohlašuje znamení Immanuele a dítě, které ponese vládu.",
+   "people": [
+    "izajas",
+    "uzijas"
+   ],
+   "links": [
+    {
+     "to": "narozeni",
+     "label": "„Panna počne a porodí syna“ – Immanuel, Bůh s námi"
+    },
+    {
+     "to": "beranek",
+     "label": "„Svatý, svatý, svatý“ zní i před trůnem ve Zjevení"
+    }
+   ]
+  },
+  {
+   "id": "kralove-judy",
+   "era": "divided",
+   "title": "Judští králové: Ása, Jóšafat, Uzijáš",
+   "span": "2Pa 14–26",
+   "ref": [
+    14,
+    14,
+    0,
+    0,
+    26
+   ],
+   "summary": "Králové Judy střídají důvěru v Boha a pýchu. Jóšafat v nouzi prosí: „Nevíme, co dělat, ale k tobě upíráme oči.“",
+   "people": [
+    "asa",
+    "josafat",
+    "uzijas"
+   ],
+   "links": []
+  },
+  {
+   "id": "chizkijas",
+   "era": "divided",
+   "title": "Chizkijáš a Asyřané",
+   "span": "2Kr 18–20",
+   "ref": [
+    12,
+    18,
+    0,
+    0,
+    20
+   ],
+   "summary": "Asyrská armáda obléhá Jeruzalém. Chizkijáš rozloží dopis s výhrůžkami před Hospodinem a Izajáš ohlásí záchranu.",
+   "people": [
+    "chizkijas",
+    "izajas"
+   ],
+   "links": []
+  },
+  {
+   "id": "pad-samari",
+   "era": "divided",
+   "title": "Pád Samaří",
+   "span": "2Kr 17",
+   "ref": [
+    12,
+    17,
+    0,
+    0,
+    17
+   ],
+   "summary": "Severní Izrael neposlouchá proroky. Roku 722 př. Kr. ho dobude Asýrie a obyvatele odvede do vyhnanství.",
+   "people": [],
+   "links": []
+  },
+  {
+   "id": "manases",
+   "era": "divided",
+   "title": "Manases a jeho pokání",
+   "span": "2Pa 33",
+   "ref": [
+    14,
+    33,
+    0,
+    0,
+    33
+   ],
+   "summary": "Nejhorší král Judy vede lid k modlám. V asyrském zajetí se pokoří a Bůh vyslyší i jeho prosbu.",
+   "people": [
+    "menases"
+   ],
+   "links": [
+    {
+     "to": "ztraceni",
+     "label": "Ani nejhorší hříšník není pro Boží milost ztracený"
+    }
+   ]
+  },
+  {
+   "id": "josijas",
+   "era": "divided",
+   "title": "Jóšijáš a nalezená kniha Zákona",
+   "span": "2Kr 22–23",
+   "ref": [
+    12,
+    22,
+    0,
+    0,
+    23
+   ],
+   "summary": "Při opravě chrámu se najde kniha Zákona. Mladý král se zděsí, prorokyně Chulda potvrdí slovo a Jóšijáš obnoví smlouvu.",
+   "people": [
+    "josijas",
+    "chulda"
+   ],
+   "links": [
+    {
+     "to": "cteni-zakona",
+     "label": "Znovu nalezené a veřejně čtené Boží slovo"
+    }
+   ]
+  },
+  {
+   "id": "trpici-sluzebnik",
+   "era": "divided",
+   "title": "Trpící Boží služebník",
+   "span": "Iz 52–53",
+   "ref": [
+    23,
+    52,
+    0,
+    0,
+    53
+   ],
+   "summary": "Izajáš popisuje Služebníka, kterým lidé pohrdli. Byl proboden pro naše nevěrnosti a jeho rány nás uzdravují.",
+   "people": [
+    "izajas"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Proroctví o utrpení, které se naplnilo na kříži"
+    },
+    {
+     "to": "filip-dvoran",
+     "label": "Etiopský dvořan čte právě Iz 53, když k němu přijde Filip"
+    }
+   ]
+  },
+  {
+   "id": "abakuk",
+   "era": "divided",
+   "title": "Abakuk: spravedlivý bude žít z víry",
+   "span": "Abk 1–3",
+   "ref": [
+    35,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Prorok se ptá, proč Bůh mlčí k bezpráví. Odpověď zní: spravedlivý bude žít z víry – a Abakuk se raduje i bez úrody.",
+   "people": [
+    "abakuk"
+   ],
+   "links": [
+    {
+     "to": "pavlovy-listy",
+     "label": "Pavel cituje Abakuka jako jádro evangelia (Ř 1,17)"
+    }
+   ]
+  },
+  {
+   "id": "jeremjas",
+   "era": "divided",
+   "title": "Jeremjáš a nová smlouva",
+   "span": "Jr 31–39",
+   "ref": [
+    24,
+    31,
+    0,
+    0,
+    39
+   ],
+   "summary": "Jeremjáš ohlašuje novou smlouvu vepsanou do srdce. Král spálí jeho svitek, prorok skončí v cisterně a Jeruzalém padne.",
+   "people": [
+    "jeremjas",
+    "baruch",
+    "ebed-melech"
+   ],
+   "links": [
+    {
+     "to": "posledni-vecere",
+     "label": "„Tento kalich je nová smlouva v mé krvi“"
+    }
+   ]
+  },
+  {
+   "id": "pad-jeruzalema",
+   "era": "divided",
+   "title": "Pád Jeruzaléma",
+   "span": "2Kr 24–25",
+   "ref": [
+    12,
+    24,
+    0,
+    0,
+    25
+   ],
+   "summary": "Nebúkadnesar dobude Jeruzalém, spálí chrám a odvede lid do Babylona. Zdá se, že je všemu konec.",
+   "people": [
+    "nabukadnesar"
+   ],
+   "links": [
+    {
+     "to": "drak",
+     "label": "Babylon se stává obrazem každé pyšné moci, která nakonec padne"
+    }
+   ]
+  },
+  {
+   "id": "daniel-pec",
+   "era": "exile",
+   "title": "Daniel a ohnivá pec",
+   "span": "Da 1–4",
+   "ref": [
+    27,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Mladí zajatci zůstanou věrni Bohu na babylonském dvoře. Tři přátelé odmítnou klanět se soše a v peci je s nimi čtvrtý.",
+   "people": [
+    "daniel",
+    "tri-pratele",
+    "nabukadnesar"
+   ],
+   "links": [
+    {
+     "to": "hrdinove-viry",
+     "label": "Ti, kdo „uhasili moc ohně“ (Žd 11,34)"
+    }
+   ]
+  },
+  {
+   "id": "daniel-lvi",
+   "era": "exile",
+   "title": "Daniel v jámě lvové",
+   "span": "Da 6",
+   "ref": [
+    27,
+    6,
+    0,
+    0,
+    6
+   ],
+   "summary": "Daniel se dál třikrát denně modlí, i když je to zakázané. Ráno vyjde z uzavřené jámy živý.",
+   "people": [
+    "daniel"
+   ],
+   "links": [
+    {
+     "to": "vzkriseni",
+     "label": "Kámen přivalený na jámu a ráno – živý"
+    }
+   ]
+  },
+  {
+   "id": "syn-cloveka",
+   "era": "exile",
+   "title": "Vidění Syna člověka",
+   "span": "Da 7",
+   "ref": [
+    27,
+    7,
+    0,
+    0,
+    7
+   ],
+   "summary": "Po čtyřech šelmách přichází na oblacích „jako Syn člověka“ a dostává od Věkovitého věčnou vládu.",
+   "people": [
+    "daniel"
+   ],
+   "links": [
+    {
+     "to": "soud",
+     "label": "Ježíš před veleradou: uvidíte Syna člověka přicházet na oblacích (Mk 14,62)"
+    },
+    {
+     "to": "vize-krista",
+     "label": "Jan vidí „podobného Synu člověka“ (Zj 1,13)"
+    }
+   ]
+  },
+  {
+   "id": "kosti",
+   "era": "exile",
+   "title": "Údolí suchých kostí",
+   "span": "Ez 36–37",
+   "ref": [
+    26,
+    36,
+    0,
+    0,
+    37
+   ],
+   "summary": "Ezechiel vidí údolí plné kostí, které Boží Duch znovu oživí. Bůh slibuje nové srdce a nového ducha.",
+   "people": [
+    "ezechiel"
+   ],
+   "links": [
+    {
+     "to": "letnice",
+     "label": "Duch, který oživuje – sestupuje o Letnicích"
+    },
+    {
+     "to": "nikodem",
+     "label": "Narodit se z vody a z Ducha (Ez 36,25-27)"
+    }
+   ]
+  },
+  {
+   "id": "potesta",
+   "era": "exile",
+   "title": "Potěšte můj lid",
+   "span": "Iz 40",
+   "ref": [
+    23,
+    40,
+    0,
+    0,
+    40
+   ],
+   "summary": "Do zajetí zní slova útěchy: připravte Hospodinu cestu na poušti. Ti, kdo doufají v Hospodina, nabírají novou sílu.",
+   "people": [
+    "izajas"
+   ],
+   "links": [
+    {
+     "to": "krest",
+     "label": "„Hlas volajícího na poušti“ – Jan Křtitel"
+    }
+   ]
+  },
+  {
+   "id": "navrat",
+   "era": "return",
+   "title": "Návrat a nový chrám",
+   "span": "Ezd 1–6",
+   "ref": [
+    15,
+    1,
+    0,
+    0,
+    6
+   ],
+   "summary": "Perský král Kýros dovolí Židům vrátit se. Zerubábel vede stavbu chrámu a proroci Ageus a Zachariáš povzbuzují lid.",
+   "people": [
+    "kyros",
+    "zerubabel"
+   ],
+   "links": [
+    {
+     "to": "vjezd",
+     "label": "„Tvůj král přichází, pokorný, jede na oslu“ (Za 9,9)"
+    }
+   ]
+  },
+  {
+   "id": "ezdras",
+   "era": "return",
+   "title": "Ezdráš a Zákon",
+   "span": "Ezd 7–10",
+   "ref": [
+    15,
+    7,
+    0,
+    0,
+    10
+   ],
+   "summary": "Písař Ezdráš přichází, aby lid učil Boží Zákon. Lid vyznává své hříchy a obnovuje věrnost.",
+   "people": [
+    "ezdras"
+   ],
+   "links": []
+  },
+  {
+   "id": "nehemjas",
+   "era": "return",
+   "title": "Nehemjáš staví hradby",
+   "span": "Neh 1–6",
+   "ref": [
+    16,
+    1,
+    0,
+    0,
+    6
+   ],
+   "summary": "Číšník perského krále se modlí za zničený Jeruzalém. Vrátí se, zorganizuje stavbu a hradby jsou hotové za 52 dní.",
+   "people": [
+    "nehemjas"
+   ],
+   "links": []
+  },
+  {
+   "id": "cteni-zakona",
+   "era": "return",
+   "title": "Čtení Zákona a obnova smlouvy",
+   "span": "Neh 8–9",
+   "ref": [
+    16,
+    8,
+    0,
+    0,
+    9
+   ],
+   "summary": "Lid se shromáždí a Ezdráš čte Zákon od rána do poledne. Lidé pláčou, ale slyší: „Radost z Hospodina je vaše síla.“",
+   "people": [
+    "ezdras",
+    "nehemjas"
+   ],
+   "links": []
+  },
+  {
+   "id": "ester",
+   "era": "return",
+   "title": "Ester: pro takovou chvíli",
+   "span": "Est 1–10",
+   "ref": [
+    17,
+    1,
+    0,
+    0,
+    10
+   ],
+   "summary": "Židovská dívka se stane perskou královnou. Když Haman chystá vyvraždění Židů, Ester riskuje život a lid je zachráněn.",
+   "people": [
+    "ester",
+    "mordokaj",
+    "haman"
+   ],
+   "links": [
+    {
+     "to": "josef-egypt",
+     "label": "Bůh staví své lidi na místa u cizího dvora, aby zachránili mnohé"
+    }
+   ]
+  },
+  {
+   "id": "malachias",
+   "era": "return",
+   "title": "Malachiáš: posel před Pánem",
+   "span": "Mal 3",
+   "ref": [
+    39,
+    3,
+    0,
+    0,
+    3
+   ],
+   "summary": "Poslední prorok Starého zákona ohlašuje posla, který připraví cestu, a příchod proroka Eliáše.",
+   "people": [],
+   "links": [
+    {
+     "to": "krest",
+     "label": "Jan Křtitel je posel, který připravuje cestu"
+    },
+    {
+     "to": "elias",
+     "label": "Zaslíbený návrat Eliáše"
+    }
+   ]
+  },
+  {
+   "id": "zvestovani",
+   "era": "jesus",
+   "title": "Zvěstování",
+   "span": "L 1",
+   "ref": [
+    42,
+    1,
+    0,
+    0,
+    1
+   ],
+   "summary": "Anděl Gabriel ohlašuje Zachariášovi narození Jana a Marii narození Ježíše. Marie odpovídá: „Staň se mi podle tvého slova.“",
+   "people": [
+    "jezis",
+    "marie",
+    "zachariasz",
+    "josef-nt"
+   ],
+   "links": []
+  },
+  {
+   "id": "narozeni",
+   "era": "jesus",
+   "title": "Narození v Betlémě",
+   "span": "L 2",
+   "ref": [
+    42,
+    2,
+    0,
+    0,
+    2
+   ],
+   "summary": "Ježíš se narodí v Betlémě a leží v jeslích. Andělé zvěstují pastýřům radost, Simeon a Anna poznávají dítě v chrámu.",
+   "people": [
+    "jezis",
+    "marie",
+    "josef-nt",
+    "simeon",
+    "anna",
+    "herodes"
+   ],
+   "links": []
+  },
+  {
+   "id": "krest",
+   "era": "jesus",
+   "title": "Jan Křtitel a Ježíšův křest",
+   "span": "Mt 3",
+   "ref": [
+    40,
+    3,
+    0,
+    0,
+    3
+   ],
+   "summary": "Jan volá k pokání u Jordánu. Když křtí Ježíše, otevřou se nebesa, sestoupí Duch a zazní: „Toto je můj milovaný Syn.“",
+   "people": [
+    "jezis",
+    "jan-krtitel"
+   ],
+   "links": []
+  },
+  {
+   "id": "pokuseni",
+   "era": "jesus",
+   "title": "Pokušení na poušti",
+   "span": "Mt 4",
+   "ref": [
+    40,
+    4,
+    0,
+    0,
+    4
+   ],
+   "summary": "Po čtyřiceti dnech postu Ježíše pokouší ďábel. Ježíš odpovídá slovy Písma a pak začíná kázat.",
+   "people": [
+    "jezis"
+   ],
+   "links": []
+  },
+  {
+   "id": "ucednici",
+   "era": "jesus",
+   "title": "Povolání prvních učedníků",
+   "span": "J 1",
+   "ref": [
+    43,
+    1,
+    0,
+    0,
+    1
+   ],
+   "summary": "Jan ukazuje na Ježíše jako Beránka Božího. První učedníci jdou za ním a přivádějí další: „Pojď a uvidíš.“",
+   "people": [
+    "jezis",
+    "ondrej",
+    "petr",
+    "filip",
+    "natanael",
+    "jan-apostol",
+    "jakub-zebedeuv"
+   ],
+   "links": []
+  },
+  {
+   "id": "kana",
+   "era": "jesus",
+   "title": "Svatba v Káni a očištění chrámu",
+   "span": "J 2",
+   "ref": [
+    43,
+    2,
+    0,
+    0,
+    2
+   ],
+   "summary": "Ježíš promění vodu ve víno – první znamení jeho slávy. V Jeruzalémě vyžene prodavače z chrámu.",
+   "people": [
+    "jezis",
+    "marie"
+   ],
+   "links": [
+    {
+     "to": "svatba",
+     "label": "Ježíšovo první znamení je na svatbě, Bible končí svatbou Beránka"
+    }
+   ]
+  },
+  {
+   "id": "nikodem",
+   "era": "jesus",
+   "title": "Nikodém a nové narození",
+   "span": "J 3",
+   "ref": [
+    43,
+    3,
+    0,
+    0,
+    3
+   ],
+   "summary": "Farizeus přichází v noci a slyší, že je třeba se narodit znovu. „Tak Bůh miloval svět, že dal svého jediného Syna.“",
+   "people": [
+    "jezis",
+    "nikodem"
+   ],
+   "links": []
+  },
+  {
+   "id": "samaritanka",
+   "era": "jesus",
+   "title": "Žena u studny",
+   "span": "J 4",
+   "ref": [
+    43,
+    4,
+    0,
+    0,
+    4
+   ],
+   "summary": "Ježíš mluví se Samařankou, se kterou se nikdo nebaví. Nabízí jí živou vodu a ona přivede celé město.",
+   "people": [
+    "jezis",
+    "samaritanka"
+   ],
+   "links": [
+    {
+     "to": "nove-nebe",
+     "label": "Živá voda – řeka vody života v novém Jeruzalémě"
+    }
+   ]
+  },
+  {
+   "id": "kazani",
+   "era": "jesus",
+   "title": "Kázání na hoře",
+   "span": "Mt 5–7",
+   "ref": [
+    40,
+    5,
+    0,
+    0,
+    7
+   ],
+   "summary": "Blahoslavenství, láska k nepřátelům, Otče náš a dům na skále. Ježíš ukazuje, jak vypadá život v Božím království.",
+   "people": [
+    "jezis"
+   ],
+   "links": []
+  },
+  {
+   "id": "zazraky",
+   "era": "jesus",
+   "title": "Uzdravení a zázraky v Galileji",
+   "span": "Mt 8–9",
+   "ref": [
+    40,
+    8,
+    0,
+    0,
+    9
+   ],
+   "summary": "Ježíš uzdravuje setníkova sluhu na dálku, utiší bouři, povolá celníka Matouše a vzkřísí Jairovu dceru.",
+   "people": [
+    "jezis",
+    "setnik-kafarnaum",
+    "jairos",
+    "matous"
+   ],
+   "links": [
+    {
+     "to": "kornelius",
+     "label": "Víra římského setníka – předzvěst víry pohanů"
+    }
+   ]
+  },
+  {
+   "id": "nasyceni",
+   "era": "jesus",
+   "title": "Nasycení zástupu",
+   "span": "J 6",
+   "ref": [
+    43,
+    6,
+    0,
+    0,
+    6
+   ],
+   "summary": "Z pěti chlebů a dvou ryb nasytí Ježíš tisíce lidí. Pak říká: „Já jsem chléb života.“",
+   "people": [
+    "jezis",
+    "ondrej",
+    "filip",
+    "petr"
+   ],
+   "links": [
+    {
+     "to": "posledni-vecere",
+     "label": "Vzal chléb, vzdal díky, lámal a dával"
+    }
+   ]
+  },
+  {
+   "id": "promeneni",
+   "era": "jesus",
+   "title": "Petrovo vyznání a proměnění",
+   "span": "Mt 16–17",
+   "ref": [
+    40,
+    16,
+    0,
+    0,
+    17
+   ],
+   "summary": "Petr vyzná: „Ty jsi Mesiáš.“ Na hoře se Ježíš promění v záři a mluví s Mojžíšem a Eliášem.",
+   "people": [
+    "jezis",
+    "petr",
+    "jakub-zebedeuv",
+    "jan-apostol"
+   ],
+   "links": []
+  },
+  {
+   "id": "ztraceni",
+   "era": "jesus",
+   "title": "Podobenství o ztracených",
+   "span": "L 15",
+   "ref": [
+    42,
+    15,
+    0,
+    0,
+    15
+   ],
+   "summary": "Ztracená ovce, ztracená mince a ztracený syn. Bůh je jako otec, který vybíhá naproti synovi, jenž se vrací.",
+   "people": [
+    "jezis"
+   ],
+   "links": []
+  },
+  {
+   "id": "lazar",
+   "era": "jesus",
+   "title": "Marta, Marie a vzkříšení Lazara",
+   "span": "J 11",
+   "ref": [
+    43,
+    11,
+    0,
+    0,
+    11
+   ],
+   "summary": "Ježíš pláče u hrobu přítele a říká Martě: „Já jsem vzkříšení i život.“ Pak volá Lazara ven z hrobu.",
+   "people": [
+    "jezis",
+    "lazar",
+    "marta",
+    "marie-betanie"
+   ],
+   "links": [
+    {
+     "to": "vzkriseni",
+     "label": "Lazarovo vzkříšení předznamenává Ježíšovo"
+    }
+   ]
+  },
+  {
+   "id": "zacheus",
+   "era": "jesus",
+   "title": "Slepý Bartimaios a Zacheus",
+   "span": "L 18–19",
+   "ref": [
+    42,
+    18,
+    0,
+    0,
+    19
+   ],
+   "summary": "U Jericha volá slepec o smilování a prohlédne. Celník Zacheus vyleze na strom, Ježíš k němu přijde domů a Zacheus se změní.",
+   "people": [
+    "jezis",
+    "bartimaios",
+    "zacheus"
+   ],
+   "links": []
+  },
+  {
+   "id": "vjezd",
+   "era": "jesus",
+   "title": "Vjezd do Jeruzaléma",
+   "span": "Mt 21",
+   "ref": [
+    40,
+    21,
+    0,
+    0,
+    21
+   ],
+   "summary": "Ježíš vjíždí do města na oslátku a zástupy volají Hosana. V chrámu převrací stoly směnárníků.",
+   "people": [
+    "jezis"
+   ],
+   "links": []
+  },
+  {
+   "id": "posledni-vecere",
+   "era": "jesus",
+   "title": "Poslední večeře",
+   "span": "J 13",
+   "ref": [
+    43,
+    13,
+    0,
+    0,
+    13
+   ],
+   "summary": "Ježíš myje učedníkům nohy a při velikonoční večeři ohlásí zradu. Jidáš odchází do noci.",
+   "people": [
+    "jezis",
+    "petr",
+    "jidas",
+    "jan-apostol"
+   ],
+   "links": []
+  },
+  {
+   "id": "getsemane",
+   "era": "jesus",
+   "title": "Getsemane a zatčení",
+   "span": "Mt 26",
+   "ref": [
+    40,
+    26,
+    0,
+    0,
+    26
+   ],
+   "summary": "Večeře Páně, modlitba v zahradě: „Ne má, ale tvá vůle.“ Jidáš zradí polibkem a učedníci utečou.",
+   "people": [
+    "jezis",
+    "jidas",
+    "petr",
+    "jakub-zebedeuv",
+    "jan-apostol"
+   ],
+   "links": []
+  },
+  {
+   "id": "soud",
+   "era": "jesus",
+   "title": "Soud před Kaifášem a Pilátem",
+   "span": "J 18",
+   "ref": [
+    43,
+    18,
+    0,
+    0,
+    18
+   ],
+   "summary": "Ježíš stojí před veleknězem, Petr ho třikrát zapře. Pilát se ptá, co je pravda, a propustí Barabáše.",
+   "people": [
+    "jezis",
+    "kaifas",
+    "pilat",
+    "herodes-antipas",
+    "barabas",
+    "petr"
+   ],
+   "links": []
+  },
+  {
+   "id": "kriz",
+   "era": "jesus",
+   "title": "Ukřižování",
+   "span": "J 19",
+   "ref": [
+    43,
+    19,
+    0,
+    0,
+    19
+   ],
+   "summary": "Ježíš nese kříž na Golgotu a umírá se slovy „Dokonáno jest“. Josef z Arimatie a Nikodém ho pohřbí.",
+   "people": [
+    "jezis",
+    "simon-kyrene",
+    "josef-arimatie",
+    "nikodem",
+    "marie",
+    "jan-apostol",
+    "pilat"
+   ],
+   "links": [
+    {
+     "to": "beranek",
+     "label": "Zabitý Beránek, který zvítězil"
+    }
+   ]
+  },
+  {
+   "id": "vzkriseni",
+   "era": "jesus",
+   "title": "Vzkříšení",
+   "span": "J 20–21",
+   "ref": [
+    43,
+    20,
+    0,
+    0,
+    21
+   ],
+   "summary": "Hrob je prázdný. Ježíš se ukáže Marii Magdalské, Tomášovi i učedníkům u moře a ptá se Petra: „Miluješ mě?“",
+   "people": [
+    "jezis",
+    "marie-magdalska",
+    "tomas",
+    "petr",
+    "kleofas"
+   ],
+   "links": [
+    {
+     "to": "nove-nebe",
+     "label": "Vzkříšení je začátek nového stvoření"
+    }
+   ]
+  },
+  {
+   "id": "nanebevstoupeni",
+   "era": "church",
+   "title": "Nanebevstoupení",
+   "span": "Sk 1",
+   "ref": [
+    44,
+    1,
+    0,
+    0,
+    1
+   ],
+   "summary": "Ježíš posílá učedníky být jeho svědky až na konec země a je vzat do nebe. Místo Jidáše je vybrán Matyáš.",
+   "people": [
+    "jezis",
+    "matyas",
+    "petr"
+   ],
+   "links": [
+    {
+     "to": "vzkriseni",
+     "label": "Čtyřicet dní setkání se vzkříšeným"
+    }
+   ]
+  },
+  {
+   "id": "letnice",
+   "era": "church",
+   "title": "Letnice",
+   "span": "Sk 2",
+   "ref": [
+    44,
+    2,
+    0,
+    0,
+    2
+   ],
+   "summary": "Duch svatý sestoupí jako oheň a učedníci mluví jazyky národů. Po Petrově kázání se pokřtí tři tisíce lidí.",
+   "people": [
+    "petr"
+   ],
+   "links": []
+  },
+  {
+   "id": "prvni-cirkev",
+   "era": "church",
+   "title": "První církev",
+   "span": "Sk 3–5",
+   "ref": [
+    44,
+    3,
+    0,
+    0,
+    5
+   ],
+   "summary": "Petr a Jan uzdraví chromého a odvážně svědčí před veleradou. Věřící sdílejí majetek – Barnabáš štědře, Ananiáš a Safira lživě.",
+   "people": [
+    "petr",
+    "jan-apostol",
+    "barnabas",
+    "ananias-safira"
+   ],
+   "links": []
+  },
+  {
+   "id": "stepan",
+   "era": "church",
+   "title": "Štěpán, první mučedník",
+   "span": "Sk 6–7",
+   "ref": [
+    44,
+    6,
+    0,
+    0,
+    7
+   ],
+   "summary": "Služebník Štěpán je obviněn a před veleradou vypráví dějiny Izraele. Umírá s prosbou za ty, kdo ho kamenují; přihlíží Saul.",
+   "people": [
+    "stepan",
+    "pavel"
+   ],
+   "links": [
+    {
+     "to": "kriz",
+     "label": "Štěpán umírá jako Ježíš – s odpuštěním na rtech"
+    }
+   ]
+  },
+  {
+   "id": "filip-dvoran",
+   "era": "church",
+   "title": "Filip a etiopský dvořan",
+   "span": "Sk 8",
+   "ref": [
+    44,
+    8,
+    0,
+    0,
+    8
+   ],
+   "summary": "Pronásledovaní věřící nesou zvěst dál. Filip vysvětlí dvořanovi z Etiopie, o kom mluví Izajáš, a pokřtí ho.",
+   "people": [
+    "dvoran"
+   ],
+   "links": []
+  },
+  {
+   "id": "obraceni",
+   "era": "church",
+   "title": "Obrácení Saula",
+   "span": "Sk 9",
+   "ref": [
+    44,
+    9,
+    0,
+    0,
+    9
+   ],
+   "summary": "Pronásledovatel Saul potká na cestě do Damašku vzkříšeného Ježíše. Ananiáš mu vrátí zrak a Barnabáš se ho zastane.",
+   "people": [
+    "pavel",
+    "ananias-damasek",
+    "barnabas",
+    "tabita"
+   ],
+   "links": []
+  },
+  {
+   "id": "kornelius",
+   "era": "church",
+   "title": "Petr a Kornélius",
+   "span": "Sk 10–11",
+   "ref": [
+    44,
+    10,
+    0,
+    0,
+    11
+   ],
+   "summary": "Petr ve vidění pochopí, že Bůh nikomu nestraní. Římský setník Kornélius a jeho dům přijmou Ducha svatého.",
+   "people": [
+    "kornelius",
+    "petr"
+   ],
+   "links": []
+  },
+  {
+   "id": "prvni-cesta",
+   "era": "church",
+   "title": "První misijní cesta",
+   "span": "Sk 13–14",
+   "ref": [
+    44,
+    13,
+    0,
+    0,
+    14
+   ],
+   "summary": "Církev v Antiochii vysílá Barnabáše a Saula. Na Kypru a v Malé Asii vznikají sbory, Jan Marek se vrátí domů.",
+   "people": [
+    "pavel",
+    "barnabas",
+    "jan-marek"
+   ],
+   "links": []
+  },
+  {
+   "id": "snem",
+   "era": "church",
+   "title": "Sněm v Jeruzalémě",
+   "span": "Sk 15",
+   "ref": [
+    44,
+    15,
+    0,
+    0,
+    15
+   ],
+   "summary": "Musí se pohané obřezat? Apoštolové a starší se shodnou: spása je z milosti. Pavel se pak s Barnabášem rozejde.",
+   "people": [
+    "jakub-bratr",
+    "petr",
+    "pavel",
+    "barnabas",
+    "silas"
+   ],
+   "links": [
+    {
+     "to": "pavlovy-listy",
+     "label": "Svoboda od Zákona – hlavní téma listu Galatským"
+    }
+   ]
+  },
+  {
+   "id": "druha-cesta",
+   "era": "church",
+   "title": "Filipy, Athény a Korint",
+   "span": "Sk 16–18",
+   "ref": [
+    44,
+    16,
+    0,
+    0,
+    18
+   ],
+   "summary": "Pavel a Silas zpívají ve vězení ve Filipech. Lýdie je první věřící Evropy, v Korintu Pavel pracuje s Priskou a Akvilou.",
+   "people": [
+    "pavel",
+    "silas",
+    "lydie",
+    "timoteus",
+    "priska-akvila",
+    "apollos"
+   ],
+   "links": []
+  },
+  {
+   "id": "pavel-souzen",
+   "era": "church",
+   "title": "Pavel zatčen a souzen",
+   "span": "Sk 21–26",
+   "ref": [
+    44,
+    21,
+    0,
+    0,
+    26
+   ],
+   "summary": "V Jeruzalémě je Pavel zatčen. Před Felixem, Festem i králem Agrippou vypráví, jak potkal Ježíše.",
+   "people": [
+    "pavel",
+    "felix",
+    "festus",
+    "agrippa"
+   ],
+   "links": [
+    {
+     "to": "soud",
+     "label": "Jako jeho Pán stojí Pavel před veleradou i římskými místodržiteli"
+    }
+   ]
+  },
+  {
+   "id": "rim",
+   "era": "church",
+   "title": "Plavba do Říma",
+   "span": "Sk 27–28",
+   "ref": [
+    44,
+    27,
+    0,
+    0,
+    28
+   ],
+   "summary": "Loď ztroskotá u Malty, ale všichni přežijí. Pavel v Římě káže „se vší smělostí a bez překážek“.",
+   "people": [
+    "pavel",
+    "lukas"
+   ],
+   "links": []
+  },
+  {
+   "id": "pavlovy-listy",
+   "era": "church",
+   "title": "Pavlovy listy: spaseni milostí",
+   "span": "Ř 1–8",
+   "ref": [
+    45,
+    1,
+    0,
+    0,
+    8
+   ],
+   "summary": "Pavel píše sborům: všichni zhřešili, ale jsou ospravedlněni zadarmo z milosti skrze víru. Nic nás neodloučí od Boží lásky.",
+   "people": [
+    "pavel",
+    "foibe",
+    "priska-akvila",
+    "apollos"
+   ],
+   "links": []
+  },
+  {
+   "id": "radost-vezeni",
+   "era": "church",
+   "title": "Listy z vězení",
+   "span": "Fp 1–4",
+   "ref": [
+    50,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Ve vězení Pavel píše o radosti a Kristově pokoře. Filemona prosí, aby přijal uprchlého otroka Onésima jako bratra.",
+   "people": [
+    "epafroditus",
+    "filemon",
+    "onesimus"
+   ],
+   "links": []
+  },
+  {
+   "id": "listy-spolupracovnikum",
+   "era": "church",
+   "title": "Listy spolupracovníkům",
+   "span": "2Tm 1–4",
+   "ref": [
+    55,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Starý Pavel povzbuzuje Timotea a Tita, aby věrně předávali víru. „Dobrý boj jsem bojoval, běh jsem dokonal.“",
+   "people": [
+    "timoteus",
+    "lois-eunike",
+    "titus",
+    "demas",
+    "jan-marek",
+    "lukas"
+   ],
+   "links": []
+  },
+  {
+   "id": "hrdinove-viry",
+   "era": "church",
+   "title": "Hrdinové víry (Židům)",
+   "span": "Žd 11–12",
+   "ref": [
+    58,
+    11,
+    0,
+    0,
+    12
+   ],
+   "summary": "List Židům ukazuje Krista jako velekněze a vypočítává svědky víry od Ábela po Rachab. Teď běžíme my – s pohledem na Ježíše.",
+   "people": [],
+   "links": []
+  },
+  {
+   "id": "obecne-listy",
+   "era": "church",
+   "title": "Listy Jakuba, Petra, Jana a Judy",
+   "span": "Jk 1–5",
+   "ref": [
+    59,
+    1,
+    0,
+    0,
+    5
+   ],
+   "summary": "Víra se má projevit skutky, utrpení nese naději, Bůh je láska. Apoštolové povzbuzují církev k věrnosti.",
+   "people": [
+    "jakub-bratr",
+    "petr",
+    "jan-apostol",
+    "juda-bratr"
+   ],
+   "links": []
+  },
+  {
+   "id": "vize-krista",
+   "era": "newcreation",
+   "title": "Vidění Krista a dopisy sborům",
+   "span": "Zj 1–3",
+   "ref": [
+    66,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Na ostrově Patmos vidí Jan vzkříšeného Krista mezi svícny. Sedmi sborům posílá povzbuzení i varování.",
+   "people": [
+    "jan-apostol"
+   ],
+   "links": []
+  },
+  {
+   "id": "beranek",
+   "era": "newcreation",
+   "title": "Trůn a Beránek",
+   "span": "Zj 4–5",
+   "ref": [
+    66,
+    4,
+    0,
+    0,
+    5
+   ],
+   "summary": "Nebeská bohoslužba kolem Božího trůnu. Svitek dějin může otevřít jen Beránek, který byl zabit.",
+   "people": [],
+   "links": []
+  },
+  {
+   "id": "drak",
+   "era": "newcreation",
+   "title": "Drak, šelma a pád Babylonu",
+   "span": "Zj 12–19",
+   "ref": [
+    66,
+    12,
+    0,
+    0,
+    19
+   ],
+   "summary": "Zlo bojuje proti Božímu lidu, ale svatí vítězí krví Beránka. Pyšný Babylon padne.",
+   "people": [],
+   "links": [
+    {
+     "to": "babel",
+     "label": "Babylon – od věže v Šineáru po pád velkého města"
+    }
+   ]
+  },
+  {
+   "id": "svatba",
+   "era": "newcreation",
+   "title": "Svatba Beránka",
+   "span": "Zj 19",
+   "ref": [
+    66,
+    19,
+    0,
+    0,
+    19
+   ],
+   "summary": "Nebe jásá: přišla svatba Beránka a jeho nevěsta je připravena. Jezdec na bílém koni vítězí.",
+   "people": [],
+   "links": []
+  },
+  {
+   "id": "nove-nebe",
+   "era": "newcreation",
+   "title": "Nové nebe a nová země",
+   "span": "Zj 21–22",
+   "ref": [
+    66,
+    21,
+    0,
+    0,
+    22
+   ],
+   "summary": "Bůh bydlí se svými lidmi a setře každou slzu. Řeka vody života a strom života – „Hle, všechno činím nové.“",
+   "people": [],
+   "links": []
+  }
+ ]
+}

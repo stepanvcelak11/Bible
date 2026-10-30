@@ -21,9 +21,9 @@ A("Za 11,7", "Vzal jsem si dvě hole, Laskavost a Svazek, a pásl ovce", lambda:
 A("Mt 8,3", "Ježíš vztáhl ruku, dotkl se malomocného: Chci, buď čist", lambda: [
     gr(), J(100, 1, "reach", h=58), man(150, -1, "pray", "kneel", h=50), crowd(180, 235, G, 30)])
 A("Mt 10,16", "Posílám vás jako ovce mezi vlky", lambda: [
-    gr(), J(50, 1, "point", h=58), man(100, 1, "down", "walk", h=50), man(125, 1, "down", "walk", h=48), sheep(170, G, 0.8), lion(215, G, 0.8, -1)])
+    gr(), J(50, 1, "point", h=58), man(100, 1, "down", "walk", h=50), man(125, 1, "down", "walk", h=48), sheep(170, G, 0.8), dog(212, G, 1, -1, wolf=True)])
 A("Mt 15,27", "I psi jedí drobty, které padají ze stolu jejich pánů", lambda: [
-    gr(), woman(140, -1, "pray", "kneel", h=48), J(80, 1, "bless", h=58), table(190, G, 40, 16)[:0], goat(200, G, 0.7, -1, False)])
+    gr(), woman(140, -1, "pray", "kneel", h=48), J(80, 1, "bless", h=58), table(195, G, 40, 16), dog(170, G, 0.8, 1)])
 A("Mt 21,12", "Ježíš vyhnal z chrámu všechny prodavače a převrátil stoly", lambda: [
     gr(), J(100, 1, "raise", h=58), rotate(table(160, G, 40, 14), 20, 160, G), coins(170, G - 2, 4), bird(200, 40, 1.4, 1, True), man(215, 1, "cry", "walk", h=48)])
 A("Mt 23,37", "Kolikrát jsem chtěl shromáždit tvé děti jako slepice kuřátka", lambda: [

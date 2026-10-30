@@ -1105,12 +1105,17 @@ def door(x, g, w=16.0, h=28.0) -> list[Stroke]:
 
 
 def lampstand(x, g, h=30.0) -> list[Stroke]:
-    out = [[(x, g), (x, g - h)], [(x - 6, g), (x + 6, g)]]
+    """Sedmiramenný svícen: dřík, tři páry obloukových ramen, plamínky."""
+    top = g - h
+    w = h * 0.42
+    out = [[(x, g - 3), (x, top)], [(x - w * 0.45, g), (x, g - 4), (x + w * 0.45, g)]]
     for k in (1, 2, 3):
-        out.append(bez((x, g - h * 0.35), (x - k * 4, g - h * 0.3), (x - k * 4, g - h), 5))
-        out.append(bez((x, g - h * 0.35), (x + k * 4, g - h * 0.3), (x + k * 4, g - h), 5))
+        r = w * k / 3
+        out.append(ellipse(x, top, r, r * 1.05, 0, 180, 10))
     for k in (-3, -2, -1, 0, 1, 2, 3):
-        out += flames(x + k * 4, g - h - 1, 3)[1:2]
+        cx = x + w * k / 3
+        out.append([(cx - 1.6, top), (cx + 1.6, top)])
+        out.append(smooth([(cx - 1.2, top - 1), (cx, top - 5), (cx + 1.2, top - 1)], 3))
     return out
 
 

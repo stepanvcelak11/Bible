@@ -5,14 +5,14 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 14;
+const whatsNewVersion = 15;
 
 const _items = [
   (
     Icons.draw_outlined,
     'Kreslené ilustrace v Bibli',
-    'Přes 700 jednoduchých kreseb k příběhům a textům celé Bible – '
-        'alespoň u každé druhé kapitoly, ve všech překladech. Klepnutím '
+    'Přes 1 200 jednoduchých kreseb k příběhům a textům celé Bible – '
+        'v každé kapitole, ve všech překladech. Klepnutím '
         'se kresba zvětší. Vypnout jdou v Nastavení → Ilustrace.',
   ),
   (

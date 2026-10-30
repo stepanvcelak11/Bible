@@ -63,8 +63,8 @@ def _():
 
 @art("Ž 119,105", "Tvé slovo je lampou mým nohám a světlem mé stezce")
 def _():
-    return [path(110, G + 10, 150, G - 50, 60, 4), lamp(110, G - 20, 2.5), rays(126, G - 34, 8, 20, 180, 360, 7),
-            stars([(40, 30), (200, 20)]), gr(0, 80)]
+    return [gr(), path(60, G + 2, 220, G - 30, 40, 4), man(90, 1, [(20, 60), (10, 5)], "walk", h=56),
+            lamp(110, G - 6, 1.4), rays(110, G - 10, 6, 16, 200, 340, 5), moon(200, 20, 7), stars([(40, 25), (150, 15), (230, 45)])]
 
 
 @art("Ž 121,1", "Pozvedám oči k horám – odkud přijde pomoc?")
@@ -161,7 +161,7 @@ def _():
 
 @art("Iz 11,6", "Vlk bude pobývat s beránkem a malý chlapec je povede")
 def _():
-    return [gr(), lion(70, G, 1.2, 1), sheep(115, G, 1, -1), kid(150, -1, "reach", h=34), sheep(180, G, 0.8, 1), ox(215, G, 0.9, -1)]
+    return [gr(), dog(70, G, 1.3, 1, wolf=True), sheep(115, G, 1, -1), kid(150, -1, "reach", h=34), sheep(180, G, 0.8, 1), ox(215, G, 0.9, -1)]
 
 
 @art("Iz 40,31", "Ti, kdo skládají naději v Hospodina, vznesou se jako orli")

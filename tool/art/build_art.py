@@ -4,7 +4,7 @@
   python3 tool/art/build_art.py --gaps     # jen vypíše kapitoly bez kreseb
 
 Kresby jsou vlastní čárové ilustrace skládané z motivů v kit.py a motifs.py.
-Pravidlo pokrytí: žádné dvě kapitoly za sebou bez ilustrace.
+Pravidlo pokrytí: ilustrace v každé kapitole (v kanonickém i BKR číslování).
 """
 import json
 import sys
@@ -32,18 +32,18 @@ def load():
 
 def gaps(items) -> list[str]:
     have = {(r[0], r[1]) for r in items}
-    out = []
-    for b, n in enumerate(CHAPTERS, start=1):
-        run = []
-        for c in range(1, n + 1):
-            if (b, c) in have:
-                run = []
-                continue
-            run.append(c)
-            if len(run) == 2 or n == 1:
-                out.append(f"{ABBR[b - 1]} {run[0]}")
-                run = []
-    return out
+    return [f"{ABBR[b - 1]} {c}" for b, n in enumerate(CHAPTERS, start=1)
+            for c in range(1, n + 1) if (b, c) not in have]
+
+
+def gaps_bkr(items) -> list[str]:
+    """Kapitoly bez ilustrace v číslování BKR (Jóel 3 kapitoly, Malachiáš 4…)."""
+    import vers
+    have = {vers.to_bkr(*r[:3])[:2] for r in items}
+    counts = list(CHAPTERS)
+    counts[28], counts[38] = 3, 4
+    return [f"BKR {ABBR[b - 1]} {c}" for b, n in enumerate(counts, start=1)
+            for c in range(1, n + 1) if (b, c) not in have]
 
 
 def main() -> None:
@@ -58,7 +58,7 @@ def main() -> None:
             raise SystemExit(f"Dvě ilustrace u jednoho verše: {r}")
         seen.add((x[0], x[1], x[2]))
         refs.append(x)
-    missing = gaps(refs)
+    missing = gaps(refs) + gaps_bkr(refs)
     print(f"{len(art)} ilustrací, mezery: {len(missing)}")
     if "--gaps" in sys.argv:
         print(" ".join(missing))

@@ -82,6 +82,45 @@ def goat(x, g, s=1.0, face=1, horns=True):
     return out
 
 
+def dog(x, g, s=1.0, face=1, wolf=False):
+    """Pes (ocas nahoru) nebo vlk (huňatý ocas dolů, delší čenich)."""
+    f = face
+    top = g - 13 * s
+    sn = 7 if wolf else 5
+    out = [smooth([(x - f * 9 * s, top + 3 * s), (x + f * 5 * s, top + 2 * s)], 2),
+           smooth([(x - f * 9 * s, top + 3 * s), (x - f * 9 * s, top + 7 * s),
+                   (x + f * 6 * s, top + 7 * s), (x + f * 6 * s, top + 3 * s)], 3),
+           # hlava s čenichem a špičatým uchem
+           smooth([(x + f * 5 * s, top + 2 * s), (x + f * 7 * s, top - 3 * s),
+                   (x + f * (7 + sn) * s, top - 1 * s), (x + f * (6 + sn) * s, top + 1 * s),
+                   (x + f * 7 * s, top + 2 * s)], 3),
+           [(x + f * 7 * s, top - 3 * s), (x + f * 8 * s, top - 8 * s), (x + f * 10 * s, top - 3.5 * s)],
+           circle(x + f * 9 * s, top - 1.5 * s, 0.6 * s)[0]]
+    for lx in (-8, -6, 3.5, 5.5):
+        out.append([(x + f * lx * s, top + 7 * s), (x + f * lx * s, g)])
+    if wolf:
+        out.append(smooth([(x - f * 9 * s, top + 3 * s), (x - f * 14 * s, top + 6 * s),
+                           (x - f * 15 * s, top + 10 * s)], 3))
+        out.append(smooth([(x - f * 9.5 * s, top + 5 * s), (x - f * 13 * s, top + 9 * s),
+                           (x - f * 15 * s, top + 10 * s)], 3))
+    else:
+        out.append(smooth([(x - f * 9 * s, top + 3 * s), (x - f * 12 * s, top - 1 * s),
+                           (x - f * 11 * s, top - 5 * s)], 3))
+    return out
+
+
+def stump(x, g, w=14.0, shoot=True):
+    """Pařez (s výhonkem)."""
+    out = [[(x - w / 2 - 2, g), (x - w / 2, g - 3), (x - w / 2, g - 12)],
+           [(x + w / 2 + 2, g), (x + w / 2, g - 3), (x + w / 2, g - 12)],
+           ellipse(x, g - 12, w / 2, 2.2), ellipse(x, g - 12, w / 4, 1.1)]
+    if shoot:
+        out.append(smooth([(x + 2, g - 13), (x + 4, g - 20), (x + 3, g - 26)], 3))
+        out.append(ellipse(x + 7, g - 22, 3.5, 1.6, rot=-25))
+        out.append(ellipse(x - 0.5, g - 25, 3.2, 1.5, rot=30))
+    return out
+
+
 def ram(x, g, s=1.0, face=1):
     from kit import sheep
     out = sheep(x, g, s, face)

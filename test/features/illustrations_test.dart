@@ -14,7 +14,7 @@ void main() {
     expect(b.bottom, 46);
   });
 
-  test('ilustrace: platná data, alespoň každá druhá kapitola', () {
+  test('ilustrace: platná data, kresba v každé kapitole', () {
     final j =
         jsonDecode(File('assets/content/illustrations.json').readAsStringSync())
             as Map<String, Object?>;
@@ -22,7 +22,7 @@ void main() {
       for (final i in j['items']! as List)
         Illustration.fromJson(i as Map<String, Object?>),
     ];
-    expect(items.length, greaterThan(600));
+    expect(items.length, greaterThan(1188));
     final chapters = <(int, int)>{};
     for (final il in items) {
       expect(il.caption, isNotEmpty);
@@ -32,5 +32,7 @@ void main() {
     }
     // Všech 66 knih má aspoň jednu kresbu.
     expect({for (final c in chapters) c.$1}.length, 66);
+    // Kresba je v každé z 1189 kapitol (kanonické číslování).
+    expect(chapters.length, 1189);
   });
 }

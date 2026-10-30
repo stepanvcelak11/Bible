@@ -263,13 +263,13 @@ def _():
 @art("L 15,20", "Otec ho uviděl z dálky, běžel mu naproti a objal ho")
 def _():
     return [gr(), man(110, 1, "wide", "walk", h=56), youth(140, -1, "cry", h=48), house(40, G, 44, 32), path(160, G, 220, G - 30, 18, 3),
-            goat(210, G, 0.7, -1, False)]
+            dog(205, G, 0.7, -1)]
 
 
 @art("L 16,20", "U dveří boháče ležel chudák Lazar")
 def _():
     return [gr(), gate(70, G, 40, 50), man(120, 1, "reach", "sit", h=46), table(190, G, 50, 16), man(190, -1, "hold", "sit", h=52),
-            cup(175, G - 16), goat(150, G, 0.7, -1, False)]
+            cup(175, G - 16), dog(150, G, 0.7, -1)]
 
 
 @art("L 18,13", "Celník se bil v prsa: Bože, slituj se nade mnou hříšným")

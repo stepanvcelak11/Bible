@@ -20,8 +20,8 @@ A("Jb 10,8", "Tvé ruce mě vytvořily a uspořádaly", lambda: [
 A("Jb 12,7", "Zeptej se zvířat, ona tě poučí, a ptáků, ti ti to oznámí", lambda: [
     gr(), man(60, 1, "open", h=54), deer(130, G, 1.2, -1), sheep(180, G, 0.8, -1), bird(150, 40, 1.4), bird(190, 30, 1.2), fish(210, G + 12, 0.8)])
 A("Jb 14,7", "Strom má naději – i když ho porazí, znovu vypučí", lambda: [
-    gr(), [(100, G), (100, G - 16), (130, G - 16), (130, G)], ellipse(115, G - 16, 15, 3), plant(118, G - 18, 22), plant(128, G - 18, 14),
-    man(190, -1, "point", h=50)])
+    gr(), stump(110, G, 22), [(140, G - 1), (215, G - 4)], [(140, G - 9), (215, G - 10)], ellipse(140, G - 5, 2.5, 4),
+    man(60, 1, "point", h=52)])
 A("Jb 16,2", "Vy všichni jste bídní utěšitelé", lambda: [
     gr(), man(70, 1, "cry", "sit", h=50), rock(70, G, 14, 10), man(130, -1, "point", h=54), man(165, -1, "point", h=52), man(200, -1, "open", h=54)])
 A("Jb 18,6", "Ve stanu svévolníka světlo potemní a lampa zhasne", lambda: [

@@ -5,6 +5,7 @@ import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/domain/entities/reader_settings.dart';
 import 'package:bible_reader/features/connections/presentation/bible_tree_view.dart';
 import 'package:bible_reader/features/content/application/content_providers.dart';
+import 'package:bible_reader/features/illustrations/presentation/illustration_view.dart';
 import 'package:bible_reader/features/progress/presentation/progress_screen.dart';
 import 'package:bible_reader/features/content/presentation/quiz_screen.dart';
 import 'package:bible_reader/features/prayer/application/prayer_controller.dart';
@@ -70,6 +71,23 @@ void main() {
     await settle(tester);
     expect(container.read(splitViewProvider), isFalse);
     expect(container.read(shellTabProvider), AppTab.bible);
+  });
+
+  appTest('ilustrace v textu: zobrazení, zvětšení a vypnutí', (tester) async {
+    await pumpApp(tester, at: const VerseRef(1, 1, 1));
+    expect(find.byType(IllustrationView), findsOneWidget);
+    expect(
+      find.text('Na počátku stvořil Bůh nebe a zemi (1,1)'),
+      findsOneWidget,
+    );
+    await tester.tap(find.byType(IllustrationView));
+    await settle(tester);
+    expect(find.byType(Dialog), findsOneWidget);
+    await tester.tap(find.byType(Dialog));
+    await settle(tester);
+    container.read(readerSettingsProvider.notifier).setIllustrations(false);
+    await settle(tester);
+    expect(find.byType(IllustrationView), findsNothing);
   });
 
   appTest('příprava: založení, bloky, pomocník a prezentace', (tester) async {

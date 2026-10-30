@@ -144,6 +144,13 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: ctl.setDropCap,
             ),
             SwitchListTile(
+              secondary: const Icon(Icons.draw_outlined),
+              title: const Text(S.illustrations),
+              subtitle: const Text(S.illustrationsHint),
+              value: settings.illustrations,
+              onChanged: ctl.setIllustrations,
+            ),
+            SwitchListTile(
               secondary: const Icon(Icons.notes),
               title: const Text(S.paragraphMode),
               subtitle: const Text(S.paragraphModeHint),

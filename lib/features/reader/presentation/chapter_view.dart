@@ -17,6 +17,8 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/services/bible_content.dart';
+import '../../illustrations/application/illustrations.dart';
+import '../../illustrations/presentation/illustration_view.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../settings/application/reader_settings_controller.dart';
 import '../../study/application/study_providers.dart';
@@ -222,38 +224,74 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
     );
     final minutes = (words / 180).ceil().clamp(1, 99);
 
-    final List<Widget Function()> items;
+    // Kresby k příběhům: před blok s veršem (a před jeho nadpis).
+    final art = settings.illustrations
+        ? ref.watch(
+            chapterIllustrationsProvider((
+              selection.primaryId,
+              widget.bookId,
+              widget.chapter,
+            )),
+          )
+        : const <int, List<Illustration>>{};
+    final pending = art.keys.toList()..sort();
+    Iterable<Widget Function()> artBefore(int lastVerse) sync* {
+      while (pending.isNotEmpty && pending.first <= lastVerse) {
+        final v = pending.removeAt(0);
+        for (final il in art[v]!) {
+          yield () => IllustrationView(
+            illustration: il,
+            reference: '${widget.chapter},$v',
+            fontSize: settings.fontSize,
+          );
+        }
+      }
+    }
+
+    final items = <Widget Function()>[];
+    final itemVerses = <List<int>>[const []];
+    void insertArt(int lastVerse, {int headings = 0}) {
+      final at = items.length - headings;
+      final add = artBefore(lastVerse).toList();
+      items.insertAll(at, add);
+      itemVerses.insertAll(at + 1, [for (final _ in add) const <int>[]]);
+    }
+
     switch (content) {
       case SingleChapter(:final text):
         final blocks = buildReaderBlocks(
           text,
           paragraphs: settings.paragraphMode,
         );
-        _itemVerses = [
-          const [],
-          for (final b in blocks) b.verseNumbers,
-          const [],
-        ];
-        items = [
-          for (final b in blocks)
-            switch (b) {
-              HeadingBlock(:final text) => () => HeadingView(text: text),
-              ParagraphBlock() => () => ParagraphView(
-                block: b,
-                bookId: widget.bookId,
-                chapter: widget.chapter,
-                footnotes: text.footnotes,
-              ),
-            },
-        ];
+        var headings = 0;
+        for (final b in blocks) {
+          switch (b) {
+            case HeadingBlock(:final text):
+              items.add(() => HeadingView(text: text));
+              itemVerses.add(const []);
+              headings++;
+            case ParagraphBlock():
+              insertArt(b.verseNumbers.last, headings: headings);
+              headings = 0;
+              items.add(
+                () => ParagraphView(
+                  block: b,
+                  bookId: widget.bookId,
+                  chapter: widget.chapter,
+                  footnotes: text.footnotes,
+                ),
+              );
+              itemVerses.add(b.verseNumbers);
+          }
+        }
       case ParallelChapter(:final rows):
-        _itemVerses = [
-          const [],
-          for (final r in rows) [r.number],
-          const [],
-        ];
-        items = [for (final r in rows) () => ParallelVerseTile(row: r)];
+        for (final r in rows) {
+          insertArt(r.number);
+          items.add(() => ParallelVerseTile(row: r));
+          itemVerses.add([r.number]);
+        }
     }
+    _itemVerses = [...itemVerses, const []];
 
     final position = ref.read(readingPositionProvider);
     final startAtVerse = _isCurrent && position.verse > 1;

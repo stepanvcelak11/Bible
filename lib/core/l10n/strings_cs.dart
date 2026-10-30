@@ -143,6 +143,9 @@ abstract final class S {
   static const dropCap = 'Ozdobná iniciála';
   static const dropCapHint =
       'Velké první písmeno kapitoly jako v tištěné Bibli';
+  static const illustrations = 'Ilustrace';
+  static const illustrationsHint =
+      'Jednoduché kresby k příběhům přímo v textu Bible';
   static const resetAppearance = 'Obnovit výchozí vzhled';
   static const previewText =
       'Na počátku bylo Slovo, a to Slovo bylo u Boha, a Bůh byl to Slovo.';

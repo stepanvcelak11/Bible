@@ -23,6 +23,7 @@ class ReaderSettings {
     this.background = AppBackgroundStyle.glow,
     this.accent = AppAccent.gold,
     this.dropCap = true,
+    this.illustrations = true,
   });
 
   static const minFontSize = 14.0;
@@ -48,6 +49,9 @@ class ReaderSettings {
   /// Ozdobná iniciála na začátku kapitoly.
   final bool dropCap;
 
+  /// Kreslené ilustrace k příběhům v textu.
+  final bool illustrations;
+
   ReaderSettings copyWith({
     AppThemeMode? themeMode,
     double? fontSize,
@@ -58,6 +62,7 @@ class ReaderSettings {
     AppBackgroundStyle? background,
     AppAccent? accent,
     bool? dropCap,
+    bool? illustrations,
   }) => ReaderSettings(
     themeMode: themeMode ?? this.themeMode,
     fontSize: (fontSize ?? this.fontSize).clamp(minFontSize, maxFontSize),
@@ -74,6 +79,7 @@ class ReaderSettings {
     background: background ?? this.background,
     accent: accent ?? this.accent,
     dropCap: dropCap ?? this.dropCap,
+    illustrations: illustrations ?? this.illustrations,
   );
 
   Map<String, Object> toJson() => {
@@ -86,6 +92,7 @@ class ReaderSettings {
     'background': background.name,
     'accent': accent.name,
     'dropCap': dropCap,
+    'illustrations': illustrations,
   };
 
   /// Tolerantní načtení – neznámé nebo poškozené hodnoty se nahradí výchozími.
@@ -103,6 +110,7 @@ class ReaderSettings {
       background: AppBackgroundStyle.values.asNameMap()[json['background']],
       accent: AppAccent.values.asNameMap()[json['accent']],
       dropCap: json['dropCap'] as bool?,
+      illustrations: json['illustrations'] as bool?,
     );
   }
 
@@ -117,7 +125,8 @@ class ReaderSettings {
       other.paragraphMode == paragraphMode &&
       other.background == background &&
       other.accent == accent &&
-      other.dropCap == dropCap;
+      other.dropCap == dropCap &&
+      other.illustrations == illustrations;
 
   @override
   int get hashCode => Object.hash(
@@ -130,5 +139,6 @@ class ReaderSettings {
     background,
     accent,
     dropCap,
+    illustrations,
   );
 }

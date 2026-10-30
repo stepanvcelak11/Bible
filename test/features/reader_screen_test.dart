@@ -77,7 +77,7 @@ void main() {
     await pumpApp(tester, at: const VerseRef(1, 1, 1));
     expect(find.byType(IllustrationView), findsOneWidget);
     expect(
-      find.text('Na počátku stvořil Bůh nebe a zemi (1,1)'),
+      find.text('Na počátku stvořil Bůh nebe a zemi. (1,1)'),
       findsOneWidget,
     );
     await tester.tap(find.byType(IllustrationView));

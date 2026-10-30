@@ -37,11 +37,15 @@ class IllustrationView extends StatelessWidget {
   const IllustrationView({
     super.key,
     required this.illustration,
+    required this.caption,
     required this.reference,
     this.fontSize = 19,
   });
 
   final Illustration illustration;
+
+  /// Popisek – text verše v překladu, který čtenář právě čte.
+  final String caption;
 
   /// Krátký odkaz k popisku, např. „14,46“.
   final String reference;
@@ -53,7 +57,7 @@ class IllustrationView extends StatelessWidget {
     final palette = AppPalette.of(context);
     return Semantics(
       image: true,
-      label: illustration.caption,
+      label: caption,
       child: GestureDetector(
         onTap: () => _open(context),
         child: Padding(
@@ -77,7 +81,7 @@ class IllustrationView extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    '${illustration.caption} ($reference)',
+                    '$caption ($reference)',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: appFontFamily,
@@ -123,7 +127,7 @@ class IllustrationView extends StatelessWidget {
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  '${illustration.caption} ($reference)',
+                  '$caption ($reference)',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: appFontFamily,

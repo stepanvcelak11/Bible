@@ -235,12 +235,17 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
           )
         : const <int, List<Illustration>>{};
     final pending = art.keys.toList()..sort();
+    // Popisek kresby = text verše ve zvoleném překladu.
+    final verseText = {
+      for (final v in verses) v.ref.verse: v.text.replaceAll('\n', ' '),
+    };
     Iterable<Widget Function()> artBefore(int lastVerse) sync* {
       while (pending.isNotEmpty && pending.first <= lastVerse) {
         final v = pending.removeAt(0);
         for (final il in art[v]!) {
           yield () => IllustrationView(
             illustration: il,
+            caption: verseText[v] ?? il.caption,
             reference: '${widget.chapter},$v',
             fontSize: settings.fontSize,
           );

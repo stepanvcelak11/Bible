@@ -455,103 +455,103 @@ S = [
     ("zvestovani", "jesus", "Zvěstování", "L 1",
      "Anděl Gabriel ohlašuje Zachariášovi narození Jana a Marii narození "
      "Ježíše. Marie odpovídá: „Staň se mi podle tvého slova.“",
-     ["marie", "zachariasz", "josef-nt"], []),
+     ["jezis", "marie", "zachariasz", "josef-nt"], []),
     ("narozeni", "jesus", "Narození v Betlémě", "L 2",
      "Ježíš se narodí v Betlémě a leží v jeslích. Andělé zvěstují "
      "pastýřům radost, Simeon a Anna poznávají dítě v chrámu.",
-     ["marie", "josef-nt", "simeon", "anna", "herodes"], []),
+     ["jezis", "marie", "josef-nt", "simeon", "anna", "herodes"], []),
     ("krest", "jesus", "Jan Křtitel a Ježíšův křest", "Mt 3",
      "Jan volá k pokání u Jordánu. Když křtí Ježíše, otevřou se nebesa, "
      "sestoupí Duch a zazní: „Toto je můj milovaný Syn.“",
-     ["jan-krtitel"], []),
+     ["jezis", "jan-krtitel"], []),
     ("pokuseni", "jesus", "Pokušení na poušti", "Mt 4",
      "Po čtyřiceti dnech postu Ježíše pokouší ďábel. Ježíš odpovídá "
      "slovy Písma a pak začíná kázat.",
-     [], []),
+     ["jezis"], []),
     ("ucednici", "jesus", "Povolání prvních učedníků", "J 1",
      "Jan ukazuje na Ježíše jako Beránka Božího. První učedníci jdou "
      "za ním a přivádějí další: „Pojď a uvidíš.“",
-     ["ondrej", "petr", "filip", "natanael", "jan-apostol",
+     ["jezis", "ondrej", "petr", "filip", "natanael", "jan-apostol",
       "jakub-zebedeuv"], []),
     ("kana", "jesus", "Svatba v Káni a očištění chrámu", "J 2",
      "Ježíš promění vodu ve víno – první znamení jeho slávy. V Jeruzalémě "
      "vyžene prodavače z chrámu.",
-     ["marie"],
+     ["jezis", "marie"],
      [("svatba", "Ježíšovo první znamení je na svatbě, Bible končí "
        "svatbou Beránka")]),
     ("nikodem", "jesus", "Nikodém a nové narození", "J 3",
      "Farizeus přichází v noci a slyší, že je třeba se narodit znovu. "
      "„Tak Bůh miloval svět, že dal svého jediného Syna.“",
-     ["nikodem"], []),
+     ["jezis", "nikodem"], []),
     ("samaritanka", "jesus", "Žena u studny", "J 4",
      "Ježíš mluví se Samařankou, se kterou se nikdo nebaví. Nabízí jí "
      "živou vodu a ona přivede celé město.",
-     ["samaritanka"],
+     ["jezis", "samaritanka"],
      [("nove-nebe", "Živá voda – řeka vody života v novém Jeruzalémě")]),
     ("kazani", "jesus", "Kázání na hoře", "Mt 5-7",
      "Blahoslavenství, láska k nepřátelům, Otče náš a dům na skále. "
      "Ježíš ukazuje, jak vypadá život v Božím království.",
-     [], []),
+     ["jezis"], []),
     ("zazraky", "jesus", "Uzdravení a zázraky v Galileji", "Mt 8-9",
      "Ježíš uzdravuje setníkova sluhu na dálku, utiší bouři, povolá "
      "celníka Matouše a vzkřísí Jairovu dceru.",
-     ["setnik-kafarnaum", "jairos", "matous"],
+     ["jezis", "setnik-kafarnaum", "jairos", "matous"],
      [("kornelius", "Víra římského setníka – předzvěst víry pohanů")]),
     ("nasyceni", "jesus", "Nasycení zástupu", "J 6",
      "Z pěti chlebů a dvou ryb nasytí Ježíš tisíce lidí. Pak říká: "
      "„Já jsem chléb života.“",
-     ["ondrej", "filip", "petr"],
+     ["jezis", "ondrej", "filip", "petr"],
      [("posledni-vecere", "Vzal chléb, vzdal díky, lámal a dával")]),
     ("promeneni", "jesus", "Petrovo vyznání a proměnění", "Mt 16-17",
      "Petr vyzná: „Ty jsi Mesiáš.“ Na hoře se Ježíš promění v záři "
      "a mluví s Mojžíšem a Eliášem.",
-     ["petr", "jakub-zebedeuv", "jan-apostol"], []),
+     ["jezis", "petr", "jakub-zebedeuv", "jan-apostol"], []),
     ("ztraceni", "jesus", "Podobenství o ztracených", "L 15",
      "Ztracená ovce, ztracená mince a ztracený syn. Bůh je jako otec, "
      "který vybíhá naproti synovi, jenž se vrací.",
-     [], []),
+     ["jezis"], []),
     ("lazar", "jesus", "Marta, Marie a vzkříšení Lazara", "J 11",
      "Ježíš pláče u hrobu přítele a říká Martě: „Já jsem vzkříšení "
      "i život.“ Pak volá Lazara ven z hrobu.",
-     ["lazar", "marta", "marie-betanie"],
+     ["jezis", "lazar", "marta", "marie-betanie"],
      [("vzkriseni", "Lazarovo vzkříšení předznamenává Ježíšovo")]),
     ("zacheus", "jesus", "Slepý Bartimaios a Zacheus", "L 18-19",
      "U Jericha volá slepec o smilování a prohlédne. Celník Zacheus vyleze "
      "na strom, Ježíš k němu přijde domů a Zacheus se změní.",
-     ["bartimaios", "zacheus"], []),
+     ["jezis", "bartimaios", "zacheus"], []),
     ("vjezd", "jesus", "Vjezd do Jeruzaléma", "Mt 21",
      "Ježíš vjíždí do města na oslátku a zástupy volají Hosana. "
      "V chrámu převrací stoly směnárníků.",
-     [], []),
+     ["jezis"], []),
     ("posledni-vecere", "jesus", "Poslední večeře", "J 13",
      "Ježíš myje učedníkům nohy a při velikonoční večeři ohlásí zradu. "
      "Jidáš odchází do noci.",
-     ["petr", "jidas", "jan-apostol"], []),
+     ["jezis", "petr", "jidas", "jan-apostol"], []),
     ("getsemane", "jesus", "Getsemane a zatčení", "Mt 26",
      "Večeře Páně, modlitba v zahradě: „Ne má, ale tvá vůle.“ Jidáš "
      "zradí polibkem a učedníci utečou.",
-     ["jidas", "petr", "jakub-zebedeuv", "jan-apostol"], []),
+     ["jezis", "jidas", "petr", "jakub-zebedeuv", "jan-apostol"], []),
     ("soud", "jesus", "Soud před Kaifášem a Pilátem", "J 18",
      "Ježíš stojí před veleknězem, Petr ho třikrát zapře. Pilát se ptá, "
      "co je pravda, a propustí Barabáše.",
-     ["kaifas", "pilat", "herodes-antipas", "barabas", "petr"], []),
+     ["jezis", "kaifas", "pilat", "herodes-antipas", "barabas", "petr"], []),
     ("kriz", "jesus", "Ukřižování", "J 19",
      "Ježíš nese kříž na Golgotu a umírá se slovy „Dokonáno jest“. "
      "Josef z Arimatie a Nikodém ho pohřbí.",
-     ["simon-kyrene", "josef-arimatie", "nikodem", "marie",
+     ["jezis", "simon-kyrene", "josef-arimatie", "nikodem", "marie",
       "jan-apostol", "pilat"],
      [("beranek", "Zabitý Beránek, který zvítězil")]),
     ("vzkriseni", "jesus", "Vzkříšení", "J 20-21",
      "Hrob je prázdný. Ježíš se ukáže Marii Magdalské, Tomášovi "
      "i učedníkům u moře a ptá se Petra: „Miluješ mě?“",
-     ["marie-magdalska", "tomas", "petr", "kleofas"],
+     ["jezis", "marie-magdalska", "tomas", "petr", "kleofas"],
      [("nove-nebe", "Vzkříšení je začátek nového stvoření")]),
 
     # --- Církev --------------------------------------------------------------
     ("nanebevstoupeni", "church", "Nanebevstoupení", "Sk 1",
      "Ježíš posílá učedníky být jeho svědky až na konec země a je vzat "
      "do nebe. Místo Jidáše je vybrán Matyáš.",
-     ["matyas", "petr"],
+     ["jezis", "matyas", "petr"],
      [("vzkriseni", "Čtyřicet dní setkání se vzkříšeným")]),
     ("letnice", "church", "Letnice", "Sk 2",
      "Duch svatý sestoupí jako oheň a učedníci mluví jazyky národů. "

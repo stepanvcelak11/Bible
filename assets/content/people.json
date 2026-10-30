@@ -1999,6 +1999,96 @@
    ]
   },
   {
+   "id": "jezis",
+   "name": "Ježíš Kristus",
+   "role": "Boží Syn, Mesiáš a Spasitel",
+   "where": "Betlém, Nazaret, Galilea, Jeruzalém",
+   "occupation": "tesař, potom putující učitel a uzdravitel",
+   "relatives": "matka Marie; Josef z Nazareta; bratři Jakub, Josef, Šimon a Juda a sestry (Mk 6,3)",
+   "strengths": [
+    "Přišel jako člověk, „Slovo se stalo tělem“, a zůstal bez hříchu",
+    "Hlásal Boží království, učil v podobenstvích a uzdravoval nemocné",
+    "Přijímal hříšníky, celníky, děti i ty, které jiní odmítali",
+    "Modlil se k Otci a poslušně šel cestou kříže",
+    "Dobrovolně dal život za druhé a třetí den vstal z mrtvých",
+    "Poslal učedníky do celého světa a slíbil, že je s nimi až do konce"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Skrze Ježíše poznáváme, jaký je Bůh (J 14,9).",
+    "Bůh přichází k lidem blízko – v dítěti v jeslích i na kříži.",
+    "Následovat Ježíše znamená milovat Boha i bližního, sloužit a odpouštět."
+   ],
+   "books": [
+    40,
+    41,
+    42,
+    43
+   ],
+   "key": [
+    43,
+    3,
+    16,
+    16
+   ],
+   "story": [
+    [
+     40,
+     1,
+     18,
+     25
+    ],
+    [
+     42,
+     2,
+     0,
+     0
+    ],
+    [
+     40,
+     3,
+     13,
+     17
+    ],
+    [
+     40,
+     5,
+     0,
+     0
+    ],
+    [
+     43,
+     11,
+     0,
+     0
+    ],
+    [
+     42,
+     22,
+     39,
+     46
+    ],
+    [
+     43,
+     19,
+     0,
+     0
+    ],
+    [
+     42,
+     24,
+     0,
+     0
+    ],
+    [
+     44,
+     1,
+     1,
+     11
+    ]
+   ]
+  },
+  {
    "id": "marie",
    "name": "Marie",
    "role": "matka Ježíšova",

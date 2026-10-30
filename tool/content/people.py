@@ -367,6 +367,24 @@ person("job", "Jób", "spravedlivý trpící", ["Jb"], "země Ús",
        "Jb 19,25", ["Jb 1", "Jb 2", "Jb 38", "Jb 42"])
 
 # --- Nový zákon --------------------------------------------------------------
+person("jezis", "Ježíš Kristus", "Boží Syn, Mesiáš a Spasitel",
+       ["Mt", "Mk", "L", "J"], "Betlém, Nazaret, Galilea, Jeruzalém",
+       "tesař, potom putující učitel a uzdravitel",
+       "matka Marie; Josef z Nazareta; bratři Jakub, Josef, Šimon a Juda "
+       "a sestry (Mk 6,3)",
+       ["Přišel jako člověk, „Slovo se stalo tělem“, a zůstal bez hříchu",
+        "Hlásal Boží království, učil v podobenstvích a uzdravoval nemocné",
+        "Přijímal hříšníky, celníky, děti i ty, které jiní odmítali",
+        "Modlil se k Otci a poslušně šel cestou kříže",
+        "Dobrovolně dal život za druhé a třetí den vstal z mrtvých",
+        "Poslal učedníky do celého světa a slíbil, že je s nimi až do konce"],
+       [],
+       ["Skrze Ježíše poznáváme, jaký je Bůh (J 14,9).",
+        "Bůh přichází k lidem blízko – v dítěti v jeslích i na kříži.",
+        "Následovat Ježíše znamená milovat Boha i bližního, sloužit "
+        "a odpouštět."],
+       "J 3,16", ["Mt 1,18-25", "L 2", "Mt 3,13-17", "Mt 5", "J 11",
+                  "L 22,39-46", "J 19", "L 24", "Sk 1,1-11"])
 person("marie", "Marie", "matka Ježíšova", ["Mt", "L", "J"],
        "Nazaret, Betlém, Jeruzalém", "",
        "manžel Josef; syn Ježíš; příbuzná Alžběta",

@@ -297,8 +297,9 @@ abstract final class S {
   static const reflection = 'Zamyšlení nad kapitolou';
   static const reflectionHintShort =
       'Sedm kroků s otázkami právě k této kapitole';
+  static const reflectionPrefix = 'Zamyšlení: ';
   static String reflectionTitle(String book, int chapter) =>
-      'Zamyšlení: $book $chapter';
+      '$reflectionPrefix$book $chapter';
   static const reflectionIntro =
       'Odpovězte na kterékoli otázky – stačí pár slov. Odpovědi se uloží '
       'jako poznámka do Deníku.';
@@ -317,6 +318,10 @@ abstract final class S {
       'Zatím jste nic nenapsali. Vraťte se k otázkám – stačí pár slov.';
   static const reflectionAddPrayer = 'Přidat poslední odpověď do modliteb';
   static String reflectionStep(int i, int n) => 'Krok $i z $n';
+  static const reflectionText = 'Text kapitoly';
+  static const reflectionFindInText = 'Hledat odpověď v textu';
+  static const reflectionTextHint =
+      'Klepnutím na verš ho připíšete k odpovědi.';
   static const stepNotice = 'Všímej si';
   static const stepObserve = 'Pozoruj';
   static const stepUnderstand = 'Pochop';
@@ -378,6 +383,28 @@ abstract final class S {
   static const journalSearchHint = 'Kniha, odkaz nebo text poznámky…';
   static const journalNoMatch = 'Nic neodpovídá hledání.';
   static const journalAllColors = 'Vše';
+  static const journalAll = 'Vše';
+  static const journalReflections = 'Zamyšlení';
+  static const journalPlainNotes = 'Poznámky';
+  static const journalRecent = 'Nejnovější';
+  static const journalByBook = 'Podle knih';
+  static const journalSort = 'Řazení';
+  static const edit = 'Upravit';
+  static const inviteStartTitle = 'Začněte setkáním, ne úkolem';
+  static const inviteStartText =
+      'Bible je místo, kde Bůh mluví k člověku. Stačí deset minut a jedna '
+      'kapitola. Evangelium podle Marka je krátké a živé – dobrý začátek.';
+  static const inviteStartButton = 'Začít: Marek 1';
+  static const inviteBackTitle = 'Vítejte zpět';
+  static const inviteBackText =
+      'Bůh nepočítá dny, kdy jste nečetli. Raduje se z každého návratu – '
+      'jako otec, který vybíhá synovi naproti. Začněte krátce, třeba žalmem.';
+  static String inviteBackButton(int psalm) => 'Krátký začátek: Žalm $psalm';
+  static const inviteTodayTitle = 'Dnes už máte přečteno';
+  static const inviteStepTitle = 'Dnešní krok';
+  static String inviteLookBack(String where, int days) =>
+      'Ohlédnutí · vaše zamyšlení k $where · před $days dny';
+  static const openChapter = 'Otevřít kapitolu';
   static const connections = 'Souvislosti v Bibli';
   static const connectionsHint =
       'Velký příběh, červené nitě a mapa odkazů – jak spolu části Bible '

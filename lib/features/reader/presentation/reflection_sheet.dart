@@ -8,9 +8,11 @@ import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/versification.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../domain/entities/content_entities.dart';
+import '../../../domain/entities/user_entities.dart';
 import '../../content/application/content_providers.dart';
 import '../../prayer/application/prayer_controller.dart';
 import '../../translations/application/translation_controller.dart';
+import '../application/chapter_content_provider.dart';
 
 /// Obecné otázky k zamyšlení (doplňují otázky ke konkrétní kapitole).
 const reflectionQuestions = [
@@ -104,6 +106,9 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
   int _index = 0;
   bool _addPrayer = false;
 
+  /// Text kapitoly otevřený vedle otázek – odpovědi hledat v Bibli.
+  bool _showText = false;
+
   @override
   void dispose() {
     _page.dispose();
@@ -114,6 +119,21 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
   }
 
   bool get _hasText => _controllers.any((c) => c.text.trim().isNotEmpty);
+
+  /// Připíše odkaz na verš k právě rozepsané odpovědi.
+  void _cite(int verse) {
+    if (_index >= _controllers.length) return;
+    final c = _controllers[_index];
+    final t = c.text;
+    final add =
+        '${t.isEmpty || t.endsWith(' ') || t.endsWith('\n') ? '' : ' '}'
+        '(v. $verse) ';
+    c.value = TextEditingValue(
+      text: t + add,
+      selection: TextSelection.collapsed(offset: t.length + add.length),
+    );
+    setState(() {});
+  }
 
   void _go(int index) {
     FocusScope.of(context).unfocus();
@@ -182,6 +202,13 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
       appBar: AppBar(
         title: Text(S.reflectionTitle(book, widget.chapter)),
         actions: [
+          IconButton(
+            tooltip: S.reflectionText,
+            isSelected: _showText,
+            onPressed: () => setState(() => _showText = !_showText),
+            icon: const Icon(Icons.menu_book_outlined),
+            selectedIcon: const Icon(Icons.menu_book),
+          ),
           TextButton(
             onPressed: _hasText ? () => _save(steps) : null,
             child: const Text(S.reflectionSaveShort),
@@ -212,8 +239,9 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
           ),
         ),
       ),
-      body: ReadableWidth(
-        child: PageView(
+      body: _withText(
+        translationId,
+        PageView(
           controller: _page,
           physics: const NeverScrollableScrollPhysics(),
           children: [
@@ -229,6 +257,9 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
                 onChanged: () => setState(() {}),
                 onBack: i == 0 ? null : () => _go(i - 1),
                 onNext: () => _go(i + 1),
+                onShowText: _showText
+                    ? null
+                    : () => setState(() => _showText = true),
               ),
             _Summary(
               steps: steps,
@@ -240,6 +271,116 @@ class _ReflectionScreenState extends ConsumerState<ReflectionScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  /// Otázky samotné, nebo vedle (na úzkém displeji pod) textem kapitoly.
+  Widget _withText(String translationId, Widget questions) {
+    if (!_showText) return ReadableWidth(child: questions);
+    final text = _ChapterTextPanel(
+      translationId: translationId,
+      bookId: widget.bookId,
+      chapter: widget.chapter,
+      onVerse: _cite,
+    );
+    return LayoutBuilder(
+      builder: (context, c) => c.maxWidth >= 900
+          ? Row(
+              children: [
+                Expanded(child: text),
+                const VerticalDivider(width: 1),
+                Expanded(child: questions),
+              ],
+            )
+          : Column(
+              children: [
+                Expanded(flex: 4, child: text),
+                const Divider(height: 1),
+                Expanded(flex: 5, child: questions),
+              ],
+            ),
+    );
+  }
+}
+
+/// Text kapitoly v hlavním překladu; klepnutí na verš ho připíše k odpovědi.
+class _ChapterTextPanel extends ConsumerWidget {
+  const _ChapterTextPanel({
+    required this.translationId,
+    required this.bookId,
+    required this.chapter,
+    required this.onVerse,
+  });
+
+  final String translationId;
+  final int bookId;
+  final int chapter;
+  final ValueChanged<int> onVerse;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final content = ref
+        .watch(
+          chapterPageProvider((
+            primaryId: translationId,
+            secondaryId: null,
+            bookId: bookId,
+            chapter: chapter,
+          )),
+        )
+        .value;
+    if (content is! SingleChapter) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    final verses = content.text.verses;
+    return ColoredBox(
+      color: palette.card,
+      child: ListView.builder(
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
+        itemCount: verses.length + 1,
+        itemBuilder: (context, i) {
+          if (i == 0) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Text(
+                S.reflectionTextHint,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+            );
+          }
+          final v = verses[i - 1];
+          return InkWell(
+            borderRadius: BorderRadius.circular(8),
+            onTap: () => onVerse(v.ref.verse),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '${v.ref.verse} ',
+                      style: TextStyle(
+                        color: palette.gold,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 12,
+                      ),
+                    ),
+                    TextSpan(text: v.text.replaceAll('\n', ' ')),
+                  ],
+                ),
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  fontFamily: appFontFamily,
+                  height: 1.5,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -257,6 +398,7 @@ class _StepPage extends StatelessWidget {
     required this.onChanged,
     required this.onBack,
     required this.onNext,
+    required this.onShowText,
   });
 
   final _Step step;
@@ -269,6 +411,9 @@ class _StepPage extends StatelessWidget {
   final VoidCallback onChanged;
   final VoidCallback? onBack;
   final VoidCallback onNext;
+
+  /// Otevře text kapitoly (null = už je otevřený).
+  final VoidCallback? onShowText;
 
   @override
   Widget build(BuildContext context) {
@@ -345,6 +490,18 @@ class _StepPage extends StatelessWidget {
           step.question,
           style: theme.textTheme.headlineSmall?.copyWith(height: 1.3),
         ),
+        if (onShowText != null)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+              ),
+              onPressed: onShowText,
+              icon: const Icon(Icons.menu_book_outlined, size: 18),
+              label: const Text(S.reflectionFindInText),
+            ),
+          ),
         if (previous case final p? when p.isNotEmpty) ...[
           const SizedBox(height: 14),
           Container(
@@ -576,6 +733,110 @@ class ChapterFooter extends StatelessWidget {
             label: Text(S.nextChapter, style: theme.textTheme.labelLarge),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Je poznámka uložené zamyšlení nad kapitolou?
+bool isReflectionNote(String body) => body.startsWith(S.reflectionPrefix);
+
+/// Otázky a odpovědi uloženého zamyšlení (odstavce „otázka?\nodpověď“).
+/// Prázdné řádky uvnitř odpovědi zůstanou u ní.
+List<(String, String)> parseReflection(String body) {
+  final out = <(String, String)>[];
+  for (final block in body.split('\n\n').skip(1)) {
+    final nl = block.indexOf('\n');
+    final first = nl < 0 ? block : block.substring(0, nl);
+    if (nl > 0 && first.trimRight().endsWith('?')) {
+      out.add((first.trim(), block.substring(nl + 1).trim()));
+    } else if (out.isNotEmpty) {
+      final (q, a) = out.removeLast();
+      out.add((q, '$a\n\n$block'));
+    } else {
+      out.add(('', block.trim()));
+    }
+  }
+  return out;
+}
+
+/// Uložené zamyšlení k pročtení: otázky a odpovědi, úprava, kapitola.
+class ReflectionNoteScreen extends ConsumerWidget {
+  const ReflectionNoteScreen({
+    super.key,
+    required this.note,
+    required this.title,
+    required this.onEdit,
+    required this.onOpenChapter,
+  });
+
+  final Note note;
+  final String title;
+  final VoidCallback onEdit;
+  final VoidCallback onOpenChapter;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final d = note.createdAt;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        actions: [
+          IconButton(
+            tooltip: S.edit,
+            onPressed: onEdit,
+            icon: const Icon(Icons.edit_outlined),
+          ),
+        ],
+      ),
+      body: ReadableWidth(
+        child: ListView(
+          padding: EdgeInsets.fromLTRB(
+            20,
+            12,
+            20,
+            MediaQuery.paddingOf(context).bottom + 32,
+          ),
+          children: [
+            Text(
+              '${d.day}. ${d.month}. ${d.year}',
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: palette.muted,
+              ),
+            ),
+            const SizedBox(height: 12),
+            for (final (q, a) in parseReflection(note.body))
+              Card(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (q.isNotEmpty) ...[
+                        Text(
+                          q,
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: palette.gold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                      ],
+                      Text(a, style: theme.textTheme.bodyLarge),
+                    ],
+                  ),
+                ),
+              ),
+            const SizedBox(height: 8),
+            OutlinedButton.icon(
+              onPressed: onOpenChapter,
+              icon: const Icon(Icons.menu_book_outlined),
+              label: const Text(S.openChapter),
+            ),
+          ],
+        ),
       ),
     );
   }

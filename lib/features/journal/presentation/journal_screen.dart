@@ -13,6 +13,7 @@ import '../../../domain/services/citation.dart';
 import '../../reader/application/reader_state.dart';
 import '../../shell/home_shell.dart';
 import '../../reader/presentation/note_editor_sheet.dart';
+import '../../reader/presentation/reflection_sheet.dart';
 import '../../prayer/application/prayer_controller.dart';
 import '../../prayer/presentation/prayers_view.dart';
 import '../../memory/presentation/memory_screen.dart';
@@ -329,52 +330,328 @@ class _BookmarksTab extends ConsumerWidget {
   }
 }
 
-class _NotesTab extends ConsumerWidget {
+enum _NoteKind { all, reflections, notes }
+
+const _monthNames = [
+  'Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', //
+  'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec',
+];
+
+/// Poznámky a zamyšlení: krátké řádky (odkaz + začátek textu), filtr
+/// podle druhu a dvě řazení – nejnovější po měsících, nebo podle knih
+/// Bible (sbalené, aby i stovky kapitol zůstaly přehledné).
+class _NotesTab extends ConsumerStatefulWidget {
   const _NotesTab();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_NotesTab> createState() => _NotesTabState();
+}
+
+class _NotesTabState extends ConsumerState<_NotesTab> {
+  var _kind = _NoteKind.all;
+  var _byBook = false;
+  final _open = <int>{};
+
+  @override
+  Widget build(BuildContext context) {
     final query = ref.watch(_queryProvider);
     final books = ref.watch(booksProvider);
-    final items = ref
-        .watch(_notesProvider)
-        .value
+    final all = ref.watch(_notesProvider).value;
+    final reflections = all?.where((n) => isReflectionNote(n.body)).length;
+    final items = all
         ?.where(
-          (n) => journalMatches(
-            query,
-            books[n.ref.bookId - 1],
-            n.ref,
-            note: n.body,
-          ),
+          (n) =>
+              switch (_kind) {
+                _NoteKind.all => true,
+                _NoteKind.reflections => isReflectionNote(n.body),
+                _NoteKind.notes => !isReflectionNote(n.body),
+              } &&
+              journalMatches(
+                query,
+                books[n.ref.bookId - 1],
+                n.ref,
+                note: n.body,
+              ),
         )
         .toList();
+    if (items == null) return const Center(child: CircularProgressIndicator());
+    if (all!.isEmpty) {
+      return _List(
+        icon: Icons.sticky_note_2_outlined,
+        empty: query.isEmpty ? S.journalEmptyNotes : S.journalNoMatch,
+        length: 0,
+        itemBuilder: (_, _) => const SizedBox(),
+      );
+    }
+
+    // Řádky seznamu: nadpis skupiny (měsíc / kniha) nebo poznámka.
+    final rows = <Widget>[];
+    if (_byBook) {
+      items.sort(
+        (a, b) => a.ref.bookId != b.ref.bookId
+            ? a.ref.bookId - b.ref.bookId
+            : a.ref.chapter != b.ref.chapter
+            ? a.ref.chapter - b.ref.chapter
+            : a.ref.verse - b.ref.verse,
+      );
+      // Při hledání vše rozbalené.
+      final expandAll = query.trim().isNotEmpty;
+      for (var i = 0; i < items.length;) {
+        final bookId = items[i].ref.bookId;
+        var j = i;
+        while (j < items.length && items[j].ref.bookId == bookId) {
+          j++;
+        }
+        final open = expandAll || _open.contains(bookId);
+        rows.add(
+          _GroupHeader(
+            title: books[bookId - 1].name,
+            count: j - i,
+            expanded: open,
+            onTap: expandAll
+                ? null
+                : () => setState(
+                    () => open ? _open.remove(bookId) : _open.add(bookId),
+                  ),
+          ),
+        );
+        if (open) {
+          for (final n in items.sublist(i, j)) {
+            rows.add(_noteRow(n));
+          }
+        }
+        i = j;
+      }
+    } else {
+      (int, int)? month;
+      for (final n in items) {
+        final d = n.updatedAt;
+        if (month != (d.year, d.month)) {
+          month = (d.year, d.month);
+          rows.add(
+            _GroupHeader(
+              title: d.year == DateTime.now().year
+                  ? _monthNames[d.month - 1]
+                  : '${_monthNames[d.month - 1]} ${d.year}',
+            ),
+          );
+        }
+        rows.add(_noteRow(n));
+      }
+    }
+
+    final theme = Theme.of(context);
+    String label(String name, int n) => '$name ($n)';
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: SizedBox(
+                height: 48,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.fromLTRB(16, 8, 8, 4),
+                  children: [
+                    for (final (k, name, n) in [
+                      (_NoteKind.all, S.journalAll, all.length),
+                      (
+                        _NoteKind.reflections,
+                        S.journalReflections,
+                        reflections!,
+                      ),
+                      (
+                        _NoteKind.notes,
+                        S.journalPlainNotes,
+                        all.length - reflections,
+                      ),
+                    ])
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: ChoiceChip(
+                          label: Text(label(name, n)),
+                          selected: _kind == k,
+                          onSelected: (_) => setState(() => _kind = k),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+            PopupMenuButton<bool>(
+              tooltip: S.journalSort,
+              icon: Icon(_byBook ? Icons.menu_book_outlined : Icons.sort),
+              initialValue: _byBook,
+              onSelected: (v) => setState(() => _byBook = v),
+              itemBuilder: (_) => [
+                for (final (v, name) in [
+                  (false, S.journalRecent),
+                  (true, S.journalByBook),
+                ])
+                  CheckedPopupMenuItem(
+                    value: v,
+                    checked: _byBook == v,
+                    child: Text(name),
+                  ),
+              ],
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+        Expanded(
+          child: rows.isEmpty
+              ? Center(
+                  child: Text(
+                    S.journalNoMatch,
+                    style: theme.textTheme.bodyLarge?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                )
+              : ListView.builder(
+                  padding: EdgeInsets.only(
+                    top: 4,
+                    bottom: MediaQuery.paddingOf(context).bottom + 110,
+                  ),
+                  itemCount: rows.length,
+                  itemBuilder: (_, i) => rows[i],
+                ),
+        ),
+      ],
+    );
+  }
+
+  Widget _noteRow(Note n) {
     final repo = ref.read(userDataRepositoryProvider);
-    return _List(
-      icon: Icons.sticky_note_2_outlined,
-      empty: query.isEmpty ? S.journalEmptyNotes : S.journalNoMatch,
-      length: items?.length,
-      itemBuilder: (context, i) {
-        final n = items![i];
-        return _Dismissible(
-          key: ValueKey('n${n.id}'),
-          onDismissed: () async {
-            await repo.deleteNote(n.id);
-            if (context.mounted) {
-              _showUndo(
-                context,
-                () => repo
-                    .saveNote(ref: n.ref, verseEnd: n.verseEnd, body: n.body)
-                    .then((_) {}),
-              );
-            }
-          },
-          child: _VerseItem(
-            verseRef: n.ref,
-            verseEnd: n.verseEnd,
-            leading: const Icon(Icons.sticky_note_2_outlined),
-            note: n.body,
-            onTap: () => showNoteEditor(context, existing: n),
-            onOpenVerse: () => _open(context, ref, n.ref),
+    return _Dismissible(
+      key: ValueKey('n${n.id}'),
+      onDismissed: () async {
+        await repo.deleteNote(n.id);
+        if (mounted) {
+          _showUndo(
+            context,
+            () => repo
+                .saveNote(ref: n.ref, verseEnd: n.verseEnd, body: n.body)
+                .then((_) {}),
+          );
+        }
+      },
+      child: _NoteRow(note: n),
+    );
+  }
+}
+
+/// Nadpis skupiny v deníku; s [onTap] rozbalovací.
+class _GroupHeader extends StatelessWidget {
+  const _GroupHeader({
+    required this.title,
+    this.count,
+    this.expanded = true,
+    this.onTap,
+  });
+
+  final String title;
+  final int? count;
+  final bool expanded;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 14, 16, 6),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                title.toUpperCase(),
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: palette.gold,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            if (count case final c?)
+              Text(
+                '$c',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+            if (onTap != null)
+              Icon(
+                expanded ? Icons.expand_less : Icons.expand_more,
+                size: 20,
+                color: palette.muted,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Krátký řádek poznámky: odkaz, první řádek textu, datum. Zamyšlení se
+/// otevře k pročtení, poznámka v editoru.
+class _NoteRow extends ConsumerWidget {
+  const _NoteRow({required this.note});
+
+  final Note note;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final book = ref.watch(bookByIdProvider(note.ref.bookId));
+    final reflection = isReflectionNote(note.body);
+    final title = reflection
+        ? '${book.name} ${note.ref.chapter}'
+        : Citation.range(book.name, note.ref.chapter, [
+            for (var v = note.ref.verse; v <= note.verseEnd; v++) v,
+          ]);
+    final preview = reflection
+        ? parseReflection(note.body).map((qa) => qa.$2).join(' · ')
+        : note.body;
+    final d = note.updatedAt;
+    return ListTile(
+      contentPadding: const EdgeInsets.fromLTRB(20, 0, 16, 0),
+      leading: Icon(
+        reflection ? Icons.self_improvement : Icons.sticky_note_2_outlined,
+        color: reflection ? palette.gold : theme.colorScheme.primary,
+      ),
+      title: Text(title),
+      subtitle: Text(
+        preview.replaceAll('\n', ' '),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
+      trailing: Text(
+        '${d.day}. ${d.month}.',
+        style: theme.textTheme.labelSmall?.copyWith(color: palette.muted),
+      ),
+      onTap: () {
+        if (!reflection) {
+          showNoteEditor(context, existing: note);
+          return;
+        }
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (route) => ReflectionNoteScreen(
+              note: note,
+              title: title,
+              onEdit: () {
+                Navigator.of(route).pop();
+                showNoteEditor(context, existing: note);
+              },
+              onOpenChapter: () {
+                Navigator.of(route).pop();
+                _open(context, ref, note.ref);
+              },
+            ),
           ),
         );
       },
@@ -591,19 +868,13 @@ class _VerseItem extends ConsumerWidget {
     required this.verseRef,
     required this.leading,
     required this.onTap,
-    this.verseEnd,
-    this.note,
     this.highlight,
-    this.onOpenVerse,
   });
 
   final VerseRef verseRef;
-  final int? verseEnd;
   final Widget leading;
-  final String? note;
   final Color? highlight;
   final VoidCallback onTap;
-  final VoidCallback? onOpenVerse;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -619,9 +890,8 @@ class _VerseItem extends ConsumerWidget {
           )),
         )
         .value;
-    final end = verseEnd ?? verseRef.verse;
     final citation = Citation.range(book.name, verseRef.chapter, [
-      for (var v = verseRef.verse; v <= end; v++) v,
+      verseRef.verse,
     ]);
 
     return InkWell(
@@ -640,45 +910,19 @@ class _VerseItem extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          citation,
-                          style: theme.textTheme.labelLarge?.copyWith(
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                      if (onOpenVerse != null)
-                        InkWell(
-                          onTap: onOpenVerse,
-                          borderRadius: BorderRadius.circular(16),
-                          child: Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: Icon(
-                              Icons.menu_book_outlined,
-                              size: 20,
-                              color: theme.colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ),
-                    ],
+                  Text(
+                    citation,
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
-                  if (note != null) ...[
-                    const SizedBox(height: 4),
-                    Text(note!, style: theme.textTheme.bodyLarge),
-                  ],
                   if (verse != null) ...[
                     const SizedBox(height: 4),
                     Text(
-                      verse.text + (end > verseRef.verse ? ' …' : ''),
-                      maxLines: note == null ? 4 : 2,
+                      verse.text,
+                      maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       style: theme.textTheme.bodyMedium?.copyWith(
-                        color: note == null
-                            ? null
-                            : theme.colorScheme.onSurfaceVariant,
                         backgroundColor: highlight,
                         height: 1.45,
                       ),

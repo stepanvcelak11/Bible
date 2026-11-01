@@ -164,6 +164,8 @@ void main() {
     expect(find.text('Jan 3,16'), findsOneWidget);
     expect(find.text('VERŠE PRO TUTO CHVÍLI'), findsOneWidget);
 
+    await tester.ensureVisible(find.text('Jan 3,16'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Jan 3,16'));
     await settle(tester);
     expect(find.text('Jan 3'), findsOneWidget, reason: 'otevřela se čtečka');
@@ -474,6 +476,14 @@ void main() {
     expect(find.textContaining('Nikodém'), findsWidgets);
     await tester.enterText(find.byType(TextField).first, 'Boží láska');
     await settle(tester);
+    // Odpověď hledat v textu: klepnutí na verš ho připíše k odpovědi.
+    await tester.tap(find.text('Hledat odpověď v textu'));
+    await settle(tester);
+    await tester.tap(find.textContaining('16 Nebo tak', findRichText: true));
+    await settle(tester);
+    expect(find.text('Boží láska (v. 16) '), findsOneWidget);
+    await tester.tap(find.byTooltip('Text kapitoly'));
+    await settle(tester);
     await tester.tap(find.text('Další'));
     await settle(tester);
     // Otázka přímo ke kapitole navazuje na předchozí odpověď.
@@ -490,6 +500,8 @@ void main() {
 
   appTest('můj pokrok: kalendář, odznaky a knihy', (tester) async {
     await pumpApp(tester, openBible: false);
+    await tester.ensureVisible(find.text('Můj pokrok'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Můj pokrok'));
     await settle(tester);
     expect(find.text('KALENDÁŘ ČTENÍ'), findsOneWidget);
@@ -515,6 +527,8 @@ void main() {
 
   appTest('můj pokrok: ruční označení přečtené knihy', (tester) async {
     await pumpApp(tester, openBible: false);
+    await tester.ensureVisible(find.text('Můj pokrok'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Můj pokrok'));
     await settle(tester);
     final list = find
@@ -736,6 +750,51 @@ void main() {
     await tester.tap(find.text('Poznámky (1)'));
     await settle(tester);
     expect(find.text('Pastýř'), findsOneWidget);
+  });
+
+  appTest('deník: zamyšlení jako krátké řádky, filtr a řazení podle knih', (
+    tester,
+  ) async {
+    await pumpApp(tester, openBible: false);
+    final repo = container.read(userDataRepositoryProvider);
+    await tester.runAsync(() async {
+      await repo.saveNote(
+        ref: const VerseRef(43, 3, 1),
+        body: 'Zamyšlení: Jan 3\n\nCo mě oslovilo?\nBoží láska',
+      );
+      await repo.saveNote(
+        ref: const VerseRef(43, 4, 1),
+        body: 'Zamyšlení: Jan 4\n\nCo mě oslovilo?\nŽivá voda',
+      );
+      await repo.saveNote(ref: const VerseRef(19, 23, 1), body: 'Pastýř');
+    });
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
+    await tester.tap(find.text('Poznámky (3)'));
+    await settle(tester);
+    expect(find.text('Zamyšlení (2)'), findsOneWidget);
+    await tester.tap(find.text('Zamyšlení (2)'));
+    await settle(tester);
+    expect(find.text('Jan 3'), findsOneWidget);
+    expect(find.text('Pastýř'), findsNothing);
+
+    // Podle knih: knihy sbalené, klepnutím se rozbalí.
+    await tester.tap(find.byTooltip('Řazení'));
+    await settle(tester);
+    await tester.tap(find.text('Podle knih'));
+    await settle(tester);
+    expect(find.text('JAN'), findsOneWidget);
+    expect(find.text('Jan 3'), findsNothing);
+    await tester.tap(find.text('JAN'));
+    await settle(tester);
+    expect(find.text('Jan 3'), findsOneWidget);
+
+    // Zamyšlení se otevře k pročtení.
+    await tester.tap(find.text('Jan 4'));
+    await settle(tester);
+    expect(find.text('Co mě oslovilo?'), findsOneWidget);
+    expect(find.text('Živá voda'), findsOneWidget);
+    expect(find.text('Otevřít kapitolu'), findsOneWidget);
   });
 
   appTest('církevní rok: kruh, doba, svátky a sezónní plán', (tester) async {

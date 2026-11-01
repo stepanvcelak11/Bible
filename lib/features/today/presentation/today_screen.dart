@@ -23,6 +23,7 @@ import '../../guide/presentation/guide_screen.dart';
 import '../../progress/presentation/progress_screen.dart';
 import 'day_scene.dart';
 import 'for_today.dart';
+import 'invitation_card.dart';
 import 'plans_sheet.dart';
 
 const _months = [
@@ -68,6 +69,8 @@ class TodayScreen extends ConsumerWidget {
     const reading = [
       InstallBanner(padding: EdgeInsets.only(top: 16)),
       SectionLabel(S.myReading),
+      InvitationCard(),
+      SizedBox(height: 10),
       _ContinueCard(),
       SizedBox(height: 10),
       _StatsRow(),

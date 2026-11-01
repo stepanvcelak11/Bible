@@ -5,9 +5,31 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 15;
+const whatsNewVersion = 16;
 
 const _items = [
+  (
+    Icons.favorite_outline,
+    'Pozvání ke čtení',
+    'Na stránce Dnes vás aplikace zve ke čtení podle toho, jak čtete: '
+        'začátek, návrat po pauze (bez výčitek, s krátkým žalmem), nebo '
+        'ohlédnutí za vlastním dřívějším zamyšlením. Pod tím rytmus týdne.',
+  ),
+  (
+    Icons.menu_book_outlined,
+    'Zamyšlení s Biblí po ruce',
+    'U otázek na konci kapitoly klepněte na „Hledat odpověď v textu“ – '
+        'nad otázkami se otevře kapitola. Klepnutím na verš ho připíšete '
+        'k odpovědi. Popisky kreseb jsou teď v překladu, který čtete.',
+  ),
+  (
+    Icons.self_improvement,
+    'Přehlednější Deník',
+    'Poznámky a zamyšlení jsou krátké řádky po měsících, nebo podle knih '
+        'Bible (sbalené, klepnutím se rozbalí). Filtr Zamyšlení / Poznámky '
+        'a hledání pomohou i u stovek kapitol. Zamyšlení se otevře '
+        'přehledně jako otázky a odpovědi.',
+  ),
   (
     Icons.draw_outlined,
     'Kreslené ilustrace v Bibli',

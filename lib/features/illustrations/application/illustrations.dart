@@ -89,9 +89,9 @@ Path parseSketch(String data) {
 
 final illustrationsProvider = FutureProvider<List<Illustration>>((ref) async {
   final bytes = await rootBundle.load('assets/content/illustrations.json');
-  final j =
-      jsonDecode(utf8.decode(bytes.buffer.asUint8List()))
-          as Map<String, Object?>;
+  final j = jsonDecode(
+    utf8.decode(bytes.buffer.asUint8List()),
+  ) as Map<String, Object?>;
   return [
     for (final i in j['items']! as List)
       Illustration.fromJson(i as Map<String, Object?>),

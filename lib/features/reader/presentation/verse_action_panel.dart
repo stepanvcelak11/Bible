@@ -20,8 +20,75 @@ import '../../study/presentation/verse_study_sheet.dart';
 import 'note_editor_sheet.dart';
 import 'verse_image_sheet.dart';
 
-/// Panel akcí s vybranými verši: Zvýraznit, Přidat záložku, Přidat
-/// poznámku, Kopírovat, Sdílet.
+/// Rychlé akce po podržení verše: záložka, kopírovat, sdílet. Podržený
+/// verš, který je ve výběru, bere celý výběr; jinak jen sebe.
+Future<void> showQuickVerseMenu(
+  BuildContext context,
+  WidgetRef ref,
+  VerseRef verse,
+  Offset globalPosition,
+) async {
+  HapticFeedback.mediumImpact();
+  final current = ref.read(verseSelectionProvider);
+  final selection = current.contains(verse.bookId, verse.chapter, verse.verse)
+      ? current
+      : VerseSelection(
+          bookId: verse.bookId,
+          chapter: verse.chapter,
+          verses: {verse.verse},
+        );
+  final bookmarks = ref
+      .read(chapterAnnotationsProvider((verse.bookId, verse.chapter)))
+      .bookmarks;
+  final allBookmarked = selection.verses.every(bookmarks.contains);
+  final overlay = Overlay.of(context).context.findRenderObject()! as RenderBox;
+  final choice = await showMenu<String>(
+    context: context,
+    position: RelativeRect.fromRect(
+      globalPosition & const Size(1, 1),
+      Offset.zero & overlay.size,
+    ),
+    items: [
+      PopupMenuItem(
+        value: 'bookmark',
+        child: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Icon(allBookmarked ? Icons.bookmark : Icons.bookmark_border),
+          title: Text(allBookmarked ? S.removeBookmark : S.bookmark),
+        ),
+      ),
+      const PopupMenuItem(
+        value: 'copy',
+        child: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Icon(Icons.copy_rounded),
+          title: Text(S.copy),
+        ),
+      ),
+      const PopupMenuItem(
+        value: 'share',
+        child: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Icon(Icons.ios_share),
+          title: Text(S.share),
+        ),
+      ),
+    ],
+  );
+  if (choice == null || !context.mounted) return;
+  final actions = _Actions(ref, context, selection);
+  switch (choice) {
+    case 'bookmark':
+      await actions.bookmark(remove: allBookmarked);
+    case 'copy':
+      await actions.copy();
+    case 'share':
+      await actions.share();
+  }
+}
+
+/// Panel akcí s vybranými verši: barvy zvýraznění, Studovat, Poznámka,
+/// Nazpaměť, Příprava. Záložka, kopírování a sdílení jsou po podržení verše.
 class VerseActionPanel extends ConsumerWidget {
   const VerseActionPanel({super.key});
 
@@ -33,9 +100,6 @@ class VerseActionPanel extends ConsumerWidget {
     final book = ref.watch(bookByIdProvider(selection.bookId));
     final annotations = ref.watch(
       chapterAnnotationsProvider((selection.bookId, selection.chapter)),
-    );
-    final allBookmarked = selection.verses.every(
-      annotations.bookmarks.contains,
     );
     final anyHighlighted = selection.verses.any(
       annotations.highlights.containsKey,
@@ -79,6 +143,15 @@ class VerseActionPanel extends ConsumerWidget {
                       ),
                     ],
                   ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      S.holdVerseHint,
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
                   // Barvy zvýraznění.
                   SizedBox(
                     height: 48,
@@ -106,13 +179,6 @@ class VerseActionPanel extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _ActionButton(
-                        icon: allBookmarked
-                            ? Icons.bookmark
-                            : Icons.bookmark_border,
-                        label: allBookmarked ? S.removeBookmark : S.bookmark,
-                        onTap: () => actions.bookmark(remove: allBookmarked),
-                      ),
-                      _ActionButton(
                         icon: Icons.history_edu,
                         label: S.study,
                         tooltip: '${S.original} · ${S.crossRefs}',
@@ -135,16 +201,6 @@ class VerseActionPanel extends ConsumerWidget {
                         label: S.prepAction,
                         tooltip: S.prepAddTo,
                         onTap: actions.prep,
-                      ),
-                      _ActionButton(
-                        icon: Icons.copy_rounded,
-                        label: S.copy,
-                        onTap: actions.copy,
-                      ),
-                      _ActionButton(
-                        icon: Icons.ios_share,
-                        label: S.share,
-                        onTap: actions.share,
                       ),
                     ],
                   ),

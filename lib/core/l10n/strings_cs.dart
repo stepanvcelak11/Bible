@@ -390,20 +390,16 @@ abstract final class S {
   static const journalByBook = 'Podle knih';
   static const journalSort = 'Řazení';
   static const edit = 'Upravit';
-  static const inviteStartTitle = 'Začněte setkáním, ne úkolem';
   static const inviteStartText =
-      'Bible je místo, kde Bůh mluví k člověku. Stačí deset minut a jedna '
-      'kapitola. Evangelium podle Marka je krátké a živé – dobrý začátek.';
+      'Bible je místo setkání s Bohem. Stačí deset minut a jedna kapitola – '
+      'Marek je dobrý začátek.';
   static const inviteStartButton = 'Začít: Marek 1';
-  static const inviteBackTitle = 'Vítejte zpět';
   static const inviteBackText =
-      'Bůh nepočítá dny, kdy jste nečetli. Raduje se z každého návratu – '
-      'jako otec, který vybíhá synovi naproti. Začněte krátce, třeba žalmem.';
+      'Vítejte zpět. Bůh nepočítá dny, kdy jste nečetli – raduje se '
+      'z každého návratu.';
   static String inviteBackButton(int psalm) => 'Krátký začátek: Žalm $psalm';
-  static const inviteTodayTitle = 'Dnes už máte přečteno';
-  static const inviteStepTitle = 'Dnešní krok';
-  static String inviteLookBack(String where, int days) =>
-      'Ohlédnutí · vaše zamyšlení k $where · před $days dny';
+  static const studyDaily = 'Každý den';
+  static const holdVerseHint = 'Podržením verše: záložka, kopírování a sdílení';
   static const openChapter = 'Otevřít kapitolu';
   static const connections = 'Souvislosti v Bibli';
   static const connectionsHint =

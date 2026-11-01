@@ -226,8 +226,12 @@ void main() {
     expect(highlights!.map((h) => h.ref.verse).toSet(), {16, 17});
     expect(highlights.first.color, HighlightColor.yellow);
 
-    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    // Podržení verše: rychlé akce (záložka, kopírování, sdílení).
+    await tester.longPress(
+      find.textContaining('miloval svět', findRichText: true),
+    );
     await tester.pumpAndSettle();
+    expect(find.text('Kopírovat'), findsOneWidget);
     await tester.tap(find.text('Záložka'));
     await settle(tester);
     expect(find.byIcon(Icons.bookmark), findsOneWidget);
@@ -243,7 +247,9 @@ void main() {
 
   appTest('sdílení verše: náhled obrázku a volba vzhledu', (tester) async {
     await pumpApp(tester, at: const VerseRef(43, 3, 16));
-    await tester.tap(find.textContaining('miloval svět', findRichText: true));
+    await tester.longPress(
+      find.textContaining('miloval svět', findRichText: true),
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.text('Sdílet'));
     await settle(tester);
@@ -500,8 +506,8 @@ void main() {
 
   appTest('můj pokrok: kalendář, odznaky a knihy', (tester) async {
     await pumpApp(tester, openBible: false);
-    await tester.ensureVisible(find.text('Můj pokrok'));
-    await tester.pumpAndSettle();
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
     await tester.tap(find.text('Můj pokrok'));
     await settle(tester);
     expect(find.text('KALENDÁŘ ČTENÍ'), findsOneWidget);
@@ -527,8 +533,8 @@ void main() {
 
   appTest('můj pokrok: ruční označení přečtené knihy', (tester) async {
     await pumpApp(tester, openBible: false);
-    await tester.ensureVisible(find.text('Můj pokrok'));
-    await tester.pumpAndSettle();
+    await tester.tap(find.text('Deník'));
+    await settle(tester);
     await tester.tap(find.text('Můj pokrok'));
     await settle(tester);
     final list = find
@@ -819,6 +825,7 @@ void main() {
     await pumpApp(tester, openBible: false);
     await tester.tap(find.text('Studium'));
     await settle(tester);
+    await scrollStudyTo(tester, 'Příběh');
     await tester.tap(find.text('Příběh'));
     await settle(tester);
     expect(find.text('Stvoření a pád'), findsOneWidget);

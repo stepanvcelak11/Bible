@@ -40,76 +40,81 @@ String _dayKey(DateTime d) =>
   return (q, [...q.answers]..shuffle(Random(n)));
 }
 
-/// „Na dnešek“: otázka dne a – pokud je co dělat – verše k opakování
-/// a modlitby.
+/// Otázka dne pro Studium (načte otázky; dokud nejsou, nic).
+class QuizOfDay extends ConsumerWidget {
+  const QuizOfDay({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final quiz = ref.watch(quizProvider).value;
+    if (quiz == null || quiz.$2.isEmpty) return const SizedBox.shrink();
+    return QuizOfDayCard(questions: quiz.$2);
+  }
+}
+
+/// „Na dnešek“: verše k opakování a modlitby – jen když je co dělat.
 class ForTodaySection extends ConsumerWidget {
   const ForTodaySection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final quiz = ref.watch(quizProvider).value;
     final memoryDue = ref.watch(memoryProvider).where((m) => !m.learned).length;
     final prayers = [
       for (final p in ref.watch(prayerProvider))
         if (!p.isAnswered) p,
     ];
-    if (quiz == null || quiz.$2.isEmpty) return const SizedBox.shrink();
+    if (memoryDue == 0 && prayers.isEmpty) return const SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SectionLabel(S.forToday),
-        _QuizOfDayCard(questions: quiz.$2),
-        if (memoryDue > 0 || prayers.isNotEmpty) ...[
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              if (memoryDue > 0)
-                Expanded(
-                  child: _MiniTile(
-                    icon: Icons.psychology_outlined,
-                    color: const Color(0xFF8C6BA8),
-                    title: S.memory,
-                    subtitle: S.memoryDue(memoryDue),
-                    onTap: () => openMemory(context),
-                  ),
+        Row(
+          children: [
+            if (memoryDue > 0)
+              Expanded(
+                child: _MiniTile(
+                  icon: Icons.psychology_outlined,
+                  color: const Color(0xFF8C6BA8),
+                  title: S.memory,
+                  subtitle: S.memoryDue(memoryDue),
+                  onTap: () => openMemory(context),
                 ),
-              if (memoryDue > 0 && prayers.isNotEmpty)
-                const SizedBox(width: 10),
-              if (prayers.isNotEmpty)
-                Expanded(
-                  child: _MiniTile(
-                    icon: Icons.volunteer_activism_outlined,
-                    color: _green,
-                    title: S.prayerTime,
-                    subtitle: S.prayersDue(prayers.length),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        fullscreenDialog: true,
-                        builder: (_) => PrayerTimeScreen(
-                          ids: [for (final p in prayers) p.id],
-                        ),
+              ),
+            if (memoryDue > 0 && prayers.isNotEmpty) const SizedBox(width: 10),
+            if (prayers.isNotEmpty)
+              Expanded(
+                child: _MiniTile(
+                  icon: Icons.volunteer_activism_outlined,
+                  color: _green,
+                  title: S.prayerTime,
+                  subtitle: S.prayersDue(prayers.length),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      fullscreenDialog: true,
+                      builder: (_) => PrayerTimeScreen(
+                        ids: [for (final p in prayers) p.id],
                       ),
                     ),
                   ),
                 ),
-            ],
-          ),
-        ],
+              ),
+          ],
+        ),
       ],
     );
   }
 }
 
-class _QuizOfDayCard extends ConsumerStatefulWidget {
-  const _QuizOfDayCard({required this.questions});
+class QuizOfDayCard extends ConsumerStatefulWidget {
+  const QuizOfDayCard({super.key, required this.questions});
 
   final List<QuizQuestion> questions;
 
   @override
-  ConsumerState<_QuizOfDayCard> createState() => _QuizOfDayCardState();
+  ConsumerState<QuizOfDayCard> createState() => QuizOfDayCardState();
 }
 
-class _QuizOfDayCardState extends ConsumerState<_QuizOfDayCard> {
+class QuizOfDayCardState extends ConsumerState<QuizOfDayCard> {
   String? _chosen;
 
   @override

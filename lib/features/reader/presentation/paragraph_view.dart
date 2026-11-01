@@ -11,6 +11,8 @@ import '../application/read_aloud_controller.dart';
 import '../application/reader_blocks.dart';
 import '../application/reader_state.dart';
 import 'note_editor_sheet.dart';
+import '../../../domain/entities/bible_entities.dart';
+import 'verse_action_panel.dart';
 import 'verse_tile.dart' show verseTextStyle;
 
 /// Nadpis oddílu v textu (z překladů jako B21).
@@ -66,8 +68,24 @@ class ParagraphView extends ConsumerStatefulWidget {
 class _ParagraphViewState extends ConsumerState<ParagraphView> {
   final _recognizers = <Object, TapGestureRecognizer>{};
 
-  TapGestureRecognizer _tap(Object key, VoidCallback onTap) {
-    return (_recognizers[key] ??= TapGestureRecognizer())..onTap = onTap;
+  /// Verš pod prstem – pro podržení (rychlé akce).
+  int? _pressed;
+
+  TapGestureRecognizer _tap(Object key, VoidCallback onTap, {int? verse}) {
+    return (_recognizers[key] ??= TapGestureRecognizer())
+      ..onTap = onTap
+      ..onTapDown = verse == null ? null : (_) => _pressed = verse;
+  }
+
+  void _hold(Offset position) {
+    final verse = _pressed ?? widget.block.verses.last.number;
+    _pressed = null;
+    showQuickVerseMenu(
+      context,
+      ref,
+      VerseRef(widget.bookId, widget.chapter, verse),
+      position,
+    );
   }
 
   @override
@@ -136,7 +154,7 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
           : highlight == null
           ? null
           : colors.highlights[highlight];
-      final rec = _tap(n, () => _toggle(n));
+      final rec = _tap(n, () => _toggle(n), verse: n);
       final style = TextStyle(
         backgroundColor: background,
         decoration: selected ? TextDecoration.underline : null,
@@ -223,6 +241,7 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => _toggle(widget.block.verses.last.number),
+      onLongPressStart: (d) => _hold(d.globalPosition),
       child: Padding(
         padding: EdgeInsets.fromLTRB(poetry ? 22 : 6, 4, 6, poetry ? 6 : 10),
         child: initial != null

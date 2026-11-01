@@ -24,6 +24,8 @@ import '../../connections/presentation/connections_screen.dart';
 import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/quiz_screen.dart';
 import '../../search/application/reference_parser.dart';
+import '../../today/presentation/for_today.dart';
+import '../../today/presentation/plan_card.dart';
 import '../../today/presentation/plans_sheet.dart';
 import '../../today/presentation/timeline_screen.dart';
 import '../../translations/presentation/library_screen.dart';
@@ -323,6 +325,11 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 ],
               ),
             ),
+            // --- Každý den: plán čtení a otázka dne ----------------------
+            header(S.studyDaily),
+            const PlanCard(),
+            const SizedBox(height: 10),
+            const QuizOfDay(),
             // --- Bible jako celek ----------------------------------------
             KeyedSubtree(key: _wholeKey, child: header(S.connectionsWhole)),
             const ConnectionsHeroCard(),

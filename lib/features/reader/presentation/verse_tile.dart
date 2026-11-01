@@ -10,6 +10,7 @@ import '../../settings/application/reader_settings_controller.dart';
 import '../application/read_aloud_controller.dart';
 import '../application/reader_state.dart';
 import 'note_editor_sheet.dart';
+import 'verse_action_panel.dart';
 
 /// Pozadí verše podle stavu: výběr > krátké podbarvení po skoku > zvýraznění.
 Color? _background(
@@ -106,6 +107,7 @@ class VerseTile extends ConsumerWidget with _VerseState {
         highlight: state.highlight,
       ),
       onTap: () => onTap(ref),
+      onHold: (p) => showQuickVerseMenu(context, ref, verseRef, p),
       child: initial != null
           ? DropCapText(
               initial: initial.$1,
@@ -176,6 +178,7 @@ class ParallelVerseTile extends ConsumerWidget with _VerseState {
         highlight: state.highlight,
       ),
       onTap: () => onTap(ref),
+      onHold: (p) => showQuickVerseMenu(context, ref, verseRef, p),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -198,11 +201,13 @@ class _VerseContainer extends StatelessWidget {
   const _VerseContainer({
     required this.background,
     required this.onTap,
+    required this.onHold,
     required this.child,
   });
 
   final Color? background;
   final VoidCallback onTap;
+  final ValueChanged<Offset> onHold;
   final Widget child;
 
   @override
@@ -210,7 +215,7 @@ class _VerseContainer extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
-      onLongPress: onTap,
+      onLongPressStart: (d) => onHold(d.globalPosition),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 220),
         curve: Curves.easeOut,

@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../today/presentation/recent_list.dart';
+
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -214,6 +216,7 @@ class ProgressScreen extends ConsumerWidget {
                 child: _Heatmap(daily: daily),
               ),
             ),
+            const RecentReadingList(),
             // --- Odznaky --------------------------------------------------
             SectionLabel(S.badgesCount(earned, badges.length)),
             GridView.count(

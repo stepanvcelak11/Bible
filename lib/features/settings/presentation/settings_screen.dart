@@ -66,6 +66,10 @@ class SettingsScreen extends ConsumerWidget {
                     value: AppThemeMode.dark,
                     label: Text(S.themeDark),
                   ),
+                  ButtonSegment(
+                    value: AppThemeMode.candle,
+                    label: Text(S.themeCandle),
+                  ),
                 ],
                 selected: {settings.themeMode},
                 onSelectionChanged: (s) => ctl.setThemeMode(s.single),
@@ -75,6 +79,8 @@ class SettingsScreen extends ConsumerWidget {
             const _AccentPicker(),
             const _Header(S.background),
             const _BackgroundPicker(),
+            const _Header(S.readingFont),
+            const _FontPicker(),
             // Živý náhled textu.
             Container(
               margin: const EdgeInsets.fromLTRB(16, 20, 16, 8),
@@ -601,6 +607,81 @@ class _BackgroundPicker extends ConsumerWidget {
                 ),
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Výběr písma textu Bible s ukázkou „Aa“ v daném písmu.
+class _FontPicker extends ConsumerWidget {
+  const _FontPicker();
+
+  static const _labels = {
+    ReadingFont.literata: S.fontLiterata,
+    ReadingFont.garamond: S.fontGaramond,
+    ReadingFont.atkinson: S.fontAtkinson,
+  };
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final current = ref.watch(
+      readerSettingsProvider.select((s) => s.readingFont),
+    );
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        children: [
+          for (final f in ReadingFont.values) ...[
+            if (f != ReadingFont.values.first) const SizedBox(width: 10),
+            Expanded(
+              child: Semantics(
+                selected: f == current,
+                button: true,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(14),
+                  onTap: () => ref
+                      .read(readerSettingsProvider.notifier)
+                      .setReadingFont(f),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      color: f == current
+                          ? palette.gold.withValues(alpha: 0.12)
+                          : palette.card,
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(
+                        color: f == current ? palette.gold : palette.cardBorder,
+                        width: f == current ? 1.6 : 1,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Aa',
+                          style: TextStyle(
+                            fontFamily: f.family,
+                            fontSize: 26,
+                            height: 1.2,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                        Text(
+                          _labels[f]!,
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            color: f == current ? palette.gold : palette.muted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );

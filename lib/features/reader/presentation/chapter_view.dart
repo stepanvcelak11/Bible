@@ -29,6 +29,11 @@ import '../application/chapter_content_provider.dart';
 import '../application/reader_blocks.dart';
 import '../application/reader_state.dart';
 import '../application/reading_position_controller.dart';
+import '../../../domain/entities/bible_entities.dart';
+import '../../../domain/services/timeline.dart';
+import '../../today/presentation/timeline_screen.dart';
+import '../../content/presentation/family_tree_screen.dart';
+import '../../content/presentation/harmony_screen.dart';
 import 'paragraph_view.dart';
 import 'reflection_sheet.dart';
 import 'reader_screen.dart' show readerTopBarHeight;
@@ -413,6 +418,10 @@ class _ChapterHeader extends ConsumerWidget {
       ),
     );
 
+    final canonicalRef = Versification.toCanonical(
+      VerseRef(bookId, chapter, 1),
+      translationId,
+    );
     // Studijní obsah ke kapitole (uložený v kanonickém číslování).
     final canonical = Versification.chaptersSpanned(
       bookId,
@@ -428,6 +437,23 @@ class _ChapterHeader extends ConsumerWidget {
       for (final n in ref.watch(notesProvider).value ?? const <AppNote>[])
         if (covers(n.passage)) n,
     ];
+    // Události, které vyprávějí i jiná evangelia.
+    final parallels = canonicalRef.bookId < 40 || canonicalRef.bookId > 43
+        ? const <HarmonyEvent>[]
+        : [
+            for (final per
+                in ref.watch(harmonyProvider).value ?? const <HarmonyPeriod>[])
+              for (final e in per.events)
+                if (e.refs.whereType<Passage>().length > 1 &&
+                    e.refs.any(
+                      (p) =>
+                          p != null &&
+                          p.bookId == canonicalRef.bookId &&
+                          canonicalRef.chapter >= p.chapter &&
+                          canonicalRef.chapter <= p.endChapter,
+                    ))
+                  e,
+          ];
     final people = [
       for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
         if (p.story.any(covers) || covers(p.key)) p,
@@ -462,12 +488,16 @@ class _ChapterHeader extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 2),
-          Text(
-            '$chapter',
-            style: theme.textTheme.displayLarge?.copyWith(
-              color: colors.text,
-              fontWeight: FontWeight.w300,
-              height: 1.1,
+          _ReadGlow(
+            read: read,
+            color: palette.gold,
+            child: Text(
+              '$chapter',
+              style: theme.textTheme.displayLarge?.copyWith(
+                color: colors.text,
+                fontWeight: FontWeight.w300,
+                height: 1.1,
+              ),
             ),
           ),
           Container(
@@ -507,6 +537,12 @@ class _ChapterHeader extends ConsumerWidget {
             textAlign: TextAlign.center,
             style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
           ),
+          if (timelinePlaceOf(canonicalRef.bookId, canonicalRef.chapter)
+              case final place?)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: TimelineStrip(place: place),
+            ),
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
@@ -543,6 +579,29 @@ class _ChapterHeader extends ConsumerWidget {
                   label: Text(n.title),
                   onPressed: () => showNoteSheet(context, n),
                 ),
+              if (familyChapters.contains((
+                canonicalRef.bookId,
+                canonicalRef.chapter,
+              )))
+                ActionChip(
+                  avatar: Icon(
+                    Icons.account_tree_outlined,
+                    size: 18,
+                    color: palette.gold,
+                  ),
+                  label: const Text(S.familyTree),
+                  onPressed: () => openFamilyTree(context),
+                ),
+              if (parallels.isNotEmpty)
+                ActionChip(
+                  avatar: Icon(
+                    Icons.view_column_outlined,
+                    size: 18,
+                    color: palette.gold,
+                  ),
+                  label: const Text(S.parallelOpen),
+                  onPressed: () => _openParallels(context, parallels),
+                ),
               for (final p in people.take(4))
                 ActionChip(
                   avatar: Icon(
@@ -559,4 +618,236 @@ class _ChapterHeader extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Když se kapitola během čtení započítá jako přečtená, číslo kapitoly
+/// jednou jemně zazáří (bez konfet – jen světlo).
+class _ReadGlow extends StatefulWidget {
+  const _ReadGlow({
+    required this.read,
+    required this.color,
+    required this.child,
+  });
+
+  final bool read;
+  final Color color;
+  final Widget child;
+
+  @override
+  State<_ReadGlow> createState() => _ReadGlowState();
+}
+
+class _ReadGlowState extends State<_ReadGlow>
+    with SingleTickerProviderStateMixin {
+  late final _c = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 1800),
+  );
+
+  @override
+  void didUpdateWidget(_ReadGlow old) {
+    super.didUpdateWidget(old);
+    if (widget.read && !old.read && !MediaQuery.disableAnimationsOf(context)) {
+      _c.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: _c,
+    child: widget.child,
+    builder: (context, child) {
+      if (!_c.isAnimating) return child!;
+      // Rychle se rozsvítí, pomalu dohasne.
+      final t = _c.value;
+      final k = t < 0.2 ? t / 0.2 : 1 - (t - 0.2) / 0.8;
+      return Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: 80 + 60 * t,
+            height: 80 + 60 * t,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  widget.color.withValues(alpha: 0.45 * k),
+                  widget.color.withValues(alpha: 0),
+                ],
+              ),
+            ),
+          ),
+          child!,
+        ],
+      );
+    },
+  );
+}
+
+/// Kde v dějinách se kapitola odehrává: pruh období s tečkou a datum
+/// s událostí. Klepnutím časová osa na tomto místě.
+class TimelineStrip extends StatelessWidget {
+  const TimelineStrip({super.key, required this.place});
+
+  final TimelinePlace place;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final color = Color(place.event.era.color);
+    final note = place.span.note;
+    return Semantics(
+      button: true,
+      label: '${S.timeline}: ${place.event.date}, ${place.event.title}',
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: () => openTimeline(context, focus: place.index, note: note),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 420),
+          padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.07),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: color.withValues(alpha: 0.25)),
+          ),
+          child: ExcludeSemantics(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 12,
+                  child: CustomPaint(
+                    size: const Size(double.infinity, 12),
+                    painter: _EraStripPainter(
+                      position: place.position,
+                      dot: color,
+                      ring: palette.card,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.history_edu, size: 15, color: color),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: place.event.date,
+                              style: TextStyle(
+                                color: color,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            TextSpan(text: '  ·  ${place.event.title}'),
+                          ],
+                        ),
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.labelMedium,
+                      ),
+                    ),
+                  ],
+                ),
+                if (note != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: Text(
+                      note,
+                      textAlign: TextAlign.center,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: palette.muted,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Barevné úseky období (šířka podle počtu událostí) a tečka „tady“.
+class _EraStripPainter extends CustomPainter {
+  _EraStripPainter({
+    required this.position,
+    required this.dot,
+    required this.ring,
+  });
+
+  final double position;
+  final Color dot;
+  final Color ring;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final total = timelineEvents.length;
+    final y = size.height / 2;
+    var x = 0.0;
+    for (final era in TimelineEra.values) {
+      final n = timelineEvents.where((e) => e.era == era).length;
+      final w = size.width * n / total;
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(x + 1, y - 2, w - 2, 4),
+          const Radius.circular(2),
+        ),
+        Paint()..color = Color(era.color).withValues(alpha: 0.55),
+      );
+      x += w;
+    }
+    // Střed události v jejím „slotu“.
+    final cx = size.width * (position * (total - 1) + 0.5) / total;
+    canvas.drawCircle(Offset(cx, y), 6, Paint()..color = ring);
+    canvas.drawCircle(Offset(cx, y), 4.5, Paint()..color = dot);
+  }
+
+  @override
+  bool shouldRepaint(_EraStripPainter old) =>
+      old.position != position || old.dot != dot || old.ring != ring;
+}
+
+void _openParallels(BuildContext context, List<HarmonyEvent> events) {
+  void open(HarmonyEvent e) => Navigator.of(context).push(
+    MaterialPageRoute<void>(builder: (_) => GospelParallelScreen(event: e)),
+  );
+  if (events.length == 1) return open(events.single);
+  showModalBottomSheet<void>(
+    context: context,
+    builder: (sheet) => ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.only(bottom: 24),
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+          child: Text(
+            S.parallelOpen,
+            style: Theme.of(sheet).textTheme.titleLarge,
+          ),
+        ),
+        for (final e in events)
+          ListTile(
+            leading: const Icon(Icons.view_column_outlined),
+            title: Text(e.title),
+            onTap: () {
+              Navigator.of(sheet).pop();
+              open(e);
+            },
+          ),
+      ],
+    ),
+  );
 }

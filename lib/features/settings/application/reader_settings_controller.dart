@@ -40,6 +40,9 @@ class ReaderSettingsController extends Notifier<ReaderSettings> {
   void setIllustrations(bool value) =>
       update((s) => s.copyWith(illustrations: value));
 
+  void setReadingFont(ReadingFont value) =>
+      update((s) => s.copyWith(readingFont: value));
+
   void setAccent(AppAccent value) => update((s) => s.copyWith(accent: value));
 
   void reset() => update((_) => const ReaderSettings());

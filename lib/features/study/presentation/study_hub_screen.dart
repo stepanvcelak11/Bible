@@ -29,6 +29,8 @@ import '../../today/presentation/for_today.dart';
 import '../../today/presentation/plan_card.dart';
 import '../../today/presentation/plans_sheet.dart';
 import '../../today/presentation/timeline_screen.dart';
+import '../../content/presentation/family_tree_screen.dart';
+import '../../prayer/presentation/lectio_screen.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../../shell/home_shell.dart';
 import 'book_intro_sheet.dart';
@@ -357,6 +359,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 S.plansHint,
                 () => openPlans(context),
               ),
+              _Entry(
+                Icons.account_tree_outlined,
+                const Color(0xFF2E8B57),
+                S.familyTree,
+                S.familyTreeHint,
+                () => openFamilyTree(context),
+              ),
             ]),
             // --- Pro život -----------------------------------------------
             KeyedSubtree(key: _lifeKey, child: header(S.studyForLife)),
@@ -389,6 +398,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 S.prayers,
                 S.prayerHint,
                 () => openPrayers(context),
+              ),
+              _Entry(
+                Icons.spa_outlined,
+                const Color(0xFF4E8A9A),
+                S.lectio,
+                S.lectioHint,
+                () => openLectio(context),
               ),
               _Entry(
                 Icons.emoji_events_outlined,

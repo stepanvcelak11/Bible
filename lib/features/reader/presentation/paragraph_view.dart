@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/services/bible_content.dart';
 import '../../../core/widgets/drop_cap.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
@@ -250,6 +251,8 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
                 spans: spans,
                 style: base,
                 color: palette.gold,
+                ornament: bookCategories.indexOf(categoryOf(widget.bookId)),
+                accent: Color(categoryOf(widget.bookId).color),
                 onInitialTap: () => _toggle(1),
               )
             : Text.rich(TextSpan(children: spans), style: base),

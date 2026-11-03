@@ -53,3 +53,12 @@ flutter:
     - family: Inter
       fonts:
         - asset: assets/fonts/Inter.ttf
+    # Volitelná písma textu Bible (zmenšená na latinku s češtinou).
+    - family: EB Garamond
+      fonts:
+        - asset: assets/fonts/extra/EBGaramond.ttf
+    - family: Atkinson Hyperlegible
+      fonts:
+        - asset: assets/fonts/extra/AtkinsonHyperlegible.ttf
+        - asset: assets/fonts/extra/AtkinsonHyperlegible-Bold.ttf
+          weight: 700

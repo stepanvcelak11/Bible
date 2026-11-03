@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/services/bible_content.dart';
 import '../../../core/widgets/drop_cap.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
@@ -114,6 +115,8 @@ class VerseTile extends ConsumerWidget with _VerseState {
               spans: [...verseTextSpans(context, initial.$2), ...markers],
               style: verseTextStyle(context, settings),
               color: AppPalette.of(context).gold,
+              ornament: bookCategories.indexOf(categoryOf(verse.ref.bookId)),
+              accent: Color(categoryOf(verse.ref.bookId).color),
               onInitialTap: () => onTap(ref),
             )
           : Text.rich(
@@ -235,7 +238,7 @@ class _VerseContainer extends StatelessWidget {
 
 TextStyle verseTextStyle(BuildContext context, ReaderSettings settings) =>
     TextStyle(
-      fontFamily: appFontFamily,
+      fontFamily: settings.readingFont.family,
       fontSize: settings.fontSize,
       height: settings.lineHeight,
       color: ReaderColors.of(context).text,

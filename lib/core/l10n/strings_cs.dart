@@ -111,6 +111,11 @@ abstract final class S {
   static const themeLight = 'Světlý';
   static const themeSepia = 'Sépie';
   static const themeDark = 'Tmavý';
+  static const themeCandle = 'Svíčka';
+  static const readingFont = 'Písmo textu';
+  static const fontLiterata = 'Knižní';
+  static const fontGaramond = 'Klasické';
+  static const fontAtkinson = 'Čitelné';
   static const background = 'Pozadí';
   static const accentColor = 'Barva';
   static const accentGold = 'Zlatá';
@@ -837,6 +842,72 @@ abstract final class S {
   static const all = 'Vše';
   static const timeline = 'Časová osa';
   static const worldHistory = 'Ve světě';
+  static String crossRefSummary(int all, int ot, int nt) =>
+      '$all souvislostí · $ot ve Starém, $nt v Novém zákoně';
+  static const parallelOpen = 'Evangelia vedle sebe';
+  static const parallelMarks = 'Vyznačit rozdíly';
+  static const parallelHint =
+      'Barevně jsou slova, která má jen toto evangelium – tak je vidět, '
+      'co který evangelista zdůrazňuje nebo doplňuje.';
+  static const parallelHintPlain =
+      'Totéž vyprávění ve více evangeliích vedle sebe.';
+  static const familyTree = 'Rodokmen';
+  static const familyTreeHint = 'Od Adama přes Abrahama a Davida k Ježíši';
+  static const familyTreeIntro =
+      'Linie zaslíbení od Adama k Ježíši podle Gn 5, Gn 11, Rt 4, 1Pa 1–3 '
+      'a Mt 1. Po stranách jsou manželky a další děti; klepnutím otevřete '
+      'medailon postavy nebo verš. Lukáš (L 3) vede rodokmen od Davida přes '
+      'jeho syna Nátana – vysvětlení se liší (nejčastěji jde o rodokmen '
+      'Marie nebo o levirátní manželství). Starověké rodokmeny někdy '
+      'generace přeskakují.';
+  static const lectio = 'Lectio divina';
+  static const lectioHint = 'Modlitební čtení s průvodcem ve čtyřech krocích';
+  static const lectioIntro =
+      'Lectio divina („božské čtení“) je starý způsob, jak se modlit '
+      'Písmem. Nejde o to přečíst co nejvíc, ale nechat se oslovit jedním '
+      'krátkým úryvkem. Počítejte zhruba s deseti až patnácti minutami.';
+  static const lectioChoose = 'Vyberte úryvek';
+  static const lectioNext = 'Dál';
+  static const lectioRead = 'Čti';
+  static const lectioReadHint =
+      'Přečtěte úryvek pomalu, klidně dvakrát a půlhlasem. Které slovo nebo '
+      'verš vás zastavil? Klepněte na něj.';
+  static const lectioMeditate = 'Rozjímej';
+  static const lectioMeditateHint =
+      'Vraťte se k tomu verši. Opakujte si ho, převracejte v mysli. Proč vás '
+      'zastavil? Co říká o Bohu a co o vašem životě dnes?';
+  static const lectioPray = 'Modli se';
+  static const lectioPrayHint =
+      'Odpovězte Bohu vlastními slovy – díkem, prosbou, lítostí nebo '
+      'otázkou. Klidně jen jednou větou.';
+  static const lectioRest = 'Ztiš se';
+  static const lectioRestHint =
+      'Teď už nic nedělejte. Buďte chvíli v tichu před Bohem a nechte se '
+      'jím milovat. Dýchejte s kruhem.';
+  static const lectioRestPrayer = 'Mluv, Hospodine, tvůj služebník slyší.';
+  static const lectioIn = 'nádech';
+  static const lectioOut = 'výdech';
+  static const lectioAmen = 'Amen';
+  static const lectioRestDone = 'Můžete pokračovat, jak dlouho chcete.';
+  static const lectioSave = 'Uložit do deníku';
+  static const lectioFinish = 'Zavřít';
+  static const lectioAddPrayer = 'Přidat modlitbu i do Modliteb';
+  static const lectioQ1 = 'Které slovo mě zastavilo?';
+  static const lectioQ2 = 'Co mi Bůh skrze ně říká?';
+  static const lectioQ3 = 'Co mu odpovídám?';
+  static const mosaic = 'Mozaika Bible';
+  static String mosaicProgress(int read, int all) =>
+      'Odkryto $read z $all kapitol';
+  static const mosaicHint =
+      'Každá přečtená kapitola odkryje jeden kamínek obrazu.';
+  static const mosaicIntro =
+      'Obraz cesty celou Biblí – od stromu života po nové město. Kamínky '
+      'jdou po sloupcích zleva doprava v pořadí knih. Klepněte na kamínek.';
+  static const mosaicUnread = 'Ještě nepřečteno';
+  static const timelineWorld = 'Zobrazit světové dějiny';
+  static const timelineHere = 'Tady čtete';
+  static const timelineRead = 'Číst';
+  static const timelineKeyVerses = 'Klíčová místa';
   static const timelineHint = 'Bible a světové dějiny';
   static const timelineIntro =
       'Hlavní události biblických dějin. Starší období mají jen přibližnou '

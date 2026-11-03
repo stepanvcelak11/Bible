@@ -1,7 +1,23 @@
 import 'package:flutter/foundation.dart';
 
 /// Barevný motiv aplikace.
-enum AppThemeMode { system, light, sepia, dark }
+enum AppThemeMode { system, light, sepia, dark, candle }
+
+/// Písmo textu Bible (rozhraní zůstává v Inter).
+enum ReadingFont {
+  /// Literata – moderní knižní písmo (výchozí).
+  literata('Literata'),
+
+  /// EB Garamond – klasická sazba tištěných Biblí.
+  garamond('EB Garamond'),
+
+  /// Atkinson Hyperlegible – bez patek, velmi dobře čitelné.
+  atkinson('Atkinson Hyperlegible');
+
+  const ReadingFont(this.family);
+
+  final String family;
+}
 
 /// Pozadí obrazovek: jednobarevné, papír (jemné zrno), záře (teplé světelné
 /// skvrny) a obloha (svítání, v tmavém motivu hvězdná noc).
@@ -24,6 +40,7 @@ class ReaderSettings {
     this.accent = AppAccent.gold,
     this.dropCap = true,
     this.illustrations = true,
+    this.readingFont = ReadingFont.literata,
   });
 
   static const minFontSize = 14.0;
@@ -52,6 +69,9 @@ class ReaderSettings {
   /// Kreslené ilustrace k příběhům v textu.
   final bool illustrations;
 
+  /// Písmo textu Bible.
+  final ReadingFont readingFont;
+
   ReaderSettings copyWith({
     AppThemeMode? themeMode,
     double? fontSize,
@@ -63,6 +83,7 @@ class ReaderSettings {
     AppAccent? accent,
     bool? dropCap,
     bool? illustrations,
+    ReadingFont? readingFont,
   }) => ReaderSettings(
     themeMode: themeMode ?? this.themeMode,
     fontSize: (fontSize ?? this.fontSize).clamp(minFontSize, maxFontSize),
@@ -80,6 +101,7 @@ class ReaderSettings {
     accent: accent ?? this.accent,
     dropCap: dropCap ?? this.dropCap,
     illustrations: illustrations ?? this.illustrations,
+    readingFont: readingFont ?? this.readingFont,
   );
 
   Map<String, Object> toJson() => {
@@ -93,6 +115,7 @@ class ReaderSettings {
     'accent': accent.name,
     'dropCap': dropCap,
     'illustrations': illustrations,
+    'readingFont': readingFont.name,
   };
 
   /// Tolerantní načtení – neznámé nebo poškozené hodnoty se nahradí výchozími.
@@ -111,6 +134,7 @@ class ReaderSettings {
       accent: AppAccent.values.asNameMap()[json['accent']],
       dropCap: json['dropCap'] as bool?,
       illustrations: json['illustrations'] as bool?,
+      readingFont: ReadingFont.values.asNameMap()[json['readingFont']],
     );
   }
 
@@ -126,7 +150,8 @@ class ReaderSettings {
       other.background == background &&
       other.accent == accent &&
       other.dropCap == dropCap &&
-      other.illustrations == illustrations;
+      other.illustrations == illustrations &&
+      other.readingFont == readingFont;
 
   @override
   int get hashCode => Object.hash(
@@ -140,5 +165,6 @@ class ReaderSettings {
     accent,
     dropCap,
     illustrations,
+    readingFont,
   );
 }

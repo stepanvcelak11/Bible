@@ -179,7 +179,7 @@ class AccentTones {
   };
 }
 
-/// Motivy: světlý (papír), teplá sépie a tmavý (noční čtení), každý
+/// Motivy: světlý (papír), teplá sépie, tmavý a svíčka (noční čtení), každý
 /// v barvě zvoleného akcentu.
 abstract final class AppTheme {
   static const _ink = Color(0xFF2B2622);
@@ -281,6 +281,41 @@ abstract final class AppTheme {
     );
   }
 
+  /// Svíčka: teplé tmavé čtení večer – jantarový text na hnědočerném
+  /// podkladu, nízký kontrast bez modrého světla.
+  static ThemeData candle([AppAccent accent = AppAccent.gold]) {
+    final a = AccentTones.of(accent);
+    const amber = Color(0xFFE0A85A);
+    return _build(
+      ColorScheme.fromSeed(
+        seedColor: amber,
+        brightness: Brightness.dark,
+        primary: _mix(a.bright, amber, 0.6),
+        surface: const Color(0xFF17100A),
+        onSurface: const Color(0xFFE9D3B0),
+        surfaceContainerLowest: const Color(0xFF110B06),
+        surfaceContainerLow: const Color(0xFF1E150D),
+        surfaceContainer: const Color(0xFF241910),
+        surfaceContainerHigh: const Color(0xFF2C2014),
+        surfaceContainerHighest: const Color(0xFF352718),
+      ),
+      text: const Color(0xFFE4CBA3),
+      verseNumber: _mix(a.bright, amber, 0.65).withValues(alpha: 0.85),
+      highlightAlpha: 0.26,
+      palette: AppPalette(
+        gold: _mix(a.bright, amber, 0.6),
+        heroStart: const Color(0xFF231509),
+        heroEnd: const Color(0xFF5A3814),
+        onHero: const Color(0xFFFBE6C4),
+        card: const Color(0xFF20160D),
+        cardBorder: const Color(0xFF33251A),
+        muted: const Color(0xFFA58C6C),
+        water: const Color(0xFF1E211C),
+        land: const Color(0xFF261B11),
+      ),
+    );
+  }
+
   static ThemeData _build(
     ColorScheme scheme, {
     required Color text,
@@ -374,6 +409,7 @@ abstract final class AppTheme {
   ]) => switch (mode) {
     AppThemeMode.sepia => sepia(accent),
     AppThemeMode.dark => dark(accent),
+    AppThemeMode.candle => candle(accent),
     _ => light(accent),
   };
 }

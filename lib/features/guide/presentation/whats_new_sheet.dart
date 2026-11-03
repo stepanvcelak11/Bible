@@ -5,9 +5,56 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 17;
+const whatsNewVersion = 18;
 
 const _items = [
+  (
+    Icons.grid_view_rounded,
+    'Mozaika celé Bible',
+    'Každá přečtená kapitola odkryje jeden ze 1189 kamínků obrazu – od '
+        'stromu života přes Sínaj, Jeruzalém a kříž až k novému městu. '
+        'Najdete ji v Mém pokroku.',
+  ),
+  (
+    Icons.history_edu,
+    'Časová osa přímo v kapitolách',
+    'Pod číslem kapitoly vidíte, kdy se děj odehrává a kam patří '
+        '(u listů i kdy a kde vznikly). Klepnutím se otevře podrobnější '
+        'časová osa – 80 událostí – na místě, kde právě čtete.',
+  ),
+  (
+    Icons.text_fields,
+    'Zdobené iniciály, písma a Svíčka',
+    'První písmeno kapitoly je v rámečku jako v rukopisech, s ozdobou '
+        'podle druhu knihy. V Nastavení si vyberete písmo textu (knižní, '
+        'klasické, dobře čitelné) a večerní motiv Svíčka.',
+  ),
+  (
+    Icons.hub_outlined,
+    'Souvislosti jako oblouky',
+    'U studia verše (Odkazy) se nad celou Biblí vykreslí oblouky ke všem '
+        'místům, která s veršem souvisí.',
+  ),
+  (
+    Icons.view_column_outlined,
+    'Evangelia vedle sebe',
+    'Stejná událost v Matoušovi, Markovi, Lukášovi a Janovi ve sloupcích; '
+        'barevně jsou slova, která má jen jedno z nich. V kapitolách '
+        'evangelií i v Harmonii evangelií.',
+  ),
+  (
+    Icons.account_tree_outlined,
+    'Rodokmen',
+    'Linie zaslíbení od Adama přes Abrahama a Davida k Ježíši – s manželkami, '
+        'dalšími dětmi a odkazy na medailony. Ve Studiu a u kapitol '
+        's rodokmeny.',
+  ),
+  (
+    Icons.spa_outlined,
+    'Lectio divina',
+    'Modlitební čtení s průvodcem: čti, rozjímej, modli se, ztiš se. '
+        'Rozjímání si můžete uložit do deníku. Ve Studiu → Pro život.',
+  ),
   (
     Icons.account_balance_outlined,
     'Plány měst a staveb',

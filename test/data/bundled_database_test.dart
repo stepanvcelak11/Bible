@@ -8,6 +8,7 @@ import 'dart:convert';
 
 import 'package:bible_reader/domain/services/bible_content.dart';
 import 'package:bible_reader/domain/services/timeline.dart';
+import 'package:bible_reader/features/content/presentation/family_tree_screen.dart';
 import 'package:bible_reader/domain/services/versification.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -62,6 +63,11 @@ void main() {
       final refs = <String, VerseRef>{
         for (final e in timelineEvents)
           for (final r in e.refs) '${e.title}: ${r.encode()}': r,
+        for (final n in familyLine) ...{
+          'rodokmen ${n.name}': n.ref,
+          for (final l in [...n.spouses, ...n.children])
+            if (l.ref != null) 'rodokmen ${n.name} – ${l.name}': l.ref!,
+        },
         for (var d = 0; d < 400; d++)
           'verš dne $d': verseOfDay(DateTime(2025).add(Duration(days: d))),
       };

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../domain/services/bible_content.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
@@ -580,10 +581,19 @@ class _CrossRefsTab extends ConsumerWidget {
           ? const Center(child: Text(S.noCrossRefs))
           : ListView.separated(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 32),
-              itemCount: list.length,
-              separatorBuilder: (_, _) => const Divider(indent: 16),
-              itemBuilder: (context, i) =>
-                  _CrossRefTile(xref: list[i], translationId: translationId),
+              itemCount: list.length + 1,
+              separatorBuilder: (_, i) =>
+                  i == 0 ? const SizedBox.shrink() : const Divider(indent: 16),
+              itemBuilder: (context, i) => i == 0
+                  ? CrossRefArcs(
+                      source: verse,
+                      refs: list,
+                      translationId: translationId,
+                    )
+                  : _CrossRefTile(
+                      xref: list[i - 1],
+                      translationId: translationId,
+                    ),
             ),
     );
   }
@@ -629,4 +639,162 @@ class _CrossRefTile extends ConsumerWidget {
       ),
     );
   }
+}
+
+/// Oblouky nad celou Biblí: odkud verš je a kam všude vedou jeho
+/// souvislosti. Osa = všechny kapitoly od Genesis po Zjevení (barvy
+/// skupin knih), výška oblouku podle vzdálenosti.
+class CrossRefArcs extends ConsumerWidget {
+  const CrossRefArcs({
+    super.key,
+    required this.source,
+    required this.refs,
+    required this.translationId,
+  });
+
+  final VerseRef source;
+  final List<CrossReference> refs;
+  final String translationId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counts = ref.watch(chapterCountsProvider(translationId)).value;
+    if (counts == null || counts.isEmpty) return const SizedBox.shrink();
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final ot = refs.where((r) => r.target.bookId < 40).length;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 130,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: 0, end: 1),
+              duration: Duration(
+                milliseconds: MediaQuery.disableAnimationsOf(context) ? 0 : 900,
+              ),
+              curve: Curves.easeOutCubic,
+              builder: (context, t, _) => CustomPaint(
+                painter: ArcsPainter(
+                  counts: counts,
+                  source: source,
+                  targets: [for (final r in refs) (r.target, r.votes)],
+                  progress: t,
+                  arc: palette.gold,
+                  marker: theme.colorScheme.onSurface,
+                  labels: palette.muted,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            S.crossRefSummary(refs.length, ot, refs.length - ot),
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ArcsPainter extends CustomPainter {
+  ArcsPainter({
+    required this.counts,
+    required this.source,
+    required this.targets,
+    required this.progress,
+    required this.arc,
+    required this.marker,
+    required this.labels,
+  });
+
+  final Map<int, int> counts;
+  final VerseRef source;
+  final List<(VerseRef, int)> targets;
+  final double progress;
+  final Color arc;
+  final Color marker;
+  final Color labels;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final start = <int, int>{};
+    var total = 0;
+    for (var b = 1; b <= 66; b++) {
+      start[b] = total;
+      total += counts[b] ?? 0;
+    }
+    if (total == 0) return;
+    final base = size.height - 20;
+    double x(VerseRef r) =>
+        size.width * ((start[r.bookId] ?? 0) + r.chapter - 0.5) / total;
+
+    // Osa po skupinách knih.
+    for (final c in bookCategories) {
+      final x0 = size.width * start[c.first]! / total;
+      final last = c.last == 66 ? total : start[c.last + 1]!;
+      final x1 = size.width * last / total;
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTRB(x0 + 0.5, base, x1 - 0.5, base + 5),
+          const Radius.circular(2),
+        ),
+        Paint()..color = Color(c.color).withValues(alpha: 0.8),
+      );
+    }
+    // Popisky zákonů.
+    void label(String text, double cx) {
+      final tp = TextPainter(
+        text: TextSpan(
+          text: text,
+          style: TextStyle(fontSize: 10, color: labels, letterSpacing: 0.5),
+        ),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      tp.paint(canvas, Offset(cx - tp.width / 2, base + 8));
+    }
+
+    final ntX = size.width * start[40]! / total;
+    label('STARÝ ZÁKON', ntX / 2);
+    label('NOVÝ ZÁKON', (ntX + size.width) / 2);
+
+    final sx = x(source);
+    final maxVotes = targets.fold<int>(1, (m, t) => t.$2 > m ? t.$2 : m);
+    final paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    for (final (t, votes) in targets) {
+      final tx = x(t);
+      final d = (tx - sx).abs();
+      final hgt = (d / size.width * 2).clamp(0.08, 1.0) * (base - 6);
+      final path = Path()
+        ..moveTo(sx, base)
+        ..cubicTo(sx, base - hgt * 1.33, tx, base - hgt * 1.33, tx, base);
+      final strength = 0.35 + 0.65 * votes / maxVotes;
+      paint
+        ..strokeWidth = 0.8 + 1.4 * strength
+        ..color = arc.withValues(alpha: 0.25 + 0.6 * strength);
+      // Oblouk se postupně „natáhne“ od verše k cíli.
+      for (final m in path.computeMetrics()) {
+        canvas.drawPath(m.extractPath(0, m.length * progress), paint);
+      }
+      if (progress > 0.95) {
+        canvas.drawCircle(Offset(tx, base), 2, Paint()..color = arc);
+      }
+    }
+    // Zdrojový verš.
+    canvas.drawCircle(Offset(sx, base + 2.5), 5, Paint()..color = marker);
+    canvas.drawCircle(Offset(sx, base + 2.5), 2.5, Paint()..color = arc);
+  }
+
+  @override
+  bool shouldRepaint(ArcsPainter old) =>
+      old.progress != progress ||
+      old.source != source ||
+      old.targets.length != targets.length ||
+      old.arc != arc;
 }

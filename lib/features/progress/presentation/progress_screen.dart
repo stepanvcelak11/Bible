@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../today/presentation/recent_list.dart';
+import 'mosaic.dart';
 
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
@@ -187,6 +188,8 @@ class ProgressScreen extends ConsumerWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 12),
+            const BibleMosaicCard(),
             if (finish != null)
               Padding(
                 padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),

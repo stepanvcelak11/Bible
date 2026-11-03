@@ -1,0 +1,1822 @@
+{
+ "periods": [
+  {
+   "name": "Úvod a narození",
+   "events": [
+    {
+     "title": "Úvod evangelií",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       1,
+       1,
+       4
+      ],
+      [
+       43,
+       1,
+       1,
+       18
+      ]
+     ]
+    },
+    {
+     "title": "Ježíšův rodokmen",
+     "refs": [
+      [
+       40,
+       1,
+       1,
+       17
+      ],
+      null,
+      [
+       42,
+       3,
+       23,
+       38
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Zvěstování narození Jana Křtitele",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       1,
+       5,
+       25
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Zvěstování Marii",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       1,
+       26,
+       38
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Marie navštěvuje Alžbětu",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       1,
+       39,
+       56
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Narození Jana Křtitele",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       1,
+       57,
+       80
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Anděl se zjevuje Josefovi",
+     "refs": [
+      [
+       40,
+       1,
+       18,
+       25
+      ],
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Narození Ježíše",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       2,
+       1,
+       7
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Pastýři v Betlémě",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       2,
+       8,
+       20
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Představení v chrámu, Simeon a Anna",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       2,
+       21,
+       38
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Mudrci z východu",
+     "refs": [
+      [
+       40,
+       2,
+       1,
+       12
+      ],
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Útěk do Egypta",
+     "refs": [
+      [
+       40,
+       2,
+       13,
+       18
+      ],
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Návrat do Nazareta",
+     "refs": [
+      [
+       40,
+       2,
+       19,
+       23
+      ],
+      null,
+      [
+       42,
+       2,
+       39,
+       40
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Dvanáctiletý Ježíš v chrámu",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       2,
+       41,
+       52
+      ],
+      null
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Příprava a začátek působení",
+   "events": [
+    {
+     "title": "Kázání Jana Křtitele",
+     "refs": [
+      [
+       40,
+       3,
+       1,
+       12
+      ],
+      [
+       41,
+       1,
+       1,
+       8
+      ],
+      [
+       42,
+       3,
+       1,
+       18
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Ježíšův křest",
+     "refs": [
+      [
+       40,
+       3,
+       13,
+       17
+      ],
+      [
+       41,
+       1,
+       9,
+       11
+      ],
+      [
+       42,
+       3,
+       21,
+       22
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Pokušení na poušti",
+     "refs": [
+      [
+       40,
+       4,
+       1,
+       11
+      ],
+      [
+       41,
+       1,
+       12,
+       13
+      ],
+      [
+       42,
+       4,
+       1,
+       13
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Janovo svědectví o Ježíši",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       1,
+       19,
+       34
+      ]
+     ]
+    },
+    {
+     "title": "První učedníci",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       1,
+       35,
+       51
+      ]
+     ]
+    },
+    {
+     "title": "Svatba v Káně",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       2,
+       1,
+       12
+      ]
+     ]
+    },
+    {
+     "title": "Vyčištění chrámu (podle Jana)",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       2,
+       13,
+       25
+      ]
+     ]
+    },
+    {
+     "title": "Rozhovor s Nikodémem",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       3,
+       1,
+       21
+      ]
+     ]
+    },
+    {
+     "title": "Samařanka u studny",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       4,
+       1,
+       42
+      ]
+     ]
+    },
+    {
+     "title": "Uzdravení syna královského úředníka",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       4,
+       43,
+       54
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Působení v Galileji",
+   "events": [
+    {
+     "title": "Začátek kázání v Galileji",
+     "refs": [
+      [
+       40,
+       4,
+       12,
+       17
+      ],
+      [
+       41,
+       1,
+       14,
+       15
+      ],
+      [
+       42,
+       4,
+       14,
+       15
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Odmítnutí v Nazaretu",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       4,
+       16,
+       30
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Povolání rybářů",
+     "refs": [
+      [
+       40,
+       4,
+       18,
+       22
+      ],
+      [
+       41,
+       1,
+       16,
+       20
+      ],
+      [
+       42,
+       5,
+       1,
+       11
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Den v Kafarnaum",
+     "refs": [
+      [
+       40,
+       8,
+       14,
+       17
+      ],
+      [
+       41,
+       1,
+       21,
+       34
+      ],
+      [
+       42,
+       4,
+       31,
+       41
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Uzdravení malomocného",
+     "refs": [
+      [
+       40,
+       8,
+       1,
+       4
+      ],
+      [
+       41,
+       1,
+       40,
+       45
+      ],
+      [
+       42,
+       5,
+       12,
+       16
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Uzdravení ochrnutého",
+     "refs": [
+      [
+       40,
+       9,
+       1,
+       8
+      ],
+      [
+       41,
+       2,
+       1,
+       12
+      ],
+      [
+       42,
+       5,
+       17,
+       26
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Povolání Matouše (Leviho)",
+     "refs": [
+      [
+       40,
+       9,
+       9,
+       13
+      ],
+      [
+       41,
+       2,
+       13,
+       17
+      ],
+      [
+       42,
+       5,
+       27,
+       32
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Spor o sobotu",
+     "refs": [
+      [
+       40,
+       12,
+       1,
+       14
+      ],
+      [
+       41,
+       2,
+       23,
+       6,
+       3
+      ],
+      [
+       42,
+       6,
+       1,
+       11
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Uzdravení u rybníka Bethesda",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       5,
+       1,
+       47
+      ]
+     ]
+    },
+    {
+     "title": "Volba Dvanácti",
+     "refs": [
+      [
+       40,
+       10,
+       2,
+       4
+      ],
+      [
+       41,
+       3,
+       13,
+       19
+      ],
+      [
+       42,
+       6,
+       12,
+       16
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Kázání na hoře",
+     "refs": [
+      [
+       40,
+       5,
+       1,
+       29,
+       7
+      ],
+      null,
+      [
+       42,
+       6,
+       17,
+       49
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Víra setníka",
+     "refs": [
+      [
+       40,
+       8,
+       5,
+       13
+      ],
+      null,
+      [
+       42,
+       7,
+       1,
+       10
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Vzkříšení mladíka v Naimu",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       7,
+       11,
+       17
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Hříšná žena pomazává Ježíše",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       7,
+       36,
+       50
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Podobenství o rozsévači",
+     "refs": [
+      [
+       40,
+       13,
+       1,
+       23
+      ],
+      [
+       41,
+       4,
+       1,
+       20
+      ],
+      [
+       42,
+       8,
+       4,
+       15
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Utišení bouře",
+     "refs": [
+      [
+       40,
+       8,
+       23,
+       27
+      ],
+      [
+       41,
+       4,
+       35,
+       41
+      ],
+      [
+       42,
+       8,
+       22,
+       25
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Posedlý v gadarenském kraji",
+     "refs": [
+      [
+       40,
+       8,
+       28,
+       34
+      ],
+      [
+       41,
+       5,
+       1,
+       20
+      ],
+      [
+       42,
+       8,
+       26,
+       39
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Jairova dcera a nemocná žena",
+     "refs": [
+      [
+       40,
+       9,
+       18,
+       26
+      ],
+      [
+       41,
+       5,
+       21,
+       43
+      ],
+      [
+       42,
+       8,
+       40,
+       56
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Vyslání Dvanácti",
+     "refs": [
+      [
+       40,
+       10,
+       1,
+       42
+      ],
+      [
+       41,
+       6,
+       7,
+       13
+      ],
+      [
+       42,
+       9,
+       1,
+       6
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Smrt Jana Křtitele",
+     "refs": [
+      [
+       40,
+       14,
+       1,
+       12
+      ],
+      [
+       41,
+       6,
+       14,
+       29
+      ],
+      [
+       42,
+       9,
+       7,
+       9
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Nasycení pěti tisíc",
+     "refs": [
+      [
+       40,
+       14,
+       13,
+       21
+      ],
+      [
+       41,
+       6,
+       30,
+       44
+      ],
+      [
+       42,
+       9,
+       10,
+       17
+      ],
+      [
+       43,
+       6,
+       1,
+       14
+      ]
+     ]
+    },
+    {
+     "title": "Ježíš kráčí po vodě",
+     "refs": [
+      [
+       40,
+       14,
+       22,
+       33
+      ],
+      [
+       41,
+       6,
+       45,
+       52
+      ],
+      null,
+      [
+       43,
+       6,
+       15,
+       21
+      ]
+     ]
+    },
+    {
+     "title": "Řeč o chlebu života",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       6,
+       22,
+       71
+      ]
+     ]
+    },
+    {
+     "title": "Kananejská žena",
+     "refs": [
+      [
+       40,
+       15,
+       21,
+       28
+      ],
+      [
+       41,
+       7,
+       24,
+       30
+      ],
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Nasycení čtyř tisíc",
+     "refs": [
+      [
+       40,
+       15,
+       32,
+       39
+      ],
+      [
+       41,
+       8,
+       1,
+       10
+      ],
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Petrovo vyznání",
+     "refs": [
+      [
+       40,
+       16,
+       13,
+       20
+      ],
+      [
+       41,
+       8,
+       27,
+       30
+      ],
+      [
+       42,
+       9,
+       18,
+       21
+      ],
+      null
+     ]
+    },
+    {
+     "title": "První předpověď utrpení",
+     "refs": [
+      [
+       40,
+       16,
+       21,
+       28
+      ],
+      [
+       41,
+       8,
+       31,
+       1,
+       9
+      ],
+      [
+       42,
+       9,
+       22,
+       27
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Proměnění na hoře",
+     "refs": [
+      [
+       40,
+       17,
+       1,
+       13
+      ],
+      [
+       41,
+       9,
+       2,
+       13
+      ],
+      [
+       42,
+       9,
+       28,
+       36
+      ],
+      null
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Cesta do Jeruzaléma",
+   "events": [
+    {
+     "title": "Ježíš na Svátku stánků",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       7,
+       1,
+       52
+      ]
+     ]
+    },
+    {
+     "title": "Vyslání sedmdesáti (dvou)",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       10,
+       1,
+       24
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Milosrdný Samařan",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       10,
+       25,
+       37
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Marta a Marie",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       10,
+       38,
+       42
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Učení o modlitbě, Otče náš",
+     "refs": [
+      [
+       40,
+       6,
+       9,
+       13
+      ],
+      null,
+      [
+       42,
+       11,
+       1,
+       13
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Uzdravení slepého od narození",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       9,
+       1,
+       41
+      ]
+     ]
+    },
+    {
+     "title": "Dobrý pastýř",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       10,
+       1,
+       21
+      ]
+     ]
+    },
+    {
+     "title": "Ztracená ovce, mince a syn",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       15,
+       1,
+       32
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Vzkříšení Lazara",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       11,
+       1,
+       44
+      ]
+     ]
+    },
+    {
+     "title": "Boháč a Lazar",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       16,
+       19,
+       31
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Deset malomocných",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       17,
+       11,
+       19
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Ježíš žehná dětem",
+     "refs": [
+      [
+       40,
+       19,
+       13,
+       15
+      ],
+      [
+       41,
+       10,
+       13,
+       16
+      ],
+      [
+       42,
+       18,
+       15,
+       17
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Bohatý mladík",
+     "refs": [
+      [
+       40,
+       19,
+       16,
+       30
+      ],
+      [
+       41,
+       10,
+       17,
+       31
+      ],
+      [
+       42,
+       18,
+       18,
+       30
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Uzdravení slepého u Jericha",
+     "refs": [
+      [
+       40,
+       20,
+       29,
+       34
+      ],
+      [
+       41,
+       10,
+       46,
+       52
+      ],
+      [
+       42,
+       18,
+       35,
+       43
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Zacheus",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       19,
+       1,
+       10
+      ],
+      null
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Poslední týden",
+   "events": [
+    {
+     "title": "Pomazání v Betanii",
+     "refs": [
+      [
+       40,
+       26,
+       6,
+       13
+      ],
+      [
+       41,
+       14,
+       3,
+       9
+      ],
+      null,
+      [
+       43,
+       12,
+       1,
+       8
+      ]
+     ]
+    },
+    {
+     "title": "Vjezd do Jeruzaléma",
+     "refs": [
+      [
+       40,
+       21,
+       1,
+       11
+      ],
+      [
+       41,
+       11,
+       1,
+       11
+      ],
+      [
+       42,
+       19,
+       28,
+       44
+      ],
+      [
+       43,
+       12,
+       12,
+       19
+      ]
+     ]
+    },
+    {
+     "title": "Vyčištění chrámu",
+     "refs": [
+      [
+       40,
+       21,
+       12,
+       17
+      ],
+      [
+       41,
+       11,
+       15,
+       19
+      ],
+      [
+       42,
+       19,
+       45,
+       48
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Otázka daně císaři",
+     "refs": [
+      [
+       40,
+       22,
+       15,
+       22
+      ],
+      [
+       41,
+       12,
+       13,
+       17
+      ],
+      [
+       42,
+       20,
+       20,
+       26
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Největší přikázání",
+     "refs": [
+      [
+       40,
+       22,
+       34,
+       40
+      ],
+      [
+       41,
+       12,
+       28,
+       34
+      ],
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Dar chudé vdovy",
+     "refs": [
+      null,
+      [
+       41,
+       12,
+       41,
+       44
+      ],
+      [
+       42,
+       21,
+       1,
+       4
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Řeč o konci věků",
+     "refs": [
+      [
+       40,
+       24,
+       1,
+       51
+      ],
+      [
+       41,
+       13,
+       1,
+       37
+      ],
+      [
+       42,
+       21,
+       5,
+       36
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Jidáš se domlouvá s velekněžími",
+     "refs": [
+      [
+       40,
+       26,
+       14,
+       16
+      ],
+      [
+       41,
+       14,
+       10,
+       11
+      ],
+      [
+       42,
+       22,
+       3,
+       6
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Mytí nohou",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       13,
+       1,
+       20
+      ]
+     ]
+    },
+    {
+     "title": "Poslední večeře",
+     "refs": [
+      [
+       40,
+       26,
+       17,
+       30
+      ],
+      [
+       41,
+       14,
+       12,
+       26
+      ],
+      [
+       42,
+       22,
+       7,
+       23
+      ],
+      [
+       43,
+       13,
+       21,
+       30
+      ]
+     ]
+    },
+    {
+     "title": "Rozlučkové řeči a modlitba",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       14,
+       1,
+       26,
+       17
+      ]
+     ]
+    },
+    {
+     "title": "Getsemane",
+     "refs": [
+      [
+       40,
+       26,
+       36,
+       46
+      ],
+      [
+       41,
+       14,
+       32,
+       42
+      ],
+      [
+       42,
+       22,
+       39,
+       46
+      ],
+      [
+       43,
+       18,
+       1,
+       1
+      ]
+     ]
+    },
+    {
+     "title": "Zatčení",
+     "refs": [
+      [
+       40,
+       26,
+       47,
+       56
+      ],
+      [
+       41,
+       14,
+       43,
+       52
+      ],
+      [
+       42,
+       22,
+       47,
+       53
+      ],
+      [
+       43,
+       18,
+       2,
+       12
+      ]
+     ]
+    },
+    {
+     "title": "Výslech a Petrovo zapření",
+     "refs": [
+      [
+       40,
+       26,
+       57,
+       75
+      ],
+      [
+       41,
+       14,
+       53,
+       72
+      ],
+      [
+       42,
+       22,
+       54,
+       71
+      ],
+      [
+       43,
+       18,
+       13,
+       27
+      ]
+     ]
+    },
+    {
+     "title": "Před Pilátem",
+     "refs": [
+      [
+       40,
+       27,
+       11,
+       26
+      ],
+      [
+       41,
+       15,
+       1,
+       15
+      ],
+      [
+       42,
+       23,
+       1,
+       25
+      ],
+      [
+       43,
+       18,
+       28,
+       16,
+       19
+      ]
+     ]
+    },
+    {
+     "title": "Ukřižování a smrt",
+     "refs": [
+      [
+       40,
+       27,
+       32,
+       56
+      ],
+      [
+       41,
+       15,
+       21,
+       41
+      ],
+      [
+       42,
+       23,
+       26,
+       49
+      ],
+      [
+       43,
+       19,
+       17,
+       37
+      ]
+     ]
+    },
+    {
+     "title": "Pohřeb",
+     "refs": [
+      [
+       40,
+       27,
+       57,
+       61
+      ],
+      [
+       41,
+       15,
+       42,
+       47
+      ],
+      [
+       42,
+       23,
+       50,
+       56
+      ],
+      [
+       43,
+       19,
+       38,
+       42
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Vzkříšení",
+   "events": [
+    {
+     "title": "Prázdný hrob",
+     "refs": [
+      [
+       40,
+       28,
+       1,
+       10
+      ],
+      [
+       41,
+       16,
+       1,
+       8
+      ],
+      [
+       42,
+       24,
+       1,
+       12
+      ],
+      [
+       43,
+       20,
+       1,
+       10
+      ]
+     ]
+    },
+    {
+     "title": "Ježíš se zjevuje Marii Magdalské",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       20,
+       11,
+       18
+      ]
+     ]
+    },
+    {
+     "title": "Cesta do Emauz",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       24,
+       13,
+       35
+      ],
+      null
+     ]
+    },
+    {
+     "title": "Zjevení učedníkům",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       24,
+       36,
+       49
+      ],
+      [
+       43,
+       20,
+       19,
+       23
+      ]
+     ]
+    },
+    {
+     "title": "Ježíš a Tomáš",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       20,
+       24,
+       29
+      ]
+     ]
+    },
+    {
+     "title": "U Galilejského moře",
+     "refs": [
+      null,
+      null,
+      null,
+      [
+       43,
+       21,
+       1,
+       25
+      ]
+     ]
+    },
+    {
+     "title": "Velké poslání",
+     "refs": [
+      [
+       40,
+       28,
+       16,
+       20
+      ],
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "title": "Nanebevstoupení",
+     "refs": [
+      null,
+      null,
+      [
+       42,
+       24,
+       50,
+       53
+      ],
+      null
+     ]
+    }
+   ]
+  }
+ ]
+}

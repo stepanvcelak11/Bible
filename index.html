@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <!-- Nahradí se hodnotou --base-href (GitHub Pages: /Bible/). -->
+  <base href="/Bible/">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Soukromá offline čtečka Bible v češtině.">
+  <meta name="theme-color" content="#F7F1E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1A17" media="(prefers-color-scheme: dark)">
+
+  <!-- iPhone: „Přidat na plochu“ → aplikace na celou obrazovku -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Bible">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+  <title>Bible</title>
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #F7F1E6; }
+    @media (prefers-color-scheme: dark) { html, body { background: #1C1A17; } }
+    #splash {
+      position: fixed; inset: 0; display: flex; align-items: center;
+      justify-content: center; font: 17px Georgia, serif; color: #6B5B45;
+      transition: opacity .3s;
+    }
+  </style>
+</head>
+<body>
+  <div id="splash">Načítám…</div>
+  <script>
+    // Offline režim: service worker uloží celou aplikaci do mezipaměti.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch((e) =>
+          console.warn('Service worker se nepodařilo zaregistrovat', e));
+        // Dotáhnout zbytek aplikace pro offline (kdyby se přerušilo).
+        navigator.serviceWorker.ready.then((r) =>
+          r.active && r.active.postMessage('precache'));
+      });
+    }
+    // Barva stavového řádku podle motivu aplikace (volá Flutter).
+    window.bibleSetThemeColor = (color) => {
+      document.querySelectorAll('meta[name="theme-color"]').forEach((m) => {
+        m.removeAttribute('media');
+        m.setAttribute('content', color);
+      });
+    };
+    // Instalace jako aplikace (Android, Chrome na počítači): prohlížeč
+    // nabídne událost, aplikace pak ukáže vlastní tlačítko „Nainstalovat“.
+    window.bibleInstallEvent = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      window.bibleInstallEvent = e;
+      window.dispatchEvent(new Event('bible-install-changed'));
+    });
+    window.addEventListener('appinstalled', () => {
+      window.bibleInstallEvent = null;
+      window.dispatchEvent(new Event('bible-install-changed'));
+    });
+    window.bibleInstall = async () => {
+      const e = window.bibleInstallEvent;
+      if (!e) return false;
+      e.prompt();
+      const choice = await e.userChoice;
+      window.bibleInstallEvent = null;
+      window.dispatchEvent(new Event('bible-install-changed'));
+      return choice.outcome === 'accepted';
+    };
+    // Skrýt úvodní text, jakmile Flutter vykreslí první snímek.
+    window.addEventListener('flutter-first-frame', () => {
+      const s = document.getElementById('splash');
+      if (s) { s.style.opacity = 0; setTimeout(() => s.remove(), 300); }
+    });
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

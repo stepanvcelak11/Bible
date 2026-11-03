@@ -159,6 +159,10 @@ class BibleMapViewState extends State<BibleMapView>
     var bestDist = 26.0;
     for (final mp in widget.data.places) {
       final p = mp.place;
+      if (p.verseCount < _MapPainter._threshold(_zoom) &&
+          !widget.focus.any((f) => f.id == p.id)) {
+        continue;
+      }
       final o = _project(p.lon, p.lat);
       final dist = (o - d.localPosition).distance;
       // Přednost mají významnější místa.
@@ -355,16 +359,9 @@ class _MapPainter extends CustomPainter {
     final routeIds = {
       for (final s in route?.stops ?? const <RouteStop>[]) s.placeId,
     };
-    final threshold = zoom < 25
-        ? 60
-        : zoom < 50
-        ? 25
-        : zoom < 100
-        ? 10
-        : zoom < 200
-        ? 4
-        : 1;
     final dim = route != null || focus.isNotEmpty;
+    // S trasou nebo zvýrazněnými místy jen nejvýznamnější okolí.
+    final threshold = _threshold(zoom) * (dim ? 4 : 1);
 
     // Trasa pod body.
     if (route case final r?) {
@@ -436,12 +433,29 @@ class _MapPainter extends CustomPainter {
           o.dy > size.height + 40) {
         continue;
       }
-      final important = p.verseCount >= threshold;
-      if (!highlighted && !important && zoom < 120) continue;
-      final r = highlighted ? 7.0 : (important ? 3.5 : 2.2);
+      if (!highlighted && p.verseCount < threshold) continue;
+      final r = highlighted ? 7.0 : (p.verseCount >= threshold * 4 ? 3.8 : 2.8);
       final color = highlighted
           ? palette.gold
           : (dim ? palette.muted.withValues(alpha: 0.5) : _typeColor(p.type));
+      // Bez místa pro popisek se nekreslí ani bod – žádné „tečky bez jmen“.
+      final style = labelStyle.copyWith(
+        fontWeight: highlighted ? FontWeight.w800 : FontWeight.w500,
+        color: dim && !highlighted ? palette.muted : null,
+      );
+      final dot = Rect.fromCircle(center: o, radius: r + 3);
+      if (!highlighted && occupied.any((q) => q.overlaps(dot))) continue;
+      final rect = _label(
+        canvas,
+        p.name,
+        o + Offset(r + 4, -8),
+        style,
+        occupied,
+        force: highlighted,
+      );
+      if (rect == null && !highlighted) continue;
+      if (rect != null) occupied.add(rect);
+      occupied.add(dot);
       if (highlighted) {
         canvas.drawCircle(
           o,
@@ -458,22 +472,22 @@ class _MapPainter extends CustomPainter {
           ..strokeWidth = 1.2
           ..color = isDark ? Colors.black54 : Colors.white,
       );
-      if (highlighted || important) {
-        final rect = _label(
-          canvas,
-          p.name,
-          o + Offset(r + 4, -8),
-          labelStyle.copyWith(
-            fontWeight: highlighted ? FontWeight.w800 : FontWeight.w500,
-            color: dim && !highlighted ? palette.muted : null,
-          ),
-          occupied,
-          force: highlighted,
-        );
-        if (rect != null) occupied.add(rect);
-      }
     }
   }
+
+  /// Kolikrát musí být místo v Bibli zmíněno, aby se při daném přiblížení
+  /// ukázalo – čím blíž, tím menší místa.
+  static int _threshold(double zoom) => zoom < 25
+      ? 60
+      : zoom < 50
+      ? 25
+      : zoom < 100
+      ? 12
+      : zoom < 200
+      ? 6
+      : zoom < 400
+      ? 3
+      : 1;
 
   Color _typeColor(String? type) => switch (type) {
     'settlement' => const Color(0xFF8A5A1F),

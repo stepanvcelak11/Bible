@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
 from content import (church_year, concepts, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
-                     notes, people, quiz, situations, situations_more,
+                     notes, people, plans, quiz, situations, situations_more,
                      stories, story, tables, threads, topics)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
@@ -290,6 +290,29 @@ def build_intros(out: Path) -> dict:
     return data
 
 
+def refs_multi(s: str) -> list[list[int]]:
+    """„Lv 16,2.14-15“ → dva odkazy (verše oddělené tečkou)."""
+    m = re.match(r"^(\S+\s+\d+),(.+)$", s.strip())
+    if not m or "." not in m.group(2):
+        return [ref(s)]
+    return [ref(f"{m.group(1)},{v}") for v in m.group(2).split(".")]
+
+
+def build_plans() -> dict:
+    out = []
+    for p in plans.PLANS:
+        out.append({
+            **{k: p[k] for k in ("id", "group", "title", "subtitle", "intro",
+                                 "w", "h", "shapes")},
+            "refs": [r for x in p["refs"] for r in refs_multi(x)],
+            "chapters": [ref(c)[:2] for c in p["chapters"]],
+            "parts": [{**{k: q[k] for k in ("n", "x", "y", "name", "text")},
+                       "refs": [r for x in q["refs"] for r in refs_multi(x)]}
+                      for q in p["parts"]],
+        })
+    return {"plans": out}
+
+
 def main() -> None:
     out = ROOT / "assets" / "content"
     data = {"situations.json": build_situations(),
@@ -305,7 +328,8 @@ def main() -> None:
             "story.json": build_story(),
             "stories.json": build_stories(),
             "reflections.json": build_reflections(),
-            "concepts.json": build_concepts()}
+            "concepts.json": build_concepts(),
+            "plans.json": build_plans()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))
         books = src["books"]
@@ -421,6 +445,13 @@ def main() -> None:
                             print(f"   {row[0] if isinstance(row[0], str) else ''}"
                                   f" | {ABBR[r[0]-1]} {r[1]},{r[2]}: "
                                   f"{text(r[0], r[1], v, v)[:70]}")
+        if what == "plans":
+            for p in data["plans.json"]["plans"]:
+                print(f"\n## {p['title']}")
+                for q in p["parts"]:
+                    for r in q["refs"]:
+                        print(f"  [{q['name']}] {ABBR[r[0]-1]} {r[1]},{r[2]}: "
+                              f"{text(r[0], r[1], r[2], r[3])[:150]}")
         if what == "people":
             for p in data["people.json"]["people"]:
                 r = p["key"]

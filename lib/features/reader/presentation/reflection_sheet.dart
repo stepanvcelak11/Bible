@@ -13,6 +13,8 @@ import '../../content/application/content_providers.dart';
 import '../../prayer/application/prayer_controller.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/chapter_content_provider.dart';
+import '../../plans/application/plans.dart';
+import '../../plans/presentation/plans_screen.dart';
 
 /// Obecné otázky k zamyšlení (doplňují otázky ke konkrétní kapitole).
 const reflectionQuestions = [
@@ -690,7 +692,7 @@ class _Summary extends StatelessWidget {
 }
 
 /// Konec kapitoly: zamyšlení a přechod na další kapitolu.
-class ChapterFooter extends StatelessWidget {
+class ChapterFooter extends ConsumerWidget {
   const ChapterFooter({
     super.key,
     required this.bookId,
@@ -703,9 +705,17 @@ class ChapterFooter extends StatelessWidget {
   final VoidCallback onNext;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
+    final translationId = ref.watch(primaryTranslationProvider).id;
+    final canonical = Versification.toCanonical(
+      VerseRef(bookId, chapter, 1),
+      translationId,
+    );
+    final plans = ref.watch(
+      chapterPlansProvider((canonical.bookId, canonical.chapter)),
+    );
     return Padding(
       padding: const EdgeInsets.only(top: 28),
       child: Column(
@@ -726,6 +736,21 @@ class ChapterFooter extends StatelessWidget {
               ),
             ),
           ),
+          // Plán města nebo stavby, o které kapitola mluví.
+          for (final p in plans)
+            Card(
+              child: ListTile(
+                contentPadding: const EdgeInsets.fromLTRB(16, 4, 12, 4),
+                leading: Icon(
+                  Icons.account_balance_outlined,
+                  color: palette.gold,
+                ),
+                title: Text(S.planForChapter(p.title)),
+                subtitle: Text(p.subtitle),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => openPlan(context, p),
+              ),
+            ),
           const SizedBox(height: 8),
           TextButton.icon(
             onPressed: onNext,

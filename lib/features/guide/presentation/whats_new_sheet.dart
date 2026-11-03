@@ -5,9 +5,31 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 16;
+const whatsNewVersion = 17;
 
 const _items = [
+  (
+    Icons.account_balance_outlined,
+    'Plány měst a staveb',
+    'Jeruzalém za Davida, Nehemjáše a v době Ježíše, svatostánek, tábor '
+        'Izraele, Šalomounův i Herodův chrám, izraelský dům a Noemova archa. '
+        'Čísla v plánu vedou k popisu a veršům. Najdete je ve Studiu, '
+        'v mapách a na konci kapitol, o kterých mluví.',
+  ),
+  (
+    Icons.touch_app_outlined,
+    'Podržení verše',
+    'Podržte verš: záložka, kopírování a sdílení. Klepnutí nabídne barvy '
+        'a studium, poznámku, nazpaměť a přípravu.',
+  ),
+  (
+    Icons.wb_sunny_outlined,
+    'Klidnější Dnes a přehlednější mapy',
+    'Dnes ukazuje jen verš dne, kde pokračovat ve čtení a rytmus týdne. '
+        'Plán čtení a otázka dne jsou ve Studiu, nedávno čtené v Mém '
+        'pokroku. Na mapě jsou jen místa, jejichž jméno se vejde – další '
+        'přibývají s přiblížením.',
+  ),
   (
     Icons.favorite_outline,
     'Pozvání ke čtení',

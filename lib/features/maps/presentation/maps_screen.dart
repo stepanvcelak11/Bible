@@ -12,6 +12,7 @@ import '../../reader/application/reader_state.dart';
 import '../../shell/home_shell.dart';
 import '../../study/application/study_providers.dart';
 import '../../translations/application/translation_controller.dart';
+import '../../plans/presentation/plans_screen.dart';
 import 'map_view.dart';
 
 /// Mapa s místy zmíněnými v kapitole.
@@ -190,6 +191,11 @@ class _MapPageState extends ConsumerState<MapPage> {
                             );
                             if (place != null) _selectPlace(place, data);
                           },
+                        ),
+                        IconButton(
+                          tooltip: S.plans,
+                          icon: const Icon(Icons.account_balance_outlined),
+                          onPressed: () => openPlans(context),
                         ),
                         IconButton(
                           tooltip: S.fitMap,

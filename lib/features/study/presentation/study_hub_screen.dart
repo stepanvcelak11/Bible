@@ -17,6 +17,7 @@ import '../../content/presentation/situations_screen.dart';
 import '../../content/presentation/tables_screen.dart';
 import '../../content/presentation/topics_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
+import '../../plans/presentation/plans_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../memory/presentation/memory_screen.dart';
 import '../../prayer/presentation/prayers_view.dart';
@@ -348,6 +349,13 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 S.exploreMaps,
                 S.exploreMapsHint,
                 () => openMaps(context),
+              ),
+              _Entry(
+                Icons.account_balance_outlined,
+                const Color(0xFF8C6BA8),
+                S.plans,
+                S.plansHint,
+                () => openPlans(context),
               ),
             ]),
             // --- Pro život -----------------------------------------------

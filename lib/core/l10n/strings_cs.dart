@@ -242,6 +242,13 @@ abstract final class S {
   static const explore = 'Objevovat';
   static const exploreMaps = 'Biblické mapy';
   static const exploreMapsHint = 'Místa a cesty';
+  static const plans = 'Plány měst a staveb';
+  static const plansHint = 'Jeruzalém, svatostánek, chrám, dům…';
+  static const plansIntro =
+      'Schematické plány podle biblického popisu a archeologických '
+      'rekonstrukcí. Klepněte na číslo v plánu nebo na odkaz u popisu.';
+  static const planHint = 'Klepněte na číslo; plán jde přiblížit dvěma prsty.';
+  static String planForChapter(String title) => 'Plán: $title';
   static const exploreIntros = 'Úvody ke knihám';
   static const exploreIntrosHint = 'Autor, doba, téma';
   static const exploreTranslations = 'Překlady';

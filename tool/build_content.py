@@ -17,9 +17,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (church_year, concepts, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+from content import (church_year, concepts, courses, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
                      notes, people, plans, quiz, situations, situations_more,
-                     stories, story, tables, threads, topics)
+                     stories, story, tables, threads, topics,
+                     topics_deep, topics_more)
 
 ABBR = ("Gn Ex Lv Nu Dt Joz Sd Rt 1S 2S 1Kr 2Kr 1Pa 2Pa Ezd Neh Est Jb Ž Př "
         "Kaz Pís Iz Jr Pl Ez Da Oz Jl Am Abd Jon Mi Na Abk Sf Ag Za Mal Mt Mk "
@@ -60,15 +61,54 @@ def build_situations() -> dict:
 
 
 def build_topics() -> dict:
+    """Témata podle oblastí; každé se studijní částí (Do hloubky,
+    zajímavosti, otázky)."""
+    cats = [c for c, _ in topics.CATEGORIES]
+    all_ = []
+    for t in topics.T:
+        if t["id"] not in topics_deep.DEEP:
+            raise SystemExit(f"topics_deep: chybí {t['id']}")
+        deeper, facts, questions = topics_deep.DEEP[t["id"]]
+        all_.append({**t, "deeper": deeper, "facts": facts,
+                     "questions": questions})
+    all_ += topics_more.T
+    ids = [t["id"] for t in all_]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("topics: duplicitní id")
+    if set(topics_deep.DEEP) - set(ids):
+        raise SystemExit(f"topics_deep: navíc {set(topics_deep.DEEP) - set(ids)}")
+    for t in all_:
+        if t["category"] not in cats:
+            raise SystemExit(f"{t['id']}: neznámá kategorie")
+    # Pořadí podle kategorií, uvnitř kategorie původní pořadí.
+    all_.sort(key=lambda t: cats.index(t["category"]))
     return {
         "categories": [{"id": c, "name": n} for c, n in topics.CATEGORIES],
         "topics": [
             {**{k: v for k, v in t.items() if k != "refs"},
              "refs": [ref(r) for r, _ in t["refs"]],
              "labels": [label for _, label in t["refs"]]}
-            for t in topics.T
+            for t in all_
         ],
     }
+
+
+def build_courses() -> dict:
+    """Studijní kurzy s lekcemi."""
+    ids = [c["id"] for c in courses.COURSES]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("courses: duplicitní id")
+    out = []
+    for c in courses.COURSES:
+        for les in c["lessons"]:
+            if not (les["text"] and les["read"] and les["questions"]):
+                raise SystemExit(f"{c['id']}: neúplná lekce {les['title']}")
+        out.append({**{k: c[k] for k in ("id", "icon", "color", "title",
+                                         "subtitle", "intro")},
+                    "lessons": [{**les, "read": [{"ref": ref(r), "label": x}
+                                                 for r, x in les["read"]]}
+                                for les in c["lessons"]]})
+    return {"courses": out}
 
 
 def build_quiz() -> dict:
@@ -322,6 +362,7 @@ def main() -> None:
             "notes.json": build_notes(),
             "tables.json": build_tables(),
             "topics.json": build_topics(),
+            "courses.json": build_courses(),
             "quiz.json": build_quiz(),
             "church_year.json": build_church_year(),
             "threads.json": build_threads(),

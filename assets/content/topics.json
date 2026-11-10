@@ -9,6 +9,10 @@
    "name": "Ježíš Kristus a Duch svatý"
   },
   {
+   "id": "story",
+   "name": "Velké linie Bible"
+  },
+  {
    "id": "salvation",
    "name": "Člověk, hřích a spasení"
   },
@@ -27,6 +31,10 @@
   {
    "id": "future",
    "name": "Budoucnost a naděje"
+  },
+  {
+   "id": "world",
+   "name": "Duchovní svět"
   }
  ],
  "topics": [
@@ -36,6 +44,18 @@
    "icon": "sun",
    "title": "Bůh Stvořitel",
    "summary": "Bible začíná Bohem, který slovem stvořil svět a nazval ho dobrým. Stvoření ukazuje jeho moc a krásu, ale není samo bohem. Bůh svůj svět dál udržuje a pečuje o něj.",
+   "deeper": [
+    "Gn 1 je napsána jako slavnostní báseň: šest dní se dělí na dvě trojice – první tři dny Bůh tvoří prostory (světlo, nebe a moře, souš), další tři je zaplňuje (světla, ptáci a ryby, zvířata a člověk). Text odpovídá spíš na otázky „kdo“ a „proč“ než „jak přesně“.",
+    "Okolní národy uctívaly slunce, měsíc a hvězdy jako bohy. Genesis je záměrně nejmenuje – mluví o „velkém a malém světle“. Nebeská tělesa nejsou bohové, ale lampy, které Bůh pověsil na oblohu. Svět je dobrý, ale není božský."
+   ],
+   "facts": [
+    "Hebrejské sloveso bara („stvořit“) má v Bibli vždy za podmět jen Boha. Člověk může „dělat“, ale „tvořit z ničeho“ jen Bůh.",
+    "Sedmý den nemá v Gn 2 obvyklé „byl večer a bylo jitro“ – jako by Boží odpočinek neměl konec."
+   ],
+   "questions": [
+    "Kde jsem naposledy žasl nad stvořením?",
+    "Co mi o Bohu říká, že nazval svět „velmi dobrým“?"
+   ],
    "refs": [
     [
      1,
@@ -103,6 +123,18 @@
    "icon": "heart",
    "title": "Boží láska",
    "summary": "„Bůh je láska“ – to není jen jedna z jeho vlastností, ale jádro toho, kým je. Jeho láska je věrná, nezasloužená a nejjasněji se ukázala v tom, že dal svého Syna.",
+   "deeper": [
+    "Starý zákon má pro Boží lásku krásné slovo chesed – věrná, smluvní láska, která neodchází, ani když druhý selže. Kralická ho nejčastěji překládá „milosrdenství“, jiné překlady „láska“, „dobrota“ nebo „věrná láska“. Objevuje se v Bibli přes 240krát.",
+    "Nový zákon používá slovo agapé – láska, která se dává bez nároku na odplatu. 1J 4,10 říká, v čem je jádro: „ne že my jsme milovali Boha, ale že on miloval nás.“ Boží láska je první, naše láska je odpověď."
+   ],
+   "facts": [
+    "Žalm 136 opakuje ve všech 26 verších refrén „neboť jeho milosrdenství (chesed) je věčné“.",
+    "J 3,16 bývá nazýván „evangelium v malém“ – v řečtině 25 slovy shrnuje celý příběh spásy."
+   ],
+   "questions": [
+    "Věřím, že mě Bůh miluje i ve dnech, kdy se mi nedaří?",
+    "Jak mohu dnes Boží lásku předat dál?"
+   ],
    "refs": [
     [
      2,
@@ -170,6 +202,18 @@
    "icon": "flame",
    "title": "Boží svatost",
    "summary": "Svatost znamená, že Bůh je naprosto jiný než my – čistý, dokonalý a vznešený. Proto se před ním člověk cítí malý. Bůh však svatost nedrží pro sebe: volá svůj lid, aby byl svatý jako on.",
+   "deeper": [
+    "Hebrejské kadoš („svatý“) původně znamená „oddělený, jiný“. Svaté je to, co patří Bohu: svatá místa, nádoby, dny i lidé. Izajáš při povolání vidí Boha tak svatého, že volá „běda mi“ – a Bůh mu očistí rty, místo aby ho zničil.",
+    "Ježíš svatost obrací naruby: dotýká se malomocných a jí s hříšníky, a místo aby se poskvrnil, nečisté očišťuje. Svatost už není jen oddělení od světa, ale síla, která svět uzdravuje."
+   ],
+   "facts": [
+    "„Svatý, svatý, svatý“ – trojí opakování je v hebrejštině nejvyšší stupeň. Žádnou jinou Boží vlastnost Bible takto neopakuje.",
+    "Kniha Leviticus užívá slovo „svatý“ více než kterákoli jiná kniha Bible."
+   ],
+   "questions": [
+    "Co v mém životě by mělo být „oddělené“ pro Boha?",
+    "Jak se dá být svatý, a přitom ne povýšený?"
+   ],
    "refs": [
     [
      2,
@@ -230,6 +274,18 @@
    "icon": "spa",
    "title": "Trojice",
    "summary": "Bible učí, že Bůh je jeden, a zároveň mluví o Otci, Synu a Duchu svatém jako o Bohu. Křesťané to vyjadřují slovem Trojice: jeden Bůh ve třech osobách. Je to tajemství, které se zjevuje hlavně v Ježíšově životě.",
+   "deeper": [
+    "Slovo „Trojice“ v Bibli nenajdeme, ale skutečnost ano: jeden Bůh, který se zjevuje jako Otec, Syn a Duch svatý. Při Ježíšově křtu jsou přítomni všichni tři – Syn ve vodě, Duch jako holubice, Otcův hlas z nebe.",
+    "Raná církev o tomto tajemství přemýšlela staletí, aby ho vyjádřila co nejvěrněji. Nikajsko-cařihradské vyznání (381) dodnes spojuje většinu křesťanů. Trojice ukazuje, že Bůh je v sobě vztahem lásky – ještě než stvořil svět."
+   ],
+   "facts": [
+    "Tradice vypráví, že sv. Patrik vysvětloval Trojici Irům na trojlístku jetele – i když každé přirovnání tajemství jen naznačuje.",
+    "Kralický Nový zákon má v 1J 5,7 tzv. Comma Johanneum – verš o „třech svědcích v nebi“, který v nejstarších řeckých rukopisech chybí; moderní překlady ho většinou nemají."
+   ],
+   "questions": [
+    "Co pro mě znamená, že Bůh je ve své podstatě společenství?",
+    "Ke které osobě Trojice se modlím nejčastěji?"
+   ],
    "refs": [
     [
      5,
@@ -283,6 +339,18 @@
    "icon": "shield",
    "title": "Boží věrnost",
    "summary": "Bůh dodržuje, co slíbil. Celý příběh Bible je příběhem jeho věrnosti, i když lidé věrní nebyli. Na jeho slib se lze spolehnout i v nejistých časech.",
+   "deeper": [
+    "Boží věrnost (hebrejsky emuna) je obraz pevnosti – stejný kořen má slovo „amen“. Bůh je skála, protože se nemění a drží slovo. Celý příběh Izraele ukazuje Boha, který zůstává věrný i lidu, který mu věrný není.",
+    "Pavel píše: „Jsme-li nevěrní, on zůstává věrný, neboť sám sebe zapřít nemůže“ (2Tm 2,13). Naše jistota nestojí na síle naší víry, ale na spolehlivosti toho, komu věříme."
+   ],
+   "facts": [
+    "Kniha Pláč, napsaná nad troskami Jeruzaléma, obsahuje uprostřed slova „veliká je tvá věrnost“ – z nich vznikla známá píseň „Great Is Thy Faithfulness“.",
+    "Jedním z Božích jmen v Dt 32,4 je „Skála“ – „jeho dílo je dokonalé, je to Bůh věrný“."
+   ],
+   "questions": [
+    "Kdy se mi Bůh ukázal jako věrný?",
+    "Komu mohu být věrný já – i když je to těžké?"
+   ],
    "refs": [
     [
      5,
@@ -338,11 +406,339 @@
    ]
   },
   {
+   "id": "names",
+   "category": "god",
+   "icon": "key",
+   "title": "Boží jména",
+   "summary": "V Bibli jméno vyjadřuje povahu. Bůh se lidem představuje mnoha jmény – každé odhaluje kus toho, kým je: Ten, který je, Všemohoucí, Pastýř, Lékař, Otec.",
+   "deeper": [
+    "Nejdůležitější Boží jméno zapisuje hebrejština čtyřmi souhláskami JHWH. Souvisí se slovesem „být“: Bůh je ten, který je, byl a bude – a který je přítomen se svým lidem. Většina českých překladů ho píše jako HOSPODIN, často velkými písmeny, aby se odlišilo od obecného „Pán“.",
+    "Další jména vznikala ze zkušenosti: Abraham na hoře Mórija nazval místo „Hospodin vidí“, Gedeon postavil oltář „Hospodin je pokoj“. Boží jména tedy nejsou teorie, ale svědectví lidí, kteří Boha poznali v konkrétní situaci. Ježíš pak učí oslovovat Boha nejdůvěrněji ze všech: Otče."
+   ],
+   "facts": [
+    "Židé ze zbožné úcty Boží jméno JHWH nevyslovovali a při čtení ho nahrazovali slovem Adonaj – „Pán“. Odtud pochází i nesprávné čtení „Jehova“, které vzniklo smícháním souhlásek jednoho slova se samohláskami druhého.",
+    "Kralická bible píše Boží jméno jako „Hospodin“ – staročeské slovo pro pána domu (hospodáře). Česká tradice tím zdůrazňuje, že Bůh je ten, kdo se o svůj dům stará."
+   ],
+   "questions": [
+    "Které Boží jméno nejlépe vystihuje mou zkušenost s Bohem?",
+    "Jak by mé jméno pro Boha znělo dnes – podle toho, co jsem s ním prožil?"
+   ],
+   "refs": [
+    [
+     2,
+     3,
+     14,
+     14
+    ],
+    [
+     1,
+     17,
+     1,
+     1
+    ],
+    [
+     1,
+     22,
+     14,
+     14
+    ],
+    [
+     2,
+     15,
+     26,
+     26
+    ],
+    [
+     2,
+     17,
+     15,
+     15
+    ],
+    [
+     7,
+     6,
+     24,
+     24
+    ],
+    [
+     19,
+     23,
+     1,
+     1
+    ],
+    [
+     40,
+     6,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Jsem, který jsem",
+    "Bůh Všemohoucí (El Šadaj)",
+    "Hospodin vidí a opatří",
+    "Hospodin, tvůj lékař",
+    "Hospodin je můj prapor",
+    "Hospodin je pokoj",
+    "Hospodin je můj pastýř",
+    "Otče náš"
+   ]
+  },
+  {
+   "id": "providence",
+   "category": "god",
+   "icon": "compass",
+   "title": "Boží vláda a prozřetelnost",
+   "summary": "Bible učí, že dějiny ani osobní život nejsou slepá náhoda. Bůh vládne nad světem a umí i lidské zlo a omyly obrátit k dobrému – aniž by člověku bral odpovědnost.",
+   "deeper": [
+    "Příběh Josefa je učebnicí prozřetelnosti. Bratři ho prodají do otroctví, je neprávem uvězněn a zapomenut – a přece se právě tak dostane na místo, kde zachrání celou rodinu před hladem. Josef na konci nezlehčuje vinu bratří, ale vidí, že Bůh byl ve hře celou dobu.",
+    "Kniha Ester Boha ani jednou nejmenuje, a přece je jím prostoupena: „náhodou“ nespí král, „náhodou“ se čte právě ta kronika. Prozřetelnost často není vidět v jednotlivém okamžiku, ale až při pohledu zpět. Neznamená to, že všechno je dobré; znamená to, že Bůh z ničeho nemusí ustoupit."
+   ],
+   "facts": [
+    "Slovo „prozřetelnost“ pochází z latinského providentia – „prozíravost, péče dopředu“. Je ve stejné rodině jako slovo „provize“: Bůh vidí dopředu a postará se.",
+    "Ř 8,28 neříká, že všechno je dobré, ale že všechno „napomáhá k dobrému“ těm, kdo milují Boha – jako když se v receptu i hořké přísady spojí do dobrého jídla."
+   ],
+   "questions": [
+    "Kdy jsem až zpětně viděl, že mě Bůh vedl i přes těžké období?",
+    "Jak se liší důvěra v Boží vládu od fatalismu „stejně se nedá nic dělat“?"
+   ],
+   "refs": [
+    [
+     1,
+     50,
+     20,
+     20
+    ],
+    [
+     17,
+     4,
+     14,
+     14
+    ],
+    [
+     20,
+     16,
+     9,
+     9
+    ],
+    [
+     20,
+     19,
+     21,
+     21
+    ],
+    [
+     27,
+     2,
+     21,
+     21
+    ],
+    [
+     40,
+     10,
+     29,
+     31
+    ],
+    [
+     45,
+     8,
+     28,
+     28
+    ],
+    [
+     49,
+     1,
+     11,
+     11
+    ]
+   ],
+   "labels": [
+    "Vy jste zamýšleli zlé, Bůh dobré",
+    "Možná právě pro tuto chvíli",
+    "Člověk plánuje, Hospodin řídí kroky",
+    "Boží rada obstojí",
+    "On mění časy a doby",
+    "Ani vrabec nepadne bez vašeho Otce",
+    "Všechno napomáhá k dobrému",
+    "Vše působí podle své vůle"
+   ]
+  },
+  {
+   "id": "glory",
+   "category": "god",
+   "icon": "star",
+   "title": "Boží sláva",
+   "summary": "Hebrejské slovo pro slávu (kavod) znamená doslova „váha, tíha“. Boží sláva je jeho skutečnost, která má váhu – zjevuje se ve stvoření, ve stánku, a nejplněji v Ježíši Kristu.",
+   "deeper": [
+    "Mojžíš prosí: „Ukaž mi svou slávu.“ Bůh odpovídá, že nechá kolem něj projít svou dobrotu a vyhlásí své jméno – milosrdný a milostivý. Boží sláva tedy není jen oslňující světlo, ale především jeho charakter: dobrota a věrnost.",
+    "Jan píše, že Slovo se stalo tělem „a stanulo mezi námi“ – doslova „postavilo stan“. Narážka na stánek, který naplnila Boží sláva. V Ježíši je Boží sláva vidět v lidské tváři. A Pavel dodává, že Boha lze oslavit i obyčejným jídlem a pitím."
+   ],
+   "facts": [
+    "Rabíni označovali přebývající Boží slávu slovem šechina („přebývání“). Je příbuzné se slovem mi-škan – stánek, příbytek.",
+    "Johann Sebastian Bach podepisoval své skladby zkratkou S. D. G. – Soli Deo Gloria, „Jedině Bohu sláva“."
+   ],
+   "questions": [
+    "Kde jsem v poslední době zahlédl Boží slávu – v přírodě, v člověku, v události?",
+    "Co by znamenalo dělat svou běžnou práci „k Boží slávě“?"
+   ],
+   "refs": [
+    [
+     2,
+     33,
+     18,
+     19
+    ],
+    [
+     2,
+     40,
+     34,
+     34
+    ],
+    [
+     23,
+     6,
+     3,
+     3
+    ],
+    [
+     19,
+     19,
+     2,
+     2
+    ],
+    [
+     43,
+     1,
+     14,
+     14
+    ],
+    [
+     47,
+     4,
+     6,
+     6
+    ],
+    [
+     46,
+     10,
+     31,
+     31
+    ],
+    [
+     66,
+     21,
+     23,
+     23
+    ]
+   ],
+   "labels": [
+    "Ukaž mi svou slávu",
+    "Sláva naplnila příbytek",
+    "Celá země je plná jeho slávy",
+    "Nebesa vypravují Boží slávu",
+    "Spatřili jsme jeho slávu",
+    "Sláva na tváři Kristově",
+    "Všechno čiňte k Boží slávě",
+    "Město osvěcuje Boží sláva"
+   ]
+  },
+  {
+   "id": "presence",
+   "category": "god",
+   "icon": "spa",
+   "title": "Boží přítomnost",
+   "summary": "Od zahrady Eden po nové Jeruzalém vypráví Bible jeden příběh: Bůh chce být se svým lidem. Ježíš se jmenuje Immanuel – Bůh s námi – a slibuje: „Já jsem s vámi po všechny dny.“",
+   "deeper": [
+    "Bible popisuje Boží přítomnost ve vlnách: v Edenu ji lidé ztratí, v ohnivém sloupu a ve stánku se Bůh vrací doprostřed tábora, v chrámu přebývá v Jeruzalémě. V Ježíši přichází v lidském těle a skrze Ducha svatého přebývá v každém věřícím. Na konci Bible už chrám není potřeba – Bůh je se svým lidem přímo.",
+    "Žalm 139 ukazuje, že Boží přítomnost není jen útěcha, ale i výzva: nedá se před ní utéct. Pro toho, kdo se Boha bojí, je to hrozba; pro toho, kdo mu důvěřuje, je to nejhlubší jistota."
+   ],
+   "facts": [
+    "Bratr Vavřinec, kuchař v pařížském klášteře 17. století, se proslavil drobnou knížkou o „praktikování Boží přítomnosti“ – naučil se modlit při mytí nádobí stejně jako v kostele.",
+    "Mt 1,23 (Immanuel – Bůh s námi) a Mt 28,20 (já jsem s vámi) rámují celé Matoušovo evangelium jako závorka."
+   ],
+   "questions": [
+    "Kde se mi nejsnáz připomíná, že je Bůh se mnou?",
+    "Co by se změnilo na mém dni, kdybych si Boží přítomnost připomněl třikrát denně?"
+   ],
+   "refs": [
+    [
+     1,
+     3,
+     8,
+     8
+    ],
+    [
+     2,
+     33,
+     14,
+     14
+    ],
+    [
+     19,
+     139,
+     7,
+     10
+    ],
+    [
+     23,
+     41,
+     10,
+     10
+    ],
+    [
+     40,
+     1,
+     23,
+     23
+    ],
+    [
+     40,
+     28,
+     20,
+     20
+    ],
+    [
+     43,
+     14,
+     23,
+     23
+    ],
+    [
+     66,
+     21,
+     3,
+     3
+    ]
+   ],
+   "labels": [
+    "Bůh se procházel v zahradě",
+    "Má přítomnost půjde s tebou",
+    "Kam bych utekl před tvým Duchem?",
+    "Neboj se, já jsem s tebou",
+    "Immanuel – Bůh s námi",
+    "Jsem s vámi po všechny dny",
+    "Přijdeme k němu a učiníme si u něho příbytek",
+    "Hle, příbytek Boží mezi lidmi"
+   ]
+  },
+  {
    "id": "jesus",
    "category": "jesus",
    "icon": "person",
    "title": "Kdo je Ježíš",
    "summary": "Ježíš z Nazareta je podle Nového zákona zaslíbený Mesiáš (Kristus), Syn Boží a zároveň plně člověk. Ukazuje, jaký je Bůh, učí o Božím království, uzdravuje a dává svůj život za druhé.",
+   "deeper": [
+    "Ježíš se narodil v Betlémě, vyrůstal v Nazaretu v rodině tesaře (řecky tekton – stavitel, řemeslník) a kolem třiceti let začal veřejně působit. Jeho služba trvala zhruba tři roky. Učil, uzdravoval, jedl s vyděděnci a byl ukřižován v Jeruzalémě kolem roku 30.",
+    "Ježíš se ptá učedníků: „Za koho mě pokládáte vy?“ Je to otázka pro každého čtenáře. Evangelia svědčí, že je víc než učitel nebo prorok: odpouští hříchy, ovládá přírodu, přijímá klanění a vstává z mrtvých."
+   ],
+   "facts": [
+    "Ježíše zmiňují i mimobibličtí autoři: židovský historik Josephus Flavius a římský historik Tacitus, který píše o „Kristovi, popraveném za Tiberia prokurátorem Pontiem Pilátem“.",
+    "Ježíšovou mateřštinou byla aramejština. Evangelia zachovala několik jeho původních slov: talitha kum, effatha, Abba, Eloi, Eloi, lema sabachthani."
+   ],
+   "questions": [
+    "Za koho Ježíše pokládám já?",
+    "Který Ježíšův čin nebo výrok mě nejvíc oslovuje?"
+   ],
    "refs": [
     [
      23,
@@ -403,6 +799,18 @@
    "icon": "heart",
    "title": "Kříž a smíření",
    "summary": "Ježíšova smrt na kříži je středem křesťanské víry. Bible ji popisuje mnoha obrazy: oběť za hříchy, výkupné, smíření s Bohem, vítězství nad zlem. Ježíš vzal na sebe to, co patřilo nám.",
+   "deeper": [
+    "Ukřižování bylo nejpotupnější římský trest, určený otrokům a vzbouřencům. Římský řečník Cicero ho nazval „nejkrutějším a nejodpornějším trestem“. Že první křesťané hlásali ukřižovaného Mesiáše, bylo podle Pavla „pro Židy pohoršením a pro pohany bláznovstvím“.",
+    "Nový zákon popisuje smysl kříže mnoha obrazy: oběť za hřích, výkupné, vítězství nad mocnostmi, smíření nepřátel, příklad lásky. Žádný obraz sám nestačí – dohromady ukazují, že na kříži Bůh nesl to, co jsme nesli my."
+   ],
+   "facts": [
+    "Nejstarší známé zobrazení ukřižování je posměšná kresba z Říma (asi 200 po Kr.): ukřižovaný s oslí hlavou a nápis „Alexamenos uctívá svého boha“.",
+    "Kříž se stal běžným křesťanským symbolem až ve 4. století, když císař Konstantin ukřižování zrušil. Dřív se používala spíš ryba a kotva."
+   ],
+   "questions": [
+    "Co pro mě osobně znamená, že Kristus zemřel „za mě“?",
+    "Který obraz kříže mi pomáhá nejvíc?"
+   ],
    "refs": [
     [
      23,
@@ -463,6 +871,18 @@
    "icon": "sun",
    "title": "Vzkříšení",
    "summary": "Třetího dne Ježíš vstal z mrtvých – to je základ, na kterém stojí celá víra. Vzkříšení potvrzuje, kým Ježíš je, a dává naději, že smrt nemá poslední slovo ani pro nás.",
+   "deeper": [
+    "Všechna čtyři evangelia uvádějí, že první svědkyně prázdného hrobu byly ženy. Svědectví žen tehdy u soudu mělo malou váhu – kdyby příběh někdo vymýšlel, sotva by je zvolil. Pavel v 1K 15 uvádí seznam svědků, z nichž většina v době psaní ještě žila.",
+    "Vzkříšení není návrat do starého života jako u Lazara, ale začátek nového stvoření. Ježíš má tělo, které lze obejmout a které jí rybu, ale zároveň prochází zavřenými dveřmi. Pavel ho nazývá „prvotinou“ – prvním snopem ze sklizně, která teprve přijde."
+   ],
+   "facts": [
+    "1K 15,3-8 je pravděpodobně nejstarší křesťanské vyznání. Pavel píše, že ho sám „přijal“ – nejspíš už pár let po Ježíšově smrti.",
+    "Křesťané začali slavit neděli („první den týdne“), protože v ten den Ježíš vstal z mrtvých. Latinsky se jmenuje dies Dominica – „den Páně“; odtud italské domenica."
+   ],
+   "questions": [
+    "Jak by vypadal můj život, kdyby Kristus nevstal?",
+    "Kde potřebuji zažít „vzkříšení“ – nový začátek?"
+   ],
    "refs": [
     [
      40,
@@ -523,6 +943,18 @@
    "icon": "flame",
    "title": "Duch svatý",
    "summary": "Duch svatý je Boží přítomnost v člověku a v církvi. Dává nový život, utěšuje, vede do pravdy, dává sílu ke svědectví a mění charakter – přináší „ovoce Ducha“.",
+   "deeper": [
+    "Hebrejské ruach i řecké pneuma znamenají „dech, vítr, duch“. Duch svatý je Boží dech, který vznáší se nad vodami při stvoření, oživuje suché kosti u Ezechiela a o Letnicích přichází jako vichr a ohnivé jazyky.",
+    "Ve Starém zákoně Duch sestupoval na vybrané jednotlivce – soudce, krále, proroky. Joel slíbil, že jednou bude vylit na „všechny lidi“. O Letnicích se to naplnilo. Ježíš Ducha nazývá Přímluvcem (paraklétos) – tím, kdo je „přivolán k nám“, aby stál při nás."
+   ],
+   "facts": [
+    "Letnice (Šavuot) slavili Židé jako svátek sklizně a připomínku darování Zákona na Sinaji. Den, kdy Bůh dal kamenné desky, se stal dnem, kdy dal Ducha do srdcí.",
+    "Holubice, symbol Ducha při Ježíšově křtu, připomíná i holubici, kterou Noe vypustil z archy – znamení nového začátku."
+   ],
+   "questions": [
+    "Kde jsem zažil vedení nebo útěchu Ducha svatého?",
+    "Které ovoce Ducha bych chtěl ve svém životě vidět víc?"
+   ],
    "refs": [
     [
      26,
@@ -585,11 +1017,1115 @@
    ]
   },
   {
+   "id": "incarnation",
+   "category": "jesus",
+   "icon": "star",
+   "title": "Vtělení – Bůh se stal člověkem",
+   "summary": "Křesťané věří, že Boží Syn se stal skutečným člověkem: narodil se, rostl, jedl, plakal i umíral. Bůh nepomáhá zdálky – vstoupil do lidského života zevnitř.",
+   "deeper": [
+    "Slovo „vtělení“ (latinsky incarnatio) znamená „vstoupení do masa“. Jan to říká nečekaně drsně: Slovo se stalo „tělem“ – ne zdáním člověka, ale opravdovým křehkým tělem. Proto Ježíš rozumí únavě, hladu, pokušení i smutku (Žd 4,15).",
+    "Pavel v listu Filipským zpívá o Kristu, který „sám sebe vyprázdnil“. Nevzdal se toho, že je Bůh, ale vzdal se výsad a slávy. Vtělení tak není jen nauka o Vánocích, ale vzor: Bůh sestupuje dolů, ne nahoru."
+   ],
+   "facts": [
+    "Jesle byly kamenné nebo hliněné žlaby na krmení dobytka. Dobytek se v Betlémě často ustájil v přízemí domu nebo v jeskyni – „chlév“ byl možná součástí obydlí.",
+    "Datum 25. prosince není v Bibli. Slaví se od 4. století; o tom, proč právě tento den, se historici dodnes přou."
+   ],
+   "questions": [
+    "Co pro mě znamená, že Ježíš zná lidskou únavu a slabost zevnitř?",
+    "Kde mě Bůh zve, abych se podobně „sklonil“ k druhým?"
+   ],
+   "refs": [
+    [
+     23,
+     7,
+     14,
+     14
+    ],
+    [
+     23,
+     9,
+     5,
+     5
+    ],
+    [
+     33,
+     5,
+     1,
+     1
+    ],
+    [
+     42,
+     2,
+     7,
+     7
+    ],
+    [
+     42,
+     2,
+     10,
+     11
+    ],
+    [
+     43,
+     1,
+     14,
+     14
+    ],
+    [
+     48,
+     4,
+     4,
+     4
+    ],
+    [
+     50,
+     2,
+     6,
+     8
+    ]
+   ],
+   "labels": [
+    "Panna počne a porodí syna",
+    "Dítě se nám narodilo",
+    "Z Betléma vyjde vládce",
+    "Položila ho do jeslí",
+    "Narodil se vám Spasitel",
+    "Slovo se stalo tělem",
+    "Když se naplnil čas",
+    "Vzal na sebe podobu služebníka"
+   ]
+  },
+  {
+   "id": "parables",
+   "category": "jesus",
+   "icon": "lamp",
+   "title": "Ježíšova podobenství",
+   "summary": "Ježíš učil hlavně v příbězích ze života – o semenech, ovcích, penězích a hostinách. Podobenství jsou jednoduchá na poslech, ale hluboká na přemýšlení: kdo chce slyšet, slyší.",
+   "deeper": [
+    "Podobenství (řecky parabolé) staví vedle sebe dvě věci: známou a neznámou. Království nebeské je „jako“ kvas, síť, poklad. Většinou má jeden hlavní bod a často končí překvapením – Samaritán je hrdina, celník odchází ospravedlněn, otec běží (což se pro váženého muže nehodilo).",
+    "Při čtení pomáhá ptát se: komu to Ježíš vyprávěl? Tři podobenství o ztraceném v Lukáši 15 jsou odpovědí farizeům, kteří reptali, že jí s hříšníky. Starší bratr, který nechce jít na oslavu, je tedy zrcadlo pro ty, kdo poslouchali."
+   ],
+   "facts": [
+    "Evangelia obsahují kolem čtyřiceti podobenství. Jan žádné klasické podobenství nemá – místo toho zaznamenává obrazy jako „Já jsem dobrý pastýř“ nebo „Já jsem vinný kmen“.",
+    "Hořčičné semínko měří asi 1–2 milimetry, ale keř černé hořčice u Galilejského jezera dorůstá i do výšky dvou až tří metrů."
+   ],
+   "questions": [
+    "S kterou postavou podobenství o ztraceném synu se dnes nejvíc ztotožňuji – s mladším synem, se starším, nebo s otcem?",
+    "Které podobenství mě nejvíc znepokojuje – a proč?"
+   ],
+   "refs": [
+    [
+     40,
+     13,
+     3,
+     9
+    ],
+    [
+     40,
+     13,
+     31,
+     32
+    ],
+    [
+     40,
+     13,
+     44,
+     46
+    ],
+    [
+     42,
+     10,
+     30,
+     37
+    ],
+    [
+     42,
+     15,
+     4,
+     7
+    ],
+    [
+     42,
+     15,
+     20,
+     24
+    ],
+    [
+     42,
+     18,
+     10,
+     14
+    ],
+    [
+     40,
+     25,
+     14,
+     30
+    ]
+   ],
+   "labels": [
+    "Rozsévač",
+    "Hořčičné zrno",
+    "Poklad a perla",
+    "Milosrdný Samaritán",
+    "Ztracená ovce",
+    "Otec běží vstříc synovi",
+    "Farizeus a celník",
+    "Svěřené hřivny"
+   ]
+  },
+  {
+   "id": "miracles",
+   "category": "jesus",
+   "icon": "sun",
+   "title": "Ježíšovy zázraky",
+   "summary": "Evangelia nazývají Ježíšovy zázraky „znameními“ a „mocnými činy“. Nejsou to kouzla pro efekt, ale ukázky toho, jaké je Boží království: nemocní uzdraveni, hladoví nasyceni, smrt přemožena.",
+   "deeper": [
+    "Jan vybírá sedm znamení a pokaždé je spojuje s výrokem nebo rozhovorem: po nasycení zástupu Ježíš říká „Já jsem chléb života“, před vzkříšením Lazara „Já jsem vzkříšení a život“. Zázrak je tedy jako ukazatel – nemá se na něm zůstat stát, ale jít tam, kam ukazuje.",
+    "Ježíš zázraky nedělal na objednávku a často prosil uzdravené, ať nic neříkají. Nechtěl být vnímán jako divotvorce. Mnohé zázraky navíc vracejí lidi do společenství: malomocný se smí vrátit domů, žena s krvácením přestává být nečistá."
+   ],
+   "facts": [
+    "Utišení bouře je napsáno slovy, která připomínají Žalm 107: „Bouři změnil v ticho a vlny utichly.“ Učedníci se ptají „Kdo to je?“ a čtenář znalý žalmů zná odpověď.",
+    "Rybník Siloe, kde se umyl slepý od narození, archeologové odkryli v Jeruzalémě v roce 2004 při opravě kanalizace."
+   ],
+   "questions": [
+    "Ve kterém příběhu uzdravení se dnes poznávám?",
+    "Jsou v mém okolí „znamení“ Boží péče, kterých si nevšímám?"
+   ],
+   "refs": [
+    [
+     43,
+     2,
+     11,
+     11
+    ],
+    [
+     41,
+     2,
+     5,
+     12
+    ],
+    [
+     41,
+     4,
+     39,
+     41
+    ],
+    [
+     43,
+     6,
+     11,
+     13
+    ],
+    [
+     43,
+     9,
+     6,
+     7
+    ],
+    [
+     43,
+     11,
+     43,
+     44
+    ],
+    [
+     40,
+     11,
+     4,
+     5
+    ],
+    [
+     43,
+     20,
+     30,
+     31
+    ]
+   ],
+   "labels": [
+    "První znamení v Káně",
+    "Uzdravení ochrnutého a odpuštění",
+    "Utišení bouře",
+    "Nasycení zástupu",
+    "Slepý od narození vidí",
+    "Lazare, pojď ven!",
+    "Slepí vidí, chromí chodí",
+    "Napsáno, abyste věřili"
+   ]
+  },
+  {
+   "id": "titles",
+   "category": "jesus",
+   "icon": "crown",
+   "title": "Ježíšova jména a tituly",
+   "summary": "Ježíš má v Bibli desítky jmen a titulů. Každý z nich je jako okno: Mesiáš, Syn člověka, Beránek, Pastýř, Světlo, Pán. Dohromady skládají obraz toho, kdo Ježíš je.",
+   "deeper": [
+    "Jméno Ježíš (hebrejsky Ješua) znamená „Hospodin zachraňuje“. Bylo v Ježíšově době běžné. Kristus není příjmení, ale titul: řecký překlad hebrejského „Mesiáš“ – Pomazaný. Pomazáni olejem byli králové, kněží a někdy proroci.",
+    "Ježíš sám o sobě nejčastěji mluví jako o „Synu člověka“. Výraz může znamenat prostě „člověk“, ale zároveň odkazuje na Danielovo vidění (Da 7,13), kde Syn člověka dostává věčnou vládu. Titul tak spojuje pokoru i slávu."
+   ],
+   "facts": [
+    "Janovo evangelium obsahuje sedm výroků „Já jsem“ s obrazem (chléb, světlo, dveře, pastýř, vzkříšení, cesta, vinný kmen). Řecké „egó eimi“ připomíná Boží jméno z hořícího keře.",
+    "Raní křesťané kreslili rybu. Řecké slovo ICHTHYS (ryba) tvoří počáteční písmena věty „Ježíš Kristus, Boží Syn, Spasitel“."
+   ],
+   "questions": [
+    "Který Ježíšův titul je mi nejbližší a který nejvzdálenější?",
+    "Co by znamenalo brát vážně, že Ježíš je „Pán“ i mých všedních rozhodnutí?"
+   ],
+   "refs": [
+    [
+     40,
+     1,
+     21,
+     21
+    ],
+    [
+     40,
+     16,
+     16,
+     16
+    ],
+    [
+     43,
+     1,
+     29,
+     29
+    ],
+    [
+     41,
+     10,
+     45,
+     45
+    ],
+    [
+     43,
+     8,
+     12,
+     12
+    ],
+    [
+     43,
+     10,
+     11,
+     11
+    ],
+    [
+     43,
+     14,
+     6,
+     6
+    ],
+    [
+     66,
+     19,
+     16,
+     16
+    ]
+   ],
+   "labels": [
+    "Ježíš – On vysvobodí svůj lid",
+    "Ty jsi Mesiáš, Syn živého Boha",
+    "Beránek Boží",
+    "Syn člověka přišel sloužit",
+    "Já jsem světlo světa",
+    "Já jsem dobrý pastýř",
+    "Já jsem cesta, pravda a život",
+    "Král králů a Pán pánů"
+   ]
+  },
+  {
+   "id": "covenant",
+   "category": "story",
+   "icon": "link",
+   "title": "Smlouva",
+   "summary": "Smlouva je páteř Bible. Bůh se k lidem váže slavnostními sliby – s Noem, Abrahamem, Izraelem na Sinaji, Davidem – až po novou smlouvu v Ježíšově krvi. Bůh není vzdálený, ale věrný partner.",
+   "deeper": [
+    "Ve starověku uzavírali smlouvy panovníci se svými vazaly. Obsahovaly představení vládce, připomínku jeho dobrodiní, podmínky, požehnání a kletby a svědky. Desatero i kniha Deuteronomium mají podobnou stavbu – Bůh se představuje jako král, který svůj lid nejdřív vysvobodil a pak mu dal zákon.",
+    "Smlouvy v Bibli na sebe navazují: každá rozvíjí tu předchozí. Jeremjáš slibuje novou smlouvu, ve které Bůh zapíše zákon do srdce. Ježíš při poslední večeři říká, že nyní nastává. Proto se obě části Bible jmenují Starý a Nový zákon – latinsky testamentum, tedy „smlouva“."
+   ],
+   "facts": [
+    "Hebrejsky se smlouva „uzavírá“ slovesem „řezat“ (karat brit). Souvisí s obřadem, kdy strany procházely mezi rozpůlenými zvířaty (Gn 15,10).",
+    "Slovo „zákon“ v názvech Starý a Nový zákon je staročeský překlad slova smlouva – ne „soubor paragrafů“."
+   ],
+   "questions": [
+    "Co mi říká, že Bůh se k lidem sám zavazuje sliby?",
+    "Jak bych popsal svůj vztah s Bohem – spíš jako smlouvu, nebo jako obchod?"
+   ],
+   "refs": [
+    [
+     1,
+     9,
+     13,
+     13
+    ],
+    [
+     1,
+     15,
+     18,
+     18
+    ],
+    [
+     2,
+     24,
+     7,
+     8
+    ],
+    [
+     10,
+     7,
+     16,
+     16
+    ],
+    [
+     24,
+     31,
+     31,
+     33
+    ],
+    [
+     42,
+     22,
+     20,
+     20
+    ],
+    [
+     58,
+     8,
+     6,
+     6
+    ]
+   ],
+   "labels": [
+    "Duha jako znamení smlouvy",
+    "Smlouva s Abrahamem",
+    "Krev smlouvy na Sinaji",
+    "Tvůj trůn bude pevný navěky",
+    "Nová smlouva zapsaná na srdce",
+    "Nová smlouva v mé krvi",
+    "Lepší smlouva s lepšími sliby"
+   ]
+  },
+  {
+   "id": "kingdom",
+   "category": "story",
+   "icon": "crown",
+   "title": "Boží království",
+   "summary": "Hlavním tématem Ježíšova kázání bylo Boží království – Boží vláda, která přichází na zem. Už je tu, kde Ježíš uzdravuje a odpouští, a jednou se ukáže v plnosti.",
+   "deeper": [
+    "Království v Bibli neznamená hlavně území, ale vládu. Kde se děje Boží vůle, tam je jeho království. Proto Ježíš učí modlit se „přijď tvé království, buď vůle tvá“ – obě prosby říkají totéž dvakrát.",
+    "Teologové mluví o napětí „už – ještě ne“. Království už přišlo v Ježíšovi (nemocní jsou uzdraveni, hříšníci přijati), ale ještě nedošlo naplnění (svět je stále plný bolesti). Křesťané žijí mezi těmito dvěma časy – jako lidé, kteří už vědí, jak příběh skončí."
+   ],
+   "facts": [
+    "Matouš píše většinou „království nebeské“ místo „Boží království“. Ze židovské úcty se vyhýbá častému vyslovování slova Bůh – význam je stejný.",
+    "Daniel vidí sochu z různých kovů, kterou rozbije kámen „utržený bez lidských rukou“. Kámen roste v horu, která naplní zemi – obraz království, které začíná nenápadně."
+   ],
+   "questions": [
+    "Kde v mém okolí je vidět „kousek“ Božího království?",
+    "Jakou oblast svého života Bohu zatím „nepustím vládnout“?"
+   ],
+   "refs": [
+    [
+     19,
+     145,
+     13,
+     13
+    ],
+    [
+     27,
+     2,
+     44,
+     44
+    ],
+    [
+     41,
+     1,
+     15,
+     15
+    ],
+    [
+     40,
+     6,
+     10,
+     10
+    ],
+    [
+     42,
+     17,
+     20,
+     21
+    ],
+    [
+     45,
+     14,
+     17,
+     17
+    ],
+    [
+     66,
+     11,
+     15,
+     15
+    ]
+   ],
+   "labels": [
+    "Tvé království je věčné",
+    "Království, které nebude zničeno",
+    "Přiblížilo se Boží království",
+    "Přijď tvé království",
+    "Boží království je mezi vámi",
+    "Spravedlnost, pokoj a radost",
+    "Království světa patří našemu Pánu"
+   ]
+  },
+  {
+   "id": "law",
+   "category": "story",
+   "icon": "book",
+   "title": "Zákon a Desatero",
+   "summary": "Zákon (hebrejsky Tóra – „učení, návod“) nebyl dán, aby si ho lid zasloužil Boží lásku, ale jako odpověď na vysvobození z Egypta. Ježíš ho shrnuje do dvou přikázání lásky.",
+   "deeper": [
+    "Desatero začíná větou, kterou lidé často přeskakují: „Já jsem Hospodin, tvůj Bůh, který tě vyvedl z egyptské země, z domu otroctví.“ Nejprve přichází vysvobození, potom přikázání. Zákon je návod, jak žít svobodně a nevrátit se do otroctví.",
+    "Židovská tradice napočítala v Tóře 613 přikázání. Ježíš na otázku, které je největší, odpovídá dvěma citáty z Tóry – o lásce k Bohu (Dt 6,5) a k bližnímu (Lv 19,18). Pavel pak ukazuje, že zákon sám člověka nezachrání, ale ukazuje, jak moc potřebuje milost."
+   ],
+   "facts": [
+    "Modlitba „Šema Jisrael“ (Slyš, Izraeli, Dt 6,4) je dodnes nejdůležitější modlitbou židovství; zbožní Židé ji říkají ráno a večer.",
+    "Bible nikde nečísluje „deset přikázání“. Mluví o „deseti slovech“ (Ex 34,28), a různé církve je proto dělí trochu jinak."
+   ],
+   "questions": [
+    "Vnímám Boží přikázání spíš jako zábradlí, nebo jako břemeno?",
+    "Které z Desatera je pro mě dnes nejaktuálnější?"
+   ],
+   "refs": [
+    [
+     2,
+     20,
+     2,
+     3
+    ],
+    [
+     5,
+     6,
+     4,
+     5
+    ],
+    [
+     19,
+     119,
+     105,
+     105
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ],
+    [
+     40,
+     5,
+     17,
+     17
+    ],
+    [
+     40,
+     22,
+     37,
+     40
+    ],
+    [
+     45,
+     13,
+     10,
+     10
+    ],
+    [
+     48,
+     3,
+     24,
+     24
+    ]
+   ],
+   "labels": [
+    "Já jsem Hospodin, který tě vyvedl",
+    "Slyš, Izraeli",
+    "Tvé slovo je svítilnou",
+    "Co od tebe Hospodin žádá",
+    "Nepřišel jsem zrušit, ale naplnit",
+    "Největší přikázání",
+    "Láska je naplněním zákona",
+    "Zákon jako vychovatel ke Kristu"
+   ]
+  },
+  {
+   "id": "temple",
+   "category": "story",
+   "icon": "temple",
+   "title": "Stánek a chrám",
+   "summary": "Stánek na poušti a později chrám v Jeruzalémě byly místem, kde Bůh přebýval uprostřed lidu. Nový zákon ukazuje, že tím pravým chrámem je Ježíš – a skrze Ducha i jeho lid.",
+   "deeper": [
+    "Stánek byl přenosná svatyně: nádvoří s oltářem, svatyně se svícnem a stolem chlebů a nejsvětější místo s truhlou smlouvy. Čím blíž ke středu, tím svatější a tím méně lidí smělo vstoupit. Do velesvatyně vcházel jen velekněz jednou za rok.",
+    "Při Ježíšově smrti se opona chrámu roztrhla „odshora dolů“ (Mk 15,38) – jako by ji roztrhl Bůh sám. Cesta k Boží přítomnosti je otevřená. Proto Pavel může napsat, že chrámem je nyní společenství věřících i tělo jednotlivce."
+   ],
+   "facts": [
+    "Herodův chrám měl nádvoří o rozloze kolem 14 hektarů. Zeď nářků v Jeruzalémě je část opěrné zdi tohoto nádvoří.",
+    "Kameny Herodova chrámu vážily i přes 100 tun. Učedníci obdivovali: „Hle, jaké kameny!“ (Mk 13,1) – a Ježíš předpověděl, že nezůstane kámen na kameni. Chrám byl zničen v roce 70."
+   ],
+   "questions": [
+    "Co pro mě znamená, že já sám a společenství církve jsme Božím chrámem?",
+    "Jak zacházím se svým tělem, když je „chrámem Ducha“?"
+   ],
+   "refs": [
+    [
+     2,
+     25,
+     8,
+     9
+    ],
+    [
+     2,
+     40,
+     34,
+     35
+    ],
+    [
+     11,
+     8,
+     27,
+     27
+    ],
+    [
+     19,
+     84,
+     2,
+     3
+    ],
+    [
+     43,
+     2,
+     19,
+     21
+    ],
+    [
+     46,
+     3,
+     16,
+     16
+    ],
+    [
+     46,
+     6,
+     19,
+     19
+    ],
+    [
+     66,
+     21,
+     22,
+     22
+    ]
+   ],
+   "labels": [
+    "Udělají mi svatyni",
+    "Sláva naplnila příbytek",
+    "Nebesa tě nemohou pojmout",
+    "Jak milé jsou tvé příbytky",
+    "Zbořte tento chrám",
+    "Jste Boží chrám",
+    "Vaše tělo je chrámem Ducha",
+    "Chrám jsem v něm neviděl"
+   ]
+  },
+  {
+   "id": "sacrifice",
+   "category": "story",
+   "icon": "flame",
+   "title": "Oběť",
+   "summary": "Oběti ve Starém zákoně vyjadřovaly díky, smíření i společenství s Bohem. Proroci připomínali, že Bůh chce hlavně srdce. Nový zákon vidí v Ježíši jedinou dokonalou oběť, po které už další nejsou potřeba.",
+   "deeper": [
+    "Kniha Leviticus popisuje několik druhů obětí. Zápalná oběť se celá spálila – znamenala úplné odevzdání. Pokojná oběť se z větší části snědla při slavnostní hostině – byla to společná večeře s Bohem. Oběť za hřích znamenala, že vina se nedá přejít mávnutím ruky; něco ji „stojí“.",
+    "Proroci ostře kritizovali oběti bez proměněného života. List Židům pak vykládá, že všechny oběti ukazovaly dopředu na Krista. Křesťanská „oběť“ už není zvíře, ale chvála, dobročinnost a celý život vydaný Bohu."
+   ],
+   "facts": [
+    "Na Den smíření se vybírali dva kozli: jeden byl obětován, na druhého velekněz vložil hříchy lidu a vyhnal ho do pouště. Odtud pochází výraz „obětní beránek“ – anglicky scapegoat, „kozel, který unikl“.",
+    "Oběti v jeruzalémském chrámu ustaly v roce 70, kdy Římané chrám zbořili. Židovství je od té doby nahradilo modlitbou, studiem a skutky milosrdenství."
+   ],
+   "questions": [
+    "Co by znamenalo nabídnout Bohu „živou oběť“ v obyčejném týdnu?",
+    "Proč podle mě Bůh chce milosrdenství víc než oběti?"
+   ],
+   "refs": [
+    [
+     1,
+     22,
+     8,
+     8
+    ],
+    [
+     3,
+     17,
+     11,
+     11
+    ],
+    [
+     3,
+     16,
+     21,
+     22
+    ],
+    [
+     19,
+     51,
+     18,
+     19
+    ],
+    [
+     28,
+     6,
+     6,
+     6
+    ],
+    [
+     23,
+     53,
+     7,
+     7
+    ],
+    [
+     58,
+     10,
+     10,
+     10
+    ],
+    [
+     45,
+     12,
+     1,
+     1
+    ]
+   ],
+   "labels": [
+    "Bůh si sám vyhlédne beránka",
+    "Život je v krvi",
+    "Kozel, který odnáší viny",
+    "Obětí Bohu je zkroušený duch",
+    "Chci milosrdenství, ne oběť",
+    "Jako beránek vedený na porážku",
+    "Jednou provždy",
+    "Vydejte svá těla jako živou oběť"
+   ]
+  },
+  {
+   "id": "messiah",
+   "category": "story",
+   "icon": "crown",
+   "title": "Mesiáš – zaslíbený Král",
+   "summary": "Starý zákon je plný slibů o přicházejícím zachránci: potomku ženy, Davidově synu, trpícím služebníku. Nový zákon zvěstuje, že tyto sliby se naplnily v Ježíši z Nazareta.",
+   "deeper": [
+    "V Ježíšově době čekali Židé mesiáše různě: jako krále, který vyžene Římany, jako kněze, nebo jako proroka podobného Mojžíšovi. Ježíš splnil očekávání nečekaným způsobem – na oslu místo na válečném koni, korunovaný trním.",
+    "Učedníci z Emauz chápou Písmo nově, když jim vzkříšený Ježíš vykládá „od Mojžíše a všech proroků“, co se o něm psalo. Křesťané proto čtou Starý zákon jako příběh, který k Ježíši směřuje – ale který má svou hodnotu i sám o sobě."
+   ],
+   "facts": [
+    "Kumránské svitky ukazují, že tamní společenství čekalo dokonce dva mesiáše – královského a kněžského.",
+    "Händelovo oratorium Mesiáš (1742) je celé sestaveno z biblických veršů – od Izajáše přes evangelia po Zjevení."
+   ],
+   "questions": [
+    "Jaká očekávání mám já od Ježíše – a v čem mě překvapuje?",
+    "Který starozákonní slib o Mesiáši mě nejvíc oslovuje?"
+   ],
+   "refs": [
+    [
+     1,
+     3,
+     15,
+     15
+    ],
+    [
+     10,
+     7,
+     12,
+     13
+    ],
+    [
+     23,
+     11,
+     1,
+     2
+    ],
+    [
+     23,
+     53,
+     5,
+     5
+    ],
+    [
+     38,
+     9,
+     9,
+     9
+    ],
+    [
+     43,
+     4,
+     25,
+     26
+    ],
+    [
+     42,
+     24,
+     27,
+     27
+    ],
+    [
+     44,
+     2,
+     36,
+     36
+    ]
+   ],
+   "labels": [
+    "Potomek ženy rozdrtí hadovi hlavu",
+    "Davidův potomek a věčný trůn",
+    "Výhonek z pařezu Jišajova",
+    "Pro naše nepravosti byl proboden",
+    "Tvůj král přichází na oslátku",
+    "To jsem já, který s tebou mluvím",
+    "Vykládal jim, co o něm psali proroci",
+    "Bůh ho učinil Pánem i Mesiášem"
+   ]
+  },
+  {
+   "id": "exodus",
+   "category": "story",
+   "icon": "water",
+   "title": "Exodus – Boží vysvobození",
+   "summary": "Vyjití z Egypta je zakladatelský příběh Izraele: Bůh slyší křik otroků a vyvede je na svobodu. Proroci i Nový zákon se k němu neustále vracejí jako ke vzoru každé Boží záchrany.",
+   "deeper": [
+    "Exodus je víc než historka o útěku. Je to příběh o tom, že Bůh vidí utlačované a jedná. Izraelité si ho připomínají každý rok při Pesachu a mnoho přikázání začíná slovy: „Pamatuj, že jsi byl otrokem v Egyptě.“",
+    "Ve vyprávění o proměnění na hoře mluví Mojžíš a Elijáš s Ježíšem o jeho „odchodu“ – v řečtině stojí přímo slovo exodos. Ježíšova smrt a vzkříšení jsou nový exodus: vysvobození z otroctví hříchu a smrti."
+   ],
+   "facts": [
+    "Spirituály afroamerických otroků jako „Go Down, Moses“ zpívaly o exodu jako o naději na vlastní svobodu.",
+    "Hebrejské jméno moře, které Izrael přešel, je jam suf – „moře rákosí“. Kde přesně leželo, se dodnes diskutuje."
+   ],
+   "questions": [
+    "Z jakého „Egypta“ mě Bůh vyvedl – nebo potřebuji vyvést?",
+    "Proč je důležité si Boží záchranu pravidelně připomínat?"
+   ],
+   "refs": [
+    [
+     2,
+     3,
+     7,
+     8
+    ],
+    [
+     2,
+     12,
+     13,
+     13
+    ],
+    [
+     2,
+     14,
+     13,
+     14
+    ],
+    [
+     2,
+     15,
+     1,
+     2
+    ],
+    [
+     23,
+     43,
+     16,
+     19
+    ],
+    [
+     42,
+     9,
+     30,
+     31
+    ],
+    [
+     46,
+     5,
+     7,
+     7
+    ],
+    [
+     66,
+     15,
+     3,
+     3
+    ]
+   ],
+   "labels": [
+    "Viděl jsem bídu svého lidu",
+    "Krev na veřejích",
+    "Hospodin bude bojovat za vás",
+    "Mojžíšova píseň",
+    "Hle, činím nové věci",
+    "Mluvili o jeho odchodu",
+    "Kristus, náš velikonoční beránek",
+    "Píseň Mojžíše a Beránka"
+   ]
+  },
+  {
+   "id": "blessing",
+   "category": "story",
+   "icon": "sun",
+   "title": "Požehnání",
+   "summary": "Požehnat znamená přát a dávat život, který pochází od Boha. Bible začíná Božím požehnáním stvoření a Abraham je požehnán, aby se stal požehnáním pro všechny národy.",
+   "deeper": [
+    "Hebrejské slovo baruch („požehnaný“) souvisí se slovem koleno – možná proto, že se při požehnání klečelo. Požehnání v Bibli není jen hezké přání; když otec požehnal synovi, věřilo se, že slovo má skutečnou moc (proto Jákob tolik toužil po požehnání prvorozeného).",
+    "Abraham je požehnán ne kvůli sobě, ale „abys byl požehnáním“. Požehnání má téct dál. Poslední, co učedníci vidí na zemi, je Ježíš se zdviženýma rukama, jak žehná – tak začíná čas církve."
+   ],
+   "facts": [
+    "V roce 1979 archeologové v Jeruzalémě našli dva malé stříbrné svitky z doby kolem roku 600 př. Kr. s textem áronského požehnání. Patří k nejstarším známým biblickým textům vůbec.",
+    "Slovo „blahoslavený“ v Ježíšově kázání na hoře je řecky makarios – „šťastný, obdarovaný“, ne „svatý“."
+   ],
+   "questions": [
+    "Komu bych mohl tento týden „být požehnáním“?",
+    "Zkuste dnes vyslovit ároňské požehnání (Nu 6,24-26) nad někým blízkým."
+   ],
+   "refs": [
+    [
+     1,
+     1,
+     28,
+     28
+    ],
+    [
+     1,
+     12,
+     2,
+     3
+    ],
+    [
+     4,
+     6,
+     24,
+     26
+    ],
+    [
+     19,
+     1,
+     1,
+     3
+    ],
+    [
+     24,
+     17,
+     7,
+     8
+    ],
+    [
+     40,
+     5,
+     3,
+     10
+    ],
+    [
+     42,
+     24,
+     50,
+     51
+    ],
+    [
+     49,
+     1,
+     3,
+     3
+    ]
+   ],
+   "labels": [
+    "Bůh jim požehnal",
+    "Budeš požehnáním",
+    "Áronské požehnání",
+    "Blaze člověku – strom u vody",
+    "Požehnaný, kdo doufá v Hospodina",
+    "Blahoslavení",
+    "Ježíš odchází, když žehná",
+    "Požehnání v Kristu"
+   ]
+  },
+  {
+   "id": "wisdom",
+   "category": "story",
+   "icon": "lamp",
+   "title": "Moudrost",
+   "summary": "Biblická moudrost není hlavně vzdělání, ale umění dobře žít před Bohem. Začíná bázní Hospodinovou a v Novém zákoně má tvář Ježíše Krista.",
+   "deeper": [
+    "Mudroslovné knihy (Přísloví, Job, Kazatel, Píseň písní a částečně Žalmy) mluví jinak než zákon nebo proroci. Méně „tak praví Hospodin“, více pozorování života: o práci, penězích, slovech, přátelství, lenosti. Přísloví říkají, co obvykle platí; Job a Kazatel ukazují, že život se do pouček nevejde vždy.",
+    "Hebrejské slovo chochma se používalo i pro řemeslnou zručnost (Ex 31,3). Moudrý je ten, kdo umí „vyrobit“ dobrý život. Jakub slibuje, že o takovou moudrost může prosit kdokoli – a Bůh ji dává štědře."
+   ],
+   "facts": [
+    "„Bázeň Hospodinova“ neznamená strach, ale úctu – vědomí, že Bůh je Bůh a já nejsem.",
+    "Přísloví 22,17–24,22 se nápadně podobají egyptskému spisu Ponaučení Amenemopeho. Izraelští mudrci zřejmě znali moudrost sousedních národů a přetvořili ji ve světle víry."
+   ],
+   "questions": [
+    "Ve kterém rozhodnutí teď potřebuji prosit o moudrost?",
+    "Kdo je pro mě vzorem moudrého člověka – a proč?"
+   ],
+   "refs": [
+    [
+     20,
+     1,
+     7,
+     7
+    ],
+    [
+     20,
+     3,
+     5,
+     6
+    ],
+    [
+     20,
+     4,
+     7,
+     7
+    ],
+    [
+     18,
+     28,
+     28,
+     28
+    ],
+    [
+     21,
+     3,
+     1,
+     1
+    ],
+    [
+     59,
+     1,
+     5,
+     5
+    ],
+    [
+     59,
+     3,
+     17,
+     17
+    ],
+    [
+     46,
+     1,
+     24,
+     25
+    ]
+   ],
+   "labels": [
+    "Počátek moudrosti je bázeň Hospodinova",
+    "Doufej v Hospodina celým srdcem",
+    "Získej moudrost",
+    "Kde se nalézá moudrost?",
+    "Všechno má svůj čas",
+    "Komu chybí moudrost, ať prosí",
+    "Moudrost shůry",
+    "Kristus – Boží moudrost"
+   ]
+  },
+  {
+   "id": "exile",
+   "category": "story",
+   "icon": "compass",
+   "title": "Vyhnanství a návrat",
+   "summary": "Babylonské vyhnanství byl největší otřes Izraele: chrám zničen, země ztracena. Ale právě v cizině se zrodila hluboká víra a naděje. Nový zákon nazývá křesťany „hosty a cizinci“ na cestě domů.",
+   "deeper": [
+    "V roce 586 př. Kr. Babyloňané dobyli Jeruzalém a odvedli velkou část obyvatel. Proroci vykládali katastrofu jako důsledek nevěrnosti, ale zároveň slibovali návrat. Jeremjáš psal vyhnancům překvapivě praktický dopis: stavte domy, sázejte zahrady, modlete se za město, kde žijete.",
+    "Ve vyhnanství, bez chrámu, se víra soustředila na Písmo, sabat a modlitbu. Pravděpodobně tehdy vznikaly synagogy a byla shromážděna velká část Starého zákona. Těžká doba se stala obdobím hlubokého duchovního růstu."
+   ],
+   "facts": [
+    "Kýrův válec, hliněný válec z doby perského krále Kýra (dnes v Britském muzeu), popisuje jeho politiku návratu deportovaných národů a obnovy jejich svatyní – podobně jako Ezd 1.",
+    "Verdiho sbor „Va, pensiero“ z opery Nabucco je inspirován Žalmem 137 a stal se neoficiální hymnou italského sjednocení."
+   ],
+   "questions": [
+    "Kde se cítím jako „v cizině“ – a jak tam mohu „usilovat o pokoj města“?",
+    "Přinesla mi někdy těžká doba nečekaný duchovní růst?"
+   ],
+   "refs": [
+    [
+     19,
+     137,
+     1,
+     4
+    ],
+    [
+     24,
+     29,
+     7,
+     7
+    ],
+    [
+     24,
+     29,
+     11,
+     11
+    ],
+    [
+     26,
+     37,
+     4,
+     5
+    ],
+    [
+     15,
+     1,
+     2,
+     3
+    ],
+    [
+     16,
+     8,
+     8,
+     10
+    ],
+    [
+     58,
+     11,
+     13,
+     16
+    ],
+    [
+     60,
+     2,
+     11,
+     11
+    ]
+   ],
+   "labels": [
+    "U řek babylonských",
+    "Usilujte o pokoj města",
+    "Plány pokoje, ne neštěstí",
+    "Suché kosti oživnou",
+    "Kýrův výnos o návratu",
+    "Radost Hospodinova je vaše síla",
+    "Cizinci a poutníci na zemi",
+    "Jako hosté a cizinci"
+   ]
+  },
+  {
    "id": "image",
    "category": "salvation",
    "icon": "person",
    "title": "Člověk k Božímu obrazu",
    "summary": "Každý člověk je stvořen k Božímu obrazu – muž i žena. Odtud pramení jeho důstojnost a hodnota, nezávislá na výkonu, zdraví nebo postavení. Člověk dostal úkol pečovat o stvoření.",
+   "deeper": [
+    "Ve starověku stavěli králové své sochy v dobytých zemích jako znamení, že tam vládnou. Genesis říká, že Bůh postavil na zem svůj „obraz“ – člověka. Každý člověk, muž i žena, nese Boží obraz a má proto nedotknutelnou důstojnost.",
+    "Hřích obraz poškodil, ale nezničil (Gn 9,6 i Jk 3,9 ho stále předpokládají). Nový zákon ukazuje Krista jako dokonalý „obraz neviditelného Boha“ (Ko 1,15) – a spásu jako obnovu obrazu Božího v nás."
+   ],
+   "facts": [
+    "Slovo pro obraz (celem) se jinde v Bibli používá pro sochy a modly. Bůh si zakázal dělat sochy – svůj obraz už stvořil.",
+    "Idea lidské důstojnosti, z níž vychází moderní pojem lidských práv, má jeden z hlavních kořenů právě v Gn 1,27."
+   ],
+   "questions": [
+    "Jak bych se díval na lidi kolem sebe, kdybych v každém viděl Boží obraz?",
+    "Jak mohu v tomto týdnu „odrážet“ Boží charakter?"
+   ],
    "refs": [
     [
      1,
@@ -643,6 +2179,18 @@
    "icon": "cloud",
    "title": "Hřích",
    "summary": "Hřích není jen porušení pravidla, ale porušený vztah s Bohem – člověk se staví do středu místo Boha. Týká se všech a má následky pro jednotlivce i svět. Bible o hříchu mluví otevřeně, protože nabízí cestu ven.",
+   "deeper": [
+    "Hlavní hebrejské i řecké slovo pro hřích (chata, hamartia) znamená „minout cíl“ – jako lukostřelec, který netrefí terč. Hřích není jen porušení pravidel, ale život mimo to, k čemu jsme byli stvořeni: lásku k Bohu a lidem.",
+    "Příběh Edenu ukazuje, jak hřích funguje: začíná nedůvěrou („opravdu Bůh řekl?“), pokračuje touhou a končí skrýváním a obviňováním. Ale také ukazuje Boha, který přichází a volá: „Kde jsi?“"
+   ],
+   "facts": [
+    "Bible nikde neříká, že zakázané ovoce bylo jablko. Tato představa vznikla nejspíš z latinské slovní hříčky: malum = zlo i jablko.",
+    "Ř 3,23 používá čas, který znamená „všichni zhřešili a stále postrádají Boží slávu“ – hřích není jen událost, ale stav."
+   ],
+   "questions": [
+    "Kde v mém životě „míjím cíl“?",
+    "Jak zní Boží otázka „Kde jsi?“ v mé situaci?"
+   ],
    "refs": [
     [
      1,
@@ -703,6 +2251,18 @@
    "icon": "refresh",
    "title": "Pokání a obrácení",
    "summary": "Pokání znamená obrat – změnu myšlení i směru života. Není to jen lítost, ale návrat k Bohu. Bible ho popisuje jako radostnou věc: Bůh čeká jako otec na marnotratného syna.",
+   "deeper": [
+    "Hebrejské šuv znamená „obrátit se, vrátit se“ – jako člověk, který jde špatným směrem a udělá čelem vzad. Řecké metanoia znamená „změnu mysli“. Pokání tedy není hlavně pocit viny, ale změna směru.",
+    "V podobenství o ztraceném synu syn „přišel k sobě“ a vydal se domů – a otec mu vyběhl vstříc dřív, než stačil dokončit připravenou omluvu. Pokání je cesta domů, kde nás čeká náruč, ne trest."
+   ],
+   "facts": [
+    "Martin Luther začal svých 95 tezí (1517) slovy: „Když náš Pán Ježíš Kristus řekl ‚Čiňte pokání‘, chtěl, aby celý život věřících byl pokáním.“",
+    "Žalm 51 – Davidova modlitba po hříchu s Bat-šebou – patří ke „kajícím žalmům“, kterých tradice počítá sedm."
+   ],
+   "questions": [
+    "Je něco, kde potřebuji „změnit směr“?",
+    "Věřím, že mi Bůh vychází vstříc, když se vracím?"
+   ],
    "refs": [
     [
      26,
@@ -763,6 +2323,18 @@
    "icon": "heart",
    "title": "Milost",
    "summary": "Milost je Boží nezasloužená přízeň. Spasení není odměna za zásluhy, ale dar, který přijímáme vírou. Milost však člověka nenechává stejného – učí ho žít nově.",
+   "deeper": [
+    "Milost (řecky charis) znamená nezasloužený dar. Je to opak mzdy: mzdu si zasloužím, milost dostávám. Hebrejsky jí odpovídá chen – „přízeň“, kterou nalezl např. Noe v Božích očích.",
+    "Milost není jen začátek křesťanského života, ale jeho prostředí. Pavel píše, že „milost Boží“ nás „vychovává“ (Tt 2,11-12) a že Boží „milost stačí“ i v slabosti (2K 12,9). Kdo žije z milosti, je k druhým milostivější."
+   ],
+   "facts": [
+    "John Newton, autor písně Amazing Grace (1772), byl dříve kapitánem lodi převážející otroky. Později se stal farářem a bojovníkem proti otroctví.",
+    "Pavel začíná skoro každý dopis pozdravem „milost vám a pokoj“ – spojuje řecký pozdrav (chairein) a židovský (šalom)."
+   ],
+   "questions": [
+    "Kde jsem v životě zakusil nezaslouženou milost?",
+    "Komu mohu dnes prokázat milost, kterou si „nezaslouží“?"
+   ],
    "refs": [
     [
      45,
@@ -816,6 +2388,18 @@
    "icon": "shield",
    "title": "Víra",
    "summary": "Víra je důvěra v Boha a v jeho slovo – ne jen souhlas s myšlenkami, ale spolehnutí se na něj. Roste nasloucháním, zkouškami i poslušností. Živá víra se projevuje skutky.",
+   "deeper": [
+    "Víra v Bibli není „myslet si, že něco možná platí“, ale důvěra – jako když se opřu o zábradlí. Hebrejské he'emin souvisí s pevností. Abraham „uvěřil Hospodinu“ – svěřil se mu, když nevěděl, kam jde.",
+    "Židům 11 je galerie víry: Abel, Noe, Abraham, Mojžíš, Rachab… Většina z nich nedostala vše, co jim bylo slíbeno, ale „viděli to zdálky a radovali se“. Víra se ukazuje v tom, že jdeme, i když nevidíme celou cestu."
+   ],
+   "facts": [
+    "Ježíš chválí víru překvapivě u lidí „zvenčí“: u římského setníka („takovou víru jsem v Izraeli nenalezl“) i u kananejské ženy („veliká je tvá víra“).",
+    "Hořčičné zrnko víry stačí (Mt 17,20). Nejde o velikost víry, ale o velikost toho, v koho věříme."
+   ],
+   "questions": [
+    "V čem teď potřebuji Bohu důvěřovat, i když nevidím dál?",
+    "Kdo je pro mě příkladem víry?"
+   ],
    "refs": [
     [
      1,
@@ -876,6 +2460,18 @@
    "icon": "refresh",
    "title": "Odpuštění",
    "summary": "Bůh odpouští každému, kdo se k němu obrátí – úplně a navždy. Kdo zakusil odpuštění, je volán odpouštět i druhým. Odpustit neznamená schválit křivdu, ale vzdát se pomsty.",
+   "deeper": [
+    "Petr se ptá, zda stačí odpustit sedmkrát – rabíni učili, že třikrát stačí, takže sedm bylo velkorysé. Ježíš odpovídá: sedmdesát sedmkrát. Nejde o počítání, ale o postoj, který přestává počítat.",
+    "Odpuštění neznamená tvrdit, že se nic nestalo, ani hned obnovit důvěru. Znamená vzdát se práva na pomstu a předat spravedlnost Bohu. Často je to proces, ne jednorázové rozhodnutí."
+   ],
+   "facts": [
+    "V podobenství o nemilosrdném služebníku (Mt 18) dluží první služebník 10 000 talentů – astronomickou částku, kterou by nesplatil ani za mnoho životů. Jeho dlužník dluží 100 denárů, asi tři měsíční mzdy.",
+    "Řecké afiémi („odpustit“) znamená také „propustit, pustit, nechat jít“."
+   ],
+   "questions": [
+    "Je někdo, komu potřebuji odpustit – nebo koho potřebuji požádat o odpuštění?",
+    "Věřím, že mi Bůh opravdu odpustil?"
+   ],
    "refs": [
     [
      19,
@@ -936,6 +2532,18 @@
    "icon": "sun",
    "title": "Nový život v Kristu",
    "summary": "Kdo uvěří, dostává nový začátek – Ježíš mluví o novém narození. Pavel říká, že je „nové stvoření“. Nový život roste postupně, ale jeho začátek je Boží dar.",
+   "deeper": [
+    "Nikodém, vážený učitel Izraele, přichází za Ježíšem v noci a slyší, že se musí „narodit znovu“ – nebo také „shůry“, řecké anóthen znamená obojí. Nový život není zlepšení starého, ale dar od Boha, jako narození.",
+    "Pavel to vyjadřuje obrazem: „Je-li kdo v Kristu, je nové stvoření; staré pominulo“ (2K 5,17). Ve křtu se tento přechod vyjadřuje ponořením (smrt starého) a vynořením (nový život)."
+   ],
+   "facts": [
+    "Nikodém se v Janově evangeliu objevuje třikrát: v noci u Ježíše (J 3), když ho brání před veleradou (J 7) a při jeho pohřbu se 100 librami myrhy a aloe (J 19). Postupně vychází ze tmy na světlo.",
+    "Slovo „obnova“ (palingenesia) v Tt 3,5 doslova znamená „znovuzrození“."
+   ],
+   "questions": [
+    "Co se v mém životě změnilo, když jsem uvěřil?",
+    "Kde ještě žiju „po staru“?"
+   ],
    "refs": [
     [
      43,
@@ -984,11 +2592,411 @@
    ]
   },
   {
+   "id": "justification",
+   "category": "salvation",
+   "icon": "scale",
+   "title": "Ospravedlnění",
+   "summary": "Ospravedlnit je soudní pojem: soudce prohlásí obžalovaného za spravedlivého. Bible zvěstuje, že Bůh přijímá hříšníka ne pro jeho zásluhy, ale z milosti skrze víru v Krista.",
+   "deeper": [
+    "Pavel bojoval proti představě, že si člověk musí Boží přijetí zasloužit dodržováním předpisů. Ospravedlnění je dar: Kristova spravedlnost je „připsána“ tomu, kdo věří – jako když někdo splatí cizí dluh.",
+    "Jakub na první pohled říká opak, ale řeší jiný problém: víru, která se nijak neprojeví. Pavel i Jakub se shodují, že pravá víra nese ovoce – Pavel hned za větou „milostí jste spaseni“ dodává, že jsme stvořeni „k dobrým skutkům“."
+   ],
+   "facts": [
+    "Martin Luther popisoval, jak mu verš „spravedlivý bude živ z víry“ (Ř 1,17) otevřel „brány ráje“. Tento objev stál u začátku reformace v roce 1517.",
+    "V roce 1999 podepsaly katolická církev a Světový luterský svaz Společné prohlášení k nauce o ospravedlnění – po téměř 500 letech sporu."
+   ],
+   "questions": [
+    "Žiji z vědomí, že jsem přijat, nebo se Bohu pořád snažím něco dokázat?",
+    "Jak se moje víra viditelně projevuje v činech?"
+   ],
+   "refs": [
+    [
+     1,
+     15,
+     6,
+     6
+    ],
+    [
+     42,
+     18,
+     13,
+     14
+    ],
+    [
+     45,
+     3,
+     23,
+     24
+    ],
+    [
+     45,
+     5,
+     1,
+     1
+    ],
+    [
+     48,
+     2,
+     16,
+     16
+    ],
+    [
+     49,
+     2,
+     8,
+     10
+    ],
+    [
+     50,
+     3,
+     9,
+     9
+    ],
+    [
+     59,
+     2,
+     17,
+     18
+    ]
+   ],
+   "labels": [
+    "Uvěřil a bylo mu to počteno",
+    "Celník odešel ospravedlněn",
+    "Všichni zhřešili – ospravedlněni darem",
+    "Máme pokoj s Bohem",
+    "Ne ze skutků zákona",
+    "Milostí jste spaseni",
+    "Spravedlnost z víry",
+    "Víra bez skutků je mrtvá"
+   ]
+  },
+  {
+   "id": "redemption",
+   "category": "salvation",
+   "icon": "key",
+   "title": "Vykoupení a svoboda",
+   "summary": "Vykoupit znamenalo zaplatit výkupné a osvobodit otroka nebo zajatce. Bible tak popisuje, co pro nás udělal Bůh: zaplatil vysokou cenu, abychom byli svobodní.",
+   "deeper": [
+    "V Izraeli existovala postava „goel“ – vykupitel z příbuzenstva. Když člověk zchudl a prodal se do otroctví nebo přišel o půdu, měl ho nejbližší příbuzný vykoupit. Bóaz v knize Rút je takový vykupitel. Bůh se v Izajášovi sám nazývá goelem Izraele – nejbližším příbuzným, který se zaručí.",
+    "Svoboda v Bibli neznamená dělat si, co chci. Pavel píše, že jsme osvobozeni k lásce a službě. Svoboda od hříchu je zároveň svoboda pro Boha a pro druhé."
+   ],
+   "facts": [
+    "Jób v nejhlubší bolesti volá: „Já vím, že můj Vykupitel (goel) žije“ (Jb 19,25). Händel z toho udělal jednu z nejslavnějších árií Mesiáše.",
+    "V římském světě bylo otroctví běžné a otroci se mohli vykoupit. Slovo „výkupné“ (lytron) znali Ježíšovi posluchači z každodenního života."
+   ],
+   "questions": [
+    "Z čeho mě Kristus vykoupil – a k čemu mě osvobodil?",
+    "Je v mém životě oblast, kde se stále chovám jako otrok?"
+   ],
+   "refs": [
+    [
+     2,
+     6,
+     6,
+     6
+    ],
+    [
+     8,
+     4,
+     9,
+     10
+    ],
+    [
+     23,
+     43,
+     1,
+     1
+    ],
+    [
+     41,
+     10,
+     45,
+     45
+    ],
+    [
+     43,
+     8,
+     36,
+     36
+    ],
+    [
+     48,
+     5,
+     1,
+     1
+    ],
+    [
+     51,
+     1,
+     13,
+     14
+    ],
+    [
+     60,
+     1,
+     18,
+     19
+    ]
+   ],
+   "labels": [
+    "Vykoupím vás vztaženou paží",
+    "Bóaz vykupuje Rút",
+    "Vykoupil jsem tě, jsi můj",
+    "Dát svůj život jako výkupné",
+    "Když vás Syn osvobodí",
+    "Pro svobodu nás Kristus osvobodil",
+    "Vysvobodil nás z moci tmy",
+    "Ne stříbrem, ale drahou krví"
+   ]
+  },
+  {
+   "id": "adoption",
+   "category": "salvation",
+   "icon": "family",
+   "title": "Boží děti",
+   "summary": "Bůh v Bibli není jen Stvořitel a Soudce, ale Otec. Kdo přijme Krista, je přijat do Boží rodiny – ne jako sluha, ale jako syn a dcera s plným právem dědictví.",
+   "deeper": [
+    "V římském právu mělo adoptované dítě stejná práva jako vlastní – jeho dřívější dluhy zanikly a stalo se plným dědicem. Pavel tento obraz používá, aby ukázal, jak úplné je přijetí u Boha.",
+    "Aramejské slovo Abba je důvěrné oslovení otce, které používaly i dospělé děti. Ježíš se tak modlí v Getsemane (Mk 14,36) a Duch svatý učí stejně se modlit i nás. Víra tak není jen přesvědčení, ale vztah."
+   ],
+   "facts": [
+    "Ozeáš 11 je jeden z nejněžnějších textů Bible: Bůh se popisuje jako rodič, který učí batole chodit, bere ho do náručí a sklání se, aby ho nakrmil.",
+    "Hned za otázkou, zda matka může zapomenout na dítě, následuje Iz 49,16: „Vyryl jsem si tě do dlaní.“ Bůh má naše jméno stále na očích."
+   ],
+   "questions": [
+    "Jak se mění můj vztah k Bohu, když ho oslovím „Abba“?",
+    "Je mi bližší vnímat se jako Boží služebník, nebo jako Boží dítě?"
+   ],
+   "refs": [
+    [
+     23,
+     49,
+     15,
+     15
+    ],
+    [
+     28,
+     11,
+     1,
+     4
+    ],
+    [
+     43,
+     1,
+     12,
+     12
+    ],
+    [
+     45,
+     8,
+     15,
+     16
+    ],
+    [
+     48,
+     4,
+     6,
+     7
+    ],
+    [
+     49,
+     1,
+     5,
+     5
+    ],
+    [
+     62,
+     3,
+     1,
+     1
+    ]
+   ],
+   "labels": [
+    "Zapomene matka na své dítě?",
+    "Učil jsem Efrajima chodit",
+    "Dal jim moc stát se Božími dětmi",
+    "Abba, Otče",
+    "Už nejsi otrok, ale syn",
+    "Předem určil, abychom byli jeho dětmi",
+    "Hle, jak velikou lásku nám dal Otec"
+   ]
+  },
+  {
+   "id": "growth",
+   "category": "salvation",
+   "icon": "sprout",
+   "title": "Posvěcení a duchovní růst",
+   "summary": "Víra není jednorázový zážitek, ale cesta. Bůh v člověku pracuje a proměňuje ho k podobě Kristově – pomalu, jako roste strom. Bible tomu říká posvěcení.",
+   "deeper": [
+    "Pavel mluví o „ovoci“ Ducha, ne o „výrobcích“. Ovoce neroste námahou, ale tím, že strom je napojen na zdroj. Člověk ovšem není pasivní: Fp 2,12-13 říká obojí najednou – „uskutečňujte svou spásu“, protože „Bůh ve vás působí“.",
+    "Duchovní tradice popisují prostředky růstu: modlitbu, čtení Písma, společenství, službu, svátosti, ticho, zpověď. Nejsou to body ke splnění, ale „zahradnické nářadí“, které uvolňuje místo, kde může Bůh působit."
+   ],
+   "facts": [
+    "Ovoce Ducha je v řečtině v jednotném čísle – ne devět různých plodů, ale jedno ovoce s devíti chutěmi.",
+    "Řecké slovo pro „proměňovat se“ v Ř 12,2 a 2K 3,18 (metamorfoó) je totéž jako při Ježíšově proměnění na hoře – odtud slovo metamorfóza."
+   ],
+   "questions": [
+    "Která „chuť“ ovoce Ducha ve mně teď nejvíc roste a která nejméně?",
+    "Co je pro mě nejlepší „zahradnické nářadí“ duchovního růstu?"
+   ],
+   "refs": [
+    [
+     19,
+     1,
+     3,
+     3
+    ],
+    [
+     45,
+     12,
+     2,
+     2
+    ],
+    [
+     47,
+     3,
+     18,
+     18
+    ],
+    [
+     48,
+     5,
+     22,
+     23
+    ],
+    [
+     50,
+     1,
+     6,
+     6
+    ],
+    [
+     50,
+     2,
+     12,
+     13
+    ],
+    [
+     58,
+     12,
+     1,
+     2
+    ],
+    [
+     61,
+     3,
+     18,
+     18
+    ]
+   ],
+   "labels": [
+    "Jako strom u vodních toků",
+    "Proměňujte se obnovou mysli",
+    "Proměňováni z slávy do slávy",
+    "Ovoce Ducha",
+    "Kdo začal dobré dílo, dokoná ho",
+    "Bůh působí chtění i činění",
+    "Běžme vytrvale",
+    "Rosťte v milosti a poznání"
+   ]
+  },
+  {
+   "id": "doubt",
+   "category": "salvation",
+   "icon": "help",
+   "title": "Pochybnosti a otázky",
+   "summary": "Bible je plná lidí, kteří pochybovali, ptali se a stěžovali si – Jób, žalmisté, Habakuk, Jan Křtitel, Tomáš. Bůh je za to nezavrhuje. Pochybnost poctivě přinesená k Bohu může vést k hlubší víře.",
+   "deeper": [
+    "Třetina žalmů jsou nářky. Bible tedy počítá s tím, že věřící bude Bohu klást těžké otázky – a dává mu pro ně slova. Pochybnost se liší od nevěry: nevěra se od Boha odvrací, pochybnost se k němu obrací s otázkou.",
+    "Tomáš je často nazýván „nevěřící“, ale jeho pochybnost vyústila v nejsilnější vyznání v evangeliích: „Pán můj a Bůh můj!“ Ježíš se mu nevysmívá, ukazuje mu své rány. Otec posedlého chlapce zase říká upřímnou modlitbu, kterou zná mnoho lidí: „Věřím, pomoz mé nevíře.“"
+   ],
+   "facts": [
+    "I Jan Křtitel, který Ježíše ohlásil, ve vězení zapochyboval. Ježíš ho nekárá, ale posílá mu svědectví – a vzápětí ho nazve největším z narozených z ženy.",
+    "Matka Tereza podle svých dopisů zažívala dlouhá léta vnitřní tmy a pocitu Boží nepřítomnosti – a přesto vytrvala ve službě."
+   ],
+   "questions": [
+    "Kterou otázku bych Bohu chtěl upřímně položit?",
+    "Komu v mém okolí bych mohl s pochybnostmi pomoci bez odsuzování?"
+   ],
+   "refs": [
+    [
+     19,
+     13,
+     2,
+     3
+    ],
+    [
+     35,
+     1,
+     2,
+     2
+    ],
+    [
+     18,
+     23,
+     3,
+     3
+    ],
+    [
+     40,
+     11,
+     2,
+     6
+    ],
+    [
+     40,
+     14,
+     30,
+     31
+    ],
+    [
+     41,
+     9,
+     24,
+     24
+    ],
+    [
+     43,
+     20,
+     27,
+     28
+    ],
+    [
+     65,
+     1,
+     22,
+     22
+    ]
+   ],
+   "labels": [
+    "Jak dlouho, Hospodine?",
+    "Jak dlouho budu volat?",
+    "Kéž bych věděl, kde ho najdu",
+    "Jsi ten, který má přijít?",
+    "Proč jsi pochyboval?",
+    "Věřím, pomoz mé nevíře",
+    "Pán můj a Bůh můj",
+    "Smilujte se nad pochybujícími"
+   ]
+  },
+  {
    "id": "prayer",
    "category": "life",
    "icon": "help",
    "title": "Modlitba",
    "summary": "Modlitba je rozhovor s Bohem – chvála, díky, prosba, přímluva i nářek. Ježíš učil modlit se jednoduše a důvěrně jako k Otci. Modlit se lze kdykoli a kdekoli.",
+   "deeper": [
+    "Modlitba Páně (Otčenáš) začíná Bohem: jeho jménem, královstvím a vůlí. Teprve potom přicházejí naše potřeby – chléb, odpuštění, ochrana. Je to vzor, ne jen text k odříkání.",
+    "Bible ukazuje mnoho podob modlitby: chválu, díky, prosbu, nářek, přímluvu, ticho. Ježíš se modlil ráno, v noci, na horách, v Getsemane. Modlitba je rozhovor, ve kterém i nasloucháme."
+   ],
+   "facts": [
+    "Závěr „Neboť tvé je království, moc i sláva“ chybí v nejstarších rukopisech Matouše; církev ho přidala brzy jako liturgickou odpověď (je už v Didaché).",
+    "Ježíš se v Getsemane modlil tak usilovně, že jeho pot byl „jako krůpěje krve“ (L 22,44)."
+   ],
+   "questions": [
+    "Kdy a kde se mi modlí nejlépe?",
+    "Kterou prosbu Otčenáše teď nejvíc potřebuji?"
+   ],
    "refs": [
     [
      19,
@@ -1049,6 +3057,18 @@
    "icon": "signpost",
    "title": "Boží slovo",
    "summary": "Bible je podle své vlastní výpovědi slovo, skrze které Bůh mluví. Je světlem na cestu, vyučuje, napomíná a vede k Ježíši. Nestačí ho jen číst – má se podle něj žít.",
+   "deeper": [
+    "Bible vznikala asi 1500 let, napsalo ji kolem 40 autorů na třech kontinentech ve třech jazycích (hebrejsky, aramejsky a řecky). Přesto vypráví jeden velký příběh – od stvoření po nové stvoření.",
+    "Pavel píše, že Písmo je „vdechnuté Bohem“ (theopneustos) a užitečné k učení, usvědčování, nápravě a výchově. Ježíš odráží pokušení citáty z Deuteronomia – Písmo bylo jeho zbraní."
+   ],
+   "facts": [
+    "Žalm 119 je nejdelší kapitola Bible (176 veršů) a téměř každý verš mluví o Božím slově. Je to abecední báseň: každých osm veršů začíná stejným písmenem.",
+    "Bible je nejpřekládanější kniha světa – celá nebo zčásti existuje ve více než 3500 jazycích."
+   ],
+   "questions": [
+    "Který biblický verš mě v životě provázel?",
+    "Jak mohu číst Bibli tak, aby mě měnila, ne jen informovala?"
+   ],
    "refs": [
     [
      5,
@@ -1116,6 +3136,18 @@
    "icon": "person",
    "title": "Pokora",
    "summary": "Pokora není podceňování sebe, ale pravdivý pohled na sebe před Bohem. Ježíš sám se ponížil a umýval nohy. Bůh pyšným odporuje, ale pokorným dává milost.",
+   "deeper": [
+    "V antickém světě byla pokora chápána spíš jako slabost otroka. Křesťanství z ní udělalo ctnost – díky Ježíši, který „ponížil sám sebe“. Pokora není podceňování sebe, ale pravdivý pohled: já nejsem střed vesmíru.",
+    "Bůh „pyšným odporuje, ale pokorným dává milost“ – tento verš cituje Jakub i Petr z Přísloví 3,34. Pokorný člověk se umí učit, přiznat chybu a radovat se z úspěchu druhých."
+   ],
+   "facts": [
+    "Mojžíš je v Nu 12,3 nazván „nejpokornějším ze všech lidí na zemi“ – přitom vedl celý národ.",
+    "Latinské humilitas pochází od humus – „země, půda“. Pokorný člověk stojí nohama na zemi."
+   ],
+   "questions": [
+    "Kde se mi těžko přiznává chyba?",
+    "Komu bych mohl dopřát úspěch nebo uznání místo sebe?"
+   ],
    "refs": [
     [
      20,
@@ -1176,6 +3208,18 @@
    "icon": "shield",
    "title": "Pokušení",
    "summary": "Pokušení přichází na každého, i Ježíš byl pokoušen. Pokušení samo není hřích; Bůh slibuje sílu a cestu ven. Pomáhá znát své slabé chvíle a nebýt na boj sám.",
+   "deeper": [
+    "Ježíš byl pokoušen na poušti čtyřicet dní – jako Izrael čtyřicet let. Kde Izrael selhal (reptal kvůli chlebu, zkoušel Boha, klaněl se modle), Ježíš obstál, a to s citáty z Deuteronomia.",
+    "Jakub ukazuje, jak pokušení roste: touha – počatý hřích – dokonaný hřích – smrt (Jk 1,14-15). Je snazší zastavit první myšlenku než poslední čin. Pavel slibuje, že Bůh s pokušením dává i „východ“ (1K 10,13)."
+   ],
+   "facts": [
+    "Josef před Potífarovou ženou prostě utekl (Gn 39,12). Útěk je někdy nejlepší duchovní strategie – „utíkejte před smilstvem“ (1K 6,18).",
+    "Prosba Otčenáše „neuveď nás v pokušení“ znamená spíš „nedopusť, abychom podlehli ve zkoušce“."
+   ],
+   "questions": [
+    "Které pokušení se mi opakuje a jaký „východ“ by mi mohl pomoci?",
+    "S kým mohu o svém boji mluvit?"
+   ],
    "refs": [
     [
      1,
@@ -1236,6 +3280,18 @@
    "icon": "rain",
    "title": "Utrpení",
    "summary": "Bible utrpení nevysvětluje jednoduše. Jób, žalmy i Ježíš dávají prostor nářku i otázkám „proč“. Zároveň ukazuje Boha, který v utrpení není daleko, sám trpěl a jednou setře každou slzu.",
+   "deeper": [
+    "Bible nedává jednoduchou odpověď na otázku, proč trpíme. Jóbovi přátelé tvrdí, že utrpení je trest – a Bůh jim na konci řekne, že mluvili nesprávně. Někdy utrpení zůstává tajemstvím.",
+    "Křesťanská odpověď není vysvětlení, ale osoba: Bůh, který sám trpěl na kříži. Pavel věří, že utrpení může vést k vytrvalosti a naději (Ř 5,3-5) a že „nynější utrpení nelze srovnat s budoucí slávou“ (Ř 8,18)."
+   ],
+   "facts": [
+    "Kniha Jób je jednou z nejstarších a literárně nejkrásnějších knih Bible. Většina z ní je napsána jako poezie.",
+    "Tradice připisuje Pláč Jeremjášovi; je to kniha, která dovoluje plakat – a přesto uprostřed nachází Boží věrnost."
+   ],
+   "questions": [
+    "Jak mi pomáhá, že Ježíš trpěl s námi?",
+    "Kdo v mém okolí trpí a potřebuje spíš přítomnost než rady?"
+   ],
    "refs": [
     [
      18,
@@ -1296,6 +3352,18 @@
    "icon": "cloud",
    "title": "Pokoj",
    "summary": "Biblický pokoj (šalom) je víc než klid – je to celistvost, smíření a dobrý vztah s Bohem, lidmi i sebou. Ježíš dává pokoj, který není závislý na okolnostech.",
+   "deeper": [
+    "Hebrejské šalom znamená víc než klid zbraní: celistvost, zdraví, harmonii vztahů s Bohem, lidmi i sebou. Pozdrav „šalom“ přeje člověku, aby měl v životě všechno, co potřebuje.",
+    "Ježíš dává pokoj „ne jako dává svět“ (J 14,27) – pokoj, který nezávisí na okolnostech. Spí v loďce uprostřed bouře. Pavel mluví o pokoji, který „převyšuje každé pomyšlení“ a střeží srdce jako stráž."
+   ],
+   "facts": [
+    "Arabský pozdrav salám a hebrejský šalom mají stejný kořen. Stejný kořen je i ve jménu Jeruzalém a Šalomoun.",
+    "Ježíš nazývá blahoslavenými ty, kdo pokoj „tvoří“ (eirénopoioi) – nejen ty, kdo ho mají."
+   ],
+   "questions": [
+    "Co mi teď bere pokoj?",
+    "Kde mohu být „tvůrcem pokoje“?"
+   ],
    "refs": [
     [
      4,
@@ -1356,6 +3424,18 @@
    "icon": "sun",
    "title": "Radost a vděčnost",
    "summary": "Radost je v Bibli ovocem Ducha, ne jen dobrou náladou. Pramení z Boží blízkosti, a proto je možná i v těžkostech. Vděčnost je cesta, jak radost pěstovat.",
+   "deeper": [
+    "Filipským je „list radosti“ – slovo radost a radovat se v něm zazní asi šestnáctkrát. Pavel ho přitom píše z vězení. Radost v Bibli není dobrá nálada, ale hluboká jistota, která obstojí i v těžkostech.",
+    "Vděčnost je pro radost klíčem. Pavel vyzývá: „Za všech okolností děkujte“ (1Te 5,18) – ne za všechno, ale ve všem. Kdo počítá dary, vidí víc důvodů k radosti."
+   ],
+   "facts": [
+    "Nehemjáš říká: „Radost Hospodinova je vaše síla“ (Neh 8,10) – lidu, který plakal, když slyšel číst Zákon.",
+    "Řecké slovo pro vděčnost eucharistia dalo jméno Večeři Páně – eucharistii."
+   ],
+   "questions": [
+    "Za jaké tři věci mohu dnes poděkovat?",
+    "Co mi bere radost a co mi ji vrací?"
+   ],
    "refs": [
     [
      16,
@@ -1416,6 +3496,18 @@
    "icon": "battery",
    "title": "Peníze a štědrost",
    "summary": "Bible nevidí majetek jako zlý, ale varuje před láskou k penězům a chamtivostí. Učí spokojenosti, poctivosti a štědrosti – vše, co máme, je svěřené od Boha.",
+   "deeper": [
+    "Ježíš mluvil o penězích a majetku velmi často – týká se jich velká část jeho podobenství. Ne proto, že by peníze byly špatné, ale protože snadno ovládnou srdce: „Kde je tvůj poklad, tam bude i tvé srdce.“",
+    "Desátek byl ve Starém zákoně desetina úrody pro Boží dílo a chudé. Nový zákon klade důraz na radostné a štědré dávání (2K 9,7). Chudá vdova, která dala dvě drobné mince, dala podle Ježíše víc než všichni bohatí."
+   ],
+   "facts": [
+    "Vdova dala dva lepty – nejmenší mince v oběhu. Dohromady odpovídaly asi 1/64 denní mzdy.",
+    "„Kořenem všeho zla je láska k penězům“ (1Tm 6,10) – ne peníze samy. Citát se často zkracuje nepřesně."
+   ],
+   "questions": [
+    "Co o mém srdci vypovídá můj výpis z účtu?",
+    "Komu mohu tento měsíc dát štědře a s radostí?"
+   ],
    "refs": [
     [
      20,
@@ -1476,6 +3568,18 @@
    "icon": "mountain",
    "title": "Práce a odpočinek",
    "summary": "Práce je součástí Božího záměru od stvoření – Adam měl zahradu obdělávat a střežit. Bůh však dal i den odpočinku. Křesťan má pracovat poctivě „jako pro Pána“ a umět si odpočinout v Bohu.",
+   "deeper": [
+    "Práce není důsledek hříchu – Adam dostal úkol obdělávat zahradu ještě před pádem. Hřích ji jen ztížil (trní a bodláčí). Ježíš sám byl řemeslník a Pavel si vydělával šitím stanů.",
+    "Sabat byl revoluční: každý sedmý den odpočíval i otrok a dobytek. Bůh tím říká, že člověk není stroj a jeho hodnota nezávisí na výkonu. Odpočinek je projev důvěry, že svět neudržujeme my."
+   ],
+   "facts": [
+    "Řecký a římský svět práci rukama spíš pohrdal. Bible ji oceňuje – Bezaleel, stavitel stánku, je první člověk v Bibli, o kterém se píše, že byl „naplněn Božím Duchem“ (Ex 31,3).",
+    "Pavel píše Kolosanům, aby pracovali „jako Pánu, a ne lidem“ (Ko 3,23) – a adresuje to otrokům."
+   ],
+   "questions": [
+    "Vnímám svou práci jako službu Bohu?",
+    "Kdy jsem si naposledy dopřál skutečný odpočinek?"
+   ],
    "refs": [
     [
      1,
@@ -1538,11 +3642,850 @@
    ]
   },
   {
+   "id": "hope",
+   "category": "life",
+   "icon": "sunrise",
+   "title": "Naděje",
+   "summary": "Biblická naděje není optimismus, že to nějak dopadne. Je to jistota postavená na Boží věrnosti a na Kristově vzkříšení – kotva, která drží i v bouři.",
+   "deeper": [
+    "Hebrejské slovo kava („doufat“) souvisí s napínáním provazu: naděje je napjaté čekání, které drží. Pláč Jeremjášův je kniha o zničeném Jeruzalémě – a přesto právě uprostřed ní stojí slova o Božím milosrdenství, které je nové každé ráno.",
+    "Pavel spojuje naději se vzkříšením: kdyby Kristus nevstal, byla by víra marná. Křesťanská naděje se tedy neopírá o dobré okolnosti, ale o událost, která se už stala."
+   ],
+   "facts": [
+    "Kotva byla mezi prvními křesťanskými symboly – najdeme ji v římských katakombách, často spojenou s rybou.",
+    "Pláč Jeremjášův je napsán jako abecední báseň: verše začínají postupně písmeny hebrejské abecedy. I zármutek dostal řád."
+   ],
+   "questions": [
+    "Na čem stojí moje naděje, když se daří a když se nedaří?",
+    "Komu bych mohl dnes nabídnout trochu naděje?"
+   ],
+   "refs": [
+    [
+     19,
+     42,
+     6,
+     6
+    ],
+    [
+     25,
+     3,
+     21,
+     23
+    ],
+    [
+     23,
+     40,
+     31,
+     31
+    ],
+    [
+     45,
+     5,
+     3,
+     5
+    ],
+    [
+     45,
+     15,
+     13,
+     13
+    ],
+    [
+     60,
+     1,
+     3,
+     3
+    ],
+    [
+     58,
+     6,
+     19,
+     19
+    ]
+   ],
+   "labels": [
+    "Proč jsi skleslá, má duše?",
+    "Jeho milosrdenství je nové každé ráno",
+    "Kdo doufají v Hospodina, nabývají síly",
+    "Naděje neklame",
+    "Bůh naděje",
+    "Živá naděje skrze vzkříšení",
+    "Naděje jako kotva duše"
+   ]
+  },
+  {
+   "id": "fear",
+   "category": "life",
+   "icon": "shield",
+   "title": "Strach a odvaha",
+   "summary": "„Neboj se“ je jedna z nejčastějších vět v Bibli. Bůh nebere strach na lehkou váhu, ale slibuje svou přítomnost – a odvaha pak není nepřítomnost strachu, ale krok vpřed navzdory němu.",
+   "deeper": [
+    "Jozue dostal výzvu „buď silný a udatný“ třikrát za sebou – což naznačuje, že se bál. Boží odpověď není „neboj se, protože to bude snadné“, ale „neboj se, protože já jsem s tebou“.",
+    "Bible rozlišuje mezi strachem a „bázní Boží“. Kdo má úctu k Bohu, nemusí se bát lidí. Ježíš v Getsemane ukazuje, že i strach se dá přinést v modlitbě – a pak jít dál."
+   ],
+   "facts": [
+    "Říká se, že „neboj se“ je v Bibli 365krát – pro každý den jeden. Přesné číslo záleží na překladu a počítání, ale výzev ke statečnosti je opravdu mnoho.",
+    "Andělé při zjevení skoro vždy začínají slovy „Neboj se“ – u Zachariáše, Marie, pastýřů i žen u hrobu."
+   ],
+   "questions": [
+    "Čeho se teď nejvíc bojím a co by znamenalo udělat krok navzdory strachu?",
+    "Jak mi může pomoci vědomí Boží přítomnosti v konkrétní obavě?"
+   ],
+   "refs": [
+    [
+     6,
+     1,
+     9,
+     9
+    ],
+    [
+     19,
+     27,
+     1,
+     1
+    ],
+    [
+     19,
+     56,
+     4,
+     4
+    ],
+    [
+     23,
+     43,
+     1,
+     2
+    ],
+    [
+     40,
+     14,
+     27,
+     27
+    ],
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     55,
+     1,
+     7,
+     7
+    ],
+    [
+     62,
+     4,
+     18,
+     18
+    ]
+   ],
+   "labels": [
+    "Buď silný a udatný",
+    "Hospodin je mé světlo – koho bych se bál?",
+    "Když mám strach, doufám v tebe",
+    "Neboj se, půjdeš-li přes vody",
+    "Vzmužte se, já jsem to",
+    "Ať se vaše srdce nechvěje",
+    "Duch síly, lásky a rozvahy",
+    "Dokonalá láska zahání strach"
+   ]
+  },
+  {
+   "id": "worry",
+   "category": "life",
+   "icon": "cloud",
+   "title": "Starosti a úzkost",
+   "summary": "Ježíš mluví o starostech velmi lidsky: o jídle, oblečení i zítřku. Nezakazuje plánovat, ale zve k důvěře v Otce, který zná naše potřeby. Starosti máme Bohu „předávat“.",
+   "deeper": [
+    "Řecké slovo merimna („starost“) souvisí se slovesem „rozdělit“. Ustaraný člověk je rozpolcený – myslí na zítřek, ale žije dnes. Ježíš nabízí jednoduchou radu: každý den má dost svého trápení.",
+    "Pavel ve Filipským nepíše „nemějte problémy“, ale ukazuje postup: modlitba, prosba, díkůvzdání – a pak přichází Boží pokoj, který „střeží“ srdce jako stráž. Pavel to psal ve vězení."
+   ],
+   "facts": [
+    "Izraelem každoročně protáhnou stovky milionů stěhovavých ptáků. Ptáci na nebi, na které Ježíš ukazuje, byli pro jeho posluchače všedním obrazem.",
+    "„Vložte“ v 1Pt 5,7 je stejné řecké sloveso, jakým se popisuje házení plášťů na oslátko při vjezdu do Jeruzaléma (L 19,35)."
+   ],
+   "questions": [
+    "Kterou starost bych dnes mohl Bohu konkrétně „předat“?",
+    "Co mi pomáhá žít tento den, a ne zítřek?"
+   ],
+   "refs": [
+    [
+     19,
+     55,
+     23,
+     23
+    ],
+    [
+     40,
+     6,
+     25,
+     27
+    ],
+    [
+     40,
+     6,
+     33,
+     34
+    ],
+    [
+     42,
+     10,
+     41,
+     42
+    ],
+    [
+     50,
+     4,
+     6,
+     7
+    ],
+    [
+     60,
+     5,
+     7,
+     7
+    ]
+   ],
+   "labels": [
+    "Svěř Hospodinu své břemeno",
+    "Pohleďte na ptáky",
+    "Hledejte nejprve Boží království",
+    "Marto, máš starost o mnoho věcí",
+    "Se vším se obracejte k Bohu",
+    "Všechnu starost vložte na něj"
+   ]
+  },
+  {
+   "id": "worship",
+   "category": "life",
+   "icon": "music",
+   "title": "Chvála a uctívání",
+   "summary": "Uctívat znamená dát Bohu to, co mu patří – úctu, lásku a vděčnost. Bible je plná písní, a chvála v ní nezní jen v kostele, ale celým životem.",
+   "deeper": [
+    "Kniha Žalmů byla zpěvníkem Izraele. Obsahuje radostné chvály i nářky – Bible tedy zve přinášet Bohu celé srdce, nejen dobrou náladu. Hebrejské halal („chválit“) dalo vzniknout slovu haleluja – „chvalte Hospodina“.",
+    "Ježíš samařské ženě říká, že na místě (hora nebo Jeruzalém) nezáleží tolik jako na tom, zda Boha uctíváme „v Duchu a v pravdě“. Pavel pak zve vydat celé tělo jako „rozumnou bohoslužbu“ (Ř 12,1) – i práce a vztahy mohou být chválou."
+   ],
+   "facts": [
+    "Žalmy obsahují hudební pokyny, kterým dnes plně nerozumíme, např. „sela“ – možná pauza, opakování nebo zesílení hudby.",
+    "Kniha Žalmů je rozdělena na pět knih (1–41, 42–72, 73–89, 90–106, 107–150) – možná jako ozvěna pěti knih Mojžíšových."
+   ],
+   "questions": [
+    "Kdy naposledy jsem Boha chválil, i když se mi nechtělo?",
+    "Jak by mohla být chválou moje práce zítra?"
+   ],
+   "refs": [
+    [
+     2,
+     15,
+     20,
+     21
+    ],
+    [
+     19,
+     95,
+     6,
+     6
+    ],
+    [
+     19,
+     100,
+     1,
+     2
+    ],
+    [
+     19,
+     150,
+     6,
+     6
+    ],
+    [
+     43,
+     4,
+     23,
+     24
+    ],
+    [
+     51,
+     3,
+     16,
+     16
+    ],
+    [
+     58,
+     13,
+     15,
+     15
+    ],
+    [
+     66,
+     4,
+     11,
+     11
+    ]
+   ],
+   "labels": [
+    "Mirjam tančí s bubínkem",
+    "Pojďte, poklekněme",
+    "Služte Hospodinu s radostí",
+    "Všechno, co dýchá, ať chválí",
+    "V Duchu a v pravdě",
+    "Zpívejte žalmy a duchovní písně",
+    "Oběť chvály",
+    "Hoden jsi, Pane"
+   ]
+  },
+  {
+   "id": "speech",
+   "category": "life",
+   "icon": "chat",
+   "title": "Slova a jazyk",
+   "summary": "Bible připisuje slovům obrovskou moc: Bůh stvořil svět slovem a lidská slova mohou zraňovat i uzdravovat. Kniha Přísloví a list Jakubův jsou plné praktických rad o mluvení.",
+   "deeper": [
+    "Jakub přirovnává jazyk ke kormidlu, které řídí velkou loď, a k jiskře, která zapálí les. Přitom si nedělá iluze: „jazyk nikdo z lidí nedokáže zkrotit.“ Proto Ježíš míří hlouběji – slova vycházejí ze srdce, a proměna řeči začíná proměnou srdce.",
+    "Bible dává jednoduchý test: budují má slova, jsou pravdivá a jsou řečena v pravý čas? Přísloví upozorňují také na mlčení – „i hlupák, když mlčí, je pokládán za moudrého“ (Př 17,28)."
+   ],
+   "facts": [
+    "„Řeč solí okořeněná“ – sůl chránila jídlo před zkažením a dodávala mu chuť. Řeč má být čistá i zajímavá.",
+    "V hebrejštině je „slovo“ (davar) zároveň „věc, událost“. Slovo něco dělá, není jen zvuk."
+   ],
+   "questions": [
+    "Které moje slovo z poslední doby by potřebovalo omluvu?",
+    "Komu bych dnes mohl říct slovo, které ho povzbudí?"
+   ],
+   "refs": [
+    [
+     20,
+     15,
+     1,
+     1
+    ],
+    [
+     20,
+     18,
+     21,
+     21
+    ],
+    [
+     20,
+     25,
+     11,
+     11
+    ],
+    [
+     40,
+     12,
+     34,
+     34
+    ],
+    [
+     49,
+     4,
+     29,
+     29
+    ],
+    [
+     51,
+     4,
+     6,
+     6
+    ],
+    [
+     59,
+     1,
+     19,
+     19
+    ],
+    [
+     59,
+     3,
+     5,
+     6
+    ]
+   ],
+   "labels": [
+    "Vlídná odpověď odvrací hněv",
+    "Smrt i život jsou v moci jazyka",
+    "Slovo v pravý čas",
+    "Z plnosti srdce mluví ústa",
+    "Jen slova, která budují",
+    "Řeč vždy laskavá, solí okořeněná",
+    "Rychlý k naslouchání, pomalý k mluvení",
+    "Malý oheň zapálí velký les"
+   ]
+  },
+  {
+   "id": "anger",
+   "category": "life",
+   "icon": "flame",
+   "title": "Hněv a sebeovládání",
+   "summary": "Hněv sám o sobě nemusí být hřích – hněvá se i Bůh a Ježíš. Problém je hněv, který ovládá nás, živí se a ubližuje. Bible učí hněv přiznat, zpomalit a nenechat nad sebou zapadnout slunce.",
+   "deeper": [
+    "Bůh se Kaina ptá: „Proč se hněváš?“ a varuje ho, že hřích číhá u dveří jako zvíře. Kain otázku ignoruje – a hněv vyústí v první vraždu. Bůh se podobně ptá i Jonáše. Otázka je pozvánka podívat se, co je pod hněvem: zranění, strach, žárlivost.",
+    "Ježíš se hněval na tvrdost srdcí, která bránila uzdravení člověka. Spravedlivý hněv se zastává druhých; sobecký hněv brání sám sebe. Pavel radí řešit konflikt brzy – než se hněv uloží a začne hnít."
+   ],
+   "facts": [
+    "Bůh je v Bibli opakovaně popisován jako „pomalý k hněvu“ (Ex 34,6) – hebrejsky doslova „dlouhého nosu“: trvá dlouho, než se nos zčervená a „vzplane“.",
+    "„Ať nad vaším hněvem nezapadne slunce“ – v židovském pojetí začínal západem slunce nový den. Nenést hněv do dalšího dne."
+   ],
+   "questions": [
+    "Co se obvykle skrývá pod mým hněvem?",
+    "Je někdo, s kým bych měl konflikt vyřešit dřív, než zapadne slunce?"
+   ],
+   "refs": [
+    [
+     1,
+     4,
+     6,
+     7
+    ],
+    [
+     20,
+     16,
+     32,
+     32
+    ],
+    [
+     20,
+     29,
+     11,
+     11
+    ],
+    [
+     32,
+     4,
+     4,
+     4
+    ],
+    [
+     41,
+     3,
+     5,
+     5
+    ],
+    [
+     49,
+     4,
+     26,
+     27
+    ],
+    [
+     59,
+     1,
+     19,
+     20
+    ],
+    [
+     51,
+     3,
+     8,
+     8
+    ]
+   ],
+   "labels": [
+    "Hřích číhá u dveří",
+    "Lepší ovládat sebe než dobýt město",
+    "Hlupák dá průchod hněvu",
+    "Je správné, že se tak hněváš?",
+    "Ježíš se s hněvem rozhlédl",
+    "Ať nad vaším hněvem nezapadne slunce",
+    "Pomalý k hněvu",
+    "Odložte hněv a zlobu"
+   ]
+  },
+  {
+   "id": "patience",
+   "category": "life",
+   "icon": "hourglass",
+   "title": "Trpělivost a čekání",
+   "summary": "Bible je kniha čekání: Abraham čeká na syna, Izrael na vysvobození, proroci na Mesiáše, církev na Kristův návrat. Trpělivost v ní není pasivita, ale aktivní důvěra, že Bůh jedná v pravý čas.",
+   "deeper": [
+    "Jakub dává příklad rolníka: zaseje a pak čeká na „ranní a pozdní déšť“. V Izraeli padal podzimní déšť po setí a jarní před sklizní. Rolník nemůže déšť přivolat, ale může připravit pole a vytrvat. Trpělivost tedy není nečinnost.",
+    "Petr vysvětluje, proč se Kristův návrat „opožďuje“: Bůh je trpělivý, protože chce, aby se všichni obrátili. Boží „zpoždění“ je projev milosrdenství."
+   ],
+   "facts": [
+    "Mezi Božím slibem Abrahamovi a narozením Izáka uplynulo asi 25 let. Mezi Josefovým snem a jeho naplněním přibližně 22 let.",
+    "Trpělivost (makrothymia) znamená řecky doslova „dlouhý dech“ nebo „dlouhá mysl“."
+   ],
+   "questions": [
+    "Na co teď čekám a jak to čekání prožívám?",
+    "Co mohu dělat, zatímco čekám – jako rolník, který připravuje pole?"
+   ],
+   "refs": [
+    [
+     19,
+     27,
+     14,
+     14
+    ],
+    [
+     19,
+     40,
+     2,
+     4
+    ],
+    [
+     25,
+     3,
+     25,
+     26
+    ],
+    [
+     23,
+     40,
+     31,
+     31
+    ],
+    [
+     45,
+     12,
+     12,
+     12
+    ],
+    [
+     48,
+     6,
+     9,
+     9
+    ],
+    [
+     59,
+     5,
+     7,
+     8
+    ],
+    [
+     61,
+     3,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Očekávej Hospodina",
+    "Trpělivě jsem čekal",
+    "Dobré je mlčky čekat",
+    "Kdo čekají na Hospodina",
+    "V soužení trpěliví",
+    "V pravý čas budeme sklízet",
+    "Jako rolník čeká na úrodu",
+    "Pán neotálí"
+   ]
+  },
+  {
+   "id": "silence",
+   "category": "life",
+   "icon": "pray",
+   "title": "Ztišení a půst",
+   "summary": "Bůh často nemluví v hluku, ale v tichu. Bible zná půst, samotu a ztišení jako cesty, jak uvolnit místo pro Boha – ne jako výkon, ale jako hlad po něm.",
+   "deeper": [
+    "Izajáš 58 je ostrou kritikou půstu, při kterém se lidé trápí, ale dál utlačují dělníky. Bůh chce půst, který rozvazuje pouta, sytí hladové a otevírá dveře bezdomovcům. Skutečný půst nás má udělat citlivějšími k Bohu i lidem.",
+    "Ježíš se často stahoval do samoty – před důležitými rozhodnutími, po náročném dni, v noci. Pokud to potřeboval on, potřebujeme to my tím spíš. Půst a ztišení nemusí být jen od jídla – lze se postit i od telefonu, zpráv nebo hluku."
+   ],
+   "facts": [
+    "V Ježíšově době se zbožní farizeové postili dvakrát týdně, v pondělí a ve čtvrtek. Didaché, raně křesťanský spis, radí postit se ve středu a v pátek.",
+    "Ž 46,11 hebrejsky doslova říká „pusťte, nechte toho“ – výzva přestat bojovat a uvolnit sevřené ruce."
+   ],
+   "questions": [
+    "Kdy mám ve svém dni chvíli ticha?",
+    "Od čeho bych se mohl tento týden „postit“, abych měl víc prostoru pro Boha?"
+   ],
+   "refs": [
+    [
+     11,
+     19,
+     11,
+     12
+    ],
+    [
+     19,
+     46,
+     11,
+     11
+    ],
+    [
+     19,
+     62,
+     2,
+     2
+    ],
+    [
+     23,
+     58,
+     6,
+     7
+    ],
+    [
+     29,
+     2,
+     12,
+     13
+    ],
+    [
+     40,
+     6,
+     16,
+     18
+    ],
+    [
+     41,
+     1,
+     35,
+     35
+    ],
+    [
+     44,
+     13,
+     2,
+     3
+    ]
+   ],
+   "labels": [
+    "Hlas tichého vánku",
+    "Ztište se a poznejte, že já jsem Bůh",
+    "Jen v Bohu se ztiší má duše",
+    "Půst, který si přeji",
+    "Roztrhněte srdce, ne roucha",
+    "Když se postíte",
+    "Ježíš odešel na pusté místo",
+    "Postili se a modlili"
+   ]
+  },
+  {
+   "id": "service",
+   "category": "life",
+   "icon": "handshake",
+   "title": "Služba druhým",
+   "summary": "Ježíš obrátil představy o velikosti naruby: největší je ten, kdo slouží. Sám umyl učedníkům nohy. Křesťanská služba vychází z vděčnosti a vidí Krista v nejmenších.",
+   "deeper": [
+    "Mytí nohou bylo prací otroků. Když si učedníci mezi sebou řešili, kdo je největší, Ježíš si svlékl plášť, opásal se zástěrou a vzal umyvadlo. Neřekl jen „služte“, ale ukázal, jak vypadá služba, při které se nikdo nedívá.",
+    "V Mt 25 jsou spravedliví překvapeni: „Kdy jsme tě viděli hladového?“ Nesloužili proto, aby si získali odměnu – prostě pomáhali. Ježíš se ztotožňuje s nejmenšími, takže služba člověku v nouzi je služba jemu."
+   ],
+   "facts": [
+    "Slovo „diakon“ pochází z řeckého diakonos – „ten, kdo obsluhuje u stolu“. Diakonie je dodnes název pro sociální službu církví.",
+    "Některé církve na Zelený čtvrtek dodnes myjí nohy – papež, biskupové i faráři to dělají lidem ve vězení, nemocným a chudým."
+   ],
+   "questions": [
+    "Komu bych mohl tento týden „umýt nohy“ – posloužit tam, kde to nikdo neocení?",
+    "Sloužím rád, nebo spíš čekám, až mi někdo poděkuje?"
+   ],
+   "refs": [
+    [
+     41,
+     10,
+     43,
+     45
+    ],
+    [
+     43,
+     13,
+     14,
+     15
+    ],
+    [
+     40,
+     25,
+     35,
+     40
+    ],
+    [
+     45,
+     12,
+     11,
+     11
+    ],
+    [
+     48,
+     5,
+     13,
+     13
+    ],
+    [
+     50,
+     2,
+     3,
+     4
+    ],
+    [
+     60,
+     4,
+     10,
+     10
+    ]
+   ],
+   "labels": [
+    "Kdo chce být velký, buď služebníkem",
+    "Myjte si nohy navzájem",
+    "Mně jste to učinili",
+    "Služte Pánu s horlivostí",
+    "Služte si navzájem v lásce",
+    "Hleďte na zájmy druhých",
+    "Služte druzí druhým darem, který jste přijali"
+   ]
+  },
+  {
+   "id": "contentment",
+   "category": "life",
+   "icon": "spa",
+   "title": "Spokojenost",
+   "summary": "V době reklam a srovnávání je spokojenost vzácná. Pavel píše, že se jí „naučil“ – v nedostatku i hojnosti. Tajemstvím není mít všechno, ale mít toho, který dává sílu.",
+   "deeper": [
+    "Pavel psal o spokojenosti z vězení, kde závisel na darech přátel. Slovo „naučil jsem se“ ukazuje, že spokojenost není povaha, ale dovednost, kterou lze trénovat – hlavně vděčností a důvěrou.",
+    "List Židům spojuje spokojenost s Božím slibem „nikdy tě neopustím“. Kdo ví, že má Boha, nemusí se tolik bát, že mu něco chybí. Desáté přikázání „nebudeš dychtit“ chrání právě tento vnitřní pokoj."
+   ],
+   "facts": [
+    "Řecké slovo autarkés („spokojený“) používali stoičtí filosofové pro soběstačnost. Pavel ho přebírá, ale mění: není soběstačný, je „Kristosoběstačný“ – „všechno mohu v tom, který mi dává sílu“.",
+    "Agurova modlitba (Př 30,8-9) je jediné místo v Bibli, kde někdo prosí, aby nebyl bohatý."
+   ],
+   "questions": [
+    "Za co mohu dnes poděkovat místo srovnávání s druhými?",
+    "Co mi bere spokojenost nejčastěji?"
+   ],
+   "refs": [
+    [
+     20,
+     30,
+     8,
+     9
+    ],
+    [
+     21,
+     5,
+     9,
+     9
+    ],
+    [
+     42,
+     12,
+     15,
+     15
+    ],
+    [
+     50,
+     4,
+     11,
+     13
+    ],
+    [
+     54,
+     6,
+     6,
+     8
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ]
+   ],
+   "labels": [
+    "Nedávej mi chudobu ani bohatství",
+    "Kdo miluje peníze, nenasytí se",
+    "Život nezávisí na majetku",
+    "Naučil jsem se být spokojený",
+    "Zbožnost se spokojeností je velký zisk",
+    "Nikdy tě neopustím"
+   ]
+  },
+  {
+   "id": "guidance",
+   "category": "life",
+   "icon": "signpost",
+   "title": "Rozhodování a Boží vedení",
+   "summary": "Jak poznat Boží vůli? Bible nedává kouzelný návod, ale ukazuje cestu: Písmo, modlitba, rada moudrých lidí, vnitřní pokoj a ochota poslechnout. Bůh vede ty, kdo jsou ochotní jít.",
+   "deeper": [
+    "Pavel na druhé cestě chtěl jít jinam, ale Duch mu „nedovolil“. Teprve po dvou zavřených dveřích přišel sen o Makedonci – a evangelium vstoupilo do Evropy. Boží vedení se často ukazuje za pochodu, ne v kompletní mapě dopředu.",
+    "Ko 3,15 používá slovo z antických her: pokoj má být „rozhodčím“ v našem srdci. Velkou část Boží vůle už známe z Písma (milovat, být poctivý, odpouštět); v tom, co Písmo neříká, máme svobodu rozhodnout se moudře."
+   ],
+   "facts": [
+    "Velekněz měl v náprsníku urím a tumím – předměty, jimiž se hledala Boží odpověď „ano/ne“. Po exilu se přestaly používat a jak přesně fungovaly, nevíme.",
+    "Učedníci losovali o nástupci Jidáše (Sk 1,26). Je to poslední zmínka o losování v Bibli – po seslání Ducha se rozhoduje společně a v modlitbě (Sk 15,28)."
+   ],
+   "questions": [
+    "Před jakým rozhodnutím teď stojím a koho bych mohl požádat o radu?",
+    "Je něco, co z Písma už vím, ale nechce se mi to udělat?"
+   ],
+   "refs": [
+    [
+     19,
+     32,
+     8,
+     8
+    ],
+    [
+     20,
+     3,
+     5,
+     6
+    ],
+    [
+     20,
+     15,
+     22,
+     22
+    ],
+    [
+     23,
+     30,
+     21,
+     21
+    ],
+    [
+     44,
+     16,
+     6,
+     10
+    ],
+    [
+     45,
+     12,
+     2,
+     2
+    ],
+    [
+     51,
+     3,
+     15,
+     15
+    ],
+    [
+     59,
+     1,
+     5,
+     5
+    ]
+   ],
+   "labels": [
+    "Budu tě vyučovat cestě",
+    "On napřímí tvé stezky",
+    "Bez porady plány selhávají",
+    "Toto je cesta, jděte po ní",
+    "Zavřené a otevřené dveře",
+    "Rozpoznávat, co je vůle Boží",
+    "Pokoj Kristův ať rozhoduje",
+    "Proste o moudrost"
+   ]
+  },
+  {
    "id": "neighbor",
    "category": "relations",
    "icon": "person",
    "title": "Láska k bližnímu",
    "summary": "Ježíš shrnul Zákon do dvou přikázání: milovat Boha a bližního jako sebe. Bližním je každý, komu můžu pomoci – i cizinec nebo nepřítel. Láska se ukazuje v činech.",
+   "deeper": [
+    "Přikázání „miluj svého bližního jako sebe“ je původně z Leviticu 19,18. Zákoník se Ježíše ptá: „Kdo je můj bližní?“ – chce znát hranici. Ježíš odpoví příběhem a otázku obrátí: „Kdo se stal bližním?“",
+    "Samaritáni a Židé se navzájem pohrdali. Že hrdinou příběhu je Samaritán, byl pro posluchače šok. Láska k bližnímu nemá hranice národa, náboženství ani sympatie – Ježíš jde dál a říká: milujte i nepřátele."
+   ],
+   "facts": [
+    "Cesta z Jeruzaléma do Jericha klesá na 27 kilometrech o víc než kilometr výšky skalnatou pouští. Byla známá přepadeními.",
+    "Kněz a levita možná minuli zraněného, aby se nedotkli domnělé mrtvoly a nestali se rituálně nečistými."
+   ],
+   "questions": [
+    "Kdo je pro mě „Samaritán“ – člověk, kterého se mi těžko miluje?",
+    "Koho jsem v poslední době „minul na druhé straně cesty“?"
+   ],
    "refs": [
     [
      3,
@@ -1603,6 +4546,18 @@
    "icon": "heart",
    "title": "Manželství",
    "summary": "Bible představuje manželství jako smlouvu věrnosti mezi mužem a ženou, kteří se stávají „jedním tělem“. Má být místem lásky, vzájemné úcty, služby a odpuštění.",
+   "deeper": [
+    "Gn 2,24 popisuje manželství jako opuštění rodičů, přilnutí a „jedno tělo“. Ježíš i Pavel tento verš citují. Manželství je v Bibli smlouva, ne jen smlouva o soužití – obraz Boží věrnosti k jeho lidu.",
+    "Pavel v Ef 5 vyzývá muže, aby milovali své ženy, „jako Kristus miloval církev a vydal za ni sám sebe“. V kontextu patriarchální společnosti to byla radikální výzva k obětavé lásce."
+   ],
+   "facts": [
+    "Píseň písní je celá kniha milostné poezie v Bibli. Boha výslovně nezmiňuje, a přesto ji Židé i křesťané čtou jako obraz lásky Boží.",
+    "První Ježíšův zázrak v Janově evangeliu se odehrál na svatbě v Káně – Ježíš zachránil novomanžele před ostudou."
+   ],
+   "questions": [
+    "Co pro mě znamená věrnost ve vztazích?",
+    "Jak mohu podpořit manželství ve svém okolí?"
+   ],
    "refs": [
     [
      1,
@@ -1663,6 +4618,18 @@
    "icon": "person",
    "title": "Rodina a výchova",
    "summary": "Rodina je místem, kde se předává víra – hlavně příkladem a rozhovorem v běžném dni. Děti mají rodiče ctít, rodiče mají děti vést s láskou a nedráždit je.",
+   "deeper": [
+    "Přikázání „cti otce a matku“ je první přikázání se zaslíbením (Ef 6,2). Platí i pro dospělé děti – v Ježíšově době šlo hlavně o péči o stárnoucí rodiče. Ježíš na kříži svěřil svou matku učedníkovi Janovi.",
+    "Bible nepopisuje ideální rodiny: Abrahamova rodina, Jákob a jeho synové, David a Absolon – všechny mají své bolesti. Bůh přesto skrze nedokonalé rodiny vede svůj příběh."
+   ],
+   "facts": [
+    "Šema (Dt 6,7) přikazuje mluvit o Božích slovech „doma i na cestě, když uléháš i vstáváš“ – víra se předávala v běžném životě.",
+    "Timotejova víra „přebývala nejprve v jeho babičce Loidě a matce Euniké“ (2Tm 1,5)."
+   ],
+   "questions": [
+    "Za koho ze své rodiny mohu dnes poděkovat?",
+    "Co bych chtěl předat dalším generacím?"
+   ],
    "refs": [
     [
      2,
@@ -1723,6 +4690,18 @@
    "icon": "person",
    "title": "Přátelství",
    "summary": "Bible zná hluboká přátelství – David a Jonatan, Rút a Noemi. Přítel miluje v každé době, říká pravdu a stojí při druhém. Ježíš nazval své učedníky přáteli.",
+   "deeper": [
+    "David a Jónatan jsou nejslavnější přátelé Bible. Jónatan byl následník trůnu, a přesto chránil Davida před vlastním otcem a dobrovolně mu přenechal královskou budoucnost. Pravé přátelství přeje druhému víc než sobě.",
+    "Ježíš nazývá učedníky přáteli: „Už vás nenazývám služebníky… nazval jsem vás přáteli“ (J 15,15). Abraham je ve Starém zákoně nazván „Božím přítelem“ (Iz 41,8)."
+   ],
+   "facts": [
+    "Př 27,6: „Rány od přítele svědčí o věrnosti“ – skutečný přítel řekne i nepříjemnou pravdu.",
+    "Čtyři přátelé ochrnutého rozebrali kvůli němu střechu (Mk 2,4). Ježíš viděl „jejich víru“ – víru přátel."
+   ],
+   "questions": [
+    "Kdo je můj „Jónatan“ – a komu jsem já takovým přítelem?",
+    "Komu bych měl zavolat nebo napsat?"
+   ],
    "refs": [
     [
      9,
@@ -1776,6 +4755,18 @@
    "icon": "signpost",
    "title": "Spravedlnost a chudí",
    "summary": "Bůh se v Bibli opakovaně zastává chudých, vdov, sirotků a cizinců. Proroci ostře kritizují útlak a prázdnou zbožnost. Starost o potřebné je zkouškou pravé víry.",
+   "deeper": [
+    "Hebrejské mišpat a cedaka („právo a spravedlnost“) se v Bibli často objevují spolu. Neznamenají jen trestat viníky, ale uvádět věci do pořádku – zvláště pro slabé: vdovy, sirotky, cizince a chudé.",
+    "Zákon obsahoval sociální opatření: paběrkování (okraje polí zůstávaly chudým), odpouštění dluhů v sedmém roce a milostivé léto. Proroci jako Amos a Micheáš ostře kritizovali náboženství, které přehlíží útlak."
+   ],
+   "facts": [
+    "Ježíš svou službu v Nazaretu zahájil citací Iz 61: „poslal mě zvěstovat chudým radostnou zprávu… vyhlásit léto Hospodinovy milosti“ (L 4,18-19).",
+    "Rút paběrkovala na Bóazově poli podle zákona z Lv 19,9-10."
+   ],
+   "questions": [
+    "Kdo v mém okolí potřebuje zastání?",
+    "Jak mohu svými penězi a časem přispět ke spravedlnosti?"
+   ],
    "refs": [
     [
      5,
@@ -1836,6 +4827,18 @@
    "icon": "mountain",
    "title": "Křesťan a společnost",
    "summary": "Křesťané mají hledat dobro města, kde žijí, modlit se za vládnoucí a respektovat řád. Zároveň platí, že víc je třeba poslouchat Boha než lidi. Mají být „solí a světlem“ uprostřed společnosti.",
+   "deeper": [
+    "Ježíš na otázku o daních odpověděl: „Dejte, co je císařovo, císaři, a co je Boží, Bohu.“ Mince nesla císařův obraz – člověk nese Boží obraz. Stát má své místo, ale ne místo Boha.",
+    "Pavel vyzývá podřídit se vládě (Ř 13) a modlit se za vládce (1Tm 2,1-2) – v době císaře Nerona. Zároveň apoštolové prohlásili: „Více je třeba poslouchat Boha než lidi“ (Sk 5,29), když jim zakazovali kázat."
+   ],
+   "facts": [
+    "Denár s obrazem Tiberia nesl nápis „Tiberius, syn božského Augusta“ – mince byla pro zbožné Židy problematická.",
+    "Jeremjáš radil vyhnancům modlit se za Babylon, město nepřátel (Jr 29,7)."
+   ],
+   "questions": [
+    "Modlím se za lidi ve vládě a na úřadech?",
+    "Jak mohu být dobrým občanem a zároveň věrný Bohu?"
+   ],
    "refs": [
     [
      24,
@@ -1884,11 +4887,497 @@
    ]
   },
   {
+   "id": "strangers",
+   "category": "relations",
+   "icon": "explore",
+   "title": "Cizinci a pohostinnost",
+   "summary": "Izrael měl pamatovat, že byl sám cizincem v Egyptě – proto má chránit cizince. Pohostinnost je v Bibli posvátná povinnost; kdo hostí cizince, může přijmout anděly i Krista.",
+   "deeper": [
+    "Ve starověkém Orientu znamenala pohostinnost přežití: na poušti nebyly hotely a odmítnout pocestného mohlo znamenat jeho smrt. Hostitel měl povinnost chránit hosta i za cenu vlastního nebezpečí. Abraham běží, aby pohostil neznámé, a přijímá tak samotného Hospodina.",
+    "Kniha Rút je příběh cizinky z nepřátelského národa, kterou Bóaz přijme – a ona se stane prababičkou krále Davida a předkyní Ježíše. Řecké slovo pro pohostinnost filoxenia znamená doslova „láska k cizímu“."
+   ],
+   "facts": [
+    "Zákon Izraele zmiňuje ochranu cizince více než třicetkrát, často spolu se sirotkem a vdovou – trojicí nejzranitelnějších.",
+    "Rublevova ikona Trojice (15. století) zobrazuje tři anděly u Abrahamova stolu – a jedno místo u stolu zůstává otevřené divákovi."
+   ],
+   "questions": [
+    "Kdo je v mém okolí „cizinec“, který potřebuje přijetí?",
+    "Kdy jsem naposledy pozval někoho, kdo mi to nemůže oplatit?"
+   ],
+   "refs": [
+    [
+     1,
+     18,
+     2,
+     5
+    ],
+    [
+     3,
+     19,
+     33,
+     34
+    ],
+    [
+     5,
+     10,
+     18,
+     19
+    ],
+    [
+     8,
+     2,
+     10,
+     10
+    ],
+    [
+     40,
+     25,
+     35,
+     35
+    ],
+    [
+     45,
+     12,
+     13,
+     13
+    ],
+    [
+     58,
+     13,
+     2,
+     2
+    ],
+    [
+     60,
+     4,
+     9,
+     9
+    ]
+   ],
+   "labels": [
+    "Abraham hostí tři muže",
+    "Miluj cizince jako sebe",
+    "Bůh miluje cizince",
+    "Proč si mě všímáš, cizinky?",
+    "Byl jsem cizincem a ujali jste se mě",
+    "Pohostinnost pěstujte",
+    "Někteří tak pohostili anděly",
+    "Bez reptání"
+   ]
+  },
+  {
+   "id": "truth",
+   "category": "relations",
+   "icon": "scale",
+   "title": "Pravda a poctivost",
+   "summary": "Bůh je Bůh pravdy a Ježíš o sobě říká „Já jsem pravda“. Lež ničí důvěru, na které stojí každý vztah. Bible volá k poctivosti ve slovech, obchodu i v tom, co nikdo nevidí.",
+   "deeper": [
+    "Hebrejské slovo emet („pravda“) znamená i „spolehlivost, věrnost“. Pravdivý člověk je ten, na koho se dá spolehnout – stejně jako na Boha. Odtud pochází i slovo „amen“: „ano, je to spolehlivé“.",
+    "Pavel spojuje pravdu a lásku: „mluvit pravdu v lásce“. Pravda bez lásky je krutá, láska bez pravdy je falešná. Ježíš v kázání na hoře jde dál než zákon: kdo je vždy pravdivý, nemusí přísahat."
+   ],
+   "facts": [
+    "Obchodníci ve starověku nosili v měšci dvě sady závaží – lehčí pro prodej, těžší pro nákup. Zákon to výslovně zakazoval (Dt 25,13).",
+    "Slova „Pravda vítězí“ na české prezidentské standartě navazují na husitské heslo; Jan Hus psal: „Hledaj pravdu, slyš pravdu, uč sě pravdě, miluj pravdu…“"
+   ],
+   "questions": [
+    "Kde je pro mě nejtěžší být úplně pravdivý?",
+    "Jak mohu říct těžkou pravdu s láskou?"
+   ],
+   "refs": [
+    [
+     2,
+     20,
+     16,
+     16
+    ],
+    [
+     3,
+     19,
+     35,
+     36
+    ],
+    [
+     20,
+     12,
+     22,
+     22
+    ],
+    [
+     38,
+     8,
+     16,
+     16
+    ],
+    [
+     40,
+     5,
+     37,
+     37
+    ],
+    [
+     43,
+     8,
+     32,
+     32
+    ],
+    [
+     49,
+     4,
+     15,
+     15
+    ],
+    [
+     49,
+     4,
+     25,
+     25
+    ]
+   ],
+   "labels": [
+    "Nevydáš křivé svědectví",
+    "Spravedlivé váhy",
+    "Lživé rty jsou Hospodinu ohavností",
+    "Mluvte pravdu jeden s druhým",
+    "Vaše ano ať je ano",
+    "Pravda vás osvobodí",
+    "Pravda v lásce",
+    "Odložte lež"
+   ]
+  },
+  {
+   "id": "reconciliation",
+   "category": "relations",
+   "icon": "handshake",
+   "title": "Konflikty a smíření",
+   "summary": "Bible nezakrývá konflikty – i mezi bratry a apoštoly. Ale ukazuje cestu ke smíření: jít za druhým, mluvit přímo, odpustit. Bůh nás smířil se sebou, a proto nás posílá smiřovat.",
+   "deeper": [
+    "Ježíš dává jasný postup (Mt 18,15-17): nejdřív mluvit osobně a v soukromí, ne za zády. Pokud to nepomůže, přizvat jednoho či dva svědky, teprve potom společenství. Většina konfliktů se zhorší, když o nich mluvíme s ostatními místo s tím, koho se týkají.",
+    "Ř 12,18 je realistické: „pokud to záleží na vás“. Smíření potřebuje dvě strany a ne vždy se podaří. My však můžeme udělat svůj díl – a odpustit i tam, kde druhý nepřijde."
+   ],
+   "facts": [
+    "Pavel ve Filipským jmenovitě prosí dvě ženy, Evodii a Syntyché, aby se usmířily. Obě s ním „bojovaly za evangelium“ – i dobří spolupracovníci se mohou pohádat.",
+    "Pavel a Barnabáš se rozešli kvůli sporu o Marka (Sk 15,39). Později Pavel píše, že je mu Marek „užitečný ve službě“ (2Tm 4,11) – vztahy se mohou uzdravit i po letech."
+   ],
+   "questions": [
+    "S kým bych měl udělat první krok ke smíření?",
+    "Mluvím o problémech s lidmi přímo, nebo spíš o nich s jinými?"
+   ],
+   "refs": [
+    [
+     1,
+     33,
+     4,
+     4
+    ],
+    [
+     1,
+     45,
+     4,
+     5
+    ],
+    [
+     40,
+     5,
+     23,
+     24
+    ],
+    [
+     40,
+     18,
+     15,
+     15
+    ],
+    [
+     45,
+     12,
+     18,
+     18
+    ],
+    [
+     47,
+     5,
+     18,
+     19
+    ],
+    [
+     50,
+     4,
+     2,
+     3
+    ],
+    [
+     51,
+     3,
+     13,
+     13
+    ]
+   ],
+   "labels": [
+    "Ezau běží Jákobovi vstříc",
+    "Josef se dává poznat bratrům",
+    "Nejdřív se smiř s bratrem",
+    "Jdi a promluv si s ním mezi čtyřma očima",
+    "Pokud to záleží na vás, žijte v pokoji",
+    "Služba smíření",
+    "Evodie a Syntyché",
+    "Snášejte se a odpouštějte si"
+   ]
+  },
+  {
+   "id": "creation_care",
+   "category": "relations",
+   "icon": "sprout",
+   "title": "Péče o stvoření",
+   "summary": "Země patří Hospodinu a člověk ji dostal do správy – ne k vydrancování, ale „aby ji obdělával a střežil“. Bible pamatuje i na zvířata a slibuje vysvobození celého stvoření.",
+   "deeper": [
+    "„Panovat“ v Gn 1 je třeba číst spolu s Gn 2,15: člověk má zahradu „obdělávat a střežit“. Hebrejská slovesa avad a šamar se jinde používají pro službu Bohu a zachovávání přikázání. Vláda nad zemí je tedy služba, ne vykořisťování.",
+    "Zákon předepisoval sabatní rok: každý sedmý rok měla půda odpočívat (Lv 25,4). Dokonce i dobytek měl nárok na sabat. Pavel v Římanům 8 vidí stvoření jako ženu v porodních bolestech, která čeká na nové narození."
+   ],
+   "facts": [
+    "Zákon zakazoval brát z hnízda matku spolu s mláďaty (Dt 22,6-7) a zavazovat ústa volu, který mlátí obilí (Dt 25,4).",
+    "František z Assisi (13. stol.) složil Píseň bratra Slunce. V roce 1979 byl vyhlášen patronem ekologie."
+   ],
+   "questions": [
+    "Jak se moje víra projevuje v tom, jak zacházím s přírodou?",
+    "Co mi o Bohu říká stvoření kolem mě?"
+   ],
+   "refs": [
+    [
+     1,
+     1,
+     28,
+     28
+    ],
+    [
+     1,
+     2,
+     15,
+     15
+    ],
+    [
+     3,
+     25,
+     23,
+     23
+    ],
+    [
+     19,
+     24,
+     1,
+     1
+    ],
+    [
+     18,
+     12,
+     7,
+     10
+    ],
+    [
+     20,
+     12,
+     10,
+     10
+    ],
+    [
+     42,
+     12,
+     6,
+     6
+    ],
+    [
+     45,
+     8,
+     19,
+     21
+    ]
+   ],
+   "labels": [
+    "Panujte nad zemí",
+    "Obdělávat a střežit zahradu",
+    "Země je moje",
+    "Hospodinova je země",
+    "Zeptej se zvířat",
+    "Spravedlivý dbá o svůj dobytek",
+    "Ani jeden vrabec není zapomenut",
+    "Stvoření čeká na vysvobození"
+   ]
+  },
+  {
+   "id": "age",
+   "category": "relations",
+   "icon": "person",
+   "title": "Stáří a generace",
+   "summary": "Bible si váží stáří: šediny jsou „korunou slávy“. Starší mají předávat víru, mladší jim prokazovat úctu. A Bůh slibuje, že bude nést své lidi i ve stáří.",
+   "deeper": [
+    "V tradiční společnosti byli starší strážci paměti a moudrosti. Ve „vratech města“ zasedali starší a rozsuzovali spory. Žalm 71 je modlitba stárnoucího člověka, který chce „zvěstovat Boží sílu dalšímu pokolení“.",
+    "Simeon a Anna v chrámu jsou jedni z prvních, kdo poznávají Ježíše. Anně bylo přes 80 let. Bible nevidí stáří jako konec užitečnosti – Abraham, Mojžíš i Zachariáš dostali své největší úkoly ve vysokém věku."
+   ],
+   "facts": [
+    "Mojžíšovi bylo 80 let, když stál před faraonem (Ex 7,7).",
+    "Jl 3,1 (v některých překladech 2,28) slibuje sny starcům i vidění mladíkům – Petr tento text cituje o Letnicích."
+   ],
+   "questions": [
+    "Co jsem se naučil od starších lidí ve víře?",
+    "Komu z mladší generace mohu předat, co jsem s Bohem prožil?"
+   ],
+   "refs": [
+    [
+     3,
+     19,
+     32,
+     32
+    ],
+    [
+     19,
+     71,
+     17,
+     18
+    ],
+    [
+     19,
+     92,
+     13,
+     15
+    ],
+    [
+     20,
+     16,
+     31,
+     31
+    ],
+    [
+     23,
+     46,
+     4,
+     4
+    ],
+    [
+     29,
+     3,
+     1,
+     1
+    ],
+    [
+     42,
+     2,
+     36,
+     38
+    ],
+    [
+     56,
+     2,
+     2,
+     4
+    ]
+   ],
+   "labels": [
+    "Povstaň před šedinami",
+    "Ani ve stáří mě neopouštěj",
+    "I ve stáří ponesou ovoce",
+    "Šediny jsou korunou slávy",
+    "Až do šedin vás ponesu",
+    "Vaši starci budou mít sny",
+    "Prorokyně Anna",
+    "Starší učí mladší"
+   ]
+  },
+  {
+   "id": "children",
+   "category": "relations",
+   "icon": "family",
+   "title": "Děti",
+   "summary": "Děti jsou v Bibli darem a požehnáním. Ježíš je bral do náruče a postavil je doprostřed jako vzor: kdo nepřijme Boží království jako dítě, nevejde do něj.",
+   "deeper": [
+    "V antickém světě děti neměly velkou hodnotu – nechtěné děti se často pohazovaly. Ježíšovo jednání bylo převratné: učedníci děti odhánějí, on se rozhněvá a žehná jim. Dítě je pro něj vzor důvěry a závislosti, ne „nehotový člověk“.",
+    "Bůh mluví i k dětem: Samuel slyší Boží hlas jako chlapec, David je nejmladší syn, Timotej zná Písmo od dětství díky babičce Loidě a matce Euniké. Víra se předává hlavně v rodině a příkladem."
+   ],
+   "facts": [
+    "Didaché, křesťanský spis z konce 1. století, výslovně zakazuje potrat i odkládání novorozenců – raní křesťané často zachraňovali pohozené děti.",
+    "Slovo „vychovávej“ v Př 22,6 (chanach) se používá i pro „zasvěcení“ chrámu. Odtud název svátku Chanuka."
+   ],
+   "questions": [
+    "Co se mohu naučit od dětské důvěry?",
+    "Jak mohu podpořit víru dětí ve svém okolí?"
+   ],
+   "refs": [
+    [
+     19,
+     127,
+     3,
+     3
+    ],
+    [
+     19,
+     139,
+     13,
+     14
+    ],
+    [
+     9,
+     3,
+     10,
+     10
+    ],
+    [
+     20,
+     22,
+     6,
+     6
+    ],
+    [
+     40,
+     18,
+     2,
+     4
+    ],
+    [
+     41,
+     10,
+     14,
+     16
+    ],
+    [
+     49,
+     6,
+     4,
+     4
+    ],
+    [
+     55,
+     3,
+     15,
+     15
+    ]
+   ],
+   "labels": [
+    "Synové jsou dědictví od Hospodina",
+    "Utkal jsi mě v lůně mé matky",
+    "Mluv, tvůj služebník slyší",
+    "Vychovávej dítě na začátku cesty",
+    "Budete-li jako děti",
+    "Nechte děti přicházet ke mně",
+    "Nepopouzejte své děti",
+    "Od dětství znáš svatá Písma"
+   ]
+  },
+  {
    "id": "church",
    "category": "church",
    "icon": "person",
    "title": "Církev",
    "summary": "Církev nejsou budovy, ale lidé, kteří patří Kristu – jeho tělo. Má různé dary a služby, ale jednoho Pána. Schází se ke slovu, modlitbě, večeři Páně a vzájemné péči.",
+   "deeper": [
+    "Řecké ekklésia znamená „shromáždění svolaných“ – používalo se pro občanské shromáždění města. Církev není budova, ale lidé, které Bůh svolal. Pavel ji popisuje jako tělo, chrám, rodinu a nevěstu.",
+    "První církev se scházela po domech, sdílela jídlo a majetek. Skutky popisují i její problémy – spory, pokrytectví, rozdělení. Církev není společenství dokonalých, ale uzdravovaných."
+   ],
+   "facts": [
+    "České slovo „církev“ pochází přes němčinu (Kirche) z řeckého kyriakon – „Páně, patřící Pánu“.",
+    "Ježíš v evangeliích použil slovo ekklésia jen dvakrát (Mt 16,18 a 18,17)."
+   ],
+   "questions": [
+    "Co pro mě znamená patřit k Božímu lidu?",
+    "Čím mohu přispět ke svému společenství?"
+   ],
    "refs": [
     [
      40,
@@ -1949,6 +5438,18 @@
    "icon": "rain",
    "title": "Křest",
    "summary": "Křest je znamení, které ustanovil Ježíš: vyjadřuje očištění, spojení s Kristovou smrtí a vzkříšením a začlenění do církve. Církve se liší v tom, kdy a jak křtí, ale všechny ho slaví.",
+   "deeper": [
+    "Řecké baptizó znamená „ponořit, namočit“. Křest vyjadřuje smrt starého a vstání k novému životu (Ř 6,3-4), očištění a přijetí do Boží rodiny. Ježíš se dal pokřtít, ačkoli neměl hřích – aby se ztotožnil s lidmi.",
+    "Církve se liší v otázce, kdy a jak křtít (děti, nebo dospělé; pokropením, nebo ponořením). Shodují se, že křest je Boží dar a začátek života s Kristem, ne jeho konec."
+   ],
+   "facts": [
+    "Jan Křtitel křtil v Jordánu u Betanie „za Jordánem“. Místo Al-Maghtas v Jordánsku je od roku 2015 na seznamu UNESCO.",
+    "Starokřesťanské křtitelnice měly často osmiúhelníkový tvar – osmý den symbolizoval vzkříšení a nové stvoření."
+   ],
+   "questions": [
+    "Co pro mě znamená můj křest?",
+    "Jak mohu dnes žít jako „ponořený“ do Krista?"
+   ],
    "refs": [
     [
      40,
@@ -2002,6 +5503,18 @@
    "icon": "heart",
    "title": "Večeře Páně",
    "summary": "Při poslední večeři dal Ježíš učedníkům chléb a kalich jako znamení svého těla a krve – nové smlouvy. Církev ji slaví na jeho památku, ve společenství a v očekávání jeho příchodu. Tradice se liší v jejím chápání, ne v jejím významu pro víru.",
+   "deeper": [
+    "Ježíš ustanovil Večeři Páně při slavení Pesachu – svátku vysvobození z Egypta. Chléb a víno vykládal novým způsobem: „To je mé tělo… to je má krev smlouvy.“ Nový exodus a nová smlouva.",
+    "Pavel píše, že při Večeři Páně „zvěstujeme smrt Páně, dokud nepřijde“ (1K 11,26). Je to připomínka minulosti, přítomné společenství s Kristem i předzvěst nebeské hostiny."
+   ],
+   "facts": [
+    "Korintští křesťané jedli Večeři Páně jako skutečnou večeři – a Pavel je kárá, že bohatí jedí dřív a chudí zůstávají hladoví (1K 11,21).",
+    "Učedníci z Emauz poznali vzkříšeného Ježíše „při lámání chleba“ (L 24,35)."
+   ],
+   "questions": [
+    "Co prožívám, když přijímám Večeři Páně?",
+    "S kým se potřebuji smířit, než přistoupím ke stolu?"
+   ],
    "refs": [
     [
      2,
@@ -2055,6 +5568,18 @@
    "icon": "signpost",
    "title": "Svědectví a misie",
    "summary": "Ježíš poslal své učedníky, aby nesli evangelium všem národům. Svědectví není jen úkolem kazatelů – každý může vyprávět, co s Bohem prožil, a žít tak, aby se druzí ptali.",
+   "deeper": [
+    "Ježíš před nanebevstoupením dává učedníkům plán: Jeruzalém, Judsko, Samaří a „až na konec země“ (Sk 1,8). Kniha Skutků sleduje právě tuto cestu – od malé skupiny v Jeruzalémě až do Říma.",
+    "Svědek nemusí znát všechny odpovědi – vypráví, co viděl a zažil. Uzdravený slepý řekl jen: „Jedno vím: byl jsem slepý a nyní vidím“ (J 9,25). Petr radí být připraven vydat počet z naděje, „s mírností a uctivostí“."
+   ],
+   "facts": [
+    "Samařská žena u studny se stala jednou z prvních „evangelistek“ – mnozí Samaritáni uvěřili pro její slovo (J 4,39).",
+    "Cyril a Metoděj přinesli roku 863 na Velkou Moravu evangelium v jazyce, kterému lidé rozuměli, a vytvořili pro něj písmo."
+   ],
+   "questions": [
+    "Komu bych mohl vyprávět, co mi Bůh dal?",
+    "Jak mohu svědčit spíš životem než slovy?"
+   ],
    "refs": [
     [
      23,
@@ -2110,11 +5635,332 @@
    ]
   },
   {
+   "id": "gifts",
+   "category": "church",
+   "icon": "gift",
+   "title": "Duchovní dary",
+   "summary": "Každý křesťan dostal od Ducha svatého nějaký dar – ne pro sebe, ale pro druhé. Církev je jako tělo: každý úd je jiný a každý je potřebný.",
+   "deeper": [
+    "Pavel uvádí různé seznamy darů – proroctví, vyučování, povzbuzování, štědrost, vedení, milosrdenství, uzdravování, jazyky… Žádný seznam není úplný. Některé dary jsou nápadné, jiné skryté, ale Pavel zdůrazňuje, že „slabší“ údy jsou nezbytné.",
+    "Kapitola o lásce (1K 13) stojí přesně mezi dvěma kapitolami o darech. Není to svatební text, ale korekce pro církev, která se hádala, čí dar je důležitější. Bez lásky je i největší dar jen hluk."
+   ],
+   "facts": [
+    "Řecké slovo charisma pochází od charis – „milost“. Dar je tedy „projev milosti“, ne zásluha.",
+    "Korint byl proslulý výrobou bronzu. „Zvučící kov“ z 1K 13,1 byl pro Korinťany důvěrně známý zvuk."
+   ],
+   "questions": [
+    "Jaký dar ode mě druzí v církvi nebo v rodině přijímají?",
+    "Čí nenápadný dar bych mohl ocenit?"
+   ],
+   "refs": [
+    [
+     44,
+     2,
+     4,
+     4
+    ],
+    [
+     45,
+     12,
+     6,
+     8
+    ],
+    [
+     46,
+     12,
+     4,
+     7
+    ],
+    [
+     46,
+     12,
+     21,
+     22
+    ],
+    [
+     46,
+     13,
+     1,
+     2
+    ],
+    [
+     49,
+     4,
+     11,
+     12
+    ],
+    [
+     60,
+     4,
+     10,
+     11
+    ]
+   ],
+   "labels": [
+    "Naplněni Duchem svatým",
+    "Máme různé dary podle milosti",
+    "Různé dary, týž Duch",
+    "Oko nemůže říct ruce",
+    "Bez lásky nejsem nic",
+    "K budování těla Kristova",
+    "Dobří správci milosti"
+   ]
+  },
+  {
+   "id": "unity",
+   "category": "church",
+   "icon": "link",
+   "title": "Jednota",
+   "summary": "Ježíšova poslední velká modlitba prosí o jednotu jeho učedníků, „aby svět uvěřil“. Jednota neznamená stejnost – různí lidé, národy i tradice jsou spojeni jedním Pánem.",
+   "deeper": [
+    "Galatským 3,28 bylo ve své době šokující: Žid a Řek, otrok a svobodný, muž a žena – všichni jsou „jeden“ v Kristu. První církve spojovaly lidi, kteří by se jinak nikdy nesešli u jednoho stolu. Největším sporem raných církví byla právě otázka, zda pohané mohou jíst s Židy (Sk 15).",
+    "Pavel vybízí „zachovávat“ jednotu Ducha – ne ji vyrábět. Jednota je dar, který lze ztratit pýchou, pomluvami a stranictvím („já jsem Pavlův, já Apollův“). Pro Ježíše je jednota svědectvím pro svět."
+   ],
+   "facts": [
+    "Každý rok v lednu probíhá Týden modliteb za jednotu křesťanů, kterého se účastní katolíci, protestanti i pravoslavní.",
+    "Ž 133 přirovnává jednotu k rose z Chermonu – nejvyšší hory oblasti, odkud rosa a sníh napájejí Jordán."
+   ],
+   "questions": [
+    "S kým z jiné církevní tradice bych mohl sdílet víru?",
+    "Čím mohu přispět k jednotě ve svém společenství?"
+   ],
+   "refs": [
+    [
+     19,
+     133,
+     1,
+     1
+    ],
+    [
+     43,
+     17,
+     20,
+     21
+    ],
+    [
+     44,
+     4,
+     32,
+     32
+    ],
+    [
+     46,
+     1,
+     10,
+     10
+    ],
+    [
+     48,
+     3,
+     28,
+     28
+    ],
+    [
+     49,
+     4,
+     3,
+     6
+    ],
+    [
+     50,
+     2,
+     2,
+     2
+    ],
+    [
+     51,
+     3,
+     14,
+     14
+    ]
+   ],
+   "labels": [
+    "Jak dobré je, když bratři žijí spolu",
+    "Aby všichni byli jedno",
+    "Jedno srdce a jedna duše",
+    "Ať mezi vámi nejsou roztržky",
+    "Všichni jste jeden v Kristu",
+    "Jeden Pán, jedna víra, jeden křest",
+    "Jedné mysli",
+    "Láska je pouto dokonalosti"
+   ]
+  },
+  {
+   "id": "fellowship",
+   "category": "church",
+   "icon": "family",
+   "title": "Společenství",
+   "summary": "Víra se v Bibli žije společně. První křesťané se scházeli k učení, lámání chleba a modlitbám, sdíleli majetek i radosti. Kde jsou dva nebo tři v Ježíšově jménu, je mezi nimi.",
+   "deeper": [
+    "Řecké slovo koinónia znamená „mít podíl na něčem společném“. Používalo se i pro obchodní společnost. Křesťané mají podíl na Kristu – a proto i na životech druhých: na jejich jídle, radostech, starostech i penězích.",
+    "Nový zákon obsahuje kolem padesáti výzev „jedni druhým“: milujte se, povzbuzujte, odpouštějte, snášejte, modlete se za sebe navzájem. Tyto příkazy se nedají plnit o samotě."
+   ],
+   "facts": [
+    "První křesťané se scházeli v domech. Nejstarší známý křesťanský „kostel“ v Dura-Európos v Sýrii (asi 240 po Kr.) byl přestavěný obytný dům.",
+    "Ž 133 se zpívá při mnoha setkáních v Izraeli; jeho úvod „Hine ma tov“ je populární píseň."
+   ],
+   "questions": [
+    "Kdo nese moje břemena – a čí břemena nesu já?",
+    "Kterou výzvu „jedni druhým“ bych mohl tento týden uskutečnit?"
+   ],
+   "refs": [
+    [
+     21,
+     4,
+     9,
+     10
+    ],
+    [
+     40,
+     18,
+     20,
+     20
+    ],
+    [
+     44,
+     2,
+     42,
+     42
+    ],
+    [
+     44,
+     2,
+     46,
+     47
+    ],
+    [
+     45,
+     12,
+     15,
+     15
+    ],
+    [
+     48,
+     6,
+     2,
+     2
+    ],
+    [
+     58,
+     10,
+     24,
+     25
+    ],
+    [
+     62,
+     1,
+     7,
+     7
+    ]
+   ],
+   "labels": [
+    "Dva jsou lepší než jeden",
+    "Kde jsou dva nebo tři",
+    "Učení, společenství, chléb a modlitby",
+    "Po domech s radostí",
+    "Radujte se s radujícími, plačte s plačícími",
+    "Neste břemena jedni druhých",
+    "Neopouštějte společná shromáždění",
+    "Máme společenství spolu"
+   ]
+  },
+  {
+   "id": "persecution",
+   "category": "church",
+   "icon": "shield",
+   "title": "Pronásledování a věrnost",
+   "summary": "Ježíš svým učedníkům nesliboval snadný život. Varoval, že je svět bude nenávidět, ale slíbil, že s nimi bude. Pronásledování provází církev od počátku až dodnes.",
+   "deeper": [
+    "Tři mládenci v Danielovi odpovídají králi jednou z nejsilnějších vět víry: Bůh nás může vysvobodit – „ale i kdyby ne“, modle se klanět nebudeme. Věrnost nezávisí na výsledku.",
+    "Štěpán, první křesťanský mučedník, umírá s modlitbou za své vrahy, podobně jako Ježíš. Mezi přihlížejícími stojí mladý Saul – pozdější apoštol Pavel. Tertulián později napsal: „Krev mučedníků je semenem církve.“"
+   ],
+   "facts": [
+    "Slovo „mučedník“ je řecky martys – „svědek“. Svědek, který svědectví potvrdí životem.",
+    "I dnes žijí miliony křesťanů v zemích, kde za víru hrozí vězení nebo násilí. Žd 13,3 vyzývá pamatovat na ně, „jako byste byli uvězněni s nimi“."
+   ],
+   "questions": [
+    "Co mě víra stojí – a jsem ochoten za ni platit?",
+    "Za které pronásledované křesťany se mohu modlit?"
+   ],
+   "refs": [
+    [
+     27,
+     3,
+     17,
+     18
+    ],
+    [
+     40,
+     5,
+     10,
+     12
+    ],
+    [
+     43,
+     15,
+     18,
+     20
+    ],
+    [
+     44,
+     5,
+     41,
+     41
+    ],
+    [
+     44,
+     7,
+     59,
+     60
+    ],
+    [
+     47,
+     4,
+     8,
+     9
+    ],
+    [
+     58,
+     13,
+     3,
+     3
+    ],
+    [
+     66,
+     2,
+     10,
+     10
+    ]
+   ],
+   "labels": [
+    "I kdyby nás nevysvobodil",
+    "Blahoslavení pronásledovaní",
+    "Mě pronásledovali, i vás budou",
+    "Radovali se, že byli hodni trpět",
+    "Štěpán se modlí za ty, kdo ho kamenují",
+    "Pronásledováni, ale ne opuštěni",
+    "Pamatujte na vězně",
+    "Buď věrný až do smrti"
+   ]
+  },
+  {
    "id": "return",
    "category": "future",
    "icon": "sun",
    "title": "Ježíšův druhý příchod",
    "summary": "Nový zákon s jistotou očekává, že Ježíš se vrátí ve slávě. Kdy to bude, nikdo neví – proto vybízí bdít a žít věrně. Je to zpráva naděje, ne strachu.",
+   "deeper": [
+    "Nový zákon zmiňuje Kristův návrat zhruba třistakrát. Ježíš odmítl říct datum – „o tom dni a hodině neví nikdo“ – a místo toho vyprávěl podobenství o bdělosti: o pannách s lampami, o služebnících a svěřených hřivnách.",
+    "Naděje na Kristův návrat neznamená únik ze světa. Podobenství ukazují, že připravenost se projevuje věrností v práci, péčí o nejmenší a láskou. Raní křesťané se modlili aramejsky Maranatha – „Pane, přijď!“"
+   ],
+   "facts": [
+    "Během dějin mnoho lidí vypočítávalo datum konce světa – a všichni se mýlili. Ježíš sám varoval před těmi, kdo tvrdí „hle, tady je“.",
+    "Poslední modlitba Bible je „Amen, přijď, Pane Ježíši“ (Zj 22,20)."
+   ],
+   "questions": [
+    "Kdyby se Kristus vrátil zítra, co bych chtěl dnes udělat jinak?",
+    "Je pro mě Kristův návrat strach, nebo naděje?"
+   ],
    "refs": [
     [
      40,
@@ -2175,6 +6021,18 @@
    "icon": "flame",
    "title": "Soud",
    "summary": "Bible mluví o Božím soudu, při kterém vyjde najevo pravda a bude zjednána spravedlnost. Pro oběti křivd je to naděje. Kdo je v Kristu, nemusí se soudu bát – soudcem je ten, který za nás zemřel.",
+   "deeper": [
+    "Boží soud v Bibli není jen hrozba, ale i naděje – pro utlačované znamená, že zlo nezůstane nepotrestáno a Bůh vše uvede do pořádku. Žalmy často volají: „Povstaň, Bože, suď zemi!“",
+    "Ježíš v Mt 25 ukazuje, že měřítkem bude láska k nejmenším. Pavel zdůrazňuje, že „není odsouzení pro ty, kdo jsou v Kristu Ježíši“ (Ř 8,1). Soudcem je ten, kdo za nás zemřel."
+   ],
+   "facts": [
+    "Michelangelův Poslední soud v Sixtinské kapli (1536–1541) zobrazuje přes 300 postav.",
+    "„Den hněvu“ (Dies irae) je středověký hymnus podle Sf 1,15, který zhudebnili Mozart i Verdi ve svých rekviem."
+   ],
+   "questions": [
+    "Je pro mě Boží soud spíš strachem, nebo útěchou?",
+    "Co bych chtěl, aby bylo vidět z mého života?"
+   ],
    "refs": [
     [
      21,
@@ -2235,6 +6093,18 @@
    "icon": "mountain",
    "title": "Věčný život a nové stvoření",
    "summary": "Věčný život začíná už teď poznáním Boha a vrcholí vzkříšením. Bible končí obrazem nového nebe a nové země, kde Bůh přebývá s lidmi, kde nebude smrt ani pláč. Křesťanská naděje je naděje pro celé stvoření.",
+   "deeper": [
+    "Bible nekončí únikem duší do nebe, ale obnovou stvoření: „nové nebe a nová země“, kde Bůh přebývá s lidmi. Zjevení 21–22 připomíná Eden – je tam řeka a strom života – ale tentokrát jako zahradní město plné národů.",
+    "„Věčný život“ v Janově evangeliu neznamená jen nekonečné trvání, ale kvalitu života – „aby znali tebe, jediného pravého Boha“ (J 17,3). Začíná už teď."
+   ],
+   "facts": [
+    "Bible začíná stvořením nebe a země (Gn 1,1) a končí novým nebem a novou zemí (Zj 21,1) – tvoří kruh.",
+    "V novém Jeruzalémě „moře už není“ (Zj 21,1). Pro starověké Izraelity bylo moře symbolem chaosu a hrozby."
+   ],
+   "questions": [
+    "Na co se v Božím novém světě těším nejvíc?",
+    "Jak může naděje na nové stvoření ovlivnit to, jak žiji dnes?"
+   ],
    "refs": [
     [
      23,
@@ -2287,6 +6157,394 @@
     "Naše domovská obec je v nebesích",
     "Hle, všechno činím nové",
     "Řeka života"
+   ]
+  },
+  {
+   "id": "heaven",
+   "category": "future",
+   "icon": "sunrise",
+   "title": "Nebe a Boží domov",
+   "summary": "Bible o nebi mluví střídmě, ale s velkou nadějí: je to místo, kde je Bůh, kam nás Ježíš předešel, aby připravil místo. Nakonec se nebe a země spojí v nové stvoření.",
+   "deeper": [
+    "Ježíš popisuje nebe jako dům Otce s mnoha „příbytky“ (monai – místa, kde se zůstává). V tehdejší rodině se k otcovu domu přistavovaly pokoje pro syny a jejich rodiny. Nebe je obrazem domova a rodiny, ne nekonečné nudy na obláčku.",
+    "Nový zákon nemluví hlavně o tom, že odejdeme „do nebe“ navždy, ale o vzkříšení a nové zemi. Smrt věřícího znamená „být s Kristem“ (Fp 1,23), ale konečným cílem je obnovené stvoření, kde Bůh přebývá s lidmi (Zj 21,3)."
+   ],
+   "facts": [
+    "Slovo „ráj“ pochází z perského pairidaeza – „ohrazená zahrada“. Řecký překlad Starého zákona jím označoval zahradu Eden.",
+    "Filipy byly římskou kolonií a jejich obyvatelé byli hrdí na římské občanství. Pavel jim píše: vaše skutečné občanství je v nebesích."
+   ],
+   "questions": [
+    "Jak moje naděje na nebe ovlivňuje to, jak žiji teď?",
+    "Na co se v Božím domově těším nejvíc?"
+   ],
+   "refs": [
+    [
+     43,
+     14,
+     2,
+     3
+    ],
+    [
+     42,
+     23,
+     43,
+     43
+    ],
+    [
+     46,
+     2,
+     9,
+     9
+    ],
+    [
+     47,
+     5,
+     1,
+     1
+    ],
+    [
+     50,
+     1,
+     21,
+     23
+    ],
+    [
+     50,
+     3,
+     20,
+     20
+    ],
+    [
+     58,
+     11,
+     16,
+     16
+    ],
+    [
+     66,
+     7,
+     16,
+     17
+    ]
+   ],
+   "labels": [
+    "V domě mého Otce je mnoho příbytků",
+    "Dnes budeš se mnou v ráji",
+    "Co oko nevidělo",
+    "Věčný dům v nebesích",
+    "Odejít a být s Kristem",
+    "Naše občanství je v nebesích",
+    "Touží po lepší vlasti",
+    "Už nebudou hladovět"
+   ]
+  },
+  {
+   "id": "death",
+   "category": "future",
+   "icon": "candle",
+   "title": "Smrt a truchlení",
+   "summary": "Bible smrt nezlehčuje – nazývá ji nepřítelem. I Ježíš u hrobu přítele plakal. Ale křesťané truchlí „s nadějí“, protože Kristus smrt přemohl.",
+   "deeper": [
+    "Ježíš ví, že za chvíli Lazara vzkřísí – a přesto pláče. Truchlení tedy není nedostatek víry. Bible dává prostor nářku: celá kniha Pláč, žalmy nářku, Davidův pláč nad Absolonem. Pavel nezakazuje truchlit, jen ukazuje, že křesťanský smutek má naději.",
+    "Pavel nazývá smrt „posledním nepřítelem“ (1K 15,26). Kristus smrt nepřeskočil, ale prošel jí – a proto pro věřící ztratila „osten“. Křesťanské pohřby od počátku zdůrazňovaly vzkříšení; hroby se obracely k východu, odkud se čekal vracející se Kristus."
+   ],
+   "facts": [
+    "Žalm 90 je jediný žalm připisovaný Mojžíšovi. Prosba „nauč nás počítat naše dny“ zve žít moudře s vědomím konečnosti.",
+    "Raní křesťané nazývali hřbitov koimétérion – „místo spánku“. Odtud pochází anglické cemetery i francouzské cimetière."
+   ],
+   "questions": [
+    "Koho jsem ztratil a jak s tím smutkem přicházím k Bohu?",
+    "Jak by mě vědomí konečnosti mohlo naučit žít moudřeji?"
+   ],
+   "refs": [
+    [
+     19,
+     23,
+     4,
+     4
+    ],
+    [
+     19,
+     90,
+     12,
+     12
+    ],
+    [
+     21,
+     3,
+     1,
+     4
+    ],
+    [
+     43,
+     11,
+     25,
+     26
+    ],
+    [
+     43,
+     11,
+     35,
+     35
+    ],
+    [
+     46,
+     15,
+     54,
+     55
+    ],
+    [
+     52,
+     4,
+     13,
+     14
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ]
+   ],
+   "labels": [
+    "I kdybych šel temným údolím",
+    "Nauč nás počítat naše dny",
+    "Čas plakat a čas se smát",
+    "Já jsem vzkříšení a život",
+    "Ježíš se rozplakal",
+    "Smrti, kde je tvé vítězství?",
+    "Netruchlete jako ti, kdo nemají naději",
+    "Smrti už nebude"
+   ]
+  },
+  {
+   "id": "angels",
+   "category": "world",
+   "icon": "angel",
+   "title": "Andělé",
+   "summary": "Andělé jsou v Bibli Boží poslové a služebníci. Přinášejí zprávy, chrání, bojují i chválí Boha. Nejsou to roztomilé děti s křidélky – jejich první slova obvykle zní: „Neboj se!“",
+   "deeper": [
+    "Slovo „anděl“ pochází z řeckého angelos – „posel“; hebrejské mal'ach znamená totéž. Kanonické knihy jmenují jen dva anděly: Gabriela („Bůh je má síla“) a Michaela („Kdo je jako Bůh?“). Zmiňuje také cheruby, kteří střeží Boží přítomnost, a serafy („planoucí“) u Izajáše.",
+    "Bible ukazuje anděly jako služebníky, nikdy jako cíl uctívání – když se Jan ve Zjevení před andělem skloní, slyší: „Nedělej to! Jsem spoluslužebník… Bohu se klaněj“ (Zj 19,10). Jejich úkolem je ukazovat k Bohu a sloužit lidem."
+   ],
+   "facts": [
+    "Cherubové v Bibli nejsou baculatá miminka – ta pocházejí z renesančního umění (putti). Ezechiel je popisuje se čtyřmi tvářemi a křídly.",
+    "Žalm 91,11-12 cituje ďábel při pokoušení Ježíše (Mt 4,6) – příklad toho, že i Písmo lze vytrhnout z kontextu."
+   ],
+   "questions": [
+    "Překvapuje mě, jak málo toho Bible o andělích říká?",
+    "Zažil jsem někdy nečekanou ochranu nebo pomoc „ve správnou chvíli“?"
+   ],
+   "refs": [
+    [
+     1,
+     28,
+     12,
+     12
+    ],
+    [
+     19,
+     34,
+     8,
+     8
+    ],
+    [
+     19,
+     91,
+     11,
+     12
+    ],
+    [
+     27,
+     10,
+     12,
+     13
+    ],
+    [
+     42,
+     1,
+     26,
+     28
+    ],
+    [
+     42,
+     2,
+     13,
+     14
+    ],
+    [
+     40,
+     18,
+     10,
+     10
+    ],
+    [
+     58,
+     1,
+     14,
+     14
+    ]
+   ],
+   "labels": [
+    "Jákobův žebřík",
+    "Anděl Hospodinův se utábořil",
+    "Andělům přikáže, aby tě chránili",
+    "Anděl, Michael a kníže Perské říše",
+    "Gabriel u Marie",
+    "Sláva na výsostech Bohu",
+    "Andělé maličkých",
+    "Služební duchové"
+   ]
+  },
+  {
+   "id": "evil",
+   "category": "world",
+   "icon": "warning",
+   "title": "Satan a zlo",
+   "summary": "Bible bere zlo vážně. Mluví o protivníkovi – satanovi, který pokouší, obviňuje a lže. Ale nikdy ho nestaví na roveň Bohu: je to poražený nepřítel, kterému je možné vzdorovat.",
+   "deeper": [
+    "Hebrejské satan znamená „protivník, žalobce“. V knize Jób je to ten, kdo obviňuje člověka před Bohem: „Bojí se Jób Boha jen tak?“ Řecké diabolos znamená „pomlouvač, ten, kdo rozděluje“. Satanovou hlavní zbraní je lež – začíná otázkou „Opravdu Bůh řekl…?“",
+    "Bible nepopisuje „válku dvou rovnocenných bohů“. Zlo je parazit na dobrém stvoření. Ježíš satana přemáhá Písmem a poslušností, na kříži ho „odzbrojil“ (Ko 2,15). Křesťan se nemá zla bát ani ho podceňovat – má mu vzdorovat a přimknout se k Bohu."
+   ],
+   "facts": [
+    "C. S. Lewis v předmluvě ke knize Rady zkušeného ďábla píše, že lidé dělají dvě opačné chyby: buď v ďábla nevěří, nebo se jím nezdravě zabývají.",
+    "Jméno Lucifer („nositel světla“) pochází z latinského překladu Iz 14,12, kde jde původně o babylonského krále; křesťanská tradice ho vztáhla na satana."
+   ],
+   "questions": [
+    "Kde v mém životě slyším hlas „Opravdu Bůh řekl…?“",
+    "Co mi pomáhá vzdorovat pokušení a lži?"
+   ],
+   "refs": [
+    [
+     1,
+     3,
+     1,
+     5
+    ],
+    [
+     18,
+     1,
+     8,
+     11
+    ],
+    [
+     40,
+     4,
+     10,
+     10
+    ],
+    [
+     43,
+     8,
+     44,
+     44
+    ],
+    [
+     43,
+     10,
+     10,
+     10
+    ],
+    [
+     59,
+     4,
+     7,
+     7
+    ],
+    [
+     62,
+     3,
+     8,
+     8
+    ],
+    [
+     45,
+     16,
+     20,
+     20
+    ]
+   ],
+   "labels": [
+    "Had zpochybňuje Boží slovo",
+    "Satan obviňuje Jóba",
+    "Odejdi, satane",
+    "Otec lži",
+    "Zloděj přichází krást",
+    "Vzepřete se ďáblu",
+    "Syn Boží přišel zmařit skutky ďáblovy",
+    "Bůh brzy rozdrtí satana"
+   ]
+  },
+  {
+   "id": "warfare",
+   "category": "world",
+   "icon": "shield",
+   "title": "Duchovní boj",
+   "summary": "Pavel píše, že náš boj není proti lidem, ale proti mocnostem temnoty. Zbraně křesťana jsou nečekané: pravda, spravedlnost, pokoj, víra, Boží slovo a modlitba. A dobro přemáhá zlo.",
+   "deeper": [
+    "Pavel psal list Efezským ve vězení, pravděpodobně připoután k římskému vojákovi. Popisuje jeho výzbroj: pás, pancíř, obuv, štít, přilbu a meč. Všechno kromě meče je obranné – a mečem je Boží slovo.",
+    "Duchovní boj podle Bible neznamená hledat démony za každým problémem. Častěji se odehrává v myšlenkách (2K 10,5), v pokušení, ve vztazích. A jeho nejsilnější zbraní je pokorná modlitba a dobro, které neoplácí zlým."
+   ],
+   "facts": [
+    "Řecké slovo pro štít v Ef 6,16 (thyreos) je odvozeno od slova thyra – „dveře“. Velký římský štít krýl skoro celého vojáka a jeho kožený potah dokázal zadržet zápalné šípy.",
+    "Římské vojenské boty (caligae) měly podrážky pobité hřeby – díky nim voják pevně stál. Pavel mluví o „obuvi pohotovosti pro evangelium pokoje“."
+   ],
+   "questions": [
+    "Který kus „Boží výzbroje“ teď nejvíc potřebuji?",
+    "Kde mohu tento týden přemoci zlé dobrým?"
+   ],
+   "refs": [
+    [
+     49,
+     6,
+     10,
+     12
+    ],
+    [
+     49,
+     6,
+     13,
+     18
+    ],
+    [
+     47,
+     10,
+     3,
+     5
+    ],
+    [
+     60,
+     5,
+     8,
+     9
+    ],
+    [
+     42,
+     10,
+     18,
+     20
+    ],
+    [
+     51,
+     2,
+     15,
+     15
+    ],
+    [
+     45,
+     12,
+     21,
+     21
+    ]
+   ],
+   "labels": [
+    "Oblečte celou Boží výzbroj",
+    "Pás pravdy, štít víry, meč Ducha",
+    "Zbraně mocné Bohem",
+    "Ďábel obchází jako lev",
+    "Radujte se, že vaše jména jsou zapsána",
+    "Odzbrojil mocnosti",
+    "Přemáhej zlé dobrým"
    ]
   }
  ]

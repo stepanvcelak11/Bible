@@ -281,6 +281,9 @@ class BibleTopic {
     required this.summary,
     required this.passages,
     required this.labels,
+    this.deeper = const [],
+    this.facts = const [],
+    this.questions = const [],
   });
 
   factory BibleTopic.fromJson(Map<String, Object?> j) => BibleTopic(
@@ -291,6 +294,9 @@ class BibleTopic {
     summary: j['summary']! as String,
     passages: parsePassages(j['refs']),
     labels: (j['labels']! as List<Object?>).cast<String>(),
+    deeper: _strings(j['deeper']),
+    facts: _strings(j['facts']),
+    questions: _strings(j['questions']),
   );
 
   final String id;
@@ -300,6 +306,102 @@ class BibleTopic {
   final String summary;
   final List<Passage> passages;
   final List<String> labels;
+
+  /// Studijní část: výklad „Do hloubky“, zajímavosti a otázky.
+  final List<String> deeper;
+  final List<String> facts;
+  final List<String> questions;
+}
+
+List<String> _strings(Object? json) =>
+    (json as List<Object?>? ?? const []).cast<String>();
+
+/// Studijní kurz – řada lekcí na jedno téma.
+class StudyCourse {
+  const StudyCourse({
+    required this.id,
+    required this.icon,
+    required this.color,
+    required this.title,
+    required this.subtitle,
+    required this.intro,
+    required this.lessons,
+  });
+
+  factory StudyCourse.fromJson(Map<String, Object?> j) {
+    final id = j['id']! as String;
+    final lessons = (j['lessons']! as List<Object?>)
+        .cast<Map<String, Object?>>();
+    return StudyCourse(
+      id: id,
+      icon: j['icon']! as String,
+      color: int.parse(j['color']! as String, radix: 16) | 0xFF000000,
+      title: j['title']! as String,
+      subtitle: j['subtitle']! as String,
+      intro: j['intro']! as String,
+      lessons: [
+        for (final (i, l) in lessons.indexed) CourseLesson.fromJson(id, i, l),
+      ],
+    );
+  }
+
+  final String id;
+  final String icon;
+
+  /// Barva jako ARGB.
+  final int color;
+  final String title;
+  final String subtitle;
+  final String intro;
+  final List<CourseLesson> lessons;
+}
+
+/// Lekce kurzu: výklad, texty ke čtení, zajímavosti, otázky a myšlenka
+/// pro život.
+class CourseLesson {
+  const CourseLesson({
+    required this.courseId,
+    required this.index,
+    required this.title,
+    required this.text,
+    required this.passages,
+    required this.labels,
+    required this.facts,
+    required this.questions,
+    required this.life,
+  });
+
+  factory CourseLesson.fromJson(
+    String courseId,
+    int index,
+    Map<String, Object?> j,
+  ) {
+    final read = (j['read']! as List<Object?>).cast<Map<String, Object?>>();
+    return CourseLesson(
+      courseId: courseId,
+      index: index,
+      title: j['title']! as String,
+      text: _strings(j['text']),
+      passages: [for (final r in read) Passage.fromJson(r['ref'])],
+      labels: [for (final r in read) r['label']! as String],
+      facts: _strings(j['facts']),
+      questions: _strings(j['questions']),
+      life: j['life'] as String? ?? '',
+    );
+  }
+
+  final String courseId;
+  final int index;
+  final String title;
+  final List<String> text;
+  final List<Passage> passages;
+  final List<String> labels;
+  final List<String> facts;
+  final List<String> questions;
+  final String life;
+
+  /// Klíč pro uložení pokroku („kurz:index“).
+  String get key => '$courseId:$index';
 }
 
 /// Otázka biblického kvízu; `answers.first` je správná odpověď.

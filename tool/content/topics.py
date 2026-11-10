@@ -8,11 +8,13 @@ křesťané různých tradic, a klíčová místa s popiskem. Odkazy v kanonick�
 CATEGORIES = [
     ("god", "Bůh"),
     ("jesus", "Ježíš Kristus a Duch svatý"),
+    ("story", "Velké linie Bible"),
     ("salvation", "Člověk, hřích a spasení"),
     ("life", "Život víry"),
     ("relations", "Vztahy a společnost"),
     ("church", "Církev"),
     ("future", "Budoucnost a naděje"),
+    ("world", "Duchovní svět"),
 ]
 
 T = []

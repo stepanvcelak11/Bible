@@ -131,6 +131,13 @@ void main() {
           addPassage('téma ${t['id']} $r', r);
         }
       }
+      for (final c in (load('courses.json')! as Map)['courses'] as List) {
+        for (final l in c['lessons'] as List) {
+          for (final r in l['read'] as List) {
+            addPassage('kurz ${c['id']} ${l['title']} ${r['label']}', r['ref']);
+          }
+        }
+      }
       for (final t in (load('threads.json')! as Map)['threads'] as List) {
         for (final st in t['stations'] as List) {
           addPassage('nit ${t['id']} ${st['title']}', st['ref']);

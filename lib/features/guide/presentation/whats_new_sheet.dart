@@ -5,9 +5,17 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 19;
+const whatsNewVersion = 20;
 
 const _items = [
+  (
+    Icons.school_outlined,
+    'Studijní kurzy a nová témata',
+    'Ve Studiu je sedm kurzů po šesti lekcích – Jak číst Bibli, Jak Bible '
+        'vznikla, Svět Bible, Svátky Izraele, Podobenství, Proroci a Pavel. '
+        'Biblických témat je nově 87 a každé má část Do hloubky, zajímavosti '
+        'a otázky. Navíc každý den jedna zajímavost.',
+  ),
   (
     Icons.lightbulb_outline,
     'Poznámky přímo v textu',

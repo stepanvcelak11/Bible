@@ -41,6 +41,20 @@ const situationIcons = <String, IconData>{
   'sprout': Icons.eco_outlined,
   'explore': Icons.explore_outlined,
   'compass': Icons.navigation_outlined,
+  'key': Icons.key_outlined,
+  'star': Icons.star_outline,
+  'lamp': Icons.lightbulb_outline,
+  'crown': Icons.workspace_premium_outlined,
+  'link': Icons.link,
+  'book': Icons.menu_book_outlined,
+  'temple': Icons.account_balance_outlined,
+  'water': Icons.waves_outlined,
+  'music': Icons.music_note_outlined,
+  'chat': Icons.chat_bubble_outline,
+  'gift': Icons.card_giftcard_outlined,
+  'angel': Icons.auto_awesome_outlined,
+  'history': Icons.history_edu_outlined,
+  'calendar': Icons.calendar_month_outlined,
 };
 
 const _groupColors = {

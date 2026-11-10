@@ -35,6 +35,7 @@ import '../../translations/presentation/library_screen.dart';
 import '../../shell/home_shell.dart';
 import 'book_intro_sheet.dart';
 import 'book_intros_screen.dart';
+import 'courses_screen.dart';
 import 'study_pack_screen.dart';
 
 /// Záložka „Studium“ – všechny studijní materiály na jednom místě
@@ -47,6 +48,7 @@ class StudyHubScreen extends ConsumerStatefulWidget {
 }
 
 class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
+  final _coursesKey = GlobalKey();
   final _wholeKey = GlobalKey();
   final _lifeKey = GlobalKey();
   final _booksKey = GlobalKey();
@@ -237,6 +239,7 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
     }
 
     final sections = [
+      (S.courses, Icons.school_outlined, _coursesKey),
       (S.connectionsWhole, Icons.hub_outlined, _wholeKey),
       (S.studyForLife, Icons.favorite_border, _lifeKey),
       (S.studyBooksPeople, Icons.auto_stories_outlined, _booksKey),
@@ -333,6 +336,11 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
             const PlanCard(),
             const SizedBox(height: 10),
             const QuizOfDay(),
+            const SizedBox(height: 10),
+            const FactOfDayCard(),
+            // --- Studijní kurzy ------------------------------------------
+            KeyedSubtree(key: _coursesKey, child: header(S.studyStepByStep)),
+            const CoursesHeroCard(),
             // --- Bible jako celek ----------------------------------------
             KeyedSubtree(key: _wholeKey, child: header(S.connectionsWhole)),
             const ConnectionsHeroCard(),
@@ -660,6 +668,19 @@ class StudySearchResults extends ConsumerWidget {
             S.topics,
             () => openTopic(context, t),
           ),
+      for (final c
+          in ref.watch(coursesProvider).value ?? const <StudyCourse>[]) ...[
+        if (hit(c.title) || hit(c.subtitle))
+          (courseIcon(c), c.title, S.courses, () => openCourse(context, c)),
+        for (final l in c.lessons)
+          if (hit(l.title))
+            (
+              courseIcon(c),
+              l.title,
+              '${S.lessonLabel} · ${c.title}',
+              () => openLesson(context, c, l),
+            ),
+      ],
       for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
         if (hit(p.name) || hit(p.role))
           (
@@ -710,6 +731,25 @@ class StudySearchResults extends ConsumerWidget {
             '${S.timeline} · ${e.date}',
             () => push(const TimelineScreen()),
           ),
+      // Až za shodami v názvech: zmínky v textu témat a lekcí.
+      for (final t
+          in ref.watch(topicsProvider).value?.$2 ?? const <BibleTopic>[])
+        if (!hit(t.title) && t.deeper.any(hit))
+          (
+            situationIcons[t.icon] ?? Icons.lightbulb_outline,
+            t.title,
+            S.topics,
+            () => openTopic(context, t),
+          ),
+      for (final c in ref.watch(coursesProvider).value ?? const <StudyCourse>[])
+        for (final l in c.lessons)
+          if (!hit(l.title) && l.text.any(hit))
+            (
+              courseIcon(c),
+              l.title,
+              '${S.lessonLabel} · ${c.title}',
+              () => openLesson(context, c, l),
+            ),
     ];
 
     if (compact) {

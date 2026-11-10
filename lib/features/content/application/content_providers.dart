@@ -117,6 +117,15 @@ final topicsProvider =
       );
     });
 
+/// Studijní kurzy.
+final coursesProvider = FutureProvider<List<StudyCourse>>((ref) async {
+  final j = await _loadJson('courses.json');
+  return [
+    for (final c in j['courses']! as List<Object?>)
+      StudyCourse.fromJson(c! as Map<String, Object?>),
+  ];
+});
+
 /// Biblický kvíz: (kategorie (id, název), otázky).
 final quizProvider =
     FutureProvider<(List<(String, String)>, List<QuizQuestion>)>((ref) async {

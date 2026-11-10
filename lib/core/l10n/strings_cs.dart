@@ -375,12 +375,42 @@ abstract final class S {
   static const presetBible = 'Celá Bible';
   static const topics = 'Biblická témata';
   static const topicsHint = 'Milost, modlitba, odpuštění, církev…';
-  static String topicsCount(int n) => '$n témat – shrnutí a klíčová místa';
+  static String topicsCount(int n) =>
+      '$n témat – výklad, zajímavosti a klíčová místa';
   static const topicsIntro =
       'Co Bible říká o hlavních tématech víry a života: krátké shrnutí '
       'a klíčová místa, na která můžete klepnout a číst dál.';
   static const findTopic = 'Hledat téma';
   static const keyPassages = 'Klíčová místa';
+  static const deeper = 'Do hloubky';
+  static const toReflect = 'K zamyšlení';
+  static const didYouKnow = 'Věděli jste?';
+  static const forLifeStep = 'Pro život';
+  static const courses = 'Studijní kurzy';
+  static const studyStepByStep = 'Studium krok za krokem';
+  static const coursesHint =
+      'Krátké lekce s výkladem, zajímavostmi a otázkami – krok za krokem';
+  static const coursesIntro =
+      'Každý kurz má několik lekcí na pár minut: výklad, texty k přečtení, '
+      'zajímavosti z biblické doby a otázky k zamyšlení. Hotové lekce si '
+      'aplikace pamatuje.';
+  static String lessonsCount(int n) =>
+      '$n ${_plural(n, 'lekce', 'lekce', 'lekcí')}';
+  static String lessonsProgress(int done, int all) => '$done z $all lekcí';
+  static String lessonOf(int i, int n) => 'Lekce $i z $n';
+  static const lessonRead = 'Čtení';
+  static const lessonDone = 'Hotovo';
+  static const lessonMarkDone = 'Označit jako hotové';
+  static const lessonNext = 'Další lekce';
+  static const lessonPrev = 'Předchozí';
+  static const courseStart = 'Začít kurz';
+  static String courseContinue(int i) => 'Pokračovat lekcí $i';
+  static const courseFinished = 'Kurz dokončen – skvělá práce!';
+  static const courseRestart = 'Projít znovu';
+  static const courseReset = 'Vymazat pokrok';
+  static const courseFinishedTitle = 'Dokončili jste kurz';
+  static const factOfDay = 'Zajímavost dne';
+  static const lessonLabel = 'Lekce';
   static const memory = 'Verše nazpaměť';
   static String _plural(int n, String one, String few, String many) =>
       n == 1 ? one : (n >= 2 && n <= 4 ? few : many);

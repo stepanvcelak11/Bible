@@ -32,6 +32,7 @@ class AppPreferences {
   static const _splitView = 'shell.split';
   static const _preps = 'prep.items';
   static const _splitRatio = 'shell.splitRatio';
+  static const _coursesDone = 'courses.done';
 
   String? get primaryTranslationId => _prefs.getString(_primaryTranslation);
   Future<void> setPrimaryTranslationId(String id) =>
@@ -95,6 +96,12 @@ class AppPreferences {
       _prefs.getStringList(_memoryVerses) ?? const [];
   Future<void> setMemoryVerses(List<String> values) =>
       _prefs.setStringList(_memoryVerses, values);
+
+  /// Dokončené lekce kurzů („kurz:index“).
+  List<String> get coursesDone =>
+      _prefs.getStringList(_coursesDone) ?? const [];
+  Future<void> setCoursesDone(List<String> values) =>
+      _prefs.setStringList(_coursesDone, values);
 
   /// Modlitební seznam (každá položka jako JSON, viz `Prayer`).
   List<String> get prayers => _prefs.getStringList(_prayers) ?? const [];

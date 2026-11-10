@@ -18,6 +18,7 @@ import 'package:bible_reader/features/reader/presentation/verse_image_sheet.dart
 import 'package:bible_reader/features/settings/application/reader_settings_controller.dart';
 import 'package:bible_reader/features/study/presentation/study_hub_screen.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
+import 'package:bible_reader/features/study/application/course_progress.dart';
 import 'package:bible_reader/features/shell/home_shell.dart';
 import 'package:bible_reader/features/reader/presentation/reader_screen.dart';
 import 'package:bible_reader/features/prep/application/prep_controller.dart';
@@ -309,7 +310,7 @@ void main() {
     await pumpApp(tester, openBible: false);
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    expect(find.text('Souvislosti v Bibli'), findsWidgets);
+    expect(find.text('Studijní kurzy'), findsWidgets);
     for (final t in [
       'Biblické postavy',
       'Aplikační poznámky',
@@ -325,7 +326,7 @@ void main() {
             matching: find.byType(Scrollable),
           )
           .first,
-      const Offset(0, 3000),
+      const Offset(0, 8000),
     );
     await settle(tester);
     // Hledání ve Studiu vede do jednotného hledání v celé aplikaci.
@@ -452,6 +453,30 @@ void main() {
     }
   });
 
+  appTest('studijní kurz: lekce, hotovo a pokračování', (tester) async {
+    await pumpApp(tester, openBible: false);
+    await tester.runAsync(() => container.read(coursesProvider.future));
+    await tester.tap(find.text('Studium'));
+    await settle(tester);
+    await scrollStudyTo(tester, 'Jak číst Bibli');
+    await tester.tap(find.text('Jak číst Bibli'));
+    await settle(tester);
+    expect(find.text('LEKCE 1 Z 6'), findsOneWidget);
+    expect(find.text('Knihovna, ne jedna kniha'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Hotovo'),
+      400,
+      scrollable: find.byType(Scrollable).last,
+    );
+    await tester.tap(find.text('Hotovo'));
+    await settle(tester);
+    expect(find.text('LEKCE 2 Z 6'), findsOneWidget);
+    expect(container.read(courseProgressProvider), {'howto:0'});
+    await tester.tap(find.byType(BackButton));
+    await settle(tester);
+    expect(find.textContaining('Pokračovat lekcí 2'), findsOneWidget);
+  });
+
   appTest('biblická témata: rejstřík a téma s klíčovými místy', (tester) async {
     await pumpApp(tester, openBible: false);
     await tester.runAsync(() => container.read(topicsProvider.future));
@@ -465,6 +490,12 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Milost'));
     await settle(tester);
+    expect(find.text('DO HLOUBKY'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Ospravedlněni zdarma, z milosti'),
+      300,
+      scrollable: find.byType(Scrollable).last,
+    );
     expect(find.text('KLÍČOVÁ MÍSTA'), findsOneWidget);
     expect(find.text('Ospravedlněni zdarma, z milosti'), findsOneWidget);
   });

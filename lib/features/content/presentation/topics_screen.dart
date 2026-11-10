@@ -8,6 +8,7 @@ import '../../../core/widgets/readable_width.dart';
 import '../../../core/widgets/section_label.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../application/content_providers.dart';
+import '../../study/presentation/study_blocks.dart';
 import 'passage_card.dart';
 import 'situations_screen.dart';
 
@@ -19,6 +20,8 @@ const _topicColors = {
   'relations': Color(0xFF2E8B57),
   'church': Color(0xFF8C6BA8),
   'future': Color(0xFF4E9A8A),
+  'story': Color(0xFF7A55A8),
+  'world': Color(0xFF5B6E8C),
 };
 
 Color topicColor(BibleTopic t) =>
@@ -49,7 +52,8 @@ class _TopicsScreenState extends ConsumerState<TopicsScreen> {
         q.isEmpty ||
         foldCzech(t.title).contains(q) ||
         foldCzech(t.summary).contains(q) ||
-        t.labels.any((l) => foldCzech(l).contains(q));
+        t.labels.any((l) => foldCzech(l).contains(q)) ||
+        t.deeper.any((l) => foldCzech(l).contains(q));
 
     return ReadableWidth(
       child: Scaffold(
@@ -178,9 +182,27 @@ class TopicScreen extends StatelessWidget {
                 ],
               ),
             ),
+            if (topic.deeper.isNotEmpty) ...[
+              StudyHeading(
+                S.deeper,
+                color: color,
+                icon: Icons.travel_explore_outlined,
+              ),
+              StudyParagraphs(topic.deeper),
+            ],
+            if (topic.facts.isNotEmpty)
+              FactsCard(facts: topic.facts, color: color),
             const SectionLabel(S.keyPassages),
             for (final (i, p) in topic.passages.indexed)
               PassageCard(passage: p, accent: color, title: topic.labels[i]),
+            if (topic.questions.isNotEmpty) ...[
+              StudyHeading(
+                S.toReflect,
+                color: color,
+                icon: Icons.question_answer_outlined,
+              ),
+              QuestionsBlock(questions: topic.questions, color: color),
+            ],
           ],
         ),
       ),

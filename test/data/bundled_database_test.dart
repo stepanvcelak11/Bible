@@ -110,6 +110,19 @@ void main() {
           addPassage('postava ${p['id']} $r', r);
         }
       }
+      for (var b = 1; b <= 66; b++) {
+        final file = 'chapter_notes/${b.toString().padLeft(2, '0')}.json';
+        for (final MapEntry(:key, :value)
+            in (load(file)! as Map<String, dynamic>).entries) {
+          for (final n in value as List) {
+            refs['poznámka v textu $b $key:${n[0]} ${n[2]}'] = VerseRef(
+              b,
+              int.parse(key),
+              n[0] as int,
+            );
+          }
+        }
+      }
       for (final n in (load('notes.json')! as Map)['notes'] as List) {
         addPassage('poznámka ${n['title']}', n['ref']);
       }

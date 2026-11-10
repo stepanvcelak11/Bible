@@ -5,9 +5,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 18;
+const whatsNewVersion = 19;
 
 const _items = [
+  (
+    Icons.lightbulb_outline,
+    'Poznámky přímo v textu',
+    'V každé kapitole Bible jsou mezi verši krátké poznámky – co to '
+        'znamenalo v té době, zajímavosti a podněty pro život. Klepnutím se '
+        'rozbalí; vypnout je můžete v Nastavení (Poznámky v textu).',
+  ),
   (
     Icons.grid_view_rounded,
     'Mozaika celé Bible',

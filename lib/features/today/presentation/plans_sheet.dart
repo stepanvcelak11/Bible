@@ -10,6 +10,7 @@ import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
+import 'plan_detail_screen.dart';
 
 Future<void> showPlansSheet(BuildContext context) => showModalBottomSheet<void>(
   context: context,
@@ -51,27 +52,12 @@ class _PlansSheet extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 10),
-        for (final plan in readingPlans)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: Card(
-              child: ListTile(
-                contentPadding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
-                title: Text(plan.name),
-                subtitle: Text('${plan.description}\n${plan.days} dní'),
-                isThreeLine: true,
-                trailing: active?.plan.id == plan.id
-                    ? Icon(Icons.check_circle, color: palette.gold)
-                    : FilledButton.tonal(
-                        onPressed: () async {
-                          await ref.read(planProvider.notifier).start(plan.id);
-                          if (context.mounted) Navigator.pop(context);
-                        },
-                        child: const Text(S.startPlan),
-                      ),
-              ),
-            ),
-          ),
+        for (final (title, ids) in _groups) ...[
+          SectionLabel(title),
+          for (final id in ids)
+            if (planById(id) case final plan?)
+              _PlanTile(plan: plan, active: active?.plan.id == plan.id),
+        ],
         if (active != null)
           TextButton.icon(
             onPressed: () async {
@@ -82,6 +68,107 @@ class _PlansSheet extends ConsumerWidget {
             label: const Text(S.stopPlan),
           ),
       ],
+    );
+  }
+}
+
+const _groups = [
+  ('Na začátek', ['start14', 'story50', 'gospels40']),
+  ('Části Bible', ['nt90', 'paul30', 'psalms31']),
+  ('Celá Bible', ['bible365', 'both365']),
+  ('Církevní rok', ['advent24', 'lent40', 'easter50']),
+];
+
+const _planIcons = {
+  'start14': (Icons.wb_twilight, Color(0xFFC0704C)),
+  'story50': (Icons.route_outlined, Color(0xFF8C6BA8)),
+  'gospels40': (Icons.person_outline, Color(0xFFB0603A)),
+  'nt90': (Icons.auto_stories_outlined, Color(0xFF3F7CAC)),
+  'paul30': (Icons.mail_outline, Color(0xFF4E9A8A)),
+  'psalms31': (Icons.music_note_outlined, Color(0xFF7A55A8)),
+  'bible365': (Icons.menu_book_outlined, Color(0xFFB0813B)),
+  'both365': (Icons.compare_arrows, Color(0xFF5B7A3A)),
+  'advent24': (Icons.star_outline, Color(0xFF6B4FA0)),
+  'lent40': (Icons.local_florist_outlined, Color(0xFF8C4A6B)),
+  'easter50': (Icons.wb_sunny_outlined, Color(0xFFC08A2E)),
+};
+
+/// Plán v nabídce: ikona, název, popis, délka; klepnutí otevře podrobnosti.
+class _PlanTile extends StatelessWidget {
+  const _PlanTile({required this.plan, required this.active});
+
+  final ReadingPlan plan;
+  final bool active;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final (icon, color) =
+        _planIcons[plan.id] ?? (Icons.event_note, palette.gold);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Card(
+        shape: active
+            ? RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+                side: BorderSide(color: palette.gold, width: 1.5),
+              )
+            : null,
+        child: InkWell(
+          onTap: () => openPlanDetail(context, plan),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 12, 10, 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.14),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(icon, color: color),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        plan.name,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        plan.description,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: palette.muted,
+                          height: 1.35,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        active
+                            ? '${S.daysCount(plan.days)} · ${S.planActive}'
+                            : S.daysCount(plan.days),
+                        style: theme.textTheme.labelMedium?.copyWith(
+                          color: active ? palette.gold : color,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right, color: palette.muted),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

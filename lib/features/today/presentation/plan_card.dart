@@ -9,6 +9,8 @@ import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
 import '../../today/presentation/plans_sheet.dart';
+import '../../content/application/content_providers.dart';
+import 'plan_detail_screen.dart';
 
 /// Aktivní plán čtení (nebo pozvání si ho vybrat).
 class PlanCard extends ConsumerWidget {
@@ -74,9 +76,13 @@ class PlanCard extends ConsumerWidget {
               backgroundColor: palette.gold.withValues(alpha: 0.14),
             ),
             const SizedBox(height: 10),
-            if (day == null)
-              const Text(S.planDone)
-            else ...[
+            if (day == null) ...[
+              const Text(S.planDone),
+              TextButton(
+                onPressed: () => openPlanDetail(context, plan.plan),
+                child: const Text(S.planDetail),
+              ),
+            ] else ...[
               Text(
                 '${S.planDay(day + 1, plan.schedule.length)} · '
                 '${diff < -1
@@ -88,7 +94,33 @@ class PlanCard extends ConsumerWidget {
                   color: palette.muted,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
+              Text(
+                planDayLabel(plan.schedule[day], books),
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              if (planDaySummary(
+                    plan.schedule[day],
+                    ref.watch(reflectionsProvider).value ?? const {},
+                    schemeOf(
+                      ref.watch(translationControllerProvider).primaryId,
+                    ),
+                  )
+                  case final summary when summary.isNotEmpty) ...[
+                const SizedBox(height: 4),
+                Text(
+                  summary.join(' '),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: palette.muted,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 10),
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
@@ -117,14 +149,20 @@ class PlanCard extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: FilledButton.icon(
-                  onPressed: () =>
-                      ref.read(planProvider.notifier).toggleDay(day),
-                  icon: const Icon(Icons.check),
-                  label: const Text(S.markDone),
-                ),
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () => openPlanDetail(context, plan.plan),
+                    child: const Text(S.planDetail),
+                  ),
+                  const Spacer(),
+                  FilledButton.icon(
+                    onPressed: () =>
+                        ref.read(planProvider.notifier).toggleDay(day),
+                    icon: const Icon(Icons.check),
+                    label: const Text(S.markDone),
+                  ),
+                ],
               ),
             ],
           ],

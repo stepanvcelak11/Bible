@@ -485,7 +485,7 @@ void main() {
     await scrollStudyTo(tester, 'Biblická témata');
     await tester.tap(find.text('Biblická témata'));
     await settle(tester);
-    expect(find.text('BŮH'), findsOneWidget);
+    expect(find.text('Bůh Stvořitel'), findsOneWidget);
     await tester.enterText(find.byType(TextField).first, 'milost');
     await settle(tester);
     await tester.tap(find.text('Milost'));

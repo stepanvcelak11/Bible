@@ -251,6 +251,20 @@ abstract final class S {
   static String planDay(int day, int total) => 'Den $day z $total';
   static const planDone = 'Plán je dokončen. Skvělá práce!';
   static const markDone = 'Hotovo';
+  static String planDayShort(int d) => 'Den $d';
+  static String planDaysRange(int a, int b) => 'Dny $a–$b';
+  static const planToday = 'dnes';
+  static const planUndo = 'Vrátit';
+  static String chaptersCount(int n) =>
+      '$n ${_plural(n, 'kapitola', 'kapitoly', 'kapitol')}';
+  static String minutesPerDay(int n) => '≈ $n min denně';
+  static String planDaysDone(int done, int all) => '$done z $all dní hotovo';
+  static const planAbout = 'O plánu';
+  static const planTips = 'Jak na to';
+  static const planWhatWhen = 'Co se kdy čte';
+  static const planDayByDay = 'Den po dni';
+  static const planDetail = 'Podrobnosti a rozpis';
+  static const planActive = 'právě čtete';
   static const recentlyRead = 'Nedávno čteno';
   static const explore = 'Objevovat';
   static const exploreMaps = 'Biblické mapy';
@@ -378,8 +392,8 @@ abstract final class S {
   static String topicsCount(int n) =>
       '$n témat – výklad, zajímavosti a klíčová místa';
   static const topicsIntro =
-      'Co Bible říká o hlavních tématech víry a života: krátké shrnutí '
-      'a klíčová místa, na která můžete klepnout a číst dál.';
+      'Co Bible říká o hlavních tématech víry a života – výklad, '
+      'zajímavosti a klíčová místa. Klepněte na téma nebo vyberte oblast.';
   static const findTopic = 'Hledat téma';
   static const keyPassages = 'Klíčová místa';
   static const deeper = 'Do hloubky';
@@ -653,7 +667,8 @@ abstract final class S {
   static const churchSeasonReadings = 'Čtení pro tuto dobu';
   static const churchUpcoming = 'Další svátky';
   static const churchSeasonPlan = 'Plán čtení pro tuto dobu';
-  static String planStarted(String name) => 'Plán „$name“ je na stránce Dnes';
+  static String planStarted(String name) =>
+      'Plán „$name“ je spuštěný – najdete ho ve Studiu (Každý den)';
   static const churchToday = 'Dnes';
   static const churchTomorrow = 'Zítra';
   static String churchInDays(int n) =>

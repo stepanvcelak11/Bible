@@ -42,6 +42,9 @@ class TopicsScreen extends ConsumerStatefulWidget {
 class _TopicsScreenState extends ConsumerState<TopicsScreen> {
   String _query = '';
 
+  /// Vybraná oblast (`null` = přehled všech).
+  String? _category;
+
   @override
   Widget build(BuildContext context) {
     final data = ref.watch(topicsProvider).value;
@@ -54,6 +57,151 @@ class _TopicsScreenState extends ConsumerState<TopicsScreen> {
         foldCzech(t.summary).contains(q) ||
         t.labels.any((l) => foldCzech(l).contains(q)) ||
         t.deeper.any((l) => foldCzech(l).contains(q));
+
+    Widget topicTile(BibleTopic t) => ListTile(
+      contentPadding: const EdgeInsets.fromLTRB(14, 6, 10, 6),
+      leading: CircleAvatar(
+        backgroundColor: topicColor(t).withValues(alpha: 0.14),
+        foregroundColor: topicColor(t),
+        child: Icon(
+          situationIcons[t.icon] ?? Icons.menu_book_outlined,
+          size: 20,
+        ),
+      ),
+      title: Text(t.title),
+      subtitle: Text(t.summary, maxLines: 2, overflow: TextOverflow.ellipsis),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () => openTopic(context, t),
+    );
+
+    // Přehled: každá oblast jako karta se štítky témat.
+    Widget overviewCard(String id, String name, List<BibleTopic> topics) {
+      final color = _topicColors[id] ?? palette.gold;
+      return Card(
+        margin: const EdgeInsets.only(bottom: 12),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              InkWell(
+                borderRadius: BorderRadius.circular(8),
+                onTap: () => setState(() => _category = id),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: color,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        name,
+                        style: theme.textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '${topics.length}',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: palette.muted,
+                      ),
+                    ),
+                    Icon(Icons.chevron_right, size: 20, color: palette.muted),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  for (final t in topics)
+                    Material(
+                      color: color.withValues(alpha: 0.1),
+                      shape: const StadiumBorder(),
+                      clipBehavior: Clip.antiAlias,
+                      child: InkWell(
+                        onTap: () => openTopic(context, t),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 7,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                situationIcons[t.icon] ??
+                                    Icons.menu_book_outlined,
+                                size: 16,
+                                color: color,
+                              ),
+                              const SizedBox(width: 6),
+                              Flexible(
+                                child: Text(
+                                  t.title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.textTheme.labelLarge,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final List<Widget> body;
+    if (data == null) {
+      body = const [];
+    } else if (q.isNotEmpty || _category != null) {
+      final found = [
+        for (final t in data.$2)
+          if ((_category == null || t.category == _category) && hit(t)) t,
+      ];
+      body = [
+        if (found.isEmpty)
+          Padding(
+            padding: const EdgeInsets.all(32),
+            child: Text(
+              S.studyNoResults,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
+            ),
+          )
+        else
+          Card(
+            child: Column(
+              children: [
+                for (final (i, t) in found.indexed) ...[
+                  if (i > 0) const Divider(height: 1, indent: 64),
+                  topicTile(t),
+                ],
+              ],
+            ),
+          ),
+      ];
+    } else {
+      body = [
+        for (final (id, name) in data.$1)
+          if (data.$2.where((t) => t.category == id).toList() case final topics
+              when topics.isNotEmpty)
+            overviewCard(id, name, topics),
+      ];
+    }
 
     return ReadableWidth(
       child: Scaffold(
@@ -93,42 +241,40 @@ class _TopicsScreenState extends ConsumerState<TopicsScreen> {
                       ),
                     ),
                   ),
-                  for (final (id, name) in data.$1)
-                    if (data.$2.any((t) => t.category == id && hit(t))) ...[
-                      SectionLabel(name),
-                      Card(
-                        child: Column(
-                          children: [
-                            for (final (i, t)
-                                in data.$2
-                                    .where((t) => t.category == id && hit(t))
-                                    .indexed) ...[
-                              if (i > 0) const Divider(height: 1, indent: 64),
-                              ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: topicColor(t)
-                                      .withValues(alpha: 0.14),
-                                  foregroundColor: topicColor(t),
-                                  child: Icon(
-                                    situationIcons[t.icon] ??
-                                        Icons.menu_book_outlined,
-                                    size: 20,
-                                  ),
-                                ),
-                                title: Text(t.title),
-                                subtitle: Text(
-                                  t.summary,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                trailing: const Icon(Icons.chevron_right),
-                                onTap: () => openTopic(context, t),
-                              ),
-                            ],
-                          ],
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 40,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 6),
+                          child: ChoiceChip(
+                            label: const Text(S.all),
+                            selected: _category == null,
+                            onSelected: (_) => setState(() => _category = null),
+                          ),
                         ),
-                      ),
-                    ],
+                        for (final (id, name) in data.$1)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 6),
+                            child: ChoiceChip(
+                              avatar: CircleAvatar(
+                                radius: 5,
+                                backgroundColor:
+                                    _topicColors[id] ?? palette.gold,
+                              ),
+                              label: Text(name),
+                              selected: _category == id,
+                              onSelected: (on) =>
+                                  setState(() => _category = on ? id : null),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ...body,
                 ],
               ),
       ),

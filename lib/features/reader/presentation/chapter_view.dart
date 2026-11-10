@@ -386,8 +386,15 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
           ),
         ),
         // Tenký ukazatel, kolik z kapitoly je přečteno.
-        Positioned(
-          top: insets.top + readerTopBarHeight(ref),
+        // Se skrytou lištou se posune nahoru (jinak by visel přes text).
+        AnimatedPositioned(
+          duration: const Duration(milliseconds: 220),
+          curve: Curves.easeOutCubic,
+          top:
+              insets.top +
+              (ref.watch(controlsVisibleProvider)
+                  ? readerTopBarHeight(ref)
+                  : 0),
           left: 0,
           right: 0,
           child: ValueListenableBuilder<double>(

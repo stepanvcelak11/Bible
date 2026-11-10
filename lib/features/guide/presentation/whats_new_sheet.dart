@@ -5,9 +5,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 20;
+const whatsNewVersion = 21;
 
 const _items = [
+  (
+    Icons.event_note_outlined,
+    'Plány čtení s průvodcem',
+    'Každý plán má svou stránku: o čem je a proč ho číst, tipy, co se kdy '
+        'čte a rozpis den po dni se shrnutím kapitol. Plány jsou rozdělené '
+        'do skupin a Biblická témata mají přehlednější přehled po oblastech.',
+  ),
   (
     Icons.school_outlined,
     'Studijní kurzy a nová témata',

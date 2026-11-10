@@ -151,6 +151,14 @@ abstract final class S {
   static const illustrations = 'Ilustrace';
   static const illustrationsHint =
       'Jednoduché kresby k příběhům přímo v textu Bible';
+  static const inlineNotes = 'Poznámky v textu';
+  static const inlineNotesHint =
+      'Dobový kontext, zajímavosti a podněty pro život v průběhu kapitoly';
+  static const noteContext = 'V té době';
+  static const noteCurio = 'Zajímavost';
+  static const noteLife = 'Pro život';
+  static const noteMeaning = 'Význam';
+  static const noteHide = 'Skrýt poznámky v textu';
   static const resetAppearance = 'Obnovit výchozí vzhled';
   static const previewText =
       'Na počátku bylo Slovo, a to Slovo bylo u Boha, a Bůh byl to Slovo.';

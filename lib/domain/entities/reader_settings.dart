@@ -40,6 +40,7 @@ class ReaderSettings {
     this.accent = AppAccent.gold,
     this.dropCap = true,
     this.illustrations = true,
+    this.inlineNotes = true,
     this.readingFont = ReadingFont.literata,
   });
 
@@ -69,6 +70,9 @@ class ReaderSettings {
   /// Kreslené ilustrace k příběhům v textu.
   final bool illustrations;
 
+  /// Krátké poznámky (kontext, zajímavost, pro život) přímo v textu.
+  final bool inlineNotes;
+
   /// Písmo textu Bible.
   final ReadingFont readingFont;
 
@@ -83,6 +87,7 @@ class ReaderSettings {
     AppAccent? accent,
     bool? dropCap,
     bool? illustrations,
+    bool? inlineNotes,
     ReadingFont? readingFont,
   }) => ReaderSettings(
     themeMode: themeMode ?? this.themeMode,
@@ -101,6 +106,7 @@ class ReaderSettings {
     accent: accent ?? this.accent,
     dropCap: dropCap ?? this.dropCap,
     illustrations: illustrations ?? this.illustrations,
+    inlineNotes: inlineNotes ?? this.inlineNotes,
     readingFont: readingFont ?? this.readingFont,
   );
 
@@ -115,6 +121,7 @@ class ReaderSettings {
     'accent': accent.name,
     'dropCap': dropCap,
     'illustrations': illustrations,
+    'inlineNotes': inlineNotes,
     'readingFont': readingFont.name,
   };
 
@@ -134,6 +141,7 @@ class ReaderSettings {
       accent: AppAccent.values.asNameMap()[json['accent']],
       dropCap: json['dropCap'] as bool?,
       illustrations: json['illustrations'] as bool?,
+      inlineNotes: json['inlineNotes'] as bool?,
       readingFont: ReadingFont.values.asNameMap()[json['readingFont']],
     );
   }
@@ -151,6 +159,7 @@ class ReaderSettings {
       other.accent == accent &&
       other.dropCap == dropCap &&
       other.illustrations == illustrations &&
+      other.inlineNotes == inlineNotes &&
       other.readingFont == readingFont;
 
   @override
@@ -165,6 +174,7 @@ class ReaderSettings {
     accent,
     dropCap,
     illustrations,
+    inlineNotes,
     readingFont,
   );
 }

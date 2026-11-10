@@ -44,6 +44,7 @@ flutter:
     - assets/db/
     - assets/map/
     - assets/content/
+    - assets/content/chapter_notes/
   fonts:
     # Přibalená písma (SIL OFL) s českou diakritikou – na webu by se jinak
     # stahovala z internetu. Literata = text Bible, Inter = rozhraní.

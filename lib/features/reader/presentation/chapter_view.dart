@@ -5,6 +5,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../content/presentation/people_screen.dart';
+import '../application/inline_notes.dart';
+import 'inline_note_view.dart';
 import '../../content/presentation/notes_screen.dart';
 import '../../content/application/content_providers.dart';
 import '../../../domain/services/versification.dart';
@@ -267,6 +269,34 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
       itemVerses.insertAll(at + 1, [for (final _ in add) const <int>[]]);
     }
 
+
+    // Krátké poznámky: za blok (odstavec, verš), který obsahuje jejich verš.
+    final noteMap = settings.inlineNotes
+        ? ref.watch(
+            chapterInlineNotesProvider((
+              selection.primaryId,
+              widget.bookId,
+              widget.chapter,
+            )),
+          )
+        : const <int, List<InlineNote>>{};
+    final notesPending = noteMap.keys.toList()..sort();
+    void addNotes(int lastVerse) {
+      while (notesPending.isNotEmpty && notesPending.first <= lastVerse) {
+        final v = notesPending.removeAt(0);
+        for (final n in noteMap[v]!) {
+          items.add(
+            () => InlineNoteView(
+              note: n,
+              reference: '${widget.chapter},$v',
+              fontSize: settings.fontSize,
+            ),
+          );
+          itemVerses.add(const []);
+        }
+      }
+    }
+
     switch (content) {
       case SingleChapter(:final text):
         final blocks = buildReaderBlocks(
@@ -292,14 +322,18 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
                 ),
               );
               itemVerses.add(b.verseNumbers);
+              addNotes(b.verseNumbers.last);
           }
         }
+        addNotes(1 << 20);
       case ParallelChapter(:final rows):
         for (final r in rows) {
           insertArt(r.number);
           items.add(() => ParallelVerseTile(row: r));
           itemVerses.add([r.number]);
+          addNotes(r.number);
         }
+        addNotes(1 << 20);
     }
     _itemVerses = [...itemVerses, const []];
 

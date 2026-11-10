@@ -157,6 +157,13 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: ctl.setIllustrations,
             ),
             SwitchListTile(
+              secondary: const Icon(Icons.lightbulb_outline),
+              title: const Text(S.inlineNotes),
+              subtitle: const Text(S.inlineNotesHint),
+              value: settings.inlineNotes,
+              onChanged: ctl.setInlineNotes,
+            ),
+            SwitchListTile(
               secondary: const Icon(Icons.notes),
               title: const Text(S.paragraphMode),
               subtitle: const Text(S.paragraphModeHint),

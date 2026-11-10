@@ -40,6 +40,9 @@ class ReaderSettingsController extends Notifier<ReaderSettings> {
   void setIllustrations(bool value) =>
       update((s) => s.copyWith(illustrations: value));
 
+  void setInlineNotes(bool value) =>
+      update((s) => s.copyWith(inlineNotes: value));
+
   void setReadingFont(ReadingFont value) =>
       update((s) => s.copyWith(readingFont: value));
 

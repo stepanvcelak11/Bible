@@ -282,16 +282,20 @@ class _TopicsScreenState extends ConsumerState<TopicsScreen> {
   }
 }
 
-/// Jedno téma: shrnutí a klíčová místa.
-class TopicScreen extends StatelessWidget {
+/// Jedno téma: shrnutí, výklad, zajímavosti, klíčová místa a otázky.
+class TopicScreen extends ConsumerWidget {
   const TopicScreen({super.key, required this.topic});
 
   final BibleTopic topic;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  Widget build(BuildContext context, WidgetRef ref) {
     final color = topicColor(topic);
+    final categories = ref.watch(topicsProvider).value?.$1 ?? const [];
+    final category = [
+      for (final (id, name) in categories)
+        if (id == topic.category) name,
+    ].firstOrNull;
     return ReadableWidth(
       child: Scaffold(
         appBar: AppBar(title: Text(topic.title)),
@@ -303,30 +307,12 @@ class TopicScreen extends StatelessWidget {
             MediaQuery.paddingOf(context).bottom + 32,
           ),
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.only(bottom: 6),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Icon(
-                    situationIcons[topic.icon] ?? Icons.menu_book_outlined,
-                    color: color,
-                    size: 30,
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Text(
-                      topic.summary,
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.45),
-                    ),
-                  ),
-                ],
-              ),
+            StudyHero(
+              color: color,
+              icon: situationIcons[topic.icon] ?? Icons.menu_book_outlined,
+              kicker: category ?? S.topics,
+              title: topic.title,
+              subtitle: topic.summary,
             ),
             if (topic.deeper.isNotEmpty) ...[
               StudyHeading(

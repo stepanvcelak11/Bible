@@ -6,6 +6,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../application/content_providers.dart';
+import '../../study/presentation/study_blocks.dart';
 import 'passage_card.dart';
 
 /// Ikony situací (podle klíče v datech).
@@ -189,30 +190,14 @@ class SituationScreen extends StatelessWidget {
             MediaQuery.paddingOf(context).bottom + 32,
           ),
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              margin: const EdgeInsets.only(bottom: 16),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(18),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    situationIcons[situation.icon] ?? Icons.menu_book_outlined,
-                    color: color,
-                    size: 30,
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Text(
-                      situation.intro,
-                      style: theme.textTheme.bodyLarge?.copyWith(height: 1.4),
-                    ),
-                  ),
-                ],
-              ),
+            StudyHero(
+              color: color,
+              icon: situationIcons[situation.icon] ?? Icons.menu_book_outlined,
+              kicker: S.situations,
+              title: situation.title,
+              subtitle: situation.intro,
             ),
+            const SizedBox(height: 10),
             if (situation.thoughts.isNotEmpty) ...[
               _Heading(S.situationThoughts, color: color),
               for (final t in situation.thoughts)

@@ -8,6 +8,7 @@ import '../../../core/widgets/readable_width.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../search/application/reference_parser.dart';
 import '../application/content_providers.dart';
+import '../../study/presentation/study_blocks.dart';
 import 'passage_card.dart';
 
 Future<void> openPerson(BuildContext context, BiblePerson person) =>
@@ -315,84 +316,62 @@ class PersonScreen extends ConsumerWidget {
           ),
         );
 
-    Widget fact(String label, String value) => value.isEmpty
-        ? const SizedBox.shrink()
-        : Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: '$label: ',
-                    style: TextStyle(
-                      color: palette.muted,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  TextSpan(text: value),
-                ],
-              ),
-              style: theme.textTheme.bodyMedium,
-            ),
-          );
-
     return ReadableWidth(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: Text(person.name.split(' (').first)),
         body: ListView(
           padding: EdgeInsets.fromLTRB(
             16,
-            0,
+            4,
             16,
             MediaQuery.paddingOf(context).bottom + 32,
           ),
           children: [
-            Text(person.name, style: theme.textTheme.headlineMedium),
-            const SizedBox(height: 2),
-            Text(
-              person.role,
-              style: theme.textTheme.titleMedium?.copyWith(
-                color: color,
-                fontStyle: FontStyle.italic,
-              ),
+            StudyHero(
+              color: color,
+              icon: Icons.person_outline,
+              monogram: person.name.characters.first,
+              kicker: person.isNewTestament ? S.newTestament : S.oldTestament,
+              title: person.name,
+              subtitle: person.role,
             ),
-            const SizedBox(height: 16),
-            fact(S.personWhere, person.where),
-            fact(S.personOccupation, person.occupation),
-            fact(S.personRelatives, person.relatives),
-            if (related.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      '${S.personRelated}:',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: palette.muted,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    for (final p in related)
-                      ActionChip(
-                        avatar: Icon(
-                          Icons.person_outline,
-                          size: 18,
-                          color: p.isNewTestament ? _ntColor : _otColor,
-                        ),
-                        label: Text(p.name.split(' (').first),
-                        onPressed: () => openPerson(context, p),
-                      ),
-                  ],
+            InfoCard(
+              color: color,
+              rows: [
+                (Icons.place_outlined, S.personWhere, person.where),
+                (Icons.work_outline, S.personOccupation, person.occupation),
+                (Icons.family_restroom, S.personRelatives, person.relatives),
+                (
+                  Icons.menu_book_outlined,
+                  S.personBooks,
+                  person.books.map((b) => books[b - 1].name).join(', '),
                 ),
-              ),
-            fact(
-              S.personBooks,
-              person.books.map((b) => books[b - 1].name).join(', '),
+              ],
             ),
-            const SizedBox(height: 8),
+            if (related.isNotEmpty) ...[
+              StudyHeading(
+                S.personRelated,
+                color: color,
+                icon: Icons.diversity_3_outlined,
+              ),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final p in related)
+                    ActionChip(
+                      avatar: Icon(
+                        Icons.person_outline,
+                        size: 18,
+                        color: p.isNewTestament ? _ntColor : _otColor,
+                      ),
+                      label: Text(p.name.split(' (').first),
+                      onPressed: () => openPerson(context, p),
+                    ),
+                ],
+              ),
+            ],
+            const SizedBox(height: 14),
             list(
               S.strengths,
               Icons.thumb_up_alt_outlined,
@@ -412,13 +391,17 @@ class PersonScreen extends ConsumerWidget {
               palette.gold,
               person.lessons,
             ),
-            const SizedBox(height: 8),
-            Text(S.keyVerse, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 8),
+            StudyHeading(
+              S.keyVerse,
+              color: color,
+              icon: Icons.format_quote_outlined,
+            ),
             PassageCard(passage: person.key, accent: color),
-            const SizedBox(height: 8),
-            Text(S.personStory, style: theme.textTheme.titleMedium),
-            const SizedBox(height: 8),
+            StudyHeading(
+              S.personStory,
+              color: color,
+              icon: Icons.auto_stories_outlined,
+            ),
             Wrap(
               spacing: 8,
               runSpacing: 8,

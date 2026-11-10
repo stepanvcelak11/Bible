@@ -14,6 +14,7 @@ import '../../content/presentation/notes_screen.dart';
 import '../../content/presentation/people_screen.dart';
 import '../../maps/presentation/maps_screen.dart';
 import '../../shell/home_shell.dart';
+import 'study_blocks.dart';
 import '../application/study_providers.dart';
 
 /// Otevře úvod ke knize jako spodní panel.
@@ -60,41 +61,6 @@ class BookIntroView extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    Widget fact(IconData icon, String label, String value) => Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: accent.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(icon, size: 18, color: accent),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  label.toUpperCase(),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: palette.muted,
-                    letterSpacing: 1.2,
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(value, style: theme.textTheme.bodyMedium),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(0, 26, 0, 12),
       child: Row(
@@ -110,23 +76,13 @@ class BookIntroView extends ConsumerWidget {
       controller: scrollController,
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
       children: [
-        Text(
-          category.name.toUpperCase(),
-          style: theme.textTheme.labelMedium?.copyWith(
-            color: accent,
-            letterSpacing: 1.6,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(book.name, style: theme.textTheme.headlineMedium),
-        const SizedBox(height: 6),
-        Text(
-          intro.theme,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontStyle: FontStyle.italic,
-            color: palette.muted,
-          ),
+        StudyHero(
+          color: accent,
+          icon: Icons.auto_stories_outlined,
+          monogram: book.abbreviation,
+          kicker: category.name,
+          title: book.name,
+          subtitle: intro.theme,
         ),
         // --- Přehled ---------------------------------------------------
         section(S.overview),
@@ -183,24 +139,20 @@ class BookIntroView extends ConsumerWidget {
             ),
         // --- Základní údaje -------------------------------------------
         section(S.basicFacts),
-        if (intro.purpose.isNotEmpty)
-          fact(Icons.flag_outlined, S.purpose, intro.purpose),
-        fact(Icons.person_outline, S.author, intro.author),
-        if (intro.recipients.isNotEmpty)
-          fact(Icons.groups_outlined, S.recipients, intro.recipients),
-        fact(Icons.schedule, S.written, intro.date),
-        if (intro.setting.isNotEmpty)
-          fact(Icons.landscape_outlined, S.setting, intro.setting),
-        if (intro.people.isNotEmpty)
-          fact(
-            Icons.diversity_3_outlined,
-            S.keyPeople,
-            intro.people.join(', '),
-          ),
-        if (intro.places.isNotEmpty)
-          fact(Icons.place_outlined, S.keyPlaces, intro.places.join(', ')),
-        if (intro.features.isNotEmpty)
-          fact(Icons.auto_awesome_outlined, S.features, intro.features),
+        InfoCard(
+          color: accent,
+          rows: [
+            (Icons.flag_outlined, S.purpose, intro.purpose),
+            (Icons.person_outline, S.author, intro.author),
+            (Icons.groups_outlined, S.recipients, intro.recipients),
+            (Icons.schedule, S.written, intro.date),
+            (Icons.landscape_outlined, S.setting, intro.setting),
+            (Icons.diversity_3_outlined, S.keyPeople, intro.people.join(', ')),
+            (Icons.place_outlined, S.keyPlaces, intro.places.join(', ')),
+            (Icons.auto_awesome_outlined, S.features, intro.features),
+          ],
+        ),
+        const SizedBox(height: 16),
         Text(S.keyVerses, style: theme.textTheme.labelLarge),
         const SizedBox(height: 8),
         Wrap(

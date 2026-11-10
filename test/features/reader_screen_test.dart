@@ -293,7 +293,7 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Mám strach'));
     await settle(tester);
-    expect(find.text('Mám strach'), findsOneWidget, reason: 'nadpis stránky');
+    expect(find.text('Mám strach'), findsWidgets, reason: 'nadpis stránky');
     expect(find.textContaining('Strach k životu patří'), findsOneWidget);
     expect(find.text('ZAMYŠLENÍ'), findsOneWidget);
     // Testovací data obsahují Jana 3; ostatní místa jsou prázdná, ale
@@ -346,6 +346,11 @@ void main() {
     expect(find.text('David'), findsWidgets);
     await tester.tap(find.text('David').first);
     await settle(tester);
+    await tester.scrollUntilVisible(
+      find.text('Silné stránky a úspěchy'),
+      300,
+      scrollable: find.byType(Scrollable).last,
+    );
     expect(find.text('Silné stránky a úspěchy'), findsOneWidget);
   });
 

@@ -853,6 +853,9 @@ abstract final class S {
   static String notesCount(int n) => '$n poznámek: výklad a použití v životě';
   static String tablesCount(int n) => '$n přehledů: králové, svátky, zázraky…';
   static const introsHint = 'Přehled, údaje, osnova, témata, pozadí';
+  static const introsIntro =
+      'Ke každé knize: o čem je, kdo a kdy ji psal, pro koho, osnova, '
+      'hlavní témata a jak ji číst.';
   static const profile = 'Medailon';
   static const applicationNotes = 'Aplikační poznámky';
   static const applicationNote = 'Aplikační poznámka';

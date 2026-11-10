@@ -410,6 +410,7 @@ abstract final class S {
   static const courseReset = 'Vymazat pokrok';
   static const courseFinishedTitle = 'Dokončili jste kurz';
   static const factOfDay = 'Zajímavost dne';
+  static const todayStudy = 'Ke studiu';
   static const lessonLabel = 'Lekce';
   static const memory = 'Verše nazpaměť';
   static String _plural(int n, String one, String few, String many) =>
@@ -442,8 +443,9 @@ abstract final class S {
   static const edit = 'Upravit';
   static const inviteStartText =
       'Bible je místo setkání s Bohem. Stačí deset minut a jedna kapitola – '
-      'Marek je dobrý začátek.';
+      'Markovo evangelium je krátké a živé.';
   static const inviteStartButton = 'Začít: Marek 1';
+  static const whereToStart = 'Dobrý začátek';
   static const inviteBackText = 'Vítejte zpět.';
   static String inviteBackButton(int psalm) => 'Krátký začátek: Žalm $psalm';
   static const studyDaily = 'Každý den';
@@ -783,9 +785,10 @@ abstract final class S {
   static const guideOpen = 'Otevřít';
   static const recentlyReadShort = 'Nedávno čtené';
   static const studyHubIntro =
-      'Všechno, co pomáhá Bibli porozumět – rozdělené do čtyř oddílů.';
+      'Kurzy, témata, úvody ke knihám a nástroje – všechno, co pomáhá '
+      'Bibli porozumět.';
   static const studySearchHint = 'Hledat verše, postavy, témata…';
-  static const studyBooksPeople = 'Knihy a postavy';
+  static const studyBooksPeople = 'Témata, knihy a postavy';
   static const studyTools = 'Nástroje';
   static const studyForLife = 'Pro život';
   static const historicalBackground = 'Historické pozadí';

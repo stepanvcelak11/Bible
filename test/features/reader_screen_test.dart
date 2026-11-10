@@ -458,8 +458,8 @@ void main() {
     await tester.runAsync(() => container.read(coursesProvider.future));
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    await scrollStudyTo(tester, 'Jak číst Bibli');
-    await tester.tap(find.text('Jak číst Bibli'));
+    await scrollStudyTo(tester, 'Knihovna, ne jedna kniha');
+    await tester.tap(find.text('Knihovna, ne jedna kniha'));
     await settle(tester);
     expect(find.text('LEKCE 1 Z 6'), findsOneWidget);
     expect(find.text('Knihovna, ne jedna kniha'), findsOneWidget);
@@ -474,7 +474,7 @@ void main() {
     expect(container.read(courseProgressProvider), {'howto:0'});
     await tester.tap(find.byType(BackButton));
     await settle(tester);
-    expect(find.textContaining('Pokračovat lekcí 2'), findsOneWidget);
+    expect(find.text('POKRAČOVAT LEKCÍ 2'), findsOneWidget);
   });
 
   appTest('biblická témata: rejstřík a téma s klíčovými místy', (tester) async {

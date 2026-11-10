@@ -494,9 +494,20 @@ class LessonScreen extends ConsumerWidget {
   }
 }
 
-/// Karta ve Studiu: pokračování v rozečteném kurzu a nabídka kurzů.
-class CoursesHeroCard extends ConsumerWidget {
-  const CoursesHeroCard({super.key});
+/// Rozečtený kurz (první započatý a nedokončený), nebo `null`.
+StudyCourse? currentCourse(List<StudyCourse> courses, Set<String> done) {
+  for (final c in courses) {
+    if (done.started(c) && done.nextIn(c) != null) return c;
+  }
+  return null;
+}
+
+/// Karta „Pokračovat v kurzu“ (nebo „Začít“ u prvního kurzu).
+class CourseContinueCard extends ConsumerWidget {
+  const CourseContinueCard({super.key, this.onlyWhenStarted = false});
+
+  /// Na obrazovce Dnes: ukázat jen rozečtený kurz.
+  final bool onlyWhenStarted;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -504,165 +515,206 @@ class CoursesHeroCard extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final courses = ref.watch(coursesProvider).value ?? const <StudyCourse>[];
     final done = ref.watch(courseProgressProvider);
-    if (courses.isEmpty) return const SizedBox(height: 120);
-    // Rozečtený kurz (první započatý a nedokončený), jinak první kurz.
-    final current = courses.firstWhere(
-      (c) => done.started(c) && done.nextIn(c) != null,
-      orElse: () => courses.firstWhere(
-        (c) => done.nextIn(c) != null,
-        orElse: () => courses.first,
-      ),
-    );
-    final next = done.nextIn(current);
-    final color = courseColor(current);
-    final started = done.started(current);
-
-    return Container(
-      padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [palette.heroStart, palette.heroEnd],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    if (courses.isEmpty) return const SizedBox.shrink();
+    final started = currentCourse(courses, done);
+    if (started == null && onlyWhenStarted) return const SizedBox.shrink();
+    final course =
+        started ??
+        courses.firstWhere(
+          (c) => done.nextIn(c) != null,
+          orElse: () => courses.first,
+        );
+    final next = done.nextIn(course) ?? course.lessons.first;
+    final color = courseColor(course);
+    final count = done.doneIn(course);
+    final all = course.lessons.length;
+    return Card(
+      child: InkWell(
+        onTap: () => openLesson(context, course, next),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 14, 14, 14),
+          child: Row(
             children: [
-              Icon(Icons.school_outlined, color: palette.onHero),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  S.courses,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: palette.onHero,
+              Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [color, Color.lerp(color, Colors.black, 0.3)!],
                   ),
                 ),
+                child: Icon(courseIcon(course), color: Colors.white),
               ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            S.coursesHint,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: palette.onHero.withValues(alpha: 0.85),
-            ),
-          ),
-          const SizedBox(height: 12),
-          // Pokračovat / začít.
-          Material(
-            color: palette.onHero.withValues(alpha: 0.14),
-            borderRadius: BorderRadius.circular(16),
-            clipBehavior: Clip.antiAlias,
-            child: InkWell(
-              onTap: () => next == null
-                  ? openCourse(context, current)
-                  : openLesson(context, current, next),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
+                    Text(
+                      (started == null
+                              ? S.courseStart
+                              : S.courseContinue(next.index + 1))
+                          .toUpperCase(),
+                      style: theme.textTheme.labelSmall?.copyWith(
                         color: color,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(courseIcon(current), color: Colors.white),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            current.title,
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              color: palette.onHero,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Text(
-                            next == null
-                                ? S.courseFinished
-                                : '${started ? S.courseContinue(next.index + 1) : S.courseStart}'
-                                      ' · ${next.title}',
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              color: palette.onHero.withValues(alpha: 0.85),
-                            ),
-                          ),
-                        ],
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.1,
                       ),
                     ),
-                    Icon(Icons.play_circle_fill, color: palette.onHero),
+                    const SizedBox(height: 2),
+                    Text(
+                      next.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        height: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      course.title,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: palette.muted,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        for (var i = 0; i < all; i++)
+                          Expanded(
+                            child: Container(
+                              height: 4,
+                              margin: const EdgeInsets.only(right: 3),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(2),
+                                color: i < count
+                                    ? color
+                                    : color.withValues(alpha: 0.15),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-            ),
+              const SizedBox(width: 10),
+              Icon(Icons.play_circle_fill, color: color, size: 38),
+            ],
           ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final c in courses)
-                if (c != current)
-                  Material(
-                    color: palette.onHero.withValues(alpha: 0.14),
-                    shape: const StadiumBorder(),
-                    clipBehavior: Clip.antiAlias,
-                    child: InkWell(
-                      onTap: () => openCourse(context, c),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 8,
+        ),
+      ),
+    );
+  }
+}
+
+/// Vodorovná řada barevných karet kurzů.
+class CoursesShelf extends ConsumerWidget {
+  const CoursesShelf({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final courses = ref.watch(coursesProvider).value ?? const <StudyCourse>[];
+    final done = ref.watch(courseProgressProvider);
+    if (courses.isEmpty) return const SizedBox(height: 168);
+    return SizedBox(
+      height: 168,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.none,
+        itemCount: courses.length,
+        separatorBuilder: (_, _) => const SizedBox(width: 10),
+        itemBuilder: (context, i) {
+          final c = courses[i];
+          final color = courseColor(c);
+          final count = done.doneIn(c);
+          final all = c.lessons.length;
+          final finished = count == all;
+          return SizedBox(
+            width: 156,
+            child: Material(
+              borderRadius: BorderRadius.circular(20),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: () => openCourse(context, c),
+                child: Ink(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.lerp(color, Colors.white, 0.08)!,
+                        Color.lerp(color, Colors.black, 0.32)!,
+                      ],
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        right: -18,
+                        top: -14,
+                        child: Icon(
+                          courseIcon(c),
+                          size: 92,
+                          color: Colors.white.withValues(alpha: 0.12),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Icon(
-                              done.nextIn(c) == null
-                                  ? Icons.verified
-                                  : courseIcon(c),
-                              size: 18,
-                              color: palette.onHero,
+                              finished ? Icons.verified : courseIcon(c),
+                              color: Colors.white,
+                              size: 24,
                             ),
-                            const SizedBox(width: 6),
-                            Flexible(
-                              child: Text(
-                                c.title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.labelLarge?.copyWith(
-                                  color: palette.onHero,
-                                ),
+                            const Spacer(),
+                            Text(
+                              c.title,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                height: 1.2,
                               ),
                             ),
+                            const SizedBox(height: 8),
+                            if (count == 0)
+                              Text(
+                                S.lessonsCount(all),
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                ),
+                              )
+                            else
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(3),
+                                child: LinearProgressIndicator(
+                                  value: count / all,
+                                  minHeight: 4,
+                                  color: Colors.white,
+                                  backgroundColor: Colors.white.withValues(
+                                    alpha: 0.25,
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton.icon(
-              onPressed: () => openCourses(context),
-              style: TextButton.styleFrom(foregroundColor: palette.onHero),
-              icon: const Icon(Icons.arrow_forward),
-              label: const Text(S.courses),
+                ),
+              ),
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

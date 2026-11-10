@@ -240,9 +240,9 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
 
     final sections = [
       (S.courses, Icons.school_outlined, _coursesKey),
+      (S.studyBooksPeople, Icons.auto_stories_outlined, _booksKey),
       (S.connectionsWhole, Icons.hub_outlined, _wholeKey),
       (S.studyForLife, Icons.favorite_border, _lifeKey),
-      (S.studyBooksPeople, Icons.auto_stories_outlined, _booksKey),
       (S.studyTools, Icons.handyman_outlined, _toolsKey),
     ];
 
@@ -331,16 +331,73 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 ],
               ),
             ),
-            // --- Každý den: plán čtení a otázka dne ----------------------
+            // --- Studijní kurzy ------------------------------------------
+            KeyedSubtree(
+              key: _coursesKey,
+              child: SectionLabel(
+                S.studyStepByStep,
+                action: S.all,
+                onAction: () => openCourses(context),
+              ),
+            ),
+            const CourseContinueCard(),
+            const SizedBox(height: 10),
+            const CoursesShelf(),
+            // --- Témata, knihy a postavy ---------------------------------
+            KeyedSubtree(key: _booksKey, child: header(S.studyBooksPeople)),
+            group([
+              _Entry(
+                Icons.lightbulb_outline,
+                const Color(0xFFB0603A),
+                S.topics,
+                topicsCount == null ? S.topicsHint : S.topicsCount(topicsCount),
+                () => _push(const TopicsScreen()),
+              ),
+              _Entry(
+                Icons.auto_stories_outlined,
+                const Color(0xFFB0813B),
+                S.exploreIntros,
+                S.introsHint,
+                () => _push(const BookIntrosScreen()),
+              ),
+              _Entry(
+                Icons.diversity_3_outlined,
+                const Color(0xFF8C4A6B),
+                S.people,
+                peopleCount == null ? S.peopleHint : S.peopleCount(peopleCount),
+                () => _push(const PeopleScreen()),
+              ),
+              _Entry(
+                Icons.sticky_note_2_outlined,
+                const Color(0xFF3F7CAC),
+                S.applicationNotes,
+                notesCount == null
+                    ? S.applicationNotesHint
+                    : S.notesCount(notesCount),
+                () => _push(const NotesScreen()),
+              ),
+              _Entry(
+                Icons.table_chart_outlined,
+                const Color(0xFF5B7A3A),
+                S.tables,
+                tablesCount == null ? S.tablesHint : S.tablesCount(tablesCount),
+                () => _push(const TablesScreen()),
+              ),
+              _Entry(
+                Icons.view_week_outlined,
+                const Color(0xFF2E8B57),
+                S.harmony,
+                S.harmonyHint,
+                () => _push(const HarmonyScreen()),
+              ),
+            ]),
+            // --- Každý den -----------------------------------------------
             header(S.studyDaily),
-            const PlanCard(),
+            const FactOfDayCard(),
             const SizedBox(height: 10),
             const QuizOfDay(),
             const SizedBox(height: 10),
-            const FactOfDayCard(),
-            // --- Studijní kurzy ------------------------------------------
-            KeyedSubtree(key: _coursesKey, child: header(S.studyStepByStep)),
-            const CoursesHeroCard(),
+            const PlanCard(),
             // --- Bible jako celek ----------------------------------------
             KeyedSubtree(key: _wholeKey, child: header(S.connectionsWhole)),
             const ConnectionsHeroCard(),
@@ -385,13 +442,6 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
             const SizedBox(height: 10),
             group([
               _Entry(
-                Icons.lightbulb_outline,
-                const Color(0xFFB0603A),
-                S.topics,
-                topicsCount == null ? S.topicsHint : S.topicsCount(topicsCount),
-                () => _push(const TopicsScreen()),
-              ),
-              _Entry(
                 Icons.psychology_outlined,
                 const Color(0xFF8C6BA8),
                 S.memory,
@@ -434,47 +484,6 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 S.readingPlans,
                 S.readingPlansHint,
                 () => showPlansSheet(context),
-              ),
-            ]),
-            // --- Knihy a postavy -----------------------------------------
-            KeyedSubtree(key: _booksKey, child: header(S.studyBooksPeople)),
-            group([
-              _Entry(
-                Icons.auto_stories_outlined,
-                const Color(0xFFB0813B),
-                S.exploreIntros,
-                S.introsHint,
-                () => _push(const BookIntrosScreen()),
-              ),
-              _Entry(
-                Icons.diversity_3_outlined,
-                const Color(0xFF8C4A6B),
-                S.people,
-                peopleCount == null ? S.peopleHint : S.peopleCount(peopleCount),
-                () => _push(const PeopleScreen()),
-              ),
-              _Entry(
-                Icons.sticky_note_2_outlined,
-                const Color(0xFF3F7CAC),
-                S.applicationNotes,
-                notesCount == null
-                    ? S.applicationNotesHint
-                    : S.notesCount(notesCount),
-                () => _push(const NotesScreen()),
-              ),
-              _Entry(
-                Icons.table_chart_outlined,
-                const Color(0xFF5B7A3A),
-                S.tables,
-                tablesCount == null ? S.tablesHint : S.tablesCount(tablesCount),
-                () => _push(const TablesScreen()),
-              ),
-              _Entry(
-                Icons.view_week_outlined,
-                const Color(0xFF2E8B57),
-                S.harmony,
-                S.harmonyHint,
-                () => _push(const HarmonyScreen()),
               ),
             ]),
             // --- Nástroje ------------------------------------------------

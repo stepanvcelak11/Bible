@@ -59,8 +59,18 @@ class MyReadingCard extends ConsumerWidget {
         : daily.keys.reduce((a, b) => a.isAfter(b) ? a : b);
     final gap = last == null ? null : today.difference(last).inDays;
 
+    // Úplně nový čtenář: místo „Pokračovat v Genesis 1“ rovnou nabídnout
+    // dobrý začátek (Marek 1) – jedna jasná volba.
+    final firstTime =
+        gap == null && position.bookId == 1 && position.chapter == 1;
+    const start = VerseRef(41, 1, 1);
+    final mainRef = firstTime ? start : position;
+    final mainBook = firstTime ? ref.watch(bookByIdProvider(41)) : book;
+    final mainColor = firstTime ? Color(categoryOf(41).color) : color;
+
     // Jedna věta pozvání a případně krátký začátek.
     final (String text, String? button, VerseRef? target) = switch (gap) {
+      null when firstTime => (S.inviteStartText, null, null),
       null => (
         S.inviteStartText,
         S.inviteStartButton,
@@ -83,8 +93,10 @@ class MyReadingCard extends ConsumerWidget {
             onTap: () => openReaderAt(
               context,
               ref,
-              position,
-              from: schemeOf(ref.read(translationControllerProvider).primaryId),
+              mainRef,
+              from: firstTime
+                  ? VerseScheme.hebrew
+                  : schemeOf(ref.read(translationControllerProvider).primaryId),
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 12, 12),
@@ -98,12 +110,12 @@ class MyReadingCard extends ConsumerWidget {
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: [color, color.withValues(alpha: 0.7)],
+                        colors: [mainColor, mainColor.withValues(alpha: 0.7)],
                       ),
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      book.abbreviation,
+                      mainBook.abbreviation,
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
@@ -117,27 +129,29 @@ class MyReadingCard extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S.continueReading,
+                          firstTime ? S.whereToStart : S.continueReading,
                           style: theme.textTheme.labelMedium?.copyWith(
                             color: palette.muted,
                           ),
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          '${book.name} ${position.chapter}'
-                          '${position.verse > 1 ? ',${position.verse}' : ''}',
+                          '${mainBook.name} ${mainRef.chapter}'
+                          '${mainRef.verse > 1 ? ',${mainRef.verse}' : ''}',
                           style: theme.textTheme.titleLarge,
                         ),
-                        const SizedBox(height: 8),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: LinearProgressIndicator(
-                            value: total == 0 ? 0 : read / total,
-                            minHeight: 4,
-                            color: color,
-                            backgroundColor: color.withValues(alpha: 0.14),
+                        if (!firstTime) ...[
+                          const SizedBox(height: 8),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: LinearProgressIndicator(
+                              value: total == 0 ? 0 : read / total,
+                              minHeight: 4,
+                              color: color,
+                              backgroundColor: color.withValues(alpha: 0.14),
+                            ),
                           ),
-                        ),
+                        ],
                       ],
                     ),
                   ),

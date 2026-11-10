@@ -17,6 +17,7 @@ import '../application/today_providers.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/situations_screen.dart';
 import '../../guide/presentation/guide_screen.dart';
+import '../../study/presentation/courses_screen.dart';
 import 'day_scene.dart';
 import 'for_today.dart';
 import 'my_reading_card.dart';
@@ -66,7 +67,14 @@ class TodayScreen extends ConsumerWidget {
       SectionLabel(S.myReading),
       MyReadingCard(),
     ];
-    const more = [_SituationsStrip(), ForTodaySection()];
+    const more = [
+      _SituationsStrip(),
+      ForTodaySection(),
+      SectionLabel(S.todayStudy),
+      FactOfDayCard(),
+      SizedBox(height: 10),
+      CourseContinueCard(),
+    ];
 
     final compact = isCompactHeight(context);
     final settingsButton = IconButton(

@@ -349,10 +349,13 @@ abstract final class AppTheme {
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
-        titleTextStyle: serif(
-          t.titleLarge,
-          w: FontWeight.w600,
-        )?.copyWith(color: scheme.onSurface),
+        // Velikost výslovně: `t` ještě nemá velikosti z typografie
+        // (doplní je až Theme.of), takže by nadpis spadl na 14 bodů.
+        titleTextStyle: serif(t.titleLarge, w: FontWeight.w600)?.copyWith(
+          color: scheme.onSurface,
+          fontSize: 21,
+          height: 1.25,
+        ),
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: scheme.surfaceContainerLow,

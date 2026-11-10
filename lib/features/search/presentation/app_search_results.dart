@@ -8,6 +8,12 @@ import 'app_search_index.dart';
 
 /// Výsledky chytrého hledání v celé aplikaci: nejlepší shoda nahoře,
 /// pod ní skupiny (funkce, mapy, témata, kurzy, zamyšlení…).
+/// Výsledky chytrého hledání pro dotaz (prázdné, dokud se index načítá).
+final appHitsProvider = Provider.family<List<AppHit>, String>((ref, query) {
+  final items = ref.watch(appSearchIndexProvider).value;
+  return items == null ? const [] : searchApp(items, query);
+});
+
 class AppSearchResults extends ConsumerStatefulWidget {
   const AppSearchResults({super.key, required this.query, this.onOpen});
 
@@ -38,11 +44,8 @@ class _AppSearchResultsState extends ConsumerState<AppSearchResults> {
     }
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    final index = ref.watch(appSearchIndexProvider);
-    final items = index.value;
     // Index se načítá na pozadí – verše se mezitím ukazují normálně.
-    if (items == null) return const SizedBox.shrink();
-    final hits = searchApp(items, widget.query);
+    final hits = ref.watch(appHitsProvider(widget.query));
     if (hits.isEmpty) return const SizedBox.shrink();
 
     void open(AppSearchItem item) {

@@ -516,7 +516,7 @@ final appSearchIndexProvider = FutureProvider<List<AppSearchItem>>((ref) async {
       AppSearchItem(
         kind: AppHitKind.map,
         title: p.name,
-        subtitle: '${p.type ?? 'místo'} · ${p.verseCount} veršů',
+        subtitle: '${placeTypeCs(p.type) ?? 'místo'} · ${p.verseCount} veršů',
         icon: Icons.place_outlined,
         keywords: p.nameEn,
         open: (c, _) => openPlaceOnMap(c, p.id),

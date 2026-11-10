@@ -435,6 +435,26 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             switch (results) {
               AsyncValue(:final value?)
+                  when value.isEmpty &&
+                      reference == null &&
+                      ref.watch(appHitsProvider(_text)).isNotEmpty =>
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      20,
+                      16,
+                      20,
+                      insets.bottom + 110,
+                    ),
+                    child: Text(
+                      S.noVersesWithWords,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: palette.muted,
+                      ),
+                    ),
+                  ),
+                ),
+              AsyncValue(:final value?)
                   when value.isEmpty && reference == null =>
                 const SliverToBoxAdapter(
                   child: _Hint(

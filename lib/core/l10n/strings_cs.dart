@@ -87,6 +87,9 @@ abstract final class S {
       'aplikace. Rozumí i dotazům jako „mapa Jeruzaléma“ nebo „plán '
       'evangelia“. Diakritiku ani přesné tvary psát nemusíte.';
   static const searchInApp = 'V aplikaci';
+  static const noVersesWithWords =
+      'V textu Bible se tato slova přesně nevyskytují – zkuste výsledky '
+      'výše nebo hledání podle myšlenky.';
   static const bestMatch = 'Nejlepší shoda';
   static String verseNotesFor(int v) => 'Poznámky k verši $v';
   static const verseNotesIntro =

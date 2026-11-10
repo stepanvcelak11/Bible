@@ -161,7 +161,9 @@ final bookIntrosProvider = FutureProvider<Map<int, BookIntro>>((ref) async {
   // load + utf8 místo loadString (ten velké soubory dekóduje v isolate).
   final data = await rootBundle.load('assets/content/book_intros.json');
   final json = jsonDecode(
-    utf8.decode(data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes)),
+    utf8.decode(
+      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
+    ),
   ) as Map<String, Object?>;
   final books = json['books']! as Map<String, Object?>;
   return {

@@ -393,21 +393,24 @@ class _PlaceSheet extends ConsumerWidget {
     );
   }
 
-  static String? _typeCs(String? type) => switch (type) {
-    'settlement' => 'sídlo',
-    'region' => 'oblast',
-    'river' => 'řeka',
-    'body of water' => 'vodní plocha',
-    'mountain' => 'hora',
-    'hill' => 'pahorek',
-    'valley' => 'údolí',
-    'island' => 'ostrov',
-    'spring' => 'pramen',
-    'campsite' => 'tábořiště',
-    'gate' => 'brána',
-    _ => null,
-  };
+  static String? _typeCs(String? type) => placeTypeCs(type);
 }
+
+/// Druh místa česky („settlement“ → sídlo).
+String? placeTypeCs(String? type) => switch (type) {
+  'settlement' => 'sídlo',
+  'region' => 'oblast',
+  'river' => 'řeka',
+  'body of water' => 'vodní plocha',
+  'mountain' => 'hora',
+  'hill' => 'pahorek',
+  'valley' => 'údolí',
+  'island' => 'ostrov',
+  'spring' => 'pramen',
+  'campsite' => 'tábořiště',
+  'gate' => 'brána',
+  _ => null,
+};
 
 class _PlaceSearch extends SearchDelegate<BiblePlace?> {
   _PlaceSearch(this.data) : super(searchFieldLabel: S.findPlace);

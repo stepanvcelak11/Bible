@@ -269,7 +269,6 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
       itemVerses.insertAll(at + 1, [for (final _ in add) const <int>[]]);
     }
 
-
     // Krátké poznámky: za blok (odstavec, verš), který obsahuje jejich verš.
     final noteMap = settings.inlineNotes
         ? ref.watch(
@@ -280,23 +279,12 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
             )),
           )
         : const <int, List<InlineNote>>{};
-    final notesPending = noteMap.keys.toList()..sort();
-    void addNotes(int lastVerse) {
-      while (notesPending.isNotEmpty && notesPending.first <= lastVerse) {
-        final v = notesPending.removeAt(0);
-        for (final n in noteMap[v]!) {
-          items.add(
-            () => InlineNoteView(
-              note: n,
-              reference: '${widget.chapter},$v',
-              fontSize: settings.fontSize,
-            ),
-          );
-          itemVerses.add(const []);
-        }
-      }
-    }
-
+    // Poznámky a slovníček: malá značka za veršem, text v panelu.
+    final extras = settings.inlineNotes
+        ? buildVerseExtras(noteMap, [
+            for (final v in verses) (v.ref.verse, v.text),
+          ], widget.bookId)
+        : const <int, VerseExtras>{};
     switch (content) {
       case SingleChapter(:final text):
         final blocks = buildReaderBlocks(
@@ -322,18 +310,14 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
                 ),
               );
               itemVerses.add(b.verseNumbers);
-              addNotes(b.verseNumbers.last);
           }
         }
-        addNotes(1 << 20);
       case ParallelChapter(:final rows):
         for (final r in rows) {
           insertArt(r.number);
           items.add(() => ParallelVerseTile(row: r));
           itemVerses.add([r.number]);
-          addNotes(r.number);
         }
-        addNotes(1 << 20);
     }
     _itemVerses = [...itemVerses, const []];
 
@@ -349,70 +333,76 @@ class _ChapterViewState extends ConsumerState<ChapterView> {
     final margin = parallel ? 12.0 : settings.horizontalMargin;
     final side = width - 2 * margin > maxText ? (width - maxText) / 2 : margin;
 
-    return Stack(
-      children: [
-        NotificationListener<UserScrollNotification>(
-          onNotification: _onScroll,
-          child: ScrollablePositionedList.builder(
-            itemScrollController: _scroll,
-            itemPositionsListener: _positions,
-            initialScrollIndex: startAtVerse
-                ? _itemIndexFor(position.verse)
-                : 0,
-            initialAlignment: startAtVerse ? 0.12 : 0,
-            padding: EdgeInsets.only(
-              top: insets.top + readerTopBarHeight(ref) + 8,
-              bottom: insets.bottom + 180,
-              left: side,
-              right: side,
+    return VerseExtrasScope(
+      extras: extras,
+      bookId: widget.bookId,
+      chapter: widget.chapter,
+      bookName: ref.watch(bookByIdProvider(widget.bookId)).name,
+      child: Stack(
+        children: [
+          NotificationListener<UserScrollNotification>(
+            onNotification: _onScroll,
+            child: ScrollablePositionedList.builder(
+              itemScrollController: _scroll,
+              itemPositionsListener: _positions,
+              initialScrollIndex: startAtVerse
+                  ? _itemIndexFor(position.verse)
+                  : 0,
+              initialAlignment: startAtVerse ? 0.12 : 0,
+              padding: EdgeInsets.only(
+                top: insets.top + readerTopBarHeight(ref) + 8,
+                bottom: insets.bottom + 180,
+                left: side,
+                right: side,
+              ),
+              itemCount: items.length + 2,
+              itemBuilder: (context, i) => i == 0
+                  ? _ChapterHeader(
+                      bookId: widget.bookId,
+                      chapter: widget.chapter,
+                      verseCount: verses.length,
+                      minutes: minutes,
+                    )
+                  : i > items.length
+                  ? ChapterFooter(
+                      bookId: widget.bookId,
+                      chapter: widget.chapter,
+                      onNext: () => ref
+                          .read(readingPositionProvider.notifier)
+                          .nextChapter(),
+                    )
+                  : items[i - 1](),
             ),
-            itemCount: items.length + 2,
-            itemBuilder: (context, i) => i == 0
-                ? _ChapterHeader(
-                    bookId: widget.bookId,
-                    chapter: widget.chapter,
-                    verseCount: verses.length,
-                    minutes: minutes,
-                  )
-                : i > items.length
-                ? ChapterFooter(
-                    bookId: widget.bookId,
-                    chapter: widget.chapter,
-                    onNext: () => ref
-                        .read(readingPositionProvider.notifier)
-                        .nextChapter(),
-                  )
-                : items[i - 1](),
           ),
-        ),
-        // Tenký ukazatel, kolik z kapitoly je přečteno.
-        // Se skrytou lištou se posune nahoru (jinak by visel přes text).
-        AnimatedPositioned(
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeOutCubic,
-          top:
-              insets.top +
-              (ref.watch(controlsVisibleProvider)
-                  ? readerTopBarHeight(ref)
-                  : 0),
-          left: 0,
-          right: 0,
-          child: ValueListenableBuilder<double>(
-            valueListenable: _progress,
-            builder: (context, value, _) => Align(
-              alignment: Alignment.centerLeft,
-              child: AnimatedFractionallySizedBox(
-                duration: const Duration(milliseconds: 200),
-                widthFactor: value.clamp(0, 1),
-                child: Container(
-                  height: 2,
-                  color: palette.gold.withValues(alpha: 0.7),
+          // Tenký ukazatel, kolik z kapitoly je přečteno.
+          // Se skrytou lištou se posune nahoru (jinak by visel přes text).
+          AnimatedPositioned(
+            duration: const Duration(milliseconds: 220),
+            curve: Curves.easeOutCubic,
+            top:
+                insets.top +
+                (ref.watch(controlsVisibleProvider)
+                    ? readerTopBarHeight(ref)
+                    : 0),
+            left: 0,
+            right: 0,
+            child: ValueListenableBuilder<double>(
+              valueListenable: _progress,
+              builder: (context, value, _) => Align(
+                alignment: Alignment.centerLeft,
+                child: AnimatedFractionallySizedBox(
+                  duration: const Duration(milliseconds: 200),
+                  widthFactor: value.clamp(0, 1),
+                  child: Container(
+                    height: 2,
+                    color: palette.gold.withValues(alpha: 0.7),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

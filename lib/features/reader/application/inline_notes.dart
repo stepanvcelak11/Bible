@@ -53,8 +53,13 @@ final bookInlineNotesProvider = FutureProvider.family<List<InlineNote>, int>((
 ) async {
   final String raw;
   try {
-    raw = await rootBundle.loadString(
+    // load + utf8 (loadString výsledek ukládá do mezipaměti balíčku
+    // a velké soubory dekóduje v isolate).
+    final data = await rootBundle.load(
       'assets/content/chapter_notes/${bookId.toString().padLeft(2, '0')}.json',
+    );
+    raw = utf8.decode(
+      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes),
     );
   } on Object {
     return const [];

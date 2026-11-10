@@ -13,9 +13,9 @@ import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/citation.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
-import '../../study/presentation/study_hub_screen.dart';
 import '../application/reference_parser.dart';
 import '../application/thought_search.dart';
+import 'app_search_results.dart';
 import 'thought_results.dart';
 
 const _pageSize = 100;
@@ -341,22 +341,34 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             )
           else ...[
-            // Postavy, situace, tabulky… se stejným slovem.
-            if (_text.trim().length >= 3)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: StudySearchResults(
-                    query: foldCzech(_text.trim()),
-                    compact: true,
-                  ),
-                ),
-              ),
             if (_text.split(' ').where((w) => w.length > 1).length >= 3)
               SliverToBoxAdapter(
                 child: _ThoughtSuggestion(
                   text: _text,
                   onTap: () => _setThought(true),
+                ),
+              ),
+            // Chytré hledání v celé aplikaci: funkce, mapy, témata,
+            // kurzy, plány, zamyšlení, poznámky…
+            if (_text.trim().length >= 2 && reference == null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: AppSearchResults(query: _text, onOpen: _remember),
+                ),
+              ),
+            if (counts != null && counts.isNotEmpty && reference == null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+                  child: Text(
+                    S.versesInBible.toUpperCase(),
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: palette.muted,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 1.1,
+                    ),
+                  ),
                 ),
               ),
             if (counts != null && counts.isNotEmpty)
@@ -654,13 +666,17 @@ class _EmptyStateState extends ConsumerState<_EmptyState> {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     const examples = [
-      'láska',
+      'mapa Jeruzaléma',
+      'Pavlovy cesty',
+      'kdo byl Mojžíš',
+      'plán evangelia',
+      'strach',
+      'odpuštění',
+      'úvod Římanům',
+      'chrám',
       '„dobrý pastýř“',
       'J 3,16',
       'Ž 23',
-      'David',
-      'strach',
-      'Velikonoce',
     ];
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),

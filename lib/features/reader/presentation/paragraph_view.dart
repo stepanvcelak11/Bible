@@ -1,3 +1,4 @@
+import 'inline_note_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -189,6 +190,9 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
             style: part.$2 == null ? style : style.merge(part.$2),
           ),
         );
+      }
+      if (verseExtrasSpan(context, n, settings.fontSize) case final x?) {
+        spans.add(x);
       }
       if (widget.footnotes[n] case final notes?) {
         spans.add(

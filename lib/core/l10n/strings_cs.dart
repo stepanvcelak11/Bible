@@ -77,13 +77,26 @@ abstract final class S {
   static const cancel = 'Zrušit';
 
   // Hledání
-  static const searchHint = 'Verš, slovo, postava, téma (J 3,16)…';
+  static const searchHint = 'Co hledáte? Verš, téma, mapa, postava…';
   static const searchAll = 'Celá Bible';
-  static const searchEmptyTitle = 'Hledání v celé aplikaci';
+  static const searchEmptyTitle = 'Chytré hledání v celé aplikaci';
   static const searchEmptyBody =
-      'Najde verše v Bibli i postavy, témata, situace, úvody ke knihám '
-      'a tabulky. Diakritiku psát nemusíte – „laska“ najde i „láska“. '
-      'Přesnou frázi dejte do uvozovek, odkaz napište jako J 3,16.';
+      'Napište, co vás zajímá – najde verše v Bibli i všechno ostatní: '
+      'témata, kurzy, plány čtení, zamyšlení a poznámky ke kapitolám, '
+      'místa na mapě, postavy, úvody ke knihám, časovou osu i funkce '
+      'aplikace. Rozumí i dotazům jako „mapa Jeruzaléma“ nebo „plán '
+      'evangelia“. Diakritiku ani přesné tvary psát nemusíte.';
+  static const searchInApp = 'V aplikaci';
+  static const bestMatch = 'Nejlepší shoda';
+  static String verseNotesFor(int v) => 'Poznámky k verši $v';
+  static const verseNotesIntro =
+      'Co to tehdy znamenalo, zajímavosti a vysvětlení pojmů.';
+  static const glossaryLabel = 'Slovníček';
+  static String allAppResults(int n) => 'Všechny výsledky v aplikaci ($n)';
+  static const versesInBible = 'Verše v Bibli';
+  static String showMoreCount(int n) => 'Zobrazit další ($n)';
+  static String moreResultKinds(int n) =>
+      'Další druhy výsledků ($n)';
   static const searchNoResults = 'Nic nenalezeno';
   static String searchResultCount(int n, {required bool limited}) =>
       limited ? 'Zobrazeno prvních $n výsledků' : _results(n);
@@ -153,7 +166,8 @@ abstract final class S {
       'Jednoduché kresby k příběhům přímo v textu Bible';
   static const inlineNotes = 'Poznámky v textu';
   static const inlineNotesHint =
-      'Dobový kontext, zajímavosti a podněty pro život v průběhu kapitoly';
+      'Malá barevná šipka u verše: co to tehdy znamenalo, zajímavosti '
+      'a vysvětlení pojmů (mince, míry, zvyky)';
   static const noteContext = 'V té době';
   static const noteCurio = 'Zajímavost';
   static const noteLife = 'Pro život';

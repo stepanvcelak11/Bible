@@ -5,9 +5,25 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 21;
+const whatsNewVersion = 22;
 
 const _items = [
+  (
+    Icons.manage_search,
+    'Chytré hledání v celé aplikaci',
+    'Hledat teď najde nejen verše, ale i témata, kurzy, plány čtení, '
+        'zamyšlení a poznámky ke kapitolám, místa a trasy na mapě, postavy, '
+        'úvody ke knihám i funkce aplikace. Rozumí dotazům jako „mapa '
+        'Jeruzaléma“ nebo „plán evangelia“ a zvládne i skloňování a překlepy.',
+  ),
+  (
+    Icons.chevron_right,
+    'Poznámky u veršů a slovníček',
+    'Poznámky už nepřekážejí v textu – u verše je jen malá barevná šipka '
+        'a klepnutím se otevřou. Nově vysvětlují i mince, míry, zvyky '
+        'a skupiny lidí (denár, loket, farizeové…) přímo tam, kde se o nich '
+        'čte.',
+  ),
   (
     Icons.event_note_outlined,
     'Plány čtení s průvodcem',

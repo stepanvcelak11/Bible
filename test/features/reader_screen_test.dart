@@ -17,6 +17,7 @@ import 'package:bible_reader/features/reader/application/reading_position_contro
 import 'package:bible_reader/features/reader/presentation/verse_image_sheet.dart';
 import 'package:bible_reader/features/settings/application/reader_settings_controller.dart';
 import 'package:bible_reader/features/study/presentation/study_hub_screen.dart';
+import 'package:bible_reader/features/search/presentation/app_search_index.dart';
 import 'package:bible_reader/features/study/application/study_providers.dart';
 import 'package:bible_reader/features/study/application/course_progress.dart';
 import 'package:bible_reader/features/shell/home_shell.dart';
@@ -332,6 +333,13 @@ void main() {
     // Hledání ve Studiu vede do jednotného hledání v celé aplikaci.
     await tester.tap(find.text('Hledat verše, postavy, témata…'));
     await settle(tester);
+    // Index chytrého hledání se načítá z mnoha souborů – počkat na něj.
+    container.read(appSearchIndexProvider);
+    for (var i = 0; i < 400; i++) {
+      if (container.read(appSearchIndexProvider).hasValue) break;
+      await settle(tester);
+    }
+    expect(container.read(appSearchIndexProvider).hasValue, isTrue);
     await tester.enterText(find.byType(TextField).last, 'david');
     await tester.pump(const Duration(milliseconds: 400));
     await settle(tester);
@@ -617,8 +625,22 @@ void main() {
     await tester.enterText(find.byType(TextField), 'miloval');
     await tester.pump(const Duration(milliseconds: 400));
     await settle(tester);
+    await tester.scrollUntilVisible(
+      find.text('Jan 3,16'),
+      300,
+      scrollable: find.byWidgetPredicate(
+        (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+      ).first,
+    );
     expect(find.text('1 výsledek v 1 knize'), findsOneWidget);
     expect(find.text('Jan 3,16'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.byType(TextField),
+      -300,
+      scrollable: find.byWidgetPredicate(
+        (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+      ).first,
+    );
 
     await tester.enterText(find.byType(TextField), 'J 3,17');
     await tester.pump(const Duration(milliseconds: 400));

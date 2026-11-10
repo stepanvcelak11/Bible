@@ -3,12 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../prep/presentation/prep_screen.dart';
 import '../../../core/l10n/strings_cs.dart';
-import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../core/widgets/section_label.dart';
 import '../../../domain/entities/content_entities.dart';
-import '../../../domain/services/timeline.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/harmony_screen.dart';
 import '../../content/presentation/notes_screen.dart';
@@ -24,7 +22,6 @@ import '../../prayer/presentation/prayers_view.dart';
 import '../../connections/presentation/connections_screen.dart';
 import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/quiz_screen.dart';
-import '../../search/application/reference_parser.dart';
 import '../../today/presentation/for_today.dart';
 import '../../today/presentation/plan_card.dart';
 import '../../today/presentation/plans_sheet.dart';
@@ -33,7 +30,6 @@ import '../../content/presentation/family_tree_screen.dart';
 import '../../prayer/presentation/lectio_screen.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../../shell/home_shell.dart';
-import 'book_intro_sheet.dart';
 import 'book_intros_screen.dart';
 import 'courses_screen.dart';
 import 'study_pack_screen.dart';
@@ -628,203 +624,6 @@ class _SituationsCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-/// Výsledky hledání ve studijních materiálech (postavy, situace, knihy,
-/// tabulky, poznámky, harmonie, časová osa).
-class StudySearchResults extends ConsumerWidget {
-  const StudySearchResults({
-    super.key,
-    required this.query,
-    this.compact = false,
-  });
-
-  /// Dotaz bez diakritiky, malými písmeny.
-  final String query;
-
-  /// V běžném hledání: jen několik výsledků s nadpisem, bez hlášky
-  /// „nic nenalezeno“.
-  final bool compact;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    bool hit(String s) => foldCzech(s).contains(query);
-    void push(Widget page) =>
-        Navigator.of(context)
-            .push(MaterialPageRoute<void>(builder: (_) => page));
-
-    final results = <(IconData, String, String, VoidCallback)>[
-      for (final s
-          in ref.watch(situationsProvider).value?.$2 ?? const <Situation>[])
-        if (hit(s.title) || hit(s.intro))
-          (
-            situationIcons[s.icon] ?? Icons.favorite_border,
-            s.title,
-            S.situations,
-            () => openSituation(context, s),
-          ),
-      for (final t
-          in ref.watch(topicsProvider).value?.$2 ?? const <BibleTopic>[])
-        if (hit(t.title))
-          (
-            situationIcons[t.icon] ?? Icons.lightbulb_outline,
-            t.title,
-            S.topics,
-            () => openTopic(context, t),
-          ),
-      for (final c
-          in ref.watch(coursesProvider).value ?? const <StudyCourse>[]) ...[
-        if (hit(c.title) || hit(c.subtitle))
-          (courseIcon(c), c.title, S.courses, () => openCourse(context, c)),
-        for (final l in c.lessons)
-          if (hit(l.title))
-            (
-              courseIcon(c),
-              l.title,
-              '${S.lessonLabel} · ${c.title}',
-              () => openLesson(context, c, l),
-            ),
-      ],
-      for (final p in ref.watch(peopleProvider).value ?? const <BiblePerson>[])
-        if (hit(p.name) || hit(p.role))
-          (
-            Icons.person_outline,
-            p.name,
-            '${S.profile} · ${p.role}',
-            () => openPerson(context, p),
-          ),
-      for (final b in ref.watch(booksProvider))
-        if (hit(b.name))
-          (
-            Icons.auto_stories_outlined,
-            b.name,
-            S.bookIntro,
-            () => showBookIntro(context, b.id),
-          ),
-      for (final t in ref.watch(tablesProvider).value ?? const <ContentTable>[])
-        if (hit(t.title))
-          (
-            Icons.table_chart_outlined,
-            t.title,
-            S.tables,
-            () => openTable(context, t),
-          ),
-      for (final n in ref.watch(notesProvider).value ?? const <AppNote>[])
-        if (hit(n.title))
-          (
-            Icons.sticky_note_2_outlined,
-            n.title,
-            S.applicationNotes,
-            () => showNoteSheet(context, n),
-          ),
-      for (final per
-          in ref.watch(harmonyProvider).value ?? const <HarmonyPeriod>[])
-        for (final e in per.events)
-          if (hit(e.title))
-            (
-              Icons.view_week_outlined,
-              e.title,
-              S.harmony,
-              () => push(const HarmonyScreen()),
-            ),
-      for (final e in timelineEvents)
-        if (hit(e.title))
-          (
-            Icons.view_timeline_outlined,
-            e.title,
-            '${S.timeline} · ${e.date}',
-            () => push(const TimelineScreen()),
-          ),
-      // Až za shodami v názvech: zmínky v textu témat a lekcí.
-      for (final t
-          in ref.watch(topicsProvider).value?.$2 ?? const <BibleTopic>[])
-        if (!hit(t.title) && t.deeper.any(hit))
-          (
-            situationIcons[t.icon] ?? Icons.lightbulb_outline,
-            t.title,
-            S.topics,
-            () => openTopic(context, t),
-          ),
-      for (final c in ref.watch(coursesProvider).value ?? const <StudyCourse>[])
-        for (final l in c.lessons)
-          if (!hit(l.title) && l.text.any(hit))
-            (
-              courseIcon(c),
-              l.title,
-              '${S.lessonLabel} · ${c.title}',
-              () => openLesson(context, c, l),
-            ),
-    ];
-
-    if (compact) {
-      if (results.isEmpty) return const SizedBox.shrink();
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(4, 10, 4, 6),
-            child: Text(
-              S.fromStudy,
-              style: theme.textTheme.labelLarge?.copyWith(color: palette.muted),
-            ),
-          ),
-          Card(
-            child: Column(
-              children: [
-                for (final (i, (icon, title, subtitle, onTap))
-                    in results.take(4).indexed) ...[
-                  if (i > 0) const Divider(height: 1, indent: 56),
-                  ListTile(
-                    dense: true,
-                    leading: Icon(icon, color: palette.gold),
-                    title: Text(title),
-                    subtitle: Text(subtitle, maxLines: 1),
-                    onTap: onTap,
-                  ),
-                ],
-              ],
-            ),
-          ),
-        ],
-      );
-    }
-    if (results.isEmpty) {
-      return Padding(
-        padding: const EdgeInsets.all(32),
-        child: Text(
-          S.studyNoResults,
-          textAlign: TextAlign.center,
-          style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
-        ),
-      );
-    }
-    return Padding(
-      padding: const EdgeInsets.only(top: 12),
-      child: Card(
-        child: Column(
-          children: [
-            for (final (i, (icon, title, subtitle, onTap))
-                in results.take(60).indexed) ...[
-              if (i > 0) const Divider(height: 1, indent: 56),
-              ListTile(
-                leading: Icon(icon, color: palette.gold),
-                title: Text(title),
-                subtitle: Text(
-                  subtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: onTap,
-              ),
-            ],
-          ],
-        ),
       ),
     );
   }

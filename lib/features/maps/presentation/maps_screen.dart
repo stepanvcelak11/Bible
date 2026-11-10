@@ -42,9 +42,14 @@ Future<void> openPlaceOnMap(BuildContext context, String placeId) =>
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => MapPage(placeId: placeId)));
 
-/// Přehledová mapa – všechna místa a tematické mapy (trasy).
-Future<void> openMaps(BuildContext context) => Navigator.of(context)
-    .push(MaterialPageRoute<void>(builder: (_) => const MapPage(isTab: true)));
+/// Přehledová mapa – všechna místa a tematické mapy (trasy); s [routeId]
+/// rovnou zobrazí jednu trasu.
+Future<void> openMaps(BuildContext context, {String? routeId}) =>
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => MapPage(isTab: true, routeId: routeId),
+      ),
+    );
 
 class MapPage extends ConsumerStatefulWidget {
   const MapPage({
@@ -52,6 +57,7 @@ class MapPage extends ConsumerStatefulWidget {
     this.chapter,
     this.bookId,
     this.placeId,
+    this.routeId,
     this.isTab = false,
   });
 
@@ -60,6 +66,7 @@ class MapPage extends ConsumerStatefulWidget {
   /// Místa zmíněná v celé knize (nejčastější).
   final int? bookId;
   final String? placeId;
+  final String? routeId;
   final bool isTab;
 
   @override
@@ -69,6 +76,7 @@ class MapPage extends ConsumerStatefulWidget {
 class _MapPageState extends ConsumerState<MapPage> {
   final _mapKey = GlobalKey<BibleMapViewState>();
   MapRoute? _route;
+  bool _routeApplied = false;
   BiblePlace? _selected;
 
   void _selectPlace(BiblePlace place, MapData data) {
@@ -97,6 +105,12 @@ class _MapPageState extends ConsumerState<MapPage> {
     final insets = MediaQuery.paddingOf(context);
     if (data == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+    if (!_routeApplied) {
+      _routeApplied = true;
+      for (final r in data.routes) {
+        if (r.id == widget.routeId) _route = r;
+      }
     }
 
     final chapter = widget.chapter;

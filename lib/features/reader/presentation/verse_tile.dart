@@ -1,3 +1,4 @@
+import 'inline_note_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,7 +113,11 @@ class VerseTile extends ConsumerWidget with _VerseState {
       child: initial != null
           ? DropCapText(
               initial: initial.$1,
-              spans: [...verseTextSpans(context, initial.$2), ...markers],
+              spans: [
+                ...verseTextSpans(context, initial.$2),
+                ?verseExtrasSpan(context, verse.number, settings.fontSize),
+                ...markers,
+              ],
               style: verseTextStyle(context, settings),
               color: AppPalette.of(context).gold,
               ornament: bookCategories.indexOf(categoryOf(verse.ref.bookId)),
@@ -125,6 +130,7 @@ class VerseTile extends ConsumerWidget with _VerseState {
                   if (settings.showVerseNumbers)
                     verseNumberSpan(context, verse.number, settings),
                   ...verseTextSpans(context, verse.text),
+                  ?verseExtrasSpan(context, verse.number, settings.fontSize),
                   ...markers,
                 ],
               ),
@@ -159,6 +165,8 @@ class ParallelVerseTile extends ConsumerWidget with _VerseState {
                 if (settings.showVerseNumbers || label != null)
                   verseNumberSpan(context, label ?? row.number, compact),
                 ...verseTextSpans(context, verse.text),
+                if (markers)
+                  ?verseExtrasSpan(context, verse.ref.verse, compact.fontSize),
               ],
               if (markers)
                 ..._markers(

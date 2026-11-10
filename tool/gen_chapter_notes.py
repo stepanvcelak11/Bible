@@ -17,10 +17,12 @@ for (b,c) in counts: nch[b]=max(nch.get(b,0),c)
 out=root+'/assets/content/chapter_notes'
 os.makedirs(out,exist_ok=True)
 err=0; total=0; missing=[]
+books={}
 for f in sorted(glob.glob(here+'/*.txt')):
-    book=int(os.path.basename(f)[:2])
+    books.setdefault(int(os.path.basename(f)[:2]),[]).append(f)
+for book,files in sorted(books.items()):
     d={}; seen=set()
-    for ln,line in enumerate(open(f,encoding='utf-8'),1):
+    for f,ln,line in ((f,ln,line) for f in files for ln,line in enumerate(open(f,encoding='utf-8'),1)):
         line=line.strip()
         if not line or line.startswith('#'): continue
         m=re.match(r'^(\d+):(\d+) ([czlm]) (.+?) \| (.+)$',line)

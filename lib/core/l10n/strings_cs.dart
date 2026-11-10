@@ -414,9 +414,7 @@ abstract final class S {
       'Bible je místo setkání s Bohem. Stačí deset minut a jedna kapitola – '
       'Marek je dobrý začátek.';
   static const inviteStartButton = 'Začít: Marek 1';
-  static const inviteBackText =
-      'Vítejte zpět. Bůh nepočítá dny, kdy jste nečetli – raduje se '
-      'z každého návratu.';
+  static const inviteBackText = 'Vítejte zpět.';
   static String inviteBackButton(int psalm) => 'Krátký začátek: Žalm $psalm';
   static const studyDaily = 'Každý den';
   static const holdVerseHint = 'Podržením verše: záložka, kopírování a sdílení';

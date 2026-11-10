@@ -13,6 +13,29 @@ Future<void> openTable(BuildContext context, ContentTable table) =>
       context,
     ).push(MaterialPageRoute<void>(builder: (_) => TableScreen(table: table)));
 
+/// Ikona a barva tabulky podle obsahu.
+(IconData, Color) tableStyle(String id) => switch (id) {
+  'desatero' => (Icons.gavel_outlined, const Color(0xFFB0603A)),
+  'svatky' => (Icons.celebration_outlined, const Color(0xFFC08A2E)),
+  'kralove-juda' => (Icons.workspace_premium_outlined, const Color(0xFF8C6BA8)),
+  'kralove-izrael' => (
+    Icons.workspace_premium_outlined,
+    const Color(0xFF5B6E8C),
+  ),
+  'proroci' => (Icons.campaign_outlined, const Color(0xFF8C4A6B)),
+  'podobenstvi' => (Icons.lightbulb_outline, const Color(0xFF2E8B57)),
+  'zazraky' => (Icons.auto_awesome_outlined, const Color(0xFFB0813B)),
+  'ja-jsem' => (Icons.format_quote_outlined, const Color(0xFF3F7CAC)),
+  'apostolove' => (Icons.groups_outlined, const Color(0xFF4E9A8A)),
+  'kmeny' => (Icons.account_tree_outlined, const Color(0xFF5B7A3A)),
+  'pavlovy-listy' => (Icons.mail_outline, const Color(0xFF4E8A9A)),
+  'svaty-tyden' => (Icons.event_outlined, const Color(0xFF8C4A6B)),
+  'jmena-bozi' => (Icons.key_outlined, const Color(0xFFB0813B)),
+  'smlouvy' => (Icons.link, const Color(0xFF7A55A8)),
+  'miry-vahy' => (Icons.straighten, const Color(0xFF3F7CAC)),
+  _ => (Icons.table_chart_outlined, const Color(0xFFB0813B)),
+};
+
 /// Seznam tabulek a přehledů.
 class TablesScreen extends ConsumerWidget {
   const TablesScreen({super.key});
@@ -38,11 +61,20 @@ class TablesScreen extends ConsumerWidget {
                     child: Column(
                       children: [
                         for (final (i, t) in tables.indexed) ...[
-                          if (i > 0) const Divider(height: 1, indent: 56),
+                          if (i > 0) const Divider(height: 1, indent: 72),
                           ListTile(
-                            leading: Icon(
-                              Icons.table_chart_outlined,
-                              color: AppPalette.of(context).gold,
+                            leading: Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: tableStyle(t.id).$2
+                                    .withValues(alpha: 0.14),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Icon(
+                                tableStyle(t.id).$1,
+                                color: tableStyle(t.id).$2,
+                              ),
                             ),
                             title: Text(
                               t.title,
@@ -161,39 +193,21 @@ class TableScreen extends StatelessWidget {
                     ),
                   )
                 else
-                  for (final row in table.rows)
-                    Card(
-                      margin: const EdgeInsets.only(bottom: 8),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            cell(row.first, style: theme.textTheme.titleMedium),
-                            for (var i = 1; i < row.length; i++)
-                              if (row[i].text.isNotEmpty)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 110,
-                                        child: Text(
-                                          table.columns[i],
-                                          style: theme.textTheme.labelMedium
-                                              ?.copyWith(color: palette.muted),
-                                        ),
-                                      ),
-                                      Expanded(child: cell(row[i])),
-                                    ],
-                                  ),
-                                ),
-                          ],
-                        ),
-                      ),
+                  Card(
+                    child: Column(
+                      children: [
+                        for (final (ri, row) in table.rows.indexed) ...[
+                          if (ri > 0) const Divider(height: 1),
+                          _CompactRow(
+                            row: row,
+                            columns: table.columns,
+                            color: tableStyle(table.id).$2,
+                            cell: cell,
+                          ),
+                        ],
+                      ],
                     ),
+                  ),
                 if (table.note.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 12),
@@ -209,6 +223,102 @@ class TableScreen extends StatelessWidget {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+/// Řádek tabulky na telefonu: první sloupec jako nadpis, krátký druhý
+/// údaj (roky, počet…) jako štítek vpravo, ostatní drobněji pod sebou.
+class _CompactRow extends StatelessWidget {
+  const _CompactRow({
+    required this.row,
+    required this.columns,
+    required this.color,
+    required this.cell,
+  });
+
+  final List<TableCellData> row;
+  final List<String> columns;
+  final Color color;
+  final Widget Function(TableCellData c, {TextStyle? style}) cell;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final badge =
+        row.length > 1 &&
+            row[1].passage == null &&
+            row[1].text.isNotEmpty &&
+            row[1].text.length <= 14
+        ? row[1]
+        : null;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: cell(
+                  row.first,
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              if (badge != null)
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: color.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    badge.text,
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          for (var i = badge == null ? 1 : 2; i < row.length; i++)
+            if (row[i].text.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 92,
+                      child: Text(
+                        columns[i],
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: palette.muted,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: cell(
+                        row[i],
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          height: 1.35,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+        ],
       ),
     );
   }

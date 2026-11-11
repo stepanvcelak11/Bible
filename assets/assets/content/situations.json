@@ -1,0 +1,1856 @@
+{
+ "groups": [
+  {
+   "id": "feelings",
+   "name": "Pocity"
+  },
+  {
+   "id": "life",
+   "name": "Životní situace"
+  },
+  {
+   "id": "faith",
+   "name": "Víra a vztah s Bohem"
+  }
+ ],
+ "situations": [
+  {
+   "id": "joy",
+   "group": "feelings",
+   "icon": "sun",
+   "title": "Mám radost",
+   "intro": "Radost je dar. Bible zve radost sdílet a děkovat za ni Bohu.",
+   "refs": [
+    [
+     19,
+     16,
+     11,
+     11
+    ],
+    [
+     19,
+     118,
+     24,
+     24
+    ],
+    [
+     50,
+     4,
+     4,
+     4
+    ],
+    [
+     16,
+     8,
+     10,
+     10
+    ],
+    [
+     19,
+     126,
+     3,
+     3
+    ],
+    [
+     59,
+     1,
+     17,
+     17
+    ],
+    [
+     52,
+     5,
+     16,
+     18
+    ]
+   ],
+   "thoughts": [
+    "Radost v Bibli není povinný úsměv, ale odpověď na dobro, které nám někdo daroval. Proto se v žalmech radost tak často mění v díky: kdo se raduje, zjišťuje, že dobré věci nevyrobil sám.",
+    "Radost také roste, když se sdílí. Pastýři po Ježíšově narození běží vyprávět, co viděli, a otec ztraceného syna pořádá hostinu. Radost, kterou si člověk nechá jen pro sebe, rychle vyprchá.",
+    "A je dobré si ji pamatovat. Ve dnech, kdy radost chybí, se Izraelité vraceli ke vzpomínkám na to, co Bůh udělal. Dnešní radost může být zítřejší oporou."
+   ],
+   "steps": [
+    "Řekněte Bohu konkrétně, z čeho máte radost.",
+    "Podělte se o dobrou zprávu s někým blízkým.",
+    "Zapište si dnešní radost, ať se k ní můžete vrátit."
+   ],
+   "prayer": "Děkuji ti, Bože, za tuto radost. Ať z ní nezapomenu tebe, dárce všeho dobrého, a ať se jí umím rozdělit s druhými."
+  },
+  {
+   "id": "fear",
+   "group": "feelings",
+   "icon": "shield",
+   "title": "Mám strach",
+   "intro": "Strach k životu patří. Bůh slibuje, že v něm nejsme sami.",
+   "refs": [
+    [
+     23,
+     41,
+     10,
+     10
+    ],
+    [
+     19,
+     23,
+     4,
+     4
+    ],
+    [
+     19,
+     56,
+     4,
+     5
+    ],
+    [
+     6,
+     1,
+     9,
+     9
+    ],
+    [
+     55,
+     1,
+     7,
+     7
+    ],
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     19,
+     27,
+     1,
+     1
+    ],
+    [
+     62,
+     4,
+     18,
+     18
+    ]
+   ],
+   "thoughts": [
+    "Jedna z nejčastějších vět, které Bůh v Bibli lidem říká, je „Neboj se“. Říká ji Abrahamovi, Mojžíšovi, Marii i učedníkům v bouři. Nikdy to není výčitka, že se bojí – je to slib, že nejsou sami.",
+    "Bible strach neodstraňuje kouzlem. Žalmista píše: „Když mám strach, doufám v tebe.“ Strach a důvěra mohou být v srdci zároveň. Důvěra neznamená, že se nic nestane, ale že ani to nejhorší nás nevytrhne z Božích rukou.",
+    "Pomáhá strach pojmenovat. Dokud je mlhavý, roste. Když ho řekneme Bohu nahlas, zmenší se na skutečnou velikost."
+   ],
+   "steps": [
+    "Pojmenujte nahlas, čeho přesně se bojíte.",
+    "Vyberte si jeden verš a opakujte si ho, když strach přijde.",
+    "Řekněte o svém strachu někomu, komu věříte."
+   ],
+   "prayer": "Pane, bojím se. Ty víš čeho. Drž mě za ruku a dej mi odvahu udělat další krok, i když strach hned nezmizí."
+  },
+  {
+   "id": "anxiety",
+   "group": "feelings",
+   "icon": "cloud",
+   "title": "Trápí mě starosti",
+   "intro": "Starosti můžeme odevzdat – ne proto, že nejsou důležité, ale proto, že Bohu na nás záleží.",
+   "refs": [
+    [
+     50,
+     4,
+     6,
+     7
+    ],
+    [
+     60,
+     5,
+     7,
+     7
+    ],
+    [
+     40,
+     6,
+     34,
+     34
+    ],
+    [
+     40,
+     11,
+     28,
+     28
+    ],
+    [
+     19,
+     55,
+     23,
+     23
+    ],
+    [
+     43,
+     16,
+     33,
+     33
+    ],
+    [
+     19,
+     94,
+     19,
+     19
+    ]
+   ],
+   "thoughts": [
+    "Starosti se točí kolem věcí, které nemáme pod kontrolou – budoucnosti, zdraví, lidí kolem nás. Ježíš neříká, že na nich nezáleží. Říká, že máme Otce, který o nich ví dřív než my.",
+    "Pavel radí něco velmi praktického: s každou starostí přijít k Bohu v modlitbě a zároveň děkovat. Vděčnost obrací pozornost od toho, co chybí, k tomu, co Bůh už dal. Slibuje pak pokoj, který převyšuje rozum – ne vždy hned vyřešený problém.",
+    "Ježíš také učí žít po dnech: „Každý den má dost svého trápení.“ Zítřek nese Bůh. Dnes stačí dnešní krok."
+   ],
+   "steps": [
+    "Napište si starosti na papír a každou předejte Bohu v modlitbě.",
+    "Ke každé starosti připište jednu věc, za kterou můžete děkovat.",
+    "Rozhodněte se pro jeden malý krok, který můžete udělat dnes."
+   ],
+   "prayer": "Otče, svěřuji ti všechno, co mě tíží. Vezmi to, co neunesu, a dej mi pokoj, abych zvládl dnešek."
+  },
+  {
+   "id": "sadness",
+   "group": "feelings",
+   "icon": "rain",
+   "title": "Jsem smutný",
+   "intro": "Bible smutek nepřehlíží. Žalmy dávají slova i těm nejtěžším chvílím.",
+   "refs": [
+    [
+     19,
+     34,
+     19,
+     19
+    ],
+    [
+     40,
+     5,
+     4,
+     4
+    ],
+    [
+     19,
+     42,
+     12,
+     12
+    ],
+    [
+     19,
+     147,
+     3,
+     3
+    ],
+    [
+     47,
+     1,
+     3,
+     4
+    ],
+    [
+     25,
+     3,
+     22,
+     23
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ]
+   ],
+   "thoughts": [
+    "Bible nikde neříká, že věřící člověk nemá být smutný. Třetina žalmů jsou nářky. Jeremjáš pláče nad městem, Ježíš pláče u hrobu přítele. Smutek tedy smí být vysloven – i před Bohem.",
+    "Žalmisté dělají zvláštní věc: mluví se svou duší. „Proč se trápíš, má duše? Doufej v Boha.“ Neutíkají od smutku, ale připomínají si uprostřed něj, kdo je Bůh.",
+    "Bůh je podle Písma blízko lidem se zlomeným srdcem. Nemusíme smutek přemoct, abychom k němu mohli přijít. Smíme přijít takoví, jací jsme."
+   ],
+   "steps": [
+    "Vyslovte Bohu svůj smutek vlastními slovy, nebo slovy žalmu.",
+    "Dovolte si plakat a nespěchat.",
+    "Dejte vědět někomu blízkému, jak vám je."
+   ],
+   "prayer": "Bože, je mi smutno. Ty jsi blízko zlomeným srdcím – buď blízko i mně a pomalu mi vracej naději."
+  },
+  {
+   "id": "lonely",
+   "group": "feelings",
+   "icon": "person",
+   "title": "Cítím se osamělý",
+   "intro": "I když lidé chybí, Bůh slibuje svou blízkost.",
+   "refs": [
+    [
+     5,
+     31,
+     8,
+     8
+    ],
+    [
+     19,
+     27,
+     10,
+     10
+    ],
+    [
+     40,
+     28,
+     20,
+     20
+    ],
+    [
+     19,
+     68,
+     7,
+     7
+    ],
+    [
+     23,
+     43,
+     2,
+     2
+    ],
+    [
+     19,
+     139,
+     7,
+     10
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ]
+   ],
+   "thoughts": [
+    "Samota bolí, protože jsme stvořeni pro vztahy. Už na začátku Bible zazní: „Není dobré, aby člověk byl sám.“ Touha po blízkosti tedy není slabost, ale součást našeho lidství.",
+    "Mnoho biblických postav prožilo osamění: Eliáš pod jalovcem, David na útěku, Ježíš v Getsemane, když učedníci spali. Bůh jim samotu nevyčítá. Přichází k nim – s jídlem, slovem, s andělem, se svou přítomností.",
+    "Boží blízkost nenahrazuje lidi, ale dává sílu udělat krok k nim. Často je osamělý i někdo vedle nás."
+   ],
+   "steps": [
+    "Řekněte Bohu, že se cítíte sami – on to slyší rád.",
+    "Ozvěte se dnes jednomu člověku, i krátkou zprávou.",
+    "Zkuste najít společenství, kde se můžete pravidelně potkávat."
+   ],
+   "prayer": "Pane, cítím se sám. Děkuji, že ty mě neopouštíš. Pošli mi do cesty lidi a dej mi odvahu otevřít se jim."
+  },
+  {
+   "id": "anger",
+   "group": "feelings",
+   "icon": "flame",
+   "title": "Zlobím se",
+   "intro": "Hněv sám o sobě není hřích – záleží na tom, co s ním uděláme.",
+   "refs": [
+    [
+     49,
+     4,
+     26,
+     27
+    ],
+    [
+     59,
+     1,
+     19,
+     20
+    ],
+    [
+     20,
+     15,
+     1,
+     1
+    ],
+    [
+     20,
+     16,
+     32,
+     32
+    ],
+    [
+     19,
+     37,
+     8,
+     8
+    ],
+    [
+     45,
+     12,
+     19,
+     19
+    ],
+    [
+     51,
+     3,
+     13,
+     13
+    ]
+   ],
+   "thoughts": [
+    "Hněv v Bibli najdeme u lidí i u Boha. Bůh se hněvá na nespravedlnost a Ježíš převrací stoly v chrámu. Hněv může být znamením, že nám na něčem záleží.",
+    "Nebezpečný je hněv, který necháme růst. Pavel píše: „Hněvejte se, ale nehřešte. Slunce ať nezapadá nad vaším hněvem.“ Hněv, který přenocuje, se snadno změní v hořkost.",
+    "Jakub radí být rychlý k naslouchání a pomalý k mluvení. Než zareagujeme, můžeme hněv přinést Bohu a nechat ho, aby nám ukázal, co je pod ním – zranění, strach nebo pocit křivdy."
+   ],
+   "steps": [
+    "Než promluvíte, nadechněte se a počkejte.",
+    "Řekněte Bohu upřímně, proč se zlobíte.",
+    "Pokud to jde, vyřešte spor ještě dnes."
+   ],
+   "prayer": "Bože, zlobím se. Ukaž mi, co je pod mým hněvem, a pomoz mi jednat tak, abych nikomu neublížil."
+  },
+  {
+   "id": "guilt",
+   "group": "feelings",
+   "icon": "refresh",
+   "title": "Selhal jsem",
+   "intro": "Selhání není konec. Bůh nabízí odpuštění a nový začátek.",
+   "refs": [
+    [
+     62,
+     1,
+     9,
+     9
+    ],
+    [
+     19,
+     51,
+     3,
+     4
+    ],
+    [
+     45,
+     8,
+     1,
+     1
+    ],
+    [
+     23,
+     1,
+     18,
+     18
+    ],
+    [
+     19,
+     103,
+     10,
+     12
+    ],
+    [
+     33,
+     7,
+     18,
+     19
+    ],
+    [
+     42,
+     15,
+     20,
+     20
+    ]
+   ],
+   "thoughts": [
+    "Bible je plná lidí, kteří selhali: Mojžíš zabil člověka, David zhřešil s Batšebou, Petr zapřel Ježíše. Bůh je přesto nezavrhl. Jejich příběhy pokračují.",
+    "Rozdíl je mezi vinou, která vede k Bohu, a vinou, která od něj odhání. Jidáš i Petr selhali – Petr se ale vrátil a slyšel otázku „Miluješ mě?“. Odpuštění začíná upřímným přiznáním.",
+    "Bůh slibuje, že kdo vyznává své hříchy, tomu odpustí. Odpuštění není výsledek našeho trápení, ale dar. A kde je to možné, patří k němu i snaha napravit, co jsme pokazili."
+   ],
+   "steps": [
+    "Pojmenujte před Bohem konkrétně, v čem jste selhali.",
+    "Přijměte jeho odpuštění – a přestaňte se trestat.",
+    "Pokud jste někomu ublížili, zvažte, jak to napravit."
+   ],
+   "prayer": "Pane, selhal jsem. Odpusť mi a očisti mě. Děkuji, že u tebe není konec, ale nový začátek."
+  },
+  {
+   "id": "worthless",
+   "group": "feelings",
+   "icon": "heart",
+   "title": "Cítím se bezcenný",
+   "intro": "Naše hodnota nestojí na výkonu ani na názoru druhých.",
+   "refs": [
+    [
+     19,
+     139,
+     13,
+     14
+    ],
+    [
+     23,
+     43,
+     4,
+     4
+    ],
+    [
+     49,
+     2,
+     10,
+     10
+    ],
+    [
+     62,
+     3,
+     1,
+     1
+    ],
+    [
+     40,
+     10,
+     29,
+     31
+    ],
+    [
+     36,
+     3,
+     17,
+     17
+    ],
+    [
+     24,
+     31,
+     3,
+     3
+    ]
+   ],
+   "thoughts": [
+    "Svět měří hodnotu výkonem, vzhledem a uznáním. Bible začíná jinde: člověk je stvořen k Božímu obrazu. Hodnotu jsme dostali dřív, než jsme cokoli dokázali.",
+    "Bůh v Izajášovi říká: „Jsi v mých očích drahý a vzácný a já tě miluji.“ A Jan žasne: „Hleďte, jakou lásku nám Otec dal, že smíme být nazváni Božími dětmi.“ Tohle se nedá ztratit neúspěchem.",
+    "Pocity bezcennosti často přicházejí ze slov, která nám kdysi někdo řekl. Boží slovo o nás je ale pravdivější než kterýkoli lidský soud – i než ten náš vlastní."
+   ],
+   "steps": [
+    "Přečtěte si nahlas Ž 139,13-14 a dosaďte své jméno.",
+    "Všimněte si, kdo nebo co vám říká, že nejste dost.",
+    "Udělejte dnes něco dobrého pro sebe jako pro Boží dítě."
+   ],
+   "prayer": "Otče, učím se věřit, že jsem pro tebe vzácný. Ať se nedívám na sebe očima druhých, ale tvýma."
+  },
+  {
+   "id": "tired",
+   "group": "feelings",
+   "icon": "battery",
+   "title": "Jsem vyčerpaný",
+   "intro": "Odpočinek je Boží nápad. Síla nemusí pocházet jen z nás.",
+   "refs": [
+    [
+     40,
+     11,
+     28,
+     30
+    ],
+    [
+     23,
+     40,
+     29,
+     31
+    ],
+    [
+     19,
+     23,
+     1,
+     3
+    ],
+    [
+     47,
+     12,
+     9,
+     9
+    ],
+    [
+     48,
+     6,
+     9,
+     9
+    ],
+    [
+     19,
+     127,
+     2,
+     2
+    ]
+   ],
+   "thoughts": [
+    "Vyčerpání zná i Bible. Eliáš si po velkém vítězství lehne pod keř a chce zemřít. Bůh mu nedá kázání – dá mu jídlo, spánek a znovu jídlo. Teprve potom s ním mluví.",
+    "Odpočinek je Boží nápad. Sám Bůh sedmý den odpočíval a Ježíš zve: „Pojďte ke mně všichni, kdo jste unavení.“ Kdo odpočívá, přiznává, že svět nestojí na něm.",
+    "Prorok slibuje, že ti, kdo doufají v Hospodina, nabírají novou sílu. Síla nemusí pocházet jen z nás – můžeme ji přijímat."
+   ],
+   "steps": [
+    "Dopřejte si dnes skutečný odpočinek bez výčitek.",
+    "Zvažte, co můžete odložit nebo komu svěřit.",
+    "Najděte si chvíli ticha s Bohem, i jen pět minut."
+   ],
+   "prayer": "Pane, jsem unavený. Dej mi odpočinutí, které dáváš, a novou sílu na to, co je opravdu potřeba."
+  },
+  {
+   "id": "doubt",
+   "group": "feelings",
+   "icon": "help",
+   "title": "Pochybuji",
+   "intro": "Pochybnosti mívali i apoštolové. Bůh se nebojí upřímných otázek.",
+   "refs": [
+    [
+     41,
+     9,
+     24,
+     24
+    ],
+    [
+     40,
+     14,
+     31,
+     31
+    ],
+    [
+     43,
+     20,
+     27,
+     29
+    ],
+    [
+     58,
+     11,
+     1,
+     1
+    ],
+    [
+     59,
+     1,
+     5,
+     6
+    ],
+    [
+     65,
+     1,
+     22,
+     22
+    ],
+    [
+     45,
+     10,
+     17,
+     17
+    ]
+   ],
+   "thoughts": [
+    "Pochybnosti nejsou opakem víry. Tomáš chtěl vidět rány, Jan Křtitel se z vězení ptal, zda je Ježíš opravdu ten pravý, a žalmisté se ptají „Proč?“ a „Dokdy?“. Bůh se jim neposmívá.",
+    "Ježíš Tomášovi neřekne „styď se“, ale ukáže mu své ruce. Otec nemocného chlapce volá: „Věřím, pomoz mé nevěře!“ – a Ježíš jeho syna uzdraví. Malá víra stačí, když ji neseme k Ježíši.",
+    "Otázky můžeme pokládat nahlas: Bohu, Písmu i lidem, kteří věří déle. Poctivé hledání k víře často vede hlouběji."
+   ],
+   "steps": [
+    "Napište si otázku, která vás nejvíc trápí.",
+    "Řekněte ji Bohu upřímně jako Tomáš nebo žalmista.",
+    "Promluvte si o ní s někým zralým ve víře."
+   ],
+   "prayer": "Pane, věřím – pomoz mé nevěře. Ukaž se mi tak, jak jsi se ukázal Tomášovi, a veď mě k pravdě."
+  },
+  {
+   "id": "decision",
+   "group": "life",
+   "icon": "signpost",
+   "title": "Nevím, co mám dělat",
+   "intro": "Při rozhodování Bible radí hledat moudrost, modlit se a důvěřovat.",
+   "refs": [
+    [
+     20,
+     3,
+     5,
+     6
+    ],
+    [
+     59,
+     1,
+     5,
+     5
+    ],
+    [
+     19,
+     32,
+     8,
+     8
+    ],
+    [
+     23,
+     30,
+     21,
+     21
+    ],
+    [
+     20,
+     16,
+     9,
+     9
+    ],
+    [
+     19,
+     119,
+     105,
+     105
+    ],
+    [
+     45,
+     12,
+     2,
+     2
+    ]
+   ],
+   "thoughts": [
+    "Bible většinou nedává hotový návod pro každou volbu. Dává ale moudrost a Boží blízkost. Jakub píše: „Má-li kdo nedostatek moudrosti, ať prosí Boha.“ A Bůh dává štědře.",
+    "Moudré rozhodnutí obvykle roste z několika zdrojů: z modlitby, z Písma, z rad zkušených lidí a z poctivého pohledu na vlastní motivy. Přísloví říkají, že plány se daří, když je hodně rádců.",
+    "Někdy nevíme, kam vede celá cesta, ale víme, jaký je další krok. Boží slovo je svícen pro nohy – svítí na krok, ne na celou mapu."
+   ],
+   "steps": [
+    "Proste Boha o moudrost konkrétně pro tuto volbu.",
+    "Sepište si možnosti a u každé, co je dobré a co ne.",
+    "Poraďte se s jedním moudrým člověkem."
+   ],
+   "prayer": "Bože, nevím, co dělat. Dej mi moudrost, pokoj v srdci a odvahu udělat další správný krok."
+  },
+  {
+   "id": "courage",
+   "group": "life",
+   "icon": "mountain",
+   "title": "Čeká mě těžký úkol",
+   "intro": "Odvaha neznamená nemít strach, ale jít dál s Boží pomocí.",
+   "refs": [
+    [
+     6,
+     1,
+     9,
+     9
+    ],
+    [
+     50,
+     4,
+     13,
+     13
+    ],
+    [
+     5,
+     31,
+     6,
+     6
+    ],
+    [
+     19,
+     27,
+     14,
+     14
+    ],
+    [
+     46,
+     16,
+     13,
+     13
+    ],
+    [
+     55,
+     1,
+     7,
+     7
+    ],
+    [
+     23,
+     41,
+     13,
+     13
+    ]
+   ],
+   "thoughts": [
+    "Bůh často posílá lidi do úkolů, na které si nepřipadají: Mojžíš se vymlouvá, že neumí mluvit, Gedeón, že je nejmenší, Jeremjáš, že je moc mladý. Pokaždé slyší: „Já budu s tebou.“",
+    "Jozue před vstupem do země slyší třikrát: „Buď rozhodný a statečný.“ Odvaha tu není vlastnost hrdinů, ale rozhodnutí spolehnout se na Boží slib.",
+    "Těžký úkol se dá rozdělit na kroky. Nehemjáš postavil hradby tak, že každý stavěl kousek naproti svému domu."
+   ],
+   "steps": [
+    "Rozdělte úkol na menší kroky a začněte prvním.",
+    "Požádejte o modlitbu nebo pomoc někoho blízkého.",
+    "Připomeňte si, kdy vám Bůh pomohl dřív."
+   ],
+   "prayer": "Pane, čeká mě něco těžkého. Buď se mnou jako s Jozuem a dej mi sílu, moudrost a klid."
+  },
+  {
+   "id": "illness",
+   "group": "life",
+   "icon": "medical",
+   "title": "Jsem nemocný",
+   "intro": "V nemoci můžeme prosit o uzdravení i o sílu nést to, co přichází.",
+   "refs": [
+    [
+     59,
+     5,
+     14,
+     15
+    ],
+    [
+     19,
+     41,
+     4,
+     4
+    ],
+    [
+     19,
+     103,
+     2,
+     3
+    ],
+    [
+     24,
+     17,
+     14,
+     14
+    ],
+    [
+     47,
+     4,
+     16,
+     18
+    ],
+    [
+     23,
+     53,
+     5,
+     5
+    ],
+    [
+     45,
+     8,
+     18,
+     18
+    ]
+   ],
+   "thoughts": [
+    "Bible bere nemoc vážně. Ježíš se nemocných dotýká, uzdravuje je a ptá se jich, co potřebují. Nemocní v evangeliích nejsou na okraji, ale ve středu jeho pozornosti.",
+    "Můžeme prosit o uzdravení – Jakub vyzývá k modlitbě za nemocné. Zároveň Pavel zažil, že jeho „osten“ nezmizel, a slyšel: „Stačí ti má milost.“ Bůh je blízko v uzdravení i v nesení nemoci.",
+    "Pečovat o tělo, chodit k lékaři a přijímat pomoc druhých není projev malé víry. Bůh často jedná i skrze lidi a léky."
+   ],
+   "steps": [
+    "Proste o uzdravení i o sílu na každý den.",
+    "Dovolte druhým, aby vám pomohli a modlili se za vás.",
+    "Řekněte Bohu i to, čeho se v nemoci bojíte."
+   ],
+   "prayer": "Pane Ježíši, ty jsi uzdravoval nemocné. Dotkni se mě, dej mi sílu a pokoj a buď se mnou v každé chvíli."
+  },
+  {
+   "id": "grief",
+   "group": "life",
+   "icon": "candle",
+   "title": "Zemřel mi někdo blízký",
+   "intro": "Smutek nad ztrátou je projevem lásky. Kristus dává naději vzkříšení.",
+   "refs": [
+    [
+     43,
+     11,
+     25,
+     26
+    ],
+    [
+     52,
+     4,
+     13,
+     14
+    ],
+    [
+     43,
+     14,
+     1,
+     3
+    ],
+    [
+     45,
+     8,
+     38,
+     39
+    ],
+    [
+     19,
+     23,
+     4,
+     4
+    ],
+    [
+     66,
+     21,
+     4,
+     4
+    ],
+    [
+     19,
+     34,
+     19,
+     19
+    ]
+   ],
+   "thoughts": [
+    "Smutek nad ztrátou je cena lásky. Ježíš u hrobu Lazara pláče, i když ví, že ho za chvíli vzkřísí. Slzy tedy nejsou nedostatek víry.",
+    "Pavel píše, abychom se nermoutili jako ti, kdo nemají naději. Neříká „nermuťte se“ – říká, že smutek věřících má jiný horizont. Kristus vstal a smrt nemá poslední slovo.",
+    "Truchlení má svůj čas a nedá se uspěchat. Bůh slibuje, že jednou setře každou slzu. Do té doby smí naše slzy padat před ním."
+   ],
+   "steps": [
+    "Dejte si čas truchlit a nesrovnávejte se s druhými.",
+    "Vzpomínejte na zesnulého a děkujte za něj Bohu.",
+    "Přijměte blízkost lidí, kteří chtějí být s vámi."
+   ],
+   "prayer": "Bože, chybí mi. Děkuji za čas, který jsme spolu měli. Utěš mě a dej mi naději, že smrt nemá poslední slovo."
+  },
+  {
+   "id": "hurt",
+   "group": "life",
+   "icon": "handshake",
+   "title": "Někdo mi ublížil",
+   "intro": "Odpustit neznamená schvalovat zlo. Znamená to nechat soud na Bohu.",
+   "refs": [
+    [
+     49,
+     4,
+     32,
+     32
+    ],
+    [
+     51,
+     3,
+     13,
+     13
+    ],
+    [
+     40,
+     6,
+     14,
+     15
+    ],
+    [
+     40,
+     18,
+     21,
+     22
+    ],
+    [
+     42,
+     6,
+     27,
+     28
+    ],
+    [
+     45,
+     12,
+     17,
+     21
+    ]
+   ],
+   "thoughts": [
+    "Bible nezlehčuje zranění, která nám způsobí druzí. Josefa prodali vlastní bratři, Davida pronásledoval král, kterému věrně sloužil. Bolest smí být vyslovena.",
+    "Ježíš učí odpouštět – ne proto, že by zlo nevadilo, ale proto, že soud patří Bohu. Odpuštění znamená vzdát se práva na pomstu. Neznamená to předstírat, že se nic nestalo, ani zůstávat v nebezpečí.",
+    "Odpuštění bývá proces. Často se začíná modlitbou za toho, kdo nám ublížil – i když na to zatím nemáme sílu."
+   ],
+   "steps": [
+    "Řekněte Bohu upřímně, co vás bolí.",
+    "Rozhodněte se nechat soud na Bohu, i když cit ještě nestačí.",
+    "Pokud vám někdo ubližuje dál, vyhledejte pomoc a chraňte se."
+   ],
+   "prayer": "Pane, bolí mě, co se stalo. Uzdrav mé srdce a dej mi sílu odpustit. Spravedlnost nechávám na tobě."
+  },
+  {
+   "id": "injustice",
+   "group": "life",
+   "icon": "scale",
+   "title": "Děje se mi křivda",
+   "intro": "Bůh vidí křivdu a jednou zjedná spravedlnost.",
+   "refs": [
+    [
+     19,
+     37,
+     5,
+     6
+    ],
+    [
+     45,
+     12,
+     19,
+     19
+    ],
+    [
+     60,
+     2,
+     23,
+     23
+    ],
+    [
+     40,
+     5,
+     10,
+     12
+    ],
+    [
+     19,
+     9,
+     10,
+     10
+    ],
+    [
+     30,
+     5,
+     24,
+     24
+    ]
+   ],
+   "thoughts": [
+    "Křivda je jedna z nejtěžších zkušeností. Žalmisté i proroci se ptají: „Proč se daří bezbožným?“ Bible tu otázku neumlčuje – dává jí místo v modlitbě.",
+    "Bůh je v Písmu ten, kdo vidí utiskované. Hagar ho nazve „Bůh, který mě vidí“. Ámos volá, ať se valí právo jako voda. Bůh spravedlnost nejen slibuje, ale jednou ji zjedná úplně.",
+    "Mezitím smíme hájit pravdu pokojně a moudře, jako Pavel před soudy. A smíme se zastat i druhých, kterým se děje křivda."
+   ],
+   "steps": [
+    "Vyslovte Bohu svou křivdu bez přikrášlení.",
+    "Zvažte, co můžete pokojně a pravdivě udělat.",
+    "Nenechte hořkost, aby převzala vaše srdce."
+   ],
+   "prayer": "Bože spravedlnosti, ty vidíš, co se mi děje. Zastaň se mě a dej mi trpělivost, moudrost a čisté srdce."
+  },
+  {
+   "id": "money",
+   "group": "life",
+   "icon": "wallet",
+   "title": "Mám finanční starosti",
+   "intro": "Bůh zná naše potřeby. Bible učí spokojenosti i moudrému hospodaření.",
+   "refs": [
+    [
+     50,
+     4,
+     19,
+     19
+    ],
+    [
+     40,
+     6,
+     31,
+     33
+    ],
+    [
+     40,
+     6,
+     26,
+     26
+    ],
+    [
+     58,
+     13,
+     5,
+     5
+    ],
+    [
+     54,
+     6,
+     6,
+     8
+    ],
+    [
+     20,
+     30,
+     8,
+     9
+    ],
+    [
+     19,
+     37,
+     25,
+     25
+    ]
+   ],
+   "thoughts": [
+    "Peníze jsou v Bibli častým tématem – Ježíš o nich mluví víc než o mnoha jiných věcech. Ne proto, že by byly špatné, ale protože snadno zaberou místo, které patří Bohu.",
+    "Ježíš ukazuje na ptáky a lilie: Otec ví, co potřebujete. Pavel se naučil být spokojený v dostatku i nedostatku. Spokojenost není lhostejnost, ale důvěra.",
+    "Bible zároveň radí moudře hospodařit: plánovat, nezadlužovat se zbytečně, pracovat poctivě a dělit se. I malý dar dělá srdce svobodnějším."
+   ],
+   "steps": [
+    "Předložte Bohu konkrétní potřeby, o kterých víte.",
+    "Udělejte si jednoduchý přehled příjmů a výdajů.",
+    "Požádejte o radu nebo pomoc, pokud je situace vážná."
+   ],
+   "prayer": "Otče, ty znáš mé potřeby. Dej mi moudrost v hospodaření, spokojené srdce a důvěru, že se postaráš."
+  },
+  {
+   "id": "work",
+   "group": "life",
+   "icon": "work",
+   "title": "Práce a povolání",
+   "intro": "Práce má smysl, když ji děláme poctivě a pro Pána.",
+   "refs": [
+    [
+     51,
+     3,
+     23,
+     24
+    ],
+    [
+     21,
+     9,
+     10,
+     10
+    ],
+    [
+     20,
+     16,
+     3,
+     3
+    ],
+    [
+     1,
+     2,
+     15,
+     15
+    ],
+    [
+     52,
+     4,
+     11,
+     12
+    ],
+    [
+     20,
+     22,
+     29,
+     29
+    ]
+   ],
+   "thoughts": [
+    "Práce není trest. Ještě před pádem dostal člověk úkol pečovat o zahradu. Práce je účast na Božím díle ve světě.",
+    "Pavel píše: „Všechno, co děláte, dělejte z celého srdce jako pro Pána, a ne pro lidi.“ I obyčejná práce tak dostává smysl – nejde jen o výplatu nebo uznání.",
+    "Bible chrání i před tím, aby se práce stala modlou. Sobota připomíná, že nejsme stroje. Hodnota člověka nestojí na výkonu."
+   ],
+   "steps": [
+    "Svěřte Bohu dnešní práci na začátku dne.",
+    "Udělejte jednu věc pořádně, i když ji nikdo neuvidí.",
+    "Najděte si čas na odpočinek a nepracujte bez konce."
+   ],
+   "prayer": "Pane, žehnej mé práci. Ať ji dělám poctivě a s radostí, jako pro tebe, a ať v ní můžu sloužit druhým."
+  },
+  {
+   "id": "love",
+   "group": "life",
+   "icon": "favorite",
+   "title": "Láska a manželství",
+   "intro": "Bible popisuje lásku jako rozhodnutí a službu, nejen jako cit.",
+   "refs": [
+    [
+     46,
+     13,
+     4,
+     7
+    ],
+    [
+     1,
+     2,
+     24,
+     24
+    ],
+    [
+     22,
+     8,
+     6,
+     7
+    ],
+    [
+     21,
+     4,
+     9,
+     10
+    ],
+    [
+     49,
+     5,
+     25,
+     25
+    ],
+    [
+     51,
+     3,
+     14,
+     14
+    ],
+    [
+     62,
+     4,
+     7,
+     7
+    ]
+   ],
+   "thoughts": [
+    "Bible mluví o lásce jako o rozhodnutí a službě. Pavlova píseň o lásce neříká, co láska cítí, ale co dělá: je trpělivá, laskavá, nezávidí, nehledá svůj prospěch.",
+    "Manželství je v Písmu smlouva věrnosti – obraz Boží věrnosti k jeho lidu. Muž a žena se mají milovat tak, jako Kristus miloval církev: obětavě.",
+    "Láska potřebuje péči. Odpuštění, čas spolu, dobrá slova a modlitba jeden za druhého jsou jako voda pro zahradu."
+   ],
+   "steps": [
+    "Udělejte dnes pro blízkého člověka konkrétní laskavost.",
+    "Řekněte mu, za co jste vděční.",
+    "Pokud mezi vámi něco stojí, udělejte první krok ke smíření."
+   ],
+   "prayer": "Bože lásky, nauč mě milovat trpělivě a věrně. Žehnej našemu vztahu a pomoz nám odpouštět si."
+  },
+  {
+   "id": "family",
+   "group": "life",
+   "icon": "family",
+   "title": "Rodina a děti",
+   "intro": "Víra se předává hlavně doma – slovy i příkladem.",
+   "refs": [
+    [
+     5,
+     6,
+     6,
+     7
+    ],
+    [
+     20,
+     22,
+     6,
+     6
+    ],
+    [
+     19,
+     127,
+     3,
+     3
+    ],
+    [
+     49,
+     6,
+     1,
+     4
+    ],
+    [
+     51,
+     3,
+     21,
+     21
+    ],
+    [
+     6,
+     24,
+     15,
+     15
+    ]
+   ],
+   "thoughts": [
+    "Rodina je v Bibli místem, kde se víra předává. „Tato slova budeš vštěpovat svým synům a budeš o nich mluvit doma i na cestě.“ Víra se učí víc příkladem než přednáškou.",
+    "Biblické rodiny nebyly dokonalé – Jákob měl oblíbence, David nezvládal syny. Bůh přesto skrze tyto rodiny jedná. Naše rodina také nemusí být dokonalá, aby v ní působil.",
+    "Pavel vyzývá rodiče, aby děti nepopouzeli, ale vychovávali v Boží kázni. Děti mají ctít rodiče. Vzájemný respekt je základem domova."
+   ],
+   "steps": [
+    "Pomodlete se dnes za každého člena rodiny jménem.",
+    "Najděte chvíli, kdy budete spolu bez obrazovek.",
+    "Řekněte dětem nebo rodičům něco povzbudivého."
+   ],
+   "prayer": "Otče, svěřuji ti svou rodinu. Buď uprostřed našeho domova, dej nám trpělivost, lásku a víru."
+  },
+  {
+   "id": "temptation",
+   "group": "life",
+   "icon": "warning",
+   "title": "Jsem v pokušení",
+   "intro": "Pokušení není hřích. Bůh slibuje cestu ven.",
+   "refs": [
+    [
+     46,
+     10,
+     13,
+     13
+    ],
+    [
+     59,
+     1,
+     12,
+     14
+    ],
+    [
+     40,
+     26,
+     41,
+     41
+    ],
+    [
+     58,
+     4,
+     15,
+     16
+    ],
+    [
+     48,
+     5,
+     16,
+     16
+    ],
+    [
+     19,
+     119,
+     11,
+     11
+    ]
+   ],
+   "thoughts": [
+    "Pokušení samo není hřích. I Ježíš byl pokoušen, a přesto nezhřešil. Pocítit tah ke zlému neznamená, že jsme selhali.",
+    "Ježíš na poušti odpovídal pokušiteli slovy Písma. Josef před Potífarovou ženou prostě utekl. Někdy je nejmoudřejší pokušení nevyjednávat, ale odejít.",
+    "Pavel slibuje, že Bůh nedopustí pokušení nad naše síly a dá i cestu ven. Pomáhá vědět, kdy a kde jsme nejslabší, a předem se připravit."
+   ],
+   "steps": [
+    "Pojmenujte, co vás pokouší a kdy to přichází.",
+    "Odejděte ze situace, pokud to jde.",
+    "Svěřte se někomu, kdo vás podrží."
+   ],
+   "prayer": "Pane, neuveď mě v pokušení, ale vysvoboď mě od zlého. Ukaž mi cestu ven a dej mi sílu ji zvolit."
+  },
+  {
+   "id": "waiting",
+   "group": "life",
+   "icon": "hourglass",
+   "title": "Musím čekat",
+   "intro": "Čekání není ztracený čas. Bůh jedná ve svém čase.",
+   "refs": [
+    [
+     23,
+     40,
+     31,
+     31
+    ],
+    [
+     19,
+     27,
+     14,
+     14
+    ],
+    [
+     25,
+     3,
+     25,
+     26
+    ],
+    [
+     19,
+     37,
+     7,
+     7
+    ],
+    [
+     21,
+     3,
+     1,
+     1
+    ],
+    [
+     35,
+     2,
+     3,
+     3
+    ]
+   ],
+   "thoughts": [
+    "Bible je plná čekání. Abraham čekal na syna pětadvacet let, Izrael čekal staletí na Mesiáše, Simeon čekal v chrámu celý život. Čekání je běžná součást života s Bohem.",
+    "Čekat neznamená nedělat nic. Žalmy mluví o čekání na Hospodina jako o aktivní důvěře: „Buď silný, ať se tvé srdce vzmuží, a skládej naději v Hospodina.“",
+    "V čekání často roste to, co by jinak nevyrostlo: trpělivost, víra a schopnost vidět Boha v malých věcech."
+   ],
+   "steps": [
+    "Řekněte Bohu, na co čekáte a jak je to pro vás těžké.",
+    "Hledejte, co můžete dělat dobře v době čekání.",
+    "Zapisujte si drobné znaky Boží péče."
+   ],
+   "prayer": "Bože, čekám a je to těžké. Dej mi trpělivost a důvěru, že tvůj čas je dobrý."
+  },
+  {
+   "id": "sleep",
+   "group": "life",
+   "icon": "moon",
+   "title": "Nemohu spát",
+   "intro": "Na konec dne můžeme všechno složit do Božích rukou.",
+   "refs": [
+    [
+     19,
+     4,
+     9,
+     9
+    ],
+    [
+     19,
+     3,
+     6,
+     6
+    ],
+    [
+     19,
+     121,
+     3,
+     4
+    ],
+    [
+     20,
+     3,
+     24,
+     24
+    ],
+    [
+     19,
+     63,
+     7,
+     8
+    ],
+    [
+     40,
+     11,
+     28,
+     28
+    ]
+   ],
+   "thoughts": [
+    "Noc zvětšuje starosti. David zažil mnoho nebezpečných nocí, a přece v žalmu píše: „V pokoji uléhám a hned usínám, protože ty sám, Hospodine, mi dáváš bydlet v bezpečí.“",
+    "Spánek je projev důvěry. Kdo usíná, přiznává, že svět nestojí na něm. Žalm říká, že Bůh dává svým milým i ve spánku – a že ten, kdo ochraňuje Izrael, nespí ani nedříme.",
+    "Pomáhá na konci dne den „odevzdat“: poděkovat za dobré, svěřit nedokončené a odpustit to, co bolí."
+   ],
+   "steps": [
+    "Projděte s Bohem uplynulý den a poděkujte za tři věci.",
+    "Svěřte mu nedokončené věci na zítřek.",
+    "Odložte telefon a opakujte si pomalu krátký verš."
+   ],
+   "prayer": "Pane, svěřuji ti tuto noc. Ty nespíš, a tak můžu spát já. Dej mi klid a odpočinutí."
+  },
+  {
+   "id": "success",
+   "group": "life",
+   "icon": "trophy",
+   "title": "Daří se mi",
+   "intro": "Úspěch je příležitost k vděčnosti a pokoře.",
+   "refs": [
+    [
+     5,
+     8,
+     17,
+     18
+    ],
+    [
+     59,
+     4,
+     6,
+     6
+    ],
+    [
+     20,
+     16,
+     18,
+     18
+    ],
+    [
+     24,
+     9,
+     22,
+     23
+    ],
+    [
+     46,
+     4,
+     7,
+     7
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ]
+   ],
+   "thoughts": [
+    "Úspěch je dar a zároveň zkouška. Mojžíš varuje Izrael: až budeš mít plné domy, nezapomeň na Hospodina. Dostatek umí srdce uspat.",
+    "Bible vede k vděčnosti: „Co máš, co bys nedostal?“ Šalomoun dostal moudrost i bohatství, když prosil o to první. Úspěch je nejbezpečnější v rukou pokorného člověka.",
+    "Úspěch je i příležitost žehnat druhým – sdílet, pomoci, povzbudit. Požehnání se v Bibli nikdy nemá zastavit u nás."
+   ],
+   "steps": [
+    "Poděkujte Bohu konkrétně za to, co se daří.",
+    "Poděkujte i lidem, kteří vám pomohli.",
+    "Zvažte, jak můžete svým úspěchem požehnat někomu dalšímu."
+   ],
+   "prayer": "Děkuji ti, Bože, za to, co se daří. Chraň mě před pýchou a ukaž mi, jak z toho, co mám, žehnat druhým."
+  },
+  {
+   "id": "peace",
+   "group": "faith",
+   "icon": "spa",
+   "title": "Hledám pokoj",
+   "intro": "Pokoj, který dává Kristus, nezávisí na okolnostech.",
+   "refs": [
+    [
+     43,
+     14,
+     27,
+     27
+    ],
+    [
+     50,
+     4,
+     7,
+     7
+    ],
+    [
+     23,
+     26,
+     3,
+     3
+    ],
+    [
+     45,
+     5,
+     1,
+     1
+    ],
+    [
+     51,
+     3,
+     15,
+     15
+    ],
+    [
+     19,
+     4,
+     9,
+     9
+    ]
+   ],
+   "thoughts": [
+    "Biblické slovo šalom znamená víc než klid. Znamená celistvost – to, že je všechno na svém místě: vztah s Bohem, s lidmi i se sebou.",
+    "Ježíš říká: „Pokoj vám dávám, ne jako dává svět.“ Svět dává pokoj, když se okolnosti zklidní. Ježíšův pokoj zůstává i uprostřed bouře – učedníci ho viděli spát v lodi.",
+    "Pokoj se dá pěstovat: modlitbou, vděčností, odpuštěním a tichem, ve kterém necháme Boha mluvit."
+   ],
+   "steps": [
+    "Najděte si dnes pět minut ticha bez rozptýlení.",
+    "Svěřte Bohu, co vás vnitřně rozrušuje.",
+    "Udělejte krok ke smíření tam, kde chybí pokoj s druhými."
+   ],
+   "prayer": "Pane Ježíši, dej mi svůj pokoj, který nezávisí na okolnostech. Utiš bouři v mém srdci."
+  },
+  {
+   "id": "hope",
+   "group": "faith",
+   "icon": "sunrise",
+   "title": "Potřebuji naději",
+   "intro": "Křesťanská naděje se opírá o Boží věrnost a Kristovo vzkříšení.",
+   "refs": [
+    [
+     24,
+     29,
+     11,
+     11
+    ],
+    [
+     45,
+     15,
+     13,
+     13
+    ],
+    [
+     45,
+     8,
+     28,
+     28
+    ],
+    [
+     60,
+     1,
+     3,
+     3
+    ],
+    [
+     58,
+     6,
+     19,
+     19
+    ],
+    [
+     25,
+     3,
+     21,
+     23
+    ]
+   ],
+   "thoughts": [
+    "Biblická naděje není optimismus, že všechno dobře dopadne. Je to důvěra, že Bůh je věrný a že Kristovo vzkříšení otevřelo budoucnost, kterou smrt nezavře.",
+    "Jeremjáš psal vyhnancům v Babylóně: „Mám s vámi plány pokoje, ne zla, abych vám dal budoucnost a naději.“ Psal to lidem, kteří přišli o všechno.",
+    "Naděje roste ze vzpomínek na Boží věrnost a z pohledu dopředu – k novému nebi a nové zemi, kde Bůh setře každou slzu."
+   ],
+   "steps": [
+    "Vzpomeňte si na chvíli, kdy vás Bůh podržel.",
+    "Přečtěte si Ř 8,38-39 nebo Zj 21,1-5 pomalu nahlas.",
+    "Sdílejte svou naději s někým, kdo ji potřebuje."
+   ],
+   "prayer": "Bože naděje, naplň mě radostí a pokojem ve víře. Ať naděje roste i tam, kde ji teď nevidím."
+  },
+  {
+   "id": "gratitude",
+   "group": "faith",
+   "icon": "thanks",
+   "title": "Chci poděkovat",
+   "intro": "Vděčnost mění pohled na život. Žalmy jsou plné díků.",
+   "refs": [
+    [
+     19,
+     103,
+     1,
+     2
+    ],
+    [
+     52,
+     5,
+     18,
+     18
+    ],
+    [
+     19,
+     107,
+     1,
+     1
+    ],
+    [
+     51,
+     3,
+     17,
+     17
+    ],
+    [
+     19,
+     136,
+     1,
+     1
+    ],
+    [
+     59,
+     1,
+     17,
+     17
+    ]
+   ],
+   "thoughts": [
+    "Vděčnost je v Bibli postoj, ne jen pocit. Žalmy opakují „Chvalte Hospodina, neboť je dobrý“ – i v těžkých časech. Děkování připomíná, kdo je Bůh.",
+    "Z deseti uzdravených malomocných se vrátil poděkovat jediný. Ježíš si toho všiml. Děkovat znamená zastavit se a vrátit se k dárci.",
+    "Pavel píše: „Ve všem děkujte.“ Ne za všechno, ale ve všem. I v těžké situaci se dá najít něco, za co poděkovat."
+   ],
+   "steps": [
+    "Zapište si pět věcí, za které jste dnes vděční.",
+    "Poděkujte nahlas Bohu i jednomu člověku.",
+    "Zkuste týden končit den díkůvzdáním."
+   ],
+   "prayer": "Děkuji ti, Bože, za všechno dobré, co mi dáváš – za to, čeho si všímám, i za to, co přehlížím."
+  },
+  {
+   "id": "prayer",
+   "group": "faith",
+   "icon": "pray",
+   "title": "Nevím, jak se modlit",
+   "intro": "Modlitba je rozhovor. Ježíš dal učedníkům vzor, Duch pomáhá.",
+   "refs": [
+    [
+     40,
+     6,
+     9,
+     13
+    ],
+    [
+     45,
+     8,
+     26,
+     26
+    ],
+    [
+     50,
+     4,
+     6,
+     6
+    ],
+    [
+     40,
+     7,
+     7,
+     8
+    ],
+    [
+     24,
+     33,
+     3,
+     3
+    ],
+    [
+     52,
+     5,
+     17,
+     17
+    ]
+   ],
+   "thoughts": [
+    "Modlitba je rozhovor s Bohem, ne výkon. Učedníci prosili: „Pane, nauč nás modlit se,“ a Ježíš jim dal krátkou modlitbu Otče náš. Stačí pár upřímných slov.",
+    "Pavel přiznává, že ani on neví, jak se modlit, ale Duch se za nás přimlouvá vzdechy, které nelze vyslovit. I ticho a povzdech mohou být modlitbou.",
+    "Pomáhá jednoduchý rytmus: poděkovat, říct, co nás trápí, prosit za druhé a chvíli naslouchat. Žalmy mohou posloužit jako slova, když vlastní chybějí."
+   ],
+   "steps": [
+    "Pomodlete se pomalu Otče náš a u každé věty se zastavte.",
+    "Zkuste mluvit s Bohem vlastními slovy jednu minutu.",
+    "Vyberte si žalm a modlete se ho jako svou modlitbu."
+   ],
+   "prayer": "Pane, nauč mě modlit se. Děkuji, že mi nasloucháš, i když nevím, co říct."
+  },
+  {
+   "id": "newstart",
+   "group": "faith",
+   "icon": "sprout",
+   "title": "Chci začít znovu",
+   "intro": "U Boha je možný nový začátek – každý den.",
+   "refs": [
+    [
+     47,
+     5,
+     17,
+     17
+    ],
+    [
+     25,
+     3,
+     22,
+     23
+    ],
+    [
+     23,
+     43,
+     18,
+     19
+    ],
+    [
+     26,
+     36,
+     26,
+     26
+    ],
+    [
+     19,
+     51,
+     12,
+     12
+    ],
+    [
+     50,
+     3,
+     13,
+     14
+    ]
+   ],
+   "thoughts": [
+    "Bible je kniha nových začátků. Noe po potopě, Izrael po zajetí, Petr po zapření, Pavel po pronásledování církve. Bůh neodepisuje lidi, kteří se k němu obrátí.",
+    "Kniha Pláč říká, že Boží milosrdenství je nové každé ráno. Nový začátek není jednorázová událost, ale možnost každého dne.",
+    "Pavel píše: „Kdo je v Kristu, je nové stvoření.“ Nový začátek není jen předsevzetí, ale Boží dílo v nás."
+   ],
+   "steps": [
+    "Řekněte Bohu, co chcete nechat za sebou.",
+    "Vyberte si jeden konkrétní krok, kterým začnete.",
+    "Najděte si někoho, kdo vás na nové cestě povzbudí."
+   ],
+   "prayer": "Pane, chci začít znovu. Odpusť mi, co bylo, a veď mě dál. Děkuji, že tvé milosrdenství je nové každé ráno."
+  },
+  {
+   "id": "knowgod",
+   "group": "faith",
+   "icon": "explore",
+   "title": "Chci poznat Boha",
+   "intro": "Základní verše o tom, kdo je Bůh a co pro nás udělal v Kristu.",
+   "refs": [
+    [
+     43,
+     3,
+     16,
+     16
+    ],
+    [
+     45,
+     3,
+     23,
+     24
+    ],
+    [
+     45,
+     6,
+     23,
+     23
+    ],
+    [
+     49,
+     2,
+     8,
+     9
+    ],
+    [
+     43,
+     14,
+     6,
+     6
+    ],
+    [
+     45,
+     10,
+     9,
+     9
+    ],
+    [
+     66,
+     3,
+     20,
+     20
+    ]
+   ],
+   "thoughts": [
+    "Bůh se v Bibli dává poznat postupně: jako Stvořitel, jako ten, kdo vyvádí z otroctví, jako milosrdný a milostivý. Nejvíc ho ale ukazuje Ježíš: „Kdo vidí mne, vidí Otce.“",
+    "Poznat Boha neznamená jen o něm něco vědět. Je to vztah – jako poznat přítele. Roste časem, rozhovorem a společnou cestou.",
+    "Dobré je začít evangeliem, třeba podle Marka nebo Jana, a sledovat, jak Ježíš jedná s lidmi. Tak vypadá Bůh."
+   ],
+   "steps": [
+    "Začněte číst evangelium podle Marka, jednu kapitolu denně.",
+    "Po každém čtení se zeptejte: co jsem se dozvěděl o Bohu?",
+    "Řekněte Bohu, že ho chcete poznat."
+   ],
+   "prayer": "Bože, chci tě poznat. Ukaž se mi skrze Ježíše a jeho slova a veď mě blíž k sobě."
+  },
+  {
+   "id": "meaning",
+   "group": "faith",
+   "icon": "compass",
+   "title": "Hledám smysl života",
+   "intro": "Bible vidí smysl života ve vztahu s Bohem a v lásce k druhým.",
+   "refs": [
+    [
+     40,
+     22,
+     37,
+     39
+    ],
+    [
+     33,
+     6,
+     8,
+     8
+    ],
+    [
+     21,
+     12,
+     13,
+     13
+    ],
+    [
+     43,
+     10,
+     10,
+     10
+    ],
+    [
+     49,
+     2,
+     10,
+     10
+    ],
+    [
+     51,
+     3,
+     23,
+     23
+    ]
+   ],
+   "thoughts": [
+    "Kazatel v Bibli zkoušel najít smysl v práci, bohatství, zábavě i moudrosti – a všechno mu připadalo jako honba za větrem. Jeho závěr: bát se Boha a zachovávat jeho přikázání.",
+    "Ježíš shrnul smysl života do dvou přikázání: milovat Boha celým srdcem a bližního jako sebe. Smysl tedy není věc, ale vztah.",
+    "Pavel píše, že jsme Boží dílo, stvořené k dobrým skutkům, které Bůh připravil. Každý den nabízí malé příležitosti, jak tento smysl žít."
+   ],
+   "steps": [
+    "Zeptejte se: koho mohu dnes milovat konkrétním skutkem?",
+    "Přemýšlejte, jaké dary vám Bůh dal pro druhé.",
+    "Svěřte Bohu svou otázku po smyslu."
+   ],
+   "prayer": "Bože, dej mému životu smysl. Nauč mě milovat tebe i lidi kolem mě a ukaž mi, k čemu mě voláš."
+  }
+ ]
+}

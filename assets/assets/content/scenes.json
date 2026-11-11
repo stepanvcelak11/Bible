@@ -1,0 +1,2501 @@
+{
+ "scenes": [
+  {
+   "ref": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Stvoření světa",
+   "words": "na pocatku stvoril nebe zemi svetlo sedm dni sest dni tma vznik sveta jak vznikl svet stvoreni vesmir"
+  },
+  {
+   "ref": [
+    1,
+    1,
+    27,
+    27
+   ],
+   "kind": "v",
+   "title": "Člověk stvořen k Božímu obrazu",
+   "words": "obraz bozi podoba muz zena stvoril cloveka dustojnost hodnota"
+  },
+  {
+   "ref": [
+    1,
+    2,
+    18,
+    18
+   ],
+   "kind": "v",
+   "title": "Není dobré, aby člověk byl sám",
+   "words": "neni dobre byt sam samota pomoc zena manzelka stvoreni zeny zebro"
+  },
+  {
+   "ref": [
+    1,
+    3,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Had a zakázané ovoce",
+   "words": "had jablko ovoce zakazany strom eden raj adam eva svedl pokuseni nahota vyhnani z raje prvni hrich"
+  },
+  {
+   "ref": [
+    1,
+    4,
+    8,
+    8
+   ],
+   "kind": "p",
+   "title": "Kain zabije Ábela",
+   "words": "zabil kdo zabil abela bratr zabil bratra vrazda zavist kain abel obet jsem snad strazcem sveho bratra"
+  },
+  {
+   "ref": [
+    1,
+    6,
+    14,
+    14
+   ],
+   "kind": "p",
+   "title": "Noe staví archu",
+   "words": "postavil archu stavel kdo postavil archa lod zvirata po dvou potopa dest ctyricet dni noe holubice olivova ratolest duha"
+  },
+  {
+   "ref": [
+    1,
+    9,
+    13,
+    13
+   ],
+   "kind": "v",
+   "title": "Duha jako znamení smlouvy",
+   "words": "duha znameni slib uz nikdy potopa oblak smlouva"
+  },
+  {
+   "ref": [
+    1,
+    11,
+    4,
+    4
+   ],
+   "kind": "p",
+   "title": "Babylonská věž",
+   "words": "postavili vez az do nebe jazyky zmateni babylon stavba rozptylil narody"
+  },
+  {
+   "ref": [
+    1,
+    12,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Abram odchází z domova",
+   "words": "odejdi ze sve zeme do neznama stehovani abram abraham povolani pozehnani narodum"
+  },
+  {
+   "ref": [
+    1,
+    15,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Spočítej hvězdy",
+   "words": "hvezdy nebe spocitej potomstvo slib abraham uveril spravedlnost"
+  },
+  {
+   "ref": [
+    1,
+    18,
+    14,
+    14
+   ],
+   "kind": "v",
+   "title": "Je něco pro Hospodina nemožné?",
+   "words": "nemozne sara smala smich stara syn ve stari tri muzi navsteva mamre"
+  },
+  {
+   "ref": [
+    1,
+    19,
+    26,
+    26
+   ],
+   "kind": "p",
+   "title": "Lotova žena se ohlédla",
+   "words": "ohledla solny sloup lot sodoma gomora ohen sira utek"
+  },
+  {
+   "ref": [
+    1,
+    22,
+    2,
+    2
+   ],
+   "kind": "p",
+   "title": "Abraham má obětovat Izáka",
+   "words": "proc buh zkousel abrahama zkousel obetovat syna izak beranek hora morija nuz zkouska viry hospodin opatri"
+  },
+  {
+   "ref": [
+    1,
+    25,
+    33,
+    33
+   ],
+   "kind": "p",
+   "title": "Ezau prodá prvorozenství",
+   "words": "cocka polevka prvorozenstvi ezau jakob dvojcata hlad prodal"
+  },
+  {
+   "ref": [
+    1,
+    27,
+    19,
+    19
+   ],
+   "kind": "p",
+   "title": "Jákob podvede otce",
+   "words": "podvod pozehnani slepy otec kozi kuze prevlek jakob ezau izak"
+  },
+  {
+   "ref": [
+    1,
+    28,
+    12,
+    12
+   ],
+   "kind": "p",
+   "title": "Jákobův žebřík",
+   "words": "zebrik schody do nebe andele sen jakob betel kamen pod hlavou"
+  },
+  {
+   "ref": [
+    1,
+    32,
+    25,
+    25
+   ],
+   "kind": "p",
+   "title": "Jákob zápasí s Bohem",
+   "words": "zapas noc kycel jabok nepustim te dokud mi nepozehnas nove jmeno izrael"
+  },
+  {
+   "ref": [
+    1,
+    37,
+    3,
+    3
+   ],
+   "kind": "p",
+   "title": "Josef a pestrobarevný plášť",
+   "words": "prodali bratri do otroctvi kdo prodal josefa barevny plast sukne josef bratri zavist sny prodali studna otrok"
+  },
+  {
+   "ref": [
+    1,
+    39,
+    12,
+    12
+   ],
+   "kind": "p",
+   "title": "Josef utíká před Potífarovou ženou",
+   "words": "svadeni potifar zena utekl nechal plast vezeni cistota pokuseni"
+  },
+  {
+   "ref": [
+    1,
+    41,
+    25,
+    25
+   ],
+   "kind": "p",
+   "title": "Josef vykládá faraonovy sny",
+   "words": "sny faraon sedm krav tucne hubene klasy hlad uroda vyklad snu"
+  },
+  {
+   "ref": [
+    1,
+    50,
+    20,
+    20
+   ],
+   "kind": "v",
+   "title": "Vy jste zamýšleli zlo, Bůh dobro",
+   "words": "zlo obratil v dobro odpusteni bratrum josef zamysleli zle buh to obratil"
+  },
+  {
+   "ref": [
+    2,
+    2,
+    3,
+    3
+   ],
+   "kind": "p",
+   "title": "Mojžíš v košíku na Nilu",
+   "words": "kosik reka nil miminko dite rakosi faraonova dcera mojzis zachranen"
+  },
+  {
+   "ref": [
+    2,
+    3,
+    2,
+    2
+   ],
+   "kind": "p",
+   "title": "Hořící keř",
+   "words": "ker horel neshorel ohen zuj si obuv svata puda mojzis povolani jsem ktery jsem"
+  },
+  {
+   "ref": [
+    2,
+    7,
+    20,
+    20
+   ],
+   "kind": "p",
+   "title": "Deset egyptských ran",
+   "words": "rany egyptske zaby krev kobylky tma vredy kroupy komari mouchy prvorozeni faraon nechtel propustit"
+  },
+  {
+   "ref": [
+    2,
+    12,
+    13,
+    13
+   ],
+   "kind": "p",
+   "title": "Pesach – krev na veřejích",
+   "words": "krev beranka vereje dvere andel smrti presel pesach velikonoce nekvaseny chleb"
+  },
+  {
+   "ref": [
+    2,
+    14,
+    21,
+    21
+   ],
+   "kind": "p",
+   "title": "Rozdělení Rudého moře",
+   "words": "kdo rozdelil more presli more rozdelene more rude more suchou nohou vody jako zed utek z egypta faraonovo vojsko utonulo"
+  },
+  {
+   "ref": [
+    2,
+    14,
+    14,
+    14
+   ],
+   "kind": "v",
+   "title": "Hospodin bude bojovat za vás",
+   "words": "bude bojovat za vas budte zticha mlcte klid strach z nepritele"
+  },
+  {
+   "ref": [
+    2,
+    16,
+    15,
+    15
+   ],
+   "kind": "p",
+   "title": "Mana z nebe",
+   "words": "mana chleb z nebe jidlo na pousti krepelky hlad reptani kazdy den"
+  },
+  {
+   "ref": [
+    2,
+    17,
+    6,
+    6
+   ],
+   "kind": "p",
+   "title": "Voda ze skály",
+   "words": "voda ze skaly uderil hul zizen poust mojzis"
+  },
+  {
+   "ref": [
+    2,
+    20,
+    3,
+    3
+   ],
+   "kind": "v",
+   "title": "Desatero",
+   "words": "deset prikazani desatero kamenne desky sinaj zakon nezabijes nepokrades nesesmilnis cti otce i matku"
+  },
+  {
+   "ref": [
+    2,
+    32,
+    4,
+    4
+   ],
+   "kind": "p",
+   "title": "Zlaté tele",
+   "words": "zlate tele idol modlarstvi tanec aron uprostred pouste rozbite desky"
+  },
+  {
+   "ref": [
+    4,
+    6,
+    24,
+    24
+   ],
+   "kind": "v",
+   "title": "Áronské požehnání",
+   "words": "at te hospodin zehna a chrani rozjasni tvar pokoj pozehnani knezske"
+  },
+  {
+   "ref": [
+    4,
+    21,
+    9,
+    9
+   ],
+   "kind": "p",
+   "title": "Měděný had na tyči",
+   "words": "medeny had tyc hadi ustknuti pohled uzdraveni poust"
+  },
+  {
+   "ref": [
+    4,
+    22,
+    28,
+    28
+   ],
+   "kind": "p",
+   "title": "Mluvící oslice",
+   "words": "oslice promluvila bileam andel s mecem cesta"
+  },
+  {
+   "ref": [
+    5,
+    6,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Miluj Hospodina celým srdcem",
+   "words": "slys izraeli miluj celym srdcem dusi silou sema jediny"
+  },
+  {
+   "ref": [
+    5,
+    31,
+    6,
+    6
+   ],
+   "kind": "v",
+   "title": "Nenechá tě, neopustí tě",
+   "words": "bud silny a statecny neboj se nenecha te neopusti odvaha"
+  },
+  {
+   "ref": [
+    6,
+    1,
+    9,
+    9
+   ],
+   "kind": "v",
+   "title": "Buď silný a odvážný",
+   "words": "silny odvazny statecny neboj se nedes se buh je s tebou kamkoli pujdes"
+  },
+  {
+   "ref": [
+    6,
+    2,
+    15,
+    15
+   ],
+   "kind": "p",
+   "title": "Rachab skryje zvědy",
+   "words": "rachab nevestka zvedove provaz okno hradby schovala"
+  },
+  {
+   "ref": [
+    6,
+    6,
+    20,
+    20
+   ],
+   "kind": "p",
+   "title": "Pád hradeb Jericha",
+   "words": "hradby padly jericho troubeni polnice obchazeli sedm dni krik"
+  },
+  {
+   "ref": [
+    6,
+    24,
+    15,
+    15
+   ],
+   "kind": "v",
+   "title": "Já a můj dům budeme sloužit Hospodinu",
+   "words": "ja a muj dum rodina vyberte si komu budete slouzit rozhodnuti"
+  },
+  {
+   "ref": [
+    7,
+    6,
+    37,
+    37
+   ],
+   "kind": "p",
+   "title": "Gedeonovo rouno",
+   "words": "rouno rosa znameni gedeon pochybnost ujisteni"
+  },
+  {
+   "ref": [
+    7,
+    7,
+    7,
+    7
+   ],
+   "kind": "p",
+   "title": "Gedeon a tři sta mužů",
+   "words": "tri sta muzu male vojsko pili vodu dzbany pochodne midjanci"
+  },
+  {
+   "ref": [
+    7,
+    16,
+    17,
+    17
+   ],
+   "kind": "p",
+   "title": "Samson a Delila",
+   "words": "nejsilnejsi muz sila silak vlasy sila delila ostrihala oslepili sloupy samson zrada"
+  },
+  {
+   "ref": [
+    8,
+    1,
+    16,
+    16
+   ],
+   "kind": "v",
+   "title": "Kam půjdeš ty, půjdu i já",
+   "words": "kam pujdes pujdu i ja tvuj lid muj lid vernost tchyne rut noemi"
+  },
+  {
+   "ref": [
+    9,
+    3,
+    10,
+    10
+   ],
+   "kind": "p",
+   "title": "Malý Samuel slyší Boží hlas",
+   "words": "mluv pane tvuj sluzebnik slysi volani v noci chlapec samuel eli"
+  },
+  {
+   "ref": [
+    9,
+    16,
+    7,
+    7
+   ],
+   "kind": "v",
+   "title": "Člověk hledí na to, co je před očima",
+   "words": "srdce vzhled vnejsek hledi na srdce pomazani davida nejmladsi pastyr"
+  },
+  {
+   "ref": [
+    9,
+    17,
+    49,
+    49
+   ],
+   "kind": "p",
+   "title": "David a Goliáš",
+   "words": "zabil goliase porazil kdo zabil obr prak kamen maly proti velkemu golias david pastyr vyhral souboj pelistejci"
+  },
+  {
+   "ref": [
+    9,
+    18,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Přátelství Davida a Jonatana",
+   "words": "pratelstvi nejlepsi pritel jonatan david smlouva verny kamarad"
+  },
+  {
+   "ref": [
+    10,
+    11,
+    2,
+    2
+   ],
+   "kind": "p",
+   "title": "David a Batšeba",
+   "words": "batseba koupani strecha cizolozstvi nevera urijas vrazda manzela"
+  },
+  {
+   "ref": [
+    10,
+    12,
+    7,
+    7
+   ],
+   "kind": "p",
+   "title": "Nátan: Ty jsi ten muž",
+   "words": "ty jsi ten muz prorok natan ovecka podobenstvi usvedceni"
+  },
+  {
+   "ref": [
+    11,
+    3,
+    9,
+    9
+   ],
+   "kind": "p",
+   "title": "Šalomoun prosí o moudrost",
+   "words": "nejmoudrejsi kral moudry moudrost prosba sen salomoun srdce rozumne"
+  },
+  {
+   "ref": [
+    11,
+    3,
+    25,
+    25
+   ],
+   "kind": "p",
+   "title": "Šalomounův soud",
+   "words": "dve zeny dite rozetnout mec matka spor salomoun soud spravedlnost"
+  },
+  {
+   "ref": [
+    11,
+    17,
+    6,
+    6
+   ],
+   "kind": "p",
+   "title": "Krkavci krmí Eliáše",
+   "words": "krkavci havrani chleb maso potok elias sucho"
+  },
+  {
+   "ref": [
+    11,
+    17,
+    14,
+    14
+   ],
+   "kind": "z",
+   "title": "Vdova ze Sarepty – mouka a olej",
+   "words": "mouka olej nedosly vdova sarepta posledni jidlo elias"
+  },
+  {
+   "ref": [
+    11,
+    18,
+    38,
+    38
+   ],
+   "kind": "p",
+   "title": "Eliáš na Karmelu",
+   "words": "ohen z nebe karmel baal proroci obet soutez elias"
+  },
+  {
+   "ref": [
+    11,
+    19,
+    12,
+    12
+   ],
+   "kind": "p",
+   "title": "Tichý jemný hlas",
+   "words": "tichy hlas sepot jeskyne vitr zemetreseni ohen elias vycerpany deprese chtel zemrit"
+  },
+  {
+   "ref": [
+    12,
+    2,
+    11,
+    11
+   ],
+   "kind": "p",
+   "title": "Eliáš vzat do nebe",
+   "words": "ohnivy vuz kone vichrice elias vzat elisa plast"
+  },
+  {
+   "ref": [
+    12,
+    5,
+    14,
+    14
+   ],
+   "kind": "z",
+   "title": "Naamán se umyje v Jordánu",
+   "words": "malomocenstvi sedmkrat jordan naaman vojevudce uzdraveni pokora"
+  },
+  {
+   "ref": [
+    12,
+    6,
+    17,
+    17
+   ],
+   "kind": "p",
+   "title": "Elíšův sluha vidí ohnivé vozy",
+   "words": "otevri oci ohnive vozy hora andelske vojsko je jich vic s nami"
+  },
+  {
+   "ref": [
+    17,
+    4,
+    14,
+    14
+   ],
+   "kind": "v",
+   "title": "Pro takovou chvíli",
+   "words": "ester kralovna pro takovou chvili odvaha zachranit narod haman"
+  },
+  {
+   "ref": [
+    18,
+    1,
+    21,
+    21
+   ],
+   "kind": "v",
+   "title": "Hospodin dal, Hospodin vzal",
+   "words": "dal vzal nahy jsem prisel ztrata vseho job utrpeni zkouska"
+  },
+  {
+   "ref": [
+    18,
+    38,
+    4,
+    4
+   ],
+   "kind": "v",
+   "title": "Kde jsi byl, když jsem zakládal zemi?",
+   "words": "kde jsi byl zakladal zemi buh odpovida jobovi z boure"
+  },
+  {
+   "ref": [
+    19,
+    1,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Blaze muži – strom u vody",
+   "words": "strom zasazeny u potoka blaze muzi nechodi v rade bezboznych"
+  },
+  {
+   "ref": [
+    19,
+    23,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Hospodin je můj pastýř",
+   "words": "pastyr nebudu mit nedostatek zelene pastviny tiche vody udoli stinu smrti nebudu se bat prut hul"
+  },
+  {
+   "ref": [
+    19,
+    46,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Bůh je naše útočiště",
+   "words": "utociste sila pomoc v souzeni ztiste se poznejte ze jsem buh hory se hrouti"
+  },
+  {
+   "ref": [
+    19,
+    51,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Smiluj se nade mnou – čisté srdce",
+   "words": "ciste srdce stvor ve mne smiluj se pokani hrich david batseba obmyj me"
+  },
+  {
+   "ref": [
+    19,
+    90,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Nauč nás počítat dny",
+   "words": "pocitat nase dny tisic let jako vcerejsi den kratky zivot moudre srdce"
+  },
+  {
+   "ref": [
+    19,
+    91,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Kdo bydlí v úkrytu Nejvyššího",
+   "words": "ukryt nejvyssiho stin vsemohouciho andele ponesou na rukou ochrana nebudes se bat nocniho desu"
+  },
+  {
+   "ref": [
+    19,
+    103,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Dobrořeč, duše má, Hospodinu",
+   "words": "dobrorec nezapomen na dobrodini odpousti vsechny viny jak daleko vychod od zapadu"
+  },
+  {
+   "ref": [
+    19,
+    121,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Pozvedám oči k horám",
+   "words": "oci k horam odkud prijde pomoc nedrima strazce vychazeni vchazeni"
+  },
+  {
+   "ref": [
+    19,
+    139,
+    0,
+    0
+   ],
+   "kind": "v",
+   "title": "Znáš mě, Hospodine",
+   "words": "znas me zkoumas utkal jsi me v lune matky kam bych utekl uzasne utvoren"
+  },
+  {
+   "ref": [
+    20,
+    3,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Doufej v Hospodina celým srdcem",
+   "words": "doufej celym srdcem nespolehej na svuj rozum stezky naprimi duvera"
+  },
+  {
+   "ref": [
+    21,
+    3,
+    1,
+    1
+   ],
+   "kind": "v",
+   "title": "Všechno má svůj čas",
+   "words": "vsechno ma svuj cas cas rodit umirat plakat smat tancit"
+  },
+  {
+   "ref": [
+    22,
+    8,
+    6,
+    6
+   ],
+   "kind": "v",
+   "title": "Láska je silná jako smrt",
+   "words": "laska silna jako smrt pecet na srdci velke vody neuhasi"
+  },
+  {
+   "ref": [
+    23,
+    6,
+    8,
+    8
+   ],
+   "kind": "p",
+   "title": "Izajáš: Hle, zde jsem, pošli mne",
+   "words": "zde jsem posli me koho poslu serafini uhlik rty povolani izajas"
+  },
+  {
+   "ref": [
+    23,
+    9,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Proroctví o dítěti – Knížeti pokoje",
+   "words": "dite se nam narodilo syn dan divuplny radce knize pokoje vanoce"
+  },
+  {
+   "ref": [
+    23,
+    40,
+    31,
+    31
+   ],
+   "kind": "v",
+   "title": "Jako orli",
+   "words": "orli kridla nabudou sily neunavi pobezi cekaji na hospodina unava"
+  },
+  {
+   "ref": [
+    23,
+    41,
+    10,
+    10
+   ],
+   "kind": "v",
+   "title": "Neboj se, já jsem s tebou",
+   "words": "neboj se jsem s tebou posilnim pravice podepru strach uzkost"
+  },
+  {
+   "ref": [
+    23,
+    43,
+    2,
+    2
+   ],
+   "kind": "v",
+   "title": "Půjdeš-li přes vody, budu s tebou",
+   "words": "pres vody ohen nespali reky nezaplavi vykoupil jsem te jmenem te volam"
+  },
+  {
+   "ref": [
+    23,
+    53,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Jeho ranami jsme uzdraveni",
+   "words": "probodnut pro nase nevernosti ranami uzdraveni trpici sluzebnik jako beranek"
+  },
+  {
+   "ref": [
+    24,
+    1,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Znal jsem tě dřív, než jsem tě vytvořil",
+   "words": "nez jsem te vytvoril v lune znal jsem te jsem mlady jeremjas povolani"
+  },
+  {
+   "ref": [
+    24,
+    29,
+    11,
+    11
+   ],
+   "kind": "v",
+   "title": "Myšlenky pokoje, budoucnost a naděje",
+   "words": "plany pro vas budoucnost nadeje myslenky pokoje ne zle"
+  },
+  {
+   "ref": [
+    25,
+    3,
+    22,
+    22
+   ],
+   "kind": "v",
+   "title": "Boží milosrdenství je každé ráno nové",
+   "words": "kazde rano nove milosrdenstvi nebere konce vernost velka"
+  },
+  {
+   "ref": [
+    26,
+    37,
+    4,
+    4
+   ],
+   "kind": "p",
+   "title": "Údolí suchých kostí",
+   "words": "suche kosti udoli oziveni duch dech vstante ezechiel"
+  },
+  {
+   "ref": [
+    27,
+    3,
+    25,
+    25
+   ],
+   "kind": "p",
+   "title": "Tři mladíci v ohnivé peci",
+   "words": "ohniva pec tri mladici socha nepoklonili ctvrty v ohni sadrak"
+  },
+  {
+   "ref": [
+    27,
+    5,
+    25,
+    25
+   ],
+   "kind": "p",
+   "title": "Ruka píše na zeď",
+   "words": "ruka pismo na zdi mene tekel hostina belsasar zvazen nalezen lehky"
+  },
+  {
+   "ref": [
+    27,
+    6,
+    23,
+    23
+   ],
+   "kind": "p",
+   "title": "Daniel v jámě lvové",
+   "words": "hodili lvum lvi jama lvova daniel modlil okno andel zavrel tlamy"
+  },
+  {
+   "ref": [
+    32,
+    2,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Jonáš v břiše ryby",
+   "words": "spolkla ryba kdo byl v brise ryby velryba ryba spolkla tri dny jonas utekl lod boure ninive"
+  },
+  {
+   "ref": [
+    32,
+    4,
+    6,
+    6
+   ],
+   "kind": "p",
+   "title": "Jonáš a skočec",
+   "words": "proc utekl jonas bal ker skocec stin cerv jonas zlobil ninive soucit"
+  },
+  {
+   "ref": [
+    33,
+    6,
+    8,
+    8
+   ],
+   "kind": "v",
+   "title": "Co od tebe žádá Hospodin",
+   "words": "konat pravo milovat milosrdenstvi pokorne chodit co zada"
+  },
+  {
+   "ref": [
+    35,
+    3,
+    17,
+    17
+   ],
+   "kind": "v",
+   "title": "Ač fíkovník nevykvete",
+   "words": "fikovnik nevykvete neuroda presto se budu radovat nestesti"
+  },
+  {
+   "ref": [
+    39,
+    3,
+    10,
+    10
+   ],
+   "kind": "v",
+   "title": "Přineste desátky",
+   "words": "desatky desetina zkousejte me otevru pruduchy nebe pozehnani penize"
+  },
+  {
+   "ref": [
+    42,
+    1,
+    30,
+    30
+   ],
+   "kind": "p",
+   "title": "Anděl Gabriel u Marie",
+   "words": "andel gabriel marie zvestovani panna pocne syna neboj se"
+  },
+  {
+   "ref": [
+    42,
+    2,
+    7,
+    7
+   ],
+   "kind": "p",
+   "title": "Ježíš se narodil v Betlémě",
+   "words": "narodil se kde se narodil jezis jesle chlev narozeni betlem nebylo misto v hostinci vanoce miminko jezisek"
+  },
+  {
+   "ref": [
+    42,
+    2,
+    10,
+    10
+   ],
+   "kind": "p",
+   "title": "Andělé a pastýři",
+   "words": "pastyri andele v noci zvestuji radost slava na vysostech stado"
+  },
+  {
+   "ref": [
+    40,
+    2,
+    11,
+    11
+   ],
+   "kind": "p",
+   "title": "Mudrci z východu",
+   "words": "tri kralove mudrci hvezda dary zlato kadidlo myrha herodes"
+  },
+  {
+   "ref": [
+    40,
+    2,
+    16,
+    16
+   ],
+   "kind": "p",
+   "title": "Útěk do Egypta",
+   "words": "utek do egypta herodes zabiji deti betlemske deti josef sen"
+  },
+  {
+   "ref": [
+    42,
+    2,
+    46,
+    46
+   ],
+   "kind": "p",
+   "title": "Dvanáctiletý Ježíš v chrámě",
+   "words": "dvanactilety ztratil se rodicum v chrame ucitele tri dny hledali"
+  },
+  {
+   "ref": [
+    40,
+    3,
+    16,
+    16
+   ],
+   "kind": "p",
+   "title": "Křest Ježíše v Jordánu",
+   "words": "pokrtil kdo pokrtil jezise krest jordan holubice nebe se otevrelo toto je muj milovany syn jan krtitel"
+  },
+  {
+   "ref": [
+    40,
+    4,
+    4,
+    4
+   ],
+   "kind": "p",
+   "title": "Pokušení na poušti",
+   "words": "pokuseni poust ctyricet dni pust kameny chleb dabel satan nejen chlebem"
+  },
+  {
+   "ref": [
+    42,
+    5,
+    6,
+    6
+   ],
+   "kind": "z",
+   "title": "Zázračný rybolov",
+   "words": "ryby site se trhaly celou noc nic nechytili zajed na hloubku petr rybari lidi"
+  },
+  {
+   "ref": [
+    40,
+    4,
+    19,
+    19
+   ],
+   "kind": "p",
+   "title": "Pojďte za mnou, rybáři lidí",
+   "words": "pojdte za mnou rybari lidi povolani ucedniku petr ondrej site"
+  },
+  {
+   "ref": [
+    43,
+    2,
+    9,
+    9
+   ],
+   "kind": "z",
+   "title": "Svatba v Káni – voda ve víno",
+   "words": "promenil vodu ve vino voda vino svatba kana doslo vino prvni zazrak dzbany marie"
+  },
+  {
+   "ref": [
+    43,
+    3,
+    16,
+    16
+   ],
+   "kind": "v",
+   "title": "Bůh tak miloval svět",
+   "words": "tak miloval svet dal syna jednorozeneho kazdy kdo veri nezahyne vecny zivot"
+  },
+  {
+   "ref": [
+    43,
+    3,
+    3,
+    3
+   ],
+   "kind": "p",
+   "title": "Nikodém – narodit se znovu",
+   "words": "narodit se znovu shury nikodem v noci vitr duch nove narozeni"
+  },
+  {
+   "ref": [
+    43,
+    4,
+    14,
+    14
+   ],
+   "kind": "p",
+   "title": "Žena u studny",
+   "words": "studna samaritanka zena voda ziva voda zizen pet muzu poledne"
+  },
+  {
+   "ref": [
+    40,
+    5,
+    3,
+    3
+   ],
+   "kind": "v",
+   "title": "Blahoslavenství",
+   "words": "blahoslaveni chudi duchem tisi placici hladovi cisteho srdce pokojni kazani na hore"
+  },
+  {
+   "ref": [
+    40,
+    5,
+    14,
+    14
+   ],
+   "kind": "v",
+   "title": "Vy jste světlo světa",
+   "words": "svetlo sveta sul zeme mesto na hore lampa svicen svitit"
+  },
+  {
+   "ref": [
+    40,
+    5,
+    39,
+    39
+   ],
+   "kind": "v",
+   "title": "Nastav druhou tvář",
+   "words": "druhou tvar uderi nastav nebran se zlemu oko za oko pomsta"
+  },
+  {
+   "ref": [
+    40,
+    5,
+    44,
+    44
+   ],
+   "kind": "v",
+   "title": "Milujte své nepřátele",
+   "words": "milujte nepratele modlete se za ty kdo vas pronasleduji"
+  },
+  {
+   "ref": [
+    40,
+    6,
+    9,
+    9
+   ],
+   "kind": "v",
+   "title": "Otče náš",
+   "words": "otce nas modlitba pane jak se modlit posvet se jmeno chleb nas vezdejsi odpust nam nase viny"
+  },
+  {
+   "ref": [
+    40,
+    6,
+    26,
+    26
+   ],
+   "kind": "v",
+   "title": "Ptáci nesejí ani nežnou",
+   "words": "ptaci nebesti lilie polni nestarejte se starosti zitrek co budeme jist oblekat"
+  },
+  {
+   "ref": [
+    40,
+    6,
+    33,
+    33
+   ],
+   "kind": "v",
+   "title": "Hledejte nejprve Boží království",
+   "words": "hledejte nejprve kralovstvi priority vsechno ostatni bude pridano"
+  },
+  {
+   "ref": [
+    40,
+    7,
+    3,
+    3
+   ],
+   "kind": "v",
+   "title": "Tříska a trám v oku",
+   "words": "triska brevno tram v oku bratra nesudte kritika pokrytec"
+  },
+  {
+   "ref": [
+    40,
+    7,
+    7,
+    7
+   ],
+   "kind": "v",
+   "title": "Proste a bude vám dáno",
+   "words": "proste bude vam dano hledejte naleznete tlucte otevre"
+  },
+  {
+   "ref": [
+    40,
+    7,
+    12,
+    12
+   ],
+   "kind": "v",
+   "title": "Zlaté pravidlo",
+   "words": "jak chcete aby lide jednali s vami tak jednejte i vy zlate pravidlo"
+  },
+  {
+   "ref": [
+    40,
+    7,
+    24,
+    24
+   ],
+   "kind": "o",
+   "title": "Dům na skále",
+   "words": "dum na skale pisku stavitel dest vitr spadl moudry posetily zaklady"
+  },
+  {
+   "ref": [
+    40,
+    11,
+    28,
+    28
+   ],
+   "kind": "v",
+   "title": "Pojďte ke mně, všichni unavení",
+   "words": "pojdte ke mne unaveni obtizeni odpocinuti jho je prijemne bremeno lehke unava"
+  },
+  {
+   "ref": [
+    40,
+    13,
+    3,
+    3
+   ],
+   "kind": "o",
+   "title": "Rozsévač",
+   "words": "rozsevac semeno zrno cesta skala trni dobra puda uroda"
+  },
+  {
+   "ref": [
+    40,
+    13,
+    31,
+    31
+   ],
+   "kind": "o",
+   "title": "Hořčičné zrno",
+   "words": "horcicne zrnko nejmensi semeno strom ptaci kralovstvi"
+  },
+  {
+   "ref": [
+    40,
+    13,
+    45,
+    45
+   ],
+   "kind": "o",
+   "title": "Drahocenná perla a poklad v poli",
+   "words": "perla poklad v poli prodal vsechno obchodnik cena"
+  },
+  {
+   "ref": [
+    40,
+    18,
+    12,
+    12
+   ],
+   "kind": "o",
+   "title": "Ztracená ovce",
+   "words": "sto ovci jedna ztracena ovce pastyr necha devadesat devet hleda na ramenou"
+  },
+  {
+   "ref": [
+    40,
+    18,
+    22,
+    22
+   ],
+   "kind": "v",
+   "title": "Odpouštět sedmdesátkrát sedmkrát",
+   "words": "kolikrat odpustit sedmkrat sedmdesatkrat petr se pta odpusteni bratru"
+  },
+  {
+   "ref": [
+    40,
+    18,
+    23,
+    23
+   ],
+   "kind": "o",
+   "title": "Nemilosrdný služebník",
+   "words": "dluznik dluh kral odpustil nechtel odpustit kolegovi nemilosrdny sluzebnik"
+  },
+  {
+   "ref": [
+    40,
+    20,
+    1,
+    1
+   ],
+   "kind": "o",
+   "title": "Dělníci na vinici",
+   "words": "delnici vinice posledni hodina stejna mzda denar nespravedlive prvni budou posledni"
+  },
+  {
+   "ref": [
+    40,
+    22,
+    37,
+    37
+   ],
+   "kind": "v",
+   "title": "Největší přikázání",
+   "words": "nejvetsi prikazani miluj boha celym srdcem miluj blizniho jako sebe"
+  },
+  {
+   "ref": [
+    40,
+    25,
+    1,
+    1
+   ],
+   "kind": "o",
+   "title": "Deset družiček",
+   "words": "deset druzicek panen lampy olej zenich pulnoc moudre posetile"
+  },
+  {
+   "ref": [
+    40,
+    25,
+    14,
+    14
+   ],
+   "kind": "o",
+   "title": "Svěřené hřivny",
+   "words": "hrivny talenty sveril pet dve jednu zakopal obchodoval verny sluzebnik schopnosti"
+  },
+  {
+   "ref": [
+    40,
+    25,
+    40,
+    40
+   ],
+   "kind": "v",
+   "title": "Cokoli jste udělali jednomu z nejmenších",
+   "words": "nejmensi bratri hladovy ziznivy nahy ve vezeni navstivili ovce kozy posledni soud"
+  },
+  {
+   "ref": [
+    42,
+    10,
+    30,
+    30
+   ],
+   "kind": "o",
+   "title": "Milosrdný Samaritán",
+   "words": "samaritan prepadeny lupici cesta do jericha knez levita kdo je muj blizni pomohl cizinci"
+  },
+  {
+   "ref": [
+    42,
+    10,
+    41,
+    41
+   ],
+   "kind": "p",
+   "title": "Marta a Marie",
+   "words": "marta marie starost vareni poslouchala u nohou jen jednoho je treba zaneprazdnena"
+  },
+  {
+   "ref": [
+    42,
+    12,
+    20,
+    20
+   ],
+   "kind": "o",
+   "title": "Bohatý blázen",
+   "words": "bohac stodoly vetsi uroda blazne jeste teto noci majetek"
+  },
+  {
+   "ref": [
+    42,
+    15,
+    8,
+    8
+   ],
+   "kind": "o",
+   "title": "Ztracená mince",
+   "words": "ztracena mince drachma zena zameta rozsviti lampu radost"
+  },
+  {
+   "ref": [
+    42,
+    15,
+    20,
+    20
+   ],
+   "kind": "o",
+   "title": "Marnotratný syn",
+   "words": "marnotratny syn ztraceny syn dedictvi prohyril vepre otec bezel naproti objal starsi bratr hostina navrat domu"
+  },
+  {
+   "ref": [
+    42,
+    16,
+    19,
+    19
+   ],
+   "kind": "o",
+   "title": "Boháč a Lazar",
+   "words": "bohac lazar zebrak psi lizali vredy propast abrahamuv klin"
+  },
+  {
+   "ref": [
+    42,
+    18,
+    10,
+    10
+   ],
+   "kind": "o",
+   "title": "Farizeus a celník",
+   "words": "farizeus celnik modlitba v chrame bil se v prsa boze bud milostiv pycha pokora"
+  },
+  {
+   "ref": [
+    42,
+    18,
+    3,
+    3
+   ],
+   "kind": "o",
+   "title": "Neodbytná vdova",
+   "words": "vdova soudce neodbytna vytrvala modlitba neprestavat"
+  },
+  {
+   "ref": [
+    43,
+    10,
+    11,
+    11
+   ],
+   "kind": "v",
+   "title": "Dobrý pastýř",
+   "words": "dobry pastyr dava zivot za ovce zna sve ovce hlas"
+  },
+  {
+   "ref": [
+    43,
+    11,
+    25,
+    25
+   ],
+   "kind": "v",
+   "title": "Já jsem vzkříšení a život",
+   "words": "vzkriseni zivot kdo veri i kdyby umrel bude zit marta lazar"
+  },
+  {
+   "ref": [
+    43,
+    13,
+    5,
+    5
+   ],
+   "kind": "p",
+   "title": "Ježíš myje učedníkům nohy",
+   "words": "myti nohou umyl nohy sluzba pokora rucnik posledni vecere"
+  },
+  {
+   "ref": [
+    43,
+    13,
+    34,
+    34
+   ],
+   "kind": "v",
+   "title": "Nové přikázání – milujte se navzájem",
+   "words": "milujte se navzajem jak jsem ja miloval vas nove prikazani podle toho poznaji"
+  },
+  {
+   "ref": [
+    43,
+    14,
+    2,
+    2
+   ],
+   "kind": "v",
+   "title": "V domě mého Otce je mnoho příbytků",
+   "words": "mnoho pribytku misto pripravit dum otce nebe znovu prijdu"
+  },
+  {
+   "ref": [
+    43,
+    14,
+    6,
+    6
+   ],
+   "kind": "v",
+   "title": "Já jsem cesta, pravda i život",
+   "words": "cesta pravda zivot nikdo neprichazi k otci jedine skrze mne"
+  },
+  {
+   "ref": [
+    43,
+    14,
+    27,
+    27
+   ],
+   "kind": "v",
+   "title": "Pokoj vám zanechávám",
+   "words": "pokoj vam davam ne jako svet nedejte se znepokojit nedeste se"
+  },
+  {
+   "ref": [
+    43,
+    15,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Já jsem vinný kmen, vy ratolesti",
+   "words": "vinny kmen reva ratolesti zustante ve mne ovoce beze mne nemuzete nic"
+  },
+  {
+   "ref": [
+    43,
+    8,
+    7,
+    7
+   ],
+   "kind": "p",
+   "title": "Žena přistižená při cizoložství",
+   "words": "kdo je bez hrichu at prvni hodi kamenem cizoloznice kameny psal prstem do pisku ani ja te neodsuzuji"
+  },
+  {
+   "ref": [
+    43,
+    8,
+    32,
+    32
+   ],
+   "kind": "v",
+   "title": "Pravda vás osvobodí",
+   "words": "poznate pravdu pravda vas osvobodi svoboda"
+  },
+  {
+   "ref": [
+    41,
+    2,
+    4,
+    4
+   ],
+   "kind": "z",
+   "title": "Ochrnutého spustili střechou",
+   "words": "uzdravil spustili strechou rozkryli strechu ochrnuty ochrnuly pratele lehatko nositka ctyri muzi vezmi loze a chod"
+  },
+  {
+   "ref": [
+    41,
+    4,
+    39,
+    39
+   ],
+   "kind": "z",
+   "title": "Utišení bouře",
+   "words": "utisil boure na jezere vitr vlny spal na lodi utis se mistre nezalezi ti ze hyneme"
+  },
+  {
+   "ref": [
+    40,
+    14,
+    29,
+    29
+   ],
+   "kind": "z",
+   "title": "Petr kráčí po vodě",
+   "words": "chodil po vode kracel po vode petr topil se maloverny proc jsi pochyboval vlny"
+  },
+  {
+   "ref": [
+    43,
+    6,
+    9,
+    9
+   ],
+   "kind": "z",
+   "title": "Pět chlebů a dvě ryby",
+   "words": "nasytil nakrmil zastup nasyceni peti tisic pet chlebu dve ryby chlapec zastup kose zbylo"
+  },
+  {
+   "ref": [
+    41,
+    5,
+    41,
+    41
+   ],
+   "kind": "z",
+   "title": "Vzkříšení Jairovy dcery",
+   "words": "talitha kum devcatko vstan jairos dcera zemrela spi"
+  },
+  {
+   "ref": [
+    41,
+    5,
+    27,
+    27
+   ],
+   "kind": "z",
+   "title": "Žena se dotkne Ježíšova pláště",
+   "words": "dotkla se plaste krvotok dvanact let lekari sila vysla tva vira te uzdravila"
+  },
+  {
+   "ref": [
+    41,
+    5,
+    9,
+    9
+   ],
+   "kind": "z",
+   "title": "Legie démonů a stádo vepřů",
+   "words": "legie posedly hroby retezy vepri vrhli do more gerasa"
+  },
+  {
+   "ref": [
+    41,
+    10,
+    51,
+    51
+   ],
+   "kind": "z",
+   "title": "Slepý Bartimaios",
+   "words": "slepy bartimaios u cesty kricel synu daviduv co chces abych ti ucinil prohledl"
+  },
+  {
+   "ref": [
+    42,
+    17,
+    15,
+    15
+   ],
+   "kind": "z",
+   "title": "Deset malomocných – jen jeden poděkoval",
+   "words": "deset malomocnych jeden se vratil podekovat vdecnost samaran"
+  },
+  {
+   "ref": [
+    42,
+    19,
+    5,
+    5
+   ],
+   "kind": "p",
+   "title": "Zacheus na stromě",
+   "words": "zacheus maly celnik strom sykomora vylezl dnes musim byt v tvem dome vratim ctyrnasobne"
+  },
+  {
+   "ref": [
+    43,
+    5,
+    8,
+    8
+   ],
+   "kind": "z",
+   "title": "Uzdravení u rybníka Bethesda",
+   "words": "rybnik bethesda tricet osm let nemocny nemam cloveka voda se rozviri vezmi sve loze"
+  },
+  {
+   "ref": [
+    43,
+    9,
+    7,
+    7
+   ],
+   "kind": "z",
+   "title": "Slepý od narození",
+   "words": "slepy od narozeni blato sliny umyj se v rybnice siloe kdo zhresil byl jsem slepy nyni vidim"
+  },
+  {
+   "ref": [
+    43,
+    11,
+    43,
+    43
+   ],
+   "kind": "z",
+   "title": "Vzkříšení Lazara",
+   "words": "vzkrisil kdo vzkrisil lazara lazare pojd ven ctyri dny v hrobe jezis zaplakal marta marie betanie"
+  },
+  {
+   "ref": [
+    40,
+    17,
+    2,
+    2
+   ],
+   "kind": "p",
+   "title": "Proměnění na hoře",
+   "words": "promeneni hora zaril jako slunce mojzis elias stany oblak"
+  },
+  {
+   "ref": [
+    40,
+    16,
+    16,
+    16
+   ],
+   "kind": "p",
+   "title": "Petrovo vyznání",
+   "words": "ty jsi mesias kristus syn bozi za koho me pokladate skala klice petr"
+  },
+  {
+   "ref": [
+    40,
+    19,
+    14,
+    14
+   ],
+   "kind": "p",
+   "title": "Nechte děti přicházet ke mně",
+   "words": "deti nechte prichazet nebrante jim jako deti kralovstvi pozehnal"
+  },
+  {
+   "ref": [
+    41,
+    10,
+    25,
+    25
+   ],
+   "kind": "v",
+   "title": "Velbloud uchem jehly",
+   "words": "velbloud ucho jehly bohaty mladik prodej vsechno majetek"
+  },
+  {
+   "ref": [
+    41,
+    12,
+    42,
+    42
+   ],
+   "kind": "p",
+   "title": "Chudá vdova a dvě mince",
+   "words": "vdova dve drobne mince haler dala vsechno pokladnice dar"
+  },
+  {
+   "ref": [
+    40,
+    10,
+    2,
+    2
+   ],
+   "kind": "p",
+   "title": "Dvanáct apoštolů",
+   "words": "dvanact apostolu ucedniku kolik bylo ucedniku jmena apostolu povolal dvanact"
+  },
+  {
+   "ref": [
+    42,
+    3,
+    23,
+    23
+   ],
+   "kind": "v",
+   "title": "Ježíšovi bylo asi třicet let",
+   "words": "kolik bylo jezisovi let tricet let vek zacal pusobit"
+  },
+  {
+   "ref": [
+    40,
+    1,
+    1,
+    1
+   ],
+   "kind": "v",
+   "title": "Ježíšův rodokmen",
+   "words": "rodokmen jezisovi predkove abraham david rod"
+  },
+  {
+   "ref": [
+    43,
+    11,
+    35,
+    35
+   ],
+   "kind": "v",
+   "title": "Ježíš zaplakal",
+   "words": "nejkratsi vers jezis zaplakal plakal slzy"
+  },
+  {
+   "ref": [
+    1,
+    5,
+    27,
+    27
+   ],
+   "kind": "v",
+   "title": "Metuzalém – nejdéle žijící člověk",
+   "words": "nejstarsi clovek nejdele zil metuzalem devet set sedesat devet let"
+  },
+  {
+   "ref": [
+    11,
+    6,
+    1,
+    1
+   ],
+   "kind": "p",
+   "title": "Šalomoun staví chrám",
+   "words": "postavil chram prvni chram salomoun stavba chramu kdo postavil chram"
+  },
+  {
+   "ref": [
+    40,
+    27,
+    35,
+    35
+   ],
+   "kind": "p",
+   "title": "Ukřižování Ježíše",
+   "words": "ukrizovali ukrizovani kriz golgota zemrel na krizi hreby kde zemrel jezis lebka"
+  },
+  {
+   "ref": [
+    40,
+    21,
+    9,
+    9
+   ],
+   "kind": "p",
+   "title": "Vjezd do Jeruzaléma na oslu",
+   "words": "oslik osel palmove ratolesti hosana kvetna nedele vjezd"
+  },
+  {
+   "ref": [
+    43,
+    2,
+    15,
+    15
+   ],
+   "kind": "p",
+   "title": "Ježíš vyhání obchodníky z chrámu",
+   "words": "vyhnal penezomence obchodniky bic stoly prevrhl chram doupe lupicu hnev"
+  },
+  {
+   "ref": [
+    40,
+    26,
+    26,
+    26
+   ],
+   "kind": "p",
+   "title": "Poslední večeře",
+   "words": "posledni vecere chleb vino telo krev to cinte na mou pamatku eucharistie vecere pane"
+  },
+  {
+   "ref": [
+    40,
+    26,
+    39,
+    39
+   ],
+   "kind": "p",
+   "title": "Modlitba v Getsemane",
+   "words": "co se stalo v getsemane zahrada noc pred ukrizovanim getsemane kalich at me mine ne ma vule krvavy pot ucednici spali bdit uzkost"
+  },
+  {
+   "ref": [
+    40,
+    26,
+    49,
+    49
+   ],
+   "kind": "p",
+   "title": "Jidášův polibek",
+   "words": "zradil kdo zradil jezise zradce jidas polibek zrada tricet stribrnych zatceni"
+  },
+  {
+   "ref": [
+    40,
+    26,
+    75,
+    75
+   ],
+   "kind": "p",
+   "title": "Petr třikrát zapře",
+   "words": "kdo zaprel jezise zaprel trikrat kohout zakokrhal petr plakal horce neznam ho"
+  },
+  {
+   "ref": [
+    43,
+    18,
+    38,
+    38
+   ],
+   "kind": "p",
+   "title": "Pilát: Co je pravda?",
+   "words": "kdo odsoudil jezise odsoudil k smrti co je pravda pilat soud myl si ruce barabas ukrizuj"
+  },
+  {
+   "ref": [
+    42,
+    23,
+    34,
+    34
+   ],
+   "kind": "v",
+   "title": "Otče, odpusť jim",
+   "words": "otce odpust jim nevedi co cini kriz odpusteni vrahum"
+  },
+  {
+   "ref": [
+    42,
+    23,
+    43,
+    43
+   ],
+   "kind": "p",
+   "title": "Lotr na kříži",
+   "words": "lotr zlocinec na krizi dnes budes se mnou v raji vzpomen si na me"
+  },
+  {
+   "ref": [
+    41,
+    15,
+    34,
+    34
+   ],
+   "kind": "v",
+   "title": "Bože můj, proč jsi mě opustil",
+   "words": "proc jsi me opustil eli eli lama sabachtani opustenost kriz"
+  },
+  {
+   "ref": [
+    43,
+    19,
+    30,
+    30
+   ],
+   "kind": "v",
+   "title": "Dokonáno jest",
+   "words": "dokonano je dokonano smrt na krizi naklonil hlavu"
+  },
+  {
+   "ref": [
+    40,
+    28,
+    6,
+    6
+   ],
+   "kind": "p",
+   "title": "Prázdný hrob",
+   "words": "prazdny hrob vstal z mrtvych neni zde zeny rano kamen odvalen andel velikonoce"
+  },
+  {
+   "ref": [
+    43,
+    20,
+    16,
+    16
+   ],
+   "kind": "p",
+   "title": "Marie Magdalská potká vzkříšeného",
+   "words": "marie magdalska zahradnik plakala u hrobu rabbuni nedotykej se mne"
+  },
+  {
+   "ref": [
+    43,
+    20,
+    27,
+    27
+   ],
+   "kind": "p",
+   "title": "Nevěřící Tomáš",
+   "words": "tomas neverici pochybnost prsty rany bok blahoslaveni kteri nevideli"
+  },
+  {
+   "ref": [
+    42,
+    24,
+    32,
+    32
+   ],
+   "kind": "p",
+   "title": "Cesta do Emauz",
+   "words": "emauzy dva ucednici cesta nepoznali lamani chleba horelo nam srdce"
+  },
+  {
+   "ref": [
+    43,
+    21,
+    17,
+    17
+   ],
+   "kind": "p",
+   "title": "Miluješ mě? Pas mé ovce",
+   "words": "milujes me trikrat pas me ovce petr snidane u jezera ryby ohen obnova"
+  },
+  {
+   "ref": [
+    40,
+    28,
+    19,
+    19
+   ],
+   "kind": "v",
+   "title": "Jděte a získávejte učedníky",
+   "words": "jdete do celeho sveta ziskejte ucedniky krtete misie poslani jsem s vami az do konce"
+  },
+  {
+   "ref": [
+    44,
+    1,
+    9,
+    9
+   ],
+   "kind": "p",
+   "title": "Nanebevstoupení",
+   "words": "nanebevstoupeni vzat vzhuru oblak muzi v bilem proc hledite do nebe"
+  },
+  {
+   "ref": [
+    44,
+    2,
+    3,
+    3
+   ],
+   "kind": "p",
+   "title": "Letnice – ohnivé jazyky",
+   "words": "letnice ohnive jazyky vichr duch svaty mluvili jinymi jazyky tri tisice pokrteno"
+  },
+  {
+   "ref": [
+    44,
+    3,
+    6,
+    6
+   ],
+   "kind": "z",
+   "title": "Petr uzdraví chromého u chrámové brány",
+   "words": "stribro ani zlato nemam co mam to ti dam chromy brana krasna vstan a chod"
+  },
+  {
+   "ref": [
+    44,
+    7,
+    59,
+    59
+   ],
+   "kind": "p",
+   "title": "Ukamenování Štěpána",
+   "words": "stepan kameny ukamenovali prvni mucednik vidim nebe otevrene saul"
+  },
+  {
+   "ref": [
+    44,
+    8,
+    30,
+    30
+   ],
+   "kind": "p",
+   "title": "Filip a etiopský dvořan",
+   "words": "etiopsky dvoran komori vuz cte izajase rozumis tomu krest voda"
+  },
+  {
+   "ref": [
+    44,
+    9,
+    4,
+    4
+   ],
+   "kind": "p",
+   "title": "Obrácení Saula u Damašku",
+   "words": "cesta do damasku svetlo oslepl spadl z kone saule proc me pronasledujes supiny z oci pavel obraceni"
+  },
+  {
+   "ref": [
+    44,
+    10,
+    11,
+    11
+   ],
+   "kind": "p",
+   "title": "Petrovo vidění plachty se zvířaty",
+   "words": "plachta zvirata neciste jidlo videni petr kornelius pohane"
+  },
+  {
+   "ref": [
+    44,
+    12,
+    7,
+    7
+   ],
+   "kind": "z",
+   "title": "Anděl vyvede Petra z vězení",
+   "words": "andel vezeni retezy spadly petr vysvobozen modlitba sboru rhode"
+  },
+  {
+   "ref": [
+    44,
+    16,
+    25,
+    25
+   ],
+   "kind": "z",
+   "title": "Zemětřesení ve vězení ve Filipech",
+   "words": "o pulnoci zpivali pavel silas vezeni zemetreseni zalarnik co mam delat abych byl spasen"
+  },
+  {
+   "ref": [
+    44,
+    17,
+    23,
+    23
+   ],
+   "kind": "p",
+   "title": "Pavel na Areopagu",
+   "words": "neznamemu bohu atheny areopag filozofove v nem zijeme"
+  },
+  {
+   "ref": [
+    44,
+    27,
+    41,
+    41
+   ],
+   "kind": "p",
+   "title": "Ztroskotání lodi a had na Maltě",
+   "words": "ztroskotani lod boure malta zmije had plavba do rima"
+  },
+  {
+   "ref": [
+    45,
+    3,
+    23,
+    23
+   ],
+   "kind": "v",
+   "title": "Všichni zhřešili",
+   "words": "vsichni zhresili postradaji slavy darem ospravedlneni milost"
+  },
+  {
+   "ref": [
+    45,
+    5,
+    8,
+    8
+   ],
+   "kind": "v",
+   "title": "Kristus zemřel za nás, když jsme byli hříšníci",
+   "words": "kdyz jsme jeste byli hrisnici zemrel za nas bozi laska"
+  },
+  {
+   "ref": [
+    45,
+    6,
+    23,
+    23
+   ],
+   "kind": "v",
+   "title": "Mzdou hříchu je smrt",
+   "words": "mzda hrichu smrt dar bozi vecny zivot"
+  },
+  {
+   "ref": [
+    45,
+    8,
+    28,
+    28
+   ],
+   "kind": "v",
+   "title": "Všechno slouží k dobrému",
+   "words": "vsechno napomaha k dobremu tem kdo miluji boha vsechno ma smysl"
+  },
+  {
+   "ref": [
+    45,
+    8,
+    38,
+    38
+   ],
+   "kind": "v",
+   "title": "Nic nás neodloučí od Boží lásky",
+   "words": "nic nas neodlouci smrt zivot andele ani vyska hloubka bozi laska"
+  },
+  {
+   "ref": [
+    45,
+    12,
+    2,
+    2
+   ],
+   "kind": "v",
+   "title": "Nepřizpůsobujte se tomuto věku",
+   "words": "neprizpusobujte se promente se obnova mysli rozpoznat bozi vuli"
+  },
+  {
+   "ref": [
+    46,
+    13,
+    4,
+    4
+   ],
+   "kind": "v",
+   "title": "Láska je trpělivá",
+   "words": "laska je trpeliva laskava nezavidi nevychlouba se nehleda svuj prospech nikdy nepomiji vira nadeje laska svatba"
+  },
+  {
+   "ref": [
+    46,
+    10,
+    13,
+    13
+   ],
+   "kind": "v",
+   "title": "Bůh nedopustí pokušení nad vaše síly",
+   "words": "pokuseni nad sily vychodisko buh je verny zkouska vydrzet"
+  },
+  {
+   "ref": [
+    46,
+    12,
+    12,
+    12
+   ],
+   "kind": "v",
+   "title": "Jedno tělo, mnoho údů",
+   "words": "telo udy oko ruka noha jedno telo cirkev ruzne dary"
+  },
+  {
+   "ref": [
+    46,
+    15,
+    55,
+    55
+   ],
+   "kind": "v",
+   "title": "Smrti, kde je tvé vítězství?",
+   "words": "smrti kde je tve vitezstvi osten vzkriseni mrtvych promeneni"
+  },
+  {
+   "ref": [
+    47,
+    5,
+    17,
+    17
+   ],
+   "kind": "v",
+   "title": "Nové stvoření",
+   "words": "nove stvoreni stare pominulo vse nove v kristu"
+  },
+  {
+   "ref": [
+    47,
+    12,
+    9,
+    9
+   ],
+   "kind": "v",
+   "title": "Stačí ti moje milost",
+   "words": "staci ti ma milost sila se projevuje ve slabosti osten v tele slabost"
+  },
+  {
+   "ref": [
+    48,
+    5,
+    22,
+    22
+   ],
+   "kind": "v",
+   "title": "Ovoce Ducha",
+   "words": "ovoce ducha laska radost pokoj trpelivost laskavost dobrota vernost tichost sebeovladani"
+  },
+  {
+   "ref": [
+    49,
+    2,
+    8,
+    8
+   ],
+   "kind": "v",
+   "title": "Milostí jste spaseni skrze víru",
+   "words": "milosti spaseni skrze viru ne ze skutku dar bozi nikdo se nemuze chlubit"
+  },
+  {
+   "ref": [
+    49,
+    6,
+    11,
+    11
+   ],
+   "kind": "v",
+   "title": "Boží výzbroj",
+   "words": "vyzbroj zbroj stit viry prilba spasy mec ducha pas pravdy pancir duchovni boj"
+  },
+  {
+   "ref": [
+    50,
+    4,
+    6,
+    6
+   ],
+   "kind": "v",
+   "title": "Netrapte se žádnou starostí",
+   "words": "netrapte se starosti modlitbou dikuvzdanim pokoj bozi prevysuje rozum strach uzkost"
+  },
+  {
+   "ref": [
+    50,
+    4,
+    13,
+    13
+   ],
+   "kind": "v",
+   "title": "Všecko mohu v Kristu",
+   "words": "vsechno mohu v tom ktery mi dava silu zvladnu to"
+  },
+  {
+   "ref": [
+    58,
+    11,
+    1,
+    1
+   ],
+   "kind": "v",
+   "title": "Víra je podstata věcí, v něž doufáme",
+   "words": "vira je jistota toho v co doufame presvedceni o vecech neviditelnych"
+  },
+  {
+   "ref": [
+    58,
+    12,
+    1,
+    1
+   ],
+   "kind": "v",
+   "title": "Běžme vytrvale",
+   "words": "zavod beh vytrvale oblak svedku odlozme bremeno pohled na jezise"
+  },
+  {
+   "ref": [
+    59,
+    1,
+    2,
+    2
+   ],
+   "kind": "v",
+   "title": "Mějte to za radost, když přicházejí zkoušky",
+   "words": "zkousky radost vytrvalost zkouska viry moudrost proste"
+  },
+  {
+   "ref": [
+    59,
+    2,
+    17,
+    17
+   ],
+   "kind": "v",
+   "title": "Víra bez skutků je mrtvá",
+   "words": "vira bez skutku mrtva skutky ukaz mi svou viru"
+  },
+  {
+   "ref": [
+    59,
+    3,
+    5,
+    5
+   ],
+   "kind": "v",
+   "title": "Jazyk – malý oheň",
+   "words": "jazyk ohen mala jiskra uzda kormidlo slova pomluva"
+  },
+  {
+   "ref": [
+    60,
+    5,
+    7,
+    7
+   ],
+   "kind": "v",
+   "title": "Všechnu starost vložte na něj",
+   "words": "vsechnu starost vrhnete na nej pecuje o vas dabel rvouci lev"
+  },
+  {
+   "ref": [
+    62,
+    1,
+    9,
+    9
+   ],
+   "kind": "v",
+   "title": "Vyznáme-li své hříchy",
+   "words": "vyzname hrichy verny spravedlivy odpusti ocisti"
+  },
+  {
+   "ref": [
+    62,
+    4,
+    8,
+    8
+   ],
+   "kind": "v",
+   "title": "Bůh je láska",
+   "words": "buh je laska kdo nemiluje nepoznal boha dokonala laska strach vyhani"
+  },
+  {
+   "ref": [
+    66,
+    3,
+    20,
+    20
+   ],
+   "kind": "v",
+   "title": "Stojím u dveří a tluču",
+   "words": "stojim u dveri tlucu otevre vejdu veceret hlas"
+  },
+  {
+   "ref": [
+    66,
+    21,
+    4,
+    4
+   ],
+   "kind": "v",
+   "title": "Setře každou slzu",
+   "words": "setre kazdou slzu smrti nebude plac bolest nove nebe nova zeme"
+  }
+ ]
+}

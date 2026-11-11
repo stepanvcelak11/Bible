@@ -19,6 +19,20 @@ int longestStreak(Iterable<DateTime> days) {
   return best;
 }
 
+/// Aktuální série: kolik dní v řadě až do dneška. Když se dnes ještě
+/// nečetlo, série ze včerejška stále platí.
+int currentStreak(Iterable<DateTime> days, DateTime today) {
+  final set = {for (final d in days) DateTime(d.year, d.month, d.day)};
+  var d = DateTime(today.year, today.month, today.day);
+  if (!set.contains(d)) d = DateTime(d.year, d.month, d.day - 1);
+  var n = 0;
+  while (set.contains(d)) {
+    n++;
+    d = DateTime(d.year, d.month, d.day - 1);
+  }
+  return n;
+}
+
 /// Odznak za čtení.
 class ReadingBadge {
   const ReadingBadge(

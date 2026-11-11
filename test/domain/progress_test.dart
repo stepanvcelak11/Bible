@@ -16,6 +16,15 @@ void main() {
     );
   });
 
+  test('aktuální série: dnes, nebo ještě ze včerejška', () {
+    final today = DateTime(2026, 3, 1);
+    final days = [DateTime(2026, 2, 27), DateTime(2026, 2, 28)];
+    expect(currentStreak(days, today), 2);
+    expect(currentStreak([...days, today], today), 3);
+    expect(currentStreak([DateTime(2026, 2, 26)], today), 0);
+    expect(currentStreak([], today), 0);
+  });
+
   test('odznaky podle přečtených kapitol a série', () {
     final counts = {for (var b = 1; b <= 66; b++) b: 2};
     final read = {

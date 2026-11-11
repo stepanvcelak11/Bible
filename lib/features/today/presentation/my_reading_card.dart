@@ -6,6 +6,7 @@ import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
+import '../../../domain/services/progress.dart';
 import '../../../domain/services/versification.dart';
 import '../../progress/presentation/progress_screen.dart';
 import '../../reader/application/reading_position_controller.dart';
@@ -13,26 +14,8 @@ import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
 
-/// Krátké myšlenky o čtení jako setkání s Bohem (vlastní texty aplikace).
-const _thoughts = [
-  'Čtení Bible není výkon. Je to čas, kdy Bůh mluví a vy nasloucháte.',
-  'Nemusíte rozumět všemu. Stačí si odnést do dne jednu větu.',
-  'Než začnete, řekněte jednoduše: „Mluv, Pane, tvůj služebník slyší.“',
-  'Bůh vás hledá dřív, než vy hledáte jeho.',
-  'Raději deset minut každý den než hodinu jednou za měsíc.',
-  'Co vás v textu zastaví, o tom si s Bohem promluvte.',
-  'Vztah roste rozhovorem: čtěte, ptejte se a odpovídejte modlitbou.',
-  'Když nevíte, jak se modlit, přečtěte žalm a modlete se jeho slovy.',
-  'Čtěte pomalu. Jedna kapitola přečtená se srdcem je víc než pět '
-      'přelétnutých.',
-];
-
-/// Krátké žalmy na nový začátek.
-const _shortPsalms = [23, 27, 34, 46, 62, 91, 103, 121, 130, 139];
-
-/// „Moje čtení“ v jedné kartě: kde pokračovat, jedna věta pozvání (začátek,
-/// návrat po pauze bez výčitek, nebo myšlenka na den) a rytmus týdne.
-/// Podrobné statistiky jsou v Mém pokroku.
+/// „Moje čtení“ v jedné kartě: kde pokračovat, rytmus týdne a plamínek
+/// se sérií dní v řadě. Podrobné statistiky jsou v Mém pokroku.
 class MyReadingCard extends ConsumerWidget {
   const MyReadingCard({super.key});
 
@@ -53,36 +36,27 @@ class MyReadingCard extends ConsumerWidget {
 
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
-    final day = today.difference(DateTime(2024)).inDays;
     final last = daily.keys.isEmpty
         ? null
         : daily.keys.reduce((a, b) => a.isAfter(b) ? a : b);
-    final gap = last == null ? null : today.difference(last).inDays;
+    final readDays = [
+      for (final e in daily.entries)
+        if (e.value > 0) e.key,
+    ];
+    final streak = currentStreak(readDays, today);
+    final readToday = readDays.any(
+      (d) =>
+          d.year == today.year && d.month == today.month && d.day == today.day,
+    );
 
     // Úplně nový čtenář: místo „Pokračovat v Genesis 1“ rovnou nabídnout
     // dobrý začátek (Marek 1) – jedna jasná volba.
     final firstTime =
-        gap == null && position.bookId == 1 && position.chapter == 1;
+        last == null && position.bookId == 1 && position.chapter == 1;
     const start = VerseRef(41, 1, 1);
     final mainRef = firstTime ? start : position;
     final mainBook = firstTime ? ref.watch(bookByIdProvider(41)) : book;
     final mainColor = firstTime ? Color(categoryOf(41).color) : color;
-
-    // Jedna věta pozvání a případně krátký začátek.
-    final (String text, String? button, VerseRef? target) = switch (gap) {
-      null when firstTime => (S.inviteStartText, null, null),
-      null => (
-        S.inviteStartText,
-        S.inviteStartButton,
-        const VerseRef(41, 1, 1),
-      ),
-      >= 2 => (
-        S.inviteBackText,
-        S.inviteBackButton(_shortPsalms[day % _shortPsalms.length]),
-        VerseRef(19, _shortPsalms[day % _shortPsalms.length], 1),
-      ),
-      _ => (_thoughts[day % _thoughts.length], null, null),
-    };
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -160,33 +134,19 @@ class MyReadingCard extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
-            child: Text(
-              text,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: palette.muted,
-                height: 1.4,
-              ),
-            ),
-          ),
-          if (button != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 2, 8, 0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton.icon(
-                  onPressed: () => openReaderAt(context, ref, target!),
-                  icon: const Icon(Icons.play_arrow_rounded),
-                  label: Text(button),
-                ),
-              ),
-            ),
           InkWell(
             onTap: () => openProgress(context),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-              child: _WeekRhythm(daily: daily, today: today),
+              padding: const EdgeInsets.fromLTRB(12, 6, 10, 12),
+              child: Row(
+                children: [
+                  _Flame(streak: streak, lit: readToday),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: _WeekRhythm(daily: daily, today: today),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
@@ -257,6 +217,52 @@ class _WeekRhythm extends StatelessWidget {
           ),
         Icon(Icons.chevron_right, size: 18, color: palette.muted),
       ],
+    );
+  }
+}
+
+/// Plamínek se sérií dní v řadě. Dnes přečteno = plně hoří; série ze
+/// včerejška ještě platí = bledší; žádná série = šedý.
+class _Flame extends StatelessWidget {
+  const _Flame({required this.streak, required this.lit});
+
+  final int streak;
+  final bool lit;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    const orange = Color(0xFFE8792B);
+    final color = streak == 0
+        ? palette.muted.withValues(alpha: 0.5)
+        : lit
+        ? orange
+        : orange.withValues(alpha: 0.55);
+    return Semantics(
+      label: S.streakDays(streak),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(8, 6, 12, 6),
+        decoration: BoxDecoration(
+          color: streak == 0 ? null : orange.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(16),
+          border: streak == 0 ? Border.all(color: palette.cardBorder) : null,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.local_fire_department_rounded, color: color, size: 26),
+            const SizedBox(width: 2),
+            Text(
+              '$streak',
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: streak == 0 ? palette.muted : color,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

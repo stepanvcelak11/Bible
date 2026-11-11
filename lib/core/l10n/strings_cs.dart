@@ -256,6 +256,11 @@ abstract final class S {
   static const verseOfDay = 'Verš dne';
   static const continueReading = 'Pokračovat ve čtení';
   static const streak = 'dní v řadě';
+  static String streakDays(int n) => switch (n) {
+    1 => '1 den v řadě',
+    >= 2 && <= 4 => '$n dny v řadě',
+    _ => '$n dní v řadě',
+  };
   static const thisWeek = 'kapitol tento týden';
   static const totalRead = 'přečteno celkem';
   static const readingPlan = 'Plán čtení';

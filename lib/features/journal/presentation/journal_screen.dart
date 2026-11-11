@@ -98,8 +98,13 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final top = MediaQuery.paddingOf(context).top;
-    String label(String name, int? n) =>
-        n == null || n == 0 ? name : '$name ($n)';
+    final compact = isCompactHeight(context);
+    final counts = [
+      ref.watch(_bookmarksProvider).value?.length,
+      ref.watch(_notesProvider).value?.length,
+      ref.watch(_highlightsProvider).value?.length,
+      ref.watch(prayerProvider).where((p) => !p.isAnswered).length,
+    ];
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -110,150 +115,74 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
               Padding(
                 padding: EdgeInsets.fromLTRB(
                   20,
-                  top + (isCompactHeight(context) ? 4 : 14),
-                  20,
-                  4,
+                  top + (compact ? 4 : 14),
+                  12,
+                  0,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            S.journal,
-                            style: isCompactHeight(context)
-                                ? theme.textTheme.titleLarge
-                                : theme.textTheme.headlineMedium,
-                          ),
-                        ),
-                        IconButton(
-                          tooltip: S.journalSearch,
-                          onPressed: _toggleSearch,
-                          icon: Icon(_searching ? Icons.close : Icons.search),
-                        ),
-                        IconButton(
-                          tooltip: S.settings,
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => const SettingsScreen(),
-                            ),
-                          ),
-                          icon: const Icon(Icons.tune),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: _searching
-                          ? TextField(
-                              key: const ValueKey('search'),
-                              controller: _search,
-                              autofocus: true,
-                              onChanged: ref.read(_queryProvider.notifier).set,
-                              decoration: InputDecoration(
-                                hintText: S.journalSearchHint,
-                                prefixIcon: const Icon(Icons.search),
-                                isDense: true,
-                                filled: true,
-                                fillColor: palette.gold.withValues(alpha: 0.08),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                  borderSide: BorderSide.none,
-                                ),
-                              ),
-                            )
-                          : isCompactHeight(context)
-                          ? const SizedBox.shrink(key: ValueKey('none'))
-                          : Text(
-                              S.journalIntro,
-                              key: const ValueKey('intro'),
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: palette.muted,
-                              ),
-                            ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 38,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (final (text, icon, onTap) in [
-                            (
-                              S.prepsShort,
-                              Icons.edit_note,
-                              () => openPreps(context),
-                            ),
-                            (
-                              S.journalQuickProgress,
-                              Icons.insights,
-                              () => openProgress(context),
-                            ),
-                            (
-                              S.memory,
-                              Icons.psychology_outlined,
-                              () => openMemory(context),
-                            ),
-                            (
-                              S.journalQuickPlan,
-                              Icons.event_note_outlined,
-                              () => showPlansSheet(context),
-                            ),
-                          ])
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: ActionChip(
-                                avatar: Icon(
-                                  icon,
-                                  size: 18,
-                                  color: palette.gold,
-                                ),
-                                label: Text(text),
-                                onPressed: onTap,
-                              ),
-                            ),
-                        ],
+                    Expanded(
+                      child: Text(
+                        S.journal,
+                        style: compact
+                            ? theme.textTheme.titleLarge
+                            : theme.textTheme.headlineMedium,
                       ),
+                    ),
+                    IconButton(
+                      tooltip: S.journalSearch,
+                      onPressed: _toggleSearch,
+                      icon: Icon(_searching ? Icons.close : Icons.search),
+                    ),
+                    IconButton(
+                      tooltip: S.settings,
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const SettingsScreen(),
+                        ),
+                      ),
+                      icon: const Icon(Icons.tune),
                     ),
                   ],
                 ),
               ),
-              TabBar(
-                isScrollable: true,
-                tabAlignment: TabAlignment.start,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                dividerColor: palette.cardBorder,
-                tabs: [
-                  Tab(
-                    text: label(
-                      S.bookmarks,
-                      ref.watch(_bookmarksProvider).value?.length,
-                    ),
-                  ),
-                  Tab(
-                    text: label(
-                      S.notes,
-                      ref.watch(_notesProvider).value?.length,
-                    ),
-                  ),
-                  Tab(
-                    text: label(
-                      S.highlights,
-                      ref.watch(_highlightsProvider).value?.length,
-                    ),
-                  ),
-                  Tab(
-                    text: label(
-                      S.prayers,
-                      ref
-                          .watch(prayerProvider)
-                          .where((p) => !p.isAnswered)
-                          .length,
-                    ),
-                  ),
-                ],
+              AnimatedSize(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOutCubic,
+                child: _searching
+                    ? Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 6, 16, 2),
+                        child: TextField(
+                          controller: _search,
+                          autofocus: true,
+                          onChanged: ref.read(_queryProvider.notifier).set,
+                          decoration: InputDecoration(
+                            hintText: S.journalSearchHint,
+                            prefixIcon: Icon(Icons.search, color: palette.gold),
+                            isDense: true,
+                            filled: true,
+                            fillColor: palette.card,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(color: palette.cardBorder),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide(color: palette.cardBorder),
+                            ),
+                          ),
+                        ),
+                      )
+                    : compact
+                    ? const SizedBox(width: double.infinity)
+                    : const Padding(
+                        padding: EdgeInsets.fromLTRB(16, 6, 16, 0),
+                        child: _ToolsRow(),
+                      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
+                child: _SectionTabs(counts: counts),
               ),
               const Expanded(
                 child: TabBarView(
@@ -268,6 +197,213 @@ class _JournalScreenState extends ConsumerState<JournalScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Rychlé nástroje deníku: čtyři stejně široká tlačítka s ikonou.
+class _ToolsRow extends StatelessWidget {
+  const _ToolsRow();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final tools = [
+      (
+        S.prepsShort,
+        Icons.edit_note,
+        const Color(0xFFB0603A),
+        () => openPreps(context),
+      ),
+      (
+        S.journalQuickProgress,
+        Icons.insights,
+        const Color(0xFF3E8E5E),
+        () => openProgress(context),
+      ),
+      (
+        S.memory,
+        Icons.psychology_outlined,
+        const Color(0xFF7A55A8),
+        () => openMemory(context),
+      ),
+      (
+        S.journalQuickPlan,
+        Icons.event_note_outlined,
+        const Color(0xFF3F7CAC),
+        () => showPlansSheet(context),
+      ),
+    ];
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: palette.card,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: palette.cardBorder),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (final (label, icon, color, onTap) in tools)
+              Expanded(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(14),
+                  onTap: onTap,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4,
+                      horizontal: 2,
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: color.withValues(alpha: 0.13),
+                            borderRadius: BorderRadius.circular(13),
+                          ),
+                          child: Icon(icon, size: 21, color: color),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          label,
+                          maxLines: 2,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            height: 1.2,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Přepínač částí deníku: čtyři dlaždice s počtem (spojené s TabBarView,
+/// takže funguje i přejetí prstem mezi částmi).
+class _SectionTabs extends StatelessWidget {
+  const _SectionTabs({required this.counts});
+
+  final List<int?> counts;
+
+  static const _sections = [
+    (S.bookmarks, Icons.bookmark_outline, Icons.bookmark, Color(0xFFB0813B)),
+    (
+      S.notes,
+      Icons.sticky_note_2_outlined,
+      Icons.sticky_note_2,
+      Color(0xFF3F7CAC),
+    ),
+    (
+      S.highlights,
+      Icons.format_color_fill_outlined,
+      Icons.format_color_fill,
+      Color(0xFF5B8A3A),
+    ),
+    (
+      S.prayers,
+      Icons.volunteer_activism_outlined,
+      Icons.volunteer_activism,
+      Color(0xFF8C4A6B),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = DefaultTabController.of(context);
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, _) => Row(
+        children: [
+          for (final (i, (label, icon, iconOn, color)) in _sections.indexed)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Semantics(
+                  key: ValueKey('journal-section-$i'),
+                  button: true,
+                  selected: controller.index == i,
+                  label: '$label ${counts[i] ?? 0}',
+                  excludeSemantics: true,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    decoration: BoxDecoration(
+                      color: controller.index == i
+                          ? Color.alphaBlend(
+                              color.withValues(alpha: 0.16),
+                              palette.card,
+                            )
+                          : palette.card,
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(
+                        color: controller.index == i
+                            ? color.withValues(alpha: 0.55)
+                            : palette.cardBorder,
+                        width: controller.index == i ? 1.4 : 1,
+                      ),
+                    ),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(18),
+                      onTap: () => controller.animateTo(i),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 10, 8, 9),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  controller.index == i ? iconOn : icon,
+                                  size: 18,
+                                  color: color,
+                                ),
+                                const SizedBox(width: 5),
+                                Text(
+                                  '${counts[i] ?? 0}',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    color: controller.index == i
+                                        ? color
+                                        : theme.colorScheme.onSurface,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              label,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.labelSmall?.copyWith(
+                                color: controller.index == i
+                                    ? theme.colorScheme.onSurface
+                                    : palette.muted,
+                                fontWeight: controller.index == i
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -618,12 +754,27 @@ class _NoteRow extends ConsumerWidget {
         : note.body;
     final d = note.updatedAt;
     return ListTile(
-      contentPadding: const EdgeInsets.fromLTRB(20, 0, 16, 0),
-      leading: Icon(
-        reflection ? Icons.self_improvement : Icons.sticky_note_2_outlined,
-        color: reflection ? palette.gold : theme.colorScheme.primary,
+      contentPadding: const EdgeInsets.fromLTRB(12, 2, 14, 2),
+      leading: Container(
+        width: 38,
+        height: 38,
+        decoration: BoxDecoration(
+          color: (reflection ? palette.gold : const Color(0xFF3F7CAC))
+              .withValues(alpha: 0.13),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(
+          reflection ? Icons.self_improvement : Icons.sticky_note_2_outlined,
+          size: 20,
+          color: reflection ? palette.gold : const Color(0xFF3F7CAC),
+        ),
       ),
-      title: Text(title),
+      title: Text(
+        title,
+        style: theme.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
       subtitle: Text(
         preview.replaceAll('\n', ' '),
         maxLines: 1,
@@ -800,13 +951,18 @@ class _List extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 72,
-                height: 72,
+                width: 88,
+                height: 88,
                 decoration: BoxDecoration(
-                  color: palette.gold.withValues(alpha: 0.14),
+                  gradient: RadialGradient(
+                    colors: [
+                      palette.gold.withValues(alpha: 0.22),
+                      palette.gold.withValues(alpha: 0.06),
+                    ],
+                  ),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(icon, size: 32, color: palette.gold),
+                child: Icon(icon, size: 38, color: palette.gold),
               ),
               const SizedBox(height: 16),
               Text(
@@ -816,22 +972,50 @@ class _List extends StatelessWidget {
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),
+              if (empty != S.journalNoMatch) ...[
+                const SizedBox(height: 18),
+                Consumer(
+                  builder: (context, ref, _) => FilledButton.tonalIcon(
+                    onPressed: () => ref
+                        .read(shellTabProvider.notifier)
+                        .select(AppTab.bible),
+                    icon: const Icon(Icons.menu_book_outlined, size: 18),
+                    label: const Text(S.journalOpenBible),
+                  ),
+                ),
+              ],
             ],
           ),
         ),
       );
     }
-    return ListView.separated(
+    return ListView.builder(
       padding: EdgeInsets.only(
-        top: 8,
+        top: 6,
         // Pod plovoucí navigací.
         bottom: MediaQuery.paddingOf(context).bottom + 110,
       ),
-      itemCount: n,
-      separatorBuilder: (_, _) => const Divider(indent: 64),
-      itemBuilder: itemBuilder,
+      itemCount: n + 1,
+      itemBuilder: (context, i) =>
+          i == n ? const _SwipeHint() : itemBuilder(context, i),
     );
   }
+}
+
+/// Drobná nápověda pod seznamem (jak položku smazat).
+class _SwipeHint extends StatelessWidget {
+  const _SwipeHint();
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.fromLTRB(24, 14, 24, 0),
+    child: Text(
+      S.journalSwipeHint,
+      textAlign: TextAlign.center,
+      style: Theme.of(context).textTheme.labelSmall
+          ?.copyWith(color: AppPalette.of(context).muted),
+    ),
+  );
 }
 
 class _Dismissible extends StatelessWidget {
@@ -847,17 +1031,33 @@ class _Dismissible extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return Dismissible(
-      key: key!,
-      direction: DismissDirection.endToStart,
-      onDismissed: (_) => onDismissed(),
-      background: Container(
-        color: scheme.errorContainer,
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.only(right: 24),
-        child: Icon(Icons.delete_outline, color: scheme.onErrorContainer),
+    final palette = AppPalette.of(context);
+    final radius = BorderRadius.circular(16);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+      child: ClipRRect(
+        borderRadius: radius,
+        child: Dismissible(
+          key: key!,
+          direction: DismissDirection.endToStart,
+          onDismissed: (_) => onDismissed(),
+          background: Container(
+            color: scheme.errorContainer,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 24),
+            child: Icon(Icons.delete_outline, color: scheme.onErrorContainer),
+          ),
+          child: Material(
+            color: palette.card,
+            shape: RoundedRectangleBorder(
+              borderRadius: radius,
+              side: BorderSide(color: palette.cardBorder),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: child,
+          ),
+        ),
       ),
-      child: child,
     );
   }
 }
@@ -894,18 +1094,19 @@ class _VerseItem extends ConsumerWidget {
       verseRef.verse,
     ]);
 
+    final palette = AppPalette.of(context);
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 16, 12),
+        padding: const EdgeInsets.fromLTRB(14, 12, 16, 14),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             IconTheme.merge(
-              data: IconThemeData(color: theme.colorScheme.primary, size: 22),
+              data: IconThemeData(color: palette.gold, size: 20),
               child: leading,
             ),
-            const SizedBox(width: 22),
+            const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -913,7 +1114,8 @@ class _VerseItem extends ConsumerWidget {
                   Text(
                     citation,
                     style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.colorScheme.primary,
+                      color: palette.gold,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   if (verse != null) ...[
@@ -922,9 +1124,12 @@ class _VerseItem extends ConsumerWidget {
                       verse.text,
                       maxLines: 4,
                       overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        backgroundColor: highlight,
+                      style: TextStyle(
+                        fontFamily: appFontFamily,
+                        fontSize: 16,
                         height: 1.45,
+                        color: theme.colorScheme.onSurface,
+                        backgroundColor: highlight,
                       ),
                     ),
                   ],

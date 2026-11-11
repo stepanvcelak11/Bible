@@ -772,7 +772,7 @@ void main() {
     await settle(tester);
     await tester.tap(find.text('Uložit'));
     await settle(tester);
-    expect(find.text('Modlitby (1)'), findsOneWidget);
+    expect(journalSection(3, 1), findsOneWidget);
     expect(find.text('MODLÍM SE (1)'), findsOneWidget);
 
     await tester.tap(find.text('Čas modlitby'));
@@ -797,7 +797,7 @@ void main() {
     });
     await tester.tap(find.text('Deník'));
     await settle(tester);
-    expect(find.text('Záložky (2)'), findsOneWidget);
+    expect(journalSection(0, 2), findsOneWidget);
     await tester.tap(find.byTooltip('Hledat v deníku'));
     await settle(tester);
     await tester.enterText(find.byType(TextField), 'jan');
@@ -807,7 +807,7 @@ void main() {
     await tester.enterText(find.byType(TextField), 'pastyr');
     await settle(tester);
     expect(find.text('Nic neodpovídá hledání.'), findsOneWidget);
-    await tester.tap(find.text('Poznámky (1)'));
+    await tester.tap(find.text('Poznámky'));
     await settle(tester);
     expect(find.text('Pastýř'), findsOneWidget);
   });
@@ -830,7 +830,8 @@ void main() {
     });
     await tester.tap(find.text('Deník'));
     await settle(tester);
-    await tester.tap(find.text('Poznámky (3)'));
+    expect(journalSection(1, 3), findsOneWidget);
+    await tester.tap(find.text('Poznámky'));
     await settle(tester);
     expect(find.text('Zamyšlení (2)'), findsOneWidget);
     await tester.tap(find.text('Zamyšlení (2)'));
@@ -973,3 +974,9 @@ Future<void> settle(WidgetTester tester) async {
     await tester.pumpAndSettle();
   }
 }
+
+/// Dlaždice části deníku s daným počtem.
+Finder journalSection(int index, int count) => find.descendant(
+  of: find.byKey(ValueKey('journal-section-$index')),
+  matching: find.text('$count'),
+);

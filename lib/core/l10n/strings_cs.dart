@@ -1033,6 +1033,51 @@ abstract final class S {
   static String chaptersRead(int read, int total) => '$read z $total přečteno';
 
   // Hledání – rozšíření
+  static const searchWhatTitle = 'Co můžete hledat';
+  static const searchTip =
+      'Diakritiku ani přesné tvary slov psát nemusíte. Hledá se v Bibli i ve '
+      'všem, co aplikace obsahuje.';
+  static const searchKinds = [
+    ('Verš nebo odkaz', 'J 3,16'),
+    ('Slova v Bibli', '„dobrý pastýř“'),
+    ('Postavy', 'kdo byl Mojžíš'),
+    ('Témata', 'odpuštění'),
+    ('Mapy a místa', 'mapa Jeruzaléma'),
+    ('Otázky', 'proč je na světě zlo'),
+  ];
+  static const thoughtHeroTitle = 'Napište to vlastními slovy';
+  static const thoughtHeroBody =
+      'Co prožíváte, na co se ptáte, nebo příběh, který si nepamatujete '
+      'přesně. Aplikace pochopí, o co jde, a najde odpověď v Bibli.';
+  static const thoughtGroups = [
+    (
+      'Co prožívám',
+      [
+        'Mám strach z budoucnosti',
+        'Jsem na dně a nikdo mě nemá rád',
+        'Jak odpustit, když to bolí',
+      ],
+    ),
+    (
+      'Na co se ptám',
+      [
+        'Proč je na světě zlo?',
+        'Jak se správně modlit?',
+        'O čem je kniha Zjevení?',
+      ],
+    ),
+    (
+      'Nevzpomenu si přesně',
+      [
+        'Muž, kterého spustili střechou',
+        'Ten verš o lásce, co je trpělivá',
+        'Petr chodil po vodě a topil se',
+      ],
+    ),
+  ];
+  static const journalTools = 'Nástroje';
+  static const journalSwipeHint = 'Smazání: přejeďte položku doleva.';
+  static const journalOpenBible = 'Otevřít Bibli';
   static const recentSearches = 'Nedávná hledání';
   static const clear = 'Vymazat';
   static const goToReference = 'Přejít na';

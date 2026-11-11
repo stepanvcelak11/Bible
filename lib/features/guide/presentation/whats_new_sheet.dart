@@ -7,9 +7,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 23;
+const whatsNewVersion = 24;
 
 const _items = [
+  (
+    Icons.palette_outlined,
+    'Nový vzhled Hledat a Deníku',
+    'Hledat ukazuje, co všechno můžete hledat, a příklady podle myšlenky '
+        'rozdělené na pocity, otázky a příběhy. Deník má nahoře nástroje '
+        'a dlaždice s počty záložek, poznámek, zvýraznění a modliteb.',
+  ),
   (
     Icons.auto_awesome,
     'Odpovědi z Bible na otázky',

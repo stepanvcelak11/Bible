@@ -29,15 +29,21 @@ enum SceneKind {
 
 /// Konkrétní příběh, zázrak, podobenství nebo známý verš s tím, jak ho
 /// lidé popisují (assets/content/scenes.json).
+/// Položka rejstříku hledaná podle kmenů slov.
+abstract interface class Stemmed {
+  Set<String> get titleStems;
+  Set<String> get stems;
+}
+
 @immutable
-class BibleScene {
+class BibleScene implements Stemmed {
   BibleScene({
     required this.passage,
     required this.kind,
     required this.title,
     required String words,
-  }) : titleStems = _stemsOf(title),
-       stems = {..._stemsOf(title), ..._stemsOf(words)};
+  }) : titleStems = meaningStems(title),
+       stems = {...meaningStems(title), ...meaningStems(words)};
 
   factory BibleScene.fromJson(Map<String, Object?> j) => BibleScene(
     passage: Passage.fromJson(j['ref']),
@@ -49,12 +55,53 @@ class BibleScene {
   final Passage passage;
   final SceneKind kind;
   final String title;
+  @override
   final Set<String> titleStems;
+  @override
+  final Set<String> stems;
+}
+
+/// Velká otázka („Proč je na světě zlo?“) a místa v aplikaci, kde se
+/// o ní píše (`t:téma`, `s:situace`, `l:kurz:lekce`, `c:kurz`).
+@immutable
+class BigQuestion implements Stemmed {
+  BigQuestion({
+    required this.title,
+    required String words,
+    required this.targets,
+  }) : titleStems = meaningStems(title),
+       stems = {...meaningStems(title), ...meaningStems(words)};
+
+  factory BigQuestion.fromJson(Map<String, Object?> j) => BigQuestion(
+    title: j['title']! as String,
+    words: j['words']! as String,
+    targets: (j['targets']! as List<Object?>).cast<String>(),
+  );
+
+  final String title;
+  final List<String> targets;
+  @override
+  final Set<String> titleStems;
+  @override
   final Set<String> stems;
 }
 
 /// Slova, která nic neurčují: výplň otázek („kde je ten příběh, jak…“).
 const _filler = {
+  'proc',
+  'kdy',
+  'kam',
+  'cim',
+  'jestli',
+  'zda',
+  'spravne',
+  'opravdu',
+  'vlastne',
+  'vubec',
+  'prosim',
+  'clovek',
+  'lide',
+  'lidi',
   'kde',
   'je',
   'ten',
@@ -171,14 +218,15 @@ const _filler = {
 
 final _split = RegExp(r'[^a-z0-9]+');
 
-Set<String> _stemsOf(String text) => {
+/// Kmeny významových slov textu (bez výplně otázek).
+Set<String> meaningStems(String text) => {
   for (final w in foldCzech(text).split(_split))
     if (w.length >= 2 && !_filler.contains(w)) stemCzech(w),
 };
 
 /// Shoda slova dotazu s kmenem scény: 1 = stejný kmen, 0,8 = jedno
 /// začíná druhým (aspoň 4 písmena), 0,7 = překlep (aspoň 6 písmen).
-double _match(String q, String s) {
+double stemMatch(String q, String s) {
   if (q == s) return 1;
   final short = math.min(q.length, s.length);
   if (short >= 4 && (q.startsWith(s) || s.startsWith(q))) return 0.8;
@@ -186,12 +234,12 @@ double _match(String q, String s) {
   return 0;
 }
 
-/// Scéna nalezená k dotazu.
+/// Položka nalezená k dotazu.
 @immutable
-class SceneHit {
-  const SceneHit(this.scene, this.score, this.coverage);
+class StemHit<T extends Stemmed> {
+  const StemHit(this.item, this.score, this.coverage);
 
-  final BibleScene scene;
+  final T item;
   final double score;
 
   /// Podíl slov dotazu, která scéna vysvětlí (0–1).
@@ -200,15 +248,18 @@ class SceneHit {
 
 /// Rejstřík scén s vahou slov podle toho, jak vzácná jsou (IDF): slovo,
 /// které má jen jedna scéna („střecha“), rozhoduje víc než časté („voda“).
-class SceneIndex {
-  SceneIndex(this.scenes) {
+typedef SceneHit = StemHit<BibleScene>;
+typedef SceneIndex = StemIndex<BibleScene>;
+
+class StemIndex<T extends Stemmed> {
+  StemIndex(this.items) {
     final df = <String, int>{};
-    for (final s in scenes) {
+    for (final s in items) {
       for (final st in s.stems) {
         df[st] = (df[st] ?? 0) + 1;
       }
     }
-    final n = scenes.length;
+    final n = items.length;
     _idf = {
       for (final MapEntry(:key, :value) in df.entries)
         key: math.log(1 + n / value),
@@ -216,21 +267,21 @@ class SceneIndex {
     _maxIdf = math.log(1 + n);
   }
 
-  final List<BibleScene> scenes;
+  final List<T> items;
   late final Map<String, double> _idf;
   late final double _maxIdf;
 
   /// Scény, které dotaz nejspíš popisuje (nejlepší první, nejvýš [limit]).
-  List<SceneHit> search(String query, {int limit = 3}) {
-    final words = _stemsOf(query).toList();
+  List<StemHit<T>> search(String query, {int limit = 3}) {
+    final words = meaningStems(query).toList();
     if (words.isEmpty) return const [];
-    final hits = <SceneHit>[];
-    for (final scene in scenes) {
+    final hits = <StemHit<T>>[];
+    for (final scene in items) {
       var score = 0.0, covered = 0.0, total = 0.0;
       for (final q in words) {
         var best = 0.0, weight = 0.0;
         for (final s in scene.stems) {
-          final m = _match(q, s);
+          final m = stemMatch(q, s);
           if (m > best) {
             best = m;
             weight = _idf[s] ?? _maxIdf;
@@ -241,14 +292,14 @@ class SceneIndex {
         final w = best > 0 ? weight : _maxIdf * 0.6;
         total += w;
         if (best > 0) {
-          final inTitle = scene.titleStems.any((t) => _match(q, t) > 0);
+          final inTitle = scene.titleStems.any((t) => stemMatch(q, t) > 0);
           score += best * weight * (inTitle ? 1.4 : 1);
           covered += w;
         }
       }
       if (score == 0) continue;
       final coverage = covered / total;
-      hits.add(SceneHit(scene, score * (0.4 + coverage), coverage));
+      hits.add(StemHit(scene, score * (0.4 + coverage), coverage));
     }
     if (hits.isEmpty) return const [];
     hits.sort((a, b) => b.score.compareTo(a.score));
@@ -274,5 +325,18 @@ final sceneIndexProvider = FutureProvider<SceneIndex>((ref) async {
   return SceneIndex([
     for (final s in j['scenes']! as List<Object?>)
       BibleScene.fromJson(s! as Map<String, Object?>),
+  ]);
+});
+
+final questionIndexProvider = FutureProvider<StemIndex<BigQuestion>>((
+  ref,
+) async {
+  final bytes = await rootBundle.load('assets/content/questions.json');
+  final j = jsonDecode(
+    utf8.decode(bytes.buffer.asUint8List()),
+  ) as Map<String, Object?>;
+  return StemIndex([
+    for (final q in j['questions']! as List<Object?>)
+      BigQuestion.fromJson(q! as Map<String, Object?>),
   ]);
 });

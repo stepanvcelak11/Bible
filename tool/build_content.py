@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (church_year, concepts, scenes, courses, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+from content import (church_year, concepts, questions, scenes, courses, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
                      notes, people, plans, quiz, situations, situations_more,
                      stories, story, tables, threads, topics,
                      topics_deep, topics_more)
@@ -230,6 +230,33 @@ def build_scenes() -> dict:
     return {"scenes": out}
 
 
+def build_questions() -> dict:
+    topics_ = {t["id"] for t in topics.T} | {t["id"] for t in topics_more.T}
+    sits = {s[0] for s in situations.SITUATIONS}
+    crs = {c["id"]: len(c["lessons"]) for c in courses.COURSES}
+    out = []
+    for title, words, targets in questions.QUESTIONS:
+        ts = targets.split()
+        assert ts, title
+        for t in ts:
+            kind, _, rest = t.partition(":")
+            if kind == "t":
+                assert rest in topics_, f"{title}: {t}"
+            elif kind == "s":
+                assert rest in sits, f"{title}: {t}"
+            elif kind == "c":
+                assert rest in crs, f"{title}: {t}"
+            elif kind == "l":
+                cid, _, n = rest.partition(":")
+                assert cid in crs and 0 <= int(n) < crs[cid], f"{title}: {t}"
+            else:
+                raise AssertionError(f"{title}: {t}")
+        out.append({"title": title,
+                    "words": " ".join(fold(w) for w in words.split()),
+                    "targets": ts})
+    return {"questions": out}
+
+
 def build_reflections() -> dict:
     """Zamyšlení ke kapitolám: tool/content/reflect/*.py obsahují BOOKS =
     {"Gn": \"\"\"řádek na kapitolu\"\"\"}; řádek = zaměření | pozoruj | pochop
@@ -383,6 +410,7 @@ def main() -> None:
             "reflections.json": build_reflections(),
             "concepts.json": build_concepts(),
             "scenes.json": build_scenes(),
+            "questions.json": build_questions(),
             "plans.json": build_plans()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))

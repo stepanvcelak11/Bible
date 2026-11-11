@@ -11,6 +11,14 @@ const whatsNewVersion = 23;
 
 const _items = [
   (
+    Icons.auto_awesome,
+    'Odpovědi z Bible na otázky',
+    'Zeptejte se v Hledat obecně – „Proč je na světě zlo?“, „Jak se '
+        'správně modlit?“, „Co bude po smrti?“. Aplikace vybere z výkladů '
+        'věty, které k vaší otázce sedí nejvíc, přidá verše z Bible a '
+        'nabídne, kde číst dál.',
+  ),
+  (
     Icons.psychology_alt_outlined,
     'Hledání podle myšlenky rozumí víc',
     'Napište, co prožíváte („jsem na dně“, „pohádal jsem se s tátou“), '

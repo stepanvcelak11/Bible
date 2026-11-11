@@ -16,7 +16,9 @@ import '../../translations/application/translation_controller.dart';
 import '../application/reference_parser.dart';
 import '../application/scene_search.dart';
 import '../application/thought_search.dart';
+import '../application/bible_answer.dart';
 import 'app_search_results.dart';
+import 'bible_answer_card.dart';
 import 'thought_results.dart';
 
 const _pageSize = 100;
@@ -148,13 +150,16 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     // (např. „Ježíš“) běžné hledání slov a obsahu aplikace.
     final lexicon = ref.watch(conceptLexiconProvider).value;
     final scenes = ref.watch(sceneIndexProvider).value;
+    final questions = ref.watch(questionIndexProvider).value;
     final thoughtFallback =
         _thought &&
         _text.length >= 2 &&
         lexicon != null &&
         scenes != null &&
+        questions != null &&
         lexicon.detect(_text).isEmpty &&
-        scenes.search(_text).isEmpty;
+        scenes.search(_text).isEmpty &&
+        pickQuestion(questions, _text) == null;
     final thought = _thought && !thoughtFallback;
     final results = _text.isEmpty || thought
         ? null
@@ -375,6 +380,13 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             // Chytré hledání v celé aplikaci: funkce, mapy, témata,
             // kurzy, plány, zamyšlení, poznámky…
+            if (_text.trim().length >= 2 && reference == null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: BibleAnswerCard(query: _text, onOpen: _remember),
+                ),
+              ),
             if (_text.trim().length >= 2 && reference == null)
               SliverToBoxAdapter(
                 child: Padding(

@@ -26,7 +26,7 @@ void main() {
 
   String? first(String q) {
     final r = scenes.search(q);
-    return r.isEmpty ? null : r.first.scene.title;
+    return r.isEmpty ? null : r.first.item.title;
   }
 
   List<String> concepts(String q) =>
@@ -63,7 +63,7 @@ void main() {
     expect(
       lexicon.detect(
         'muž, kterého spustili střechou',
-        known: {for (final h in roof) ...h.scene.stems},
+        known: {for (final h in roof) ...h.item.stems},
       ),
       isEmpty,
     );

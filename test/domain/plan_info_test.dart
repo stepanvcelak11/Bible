@@ -25,7 +25,11 @@ void main() {
       for (var i = 1; i <= 66; i++)
         Book(
           id: i,
-          name: i == 40 ? 'Matouš' : i == 41 ? 'Marek' : 'K$i',
+          name: i == 40
+              ? 'Matouš'
+              : i == 41
+              ? 'Marek'
+              : 'K$i',
           osis: 'K$i',
           abbreviation: 'K$i',
           testament: i < 40 ? Testament.oldTestament : Testament.newTestament,

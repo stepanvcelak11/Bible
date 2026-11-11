@@ -211,7 +211,7 @@ final thoughtSearchProvider = FutureProvider.autoDispose
       final scenes = (await ref.watch(sceneIndexProvider.future))
           .search(q.text);
       // Slova, která vysvětlila nalezená scéna, se už doslova nehledají.
-      final sceneStems = {for (final h in scenes) ...h.scene.stems};
+      final sceneStems = {for (final h in scenes) ...h.item.stems};
       final all = lexicon.detect(q.text, known: sceneStems);
 
       final concepts = [

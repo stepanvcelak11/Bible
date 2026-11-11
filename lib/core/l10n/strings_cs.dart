@@ -586,6 +586,9 @@ abstract final class S {
       'V dotazu jsem nenašel myšlenku, proto hledám slova v Bibli a v '
       'aplikaci.';
   static const thoughtMaybe = 'Možná hledáte';
+  static const answerFromBible = 'Odpověď z Bible';
+  static String answerFrom(String sources) => 'Z výkladu: $sources';
+  static const answerVerses = 'Co říká Bible';
   static const prepThoughtUnderstood = 'Rozumím jako';
   static const prepThoughtNone =
       'Nerozpoznal jsem téma – hledám jen podle slov. Zkuste myšlenku '

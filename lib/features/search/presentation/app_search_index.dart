@@ -431,7 +431,7 @@ final appSearchIndexProvider = FutureProvider<List<AppSearchItem>>((ref) async {
     );
   }
   // Konkrétní scény, zázraky, podobenství a známé verše.
-  for (final sc in (await ref.watch(sceneIndexProvider.future)).scenes) {
+  for (final sc in (await ref.watch(sceneIndexProvider.future)).items) {
     final b = book(sc.passage.bookId);
     items.add(
       AppSearchItem(

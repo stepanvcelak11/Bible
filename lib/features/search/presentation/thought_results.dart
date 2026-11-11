@@ -12,6 +12,7 @@ import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/scene_search.dart';
 import '../application/thought_search.dart';
+import 'bible_answer_card.dart';
 
 /// Výsledky hledání podle myšlenky: rozpoznané pojmy (dají se vypnout),
 /// klíčová místa k tématu a verše s podobnou myšlenkou. Klepnutí otevře
@@ -74,12 +75,13 @@ class _ThoughtResultsState extends ConsumerState<ThoughtResults> {
         ],
         error: (e, _) => [Text('$e')],
         data: (r) => [
+          if (onAdd == null) BibleAnswerCard(query: widget.text),
           if (r.scenes.isNotEmpty) ...[
             label(S.thoughtMaybe),
             for (final h in r.scenes)
               _SceneTile(
                 hit: h,
-                onAdd: onAdd == null ? null : () => onAdd(h.scene.passage),
+                onAdd: onAdd == null ? null : () => onAdd(h.item.passage),
               ),
           ],
           if (r.concepts.isEmpty && r.scenes.isEmpty)
@@ -269,7 +271,7 @@ class _SceneTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    final scene = hit.scene;
+    final scene = hit.item;
     final t = ref.watch(primaryTranslationProvider);
     final verses = ref.watch(passageTextProvider((t.id, scene.passage))).value;
     final book = ref.watch(bookByIdProvider(scene.passage.bookId));

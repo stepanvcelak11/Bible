@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tool"))
 
-from content import (church_year, concepts, courses, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
+from content import (church_year, concepts, scenes, courses, harmony, intros_deep, intros_nt, intros_ot,  # noqa: E402
                      notes, people, plans, quiz, situations, situations_more,
                      stories, story, tables, threads, topics,
                      topics_deep, topics_more)
@@ -218,6 +218,18 @@ def build_concepts() -> dict:
             "concepts": out}
 
 
+def build_scenes() -> dict:
+    out = []
+    seen = set()
+    for r, kind, title, words in scenes.SCENES:
+        assert kind in "pzov" and len(kind) == 1, title
+        assert title not in seen, title
+        seen.add(title)
+        out.append({"ref": ref(r), "kind": kind, "title": title,
+                    "words": " ".join(fold(w) for w in words.split())})
+    return {"scenes": out}
+
+
 def build_reflections() -> dict:
     """Zamyšlení ke kapitolám: tool/content/reflect/*.py obsahují BOOKS =
     {"Gn": \"\"\"řádek na kapitolu\"\"\"}; řádek = zaměření | pozoruj | pochop
@@ -370,6 +382,7 @@ def main() -> None:
             "stories.json": build_stories(),
             "reflections.json": build_reflections(),
             "concepts.json": build_concepts(),
+            "scenes.json": build_scenes(),
             "plans.json": build_plans()}
     if "--check" in sys.argv:
         src = json.load(open(sys.argv[sys.argv.index("--check") + 1]))

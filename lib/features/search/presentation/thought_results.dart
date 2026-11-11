@@ -10,6 +10,7 @@ import '../../../domain/services/versification.dart';
 import '../../content/application/content_providers.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
+import '../application/scene_search.dart';
 import '../application/thought_search.dart';
 
 /// Výsledky hledání podle myšlenky: rozpoznané pojmy (dají se vypnout),
@@ -73,12 +74,20 @@ class _ThoughtResultsState extends ConsumerState<ThoughtResults> {
         ],
         error: (e, _) => [Text('$e')],
         data: (r) => [
-          if (r.concepts.isEmpty)
+          if (r.scenes.isNotEmpty) ...[
+            label(S.thoughtMaybe),
+            for (final h in r.scenes)
+              _SceneTile(
+                hit: h,
+                onAdd: onAdd == null ? null : () => onAdd(h.scene.passage),
+              ),
+          ],
+          if (r.concepts.isEmpty && r.scenes.isEmpty)
             Text(
               S.prepThoughtNone,
               style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
             )
-          else ...[
+          else if (r.concepts.isNotEmpty) ...[
             label(S.prepThoughtUnderstood),
             Wrap(
               spacing: 6,
@@ -128,7 +137,7 @@ class _ThoughtResultsState extends ConsumerState<ThoughtResults> {
                         onAdd(Passage(c.bookId, c.chapter, c.verse, c.verse));
                       },
               ),
-          ] else if (r.keyPassages.isEmpty)
+          ] else if (r.keyPassages.isEmpty && r.scenes.isEmpty)
             const Text(S.searchNoResults),
         ],
       ),
@@ -244,6 +253,86 @@ class _ThoughtHitTile extends ConsumerWidget {
       ),
       subtitle: Text.rich(TextSpan(children: spans)),
       trailing: _addButton(onAdd),
+    );
+  }
+}
+
+/// Scéna, kterou myšlenka nejspíš popisuje: zvýrazněná karta s názvem,
+/// druhem, odkazem a textem verše.
+class _SceneTile extends ConsumerWidget {
+  const _SceneTile({required this.hit, this.onAdd});
+
+  final SceneHit hit;
+  final VoidCallback? onAdd;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final scene = hit.scene;
+    final t = ref.watch(primaryTranslationProvider);
+    final verses = ref.watch(passageTextProvider((t.id, scene.passage))).value;
+    final book = ref.watch(bookByIdProvider(scene.passage.bookId));
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: InkWell(
+        onTap: () => openReaderAt(context, ref, scene.passage.start),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(14, 12, 8, 12),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 38,
+                height: 38,
+                decoration: BoxDecoration(
+                  color: palette.gold.withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  switch (scene.kind) {
+                    SceneKind.miracle => Icons.auto_awesome_outlined,
+                    SceneKind.parable => Icons.lightbulb_outline,
+                    SceneKind.verse => Icons.format_quote_outlined,
+                    SceneKind.story => Icons.auto_stories_outlined,
+                  },
+                  color: palette.gold,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(scene.title, style: theme.textTheme.titleSmall),
+                    Text(
+                      '${scene.kind.label} · ${scene.passage.label(book.name)}',
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: palette.gold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      verses
+                              ?.map((v) => v.text.replaceAll('\n', ' '))
+                              .join(' ') ??
+                          '…',
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: palette.muted,
+                        height: 1.35,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ?_addButton(onAdd),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -261,8 +261,12 @@
     "nechal",
     "nenecha",
     "nikoho",
+    "nikoho_nemam",
     "opust",
+    "opusten",
     "osaml",
+    "sam=",
+    "sama=",
     "samot",
     "zapomen",
     "zapomn"
@@ -743,6 +747,8 @@
     "stud",
     "styd",
     "svedom",
+    "udelal_jsem",
+    "udelala_jsem",
     "vina",
     "vinu",
     "vycitk"
@@ -765,11 +771,16 @@
    "id": "repent",
    "label": "Pokání a obrácení",
    "triggers": [
+    "lito",
     "litov",
+    "mrzi",
     "navrat",
     "obrac",
     "obrat",
+    "omluv",
     "pokani",
+    "ublizil",
+    "ublizila",
     "vrat",
     "vratit",
     "zacit_znovu",
@@ -1195,6 +1206,8 @@
     "obav",
     "panik",
     "strach",
+    "strach=",
+    "strachy",
     "vydes"
    ],
    "terms": [
@@ -1218,7 +1231,10 @@
    "label": "Starosti a úzkost",
    "triggers": [
     "budoucn",
+    "nervy=",
+    "nezvladam",
     "obav",
+    "prepracov",
     "staros",
     "stres",
     "trapen",
@@ -1273,8 +1289,11 @@
     "smrt",
     "truchl",
     "umrel",
+    "umrela",
     "vdov",
     "zemr",
+    "zemrel",
+    "zemrela",
     "ztrata"
    ],
    "terms": [
@@ -1341,10 +1360,13 @@
    "id": "illness",
    "label": "Nemoc a uzdravení",
    "triggers": [
+    "diagnoz",
     "lekar",
     "nemoc",
     "nemocn",
     "nemocnic",
+    "operac",
+    "rakovin",
     "uzdrav",
     "zdravi"
    ],
@@ -1389,6 +1411,8 @@
    "label": "Únava a odpočinek",
    "triggers": [
     "klid",
+    "nemuzu_spat",
+    "nespav",
     "odpoc",
     "odpocin",
     "pretiz",
@@ -1396,7 +1420,8 @@
     "spat",
     "unav",
     "vycerp",
-    "vyhorel"
+    "vyhorel",
+    "vyhoreni"
    ],
    "terms": [
     "obtiz",
@@ -1481,7 +1506,14 @@
     "cenn",
     "hodnot",
     "identit",
+    "k_nicemu",
     "kdo_jsem",
+    "menecenn",
+    "nedostatec",
+    "nestojim_za",
+    "nicka",
+    "nula=",
+    "oskliv",
     "prijeti=",
     "sebehodnot",
     "sebevedom"
@@ -1650,11 +1682,19 @@
    "label": "Smíření a konflikt",
    "triggers": [
     "hada",
+    "hadame",
     "hadk",
+    "hadka",
+    "hadky",
     "konflikt",
+    "nemluvime",
+    "neshod",
+    "pohadal",
+    "pohadala",
     "rozdelen",
     "smir",
     "spor",
+    "spor=",
     "usmir"
    ],
    "terms": [
@@ -1767,6 +1807,8 @@
    "label": "Přátelství",
    "triggers": [
     "kamarad",
+    "kamaradk",
+    "kamos",
     "pratel",
     "pritel"
    ],
@@ -1897,9 +1939,14 @@
    "label": "Práce",
    "triggers": [
     "karier",
+    "kolega",
+    "kolegove",
+    "nezamestnan",
     "prac",
     "prace",
     "sef",
+    "vyhodili",
+    "vypoved",
     "zamestn"
    ],
    "terms": [
@@ -2177,7 +2224,8 @@
    "id": "victory",
    "label": "Vítězství nad zlem",
    "triggers": [
-    "boj",
+    "boj=",
+    "bojovat",
     "dabel",
     "demon",
     "satan",
@@ -2852,7 +2900,9 @@
    "triggers": [
     "deti",
     "dite",
-    "ditek"
+    "ditek",
+    "miminko",
+    "novorozen"
    ],
    "terms": [
     "dite=",
@@ -2869,7 +2919,18 @@
    "id": "parents",
    "label": "Rodiče a výchova",
    "triggers": [
+    "mame=",
+    "maminka",
+    "mamka",
+    "mamou=",
     "rodic",
+    "rodice",
+    "rodicu",
+    "tata=",
+    "tatka",
+    "tatou=",
+    "tatovi=",
+    "tatu=",
     "vychov"
    ],
    "terms": [
@@ -2887,7 +2948,16 @@
    "id": "divorce",
    "label": "Rozvod a rozpad vztahu",
    "triggers": [
+    "byvala",
+    "byvaly",
+    "nechal_me",
+    "nechala_me",
+    "opustil_me",
+    "opustila_me",
     "rozchod",
+    "rozesel",
+    "rozesla",
+    "rozesli",
     "rozpad",
     "rozved",
     "rozvod"
@@ -2940,8 +3010,16 @@
     "alkohol",
     "drog",
     "hazard",
+    "hrani",
+    "hry=",
     "kour",
+    "mobil",
+    "nemuzu_prestat",
     "opil",
+    "pocitacov",
+    "porno",
+    "socialni_site",
+    "telefon",
     "zavisl"
    ],
    "terms": [
@@ -3416,6 +3494,10 @@
    "id": "testing",
    "label": "Zkoušky víry",
    "triggers": [
+    "maturit",
+    "pohovor",
+    "prijimack",
+    "statnic",
     "zkous",
     "zkousk"
    ],
@@ -3432,9 +3514,18 @@
    "label": "Beznaděj",
    "triggers": [
     "beznad",
+    "chci_umrit",
     "deprese",
     "dno",
+    "dno=",
+    "konec_vseho",
+    "na_dne",
+    "nechci_zit",
+    "nema_cenu",
     "nema_smysl",
+    "sebevra",
+    "skoncit_se_vsim",
+    "zbytecn",
     "zoufal"
    ],
    "terms": [
@@ -3450,9 +3541,21 @@
    "id": "rejection",
    "label": "Odmítnutí",
    "triggers": [
+    "ignoruj",
     "nechtej",
+    "nechteji",
+    "nema_rad",
+    "nemaji_rad",
     "neprij",
+    "nikdo_me",
     "odmitn",
+    "odstrc",
+    "posmiv",
+    "sikan",
+    "smeje",
+    "smeji",
+    "vyloucen",
+    "vysmiv",
     "zavrzen"
    ],
    "terms": [
@@ -4112,8 +4215,13 @@
    "id": "barren",
    "label": "Touha po dítěti",
    "triggers": [
+    "cekame_dite",
+    "miminka",
+    "miminko",
     "neplod",
     "otehotn",
+    "porod",
+    "tehot",
     "tehoten"
    ],
    "terms": [

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +10,9 @@ import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/content_entities.dart';
 import '../../../domain/services/versification.dart';
 import '../../content/application/content_providers.dart';
+import 'app_search.dart';
 import 'reference_parser.dart';
+import 'scene_search.dart';
 
 /// Pojem ze slovníku pro hledání podle myšlenky (assets/content/concepts.json).
 @immutable
@@ -55,7 +58,12 @@ class ConceptLexicon {
     unicode: true,
   ).allMatches(foldCzech(text)).map((m) => m[0]!).toList();
 
-  static bool _hit(String trigger, List<String> tokens, Set<String> stop) {
+  static bool _hit(
+    String trigger,
+    List<String> tokens,
+    Set<String> stop, {
+    bool fuzzy = false,
+  }) {
     if (trigger.contains('_')) {
       final words = trigger.split('_');
       for (var i = 0; i + words.length <= tokens.length; i++) {
@@ -77,17 +85,47 @@ class ConceptLexicon {
           : null;
       for (final w in [token, ?bare]) {
         if (exact ? w == t : w.startsWith(t)) return true;
+        // Překlep („strah“, „odpustěni“): jedno písmeno jinak.
+        if (fuzzy &&
+            !exact &&
+            t.length >= 6 &&
+            w.length >= t.length - 1 &&
+            (oneEdit(w.substring(0, math.min(w.length, t.length)), t) ||
+                (w.length > t.length &&
+                    oneEdit(w.substring(0, t.length + 1), t)))) {
+          return true;
+        }
       }
     }
     return false;
   }
 
   /// Pojmy, které myšlenka [text] obsahuje (v pořadí slovníku).
-  List<ThoughtConcept> detect(String text) {
+  ///
+  /// Slova, jejichž kmen je v [known] (vysvětlila je např. nalezená
+  /// scéna), se nezkoušejí jako překlepy („střechou“ ≠ „strach“).
+  List<ThoughtConcept> detect(String text, {Set<String> known = const {}}) {
     final tokens = _tokens(text);
-    return [
+    final found = [
       for (final c in concepts)
         if (c.triggers.any((t) => _hit(t, tokens, stop))) c,
+    ];
+    // Překlepy jen u slov, která nesedí přesně na žádný pojem – jinak by
+    // „odpuštění“ připomnělo i „opuštění“.
+    final rest = [
+      for (final w in tokens)
+        if (!stop.contains(w) &&
+            w.length >= 5 &&
+            !known.contains(stemCzech(w)) &&
+            !concepts.any((c) => c.triggers.any((t) => _hit(t, [w], stop))))
+          w,
+    ];
+    if (rest.isEmpty) return found;
+    return [
+      for (final c in concepts)
+        if (found.contains(c) ||
+            c.triggers.any((t) => _hit(t, rest, stop, fuzzy: true)))
+          c,
     ];
   }
 
@@ -144,9 +182,13 @@ class ThoughtResult {
     required this.keywords,
     required this.keyPassages,
     required this.hits,
+    this.scenes = const [],
   });
 
   final List<ThoughtConcept> concepts;
+
+  /// Konkrétní příběh / verš, který myšlenka nejspíš popisuje.
+  final List<SceneHit> scenes;
   final List<String> keywords;
   final List<KeyPassage> keyPassages;
   final List<ThoughtHit> hits;
@@ -166,12 +208,23 @@ final thoughtSearchProvider = FutureProvider.autoDispose
       final lexicon = await ref.watch(conceptLexiconProvider.future);
       final repo = ref.watch(bibleRepositoryProvider);
       final excluded = q.excluded.split(',').toSet();
-      final all = lexicon.detect(q.text);
+      final scenes = (await ref.watch(sceneIndexProvider.future))
+          .search(q.text);
+      // Slova, která vysvětlila nalezená scéna, se už doslova nehledají.
+      final sceneStems = {for (final h in scenes) ...h.scene.stems};
+      final all = lexicon.detect(q.text, known: sceneStems);
+
       final concepts = [
         for (final c in all)
           if (!excluded.contains(c.id)) c,
       ];
-      final keywords = lexicon.keywords(q.text, all);
+      final keywords = [
+        for (final k in lexicon.keywords(q.text, all))
+          if (!sceneStems.any(
+            (st) => st.length >= 4 && (k.startsWith(st) || st.startsWith(k)),
+          ))
+            k,
+      ];
 
       // Klíčová místa z obsahu aplikace.
       final (_, topics) = await ref.watch(topicsProvider.future);
@@ -255,6 +308,7 @@ final thoughtSearchProvider = FutureProvider.autoDispose
       ]..sort((a, b) => b.score.compareTo(a.score));
       return ThoughtResult(
         concepts: all,
+        scenes: scenes,
         keywords: keywords,
         keyPassages: keyPassages.take(16).toList(),
         hits: hits.take(60).toList(),

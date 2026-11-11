@@ -215,7 +215,7 @@ List<String> queryStems(String query) => [
 ];
 
 /// Levenshtein ≤ 1 (překlep: jedno písmeno navíc, chybí, nebo jiné).
-bool _oneEdit(String a, String b) {
+bool oneEdit(String a, String b) {
   if ((a.length - b.length).abs() > 1) return false;
   var i = 0, j = 0, edits = 0;
   while (i < a.length && j < b.length) {
@@ -247,7 +247,7 @@ double _matchIn(String q, Set<String> words, {bool fuzzy = true}) {
       best = 0.75;
     } else if (w.length >= 4 && q.startsWith(w)) {
       if (best < 0.7) best = 0.7;
-    } else if (fuzzy && q.length >= 5 && best < 0.55 && _oneEdit(q, w)) {
+    } else if (fuzzy && q.length >= 5 && best < 0.55 && oneEdit(q, w)) {
       best = 0.55;
     }
     if (best >= 0.75) break;

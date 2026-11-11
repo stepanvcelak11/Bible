@@ -312,7 +312,7 @@ c("kingdom", "Boží království",
   "králov vlád král",
   "královstv", "h:king")
 c("victory", "Vítězství nad zlem",
-  "vítěz zlo ďábel satan démon boj",
+  "vítěz zlo ďábel satan démon boj= bojovat",
   "vítěz satan ďábel zlý přemoh", "h:victory")
 c("judgment", "Soud a spravedlnost Boží",
   "soud odsouz trest spravedliv",
@@ -672,3 +672,39 @@ c("remember", "Pamatovat na Boží skutky",
 c("surrender", "Odevzdání Bohu",
   "odevzd vzdát_se nechat_na_bohu",
   "uval poruč", "s:anxiety")
+
+
+# Hovorové výrazy, kterými lidé popisují, jak jim je („jsem na dně“,
+# „nikdo mě nemá rád“). Doplní spouštěče stávajících pojmů.
+_EXTRA = {
+    "despair": "na_dně dno= nechci_žít chci_umřít skončit_se_vším "
+               "nemá_smysl nemá_cenu zbytečn sebevra konec_všeho",
+    "rejection": "nemá_rád nemají_rád nikdo_mě smějí směje vysmív posmív "
+                 "šikan vyloučen ignoruj nechtějí odstrč",
+    "worth": "nula= nicka k_ničemu bezcenn nestojím_za méněcenn oškliv "
+             "nedostateč",
+    "divorce": "rozešel rozešla rozchod rozešli opustil_mě opustila_mě "
+               "nechal_mě nechala_mě bývalý bývalá",
+    "reconcile": "pohádal pohádala hádka hádáme hádky nemluvíme usmíř "
+                 "spor= neshod",
+    "parents": "táta= tátou= tátovi= tátu= taťka mamka maminka mámou= "
+               "mámě= rodiče rodičů",
+    "barren": "miminko miminka těhot porod čekáme_dítě",
+    "children": "miminko novorozen",
+    "repent": "líto mrzí ublížil ublížila omluv",
+    "addiction": "mobil telefon počítačov hry= hraní porno sociální_sítě "
+                 "nemůžu_přestat",
+    "anxiety": "stres nervy= přepracov nezvládám",
+    "tired": "nespav nemůžu_spát vyhořel vyhoření",
+    "abandon": "sám= sama= samot opuštěn nikoho_nemám",
+    "fear": "strach= strachy",
+    "grief": "pohřeb zemřel zemřela umřela umřel",
+    "testing": "maturit přijímačk státnic pohovor",
+    "work": "výpověď vyhodili nezaměstnan kolega kolegové",
+    "illness": "nemocnic operac rakovin diagnóz",
+    "guilt": "udělal_jsem udělala_jsem",
+    "friend": "kamarád kámoš kamarádk",
+}
+for _c in C:
+    _c["triggers"] += _EXTRA.pop(_c["id"], "").split()
+assert not _EXTRA, _EXTRA

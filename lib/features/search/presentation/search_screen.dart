@@ -14,6 +14,7 @@ import '../../../domain/services/citation.dart';
 import '../../shell/home_shell.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/reference_parser.dart';
+import '../application/scene_search.dart';
 import '../application/thought_search.dart';
 import 'app_search_results.dart';
 import 'thought_results.dart';
@@ -146,11 +147,14 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     // Podle myšlenky jen tehdy, když v dotazu rozpoznáme téma – jinak
     // (např. „Ježíš“) běžné hledání slov a obsahu aplikace.
     final lexicon = ref.watch(conceptLexiconProvider).value;
+    final scenes = ref.watch(sceneIndexProvider).value;
     final thoughtFallback =
         _thought &&
         _text.length >= 2 &&
         lexicon != null &&
-        lexicon.detect(_text).isEmpty;
+        scenes != null &&
+        lexicon.detect(_text).isEmpty &&
+        scenes.search(_text).isEmpty;
     final thought = _thought && !thoughtFallback;
     final results = _text.isEmpty || thought
         ? null

@@ -568,20 +568,24 @@ abstract final class S {
   static const searchThoughtSamples = [
     'Bůh mě nenechá samotného',
     'Jak odpustit, když to bolí',
+    'Jsem na dně a nikdo mě nemá rád',
+    'Muž, kterého spustili střechou',
+    'Ten verš o lásce, co je trpělivá',
+    'Petr chodil po vodě a topil se',
     'Mám strach z budoucnosti',
-    'Bůh používá slabé lidi',
-    'Jsem vyčerpaný a potřebuji odpočinek',
     'Peníze mě nenaplní',
   ];
   static const prepWordsMode = 'Přesná slova';
   static const prepThoughtHint = 'Napište myšlenku vlastními slovy…';
   static const prepThoughtIntro =
-      'Ověřte myšlenku: kde o tom Bible mluví? Napište ji vlastními slovy, '
-      'třeba „Bůh nás nenechá samotné, když máme strach“. Hledají se '
-      'verše se stejnou myšlenkou, i když je Bible říká jinými slovy.';
+      'Napište vlastními slovy, co prožíváte nebo co hledáte – myšlenku, '
+      'pocit, nebo jen popis příběhu či verše, který si nepamatujete '
+      'přesně. Aplikace se snaží pochopit, o co jde, a najde verše se '
+      'stejnou myšlenkou, i když je Bible říká jinými slovy.';
   static const thoughtFallback =
       'V dotazu jsem nenašel myšlenku, proto hledám slova v Bibli a v '
       'aplikaci.';
+  static const thoughtMaybe = 'Možná hledáte';
   static const prepThoughtUnderstood = 'Rozumím jako';
   static const prepThoughtNone =
       'Nerozpoznal jsem téma – hledám jen podle slov. Zkuste myšlenku '

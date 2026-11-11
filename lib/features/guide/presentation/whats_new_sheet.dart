@@ -7,9 +7,17 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 22;
+const whatsNewVersion = 23;
 
 const _items = [
+  (
+    Icons.psychology_alt_outlined,
+    'Hledání podle myšlenky rozumí víc',
+    'Napište, co prožíváte („jsem na dně“, „pohádal jsem se s tátou“), '
+        'nebo jen popište příběh či verš, který si nepamatujete přesně '
+        '(„muž, kterého spustili střechou“, „ten verš o lásce, co je '
+        'trpělivá“). Aplikace pozná, o co jde, i s překlepy a bez háčků.',
+  ),
   (
     Icons.manage_search,
     'Chytré hledání v celé aplikaci',

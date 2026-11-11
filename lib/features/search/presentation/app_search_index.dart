@@ -44,6 +44,7 @@ import '../../today/presentation/timeline_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/app_search.dart';
+import '../application/scene_search.dart';
 
 void _push(BuildContext context, Widget page) =>
     Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
@@ -426,6 +427,25 @@ final appSearchIndexProvider = FutureProvider<List<AppSearchItem>>((ref) async {
         icon: Icons.auto_stories_outlined,
         body: s.summary,
         open: (c, r) => openReaderAt(c, r, s.passage.start),
+      ),
+    );
+  }
+  // Konkrétní scény, zázraky, podobenství a známé verše.
+  for (final sc in (await ref.watch(sceneIndexProvider.future)).scenes) {
+    final b = book(sc.passage.bookId);
+    items.add(
+      AppSearchItem(
+        kind: AppHitKind.story,
+        title: sc.title,
+        subtitle: '${sc.kind.label} · ${sc.passage.label(b)}',
+        icon: switch (sc.kind) {
+          SceneKind.miracle => Icons.auto_awesome_outlined,
+          SceneKind.parable => Icons.lightbulb_outline,
+          SceneKind.verse => Icons.format_quote_outlined,
+          SceneKind.story => Icons.auto_stories_outlined,
+        },
+        keywords: sc.stems.join(' '),
+        open: (c, r) => openReaderAt(c, r, sc.passage.start),
       ),
     );
   }

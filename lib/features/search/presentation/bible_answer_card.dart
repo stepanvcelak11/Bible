@@ -5,12 +5,15 @@ import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/content_entities.dart';
+import '../../content/presentation/people_screen.dart';
 import '../../content/presentation/situations_screen.dart';
+import '../../study/presentation/book_intro_sheet.dart';
 import '../../content/presentation/topics_screen.dart';
 import '../../shell/home_shell.dart';
 import '../../study/presentation/courses_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/bible_answer.dart';
+import '../application/scene_search.dart';
 
 /// Odpověď z Bible na otázku: krátký výklad z vět, které k otázce sedí,
 /// verše a kde číst dál. Nic nezobrazí, když k dotazu odpověď nemáme.
@@ -43,10 +46,23 @@ class BibleAnswerCard extends ConsumerWidget {
           openLesson(context, c, l);
         case final StudyCourse c:
           openCourse(context, c);
+        case final BiblePerson p:
+          openPerson(context, p);
+        case final BibleScene sc:
+          openReaderAt(context, ref, sc.passage.start);
+        case (final int bookId, _):
+          showBookIntro(context, bookId);
       }
     }
 
-    final usedSources = {for (final s in answer.sentences) s.source};
+    // „Z výkladu“ jen u témat, lekcí, postav… (ne u vlastního výkladu
+    // otázky ani odkazu na příběh).
+    final usedSources = {
+      for (final s in answer.sentences)
+        if (s.source.kind != AnswerSourceKind.note &&
+            s.source.kind != AnswerSourceKind.scene)
+          s.source,
+    };
     return Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 6),
       child: Container(
@@ -104,13 +120,17 @@ class BibleAnswerCard extends ConsumerWidget {
                       answer.sentences.map((s) => s.text).join(' '),
                       style: theme.textTheme.bodyLarge?.copyWith(height: 1.5),
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      S.answerFrom(usedSources.map((s) => s.title).join(' · ')),
-                      style: theme.textTheme.labelSmall?.copyWith(
-                        color: palette.muted,
+                    if (usedSources.isNotEmpty) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        S.answerFrom(
+                          usedSources.map((s) => s.title).join(' · '),
+                        ),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: palette.muted,
+                        ),
                       ),
-                    ),
+                    ],
                   ],
                 ),
               ),
@@ -134,13 +154,25 @@ class BibleAnswerCard extends ConsumerWidget {
                 spacing: 6,
                 runSpacing: 6,
                 children: [
-                  for (final s in answer.sources.take(4))
+                  for (final s
+                      in answer.sources
+                          .where(
+                            (s) =>
+                                s.kind != AnswerSourceKind.note &&
+                                s.kind != AnswerSourceKind.glossary,
+                          )
+                          .take(4))
                     ActionChip(
                       avatar: Icon(switch (s.kind) {
                         AnswerSourceKind.topic => Icons.lightbulb_outline,
                         AnswerSourceKind.situation => Icons.favorite_border,
                         AnswerSourceKind.lesson => Icons.school_outlined,
                         AnswerSourceKind.course => Icons.school_outlined,
+                        AnswerSourceKind.person => Icons.person_outline,
+                        AnswerSourceKind.book => Icons.auto_stories_outlined,
+                        AnswerSourceKind.scene => Icons.menu_book_outlined,
+                        AnswerSourceKind.note ||
+                        AnswerSourceKind.glossary => Icons.info_outline,
                       }, size: 18),
                       label: Text(s.title),
                       onPressed: () => openSource(s),

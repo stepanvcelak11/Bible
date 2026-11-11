@@ -69,6 +69,8 @@ class BigQuestion implements Stemmed {
     required this.title,
     required String words,
     required this.targets,
+    this.text = const [],
+    this.read = const [],
   }) : titleStems = meaningStems(title),
        stems = {...meaningStems(title), ...meaningStems(words)};
 
@@ -76,10 +78,22 @@ class BigQuestion implements Stemmed {
     title: j['title']! as String,
     words: j['words']! as String,
     targets: (j['targets']! as List<Object?>).cast<String>(),
+    text: (j['text'] as List<Object?>? ?? const []).cast<String>(),
+    read: [
+      for (final r in j['read'] as List<Object?>? ?? const [])
+        (
+          Passage.fromJson((r! as Map<String, Object?>)['ref']),
+          r['label']! as String,
+        ),
+    ],
   );
 
   final String title;
   final List<String> targets;
+
+  /// Vlastní krátký výklad (u otázek, ke kterým aplikace jinak text nemá).
+  final List<String> text;
+  final List<(Passage, String)> read;
   @override
   final Set<String> titleStems;
   @override
@@ -212,8 +226,10 @@ const _filler = {
   'kristus',
   'krista',
   'podobenstvi',
-  'zazrak',
-  'zazraku',
+  'byt',
+  'stalo',
+  'stal',
+  'bych',
 };
 
 final _split = RegExp(r'[^a-z0-9]+');

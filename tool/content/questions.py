@@ -88,6 +88,9 @@ QUESTIONS = [
     ("Co je hřích?",
      "co je hřích hřešit co je špatně co bůh zakazuje",
      "t:sin t:law"),
+    ("Jak odpustit, když to bolí?",
+     "jak odpustit někomu kdo mi ublížil nedokážu odpustit křivda bolí",
+     "t:forgiveness s:hurt t:reconciliation"),
     ("Odpustí mi Bůh?",
      "odpustí mi bůh i tohle velký hřích nemůže mi odpustit jsem moc "
      "špatný",
@@ -169,9 +172,6 @@ QUESTIONS = [
     ("Jaký má život smysl?",
      "smysl života proč žiju k čemu jsem na světě poslání účel",
      "s:meaning t:image t:kingdom"),
-    ("Jak odpustit, když to bolí?",
-     "jak odpustit někomu kdo mi ublížil nedokážu odpustit křivda bolí",
-     "t:forgiveness s:hurt t:reconciliation"),
     ("Jak se usmířit po hádce?",
      "usmířit hádka konflikt pohádal spor smíření omluvit",
      "t:reconciliation t:anger"),
@@ -256,4 +256,183 @@ QUESTIONS = [
     ("Kdo byl apoštol Pavel?",
      "apoštol pavel saul z tarsu pavlovy cesty dopisy",
      "c:paul"),
+]
+
+# Otázky s vlastním krátkým výkladem (kde k nim aplikace jinak text nemá).
+# Čtvrtá položka: odstavce výkladu a místa [(odkaz, popisek)].
+QUESTIONS += [
+    ("Kdo je Duch svatý?",
+     "duch svatý kdo je duch co dělá duch svatý utěšitel přímluvce",
+     "t:spirit t:trinity"),
+    ("Co je Desatero?",
+     "desatero deset přikázání desky zákona sinaj",
+     "t:law"),
+    ("Co slavíme o Velikonocích?",
+     "velikonoce velký pátek proč slavíme velikonoce zmrtvýchvstání beránek",
+     "t:resurrection t:cross l:feasts:1"),
+    ("Co slavíme o Vánocích?",
+     "vánoce proč slavíme vánoce narození ježíše betlém vtělení",
+     "t:incarnation"),
+    ("Proč se křtí děti a jak je to s křtem?",
+     "křtí děti křest dětí pokřtít miminko křtiny znovu pokřtít",
+     "t:baptism"),
+    ("Která církev je ta pravá?",
+     "pravá církev která církev katolická evangelická pravoslavná sbory "
+     "rozdělení křesťanů",
+     "t:church t:unity"),
+    ("Dějí se zázraky i dnes?",
+     "zázraky dnes dějí se uzdravení dnes opravdu existují zázraky",
+     "t:miracles s:illness"),
+    ("Smí křesťan pít alkohol?",
+     "alkohol pít víno pivo opíjet opilost smí křesťan pít",
+     "s:temptation",
+     dict(text=[
+         "Bible víno nezakazuje: Ježíš proměnil vodu ve víno na svatbě "
+         "a víno patří k Večeři Páně. Žalm 104 mluví o víně, které "
+         "„obveseluje srdce člověka“.",
+         "Zároveň opakovaně varuje před opilstvím. Pavel píše: „Neopíjejte "
+         "se vínem, to vede k nevázanosti, ale buďte plni Ducha.“ Kniha "
+         "Přísloví popisuje, jak alkohol klame a bere sílu.",
+         "Bible také žádá ohleduplnost: nepít tam, kde by to druhému "
+         "uškodilo nebo ho svedlo. Kdo se pití nedokáže ovládat, pro toho "
+         "je moudré nepít vůbec a hledat pomoc.",
+     ], read=[("J 2,9", "Voda proměněná ve víno"),
+              ("Ž 104,15", "Víno obveseluje srdce"),
+              ("Ef 5,18", "Neopíjejte se, buďte plni Ducha"),
+              ("Př 20,1", "Víno klame"),
+              ("Ř 14,21", "Ohled na slabšího bratra")])),
+    ("Je sex před svatbou hřích?",
+     "sex před svatbou předmanželský sex spát spolu s přítelem přítelkyní "
+     "čistota sexualita",
+     "t:marriage",
+     dict(text=[
+         "Bible vidí sexualitu jako dobrý Boží dar, který patří do "
+         "manželství – do smlouvy, ve které se muž a žena dávají jeden "
+         "druhému celým životem a stávají se „jedním tělem“.",
+         "Proto Nový zákon vyzývá k čistotě a varuje před smilstvem, tedy "
+         "sexem mimo manželství. Pavel připomíná, že tělo není bezcenné: "
+         "„Vaše tělo je chrámem Ducha svatého.“",
+         "Kdo v tomhle selhal, není odepsaný. Bible nabízí odpuštění "
+         "a nový začátek – Ježíš ženě přistižené při cizoložství řekl: "
+         "„Ani já tě neodsuzuji. Jdi a už nehřeš.“",
+     ], read=[("Gn 2,24", "Budou jedním tělem"),
+              ("1K 6,18", "Utíkejte před smilstvem"),
+              ("1K 6,19", "Tělo je chrámem Ducha"),
+              ("1Te 4,3", "Boží vůle je vaše posvěcení"),
+              ("J 8,11", "Ani já tě neodsuzuji")])),
+    ("Smím se rozvést?",
+     "rozvést rozvod rozvedení rozvedený manželství se rozpadá chci "
+     "odejít od manžela manželky",
+     "t:marriage s:love",
+     dict(text=[
+         "Bible bere manželství jako celoživotní smlouvu. Ježíš na otázku "
+         "o rozvodu odpovídá: „Co Bůh spojil, člověk nerozlučuj.“ Rozvod "
+         "vidí jako ránu, ne jako běžné řešení.",
+         "Zároveň Bible počítá s tím, že svět je porušený. Ježíš zmiňuje "
+         "nevěru a Pavel opuštění nevěřícím partnerem; křesťanské "
+         "církve tyto výjimky vykládají různě.",
+         "Kdo je v násilném nebo nebezpečném vztahu, má právo být "
+         "v bezpečí. Při krizi v manželství pomáhá mluvit s někým "
+         "moudrým – s duchovním nebo s manželskou poradnou.",
+     ], read=[("Mt 19,6", "Co Bůh spojil"),
+              ("Mt 19,9", "Ježíš o rozvodu"),
+              ("1K 7,15", "Když nevěřící odchází"),
+              ("Mal 2,16", "Nenávidím zapuzení"),
+              ("Ž 34,19", "Hospodin je blízko zkroušeným")])),
+    ("Co dělat, když mě šikanují?",
+     "šikana šikanují posmívají smějí se mi ve škole v práci ubližují "
+     "ponižují bijí",
+     "s:hurt s:worthless",
+     dict(text=[
+         "Šikana není něco, co musíte potichu snášet. Bible stojí na "
+         "straně slabých a utlačovaných a Bůh slyší jejich volání.",
+         "Svěřte se někomu, komu důvěřujete – rodičům, učiteli, vedoucímu "
+         "nebo kamarádovi. Děti a mladí mohou zavolat na Linku bezpečí "
+         "116 111 (zdarma, nonstop).",
+         "Vaše hodnota nezávisí na tom, co o vás říkají druzí: Bůh vás "
+         "stvořil a miluje. Ježíš sám zažil posměch a ponížení – rozumí "
+         "tomu, čím procházíte.",
+     ], read=[("Ž 34,19", "Hospodin je blízko zkroušeným"),
+              ("Ž 10,17", "Bůh slyší ponížené"),
+              ("Iz 43,4", "Jsi v mých očích vzácný"),
+              ("Žd 4,15", "Ježíš s námi soucítí"),
+              ("Ř 12,21", "Nedej se přemoci zlem")])),
+    ("Co když už nechci žít?",
+     "nechci být naživu chci umřít sebevražda zabít se skončit se "
+     "vším konec života",
+     "s:hope s:worthless",
+     dict(text=[
+         "Jestli teď myslíte na to, že nechcete žít, nejste v tom sami "
+         "a nemusíte to nést sami. Prosím, řekněte to ještě dnes někomu "
+         "blízkému nebo zavolejte na Linku první psychické pomoci 116 123 "
+         "(zdarma, nonstop). Děti a mladí mohou volat Linku bezpečí "
+         "116 111. V ohrožení života volejte 155 nebo 112.",
+         "I lidé v Bibli prošli tak hlubokou tmou, že si přáli zemřít – "
+         "prorok Eliáš i Jób. Bůh je za to neodsoudil: Eliášovi dal "
+         "nejdřív jídlo a spánek a pak k němu tiše promluvil.",
+         "Vaše bolest je skutečná a váš život má cenu. Bůh je blízko "
+         "těm, kdo mají zlomené srdce.",
+     ], read=[("1Kr 19,4", "Eliáš si přeje zemřít"),
+              ("1Kr 19,7", "Vstaň a jez, cesta je daleká"),
+              ("Ž 34,19", "Hospodin je blízko zkroušeným"),
+              ("Mt 11,28", "Pojďte ke mně, unavení"),
+              ("Iz 42,3", "Nalomenou třtinu nedolomí")])),
+    ("Je lež někdy v pořádku?",
+     "lež lhát zalhat milosrdná lež pravda poctivost",
+     "t:truth t:speech"),
+    ("Co Bible říká o nadávání a sprostých slovech?",
+     "nadávat sprostá slova mluva klení vulgární jazyk",
+     "t:speech"),
+    ("Co Bible říká o závislosti?",
+     "závislost závislý drogy hry mobil pornografie nemůžu přestat",
+     "t:temptation s:temptation t:redemption"),
+    ("Jak se vyrovnat s nemocí?",
+     "nemoc nemocný rakovina diagnóza nemocnice uzdravení zdraví",
+     "s:illness t:suffering"),
+    ("Jak se vypořádat se závistí?",
+     "závist závidím žárlivost srovnávání druzí mají víc",
+     "t:contentment t:joy"),
+    ("Jak zvládat stres a vyhoření?",
+     "stres vyhoření přepracovaný nestíhám únava nezvládám",
+     "s:tired t:work t:worry"),
+    ("Proč mám věřit zrovna Bibli?",
+     "proč věřit bibli jiná náboženství proč křesťanství která víra je "
+     "pravá",
+     "t:jesus t:resurrection t:doubt"),
+    ("Kdo jsou andělé strážní?",
+     "anděl strážný strážní andělé ochrana",
+     "t:angels"),
+    ("Co je pokání?",
+     "pokání obrátit se litovat změnit smýšlení",
+     "t:repentance"),
+    ("Co je Boží království?",
+     "boží království království nebeské co je království",
+     "t:kingdom"),
+    ("Co je spása?",
+     "spása spasení spasen zachránit záchrana",
+     "t:grace t:faith t:redemption"),
+    ("Jak žít podle Bible?",
+     "jak žít podle bible dobrý život křesťanský život jak se chovat "
+     "správně žít",
+     "t:neighbor t:growth s:meaning"),
+    ("Proč umírají nevinní a děti?",
+     "proč umírají děti nevinní smrt dítěte nespravedlivá smrt",
+     "t:suffering t:death s:grief"),
+    ("Proč Bůh poslal potopu?",
+     "proč potopa poslal potopu noe zničil svět archa",
+     "t:judgment t:covenant",
+     dict(text=[
+         "Bible vypráví, že země byla plná násilí a zkaženosti a Bohu "
+         "bylo „líto, že učinil člověka“. Potopa je v Bibli soud nad zlem, "
+         "které ničilo celé stvoření.",
+         "Zároveň je to příběh záchrany: Bůh zachránil Noeho, jeho rodinu "
+         "a zvířata a po potopě uzavřel smlouvu, že už nikdy nezničí zemi "
+         "potopou. Znamením je duha.",
+         "Nový zákon vidí v potopě obraz křtu – vodou prochází soud "
+         "i záchrana (1Pt 3,20-21).",
+     ], read=[("Gn 6,11", "Země byla plná násilí"),
+              ("Gn 6,6", "Bohu bylo líto"),
+              ("Gn 9,11", "Už nikdy potopa"),
+              ("Gn 9,13", "Duha jako znamení"),
+              ("1Pt 3,20", "Potopa a křest")])),
 ]

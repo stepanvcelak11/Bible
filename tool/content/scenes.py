@@ -23,15 +23,15 @@ SCENES = [
      "had jablko ovoce zakázaný strom eden ráj adam eva svedl pokušení "
      "nahota vyhnání z ráje první hřích"),
     ("Gn 4,8", "p", "Kain zabije Ábela",
-     "bratr zabil bratra vražda závist kain ábel oběť jsem snad strážcem "
+     "zabil kdo zabil ábela bratr zabil bratra vražda závist kain ábel oběť jsem snad strážcem "
      "svého bratra"),
     ("Gn 6,14", "p", "Noe staví archu",
-     "archa loď zvířata po dvou potopa déšť čtyřicet dní noe holubice "
+     "postavil archu stavěl kdo postavil archa loď zvířata po dvou potopa déšť čtyřicet dní noe holubice "
      "olivová ratolest duha"),
     ("Gn 9,13", "v", "Duha jako znamení smlouvy",
      "duha znamení slib už nikdy potopa oblak smlouva"),
     ("Gn 11,4", "p", "Babylonská věž",
-     "věž až do nebe jazyky zmatení babylon stavba rozptýlil národy"),
+     "postavili věž až do nebe jazyky zmatení babylon stavba rozptýlil národy"),
     ("Gn 12,1", "p", "Abram odchází z domova",
      "odejdi ze své země do neznáma stěhování abram abraham povolání "
      "požehnání národům"),
@@ -42,7 +42,7 @@ SCENES = [
     ("Gn 19,26", "p", "Lotova žena se ohlédla",
      "ohlédla solný sloup lot sodoma gomora oheň síra útěk"),
     ("Gn 22,2", "p", "Abraham má obětovat Izáka",
-     "obětovat syna izák beránek hora mórija nůž zkouška víry hospodin "
+     "proč bůh zkoušel abrahama zkoušel obětovat syna izák beránek hora mórija nůž zkouška víry hospodin "
      "opatří"),
     ("Gn 25,33", "p", "Ezau prodá prvorozenství",
      "čočka polévka prvorozenství ezau jákob dvojčata hlad prodal"),
@@ -53,7 +53,7 @@ SCENES = [
     ("Gn 32,25", "p", "Jákob zápasí s Bohem",
      "zápas noc kyčel jabok nepustím tě dokud mi nepožehnáš nové jméno izrael"),
     ("Gn 37,3", "p", "Josef a pestrobarevný plášť",
-     "barevný plášť sukně josef bratři závist sny prodali studna otrok"),
+     "prodali bratři do otroctví kdo prodal josefa barevný plášť sukně josef bratři závist sny prodali studna otrok"),
     ("Gn 39,12", "p", "Josef utíká před Potífarovou ženou",
      "svádění potífar žena utekl nechal plášť vězení čistota pokušení"),
     ("Gn 41,25", "p", "Josef vykládá faraonovy sny",
@@ -75,7 +75,7 @@ SCENES = [
      "krev beránka veřeje dveře anděl smrti přešel pesach velikonoce "
      "nekvašený chléb"),
     ("Ex 14,21", "p", "Rozdělení Rudého moře",
-     "rozdělené moře rudé moře suchou nohou vody jako zeď útěk z egypta "
+     "kdo rozdělil moře přešli moře rozdělené moře rudé moře suchou nohou vody jako zeď útěk z egypta "
      "faraonovo vojsko utonulo"),
     ("Ex 14,14", "v", "Hospodin bude bojovat za vás",
      "bude bojovat za vás buďte zticha mlčte klid strach z nepřítele"),
@@ -113,7 +113,7 @@ SCENES = [
     ("Sd 7,7", "p", "Gedeon a tři sta mužů",
      "tři sta mužů malé vojsko pili vodu džbány pochodně midjánci"),
     ("Sd 16,17", "p", "Samson a Delila",
-     "vlasy síla delila ostříhala oslepili sloupy samson zrada"),
+     "nejsilnější muž síla silák vlasy síla delila ostříhala oslepili sloupy samson zrada"),
     ("Rt 1,16", "v", "Kam půjdeš ty, půjdu i já",
      "kam půjdeš půjdu i já tvůj lid můj lid věrnost tchyně rút noemi"),
     ("1S 3,10", "p", "Malý Samuel slyší Boží hlas",
@@ -121,7 +121,7 @@ SCENES = [
     ("1S 16,7", "v", "Člověk hledí na to, co je před očima",
      "srdce vzhled vnějšek hledí na srdce pomazání davida nejmladší pastýř"),
     ("1S 17,49", "p", "David a Goliáš",
-     "obr prak kámen malý proti velkému goliáš david pastýř vyhrál souboj "
+     "zabil goliáše porazil kdo zabil obr prak kámen malý proti velkému goliáš david pastýř vyhrál souboj "
      "pelištejci"),
     ("1S 18,1", "p", "Přátelství Davida a Jonatana",
      "přátelství nejlepší přítel jonatan david smlouva věrný kamarád"),
@@ -130,7 +130,7 @@ SCENES = [
     ("2S 12,7", "p", "Nátan: Ty jsi ten muž",
      "ty jsi ten muž prorok nátan ovečka podobenství usvědčení"),
     ("1Kr 3,9", "p", "Šalomoun prosí o moudrost",
-     "moudrost prosba sen šalomoun srdce rozumné"),
+     "nejmoudřejší král moudrý moudrost prosba sen šalomoun srdce rozumné"),
     ("1Kr 3,25", "p", "Šalomounův soud",
      "dvě ženy dítě rozetnout meč matka spor šalomoun soud spravedlnost"),
     ("1Kr 17,6", "p", "Krkavci krmí Eliáše",
@@ -190,7 +190,7 @@ SCENES = [
     # --- Proroci ------------------------------------------------------------
     ("Iz 6,8", "p", "Izajáš: Hle, zde jsem, pošli mne",
      "zde jsem pošli mě koho pošlu serafíni uhlík rty povolání izajáš"),
-    ("Iz 9,5", "v", "Dítě se nám narodilo",
+    ("Iz 9,5", "v", "Proroctví o dítěti – Knížeti pokoje",
      "dítě se nám narodilo syn dán divuplný rádce kníže pokoje vánoce"),
     ("Iz 40,31", "v", "Jako orli",
      "orli křídla nabudou síly neunaví poběží čekají na hospodina únava"),
@@ -214,11 +214,11 @@ SCENES = [
     ("Da 5,25", "p", "Ruka píše na zeď",
      "ruka písmo na zdi mene tekel hostina belšasar zvážen nalezen lehký"),
     ("Da 6,23", "p", "Daniel v jámě lvové",
-     "lvi jáma lvová daniel modlil okno anděl zavřel tlamy"),
+     "hodili lvům lvi jáma lvová daniel modlil okno anděl zavřel tlamy"),
     ("Jon 2,1", "p", "Jonáš v břiše ryby",
-     "velryba ryba spolkla tři dny jonáš utekl loď bouře ninive"),
+     "spolkla ryba kdo byl v břiše ryby velryba ryba spolkla tři dny jonáš utekl loď bouře ninive"),
     ("Jon 4,6", "p", "Jonáš a skočec",
-     "keř skočec stín červ jonáš zlobil ninive soucit"),
+     "proč utekl jonáš bál keř skočec stín červ jonáš zlobil ninive soucit"),
     ("Mi 6,8", "v", "Co od tebe žádá Hospodin",
      "konat právo milovat milosrdenství pokorně chodit co žádá"),
     ("Abk 3,17", "v", "Ač fíkovník nevykvete",
@@ -229,8 +229,8 @@ SCENES = [
     # --- Evangelia: narození a počátky -------------------------------------
     ("L 1,30", "p", "Anděl Gabriel u Marie",
      "anděl gabriel marie zvěstování panna počne syna neboj se"),
-    ("L 2,7", "p", "Narození v jeslích",
-     "jesle chlév narození betlém nebylo místo v hostinci vánoce miminko "
+    ("L 2,7", "p", "Ježíš se narodil v Betlémě",
+     "narodil se kde se narodil ježíš jesle chlév narození betlém nebylo místo v hostinci vánoce miminko "
      "ježíšek"),
     ("L 2,10", "p", "Andělé a pastýři",
      "pastýři andělé v noci zvěstuji radost sláva na výsostech stádo"),
@@ -241,7 +241,7 @@ SCENES = [
     ("L 2,46", "p", "Dvanáctiletý Ježíš v chrámě",
      "dvanáctiletý ztratil se rodičům v chrámě učitelé tři dny hledali"),
     ("Mt 3,16", "p", "Křest Ježíše v Jordánu",
-     "křest jordán holubice nebe se otevřelo toto je můj milovaný syn jan "
+     "pokřtil kdo pokřtil ježíše křest jordán holubice nebe se otevřelo toto je můj milovaný syn jan "
      "křtitel"),
     ("Mt 4,4", "p", "Pokušení na poušti",
      "pokušení poušť čtyřicet dní půst kameny chléb ďábel satan nejen "
@@ -252,7 +252,7 @@ SCENES = [
     ("Mt 4,19", "p", "Pojďte za mnou, rybáři lidí",
      "pojďte za mnou rybáři lidí povolání učedníků petr ondřej sítě"),
     ("J 2,9", "z", "Svatba v Káni – voda ve víno",
-     "voda víno svatba kána došlo víno první zázrak džbány marie"),
+     "proměnil vodu ve víno voda víno svatba kána došlo víno první zázrak džbány marie"),
     ("J 3,16", "v", "Bůh tak miloval svět",
      "tak miloval svět dal syna jednorozeného každý kdo věří nezahyne "
      "věčný život"),
@@ -362,16 +362,16 @@ SCENES = [
 
     # --- Evangelia: zázraky -------------------------------------------------
     ("Mk 2,4", "z", "Ochrnutého spustili střechou",
-     "spustili střechou rozkryli střechu ochrnutý ochrnulý přátelé lehátko "
+     "uzdravil spustili střechou rozkryli střechu ochrnutý ochrnulý přátelé lehátko "
      "nosítka čtyři muži vezmi lože a choď"),
     ("Mk 4,39", "z", "Utišení bouře",
-     "bouře na jezeře vítr vlny spal na lodi utiš se mistře nezáleží ti "
+     "utišil bouře na jezeře vítr vlny spal na lodi utiš se mistře nezáleží ti "
      "že hyneme"),
     ("Mt 14,29", "z", "Petr kráčí po vodě",
      "chodil po vodě kráčel po vodě petr topil se malověrný proč jsi "
      "pochyboval vlny"),
     ("J 6,9", "z", "Pět chlebů a dvě ryby",
-     "nasycení pěti tisíc pět chlebů dvě ryby chlapec zástup koše zbylo"),
+     "nasytil nakrmil zástup nasycení pěti tisíc pět chlebů dvě ryby chlapec zástup koše zbylo"),
     ("Mk 5,41", "z", "Vzkříšení Jairovy dcery",
      "talitha kum děvčátko vstaň jairos dcera zemřela spí"),
     ("Mk 5,27", "z", "Žena se dotkne Ježíšova pláště",
@@ -394,7 +394,7 @@ SCENES = [
      "slepý od narození bláto sliny umyj se v rybníce siloe kdo zhřešil "
      "byl jsem slepý nyní vidím"),
     ("J 11,43", "z", "Vzkříšení Lazara",
-     "lazare pojď ven čtyři dny v hrobě ježíš zaplakal marta marie "
+     "vzkřísil kdo vzkřísil lazara lazare pojď ven čtyři dny v hrobě ježíš zaplakal marta marie "
      "betanie"),
     ("Mt 17,2", "p", "Proměnění na hoře",
      "proměnění hora zářil jako slunce mojžíš eliáš stany oblak"),
@@ -408,7 +408,24 @@ SCENES = [
     ("Mk 12,42", "p", "Chudá vdova a dvě mince",
      "vdova dvě drobné mince haléř dala všechno pokladnice dar"),
 
+    ("Mt 10,2", "p", "Dvanáct apoštolů",
+     "dvanáct apoštolů učedníků kolik bylo učedníků jména apoštolů "
+     "povolal dvanáct"),
+    ("L 3,23", "v", "Ježíšovi bylo asi třicet let",
+     "kolik bylo ježíšovi let třicet let věk začal působit"),
+    ("Mt 1,1", "v", "Ježíšův rodokmen",
+     "rodokmen ježíšovi předkové abraham david rod"),
+    ("J 11,35", "v", "Ježíš zaplakal",
+     "nejkratší verš ježíš zaplakal plakal slzy"),
+    ("Gn 5,27", "v", "Metuzalém – nejdéle žijící člověk",
+     "nejstarší člověk nejdéle žil metuzalém devět set šedesát devět let"),
+    ("1Kr 6,1", "p", "Šalomoun staví chrám",
+     "postavil chrám první chrám šalomoun stavba chrámu kdo postavil chrám"),
+
     # --- Pašije a velikonoce ------------------------------------------------
+    ("Mt 27,35", "p", "Ukřižování Ježíše",
+     "ukřižovali ukřižování kříž golgota zemřel na kříži hřeby kde zemřel "
+     "ježíš lebka"),
     ("Mt 21,9", "p", "Vjezd do Jeruzaléma na oslu",
      "oslík osel palmové ratolesti hosana květná neděle vjezd"),
     ("J 2,15", "p", "Ježíš vyhání obchodníky z chrámu",
@@ -418,14 +435,14 @@ SCENES = [
      "poslední večeře chléb víno tělo krev to čiňte na mou památku "
      "eucharistie večeře páně"),
     ("Mt 26,39", "p", "Modlitba v Getsemane",
-     "getsemane kalich ať mě mine ne má vůle krvavý pot učedníci spali "
+     "co se stalo v getsemane zahrada noc před ukřižováním getsemane kalich ať mě mine ne má vůle krvavý pot učedníci spali "
      "bdít úzkost"),
     ("Mt 26,49", "p", "Jidášův polibek",
-     "jidáš polibek zrada třicet stříbrných zatčení"),
+     "zradil kdo zradil ježíše zrádce jidáš polibek zrada třicet stříbrných zatčení"),
     ("Mt 26,75", "p", "Petr třikrát zapře",
-     "zapřel třikrát kohout zakokrhal petr plakal hořce neznám ho"),
+     "kdo zapřel ježíše zapřel třikrát kohout zakokrhal petr plakal hořce neznám ho"),
     ("J 18,38", "p", "Pilát: Co je pravda?",
-     "co je pravda pilát soud myl si ruce barabáš ukřižuj"),
+     "kdo odsoudil ježíše odsoudil k smrti co je pravda pilát soud myl si ruce barabáš ukřižuj"),
     ("L 23,34", "v", "Otče, odpusť jim",
      "otče odpusť jim nevědí co činí kříž odpuštění vrahům"),
     ("L 23,43", "p", "Lotr na kříži",

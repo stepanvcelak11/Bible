@@ -13,10 +13,11 @@ const _items = [
   (
     Icons.auto_awesome,
     'Odpovědi z Bible na otázky',
-    'Zeptejte se v Hledat obecně – „Proč je na světě zlo?“, „Jak se '
-        'správně modlit?“, „Co bude po smrti?“. Aplikace vybere z výkladů '
-        'věty, které k vaší otázce sedí nejvíc, přidá verše z Bible a '
-        'nabídne, kde číst dál.',
+    'Zeptejte se v Hledat – obecně („Proč je na světě zlo?“), na postavu '
+        '(„Proč Mojžíš nevešel do zaslíbené země?“), na knihu („Kdo napsal '
+        'Římanům?“), na příběh („Kdo zabil Goliáše?“) nebo na pojem („Kdo '
+        'byli farizeové?“). Aplikace vybere věty, které k otázce sedí '
+        'nejvíc, přidá verše z Bible a nabídne, kde číst dál.',
   ),
   (
     Icons.psychology_alt_outlined,

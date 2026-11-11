@@ -1200,7 +1200,9 @@
     "bat",
     "boji",
     "bojim",
-    "des",
+    "desi",
+    "desim",
+    "desiv",
     "hruz",
     "nervoz",
     "obav",
@@ -2331,8 +2333,12 @@
    "id": "baptism",
    "label": "Křest",
    "triggers": [
-    "krest",
+    "krest=",
+    "krtem",
     "krti",
+    "krtin",
+    "krtit",
+    "krtu=",
     "pokrt"
    ],
    "terms": [
@@ -3375,7 +3381,9 @@
    "id": "tithe",
    "label": "Desátky a dávání Bohu",
    "triggers": [
-    "desat",
+    "desatek",
+    "desatku",
+    "desatky",
     "desetin"
    ],
    "terms": [
@@ -3934,8 +3942,9 @@
    "label": "Daně",
    "triggers": [
     "dan=",
-    "dane",
-    "dani"
+    "dane=",
+    "dani=",
+    "danov"
    ],
    "terms": [
     "clo=",

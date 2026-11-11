@@ -235,7 +235,9 @@ def build_questions() -> dict:
     sits = {s[0] for s in situations.SITUATIONS}
     crs = {c["id"]: len(c["lessons"]) for c in courses.COURSES}
     out = []
-    for title, words, targets in questions.QUESTIONS:
+    for item in questions.QUESTIONS:
+        title, words, targets = item[:3]
+        extra = item[3] if len(item) > 3 else None
         ts = targets.split()
         assert ts, title
         for t in ts:
@@ -251,9 +253,13 @@ def build_questions() -> dict:
                 assert cid in crs and 0 <= int(n) < crs[cid], f"{title}: {t}"
             else:
                 raise AssertionError(f"{title}: {t}")
-        out.append({"title": title,
-                    "words": " ".join(fold(w) for w in words.split()),
-                    "targets": ts})
+        q = {"title": title,
+             "words": " ".join(fold(w) for w in words.split()),
+             "targets": ts}
+        if extra:
+            q["text"] = extra["text"]
+            q["read"] = [{"ref": ref(r), "label": x} for r, x in extra["read"]]
+        out.append(q)
     return {"questions": out}
 
 

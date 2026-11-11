@@ -173,7 +173,7 @@ c("holiness", "Svatý život a čistota",
 
 # --- Pocity a životní situace -------------------------------------------------
 c("fear", "Strach",
-  "strach bát bojí bojím obav vyděš děs hrůz panik nervóz",
+  "strach bát bojí bojím obav vyděš děsí děsím děsiv hrůz panik nervóz",
   "strach neboj nebojte bojí bát= báti= bojím děsí děsit zděs", "s:fear")
 c("anxiety", "Starosti a úzkost",
   "staros úzkost stres obav trápí trápen zítř budoucn",
@@ -330,7 +330,7 @@ c("blessing", "Požehnání",
   "požehn",
   "požehn", "s:success h:nations")
 c("baptism", "Křest",
-  "křest křtí pokřt",
+  "křest= křtu= křtem křtí křtít pokřt křtin",
   "křest křtí pokřt", "t:baptism")
 c("supper", "Večeře Páně",
   "večeř přijímán eucharist",
@@ -517,7 +517,7 @@ c("stillness", "Ztišení a rozjímání",
   "ztiš ticho meditac rozjímán",
   "ztiš rozjím přemýšl", "s:peace")
 c("tithe", "Desátky a dávání Bohu",
-  "desát desetin",
+  "desátek desátky desátků desetin",
   "desát", "t:money")
 c("leaders", "Vedení a odpovědnost",
   "vedouc vůdc vést_lidi lídr pastoř starší",
@@ -613,7 +613,7 @@ c("prisoners", "Vězni",
   "vězen vězn kriminál",
   "vězen vězn žalář", "t:justice")
 c("taxes", "Daně",
-  "daň= daně daní",
+  "daň= daně= daní= daňov",
   "daň= daně= clo=", "t:authority")
 c("confess", "Vyznání hříchů",
   "vyznat vyznán zpověď přiznat",

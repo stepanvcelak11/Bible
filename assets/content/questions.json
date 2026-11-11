@@ -181,6 +181,15 @@
    ]
   },
   {
+   "title": "Jak odpustit, když to bolí?",
+   "words": "jak odpustit nekomu kdo mi ublizil nedokazu odpustit krivda boli",
+   "targets": [
+    "t:forgiveness",
+    "s:hurt",
+    "t:reconciliation"
+   ]
+  },
+  {
    "title": "Odpustí mi Bůh?",
    "words": "odpusti mi buh i tohle velky hrich nemuze mi odpustit jsem moc spatny",
    "targets": [
@@ -367,15 +376,6 @@
     "s:meaning",
     "t:image",
     "t:kingdom"
-   ]
-  },
-  {
-   "title": "Jak odpustit, když to bolí?",
-   "words": "jak odpustit nekomu kdo mi ublizil nedokazu odpustit krivda boli",
-   "targets": [
-    "t:forgiveness",
-    "s:hurt",
-    "t:reconciliation"
    ]
   },
   {
@@ -593,6 +593,524 @@
    "words": "apostol pavel saul z tarsu pavlovy cesty dopisy",
    "targets": [
     "c:paul"
+   ]
+  },
+  {
+   "title": "Kdo je Duch svatý?",
+   "words": "duch svaty kdo je duch co dela duch svaty utesitel primluvce",
+   "targets": [
+    "t:spirit",
+    "t:trinity"
+   ]
+  },
+  {
+   "title": "Co je Desatero?",
+   "words": "desatero deset prikazani desky zakona sinaj",
+   "targets": [
+    "t:law"
+   ]
+  },
+  {
+   "title": "Co slavíme o Velikonocích?",
+   "words": "velikonoce velky patek proc slavime velikonoce zmrtvychvstani beranek",
+   "targets": [
+    "t:resurrection",
+    "t:cross",
+    "l:feasts:1"
+   ]
+  },
+  {
+   "title": "Co slavíme o Vánocích?",
+   "words": "vanoce proc slavime vanoce narozeni jezise betlem vteleni",
+   "targets": [
+    "t:incarnation"
+   ]
+  },
+  {
+   "title": "Proč se křtí děti a jak je to s křtem?",
+   "words": "krti deti krest deti pokrtit miminko krtiny znovu pokrtit",
+   "targets": [
+    "t:baptism"
+   ]
+  },
+  {
+   "title": "Která církev je ta pravá?",
+   "words": "prava cirkev ktera cirkev katolicka evangelicka pravoslavna sbory rozdeleni krestanu",
+   "targets": [
+    "t:church",
+    "t:unity"
+   ]
+  },
+  {
+   "title": "Dějí se zázraky i dnes?",
+   "words": "zazraky dnes deji se uzdraveni dnes opravdu existuji zazraky",
+   "targets": [
+    "t:miracles",
+    "s:illness"
+   ]
+  },
+  {
+   "title": "Smí křesťan pít alkohol?",
+   "words": "alkohol pit vino pivo opijet opilost smi krestan pit",
+   "targets": [
+    "s:temptation"
+   ],
+   "text": [
+    "Bible víno nezakazuje: Ježíš proměnil vodu ve víno na svatbě a víno patří k Večeři Páně. Žalm 104 mluví o víně, které „obveseluje srdce člověka“.",
+    "Zároveň opakovaně varuje před opilstvím. Pavel píše: „Neopíjejte se vínem, to vede k nevázanosti, ale buďte plni Ducha.“ Kniha Přísloví popisuje, jak alkohol klame a bere sílu.",
+    "Bible také žádá ohleduplnost: nepít tam, kde by to druhému uškodilo nebo ho svedlo. Kdo se pití nedokáže ovládat, pro toho je moudré nepít vůbec a hledat pomoc."
+   ],
+   "read": [
+    {
+     "ref": [
+      43,
+      2,
+      9,
+      9
+     ],
+     "label": "Voda proměněná ve víno"
+    },
+    {
+     "ref": [
+      19,
+      104,
+      15,
+      15
+     ],
+     "label": "Víno obveseluje srdce"
+    },
+    {
+     "ref": [
+      49,
+      5,
+      18,
+      18
+     ],
+     "label": "Neopíjejte se, buďte plni Ducha"
+    },
+    {
+     "ref": [
+      20,
+      20,
+      1,
+      1
+     ],
+     "label": "Víno klame"
+    },
+    {
+     "ref": [
+      45,
+      14,
+      21,
+      21
+     ],
+     "label": "Ohled na slabšího bratra"
+    }
+   ]
+  },
+  {
+   "title": "Je sex před svatbou hřích?",
+   "words": "sex pred svatbou predmanzelsky sex spat spolu s pritelem pritelkyni cistota sexualita",
+   "targets": [
+    "t:marriage"
+   ],
+   "text": [
+    "Bible vidí sexualitu jako dobrý Boží dar, který patří do manželství – do smlouvy, ve které se muž a žena dávají jeden druhému celým životem a stávají se „jedním tělem“.",
+    "Proto Nový zákon vyzývá k čistotě a varuje před smilstvem, tedy sexem mimo manželství. Pavel připomíná, že tělo není bezcenné: „Vaše tělo je chrámem Ducha svatého.“",
+    "Kdo v tomhle selhal, není odepsaný. Bible nabízí odpuštění a nový začátek – Ježíš ženě přistižené při cizoložství řekl: „Ani já tě neodsuzuji. Jdi a už nehřeš.“"
+   ],
+   "read": [
+    {
+     "ref": [
+      1,
+      2,
+      24,
+      24
+     ],
+     "label": "Budou jedním tělem"
+    },
+    {
+     "ref": [
+      46,
+      6,
+      18,
+      18
+     ],
+     "label": "Utíkejte před smilstvem"
+    },
+    {
+     "ref": [
+      46,
+      6,
+      19,
+      19
+     ],
+     "label": "Tělo je chrámem Ducha"
+    },
+    {
+     "ref": [
+      52,
+      4,
+      3,
+      3
+     ],
+     "label": "Boží vůle je vaše posvěcení"
+    },
+    {
+     "ref": [
+      43,
+      8,
+      11,
+      11
+     ],
+     "label": "Ani já tě neodsuzuji"
+    }
+   ]
+  },
+  {
+   "title": "Smím se rozvést?",
+   "words": "rozvest rozvod rozvedeni rozvedeny manzelstvi se rozpada chci odejit od manzela manzelky",
+   "targets": [
+    "t:marriage",
+    "s:love"
+   ],
+   "text": [
+    "Bible bere manželství jako celoživotní smlouvu. Ježíš na otázku o rozvodu odpovídá: „Co Bůh spojil, člověk nerozlučuj.“ Rozvod vidí jako ránu, ne jako běžné řešení.",
+    "Zároveň Bible počítá s tím, že svět je porušený. Ježíš zmiňuje nevěru a Pavel opuštění nevěřícím partnerem; křesťanské církve tyto výjimky vykládají různě.",
+    "Kdo je v násilném nebo nebezpečném vztahu, má právo být v bezpečí. Při krizi v manželství pomáhá mluvit s někým moudrým – s duchovním nebo s manželskou poradnou."
+   ],
+   "read": [
+    {
+     "ref": [
+      40,
+      19,
+      6,
+      6
+     ],
+     "label": "Co Bůh spojil"
+    },
+    {
+     "ref": [
+      40,
+      19,
+      9,
+      9
+     ],
+     "label": "Ježíš o rozvodu"
+    },
+    {
+     "ref": [
+      46,
+      7,
+      15,
+      15
+     ],
+     "label": "Když nevěřící odchází"
+    },
+    {
+     "ref": [
+      39,
+      2,
+      16,
+      16
+     ],
+     "label": "Nenávidím zapuzení"
+    },
+    {
+     "ref": [
+      19,
+      34,
+      19,
+      19
+     ],
+     "label": "Hospodin je blízko zkroušeným"
+    }
+   ]
+  },
+  {
+   "title": "Co dělat, když mě šikanují?",
+   "words": "sikana sikanuji posmivaji smeji se mi ve skole v praci ublizuji ponizuji biji",
+   "targets": [
+    "s:hurt",
+    "s:worthless"
+   ],
+   "text": [
+    "Šikana není něco, co musíte potichu snášet. Bible stojí na straně slabých a utlačovaných a Bůh slyší jejich volání.",
+    "Svěřte se někomu, komu důvěřujete – rodičům, učiteli, vedoucímu nebo kamarádovi. Děti a mladí mohou zavolat na Linku bezpečí 116 111 (zdarma, nonstop).",
+    "Vaše hodnota nezávisí na tom, co o vás říkají druzí: Bůh vás stvořil a miluje. Ježíš sám zažil posměch a ponížení – rozumí tomu, čím procházíte."
+   ],
+   "read": [
+    {
+     "ref": [
+      19,
+      34,
+      19,
+      19
+     ],
+     "label": "Hospodin je blízko zkroušeným"
+    },
+    {
+     "ref": [
+      19,
+      10,
+      17,
+      17
+     ],
+     "label": "Bůh slyší ponížené"
+    },
+    {
+     "ref": [
+      23,
+      43,
+      4,
+      4
+     ],
+     "label": "Jsi v mých očích vzácný"
+    },
+    {
+     "ref": [
+      58,
+      4,
+      15,
+      15
+     ],
+     "label": "Ježíš s námi soucítí"
+    },
+    {
+     "ref": [
+      45,
+      12,
+      21,
+      21
+     ],
+     "label": "Nedej se přemoci zlem"
+    }
+   ]
+  },
+  {
+   "title": "Co když už nechci žít?",
+   "words": "nechci byt nazivu chci umrit sebevrazda zabit se skoncit se vsim konec zivota",
+   "targets": [
+    "s:hope",
+    "s:worthless"
+   ],
+   "text": [
+    "Jestli teď myslíte na to, že nechcete žít, nejste v tom sami a nemusíte to nést sami. Prosím, řekněte to ještě dnes někomu blízkému nebo zavolejte na Linku první psychické pomoci 116 123 (zdarma, nonstop). Děti a mladí mohou volat Linku bezpečí 116 111. V ohrožení života volejte 155 nebo 112.",
+    "I lidé v Bibli prošli tak hlubokou tmou, že si přáli zemřít – prorok Eliáš i Jób. Bůh je za to neodsoudil: Eliášovi dal nejdřív jídlo a spánek a pak k němu tiše promluvil.",
+    "Vaše bolest je skutečná a váš život má cenu. Bůh je blízko těm, kdo mají zlomené srdce."
+   ],
+   "read": [
+    {
+     "ref": [
+      11,
+      19,
+      4,
+      4
+     ],
+     "label": "Eliáš si přeje zemřít"
+    },
+    {
+     "ref": [
+      11,
+      19,
+      7,
+      7
+     ],
+     "label": "Vstaň a jez, cesta je daleká"
+    },
+    {
+     "ref": [
+      19,
+      34,
+      19,
+      19
+     ],
+     "label": "Hospodin je blízko zkroušeným"
+    },
+    {
+     "ref": [
+      40,
+      11,
+      28,
+      28
+     ],
+     "label": "Pojďte ke mně, unavení"
+    },
+    {
+     "ref": [
+      23,
+      42,
+      3,
+      3
+     ],
+     "label": "Nalomenou třtinu nedolomí"
+    }
+   ]
+  },
+  {
+   "title": "Je lež někdy v pořádku?",
+   "words": "lez lhat zalhat milosrdna lez pravda poctivost",
+   "targets": [
+    "t:truth",
+    "t:speech"
+   ]
+  },
+  {
+   "title": "Co Bible říká o nadávání a sprostých slovech?",
+   "words": "nadavat sprosta slova mluva kleni vulgarni jazyk",
+   "targets": [
+    "t:speech"
+   ]
+  },
+  {
+   "title": "Co Bible říká o závislosti?",
+   "words": "zavislost zavisly drogy hry mobil pornografie nemuzu prestat",
+   "targets": [
+    "t:temptation",
+    "s:temptation",
+    "t:redemption"
+   ]
+  },
+  {
+   "title": "Jak se vyrovnat s nemocí?",
+   "words": "nemoc nemocny rakovina diagnoza nemocnice uzdraveni zdravi",
+   "targets": [
+    "s:illness",
+    "t:suffering"
+   ]
+  },
+  {
+   "title": "Jak se vypořádat se závistí?",
+   "words": "zavist zavidim zarlivost srovnavani druzi maji vic",
+   "targets": [
+    "t:contentment",
+    "t:joy"
+   ]
+  },
+  {
+   "title": "Jak zvládat stres a vyhoření?",
+   "words": "stres vyhoreni prepracovany nestiham unava nezvladam",
+   "targets": [
+    "s:tired",
+    "t:work",
+    "t:worry"
+   ]
+  },
+  {
+   "title": "Proč mám věřit zrovna Bibli?",
+   "words": "proc verit bibli jina nabozenstvi proc krestanstvi ktera vira je prava",
+   "targets": [
+    "t:jesus",
+    "t:resurrection",
+    "t:doubt"
+   ]
+  },
+  {
+   "title": "Kdo jsou andělé strážní?",
+   "words": "andel strazny strazni andele ochrana",
+   "targets": [
+    "t:angels"
+   ]
+  },
+  {
+   "title": "Co je pokání?",
+   "words": "pokani obratit se litovat zmenit smysleni",
+   "targets": [
+    "t:repentance"
+   ]
+  },
+  {
+   "title": "Co je Boží království?",
+   "words": "bozi kralovstvi kralovstvi nebeske co je kralovstvi",
+   "targets": [
+    "t:kingdom"
+   ]
+  },
+  {
+   "title": "Co je spása?",
+   "words": "spasa spaseni spasen zachranit zachrana",
+   "targets": [
+    "t:grace",
+    "t:faith",
+    "t:redemption"
+   ]
+  },
+  {
+   "title": "Jak žít podle Bible?",
+   "words": "jak zit podle bible dobry zivot krestansky zivot jak se chovat spravne zit",
+   "targets": [
+    "t:neighbor",
+    "t:growth",
+    "s:meaning"
+   ]
+  },
+  {
+   "title": "Proč umírají nevinní a děti?",
+   "words": "proc umiraji deti nevinni smrt ditete nespravedliva smrt",
+   "targets": [
+    "t:suffering",
+    "t:death",
+    "s:grief"
+   ]
+  },
+  {
+   "title": "Proč Bůh poslal potopu?",
+   "words": "proc potopa poslal potopu noe znicil svet archa",
+   "targets": [
+    "t:judgment",
+    "t:covenant"
+   ],
+   "text": [
+    "Bible vypráví, že země byla plná násilí a zkaženosti a Bohu bylo „líto, že učinil člověka“. Potopa je v Bibli soud nad zlem, které ničilo celé stvoření.",
+    "Zároveň je to příběh záchrany: Bůh zachránil Noeho, jeho rodinu a zvířata a po potopě uzavřel smlouvu, že už nikdy nezničí zemi potopou. Znamením je duha.",
+    "Nový zákon vidí v potopě obraz křtu – vodou prochází soud i záchrana (1Pt 3,20-21)."
+   ],
+   "read": [
+    {
+     "ref": [
+      1,
+      6,
+      11,
+      11
+     ],
+     "label": "Země byla plná násilí"
+    },
+    {
+     "ref": [
+      1,
+      6,
+      6,
+      6
+     ],
+     "label": "Bohu bylo líto"
+    },
+    {
+     "ref": [
+      1,
+      9,
+      11,
+      11
+     ],
+     "label": "Už nikdy potopa"
+    },
+    {
+     "ref": [
+      1,
+      9,
+      13,
+      13
+     ],
+     "label": "Duha jako znamení"
+    },
+    {
+     "ref": [
+      60,
+      3,
+      20,
+      20
+     ],
+     "label": "Potopa a křest"
+    }
    ]
   }
  ]

@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -193,7 +196,7 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
   var kind = PrepKind.sermon;
   var template = true;
   final passages = <Passage>[];
-  final created = await showModalBottomSheet<Prep>(
+  final created = await showAppSheet<Prep>(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
@@ -1034,7 +1037,7 @@ Future<void> addPassageToPrep(
   final preps = ref.read(prepProvider);
   final messenger = ScaffoldMessenger.of(context);
   final navigator = Navigator.of(context);
-  final chosen = await showModalBottomSheet<int>(
+  final chosen = await showAppSheet<int>(
     context: context,
     showDragHandle: true,
     builder: (context) => SafeArea(
@@ -1093,7 +1096,7 @@ Future<void> showPrepHelper(
   BuildContext context,
   int prepId, {
   Passage? focus,
-}) => showModalBottomSheet<void>(
+}) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   showDragHandle: true,

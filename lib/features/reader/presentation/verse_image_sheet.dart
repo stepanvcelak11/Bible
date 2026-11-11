@@ -1,6 +1,9 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/rendering.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -18,7 +21,7 @@ Future<void> showVerseImageSheet(
   required String citation,
   required String translation,
   required String plainShareText,
-}) => showModalBottomSheet<void>(
+}) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   useSafeArea: true,

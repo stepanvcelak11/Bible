@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -148,7 +151,7 @@ const _parts = [
 
 /// Aplikační poznámka ve spodním panelu: text, výklad, most, aplikace.
 Future<void> showNoteSheet(BuildContext context, AppNote note) =>
-    showModalBottomSheet<void>(
+    showAppSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,

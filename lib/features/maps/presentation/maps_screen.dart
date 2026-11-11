@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -83,7 +86,7 @@ class _MapPageState extends ConsumerState<MapPage> {
     setState(() => _selected = place);
     _mapKey.currentState?.focusPlace(place);
     final mp = data.places.firstWhere((m) => m.place.id == place.id);
-    showModalBottomSheet<void>(
+    showAppSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,

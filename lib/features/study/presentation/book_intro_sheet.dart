@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../connections/presentation/connections_screen.dart';
@@ -19,7 +22,7 @@ import '../application/study_providers.dart';
 
 /// Otevře úvod ke knize jako spodní panel.
 Future<void> showBookIntro(BuildContext context, int bookId) {
-  return showModalBottomSheet<void>(
+  return showAppSheet<void>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,

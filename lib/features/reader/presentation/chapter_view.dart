@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -856,7 +859,7 @@ void _openParallels(BuildContext context, List<HarmonyEvent> events) {
     MaterialPageRoute<void>(builder: (_) => GospelParallelScreen(event: e)),
   );
   if (events.length == 1) return open(events.single);
-  showModalBottomSheet<void>(
+  showAppSheet<void>(
     context: context,
     builder: (sheet) => ListView(
       shrinkWrap: true,

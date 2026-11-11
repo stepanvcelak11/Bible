@@ -2,6 +2,9 @@ import 'inline_note_view.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -107,7 +110,7 @@ class _ParagraphViewState extends ConsumerState<ParagraphView> {
   }
 
   void _showFootnotes(int verse, List<String> notes) {
-    showModalBottomSheet<void>(
+    showAppSheet<void>(
       context: context,
       showDragHandle: true,
       builder: (context) => _FootnoteSheet(

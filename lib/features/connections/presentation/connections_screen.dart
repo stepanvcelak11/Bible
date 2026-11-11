@@ -3,6 +3,9 @@ import 'dart:math' as math;
 import 'package:flutter/gestures.dart';
 
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -781,7 +784,7 @@ class _BookChips extends ConsumerWidget {
 }
 
 Future<void> showEra(BuildContext context, StoryEra era) {
-  return showModalBottomSheet<void>(
+  return showAppSheet<void>(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
@@ -1276,7 +1279,7 @@ class _ArcsViewState extends ConsumerState<_ArcsView>
 
   Future<void> _pickBook() async {
     final books = ref.read(booksProvider);
-    final picked = await showModalBottomSheet<int>(
+    final picked = await showAppSheet<int>(
       context: context,
       showDragHandle: true,
       isScrollControlled: true,

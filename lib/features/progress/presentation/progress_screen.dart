@@ -1,6 +1,9 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../today/presentation/recent_list.dart';
@@ -592,7 +595,7 @@ class _BookCell extends StatelessWidget {
 
 /// Kapitoly knihy k odškrtnutí (přečteno dříve, mimo aplikaci).
 Future<void> showBookProgress(BuildContext context, int bookId) =>
-    showModalBottomSheet<void>(
+    showAppSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
@@ -747,7 +750,7 @@ Future<bool> _confirm(BuildContext context, String text) async =>
     false;
 
 /// Hromadné označení oddílů Bible jako přečtených.
-Future<void> _showBulkMark(BuildContext context) => showModalBottomSheet<void>(
+Future<void> _showBulkMark(BuildContext context) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   useSafeArea: true,

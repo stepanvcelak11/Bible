@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/services.dart';
 
 import '../application/read_aloud_controller.dart';
@@ -341,7 +344,7 @@ void newReaderTab(BuildContext context, WidgetRef ref) {
   final current = ref.read(translationControllerProvider).primaryId;
   final position = ref.read(readingPositionProvider);
   final ctl = ref.read(readerTabsProvider.notifier);
-  showModalBottomSheet<void>(
+  showAppSheet<void>(
     context: context,
     isScrollControlled: true,
     builder: (sheet) {

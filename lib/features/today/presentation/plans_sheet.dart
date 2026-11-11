@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -12,7 +15,7 @@ import '../../translations/application/translation_controller.dart';
 import '../application/today_providers.dart';
 import 'plan_detail_screen.dart';
 
-Future<void> showPlansSheet(BuildContext context) => showModalBottomSheet<void>(
+Future<void> showPlansSheet(BuildContext context) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   useSafeArea: true,

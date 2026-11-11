@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +24,7 @@ import '../../translations/presentation/library_screen.dart';
 
 /// Otevře studium verše: originál slovo po slově, souvislosti, místa.
 Future<void> showVerseStudy(BuildContext context, VerseRef verse) {
-  return showModalBottomSheet<void>(
+  return showAppSheet<void>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
@@ -269,7 +272,7 @@ class _WordCard extends StatelessWidget {
 
 /// Slovníkové heslo.
 Future<void> showLexicon(BuildContext context, OriginalWord word) {
-  return showModalBottomSheet<void>(
+  return showAppSheet<void>(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,

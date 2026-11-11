@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/app_sheet.dart';
+
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
@@ -374,7 +376,7 @@ const _items = [
   ),
 ];
 
-Future<void> showWhatsNew(BuildContext context) => showModalBottomSheet<void>(
+Future<void> showWhatsNew(BuildContext context) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   useSafeArea: true,

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../core/widgets/app_sheet.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -121,7 +124,7 @@ class PassageCard extends ConsumerWidget {
 
 /// Text místa (i celé kapitoly) ve spodním panelu s odkazem do čtečky.
 Future<void> showPassageSheet(BuildContext context, Passage passage) =>
-    showModalBottomSheet<void>(
+    showAppSheet<void>(
       context: context,
       isScrollControlled: true,
       useSafeArea: true,

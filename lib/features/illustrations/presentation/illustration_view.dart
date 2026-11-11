@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/l10n/strings_cs.dart';
+
 import '../../../core/theme/app_theme.dart';
 import '../application/illustrations.dart';
 
@@ -135,6 +137,12 @@ class IllustrationView extends StatelessWidget {
                     fontSize: 16,
                     color: palette.gold,
                   ),
+                ),
+                const SizedBox(height: 8),
+                TextButton.icon(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: const Icon(Icons.close),
+                  label: const Text(S.close),
                 ),
               ],
             ),

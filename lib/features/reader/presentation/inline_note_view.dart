@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/app_sheet.dart';
+
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
 import '../application/glossary.dart';
@@ -275,7 +277,7 @@ Future<void> showVerseExtras(
   VerseExtrasScope scope,
   int verse,
   VerseExtras extras,
-) => showModalBottomSheet<void>(
+) => showAppSheet<void>(
   context: context,
   isScrollControlled: true,
   useSafeArea: true,

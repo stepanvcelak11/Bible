@@ -13,8 +13,8 @@ const _items = [
   (
     Icons.palette_outlined,
     'Nový vzhled Hledat a Deníku',
-    'Hledat ukazuje, co všechno můžete hledat, a příklady podle myšlenky '
-        'rozdělené na pocity, otázky a příběhy. Deník má nahoře nástroje '
+    'Hledat je čisté – jen pole a přepínač režimu, výsledky na kartách. '
+        'Deník má nahoře nástroje '
         'a dlaždice s počty záložek, poznámek, zvýraznění a modliteb.',
   ),
   (

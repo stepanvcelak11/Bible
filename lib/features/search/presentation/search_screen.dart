@@ -143,10 +143,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final palette = AppPalette.of(context);
     final insets = MediaQuery.paddingOf(context);
     final reference = _text.isEmpty ? null : parseReference(_text, books);
-    final results = _text.isEmpty || _thought
+    // Podle myšlenky jen tehdy, když v dotazu rozpoznáme téma – jinak
+    // (např. „Ježíš“) běžné hledání slov a obsahu aplikace.
+    final lexicon = ref.watch(conceptLexiconProvider).value;
+    final thoughtFallback =
+        _thought &&
+        _text.length >= 2 &&
+        lexicon != null &&
+        lexicon.detect(_text).isEmpty;
+    final thought = _thought && !thoughtFallback;
+    final results = _text.isEmpty || thought
         ? null
         : ref.watch(searchResultsProvider(_query));
-    final counts = _text.isEmpty || _thought
+    final counts = _text.isEmpty || thought
         ? null
         : ref
               .watch(
@@ -243,7 +252,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             ),
           ),
-          if (!_thought)
+          if (!thought)
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 50,
@@ -317,7 +326,19 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                 ),
               ),
             ),
-          if (_thought)
+          if (thoughtFallback)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 4, 20, 2),
+                child: Text(
+                  S.thoughtFallback,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: palette.muted,
+                  ),
+                ),
+              ),
+            ),
+          if (thought)
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16, 4, 16, insets.bottom + 110),

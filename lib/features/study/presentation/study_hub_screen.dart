@@ -22,14 +22,14 @@ import '../../prayer/presentation/prayers_view.dart';
 import '../../connections/presentation/connections_screen.dart';
 import '../../content/presentation/church_year_screen.dart';
 import '../../content/presentation/quiz_screen.dart';
-import '../../today/presentation/for_today.dart';
 import '../../today/presentation/plan_card.dart';
 import '../../today/presentation/plans_sheet.dart';
+import '../../today/application/today_providers.dart';
+import '../application/course_progress.dart';
 import '../../today/presentation/timeline_screen.dart';
 import '../../content/presentation/family_tree_screen.dart';
 import '../../prayer/presentation/lectio_screen.dart';
 import '../../translations/presentation/library_screen.dart';
-import '../../shell/home_shell.dart';
 import 'book_intros_screen.dart';
 import 'courses_screen.dart';
 import 'study_pack_screen.dart';
@@ -44,12 +44,6 @@ class StudyHubScreen extends ConsumerStatefulWidget {
 }
 
 class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
-  final _coursesKey = GlobalKey();
-  final _wholeKey = GlobalKey();
-  final _lifeKey = GlobalKey();
-  final _booksKey = GlobalKey();
-  final _toolsKey = GlobalKey();
-
   void _push(Widget page) =>
       Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => page));
 
@@ -61,8 +55,6 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
     final peopleCount = ref.watch(peopleProvider).value?.length;
     final situations =
         ref.watch(situationsProvider).value?.$2 ?? const <Situation>[];
-    final notesCount = ref.watch(notesProvider).value?.length;
-    final tablesCount = ref.watch(tablesProvider).value?.length;
     final topicsCount = ref.watch(topicsProvider).value?.$2.length;
     final memory = ref.watch(memoryProvider);
     final memoryCount = memory.length;
@@ -234,13 +226,156 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
       );
     }
 
-    final sections = [
-      (S.courses, Icons.school_outlined, _coursesKey),
-      (S.studyBooksPeople, Icons.auto_stories_outlined, _booksKey),
-      (S.connectionsWhole, Icons.hub_outlined, _wholeKey),
-      (S.studyForLife, Icons.favorite_border, _lifeKey),
-      (S.studyTools, Icons.handyman_outlined, _toolsKey),
+    // Méně častá místa: kompaktní mřížka ikon s krátkým popiskem.
+    final more = <_Entry>[
+      _Entry(
+        Icons.hub_outlined,
+        const Color(0xFFB0603A),
+        S.connections,
+        '',
+        () => openConnections(context),
+      ),
+      _Entry(
+        Icons.account_tree_outlined,
+        const Color(0xFF2E8B57),
+        S.familyTree,
+        '',
+        () => openFamilyTree(context),
+      ),
+      _Entry(
+        Icons.account_balance_outlined,
+        const Color(0xFF8C6BA8),
+        S.plans,
+        '',
+        () => openPlans(context),
+      ),
+      _Entry(
+        Icons.view_week_outlined,
+        const Color(0xFF2E8B57),
+        S.harmony,
+        '',
+        () => _push(const HarmonyScreen()),
+      ),
+      _Entry(
+        Icons.table_chart_outlined,
+        const Color(0xFF5B7A3A),
+        S.tables,
+        '',
+        () => _push(const TablesScreen()),
+      ),
+      _Entry(
+        Icons.sticky_note_2_outlined,
+        const Color(0xFF3F7CAC),
+        S.applicationNotes,
+        '',
+        () => _push(const NotesScreen()),
+      ),
+      _Entry(
+        Icons.event_note_outlined,
+        const Color(0xFF5B7A3A),
+        S.readingPlans,
+        '',
+        () => showPlansSheet(context),
+      ),
+      _Entry(
+        Icons.emoji_events_outlined,
+        const Color(0xFFC08A2E),
+        S.quiz,
+        '',
+        () => openQuiz(context),
+      ),
+      _Entry(
+        Icons.psychology_outlined,
+        const Color(0xFF8C6BA8),
+        S.memory,
+        memoryCount == 0 ? '' : '$memoryLearned/$memoryCount',
+        () => openMemory(context),
+      ),
+      _Entry(
+        Icons.volunteer_activism_outlined,
+        const Color(0xFF3E8E5E),
+        S.prayers,
+        '',
+        () => openPrayers(context),
+      ),
+      _Entry(
+        Icons.spa_outlined,
+        const Color(0xFF4E8A9A),
+        S.lectio,
+        '',
+        () => openLectio(context),
+      ),
+      _Entry(
+        Icons.donut_large,
+        const Color(0xFF7A55A8),
+        S.churchYear,
+        '',
+        () => openChurchYear(context),
+      ),
+      _Entry(
+        Icons.edit_note,
+        const Color(0xFFB07A2A),
+        S.prepsShort,
+        '',
+        () => openPreps(context),
+      ),
+      _Entry(
+        Icons.history_edu,
+        const Color(0xFF8C6BA8),
+        S.exploreStudy,
+        '',
+        () => _push(const StudyPackScreen()),
+      ),
+      _Entry(
+        Icons.translate,
+        const Color(0xFF4E9A8A),
+        S.exploreTranslations,
+        '',
+        () => _push(const LibraryScreen()),
+      ),
     ];
+    final iconColumns = width >= 700 ? 5 : 3;
+    Widget mini(_Entry e) => InkWell(
+      onTap: e.onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+        child: Column(
+          children: [
+            Container(
+              width: 46,
+              height: 46,
+              decoration: BoxDecoration(
+                color: e.color.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(e.icon, color: e.color, size: 24),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              e.title,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.textTheme.labelMedium?.copyWith(height: 1.2),
+            ),
+            if (e.subtitle.isNotEmpty)
+              Text(
+                e.subtitle,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+
+    final course = currentCourse(
+      ref.watch(coursesProvider).value ?? const <StudyCourse>[],
+      ref.watch(courseProgressProvider),
+    );
+    final hasPlan = ref.watch(planProvider).value != null;
 
     return Scaffold(
       body: ReadableWidth(
@@ -262,85 +397,23 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                   color: palette.muted,
                 ),
               ),
-              const SizedBox(height: 14),
             ],
-            // Jedno hledání pro celou aplikaci – v záložce Hledat.
-            Material(
-              color: palette.card,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
-                side: BorderSide(color: palette.cardBorder),
-              ),
-              child: InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                onTap: () =>
-                    ref.read(shellTabProvider.notifier).select(AppTab.search),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 14,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.search, color: palette.muted),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          S.studySearchHint,
-                          style: theme.textTheme.bodyLarge?.copyWith(
-                            color: palette.muted,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            // --- Rozečtené: jen když něco opravdu běží ---------------------
+            if (course != null || hasPlan) ...[
+              header(S.studyContinue),
+              if (course != null) const CourseContinueCard(),
+              if (course != null && hasPlan) const SizedBox(height: 10),
+              if (hasPlan) const PlanCard(),
+            ],
+            // --- Kurzy ---------------------------------------------------
+            SectionLabel(
+              S.studyStepByStep,
+              action: S.all,
+              onAction: () => openCourses(context),
             ),
-            const SizedBox(height: 12),
-            // Rychlé skoky na oddíly.
-            SizedBox(
-              height: 40,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  for (final (title, icon, key) in sections)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ActionChip(
-                        avatar: Icon(icon, size: 18, color: palette.gold),
-                        label: Text(title),
-                        onPressed: () {
-                          final c = key.currentContext;
-                          if (c != null) {
-                            Scrollable.ensureVisible(
-                              c,
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeOutCubic,
-                            );
-                          }
-                        },
-                      ),
-                    ),
-                ],
-              ),
-            ),
-            // --- Studijní kurzy ------------------------------------------
-            KeyedSubtree(
-              key: _coursesKey,
-              child: SectionLabel(
-                S.studyStepByStep,
-                action: S.all,
-                onAction: () => openCourses(context),
-              ),
-            ),
-            const CourseContinueCard(),
-            const SizedBox(height: 10),
             const CoursesShelf(),
-            // --- Témata, knihy a postavy ---------------------------------
-            KeyedSubtree(key: _booksKey, child: header(S.studyBooksPeople)),
+            // --- Hlavní místa ke čtení a objevování ------------------------
+            header(S.studyExplore),
             group([
               _Entry(
                 Icons.lightbulb_outline,
@@ -353,7 +426,7 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 Icons.auto_stories_outlined,
                 const Color(0xFFB0813B),
                 S.exploreIntros,
-                S.introsHint,
+                S.introsShort,
                 () => _push(const BookIntrosScreen()),
               ),
               _Entry(
@@ -364,149 +437,52 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
                 () => _push(const PeopleScreen()),
               ),
               _Entry(
-                Icons.sticky_note_2_outlined,
-                const Color(0xFF3F7CAC),
-                S.applicationNotes,
-                notesCount == null
-                    ? S.applicationNotesHint
-                    : S.notesCount(notesCount),
-                () => _push(const NotesScreen()),
-              ),
-              _Entry(
-                Icons.table_chart_outlined,
-                const Color(0xFF5B7A3A),
-                S.tables,
-                tablesCount == null ? S.tablesHint : S.tablesCount(tablesCount),
-                () => _push(const TablesScreen()),
-              ),
-              _Entry(
-                Icons.view_week_outlined,
-                const Color(0xFF2E8B57),
-                S.harmony,
-                S.harmonyHint,
-                () => _push(const HarmonyScreen()),
-              ),
-            ]),
-            // --- Každý den -----------------------------------------------
-            header(S.studyDaily),
-            const FactOfDayCard(),
-            const SizedBox(height: 10),
-            const QuizOfDay(),
-            const SizedBox(height: 10),
-            const PlanCard(),
-            // --- Bible jako celek ----------------------------------------
-            KeyedSubtree(key: _wholeKey, child: header(S.connectionsWhole)),
-            const ConnectionsHeroCard(),
-            const SizedBox(height: 10),
-            group([
-              _Entry(
-                Icons.view_timeline_outlined,
-                const Color(0xFFB0603A),
-                S.timeline,
-                S.timelineHint,
-                () => _push(const TimelineScreen()),
+                Icons.favorite_border,
+                const Color(0xFFC0504D),
+                S.situations,
+                situations.isEmpty
+                    ? S.situationsShort
+                    : S.allSituationsCount(situations.length),
+                () => _push(const SituationsScreen()),
               ),
               _Entry(
                 Icons.map_outlined,
                 const Color(0xFF3F7CAC),
                 S.exploreMaps,
-                S.exploreMapsHint,
+                S.mapsShort,
                 () => openMaps(context),
               ),
               _Entry(
-                Icons.account_balance_outlined,
-                const Color(0xFF8C6BA8),
-                S.plans,
-                S.plansHint,
-                () => openPlans(context),
-              ),
-              _Entry(
-                Icons.account_tree_outlined,
-                const Color(0xFF2E8B57),
-                S.familyTree,
-                S.familyTreeHint,
-                () => openFamilyTree(context),
+                Icons.view_timeline_outlined,
+                const Color(0xFF6B7A3A),
+                S.timeline,
+                S.timelineShort,
+                () => _push(const TimelineScreen()),
               ),
             ]),
-            // --- Pro život -----------------------------------------------
-            KeyedSubtree(key: _lifeKey, child: header(S.studyForLife)),
-            _SituationsCard(
-              featured: situations.take(8).toList(),
-              count: situations.length,
-              onAll: () => _push(const SituationsScreen()),
+            // --- Všechno ostatní jako ikony ------------------------------
+            header(S.studyMoreTools),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(6),
+                child: Column(
+                  children: [
+                    for (var i = 0; i < more.length; i += iconColumns)
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          for (var j = i; j < i + iconColumns; j++)
+                            Expanded(
+                              child: j < more.length
+                                  ? mini(more[j])
+                                  : const SizedBox.shrink(),
+                            ),
+                        ],
+                      ),
+                  ],
+                ),
+              ),
             ),
-            const SizedBox(height: 10),
-            group([
-              _Entry(
-                Icons.psychology_outlined,
-                const Color(0xFF8C6BA8),
-                S.memory,
-                memoryCount == 0
-                    ? S.memoryHint
-                    : S.memoryProgress(memoryLearned, memoryCount),
-                () => openMemory(context),
-              ),
-              _Entry(
-                Icons.volunteer_activism_outlined,
-                const Color(0xFF3E8E5E),
-                S.prayers,
-                S.prayerHint,
-                () => openPrayers(context),
-              ),
-              _Entry(
-                Icons.spa_outlined,
-                const Color(0xFF4E8A9A),
-                S.lectio,
-                S.lectioHint,
-                () => openLectio(context),
-              ),
-              _Entry(
-                Icons.emoji_events_outlined,
-                const Color(0xFFC08A2E),
-                S.quiz,
-                S.quizHint,
-                () => openQuiz(context),
-              ),
-              _Entry(
-                Icons.donut_large,
-                const Color(0xFF7A55A8),
-                S.churchYear,
-                S.churchYearHint,
-                () => openChurchYear(context),
-              ),
-              _Entry(
-                Icons.event_note_outlined,
-                const Color(0xFF5B7A3A),
-                S.readingPlans,
-                S.readingPlansHint,
-                () => showPlansSheet(context),
-              ),
-            ]),
-            // --- Nástroje ------------------------------------------------
-            KeyedSubtree(key: _toolsKey, child: header(S.studyTools)),
-            group([
-              _Entry(
-                Icons.edit_note,
-                const Color(0xFFB07A2A),
-                S.preps,
-                S.prepsHint,
-                () => openPreps(context),
-              ),
-              _Entry(
-                Icons.history_edu,
-                const Color(0xFF8C6BA8),
-                S.exploreStudy,
-                S.exploreStudyHint,
-                () => _push(const StudyPackScreen()),
-              ),
-              _Entry(
-                Icons.translate,
-                const Color(0xFF4E9A8A),
-                S.exploreTranslations,
-                S.exploreTranslationsHint,
-                () => _push(const LibraryScreen()),
-              ),
-            ]),
           ],
         ),
       ),
@@ -522,109 +498,4 @@ class _Entry {
   final String title;
   final String subtitle;
   final VoidCallback onTap;
-}
-
-/// Velká karta „Verše do situací“ s nejčastějšími situacemi.
-class _SituationsCard extends StatelessWidget {
-  const _SituationsCard({
-    required this.featured,
-    required this.count,
-    required this.onAll,
-  });
-
-  final List<Situation> featured;
-  final int count;
-  final VoidCallback onAll;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    return Container(
-      padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(22),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [palette.heroStart, palette.heroEnd],
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.favorite_border, color: palette.onHero),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  S.situations,
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: palette.onHero,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            S.situationsCardHint,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: palette.onHero.withValues(alpha: 0.85),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final s in featured)
-                Material(
-                  color: palette.onHero.withValues(alpha: 0.14),
-                  shape: const StadiumBorder(),
-                  clipBehavior: Clip.antiAlias,
-                  child: InkWell(
-                    onTap: () => openSituation(context, s),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 8,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            situationIcons[s.icon],
-                            size: 18,
-                            color: palette.onHero,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            s.title,
-                            style: theme.textTheme.labelLarge?.copyWith(
-                              color: palette.onHero,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton.icon(
-              onPressed: onAll,
-              style: TextButton.styleFrom(foregroundColor: palette.onHero),
-              icon: const Icon(Icons.arrow_forward),
-              label: Text(S.allSituationsCount(count)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

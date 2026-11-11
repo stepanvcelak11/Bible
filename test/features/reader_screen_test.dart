@@ -311,7 +311,7 @@ void main() {
     await pumpApp(tester, openBible: false);
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    expect(find.text('Studijní kurzy'), findsWidgets);
+    expect(find.text('Biblická témata'), findsOneWidget);
     for (final t in [
       'Biblické postavy',
       'Aplikační poznámky',
@@ -320,18 +320,8 @@ void main() {
       await scrollStudyTo(tester, t);
       expect(find.text(t), findsOneWidget);
     }
-    await tester.drag(
-      find
-          .descendant(
-            of: find.byType(StudyHubScreen),
-            matching: find.byType(Scrollable),
-          )
-          .first,
-      const Offset(0, 8000),
-    );
-    await settle(tester);
-    // Hledání ve Studiu vede do jednotného hledání v celé aplikaci.
-    await tester.tap(find.text('Hledat verše, postavy, témata…'));
+    // Hledání v celé aplikaci je v záložce Hledat.
+    await tester.tap(find.text('Hledat').last);
     await settle(tester);
     // Index chytrého hledání se načítá z mnoha souborů – počkat na něj.
     container.read(appSearchIndexProvider);
@@ -471,7 +461,8 @@ void main() {
     await tester.runAsync(() => container.read(coursesProvider.future));
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    await scrollStudyTo(tester, 'Knihovna, ne jedna kniha');
+    await tester.tap(find.text('Jak číst Bibli'));
+    await settle(tester);
     await tester.tap(find.text('Knihovna, ne jedna kniha'));
     await settle(tester);
     expect(find.text('LEKCE 1 Z 6'), findsOneWidget);
@@ -487,6 +478,11 @@ void main() {
     expect(container.read(courseProgressProvider), {'howto:0'});
     await tester.tap(find.byType(BackButton));
     await settle(tester);
+    if (find.byType(StudyHubScreen).hitTestable().evaluate().isEmpty) {
+      await tester.tap(find.byType(BackButton));
+      await settle(tester);
+    }
+    // Rozečtený kurz se objeví nahoře ve Studiu.
     expect(find.text('POKRAČOVAT LEKCÍ 2'), findsOneWidget);
   });
 
@@ -883,7 +879,9 @@ void main() {
     await pumpApp(tester, openBible: false);
     await tester.tap(find.text('Studium'));
     await settle(tester);
-    await scrollStudyTo(tester, 'Příběh');
+    await scrollStudyTo(tester, 'Souvislosti v Bibli');
+    await tester.tap(find.text('Souvislosti v Bibli'));
+    await settle(tester);
     await tester.tap(find.text('Příběh'));
     await settle(tester);
     expect(find.text('Stvoření a pád'), findsOneWidget);

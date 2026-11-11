@@ -98,8 +98,7 @@ abstract final class S {
   static String allAppResults(int n) => 'Všechny výsledky v aplikaci ($n)';
   static const versesInBible = 'Verše v Bibli';
   static String showMoreCount(int n) => 'Zobrazit další ($n)';
-  static String moreResultKinds(int n) =>
-      'Další druhy výsledků ($n)';
+  static String moreResultKinds(int n) => 'Další druhy výsledků ($n)';
   static const searchNoResults = 'Nic nenalezeno';
   static String searchResultCount(int n, {required bool limited}) =>
       limited ? 'Zobrazeno prvních $n výsledků' : _results(n);
@@ -575,6 +574,9 @@ abstract final class S {
       'Ověřte myšlenku: kde o tom Bible mluví? Napište ji vlastními slovy, '
       'třeba „Bůh nás nenechá samotné, když máme strach“. Hledají se '
       'verše se stejnou myšlenkou, i když je Bible říká jinými slovy.';
+  static const thoughtFallback =
+      'V dotazu jsem nenašel myšlenku, proto hledám slova v Bibli a v '
+      'aplikaci.';
   static const prepThoughtUnderstood = 'Rozumím jako';
   static const prepThoughtNone =
       'Nerozpoznal jsem téma – hledám jen podle slov. Zkuste myšlenku '
@@ -816,12 +818,17 @@ abstract final class S {
       'Aplikace má dole pět záložek. Tady je stručně, co v každé najdete.';
   static const guideOpen = 'Otevřít';
   static const recentlyReadShort = 'Nedávno čtené';
-  static const studyHubIntro =
-      'Kurzy, témata, úvody ke knihám a nástroje – všechno, co pomáhá '
-      'Bibli porozumět.';
+  static const studyHubIntro = 'Vše, co pomáhá Bibli porozumět.';
   static const studySearchHint = 'Hledat verše, postavy, témata…';
   static const studyBooksPeople = 'Témata, knihy a postavy';
   static const studyTools = 'Nástroje';
+  static const studyContinue = 'Rozečtené';
+  static const studyExplore = 'Čtení a objevování';
+  static const studyMoreTools = 'Další nástroje';
+  static const introsShort = 'Ke každé ze 66 knih';
+  static const situationsShort = 'Co číst, když…';
+  static const mapsShort = 'Místa, trasy a plány měst';
+  static const timelineShort = 'Dějiny Bible v čase';
   static const studyForLife = 'Pro život';
   static const historicalBackground = 'Historické pozadí';
   static const christConnection = 'Souvislost s Ježíšem a Novým zákonem';

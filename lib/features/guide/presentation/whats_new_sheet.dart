@@ -7,9 +7,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 24;
+const whatsNewVersion = 25;
 
 const _items = [
+  (
+    Icons.auto_fix_high,
+    'Uhlazený vzhled',
+    'Na konci kapitoly je výrazná karta „Další kapitola“ s tím, kolik '
+        'z knihy máte za sebou. Přepínače vypadají všude stejně, nástroje '
+        've Studiu jsou rozdělené do skupin a výběr knihy je kompaktnější.',
+  ),
   (
     Icons.palette_outlined,
     'Nový vzhled Hledat a Deníku',

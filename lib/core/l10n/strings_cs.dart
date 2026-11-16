@@ -28,6 +28,8 @@ abstract final class S {
   // Navigace
   static const previousChapter = 'Předchozí kapitola';
   static const nextChapter = 'Další kapitola';
+  static const nextBook = 'Další kniha';
+  static String chapterOfBook(int c, int n) => 'Dočteno $c z $n kapitol knihy';
   static const chapterMissing =
       'Tato kapitola v překladu chybí (překlady se mohou lišit v číslování).';
 

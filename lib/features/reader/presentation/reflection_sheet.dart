@@ -706,7 +706,6 @@ class ChapterFooter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final palette = AppPalette.of(context);
     final translationId = ref.watch(primaryTranslationProvider).id;
     final canonical = Versification.toCanonical(
@@ -716,6 +715,7 @@ class ChapterFooter extends ConsumerWidget {
     final plans = ref.watch(
       chapterPlansProvider((canonical.bookId, canonical.chapter)),
     );
+    final counts = ref.watch(chapterCountsProvider(translationId)).value;
     return Padding(
       padding: const EdgeInsets.only(top: 28),
       child: Column(
@@ -725,7 +725,15 @@ class ChapterFooter extends ConsumerWidget {
           Card(
             child: ListTile(
               contentPadding: const EdgeInsets.fromLTRB(16, 8, 12, 8),
-              leading: Icon(Icons.self_improvement, color: palette.gold),
+              leading: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: palette.gold.withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(Icons.self_improvement, color: palette.gold),
+              ),
               title: const Text(S.reflection),
               subtitle: const Text(S.reflectionHintShort),
               trailing: const Icon(Icons.chevron_right),
@@ -751,13 +759,119 @@ class ChapterFooter extends ConsumerWidget {
                 onTap: () => openPlan(context, p),
               ),
             ),
-          const SizedBox(height: 8),
-          TextButton.icon(
-            onPressed: onNext,
-            icon: const Icon(Icons.arrow_forward),
-            label: Text(S.nextChapter, style: theme.textTheme.labelLarge),
+          const SizedBox(height: 10),
+          _NextChapterCard(
+            bookId: bookId,
+            chapter: chapter,
+            chapters: counts?[bookId],
+            onNext: onNext,
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Výrazná karta „pokračovat“: kam vede další kapitola a kolik z knihy
+/// už je za čtenářem.
+class _NextChapterCard extends ConsumerWidget {
+  const _NextChapterCard({
+    required this.bookId,
+    required this.chapter,
+    required this.chapters,
+    required this.onNext,
+  });
+
+  final int bookId;
+  final int chapter;
+  final int? chapters;
+  final VoidCallback onNext;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final books = ref.watch(booksProvider);
+    final total = chapters;
+    final lastInBook = total != null && chapter >= total;
+    if (lastInBook && bookId >= books.length) return const SizedBox.shrink();
+    final next = lastInBook
+        ? '${books[bookId].name} 1'
+        : '${books[bookId - 1].name} ${chapter + 1}';
+    return Material(
+      borderRadius: BorderRadius.circular(20),
+      clipBehavior: Clip.antiAlias,
+      child: Ink(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [palette.heroStart, palette.heroEnd],
+          ),
+        ),
+        child: InkWell(
+          onTap: onNext,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(18, 14, 14, 14),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        (lastInBook ? S.nextBook : S.nextChapter).toUpperCase(),
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: palette.onHero.withValues(alpha: 0.75),
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        next,
+                        style: theme.textTheme.titleLarge?.copyWith(
+                          color: palette.onHero,
+                        ),
+                      ),
+                      if (total != null && total > 1) ...[
+                        const SizedBox(height: 8),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(2),
+                          child: LinearProgressIndicator(
+                            value: chapter / total,
+                            minHeight: 3,
+                            color: palette.onHero,
+                            backgroundColor: palette.onHero.withValues(
+                              alpha: 0.2,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          S.chapterOfBook(chapter, total),
+                          style: theme.textTheme.labelSmall?.copyWith(
+                            color: palette.onHero.withValues(alpha: 0.75),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: palette.onHero.withValues(alpha: 0.16),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.arrow_forward, color: palette.onHero),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

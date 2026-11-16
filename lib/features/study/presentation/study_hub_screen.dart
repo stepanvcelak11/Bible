@@ -334,7 +334,16 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
         () => _push(const LibraryScreen()),
       ),
     ];
-    final iconColumns = width >= 700 ? 5 : 3;
+    // Rozdělení do skupin podle toho, k čemu nástroj slouží.
+    final groups = [
+      (
+        S.toolsContext,
+        [more[0], more[1], more[2], more[3], more[4], more[5], more[13]],
+      ),
+      (S.toolsPrayer, [more[9], more[10], more[11], more[8]]),
+      (S.toolsPlanning, [more[6], more[12], more[7], more[14]]),
+    ];
+    final iconColumns = width >= 700 ? 7 : 4;
     Widget mini(_Entry e) => InkWell(
       onTap: e.onTap,
       borderRadius: BorderRadius.circular(16),
@@ -464,21 +473,41 @@ class _StudyHubScreenState extends ConsumerState<StudyHubScreen> {
             header(S.studyMoreTools),
             Card(
               child: Padding(
-                padding: const EdgeInsets.all(6),
+                padding: const EdgeInsets.fromLTRB(6, 4, 6, 8),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (var i = 0; i < more.length; i += iconColumns)
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (var j = i; j < i + iconColumns; j++)
-                            Expanded(
-                              child: j < more.length
-                                  ? mini(more[j])
-                                  : const SizedBox.shrink(),
-                            ),
-                        ],
+                    for (final (gi, (title, entries)) in groups.indexed) ...[
+                      if (gi > 0)
+                        Divider(
+                          height: 18,
+                          indent: 10,
+                          endIndent: 10,
+                          color: palette.cardBorder,
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 8, 10, 0),
+                        child: Text(
+                          title,
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: palette.muted,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
+                      for (var i = 0; i < entries.length; i += iconColumns)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (var j = i; j < i + iconColumns; j++)
+                              Expanded(
+                                child: j < entries.length
+                                    ? mini(entries[j])
+                                    : const SizedBox.shrink(),
+                              ),
+                          ],
+                        ),
+                    ],
                   ],
                 ),
               ),

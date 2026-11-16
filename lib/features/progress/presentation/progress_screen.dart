@@ -351,6 +351,17 @@ class _Heatmap extends StatelessWidget {
       builder: (context, c) {
         const labelW = 18.0;
         final size = math.min(18.0, (c.maxWidth - labelW) / _weeks - 3);
+        // Popisky měsíců; ten, na který nezbývá místo (další měsíc
+        // začíná do tří týdnů), se vynechá, aby se nepřekrývaly.
+        final starts = [
+          for (var w = 0; w < _weeks; w++)
+            if (_monthStart(start, w, today) case final m?) (w, m),
+        ];
+        final labels = [
+          for (var i = 0; i < starts.length; i++)
+            if (i == starts.length - 1 || starts[i + 1].$1 - starts[i].$1 >= 3)
+              starts[i],
+        ];
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -359,17 +370,16 @@ class _Heatmap extends StatelessWidget {
               height: 16,
               child: Stack(
                 children: [
-                  for (var w = 0; w < _weeks; w++)
-                    if (_monthStart(start, w, today) case final m?)
-                      Positioned(
-                        left: labelW + w * (size + 3),
-                        child: Text(
-                          _months[m - 1],
-                          style: theme.textTheme.labelSmall?.copyWith(
-                            color: palette.muted,
-                          ),
+                  for (final (w, m) in labels)
+                    Positioned(
+                      left: labelW + w * (size + 3),
+                      child: Text(
+                        _months[m - 1],
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: palette.muted,
                         ),
                       ),
+                    ),
                 ],
               ),
             ),

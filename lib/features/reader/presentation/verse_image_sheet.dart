@@ -9,6 +9,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../core/widgets/pill_switch.dart';
 
 /// Vzhled obrázku s veršem.
 enum VerseCardStyle { night, paper, dawn }
@@ -131,24 +132,14 @@ class _VerseImageSheetState extends State<_VerseImageSheet> {
             ),
           ),
           const SizedBox(height: 16),
-          SegmentedButton<VerseCardStyle>(
-            showSelectedIcon: false,
-            segments: const [
-              ButtonSegment(
-                value: VerseCardStyle.night,
-                label: Text(S.cardNight),
-              ),
-              ButtonSegment(
-                value: VerseCardStyle.paper,
-                label: Text(S.cardPaper),
-              ),
-              ButtonSegment(
-                value: VerseCardStyle.dawn,
-                label: Text(S.cardDawn),
-              ),
+          PillSwitch<VerseCardStyle>(
+            options: const [
+              PillOption(VerseCardStyle.night, S.cardNight),
+              PillOption(VerseCardStyle.paper, S.cardPaper),
+              PillOption(VerseCardStyle.dawn, S.cardDawn),
             ],
-            selected: {_style},
-            onSelectionChanged: (s) => setState(() => _style = s.single),
+            value: _style,
+            onChanged: (v) => setState(() => _style = v),
           ),
           const SizedBox(height: 16),
           Row(

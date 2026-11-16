@@ -27,6 +27,7 @@ import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
 import '../application/prep_controller.dart';
 import '../../search/presentation/thought_results.dart';
+import '../../../core/widgets/pill_switch.dart';
 import 'passage_picker.dart';
 
 void openPreps(BuildContext context) =>
@@ -1210,22 +1211,17 @@ class _HelperSearchState extends ConsumerState<_HelperSearch> {
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
       children: [
-        SegmentedButton<bool>(
-          showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(
-              value: true,
-              icon: Icon(Icons.psychology_alt_outlined, size: 18),
-              label: Text(S.prepThoughtMode),
+        PillSwitch<bool>(
+          options: const [
+            PillOption(
+              true,
+              S.prepThoughtMode,
+              icon: Icons.psychology_alt_outlined,
             ),
-            ButtonSegment(
-              value: false,
-              icon: Icon(Icons.text_fields, size: 18),
-              label: Text(S.prepWordsMode),
-            ),
+            PillOption(false, S.prepWordsMode, icon: Icons.text_fields),
           ],
-          selected: {_thought},
-          onSelectionChanged: (s) => setState(() => _thought = s.single),
+          value: _thought,
+          onChanged: (v) => setState(() => _thought = v),
         ),
         const SizedBox(height: 10),
         TextField(

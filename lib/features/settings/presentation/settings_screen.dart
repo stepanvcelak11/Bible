@@ -24,6 +24,7 @@ import '../../reader/presentation/verse_tile.dart';
 import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/reader_settings_controller.dart';
+import '../../../core/widgets/pill_switch.dart';
 
 /// Nastavení: vzhled čtení (s živým náhledem), záloha dat, o aplikaci.
 class SettingsScreen extends ConsumerWidget {
@@ -47,32 +48,16 @@ class SettingsScreen extends ConsumerWidget {
             const _Header(S.appearance),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SegmentedButton<AppThemeMode>(
-                showSelectedIcon: false,
-                segments: const [
-                  ButtonSegment(
-                    value: AppThemeMode.system,
-                    label: Text(S.themeSystem),
-                  ),
-                  ButtonSegment(
-                    value: AppThemeMode.light,
-                    label: Text(S.themeLight),
-                  ),
-                  ButtonSegment(
-                    value: AppThemeMode.sepia,
-                    label: Text(S.themeSepia),
-                  ),
-                  ButtonSegment(
-                    value: AppThemeMode.dark,
-                    label: Text(S.themeDark),
-                  ),
-                  ButtonSegment(
-                    value: AppThemeMode.candle,
-                    label: Text(S.themeCandle),
-                  ),
+              child: PillSwitch<AppThemeMode>(
+                options: const [
+                  PillOption(AppThemeMode.system, S.themeSystem),
+                  PillOption(AppThemeMode.light, S.themeLight),
+                  PillOption(AppThemeMode.sepia, S.themeSepia),
+                  PillOption(AppThemeMode.dark, S.themeDark),
+                  PillOption(AppThemeMode.candle, S.themeCandle),
                 ],
-                selected: {settings.themeMode},
-                onSelectionChanged: (s) => ctl.setThemeMode(s.single),
+                value: settings.themeMode,
+                onChanged: (v) => ctl.setThemeMode(v),
               ),
             ),
             const _Header(S.accentColor),

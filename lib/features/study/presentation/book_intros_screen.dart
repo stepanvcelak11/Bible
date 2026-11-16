@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -9,6 +10,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/services/bible_content.dart';
 import '../application/study_providers.dart';
+import '../../../core/widgets/pill_switch.dart';
 import 'book_intro_sheet.dart';
 
 /// Přehled knih jako barevné dlaždice po oddílech (zkratka, název,
@@ -108,21 +110,13 @@ class _BookIntrosScreenState extends ConsumerState<BookIntrosScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  SegmentedButton<Testament>(
-                    showSelectedIcon: false,
-                    segments: const [
-                      ButtonSegment(
-                        value: Testament.oldTestament,
-                        label: Text(S.oldTestament),
-                      ),
-                      ButtonSegment(
-                        value: Testament.newTestament,
-                        label: Text(S.newTestament),
-                      ),
+                  PillSwitch<Testament>(
+                    options: const [
+                      PillOption(Testament.oldTestament, S.oldTestament),
+                      PillOption(Testament.newTestament, S.newTestament),
                     ],
-                    selected: {_testament},
-                    onSelectionChanged: (v) =>
-                        setState(() => _testament = v.single),
+                    value: _testament,
+                    onChanged: (v) => setState(() => _testament = v),
                   ),
                   for (final category in bookCategories)
                     if (category.testament == _testament) ...[

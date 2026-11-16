@@ -1034,6 +1034,9 @@ abstract final class S {
 
   // Hledání – rozšíření
   static const journalTools = 'Nástroje';
+  static const toolsContext = 'Souvislosti a přehledy';
+  static const toolsPrayer = 'Modlitba a ztišení';
+  static const toolsPlanning = 'Plánování a hry';
   static const journalSwipeHint = 'Smazání: přejeďte položku doleva.';
   static const journalOpenBible = 'Otevřít Bibli';
   static const recentSearches = 'Nedávná hledání';

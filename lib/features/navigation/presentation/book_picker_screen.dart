@@ -21,6 +21,7 @@ import '../../study/application/study_providers.dart';
 import '../../study/presentation/book_intro_sheet.dart';
 import '../../today/application/today_providers.dart';
 import '../../translations/application/translation_controller.dart';
+import '../../../core/widgets/pill_switch.dart';
 
 /// Výběr knihy: Starý / Nový zákon, barevné skupiny knih v kompaktní
 /// mřížce, hledání podle názvu i zkratky („1kor“, „zalmy“) a přímý odkaz
@@ -100,21 +101,13 @@ class _BookPickerScreenState extends ConsumerState<BookPickerScreen> {
                   const SizedBox(height: 10),
                   SizedBox(
                     width: double.infinity,
-                    child: SegmentedButton<Testament>(
-                      showSelectedIcon: false,
-                      segments: const [
-                        ButtonSegment(
-                          value: Testament.oldTestament,
-                          label: Text(S.oldTestament),
-                        ),
-                        ButtonSegment(
-                          value: Testament.newTestament,
-                          label: Text(S.newTestament),
-                        ),
+                    child: PillSwitch<Testament>(
+                      options: const [
+                        PillOption(Testament.oldTestament, S.oldTestament),
+                        PillOption(Testament.newTestament, S.newTestament),
                       ],
-                      selected: {_testament},
-                      onSelectionChanged: (s) =>
-                          setState(() => _testament = s.single),
+                      value: _testament,
+                      onChanged: (v) => setState(() => _testament = v),
                     ),
                   ),
                 ],
@@ -222,7 +215,7 @@ class _Grid extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
-          childAspectRatio: 1.25,
+          childAspectRatio: 1.6,
           children: children,
         );
       },

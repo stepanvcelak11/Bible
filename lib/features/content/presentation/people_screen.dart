@@ -9,6 +9,7 @@ import '../../../domain/entities/content_entities.dart';
 import '../../search/application/reference_parser.dart';
 import '../application/content_providers.dart';
 import '../../study/presentation/study_blocks.dart';
+import '../../../core/widgets/pill_switch.dart';
 import 'passage_card.dart';
 
 Future<void> openPerson(BuildContext context, BiblePerson person) =>
@@ -162,23 +163,17 @@ class _PeopleScreenState extends ConsumerState<PeopleScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  SegmentedButton<bool>(
-                    showSelectedIcon: false,
-                    segments: const [
-                      ButtonSegment(
-                        value: false,
-                        icon: Icon(Icons.timeline, size: 18),
-                        label: Text(S.byStory),
-                      ),
-                      ButtonSegment(
-                        value: true,
-                        icon: Icon(Icons.sort_by_alpha, size: 18),
-                        label: Text(S.alphabetical),
+                  PillSwitch<bool>(
+                    options: const [
+                      PillOption(false, S.byStory, icon: Icons.timeline),
+                      PillOption(
+                        true,
+                        S.alphabetical,
+                        icon: Icons.sort_by_alpha,
                       ),
                     ],
-                    selected: {_alphabetical},
-                    onSelectionChanged: (v) =>
-                        setState(() => _alphabetical = v.first),
+                    value: _alphabetical,
+                    onChanged: (v) => setState(() => _alphabetical = v),
                   ),
                   if (_alphabetical)
                     group(

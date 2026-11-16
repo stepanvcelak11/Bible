@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/strings_cs.dart';
@@ -11,6 +12,7 @@ import '../../../domain/services/bible_content.dart';
 import '../../../domain/services/versification.dart';
 import '../../search/application/reference_parser.dart';
 import '../../translations/application/translation_controller.dart';
+import '../../../core/widgets/pill_switch.dart';
 import 'prep_screen.dart' show parsePassageInput;
 
 /// Vybere biblické místo přímo z Bible: kniha → kapitola → verše (klepnutím
@@ -192,20 +194,13 @@ class _PassagePickerScreenState extends ConsumerState<PassagePickerScreen> {
               if ((counts[b.id] ?? 0) > 0 && bookMatches(b, q)) b,
           ])
         else ...[
-          SegmentedButton<Testament>(
-            showSelectedIcon: false,
-            segments: const [
-              ButtonSegment(
-                value: Testament.oldTestament,
-                label: Text(S.oldTestament),
-              ),
-              ButtonSegment(
-                value: Testament.newTestament,
-                label: Text(S.newTestament),
-              ),
+          PillSwitch<Testament>(
+            options: const [
+              PillOption(Testament.oldTestament, S.oldTestament),
+              PillOption(Testament.newTestament, S.newTestament),
             ],
-            selected: {_testament},
-            onSelectionChanged: (s) => setState(() => _testament = s.single),
+            value: _testament,
+            onChanged: (v) => setState(() => _testament = v),
           ),
           for (final cat in bookCategories)
             if (cat.testament == _testament) ...[

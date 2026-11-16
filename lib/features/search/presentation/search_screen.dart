@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/widgets/pill_switch.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../core/l10n/strings_cs.dart';
 import '../../../core/providers.dart';
@@ -263,7 +264,22 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  _ModeSwitch(thought: _thought, onChanged: _setThought),
+                  PillSwitch<bool>(
+                    options: const [
+                      PillOption(
+                        false,
+                        S.searchWordsMode,
+                        icon: Icons.text_fields,
+                      ),
+                      PillOption(
+                        true,
+                        S.prepThoughtMode,
+                        icon: Icons.psychology_alt_outlined,
+                      ),
+                    ],
+                    value: _thought,
+                    onChanged: _setThought,
+                  ),
                 ],
               ),
             ),
@@ -534,96 +550,6 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
               ),
             },
           ],
-        ],
-      ),
-    );
-  }
-}
-
-/// Přepínač režimu hledání: dvě poloviny s posuvným podkladem.
-class _ModeSwitch extends StatelessWidget {
-  const _ModeSwitch({required this.thought, required this.onChanged});
-
-  final bool thought;
-  final ValueChanged<bool> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final palette = AppPalette.of(context);
-    Widget half(bool value, IconData icon, String label) {
-      final on = thought == value;
-      final color = on ? theme.colorScheme.onSurface : palette.muted;
-      return Expanded(
-        child: Semantics(
-          button: true,
-          selected: on,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(12),
-            onTap: () => onChanged(value),
-            child: SizedBox(
-              height: 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon, size: 18, color: on ? palette.gold : color),
-                  const SizedBox(width: 6),
-                  Flexible(
-                    child: Text(
-                      label,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: color,
-                        fontWeight: on ? FontWeight.w700 : FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
-    return Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: palette.gold.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: AnimatedAlign(
-              duration: const Duration(milliseconds: 220),
-              curve: Curves.easeOutCubic,
-              alignment: thought ? Alignment.centerRight : Alignment.centerLeft,
-              child: FractionallySizedBox(
-                widthFactor: 0.5,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: palette.card,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.07),
-                        blurRadius: 6,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              half(false, Icons.text_fields, S.searchWordsMode),
-              half(true, Icons.psychology_alt_outlined, S.prepThoughtMode),
-            ],
-          ),
         ],
       ),
     );

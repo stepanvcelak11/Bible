@@ -233,4 +233,37 @@ void main() {
       expect(r.y + r.h, lessThanOrEqualTo(1.0001));
     }
   });
+
+  test('přenos přípravy na jiné zařízení: soubor, nahrazení, kopie', () async {
+    final c = await container();
+    final ctrl = c.read(prepProvider.notifier);
+    final prep = ctrl.create(title: 'Boží láska', template: false);
+    ctrl.addBlock(prep.id, PrepBlockKind.note, text: 'Z počítače');
+    final sent = ctrl.byId(prep.id)!;
+    final file = jsonDecode(jsonEncode(prepFileJson(sent)));
+    expect(prepFileName(sent, 'json'), 'bozi-laska.json');
+
+    // Na tabletu zatím není → načte se se stejným id.
+    ctrl.remove(prep.id);
+    final parsed = parsePrepFile(file);
+    expect(parsed.single.blocks.single.text, 'Z počítače');
+    ctrl.importPrep(parsed.single, replace: true);
+    expect(ctrl.byId(prep.id)!.title, 'Boží láska');
+
+    // Novější verze ze souboru stejnou přípravu nahradí…
+    final newer = parsed.single.copyWith(title: 'Boží láska 2');
+    ctrl.importPrep(newer, replace: true);
+    expect(c.read(prepProvider), hasLength(1));
+    expect(ctrl.byId(prep.id)!.title, 'Boží láska 2');
+    // …nebo se uloží jako kopie vedle.
+    final copy = ctrl.importPrep(parsed.single, replace: false);
+    expect(c.read(prepProvider), hasLength(2));
+    expect(copy.id, isNot(prep.id));
+    expect(copy.title, 'Boží láska (kopie)');
+
+    // Ze zálohy aplikace se vezmou všechny přípravy; nesmysl nic.
+    expect(parsePrepFile({'preps': ctrl.exportList()}), hasLength(2));
+    expect(parsePrepFile({'foo': 1}), isEmpty);
+    expect(parsePrepFile('x'), isEmpty);
+  });
 }

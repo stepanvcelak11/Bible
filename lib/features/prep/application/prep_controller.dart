@@ -612,6 +612,36 @@ class PrepController extends Notifier<List<Prep>> {
     update(prep.copyWith(blocks: blocks));
   }
 
+  /// Načte přípravu z jiného zařízení. [replace] = nahradí stejnou
+  /// přípravu v tomto zařízení (stejné id); jinak se uloží jako nová kopie.
+  Prep importPrep(Prep prep, {required bool replace}) {
+    final Prep saved;
+    if (replace) {
+      saved = prep;
+    } else {
+      final id = _newId(state.map((p) => p.id));
+      saved = Prep(
+        id: id,
+        title: byId(prep.id) == null
+            ? prep.title
+            : '${prep.title} ($_copyLabel)'.trim(),
+        kind: prep.kind,
+        updated: DateTime.now(),
+        date: prep.date,
+        passages: prep.passages,
+        blocks: prep.blocks,
+      );
+    }
+    _set([
+      saved,
+      for (final p in state)
+        if (p.id != saved.id) p,
+    ]);
+    return saved;
+  }
+
+  static const _copyLabel = 'kopie';
+
   List<Map<String, Object?>> exportList() => [
     for (final p in state) p.toJson(),
   ];
@@ -632,6 +662,29 @@ class PrepController extends Notifier<List<Prep>> {
     }
     return added;
   }
+}
+
+/// Soubor s jednou přípravou pro přenos na jiné zařízení.
+Map<String, Object?> prepFileJson(Prep prep) => {
+  'type': prepFileType,
+  'version': 1,
+  'prep': prep.toJson(),
+};
+
+const prepFileType = 'bible-prep';
+
+/// Přípravy ze souboru: buď soubor jedné přípravy, nebo celá záloha
+/// aplikace (vezmou se z ní přípravy). Neplatný soubor = prázdný seznam.
+List<Prep> parsePrepFile(Object? json) {
+  if (json is! Map) return const [];
+  if (json['type'] == prepFileType) {
+    return [?Prep.fromJson(json['prep'])];
+  }
+  if (json['preps'] case final List<Object?> list) {
+    return [for (final p in list) ?Prep.fromJson(p)];
+  }
+  // Holá příprava (např. ručně uložený JSON).
+  return [?Prep.fromJson(json)];
 }
 
 final prepProvider = NotifierProvider<PrepController, List<Prep>>(

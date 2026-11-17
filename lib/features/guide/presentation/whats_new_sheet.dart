@@ -7,9 +7,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 27;
+const whatsNewVersion = 28;
 
 const _items = [
+  (
+    Icons.devices_outlined,
+    'Přípravy mezi zařízeními a export',
+    'Kázání napsané na počítači přenesete do tabletu: v přípravě ⋮ → '
+        'Přenést na jiné zařízení a na tabletu Načíst přípravu. Pro ostatní '
+        'je export jako dokument k tisku nebo PDF, textový soubor či text.',
+  ),
   (
     Icons.design_services_outlined,
     'Zkušební kázání a volné rozvržení',

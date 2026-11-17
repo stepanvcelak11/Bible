@@ -512,6 +512,43 @@ abstract final class S {
   static const prepJoinedLabel = 'Na stejné obrazovce jako předchozí';
   static const prepSlideMode = 'Co ukázat najednou';
   static const prepLayout = 'Rozvržení obrazovky';
+  static const prepExportTitle = 'Exportovat a poslat';
+  static const prepExportIntro =
+      'Pošlete přípravu někomu jinému, nebo ji přeneste do svého dalšího '
+      'zařízení.';
+  static const prepExportDoc = 'Dokument k tisku nebo PDF';
+  static const prepExportDocHint =
+      'Přehledná stránka s verši – otevře se v prohlížeči, jde vytisknout '
+      'nebo uložit jako PDF.';
+  static const prepExportTxt = 'Textový soubor';
+  static const prepExportTxtHint = 'Prostý text (.txt) pro e-mail nebo Word.';
+  static const prepExportShare = 'Sdílet jako text';
+  static const prepExportShareHint = 'Do zprávy, e-mailu nebo poznámek.';
+  static const prepExportCopyHint = 'Celý text do schránky.';
+  static const prepSendDevice = 'Přenést na jiné zařízení';
+  static const prepSendDeviceHint =
+      'Soubor pro tuto aplikaci (např. z počítače do tabletu) – i s '
+      'rozvržením a nastavením kázání.';
+  static const prepExportFooter = 'Připraveno v aplikaci Bible.';
+  static const prepQuestionLabel = 'Otázka';
+  static const prepIllustrationLabel = 'Ilustrace';
+  static const prepIdeaLabel = 'Nápad';
+  static const prepImport = 'Načíst ze souboru';
+  static const prepImportButton = 'Načíst přípravu z jiného zařízení';
+  static const prepImportInvalid =
+      'Tento soubor neobsahuje přípravu. Vyberte soubor uložený přes '
+      '„Přenést na jiné zařízení“.';
+  static String prepImportExists(String file, String here) =>
+      'Tato příprava už v zařízení je.\n\nV souboru: upraveno $file\n'
+      'V zařízení: upraveno $here\n\nNahradit ji verzí ze souboru, nebo '
+      'uložit jako kopii?';
+  static const prepImportReplace = 'Nahradit';
+  static const prepImportCopy = 'Uložit kopii';
+  static String prepImported(int n) =>
+      n == 1 ? 'Příprava načtena.' : 'Načteno příprav: $n.';
+  static const prepHowDevices =
+      'Na jiném zařízení: v přípravě ⋮ → Přenést na jiné zařízení, soubor '
+      'si pošlete (e-mail, cloud) a tady ho otevřete ikonou nahoře.';
   static const prepRehearsal = 'Zkouška';
   static const prepRehearsalMenu = 'Zkušební kázání a rozvržení';
   static const prepEditScreen = 'Upravit obrazovku (zkouška)';

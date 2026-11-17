@@ -1,10 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/widgets/app_sheet.dart';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -29,9 +28,11 @@ import '../../translations/application/translation_controller.dart';
 import '../../translations/presentation/library_screen.dart';
 import '../application/prep_controller.dart';
 import '../../search/presentation/thought_results.dart';
+import '../../../core/widgets/app_sheet.dart';
 import '../../../core/widgets/pill_switch.dart';
 import 'passage_picker.dart';
 
+part 'prep_export.dart';
 part 'prep_present.dart';
 
 void openPreps(BuildContext context) =>
@@ -110,7 +111,16 @@ class PrepListScreen extends ConsumerWidget {
     final books = ref.watch(booksProvider);
     return ReadableWidth(
       child: Scaffold(
-        appBar: AppBar(title: const Text(S.preps)),
+        appBar: AppBar(
+          title: const Text(S.preps),
+          actions: [
+            IconButton(
+              tooltip: S.prepImport,
+              icon: const Icon(Icons.file_open_outlined),
+              onPressed: () => importPrepFile(context, ref),
+            ),
+          ],
+        ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => _newPrep(context, ref),
           icon: const Icon(Icons.add),
@@ -128,7 +138,18 @@ class PrepListScreen extends ConsumerWidget {
               S.prepIntro,
               style: theme.textTheme.bodyMedium?.copyWith(color: palette.muted),
             ),
-            const SizedBox(height: 14),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                ),
+                onPressed: () => importPrepFile(context, ref),
+                icon: const Icon(Icons.file_open_outlined, size: 18),
+                label: const Text(S.prepImportButton),
+              ),
+            ),
+            const SizedBox(height: 6),
             if (preps.isEmpty)
               Card(
                 child: Padding(
@@ -138,7 +159,7 @@ class PrepListScreen extends ConsumerWidget {
                     children: [
                       Text(S.prepHowTitle, style: theme.textTheme.titleMedium),
                       const SizedBox(height: 8),
-                      for (final t in S.prepHow)
+                      for (final t in [...S.prepHow, S.prepHowDevices])
                         Padding(
                           padding: const EdgeInsets.only(bottom: 6),
                           child: Row(
@@ -428,17 +449,10 @@ class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
                             PrepPresentScreen(prepId: prepId, rehearsal: true),
                       ),
                     );
-                  case 'share':
-                    final text = await _exportText(ref, prep);
-                    await SharePlus.instance.share(ShareParams(text: text));
-                  case 'copy':
-                    final messenger = ScaffoldMessenger.of(context);
-                    await Clipboard.setData(
-                      ClipboardData(text: await _exportText(ref, prep)),
-                    );
-                    messenger.showSnackBar(
-                      const SnackBar(content: Text(S.copied)),
-                    );
+                  case 'export':
+                    await showPrepExport(context, ref, prep);
+                  case 'device':
+                    await sendPrepToDevice(context, prep);
                   case 'delete':
                     final ok = await showDialog<bool>(
                       context: context,
@@ -472,18 +486,18 @@ class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
                   ),
                 ),
                 PopupMenuItem(
-                  value: 'share',
+                  value: 'export',
                   child: ListTile(
                     leading: Icon(Icons.ios_share),
-                    title: Text(S.share),
+                    title: Text(S.prepExportTitle),
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
                 PopupMenuItem(
-                  value: 'copy',
+                  value: 'device',
                   child: ListTile(
-                    leading: Icon(Icons.copy_rounded),
-                    title: Text(S.prepCopyText),
+                    leading: Icon(Icons.devices_outlined),
+                    title: Text(S.prepSendDevice),
                     contentPadding: EdgeInsets.zero,
                   ),
                 ),
@@ -1211,52 +1225,6 @@ class _VerseText extends ConsumerWidget {
       ),
     );
   }
-}
-
-Future<String> _exportText(WidgetRef ref, Prep prep) async {
-  final translation = ref.read(primaryTranslationProvider);
-  final out = StringBuffer()
-    ..writeln(prep.title.isEmpty ? S.prepUntitled : prep.title)
-    ..writeln(
-      [
-        prep.kind.label,
-        for (final p in prep.passages) passageLabel(ref, p),
-        if (prep.date case final d?) _date(d),
-      ].join(' · '),
-    )
-    ..writeln();
-  for (final b in prep.blocks) {
-    switch (b.kind) {
-      case PrepBlockKind.heading:
-        out
-          ..writeln()
-          ..writeln(b.text.toUpperCase());
-        if (b.body.isNotEmpty) out.writeln(b.body);
-      case PrepBlockKind.verse:
-        final all = ref.read(translationsProvider);
-        final picked = [
-          for (final id in b.translations)
-            ?all.where((t) => t.id == id).firstOrNull,
-        ];
-        for (final t in picked.isEmpty ? [translation] : picked) {
-          final verses = await ref.read(
-            passageTextProvider((t.id, b.passage!)).future,
-          );
-          out.writeln(
-            '${passageLabel(ref, b.passage!)} (${t.abbreviation}): '
-            '„${verses.map((v) => v.text.replaceAll('\n', ' ')).join(' ')}“',
-          );
-        }
-        if (b.text.isNotEmpty) out.writeln('  ${b.text}');
-      case PrepBlockKind.question:
-        out.writeln('? ${b.text}');
-      case PrepBlockKind.illustration:
-        out.writeln('Ilustrace: ${b.text}');
-      case PrepBlockKind.idea || PrepBlockKind.note:
-        out.writeln(b.text);
-    }
-  }
-  return out.toString().trim();
 }
 
 // --- Přidání vybraných veršů ze čtečky ---------------------------------------

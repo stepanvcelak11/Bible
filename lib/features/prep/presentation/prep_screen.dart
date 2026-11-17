@@ -14,6 +14,7 @@ import '../../../core/theme/app_theme.dart';
 import '../../../core/widgets/readable_width.dart';
 import '../../../domain/entities/bible_entities.dart';
 import '../../../domain/entities/content_entities.dart';
+import '../../../domain/entities/user_entities.dart';
 import '../../../domain/services/versification.dart';
 import '../../content/application/content_providers.dart';
 import '../../content/presentation/notes_screen.dart';
@@ -204,6 +205,8 @@ class PrepListScreen extends ConsumerWidget {
                         ps.label(books[ps.bookId - 1].abbreviation),
                       if (p.date case final d?) _date(d),
                       S.prepBlocks(p.blocks.length),
+                      if (p.preached.isNotEmpty)
+                        S.prepPreachedTimes(p.preached.length),
                     ].join(' · '),
                   ),
                   trailing: const Icon(Icons.chevron_right),
@@ -433,18 +436,27 @@ class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
             IconButton(
               tooltip: S.prepPresent,
               icon: const Icon(Icons.slideshow_outlined),
-              onPressed: () => Navigator.of(context, rootNavigator: true).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => PrepPresentScreen(prepId: prepId),
-                ),
-              ),
+              onPressed: () async {
+                final length = await Navigator.of(context, rootNavigator: true)
+                    .push<Object?>(
+                      MaterialPageRoute(
+                        builder: (_) => PrepPresentScreen(prepId: prepId),
+                      ),
+                    );
+                // Po skutečném kázání (ne jen nahlédnutí) nabídnout zápis.
+                if (length is Duration &&
+                    length >= const Duration(minutes: 5) &&
+                    context.mounted) {
+                  await askPreached(context, ref, prepId, afterPreaching: true);
+                }
+              },
             ),
             PopupMenuButton<String>(
               onSelected: (v) async {
                 switch (v) {
                   case 'rehearse':
                     await Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute<void>(
+                      MaterialPageRoute<Object?>(
                         builder: (_) =>
                             PrepPresentScreen(prepId: prepId, rehearsal: true),
                       ),
@@ -653,10 +665,219 @@ class _PrepHeaderState extends ConsumerState<_PrepHeader> {
             S.prepStats(prep.blocks.length, prep.words, _minutes(prep)),
             style: theme.textTheme.labelSmall?.copyWith(color: palette.muted),
           ),
+          _Preached(prep: prep),
         ],
       ),
     );
   }
+}
+
+/// Historie kázání (kdy a kde) a upozornění na dřívější kázání nad
+/// stejným textem.
+class _Preached extends ConsumerWidget {
+  const _Preached({required this.prep});
+
+  final Prep prep;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final controller = ref.read(prepProvider.notifier);
+    final earlier = preachedOnSameText(ref.watch(prepProvider), prep);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (earlier.isNotEmpty)
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
+            decoration: BoxDecoration(
+              color: palette.gold.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: palette.gold.withValues(alpha: 0.35)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.history, size: 18, color: palette.gold),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        S.prepAlreadyPreached,
+                        style: theme.textTheme.labelLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                for (final o in earlier)
+                  InkWell(
+                    onTap: () => openPrep(context, o.id),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: o.title.isEmpty ? S.prepUntitled : o.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            TextSpan(
+                              text:
+                                  '  ·  ${o.passages.map((p) => passageLabel(ref, p)).join(', ')}'
+                                  '\n${o.preached.map(preachedLabel).join(' · ')}',
+                              style: TextStyle(color: palette.muted),
+                            ),
+                          ],
+                        ),
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 6,
+          runSpacing: 6,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            if (prep.preached.isNotEmpty)
+              Text(
+                '${S.prepPreached}:',
+                style: theme.textTheme.labelMedium?.copyWith(
+                  color: palette.muted,
+                ),
+              ),
+            for (final d in prep.preached)
+              InputChip(
+                visualDensity: VisualDensity.compact,
+                avatar: Icon(Icons.check_circle, size: 16, color: palette.gold),
+                label: Text(preachedLabel(d)),
+                onPressed: () => askPreached(context, ref, prep.id, edit: d),
+                deleteButtonTooltipMessage: S.prepPreachedDelete,
+                onDeleted: () {
+                  final now = controller.byId(prep.id) ?? prep;
+                  controller.update(
+                    now.copyWith(
+                      preached: [
+                        for (final x in now.preached)
+                          if (x != d) x,
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ActionChip(
+              visualDensity: VisualDensity.compact,
+              avatar: Icon(Icons.add, size: 16, color: palette.gold),
+              label: const Text(S.prepPreachedAdd),
+              onPressed: () => askPreached(context, ref, prep.id),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+String preachedLabel(PrepPreached d) =>
+    d.place.isEmpty ? _date(d.date) : '${_date(d.date)}, ${d.place}';
+
+/// Zapsat (nebo upravit [edit]) záznam, kdy a kde se kázalo. Po kázání
+/// ([afterPreaching]) s dnešním datem a posledním použitým místem.
+Future<void> askPreached(
+  BuildContext context,
+  WidgetRef ref,
+  int prepId, {
+  PrepPreached? edit,
+  bool afterPreaching = false,
+}) async {
+  final controller = ref.read(prepProvider.notifier);
+  final lastPlace = ([
+    for (final p in ref.read(prepProvider)) ...p.preached,
+  ]..sort((a, b) => a.date.compareTo(b.date))).lastOrNull?.place;
+  final place = TextEditingController(text: edit?.place ?? lastPlace ?? '');
+  var date = edit?.date ?? DateTime.now();
+  final ok = await showDialog<bool>(
+    context: context,
+    builder: (c) => StatefulBuilder(
+      builder: (c, setState) => AlertDialog(
+        title: Text(edit == null ? S.prepPreachedAsk : S.prepPreached),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (afterPreaching)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  S.prepPreachedAskBody,
+                  style: Theme.of(c).textTheme.bodySmall,
+                ),
+              ),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.event, size: 18),
+              label: Text(_date(date)),
+              onPressed: () async {
+                final d = await showDatePicker(
+                  context: c,
+                  initialDate: date,
+                  firstDate: DateTime(1990),
+                  lastDate: DateTime(DateTime.now().year + 5),
+                );
+                if (d != null) setState(() => date = d);
+              },
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: place,
+              autofocus: !afterPreaching,
+              textCapitalization: TextCapitalization.sentences,
+              decoration: const InputDecoration(
+                labelText: S.prepPreachedPlace,
+                border: OutlineInputBorder(),
+              ),
+              onSubmitted: (_) => Navigator.of(c).pop(true),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(c).pop(false),
+            child: Text(afterPreaching ? S.prepPreachedLater : S.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(c).pop(true),
+            child: const Text(S.prepPreachedSave),
+          ),
+        ],
+      ),
+    ),
+  );
+  final text = place.text.trim();
+  place.dispose();
+  if (ok != true) return;
+  final prep = controller.byId(prepId);
+  if (prep == null) return;
+  final entry = PrepPreached(DateTime(date.year, date.month, date.day), text);
+  controller.update(
+    prep.copyWith(
+      preached: [
+        for (final x in prep.preached)
+          if (x != edit) x,
+        entry,
+      ]..sort((a, b) => a.date.compareTo(b.date)),
+    ),
+  );
 }
 
 /// Dolní lišta: přidat blok za místo, kde se právě píše.
@@ -1195,12 +1416,23 @@ class _VerseText extends ConsumerWidget {
                   ),
                 ),
               ),
-            Text(
-              switch (ref.watch(passageTextProvider((t.id, passage))).value) {
-                final vs? =>
-                  vs.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
-                null => '…',
-              },
+            Text.rich(
+              TextSpan(
+                children: markedSpans(
+                  switch (ref
+                      .watch(passageTextProvider((t.id, passage)))
+                      .value) {
+                    final vs? =>
+                      vs.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
+                    null => '…',
+                  },
+                  block.marks,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    backgroundColor: palette.gold.withValues(alpha: 0.22),
+                  ),
+                ),
+              ),
               maxLines: passage.wholeChapter ? 4 : (many ? 6 : 12),
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -1212,19 +1444,126 @@ class _VerseText extends ConsumerWidget {
             ),
           ],
           const SizedBox(height: 6),
-          ActionChip(
-            visualDensity: VisualDensity.compact,
-            avatar: Icon(Icons.translate, size: 16, color: palette.gold),
-            label: Text(
-              translations.map((t) => t.abbreviation).join(' · ') +
-                  (many && block.parallel ? '  ·  ${S.prepParallelShort}' : ''),
-            ),
-            onPressed: () => showPrepTranslations(context, ref, prepId, block),
+          Wrap(
+            spacing: 6,
+            runSpacing: 4,
+            children: [
+              ActionChip(
+                visualDensity: VisualDensity.compact,
+                avatar: Icon(Icons.translate, size: 16, color: palette.gold),
+                label: Text(
+                  translations.map((t) => t.abbreviation).join(' · ') +
+                      (many && block.parallel
+                          ? '  ·  ${S.prepParallelShort}'
+                          : ''),
+                ),
+                onPressed: () =>
+                    showPrepTranslations(context, ref, prepId, block),
+              ),
+              ActionChip(
+                visualDensity: VisualDensity.compact,
+                avatar: Icon(
+                  Icons.format_color_text,
+                  size: 16,
+                  color: palette.gold,
+                ),
+                label: Text(
+                  block.marks.isEmpty
+                      ? S.prepMarks
+                      : S.prepMarksCount(block.marks.length),
+                ),
+                onPressed: () => _pickMarks(context, ref, prepId, block),
+              ),
+            ],
           ),
         ],
       ),
     );
   }
+}
+
+/// Výběr slov verše, která se při kázání zvýrazní.
+Future<void> _pickMarks(
+  BuildContext context,
+  WidgetRef ref,
+  int prepId,
+  PrepBlock block,
+) async {
+  final words = <String, String>{};
+  for (final t in prepTranslations(ref, block)) {
+    final vs = await ref.read(
+      passageTextProvider((t.id, block.passage!)).future,
+    );
+    for (final v in vs) {
+      for (final m in _wordRe.allMatches(v.text)) {
+        words.putIfAbsent(markKey(m[0]!), () => m[0]!);
+      }
+    }
+  }
+  if (!context.mounted) return;
+  final chosen = {...block.marks};
+  final ok = await showDialog<bool>(
+    context: context,
+    builder: (c) => StatefulBuilder(
+      builder: (c, setState) => AlertDialog(
+        title: const Text(S.prepMarks),
+        content: SizedBox(
+          width: 520,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  words.isEmpty ? S.prepMarksNone : S.prepMarksIntro,
+                  style: Theme.of(c).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 4,
+                  runSpacing: 4,
+                  children: [
+                    for (final MapEntry(:key, :value) in words.entries)
+                      FilterChip(
+                        visualDensity: VisualDensity.compact,
+                        showCheckmark: false,
+                        label: Text(value),
+                        selected: chosen.contains(key),
+                        onSelected: (on) => setState(
+                          () => on ? chosen.add(key) : chosen.remove(key),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(c).pop(false),
+            child: const Text(S.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(c).pop(true),
+            child: const Text(S.save),
+          ),
+        ],
+      ),
+    ),
+  );
+  if (ok != true) return;
+  final now =
+      ref
+          .read(prepProvider.notifier)
+          .byId(prepId)
+          ?.blocks
+          .where((b) => b.id == block.id)
+          .firstOrNull ??
+      block;
+  ref
+      .read(prepProvider.notifier)
+      .updateBlock(prepId, now.copyWith(marks: chosen.toList()));
 }
 
 // --- Přidání vybraných veršů ze čtečky ---------------------------------------
@@ -1306,16 +1645,19 @@ Future<void> showPrepHelper(
     initialChildSize: 0.85,
     maxChildSize: 0.95,
     builder: (context, scroll) => DefaultTabController(
-      length: 4,
+      length: 5,
       initialIndex: focus == null ? 0 : 1,
       child: Column(
         children: [
           const TabBar(
-            labelPadding: EdgeInsets.symmetric(horizontal: 4),
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            labelPadding: EdgeInsets.symmetric(horizontal: 12),
             tabs: [
               Tab(text: S.prepTabSearch),
               Tab(text: S.prepConnections),
               Tab(text: S.prepTabContext),
+              Tab(text: S.prepTabJournal),
               Tab(text: S.prepTabOutline),
             ],
           ),
@@ -1325,6 +1667,7 @@ Future<void> showPrepHelper(
                 _HelperSearch(prepId: prepId),
                 _HelperConnections(prepId: prepId, focus: focus),
                 _HelperContext(prepId: prepId),
+                _HelperJournal(prepId: prepId),
                 _HelperOutline(prepId: prepId),
               ],
             ),
@@ -1358,6 +1701,180 @@ Passage _canonical(VerseRef r, int endVerse, String translationId) {
     a.verse,
     b.chapter == a.chapter ? b.verse : a.verse,
   );
+}
+
+final _prepNotesProvider = StreamProvider.autoDispose<List<Note>>(
+  (ref) => ref.watch(userDataRepositoryProvider).watchAllNotes(),
+);
+final _prepBookmarksProvider = StreamProvider.autoDispose<List<Bookmark>>(
+  (ref) => ref.watch(userDataRepositoryProvider).watchAllBookmarks(),
+);
+final _prepHighlightsProvider = StreamProvider.autoDispose<List<Highlight>>(
+  (ref) => ref.watch(userDataRepositoryProvider).watchAllHighlights(),
+);
+
+/// Zvýrazněné verše sloučené do souvislých úseků (nejnovější první).
+List<Passage> highlightPassages(List<Highlight> list) {
+  final sorted = [...list]
+    ..sort((a, b) {
+      final x = a.ref, y = b.ref;
+      return x.bookId != y.bookId
+          ? x.bookId.compareTo(y.bookId)
+          : x.chapter != y.chapter
+          ? x.chapter.compareTo(y.chapter)
+          : x.verse.compareTo(y.verse);
+    });
+  final runs = <(Passage, DateTime)>[];
+  for (final h in sorted) {
+    final last = runs.lastOrNull;
+    final r = h.ref;
+    if (last != null &&
+        last.$1.bookId == r.bookId &&
+        last.$1.chapter == r.chapter &&
+        last.$1.end + 1 >= r.verse) {
+      runs.last = (
+        Passage(
+          r.bookId,
+          r.chapter,
+          last.$1.verse,
+          math.max(r.verse, last.$1.end),
+        ),
+        h.createdAt.isAfter(last.$2) ? h.createdAt : last.$2,
+      );
+    } else {
+      runs.add((Passage(r.bookId, r.chapter, r.verse, r.verse), h.createdAt));
+    }
+  }
+  runs.sort((a, b) => b.$2.compareTo(a.$2));
+  return [for (final (p, _) in runs) p];
+}
+
+/// Pomocník: vložit do přípravy poznámky, záložky a zvýraznění z deníku.
+class _HelperJournal extends ConsumerStatefulWidget {
+  const _HelperJournal({required this.prepId});
+
+  final int prepId;
+
+  @override
+  ConsumerState<_HelperJournal> createState() => _HelperJournalState();
+}
+
+class _HelperJournalState extends ConsumerState<_HelperJournal> {
+  var _tab = 0;
+
+  void _add(Passage p, [String text = '']) {
+    ref
+        .read(prepProvider.notifier)
+        .addBlock(widget.prepId, PrepBlockKind.verse, passage: p, text: text);
+    _added(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final tid = ref.watch(primaryTranslationProvider).id;
+    // (místo, vlastní text – u poznámky)
+    final List<(Passage, String)>? items = switch (_tab) {
+      0 =>
+        ref
+            .watch(_prepNotesProvider)
+            .value
+            ?.map(
+              (n) => (
+                Passage(n.ref.bookId, n.ref.chapter, n.ref.verse, n.verseEnd),
+                n.body,
+              ),
+            )
+            .toList(),
+      1 =>
+        ref
+            .watch(_prepBookmarksProvider)
+            .value
+            ?.map(
+              (b) => (
+                Passage(b.ref.bookId, b.ref.chapter, b.ref.verse, b.ref.verse),
+                b.label ?? '',
+              ),
+            )
+            .toList(),
+      _ => switch (ref.watch(_prepHighlightsProvider).value) {
+        final l? => [for (final p in highlightPassages(l)) (p, '')],
+        null => null,
+      },
+    };
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+      children: [
+        Text(
+          S.prepJournalIntro,
+          style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+        ),
+        const SizedBox(height: 10),
+        PillSwitch<int>(
+          options: const [
+            PillOption(0, S.notes),
+            PillOption(1, S.bookmarks),
+            PillOption(2, S.highlights),
+          ],
+          value: _tab,
+          onChanged: (v) => setState(() => _tab = v),
+        ),
+        const SizedBox(height: 8),
+        if (items == null)
+          const LinearProgressIndicator()
+        else if (items.isEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Center(
+              child: Text(
+                S.prepJournalEmpty,
+                style: TextStyle(color: palette.muted),
+              ),
+            ),
+          )
+        else
+          for (final (p, text) in items.take(200))
+            ListTile(
+              contentPadding: const EdgeInsets.only(left: 4),
+              title: Text(
+                passageLabel(ref, p),
+                style: theme.textTheme.labelLarge?.copyWith(
+                  color: palette.gold,
+                ),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    switch (ref.watch(passageTextProvider((tid, p))).value) {
+                      final vs? =>
+                        vs.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
+                      null => '…',
+                    },
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontFamily: appFontFamily),
+                  ),
+                  if (text.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                        text,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              trailing: _AddButton(onTap: () => _add(p, text)),
+            ),
+      ],
+    );
+  }
 }
 
 class _AddButton extends StatelessWidget {

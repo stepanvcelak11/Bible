@@ -7,9 +7,26 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 28;
+const whatsNewVersion = 29;
 
 const _items = [
+  (
+    Icons.grid_view_rounded,
+    'Kázání: přehled, klepání a zvýrazněná slova',
+    'Při kázání posunete klepnutím vpravo dál a vlevo zpět – oblasti jsou '
+        'nenápadně orámované (vypnout jdou v menu rozvržení). Funguje i '
+        'klikr nebo šipky na klávesnici. Ikona mřížky ukáže všechny '
+        'obrazovky a skočíte na kteroukoli. U verše si vyberete slova, která '
+        'budou při kázání zlatě zvýrazněná.',
+  ),
+  (
+    Icons.history,
+    'Kde jste kázali a otázky pro skupinku',
+    'Po kázání si zapíšete datum a sbor; u nové přípravy nad stejným '
+        'textem vám aplikace připomene, kdy a kde už zaznělo. V pomocníkovi '
+        'je nová karta Z deníku pro vaše poznámky, záložky a zvýraznění. '
+        'Export nabízí i list s otázkami pro skupinku k vytištění.',
+  ),
   (
     Icons.devices_outlined,
     'Přípravy mezi zařízeními a export',

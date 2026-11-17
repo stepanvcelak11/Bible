@@ -51,6 +51,7 @@ class PrepBlock {
     this.frameKey = '',
     this.step = 0,
     this.zoom = 1,
+    this.marks = const [],
   });
 
   final int id;
@@ -95,6 +96,10 @@ class PrepBlock {
   /// Velikost písma bloku při kázání (1 = běžná).
   final double zoom;
 
+  /// U verše: slova zvýrazněná při kázání (porovnává se bez diakritiky
+  /// a velikosti písmen).
+  final List<String> marks;
+
   PrepBlock copyWith({
     String? text,
     String? body,
@@ -107,6 +112,7 @@ class PrepBlock {
     String? frameKey,
     int? step,
     double? zoom,
+    List<String>? marks,
   }) => PrepBlock(
     id: id,
     kind: kind ?? this.kind,
@@ -122,6 +128,7 @@ class PrepBlock {
     frameKey: frameKey ?? this.frameKey,
     step: step ?? this.step,
     zoom: zoom ?? this.zoom,
+    marks: marks ?? this.marks,
   );
 
   Map<String, Object?> toJson() => {
@@ -140,6 +147,7 @@ class PrepBlock {
     if (frame != null && frameKey.isNotEmpty) 'fk': frameKey,
     if (step != 0) 'step': step,
     if (zoom != 1) 'zoom': zoom,
+    if (marks.isNotEmpty) 'mk': marks,
   };
 
   static PrepBlock? fromJson(Object? json) {
@@ -181,6 +189,11 @@ class PrepBlock {
         final num z => z.toDouble().clamp(0.4, 3.0),
         _ => 1.0,
       },
+      marks: [
+        if (json['mk'] case final List<Object?> l)
+          for (final m in l)
+            if (m is String && m.isNotEmpty) m,
+      ],
     );
   }
 }
@@ -201,6 +214,7 @@ class Prep {
     this.date,
     this.passages = const [],
     this.blocks = const [],
+    this.preached = const [],
   });
 
   /// Čas vytvoření v ms – zároveň jedinečný identifikátor.
@@ -216,6 +230,9 @@ class Prep {
   final List<Passage> passages;
   final List<PrepBlock> blocks;
 
+  /// Kdy a kde se podle přípravy už kázalo (od nejstaršího).
+  final List<PrepPreached> preached;
+
   /// První hlavní text.
   Passage? get passage => passages.firstOrNull;
 
@@ -225,6 +242,7 @@ class Prep {
     DateTime? Function()? date,
     List<Passage>? passages,
     List<PrepBlock>? blocks,
+    List<PrepPreached>? preached,
   }) => Prep(
     id: id,
     title: title ?? this.title,
@@ -233,6 +251,7 @@ class Prep {
     date: date == null ? this.date : date(),
     passages: passages ?? this.passages,
     blocks: blocks ?? this.blocks,
+    preached: preached ?? this.preached,
   );
 
   /// Počet slov (poznámky, body, otázky…) – pro odhad délky.
@@ -258,6 +277,7 @@ class Prep {
           [p.bookId, p.chapter, p.verse, p.end, p.endChapter],
       ],
     'blocks': [for (final b in blocks) b.toJson()],
+    if (preached.isNotEmpty) 'done': [for (final d in preached) d.toJson()],
   };
 
   static Prep? fromJson(Object? json) {
@@ -288,9 +308,62 @@ class Prep {
         if (blocks is List)
           for (final b in blocks) ?PrepBlock.fromJson(b),
       ],
+      preached: [
+        if (json['done'] case final List<Object?> l)
+          for (final d in l) ?PrepPreached.fromJson(d),
+      ]..sort((a, b) => a.date.compareTo(b.date)),
     );
   }
 }
+
+/// Záznam, že se podle přípravy kázalo: kdy a kde (sbor, místo).
+@immutable
+class PrepPreached {
+  const PrepPreached(this.date, [this.place = '']);
+
+  final DateTime date;
+  final String place;
+
+  List<Object> toJson() => [date.millisecondsSinceEpoch, place];
+
+  static PrepPreached? fromJson(Object? json) => switch (json) {
+    [final int ms, final String place] => PrepPreached(
+      DateTime.fromMillisecondsSinceEpoch(ms),
+      place,
+    ),
+    _ => null,
+  };
+
+  @override
+  bool operator ==(Object other) =>
+      other is PrepPreached && other.date == date && other.place == place;
+
+  @override
+  int get hashCode => Object.hash(date, place);
+}
+
+/// Jestli se dvě místa překrývají (stejná kniha a společné verše).
+bool passagesOverlap(Passage a, Passage b) {
+  if (a.bookId != b.bookId) return false;
+  int key(int c, int v) => c * 1000 + v;
+  final a0 = key(a.chapter, a.wholeChapter ? 0 : a.verse);
+  final a1 = key(a.endChapter, a.wholeChapter ? 999 : a.end);
+  final b0 = key(b.chapter, b.wholeChapter ? 0 : b.verse);
+  final b1 = key(b.endChapter, b.wholeChapter ? 999 : b.end);
+  return a0 <= b1 && b0 <= a1;
+}
+
+/// Dřívější kázání nad stejným textem (překrývající se hlavní text), která
+/// se už kázala – aby se kazatel neopakoval.
+List<Prep> preachedOnSameText(List<Prep> all, Prep prep) => [
+  for (final other in all)
+    if (other.id != prep.id &&
+        other.preached.isNotEmpty &&
+        other.passages.any(
+          (a) => prep.passages.any((b) => passagesOverlap(a, b)),
+        ))
+      other,
+];
 
 /// Ručně nastavený obdélník bloku na obrazovce kázání (zlomky šířky
 /// a výšky plochy, 0–1).

@@ -530,6 +530,39 @@ abstract final class S {
       'Soubor pro tuto aplikaci (např. z počítače do tabletu) – i s '
       'rozvržením a nastavením kázání.';
   static const prepExportFooter = 'Připraveno v aplikaci Bible.';
+  static const prepOverview = 'Přehled obrazovek';
+  static const prepOverviewTitle = 'Úvod';
+  static const prepTapZones = 'Ukazovat oblasti pro klepnutí';
+  static const prepBack = 'Zpět';
+  static const prepForward = 'Dál';
+  static const prepMarks = 'Zvýraznit slova';
+  static String prepMarksCount(int n) => 'Zvýrazněná slova: $n';
+  static const prepMarksIntro =
+      'Klepněte na slova, která mají být při kázání zlatě zvýrazněná '
+      '(ve všech zvolených překladech).';
+  static const prepMarksNone = 'Text verše se nepodařilo načíst.';
+  static const prepPreached = 'Kázáno';
+  static const prepPreachedAdd = 'Zapsat kázání';
+  static const prepPreachedAsk = 'Zapsat toto kázání?';
+  static const prepPreachedAskBody =
+      'Uloží se datum a místo. Až budete příště připravovat kázání nad '
+      'stejným textem, aplikace vám připomene, kdy a kde zaznělo.';
+  static const prepPreachedPlace = 'Kde (sbor, místo)';
+  static const prepPreachedSave = 'Zapsat';
+  static const prepPreachedLater = 'Teď ne';
+  static const prepPreachedDelete = 'Smazat záznam';
+  static String prepPreachedTimes(int n) => 'kázáno $n×';
+  static const prepAlreadyPreached = 'Nad tímto textem už zaznělo vaše kázání';
+  static const prepTabJournal = 'Z deníku';
+  static const prepJournalIntro =
+      'Vložte do přípravy své poznámky, záložky a zvýrazněné verše z deníku.';
+  static const prepJournalEmpty = 'Tady zatím nic není.';
+  static const prepExportQuestions = 'Otázky pro skupinku';
+  static const prepExportQuestionsHint =
+      'List s otázkami k rozhovoru (a textem) k vytištění nebo poslání.';
+  static const prepNoQuestions =
+      'V přípravě zatím nejsou žádné otázky – přidejte blok Otázka.';
+  static const prepQuestionsTitle = 'Otázky k rozhovoru';
   static const prepQuestionLabel = 'Otázka';
   static const prepIllustrationLabel = 'Ilustrace';
   static const prepIdeaLabel = 'Nápad';

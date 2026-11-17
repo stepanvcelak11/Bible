@@ -74,6 +74,12 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
       ? PrepSlideMode.sections
       : PrepSlideMode.custom;
 
+  /// Ukazovat rámečky oblastí pro klepnutí (vlevo zpět, vpravo dál).
+  late var _zones = ref.read(appPreferencesProvider).prepTapZones;
+
+  /// Podíl šířky obrazovky, kterým se listuje zpět (zbytek = dál).
+  static const _backShare = 0.3;
+
   @override
   void initState() {
     super.initState();
@@ -156,6 +162,237 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
     _controller.updateBlock(widget.prepId, f(b));
   }
 
+  /// Obrazovka i s přehledem: jen poslední krok (vše odkryté).
+  void _jump(List<List<PrepBlock>> slides, int page) => setState(() {
+    _page = page;
+    _selected = null;
+    final steps = page == 0 ? const <int>[] : _steps(slides[page - 1]);
+    _step = _editing || steps.isEmpty ? 0 : steps.last;
+  });
+
+  KeyEventResult _onKey(KeyEvent e, List<List<PrepBlock>> slides) {
+    if (_editing || e is KeyUpEvent) return KeyEventResult.ignored;
+    final k = e.logicalKey;
+    if (const [
+      LogicalKeyboardKey.arrowRight,
+      LogicalKeyboardKey.arrowDown,
+      LogicalKeyboardKey.pageDown,
+      LogicalKeyboardKey.space,
+      LogicalKeyboardKey.enter,
+    ].contains(k)) {
+      _next(slides);
+      return KeyEventResult.handled;
+    }
+    if (const [
+      LogicalKeyboardKey.arrowLeft,
+      LogicalKeyboardKey.arrowUp,
+      LogicalKeyboardKey.pageUp,
+      LogicalKeyboardKey.backspace,
+    ].contains(k)) {
+      _prev(slides);
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
+  }
+
+  Future<void> _overview(Prep prep, List<List<PrepBlock>> slides) async {
+    final page = await showDialog<int>(
+      context: context,
+      builder: (c) => Dialog.fullscreen(
+        backgroundColor: const Color(0xFF15120F),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 8, 0),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        S.prepOverview,
+                        style: TextStyle(
+                          color: _ink,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      color: _ink,
+                      tooltip: S.close,
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.of(c).pop(),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 320,
+                    mainAxisSpacing: 14,
+                    crossAxisSpacing: 14,
+                    childAspectRatio: 1.25,
+                  ),
+                  itemCount: slides.length + 1,
+                  itemBuilder: (c, i) {
+                    final current = i == _page;
+                    return InkWell(
+                      borderRadius: BorderRadius.circular(10),
+                      onTap: () => Navigator.of(c).pop(i),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF1E1A15),
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: current
+                                      ? const Color(0xFFE8C77E)
+                                      : _line,
+                                  width: current ? 2 : 1,
+                                ),
+                              ),
+                              child: IgnorePointer(
+                                child: FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: MediaQuery(
+                                    data: MediaQuery.of(c)
+                                        .copyWith(size: const Size(1000, 625)),
+                                    child: SizedBox(
+                                      width: 1000,
+                                      height: 625,
+                                      child: _content(
+                                        prep,
+                                        i == 0
+                                            ? const <PrepBlock>[]
+                                            : slides[i - 1],
+                                        page: i,
+                                        step: 99,
+                                        preview: true,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 6, left: 2),
+                            child: Text(
+                              i == 0
+                                  ? '${i + 1}. ${S.prepOverviewTitle}'
+                                  : '${i + 1}. ${_slideName(slides[i - 1])}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: current
+                                    ? const Color(0xFFE8C77E)
+                                    : _ink.withValues(alpha: 0.8),
+                                fontSize: 13,
+                                fontWeight: current
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (page != null && mounted) _jump(slides, page);
+  }
+
+  String _slideName(List<PrepBlock> slide) {
+    final b = slide.first;
+    if (b.passage case final p?) return passageLabel(ref, p);
+    final t = b.text.trim().split('\n').first;
+    return t.isEmpty ? b.kind.label : t;
+  }
+
+  /// Obsah jedné obrazovky (i pro náhled v přehledu).
+  Widget _content(
+    Prep prep,
+    List<PrepBlock> slide, {
+    required int page,
+    required int step,
+    bool preview = false,
+  }) {
+    final editing = _editing && !preview;
+    final key = prepSlideKey(slide);
+    final free =
+        page > 0 && (editing || slide.every((b) => prepHasFrame(b, key)));
+    if (page == 0) {
+      return Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 900),
+            child: _Slide(
+              title: prep.title.isEmpty ? S.prepUntitled : prep.title,
+              subtitle: prep.passages.isEmpty
+                  ? prep.kind.label
+                  : prep.passages.map((p) => passageLabel(ref, p)).join(' · '),
+              scale: preview ? 1 : _scale,
+              big: true,
+            ),
+          ),
+        ),
+      );
+    }
+    if (free) {
+      return _FreeCanvas(
+        slide: slide,
+        frames: preview
+            ? {
+                for (final b in slide)
+                  b.id:
+                      (prepHasFrame(b, key) ? b.frame : null) ??
+                      defaultFrames(slide, _layout)[b.id]!,
+              }
+            : _frames(slide),
+        step: step,
+        scale: preview ? 1 : _scale,
+        editing: editing,
+        selected: preview ? null : _selected,
+        onSelect: (id) => setState(() => _selected = id),
+        onDrag: (id, f) => setState(() => _drafts[id] = f),
+        onDragEnd: () {
+          final frames = _frames(slide);
+          _drafts.clear();
+          _commit(slide, frames);
+        },
+      );
+    }
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: _layout == PrepLayout.stacked ? 900 : 1400,
+          ),
+          child: _GroupSlide(
+            blocks: slide,
+            layout: _layout,
+            scale: preview ? 1 : _scale,
+            step: step,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final prep = ref.watch(
@@ -174,219 +411,265 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
     final e = _watch.elapsed;
     final time =
         '${e.inMinutes}:${(e.inSeconds % 60).toString().padLeft(2, '0')}';
-    final key = prepSlideKey(slide);
-    final free =
-        _page > 0 && (_editing || slide.every((b) => prepHasFrame(b, key)));
     final selected = slide.where((b) => b.id == _selected).firstOrNull;
 
-    return Scaffold(
-      backgroundColor: const Color(0xFF15120F),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: _ink,
-        titleSpacing: 0,
-        title: Text(
-          _editing
-              ? '${S.prepRehearsal} · ${_page + 1}/$count'
-              : '$time  ·  ${_page + 1}/$count',
-          style: const TextStyle(
-            color: _ink,
-            fontSize: 17,
-            fontFeatures: [FontFeature.tabularFigures()],
+    // Zpět vrací délku kázání (editor pak nabídne zapsat, kde se kázalo).
+    return PopScope<Object?>(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) Navigator.of(context).pop(_watch.elapsed);
+      },
+      child: Scaffold(
+        backgroundColor: const Color(0xFF15120F),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: _ink,
+          titleSpacing: 0,
+          title: Text(
+            _editing
+                ? '${S.prepRehearsal} · ${_page + 1}/$count'
+                : '$time  ·  ${_page + 1}/$count',
+            style: const TextStyle(
+              color: _ink,
+              fontSize: 17,
+              fontFeatures: [FontFeature.tabularFigures()],
+            ),
           ),
-        ),
-        actions: [
-          IconButton(
-            tooltip: _editing ? S.prepEditDone : S.prepEditScreen,
-            isSelected: _editing,
-            icon: Icon(_editing ? Icons.check : Icons.design_services_outlined),
-            onPressed: () => setState(() {
-              _editing = !_editing;
-              _selected = null;
-            }),
-          ),
-          PopupMenuButton<Object>(
-            tooltip: S.prepLayout,
-            icon: const Icon(Icons.dashboard_customize_outlined),
-            onSelected: (v) {
-              final prefs = ref.read(appPreferencesProvider);
-              setState(() {
-                switch (v) {
-                  case final PrepSlideMode m:
-                    _mode = m;
-                    _page = 0;
-                    _step = 0;
-                    prefs.setPrepSlideMode(m.name);
-                  case final PrepLayout l:
-                    _layout = l;
-                    prefs.setPrepLayout(l.name);
-                }
-              });
-            },
-            itemBuilder: (_) => [
-              const PopupMenuItem<Object>(
-                enabled: false,
-                child: Text(S.prepSlideMode),
-              ),
-              for (final (m, title) in const [
-                (PrepSlideMode.custom, S.prepSlideCustom),
-                (PrepSlideMode.sections, S.prepSlideSections),
-              ])
-                CheckedPopupMenuItem<Object>(
-                  value: m,
-                  checked: _mode == m,
-                  child: Text(title),
-                ),
-              const PopupMenuDivider(),
-              const PopupMenuItem<Object>(
-                enabled: false,
-                child: Text(S.prepLayout),
-              ),
-              for (final l in PrepLayout.values)
-                CheckedPopupMenuItem<Object>(
-                  value: l,
-                  checked: _layout == l,
-                  child: Text(l.label),
-                ),
-            ],
-          ),
-          if (!_editing) ...[
+          actions: [
             IconButton(
-              tooltip: S.smallerText,
-              icon: const Icon(Icons.text_decrease),
-              onPressed: () =>
-                  setState(() => _scale = (_scale - 0.15).clamp(0.6, 2.0)),
+              tooltip: S.prepOverview,
+              icon: const Icon(Icons.grid_view_rounded),
+              onPressed: () => _overview(prep, slides),
             ),
             IconButton(
-              tooltip: S.largerText,
-              icon: const Icon(Icons.text_increase),
-              onPressed: () =>
-                  setState(() => _scale = (_scale + 0.15).clamp(0.6, 2.0)),
-            ),
-          ],
-        ],
-      ),
-      bottomNavigationBar: _editing
-          ? _EditBar(
-              selected: selected,
-              canPrev: _page > 0,
-              canNext: _page < count - 1,
-              onPrev: () => _prev(slides),
-              onNext: () => setState(() {
-                if (_page < count - 1) {
-                  _page++;
-                  _step = 0;
-                  _selected = null;
-                }
+              tooltip: _editing ? S.prepEditDone : S.prepEditScreen,
+              isSelected: _editing,
+              icon: Icon(
+                _editing ? Icons.check : Icons.design_services_outlined,
+              ),
+              onPressed: () => setState(() {
+                _editing = !_editing;
+                _selected = null;
               }),
-              onReset: _page == 0
-                  ? null
-                  : () {
-                      _drafts.clear();
-                      _controller.updateBlocks(widget.prepId, [
-                        for (final b in slide)
-                          b.copyWith(frame: () => null, frameKey: ''),
-                      ]);
-                    },
-              onStep: (d) => _updateSelected(
-                slide,
-                (b) => b.copyWith(step: (b.step + d).clamp(0, 20)),
+            ),
+            PopupMenuButton<Object>(
+              tooltip: S.prepLayout,
+              icon: const Icon(Icons.dashboard_customize_outlined),
+              onSelected: (v) {
+                final prefs = ref.read(appPreferencesProvider);
+                setState(() {
+                  switch (v) {
+                    case final PrepSlideMode m:
+                      _mode = m;
+                      _page = 0;
+                      _step = 0;
+                      prefs.setPrepSlideMode(m.name);
+                    case final PrepLayout l:
+                      _layout = l;
+                      prefs.setPrepLayout(l.name);
+                    case 'zones':
+                      _zones = !_zones;
+                      prefs.setPrepTapZones(_zones);
+                  }
+                });
+              },
+              itemBuilder: (_) => [
+                const PopupMenuItem<Object>(
+                  enabled: false,
+                  child: Text(S.prepSlideMode),
+                ),
+                for (final (m, title) in const [
+                  (PrepSlideMode.custom, S.prepSlideCustom),
+                  (PrepSlideMode.sections, S.prepSlideSections),
+                ])
+                  CheckedPopupMenuItem<Object>(
+                    value: m,
+                    checked: _mode == m,
+                    child: Text(title),
+                  ),
+                const PopupMenuDivider(),
+                const PopupMenuItem<Object>(
+                  enabled: false,
+                  child: Text(S.prepLayout),
+                ),
+                for (final l in PrepLayout.values)
+                  CheckedPopupMenuItem<Object>(
+                    value: l,
+                    checked: _layout == l,
+                    child: Text(l.label),
+                  ),
+                const PopupMenuDivider(),
+                CheckedPopupMenuItem<Object>(
+                  value: 'zones',
+                  checked: _zones,
+                  child: const Text(S.prepTapZones),
+                ),
+              ],
+            ),
+            if (!_editing) ...[
+              IconButton(
+                tooltip: S.smallerText,
+                icon: const Icon(Icons.text_decrease),
+                onPressed: () =>
+                    setState(() => _scale = (_scale - 0.15).clamp(0.6, 2.0)),
               ),
-              onZoom: (d) => _updateSelected(
-                slide,
-                (b) => b.copyWith(zoom: (b.zoom + d).clamp(0.4, 3.0)),
+              IconButton(
+                tooltip: S.largerText,
+                icon: const Icon(Icons.text_increase),
+                onPressed: () =>
+                    setState(() => _scale = (_scale + 0.15).clamp(0.6, 2.0)),
               ),
-              onFullWidth: () {
-                final frames = _frames(slide);
-                final f = frames[_selected]!;
-                frames[_selected!] = PrepFrame(0.03, f.y, 0.94, f.h);
-                _commit(slide, frames);
-              },
-              onTranslations: selected?.passage == null
-                  ? null
-                  : () => showPrepTranslations(
-                      context,
-                      ref,
-                      widget.prepId,
-                      selected!,
-                    ),
-            )
-          : null,
-      body: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTapUp: _editing
-            ? (_) => setState(() => _selected = null)
-            : (d) {
-                final w = MediaQuery.sizeOf(context).width;
-                d.localPosition.dx > w / 3 ? _next(slides) : _prev(slides);
-              },
-        onHorizontalDragEnd: _editing
-            ? null
-            : (d) {
-                final v = d.primaryVelocity ?? 0;
-                if (v < -200) _next(slides);
-                if (v > 200) _prev(slides);
-              },
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 220),
-          child: KeyedSubtree(
-            key: ValueKey(_page),
-            child: _page == 0
-                ? Center(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 900),
-                        child: _Slide(
-                          title: prep.title.isEmpty
-                              ? S.prepUntitled
-                              : prep.title,
-                          subtitle: prep.passages.isEmpty
-                              ? prep.kind.label
-                              : prep.passages
-                                    .map((p) => passageLabel(ref, p))
-                                    .join(' · '),
-                          scale: _scale,
-                          big: true,
-                        ),
+            ],
+          ],
+        ),
+        bottomNavigationBar: _editing
+            ? _EditBar(
+                selected: selected,
+                canPrev: _page > 0,
+                canNext: _page < count - 1,
+                onPrev: () => _prev(slides),
+                onNext: () => setState(() {
+                  if (_page < count - 1) {
+                    _page++;
+                    _step = 0;
+                    _selected = null;
+                  }
+                }),
+                onReset: _page == 0
+                    ? null
+                    : () {
+                        _drafts.clear();
+                        _controller.updateBlocks(widget.prepId, [
+                          for (final b in slide)
+                            b.copyWith(frame: () => null, frameKey: ''),
+                        ]);
+                      },
+                onStep: (d) => _updateSelected(
+                  slide,
+                  (b) => b.copyWith(step: (b.step + d).clamp(0, 20)),
+                ),
+                onZoom: (d) => _updateSelected(
+                  slide,
+                  (b) => b.copyWith(zoom: (b.zoom + d).clamp(0.4, 3.0)),
+                ),
+                onFullWidth: () {
+                  final frames = _frames(slide);
+                  final f = frames[_selected]!;
+                  frames[_selected!] = PrepFrame(0.03, f.y, 0.94, f.h);
+                  _commit(slide, frames);
+                },
+                onTranslations: selected?.passage == null
+                    ? null
+                    : () => showPrepTranslations(
+                        context,
+                        ref,
+                        widget.prepId,
+                        selected!,
                       ),
+              )
+            : null,
+        body: Focus(
+          autofocus: true,
+          onKeyEvent: (_, e) => _onKey(e, slides),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapUp: _editing
+                ? (_) => setState(() => _selected = null)
+                : (d) {
+                    final w = MediaQuery.sizeOf(context).width;
+                    d.localPosition.dx > w * _backShare
+                        ? _next(slides)
+                        : _prev(slides);
+                  },
+            onHorizontalDragEnd: _editing
+                ? null
+                : (d) {
+                    final v = d.primaryVelocity ?? 0;
+                    if (v < -200) _next(slides);
+                    if (v > 200) _prev(slides);
+                  },
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 220),
+                    child: KeyedSubtree(
+                      key: ValueKey(_page),
+                      child: _content(prep, slide, page: _page, step: _step),
                     ),
-                  )
-                : free
-                ? _FreeCanvas(
-                    slide: slide,
-                    frames: _frames(slide),
-                    step: _step,
-                    scale: _scale,
-                    editing: _editing,
-                    selected: _selected,
-                    onSelect: (id) => setState(() => _selected = id),
-                    onDrag: (id, f) => setState(() => _drafts[id] = f),
-                    onDragEnd: () {
-                      final frames = _frames(slide);
-                      _drafts.clear();
-                      _commit(slide, frames);
-                    },
-                  )
-                : Center(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxWidth: _layout == PrepLayout.stacked ? 900 : 1400,
-                        ),
-                        child: _GroupSlide(
-                          blocks: slide,
-                          layout: _layout,
-                          scale: _scale,
-                          step: _step,
-                        ),
+                  ),
+                ),
+                if (_zones && !_editing)
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: _TapZones(
+                        backShare: _backShare,
+                        canBack: _page > 0,
+                        canNext:
+                            _page < count - 1 ||
+                            (_page > 0 && _steps(slide).any((s) => s > _step)),
                       ),
                     ),
                   ),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Rámečky oblastí pro klepnutí: vlevo zpět, vpravo dál – nenápadné,
+/// aby nerušily text, ale aby bylo vidět, kam klepnout.
+class _TapZones extends StatelessWidget {
+  const _TapZones({
+    required this.backShare,
+    required this.canBack,
+    required this.canNext,
+  });
+
+  final double backShare;
+  final bool canBack, canNext;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget zone(IconData icon, String label, bool active, bool left) =>
+        Container(
+          margin: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: _ink.withValues(alpha: active ? 0.14 : 0.06),
+              width: 1.5,
+            ),
+          ),
+          alignment: left ? Alignment.bottomLeft : Alignment.bottomRight,
+          padding: const EdgeInsets.all(10),
+          child: Opacity(
+            opacity: active ? 0.45 : 0.15,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (left) Icon(icon, color: _ink, size: 20),
+                Text(label, style: const TextStyle(color: _ink, fontSize: 13)),
+                if (!left) Icon(icon, color: _ink, size: 20),
+              ],
+            ),
+          ),
+        );
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          flex: (backShare * 100).round(),
+          child: zone(Icons.chevron_left, S.prepBack, canBack, true),
+        ),
+        Expanded(
+          flex: ((1 - backShare) * 100).round(),
+          child: zone(Icons.chevron_right, S.prepForward, canNext, false),
+        ),
+      ],
     );
   }
 }
@@ -729,6 +1012,7 @@ class _Slide extends StatelessWidget {
     required this.scale,
     this.big = false,
     this.color = const Color(0xFFE8C77E),
+    this.marks = const [],
   });
 
   final String title;
@@ -737,6 +1021,9 @@ class _Slide extends StatelessWidget {
   final double scale;
   final bool big;
   final Color color;
+
+  /// Slova textu, která se zvýrazní (bez diakritiky, malými písmeny).
+  final List<String> marks;
 
   @override
   Widget build(BuildContext context) {
@@ -763,8 +1050,8 @@ class _Slide extends StatelessWidget {
         if (body case final b?)
           Padding(
             padding: const EdgeInsets.only(top: 16),
-            child: Text(
-              b,
+            child: Text.rich(
+              TextSpan(children: markedSpans(b, marks)),
               style: TextStyle(
                 color: _ink,
                 fontSize: 28 * scale,
@@ -776,6 +1063,35 @@ class _Slide extends StatelessWidget {
       ],
     );
   }
+}
+
+final _wordRe = RegExp(r'[\p{L}\p{N}]+', unicode: true);
+
+/// Porovnávací tvar slova pro zvýraznění (malými písmeny, bez diakritiky).
+String markKey(String word) => foldCzech(word.toLowerCase());
+
+/// Text rozdělený na úseky, zvýrazněná slova zlatě a tučně.
+List<TextSpan> markedSpans(
+  String text,
+  List<String> marks, {
+  TextStyle style = const TextStyle(
+    color: Color(0xFFF2C95C),
+    fontWeight: FontWeight.w700,
+    backgroundColor: Color(0x33E8C77E),
+  ),
+}) {
+  if (marks.isEmpty) return [TextSpan(text: text)];
+  final set = marks.toSet();
+  final out = <TextSpan>[];
+  var last = 0;
+  for (final m in _wordRe.allMatches(text)) {
+    if (!set.contains(markKey(m[0]!))) continue;
+    if (m.start > last) out.add(TextSpan(text: text.substring(last, m.start)));
+    out.add(TextSpan(text: m[0], style: style));
+    last = m.end;
+  }
+  if (last < text.length) out.add(TextSpan(text: text.substring(last)));
+  return out;
 }
 
 /// Jedna obrazovka kázání v automatickém rozvržení: jeden blok, nebo
@@ -880,6 +1196,7 @@ class _BlockSlide extends ConsumerWidget {
           body: verses?.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
           scale: scale,
           color: color,
+          marks: b.marks,
         );
       }
 

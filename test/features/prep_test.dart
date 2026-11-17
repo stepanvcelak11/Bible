@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bible_reader/core/providers.dart';
 import 'package:bible_reader/domain/entities/bible_entities.dart';
 import 'package:bible_reader/domain/entities/content_entities.dart';
+import 'package:bible_reader/domain/entities/user_entities.dart';
 import 'package:bible_reader/features/prep/application/prep_controller.dart';
 import 'package:bible_reader/features/prep/presentation/prep_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -278,5 +279,76 @@ void main() {
     expect(prepHasFrame(alone, prepSlideKey(slides.single)), isFalse);
     // Klíč se uloží do přípravy.
     expect(PrepBlock.fromJson(alone.toJson())!.frameKey, '1');
+  });
+
+  test('zvýrazněná slova a záznamy kázání se uloží', () {
+    const b = PrepBlock(
+      id: 1,
+      kind: PrepBlockKind.verse,
+      passage: Passage(43, 3, 16, 16),
+      marks: ['laska', 'svet'],
+    );
+    expect(PrepBlock.fromJson(b.toJson())!.marks, ['laska', 'svet']);
+    final prep = Prep(
+      id: 5,
+      title: 'X',
+      kind: PrepKind.sermon,
+      updated: DateTime(2026),
+      preached: [PrepPreached(DateTime(2026, 3, 1), 'Brno')],
+    );
+    final back = Prep.fromJson(jsonDecode(jsonEncode(prep.toJson())))!;
+    expect(back.preached, [PrepPreached(DateTime(2026, 3, 1), 'Brno')]);
+  });
+
+  test('zvýraznění najde slovo bez ohledu na diakritiku a velikost', () {
+    final spans = markedSpans('Neboť tak Bůh miloval svět', [markKey('SVĚT')]);
+    expect(spans.map((s) => s.text), ['Neboť tak Bůh miloval ', 'svět']);
+    expect(spans.last.style, isNotNull);
+    expect(markedSpans('abc', const []).single.text, 'abc');
+  });
+
+  test('dřívější kázání nad stejným textem', () {
+    expect(
+      passagesOverlap(const Passage(43, 3, 0, 0), const Passage(43, 3, 16, 16)),
+      isTrue,
+    );
+    expect(
+      passagesOverlap(
+        const Passage(43, 3, 1, 10),
+        const Passage(43, 3, 16, 18),
+      ),
+      isFalse,
+    );
+    expect(
+      passagesOverlap(const Passage(43, 3, 1, 10), const Passage(44, 3, 1, 10)),
+      isFalse,
+    );
+    Prep make(int id, Passage p, {bool done = false}) => Prep(
+      id: id,
+      title: '$id',
+      kind: PrepKind.sermon,
+      updated: DateTime(2026),
+      passages: [p],
+      preached: [if (done) PrepPreached(DateTime(2025))],
+    );
+    final now = make(1, const Passage(43, 3, 14, 21));
+    final all = [
+      now,
+      make(2, const Passage(43, 3, 16, 16), done: true),
+      make(3, const Passage(43, 3, 16, 16)),
+      make(4, const Passage(43, 4, 1, 5), done: true),
+    ];
+    expect(preachedOnSameText(all, now).map((p) => p.id), [2]);
+  });
+
+  test('zvýrazněné verše z deníku se sloučí do úseků', () {
+    Highlight h(int ch, int v, int day) => Highlight(
+      id: v,
+      ref: VerseRef(43, ch, v),
+      color: HighlightColor.yellow,
+      createdAt: DateTime(2026, 1, day),
+    );
+    final list = highlightPassages([h(3, 17, 1), h(3, 16, 1), h(5, 1, 2)]);
+    expect(list, [const Passage(43, 5, 1, 1), const Passage(43, 3, 16, 17)]);
   });
 }

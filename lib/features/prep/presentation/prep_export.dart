@@ -182,6 +182,68 @@ $body
 ''';
 }
 
+/// List otázek pro skupinku: hlavní texty v plném znění a otázky
+/// (seskupené podle bodů) s místem na odpovědi. Null = žádné otázky.
+Future<String?> exportQuestionsHtml(WidgetRef ref, Prep prep) async {
+  if (!prep.blocks.any(
+    (b) => b.kind == PrepBlockKind.question && b.text.trim().isNotEmpty,
+  )) {
+    return null;
+  }
+  final title = prep.title.isEmpty ? S.prepUntitled : prep.title;
+  final tr = ref.read(primaryTranslationProvider);
+  final texts = StringBuffer();
+  for (final p in prep.passages) {
+    final vs = await ref.read(passageTextProvider((tr.id, p)).future);
+    texts.writeln(
+      '<div class="ref">${_esc(passageLabel(ref, p))}</div>'
+      '<blockquote>${_esc(vs.map((v) => v.text.replaceAll('\n', ' ')).join(' '))}'
+      ' <span class="tr">${tr.abbreviation}</span></blockquote>',
+    );
+  }
+  final body = StringBuffer();
+  String? section;
+  var n = 0;
+  for (final b in prep.blocks) {
+    if (b.kind == PrepBlockKind.heading) section = b.text.trim();
+    if (b.kind != PrepBlockKind.question || b.text.trim().isEmpty) continue;
+    if (section != null) {
+      if (section.isNotEmpty) body.writeln('<h2>${_esc(section)}</h2>');
+      section = null;
+    }
+    n++;
+    body.writeln(
+      '<div class="q"><span class="n">$n</span>${_esc(b.text.trim())}'
+      '<div class="lines"></div></div>',
+    );
+  }
+  return '''<!doctype html>
+<html lang="cs"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${_esc(title)} – ${S.prepQuestionsTitle}</title>
+<style>
+body{font-family:Georgia,'Times New Roman',serif;max-width:720px;margin:40px auto;padding:0 20px;color:#2b241c;line-height:1.55;background:#fffdf8}
+h1{font-size:28px;margin:0 0 2px}
+.meta{color:#8a7a62;font-family:system-ui,sans-serif;font-size:14px;margin-bottom:22px}
+h2{font-size:19px;margin:26px 0 6px;padding-bottom:3px;border-bottom:2px solid #c9a35b}
+.ref{font-family:system-ui,sans-serif;font-weight:700;color:#9a7232;font-size:14px;margin-top:10px}
+blockquote{margin:6px 0 14px;padding:8px 14px;background:#f5ecda;border-left:4px solid #c9a35b;border-radius:4px}
+.tr{font-family:system-ui,sans-serif;font-size:11px;color:#9a7232}
+.q{margin:18px 0;font-size:18px;break-inside:avoid}
+.n{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#3f7cac;color:#fff;font-family:system-ui,sans-serif;font-size:14px;font-weight:700;margin-right:10px}
+.lines{height:84px;margin:6px 0 0 38px;background:repeating-linear-gradient(transparent 0 27px,#d8cbb2 27px 28px)}
+footer{margin-top:40px;color:#a99a80;font-family:system-ui,sans-serif;font-size:12px}
+@media print{body{margin:0;background:#fff}blockquote{background:#f7f2e8}}
+</style></head><body>
+<h1>${_esc(title)}</h1>
+<div class="meta">${_esc(S.prepQuestionsTitle)}</div>
+$texts
+$body
+<footer>${S.prepExportFooter}</footer>
+</body></html>
+''';
+}
+
 /// Nabídka exportu kázání: dokument, text, soubor pro aplikaci.
 Future<void> showPrepExport(
   BuildContext context,
@@ -250,8 +312,30 @@ Future<void> showPrepExport(
             },
           ),
           option(
-            Icons.notes,
+            Icons.groups_outlined,
             const Color(0xFF3F7CAC),
+            S.prepExportQuestions,
+            S.prepExportQuestionsHint,
+            () async {
+              final content = await exportQuestionsHtml(ref, prep);
+              if (!context.mounted) return;
+              if (content == null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text(S.prepNoQuestions)),
+                );
+                return;
+              }
+              await _shareFile(
+                context,
+                content,
+                prepFileName(prep, 'otazky.html'),
+                'text/html',
+              );
+            },
+          ),
+          option(
+            Icons.notes,
+            const Color(0xFF5B6F8A),
             S.prepExportTxt,
             S.prepExportTxtHint,
             () async {

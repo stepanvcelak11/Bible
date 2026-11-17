@@ -84,6 +84,11 @@ class AppPreferences {
   Future<void> setPrepLayout(String value) =>
       _prefs.setString('prep.layout', value);
 
+  /// Při kázání ukazovat rámečky oblastí pro klepnutí (zpět / dál).
+  bool get prepTapZones => _prefs.getBool('prep.tapZones') ?? true;
+  Future<void> setPrepTapZones(bool value) =>
+      _prefs.setBool('prep.tapZones', value);
+
   String? get prepSlideMode => _prefs.getString('prep.slideMode');
   Future<void> setPrepSlideMode(String value) =>
       _prefs.setString('prep.slideMode', value);

@@ -15,9 +15,9 @@ void main() {
   });
 
   test('ilustrace: platná data, kresba v každé kapitole', () {
-    final j =
-        jsonDecode(File('assets/content/illustrations.json').readAsStringSync())
-            as Map<String, Object?>;
+    final j = jsonDecode(
+      File('assets/content/illustrations.json').readAsStringSync(),
+    ) as Map<String, Object?>;
     final items = [
       for (final i in j['items']! as List)
         Illustration.fromJson(i as Map<String, Object?>),

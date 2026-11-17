@@ -507,6 +507,15 @@ abstract final class S {
   // Příprava kázání a programů.
   static const preps = 'Příprava kázání a programů';
   static const prepsShort = 'Přípravy';
+  static const prepJoinTip = 'Při kázání ukázat spolu s předchozím';
+  static const prepJoinedTip = 'Ukázat zvlášť (na vlastní obrazovce)';
+  static const prepJoinedLabel = 'Na stejné obrazovce jako předchozí';
+  static const prepSlideMode = 'Co ukázat najednou';
+  static const prepSlideCustom = 'Podle mého nastavení';
+  static const prepSlideCustomHint = 'Bloky spojené ikonou řetízku jsou spolu';
+  static const prepSlideSingle = 'Po jednom bloku';
+  static const prepSlideSections = 'Celé body najednou';
+  static const prepSlideSectionsHint = 'Bod osnovy se vším, co pod ním je';
   static const prepsHint =
       'Kázání, biblická hodina, mládež – osnova a poznámky';
   static const prepNew = 'Nová příprava';

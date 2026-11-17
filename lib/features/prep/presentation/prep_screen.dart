@@ -742,10 +742,10 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
     final controller = ref.read(prepProvider.notifier);
     final heading = b.kind == PrepBlockKind.heading;
     PrepBlock current() => b.copyWith(text: _text.text, body: _body.text);
-    return Padding(
+    final card = Padding(
       padding: EdgeInsets.only(
         bottom: 8,
-        top: heading ? 10 : 0,
+        top: heading && !b.withPrevious ? 10 : 0,
         left: widget.inSection ? 14 : 0,
       ),
       child: Material(
@@ -794,6 +794,21 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                       onPressed: () => openReaderAt(context, ref, p.start),
                     ),
                   ],
+                  if (widget.index > 0)
+                    IconButton(
+                      tooltip: b.withPrevious ? S.prepJoinedTip : S.prepJoinTip,
+                      visualDensity: VisualDensity.compact,
+                      isSelected: b.withPrevious,
+                      icon: Icon(
+                        b.withPrevious ? Icons.link : Icons.link_off,
+                        size: 20,
+                        color: b.withPrevious ? palette.gold : palette.muted,
+                      ),
+                      onPressed: () => controller.updateBlock(
+                        widget.prepId,
+                        current().copyWith(withPrevious: !b.withPrevious),
+                      ),
+                    ),
                   PopupMenuButton<Object>(
                     icon: const Icon(Icons.more_horiz, size: 20),
                     onSelected: (v) {
@@ -916,6 +931,38 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
           ),
         ),
       ),
+    );
+    if (!b.withPrevious || widget.index == 0) return card;
+    // Spojeno s předchozím: při kázání na stejné obrazovce.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+            left: (widget.inSection ? 14 : 0) + 12,
+            bottom: 4,
+            top: 0,
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.subdirectory_arrow_right,
+                size: 14,
+                color: palette.gold,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                S.prepJoinedLabel,
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: palette.gold,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        card,
+      ],
     );
   }
 }
@@ -1711,6 +1758,11 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
   late final Timer _tick;
   double _scale = 1;
   int _page = 0;
+  late var _mode =
+      PrepSlideMode.values.asNameMap()[ref
+          .read(appPreferencesProvider)
+          .prepSlideMode] ??
+      PrepSlideMode.custom;
 
   @override
   void initState() {
@@ -1741,7 +1793,8 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
     final blocks = prep.blocks
         .where((b) => b.text.trim().isNotEmpty || b.passage != null)
         .toList();
-    final count = blocks.length + 1;
+    final slides = prepSlides(blocks, _mode);
+    final count = slides.length + 1;
     const ink = Color(0xFFF3E6CC);
     final e = _watch.elapsed;
     final time =
@@ -1760,6 +1813,43 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
           ),
         ),
         actions: [
+          PopupMenuButton<PrepSlideMode>(
+            tooltip: S.prepSlideMode,
+            icon: const Icon(Icons.view_agenda_outlined),
+            initialValue: _mode,
+            onSelected: (m) {
+              setState(() {
+                _mode = m;
+                _page = 0;
+              });
+              ref.read(appPreferencesProvider).setPrepSlideMode(m.name);
+              _pages.jumpToPage(0);
+            },
+            itemBuilder: (_) => [
+              for (final (m, title, hint) in const [
+                (
+                  PrepSlideMode.custom,
+                  S.prepSlideCustom,
+                  S.prepSlideCustomHint,
+                ),
+                (
+                  PrepSlideMode.sections,
+                  S.prepSlideSections,
+                  S.prepSlideSectionsHint,
+                ),
+                (PrepSlideMode.single, S.prepSlideSingle, null),
+              ])
+                CheckedPopupMenuItem(
+                  value: m,
+                  checked: _mode == m,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(title),
+                    subtitle: hint == null ? null : Text(hint),
+                  ),
+                ),
+            ],
+          ),
           IconButton(
             tooltip: S.smallerText,
             icon: const Icon(Icons.text_decrease),
@@ -1799,7 +1889,7 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                         scale: _scale,
                         big: true,
                       )
-                    : _BlockSlide(block: blocks[i - 1], scale: _scale),
+                    : _GroupSlide(blocks: slides[i - 1], scale: _scale),
               ),
             ),
           ),
@@ -1862,6 +1952,37 @@ class _Slide extends StatelessWidget {
               ),
             ),
           ),
+      ],
+    );
+  }
+}
+
+/// Jedna obrazovka kázání: jeden blok, nebo několik pod sebou (menším
+/// písmem, oddělené tenkou čarou).
+class _GroupSlide extends StatelessWidget {
+  const _GroupSlide({required this.blocks, required this.scale});
+
+  final List<PrepBlock> blocks;
+  final double scale;
+
+  @override
+  Widget build(BuildContext context) {
+    if (blocks.length == 1) {
+      return _BlockSlide(block: blocks.single, scale: scale);
+    }
+    final s = scale * (blocks.length == 2 ? 0.85 : 0.75);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final (i, b) in blocks.indexed) ...[
+          if (i > 0)
+            Container(
+              height: 1,
+              margin: const EdgeInsets.symmetric(vertical: 22),
+              color: const Color(0xFFF3E6CC).withValues(alpha: 0.18),
+            ),
+          _BlockSlide(block: b, scale: s),
+        ],
       ],
     );
   }

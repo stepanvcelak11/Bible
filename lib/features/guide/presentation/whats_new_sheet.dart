@@ -7,9 +7,16 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 25;
+const whatsNewVersion = 26;
 
 const _items = [
+  (
+    Icons.view_agenda_outlined,
+    'Při kázání víc věcí na jedné obrazovce',
+    'V přípravě spojte blok s předchozím ikonou řetízku – bod, verš '
+        'a poznámka se pak při kázání ukážou spolu. V režimu kázání můžete '
+        'také zvolit „Celé body najednou“ nebo „Po jednom bloku“.',
+  ),
   (
     Icons.auto_fix_high,
     'Uhlazený vzhled',

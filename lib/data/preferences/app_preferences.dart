@@ -78,6 +78,11 @@ class AppPreferences {
   Future<void> setPreps(List<String> value) =>
       _prefs.setStringList(_preps, value);
 
+  /// Co při kázání ukázat najednou (název `PrepSlideMode`).
+  String? get prepSlideMode => _prefs.getString('prep.slideMode');
+  Future<void> setPrepSlideMode(String value) =>
+      _prefs.setString('prep.slideMode', value);
+
   /// Rozdělená obrazovka: Bible vedle Studia (nebo jiné sekce).
   bool get splitView => _prefs.getBool(_splitView) ?? false;
   Future<void> setSplitView(bool value) => _prefs.setBool(_splitView, value);

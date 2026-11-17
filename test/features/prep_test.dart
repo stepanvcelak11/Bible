@@ -120,4 +120,47 @@ void main() {
     })!;
     expect(p.passages.single.verse, 16);
   });
+
+  test('kázání: více bloků na jedné obrazovce', () {
+    const h1 = PrepBlock(id: 1, kind: PrepBlockKind.heading, text: 'Bod 1');
+    const n1 = PrepBlock(id: 2, kind: PrepBlockKind.note, text: 'a');
+    const q1 = PrepBlock(
+      id: 3,
+      kind: PrepBlockKind.question,
+      text: 'b',
+      withPrevious: true,
+    );
+    const h2 = PrepBlock(id: 4, kind: PrepBlockKind.heading, text: 'Bod 2');
+    const n2 = PrepBlock(
+      id: 5,
+      kind: PrepBlockKind.note,
+      text: 'c',
+      withPrevious: true,
+    );
+    final blocks = [h1, n1, q1, h2, n2];
+    List<List<int>> ids(PrepSlideMode m) => [
+      for (final g in prepSlides(blocks, m)) [for (final b in g) b.id],
+    ];
+    expect(ids(PrepSlideMode.custom), [
+      [1],
+      [2, 3],
+      [4, 5],
+    ]);
+    expect(ids(PrepSlideMode.single), [
+      [1],
+      [2],
+      [3],
+      [4],
+      [5],
+    ]);
+    expect(ids(PrepSlideMode.sections), [
+      [1, 2, 3],
+      [4, 5],
+    ]);
+    // Nastavení se uloží do zálohy.
+    expect(PrepBlock.fromJson(q1.toJson())!.withPrevious, isTrue);
+    expect(PrepBlock.fromJson(n1.toJson())!.withPrevious, isFalse);
+    expect(n1.copyWith(text: 'x').withPrevious, isFalse);
+    expect(q1.copyWith(text: 'x').withPrevious, isTrue);
+  });
 }

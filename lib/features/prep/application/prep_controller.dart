@@ -43,6 +43,7 @@ class PrepBlock {
     this.body = '',
     this.hint = '',
     this.passage,
+    this.withPrevious = false,
   });
 
   final int id;
@@ -60,15 +61,23 @@ class PrepBlock {
   /// Biblické místo (u verše) v kanonickém číslování.
   final Passage? passage;
 
-  PrepBlock copyWith({String? text, String? body, PrepBlockKind? kind}) =>
-      PrepBlock(
-        id: id,
-        kind: kind ?? this.kind,
-        text: text ?? this.text,
-        body: body ?? this.body,
-        hint: hint,
-        passage: passage,
-      );
+  /// Při kázání ukázat na stejné obrazovce jako předchozí blok.
+  final bool withPrevious;
+
+  PrepBlock copyWith({
+    String? text,
+    String? body,
+    PrepBlockKind? kind,
+    bool? withPrevious,
+  }) => PrepBlock(
+    id: id,
+    kind: kind ?? this.kind,
+    text: text ?? this.text,
+    body: body ?? this.body,
+    hint: hint,
+    passage: passage,
+    withPrevious: withPrevious ?? this.withPrevious,
+  );
 
   Map<String, Object?> toJson() => {
     'id': id,
@@ -78,6 +87,7 @@ class PrepBlock {
     if (hint.isNotEmpty) 'hint': hint,
     if (passage case final p?)
       'ref': [p.bookId, p.chapter, p.verse, p.end, p.endChapter],
+    if (withPrevious) 'join': true,
   };
 
   static PrepBlock? fromJson(Object? json) {
@@ -101,6 +111,7 @@ class PrepBlock {
       body: body is String ? body : '',
       hint: hint is String ? hint : '',
       passage: passage,
+      withPrevious: json['join'] == true,
     );
   }
 }
@@ -210,6 +221,36 @@ class Prep {
       ],
     );
   }
+}
+
+/// Jak při kázání rozdělit bloky na obrazovky.
+enum PrepSlideMode {
+  /// Podle nastavení „spolu s předchozím“ u jednotlivých bloků.
+  custom,
+
+  /// Každý blok zvlášť.
+  single,
+
+  /// Bod osnovy se vším, co pod ním je.
+  sections,
+}
+
+/// Rozdělí bloky na obrazovky (každá obrazovka = jeden nebo víc bloků).
+List<List<PrepBlock>> prepSlides(List<PrepBlock> blocks, PrepSlideMode mode) {
+  final out = <List<PrepBlock>>[];
+  for (final b in blocks) {
+    final join =
+        out.isNotEmpty &&
+        switch (mode) {
+          PrepSlideMode.custom => b.withPrevious,
+          PrepSlideMode.single => false,
+          PrepSlideMode.sections =>
+            b.kind != PrepBlockKind.heading &&
+                out.last.first.kind == PrepBlockKind.heading,
+        };
+    join ? out.last.add(b) : out.add([b]);
+  }
+  return out;
 }
 
 /// Šablony osnov: body (název, nápověda co do bodu patří).

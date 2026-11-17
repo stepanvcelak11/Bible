@@ -629,18 +629,22 @@ void main() {
     await tester.scrollUntilVisible(
       find.text('Jan 3,16'),
       300,
-      scrollable: find.byWidgetPredicate(
-        (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
-      ).first,
+      scrollable: find
+          .byWidgetPredicate(
+            (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+          )
+          .first,
     );
     expect(find.text('1 výsledek v 1 knize'), findsOneWidget);
     expect(find.text('Jan 3,16'), findsOneWidget);
     await tester.scrollUntilVisible(
       find.byType(TextField),
       -300,
-      scrollable: find.byWidgetPredicate(
-        (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
-      ).first,
+      scrollable: find
+          .byWidgetPredicate(
+            (w) => w is Scrollable && w.axisDirection == AxisDirection.down,
+          )
+          .first,
     );
 
     await tester.enterText(find.byType(TextField), 'J 3,17');

@@ -48,6 +48,7 @@ class PrepBlock {
     this.translations = const [],
     this.parallel = false,
     this.frame,
+    this.frameKey = '',
     this.step = 0,
     this.zoom = 1,
   });
@@ -83,6 +84,11 @@ class PrepBlock {
   /// automaticky podle rozvržení).
   final PrepFrame? frame;
 
+  /// Pro kterou obrazovku (bloky na ní) byl [frame] nastaven. Když se
+  /// obrazovka změní (bloky se spojí nebo rozpojí), staré rozmístění se
+  /// nepoužije a bloky se rozmístí znovu.
+  final String frameKey;
+
   /// Na kolikáté klepnutí se blok na své obrazovce objeví (0 = hned).
   final int step;
 
@@ -98,6 +104,7 @@ class PrepBlock {
     List<String>? translations,
     bool? parallel,
     PrepFrame? Function()? frame,
+    String? frameKey,
     int? step,
     double? zoom,
   }) => PrepBlock(
@@ -112,6 +119,7 @@ class PrepBlock {
     translations: translations ?? this.translations,
     parallel: parallel ?? this.parallel,
     frame: frame == null ? this.frame : frame(),
+    frameKey: frameKey ?? this.frameKey,
     step: step ?? this.step,
     zoom: zoom ?? this.zoom,
   );
@@ -129,6 +137,7 @@ class PrepBlock {
     if (translations.isNotEmpty) 'tr': translations,
     if (parallel) 'par': true,
     if (frame case final f?) 'frame': f.toJson(),
+    if (frame != null && frameKey.isNotEmpty) 'fk': frameKey,
     if (step != 0) 'step': step,
     if (zoom != 1) 'zoom': zoom,
   };
@@ -163,6 +172,7 @@ class PrepBlock {
       ],
       parallel: json['par'] == true,
       frame: PrepFrame.fromJson(json['frame']),
+      frameKey: json['fk'] is String ? json['fk']! as String : '',
       step: switch (json['step']) {
         final int n when n >= 0 => n,
         _ => 0,
@@ -384,7 +394,8 @@ enum PrepSlideMode {
   /// Podle nastavení „spolu s předchozím“ u jednotlivých bloků.
   custom,
 
-  /// Každý blok zvlášť.
+  /// Dřívější volba „po jednom“ – dnes stejné jako [custom] (spojené
+  /// bloky zůstávají vždy spolu).
   single,
 
   /// Bod osnovy se vším, co pod ním je.
@@ -397,17 +408,22 @@ List<List<PrepBlock>> prepSlides(List<PrepBlock> blocks, PrepSlideMode mode) {
   for (final b in blocks) {
     final join =
         out.isNotEmpty &&
-        switch (mode) {
-          PrepSlideMode.custom => b.withPrevious,
-          PrepSlideMode.single => false,
-          PrepSlideMode.sections =>
-            b.kind != PrepBlockKind.heading &&
-                out.last.first.kind == PrepBlockKind.heading,
-        };
+        // Bloky spojené řetízkem jsou spolu vždy.
+        (b.withPrevious ||
+            (mode == PrepSlideMode.sections &&
+                b.kind != PrepBlockKind.heading &&
+                out.last.first.kind == PrepBlockKind.heading));
     join ? out.last.add(b) : out.add([b]);
   }
   return out;
 }
+
+/// Klíč obrazovky (které bloky na ní jsou) pro [PrepBlock.frameKey].
+String prepSlideKey(List<PrepBlock> slide) => slide.map((b) => b.id).join(',');
+
+/// Má blok ruční rozmístění právě pro tuto obrazovku?
+bool prepHasFrame(PrepBlock b, String slideKey) =>
+    b.frame != null && b.frameKey == slideKey;
 
 /// Šablony osnov: body (název, nápověda co do bodu patří).
 const prepTemplates = <PrepKind, List<(String, String)>>{

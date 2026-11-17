@@ -146,13 +146,8 @@ void main() {
       [2, 3],
       [4, 5],
     ]);
-    expect(ids(PrepSlideMode.single), [
-      [1],
-      [2],
-      [3],
-      [4],
-      [5],
-    ]);
+    // Spojené bloky zůstávají spolu v každém režimu.
+    expect(ids(PrepSlideMode.single), ids(PrepSlideMode.custom));
     expect(ids(PrepSlideMode.sections), [
       [1, 2, 3],
       [4, 5],
@@ -265,5 +260,23 @@ void main() {
     expect(parsePrepFile({'preps': ctrl.exportList()}), hasLength(2));
     expect(parsePrepFile({'foo': 1}), isEmpty);
     expect(parsePrepFile('x'), isEmpty);
+  });
+
+  test('kázání: rozmístění platí jen pro obrazovku, pro kterou vzniklo', () {
+    const a = PrepBlock(id: 1, kind: PrepBlockKind.note, text: 'a');
+    const b = PrepBlock(id: 2, kind: PrepBlockKind.note, text: 'b');
+    // Rozmístěno, když byl blok sám na obrazovce (přes celou plochu)…
+    final alone = a.copyWith(
+      frame: () => const PrepFrame(0.03, 0.03, 0.94, 0.94),
+      frameKey: prepSlideKey([a]),
+    );
+    expect(prepHasFrame(alone, prepSlideKey([a])), isTrue);
+    // …po spojení s dalším blokem se staré místo nepoužije.
+    final joined = b.copyWith(withPrevious: true);
+    final slides = prepSlides([alone, joined], PrepSlideMode.custom);
+    expect(slides.single, hasLength(2));
+    expect(prepHasFrame(alone, prepSlideKey(slides.single)), isFalse);
+    // Klíč se uloží do přípravy.
+    expect(PrepBlock.fromJson(alone.toJson())!.frameKey, '1');
   });
 }

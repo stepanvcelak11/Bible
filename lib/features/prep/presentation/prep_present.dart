@@ -70,11 +70,9 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
           .read(appPreferencesProvider)
           .prepLayout] ??
       PrepLayout.stacked;
-  late var _mode =
-      PrepSlideMode.values.asNameMap()[ref
-          .read(appPreferencesProvider)
-          .prepSlideMode] ??
-      PrepSlideMode.custom;
+  late var _mode = ref.read(appPreferencesProvider).prepSlideMode == 'sections'
+      ? PrepSlideMode.sections
+      : PrepSlideMode.custom;
 
   @override
   void initState() {
@@ -134,15 +132,21 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
   void _commit(List<PrepBlock> slide, Map<int, PrepFrame> frames) {
     _controller.updateBlocks(widget.prepId, [
       for (final b in slide)
-        if (frames[b.id] case final f?) b.copyWith(frame: () => f),
+        if (frames[b.id] case final f?)
+          b.copyWith(frame: () => f, frameKey: prepSlideKey(slide)),
     ]);
   }
 
   /// Rámečky obrazovky: uložené, rozpracované, jinak výchozí.
   Map<int, PrepFrame> _frames(List<PrepBlock> slide) {
     final defaults = defaultFrames(slide, _layout);
+    final key = prepSlideKey(slide);
     return {
-      for (final b in slide) b.id: _drafts[b.id] ?? b.frame ?? defaults[b.id]!,
+      for (final b in slide)
+        b.id:
+            _drafts[b.id] ??
+            (prepHasFrame(b, key) ? b.frame! : null) ??
+            defaults[b.id]!,
     };
   }
 
@@ -170,7 +174,9 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
     final e = _watch.elapsed;
     final time =
         '${e.inMinutes}:${(e.inSeconds % 60).toString().padLeft(2, '0')}';
-    final free = _page > 0 && (_editing || slide.every((b) => b.frame != null));
+    final key = prepSlideKey(slide);
+    final free =
+        _page > 0 && (_editing || slide.every((b) => prepHasFrame(b, key)));
     final selected = slide.where((b) => b.id == _selected).firstOrNull;
 
     return Scaffold(
@@ -225,7 +231,6 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
               for (final (m, title) in const [
                 (PrepSlideMode.custom, S.prepSlideCustom),
                 (PrepSlideMode.sections, S.prepSlideSections),
-                (PrepSlideMode.single, S.prepSlideSingle),
               ])
                 CheckedPopupMenuItem<Object>(
                   value: m,
@@ -279,7 +284,8 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                   : () {
                       _drafts.clear();
                       _controller.updateBlocks(widget.prepId, [
-                        for (final b in slide) b.copyWith(frame: () => null),
+                        for (final b in slide)
+                          b.copyWith(frame: () => null, frameKey: ''),
                       ]);
                     },
               onStep: (d) => _updateSelected(

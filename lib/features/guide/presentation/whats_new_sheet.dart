@@ -22,7 +22,8 @@ const _items = [
     'Zkušební kázání a volné rozvržení',
     'V režimu kázání klepněte na ikonu úprav: bloky přetáhnete, kam chcete, '
         'rohem změníte velikost, nastavíte písmo a na kolikáté klepnutí se '
-        'který blok objeví. U verše si vyberete jeden nebo víc překladů '
+        'který blok objeví. Bloky spojené řetízkem jsou i tady spolu na '
+        'jedné obrazovce. U verše si vyberete jeden nebo víc překladů '
         '– pod sebou nebo vedle sebe.',
   ),
   (
@@ -30,7 +31,7 @@ const _items = [
     'Při kázání víc věcí na jedné obrazovce',
     'V přípravě spojte blok s předchozím ikonou řetízku – bod, verš '
         'a poznámka se pak při kázání ukážou spolu. V režimu kázání můžete '
-        'také zvolit „Celé body najednou“ nebo „Po jednom bloku“ a rozvržení '
+        'také zvolit „Celé body najednou“ a rozvržení '
         '„Bible vlevo, poznámky vpravo“. Každý blok lze umístit vlevo, '
         'vpravo nebo přes celou šířku.',
   ),

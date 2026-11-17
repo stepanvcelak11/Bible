@@ -511,6 +511,8 @@ abstract final class S {
   static const prepJoinedTip = 'Ukázat zvlášť (na vlastní obrazovce)';
   static const prepJoinedLabel = 'Na stejné obrazovce jako předchozí';
   static const prepSlideMode = 'Co ukázat najednou';
+  static const prepLayout = 'Rozvržení obrazovky';
+  static const prepPlace = 'Místo při kázání';
   static const prepSlideCustom = 'Podle mého nastavení';
   static const prepSlideCustomHint = 'Bloky spojené ikonou řetízku jsou spolu';
   static const prepSlideSingle = 'Po jednom bloku';

@@ -79,6 +79,11 @@ class AppPreferences {
       _prefs.setStringList(_preps, value);
 
   /// Co při kázání ukázat najednou (název `PrepSlideMode`).
+  /// Rozvržení obrazovky kázání (název `PrepLayout`).
+  String? get prepLayout => _prefs.getString('prep.layout');
+  Future<void> setPrepLayout(String value) =>
+      _prefs.setString('prep.layout', value);
+
   String? get prepSlideMode => _prefs.getString('prep.slideMode');
   Future<void> setPrepSlideMode(String value) =>
       _prefs.setString('prep.slideMode', value);

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -794,6 +795,38 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                       onPressed: () => openReaderAt(context, ref, p.start),
                     ),
                   ],
+                  PopupMenuButton<PrepPlace>(
+                    tooltip: S.prepPlace,
+                    initialValue: b.place,
+                    icon: Icon(
+                      switch (b.place) {
+                        PrepPlace.auto => Icons.dashboard_outlined,
+                        PrepPlace.full => Icons.crop_landscape,
+                        PrepPlace.left => Icons.align_horizontal_left,
+                        PrepPlace.right => Icons.align_horizontal_right,
+                      },
+                      size: 20,
+                      color: b.place == PrepPlace.auto
+                          ? palette.muted
+                          : palette.gold,
+                    ),
+                    onSelected: (v) => controller.updateBlock(
+                      widget.prepId,
+                      current().copyWith(place: v),
+                    ),
+                    itemBuilder: (_) => [
+                      PopupMenuItem<PrepPlace>(
+                        enabled: false,
+                        child: Text(S.prepPlace),
+                      ),
+                      for (final v in PrepPlace.values)
+                        CheckedPopupMenuItem(
+                          value: v,
+                          checked: b.place == v,
+                          child: Text(v.label),
+                        ),
+                    ],
+                  ),
                   if (widget.index > 0)
                     IconButton(
                       tooltip: b.withPrevious ? S.prepJoinedTip : S.prepJoinTip,
@@ -1758,6 +1791,11 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
   late final Timer _tick;
   double _scale = 1;
   int _page = 0;
+  late var _layout =
+      PrepLayout.values.asNameMap()[ref
+          .read(appPreferencesProvider)
+          .prepLayout] ??
+      PrepLayout.stacked;
   late var _mode =
       PrepSlideMode.values.asNameMap()[ref
           .read(appPreferencesProvider)
@@ -1850,6 +1888,23 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                 ),
             ],
           ),
+          PopupMenuButton<PrepLayout>(
+            tooltip: S.prepLayout,
+            icon: const Icon(Icons.vertical_split_outlined),
+            initialValue: _layout,
+            onSelected: (l) {
+              setState(() => _layout = l);
+              ref.read(appPreferencesProvider).setPrepLayout(l.name);
+            },
+            itemBuilder: (_) => [
+              for (final l in PrepLayout.values)
+                CheckedPopupMenuItem(
+                  value: l,
+                  checked: _layout == l,
+                  child: Text(l.label),
+                ),
+            ],
+          ),
           IconButton(
             tooltip: S.smallerText,
             icon: const Icon(Icons.text_decrease),
@@ -1877,7 +1932,9 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
               child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 900),
+                constraints: BoxConstraints(
+                  maxWidth: _layout == PrepLayout.stacked ? 900 : 1400,
+                ),
                 child: i == 0
                     ? _Slide(
                         title: prep.title.isEmpty ? S.prepUntitled : prep.title,
@@ -1889,7 +1946,11 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                         scale: _scale,
                         big: true,
                       )
-                    : _GroupSlide(blocks: slides[i - 1], scale: _scale),
+                    : _GroupSlide(
+                        blocks: slides[i - 1],
+                        layout: _layout,
+                        scale: _scale,
+                      ),
               ),
             ),
           ),
@@ -1957,31 +2018,79 @@ class _Slide extends StatelessWidget {
   }
 }
 
-/// Jedna obrazovka kázání: jeden blok, nebo několik pod sebou (menším
-/// písmem, oddělené tenkou čarou).
+/// Jedna obrazovka kázání: jeden blok, nebo několik – pod sebou nebo ve
+/// dvou sloupcích podle rozvržení (menším písmem, oddělené tenkou čarou).
 class _GroupSlide extends StatelessWidget {
-  const _GroupSlide({required this.blocks, required this.scale});
+  const _GroupSlide({
+    required this.blocks,
+    required this.layout,
+    required this.scale,
+  });
 
   final List<PrepBlock> blocks;
+  final PrepLayout layout;
   final double scale;
+
+  static const _line = Color(0x2EF3E6CC);
 
   @override
   Widget build(BuildContext context) {
     if (blocks.length == 1) {
       return _BlockSlide(block: blocks.single, scale: scale);
     }
-    final s = scale * (blocks.length == 2 ? 0.85 : 0.75);
-    return Column(
+    final rows = prepRows(blocks, layout);
+    final wide = MediaQuery.sizeOf(context).width >= 520;
+    // Výška obsahu v blocích (sloupce vedle sebe se nesčítají).
+    final tall = rows.fold<int>(
+      0,
+      (n, r) =>
+          n +
+          (wide && r.right.isNotEmpty && r.left.isNotEmpty
+              ? math.max(r.left.length, r.right.length)
+              : r.left.length + r.right.length),
+    );
+    final s = scale * (tall <= 1 ? 1 : (tall == 2 ? 0.85 : 0.75));
+    Widget column(List<PrepBlock> list) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (final (i, b) in blocks.indexed) ...[
+        for (final (i, b) in list.indexed) ...[
           if (i > 0)
             Container(
               height: 1,
               margin: const EdgeInsets.symmetric(vertical: 22),
-              color: const Color(0xFFF3E6CC).withValues(alpha: 0.18),
+              color: _line,
             ),
           _BlockSlide(block: b, scale: s),
+        ],
+      ],
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (final (i, r) in rows.indexed) ...[
+          if (i > 0)
+            Container(
+              height: 1,
+              margin: const EdgeInsets.symmetric(vertical: 22),
+              color: _line,
+            ),
+          if (wide && r.left.isNotEmpty && r.right.isNotEmpty)
+            IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(child: column(r.left)),
+                  Container(
+                    width: 1,
+                    margin: const EdgeInsets.symmetric(horizontal: 24),
+                    color: _line,
+                  ),
+                  Expanded(child: column(r.right)),
+                ],
+              ),
+            )
+          else
+            column([...r.left, ...r.right]),
         ],
       ],
     );

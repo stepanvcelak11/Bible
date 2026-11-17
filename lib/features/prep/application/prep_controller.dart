@@ -44,6 +44,7 @@ class PrepBlock {
     this.hint = '',
     this.passage,
     this.withPrevious = false,
+    this.place = PrepPlace.auto,
   });
 
   final int id;
@@ -64,11 +65,15 @@ class PrepBlock {
   /// Při kázání ukázat na stejné obrazovce jako předchozí blok.
   final bool withPrevious;
 
+  /// Kde na obrazovce kázání blok stojí (auto = podle rozvržení).
+  final PrepPlace place;
+
   PrepBlock copyWith({
     String? text,
     String? body,
     PrepBlockKind? kind,
     bool? withPrevious,
+    PrepPlace? place,
   }) => PrepBlock(
     id: id,
     kind: kind ?? this.kind,
@@ -77,6 +82,7 @@ class PrepBlock {
     hint: hint,
     passage: passage,
     withPrevious: withPrevious ?? this.withPrevious,
+    place: place ?? this.place,
   );
 
   Map<String, Object?> toJson() => {
@@ -88,6 +94,7 @@ class PrepBlock {
     if (passage case final p?)
       'ref': [p.bookId, p.chapter, p.verse, p.end, p.endChapter],
     if (withPrevious) 'join': true,
+    if (place != PrepPlace.auto) 'place': place.name,
   };
 
   static PrepBlock? fromJson(Object? json) {
@@ -112,6 +119,7 @@ class PrepBlock {
       hint: hint is String ? hint : '',
       passage: passage,
       withPrevious: json['join'] == true,
+      place: PrepPlace.values.asNameMap()[json['place']] ?? PrepPlace.auto,
     );
   }
 }
@@ -221,6 +229,63 @@ class Prep {
       ],
     );
   }
+}
+
+/// Místo bloku na obrazovce kázání.
+enum PrepPlace {
+  auto('Podle rozvržení'),
+  full('Přes celou šířku'),
+  left('Vlevo'),
+  right('Vpravo');
+
+  const PrepPlace(this.label);
+  final String label;
+}
+
+/// Rozvržení obrazovky kázání pro bloky bez vlastního místa.
+enum PrepLayout {
+  stacked('Vše pod sebou'),
+  versesLeft('Bible vlevo, poznámky vpravo'),
+  versesRight('Poznámky vlevo, Bible vpravo');
+
+  const PrepLayout(this.label);
+  final String label;
+}
+
+/// Kde blok při daném rozvržení stojí (body osnovy přes celou šířku).
+PrepPlace prepPlaceOf(PrepBlock b, PrepLayout layout) {
+  if (b.place != PrepPlace.auto) return b.place;
+  if (b.kind == PrepBlockKind.heading) return PrepPlace.full;
+  final verse = b.passage != null;
+  return switch (layout) {
+    PrepLayout.stacked => PrepPlace.full,
+    PrepLayout.versesLeft => verse ? PrepPlace.left : PrepPlace.right,
+    PrepLayout.versesRight => verse ? PrepPlace.right : PrepPlace.left,
+  };
+}
+
+/// Řádek obrazovky kázání: buď jeden blok přes celou šířku, nebo dva
+/// sloupce (levý a pravý). Sloupec bez bloků se nevytváří – pak je
+/// řádek přes celou šířku.
+typedef PrepRow = ({List<PrepBlock> left, List<PrepBlock> right});
+
+List<PrepRow> prepRows(List<PrepBlock> blocks, PrepLayout layout) {
+  final rows = <PrepRow>[];
+  PrepRow? open;
+  for (final b in blocks) {
+    final place = prepPlaceOf(b, layout);
+    if (place == PrepPlace.full) {
+      open = null;
+      rows.add((left: [b], right: const []));
+      continue;
+    }
+    if (open == null) {
+      open = (left: <PrepBlock>[], right: <PrepBlock>[]);
+      rows.add(open);
+    }
+    (place == PrepPlace.left ? open.left : open.right).add(b);
+  }
+  return rows;
 }
 
 /// Jak při kázání rozdělit bloky na obrazovky.

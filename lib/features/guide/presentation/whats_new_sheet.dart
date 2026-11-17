@@ -15,7 +15,9 @@ const _items = [
     'Při kázání víc věcí na jedné obrazovce',
     'V přípravě spojte blok s předchozím ikonou řetízku – bod, verš '
         'a poznámka se pak při kázání ukážou spolu. V režimu kázání můžete '
-        'také zvolit „Celé body najednou“ nebo „Po jednom bloku“.',
+        'také zvolit „Celé body najednou“ nebo „Po jednom bloku“ a rozvržení '
+        '„Bible vlevo, poznámky vpravo“. Každý blok lze umístit vlevo, '
+        'vpravo nebo přes celou šířku.',
   ),
   (
     Icons.auto_fix_high,

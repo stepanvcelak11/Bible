@@ -163,4 +163,32 @@ void main() {
     expect(n1.copyWith(text: 'x').withPrevious, isFalse);
     expect(q1.copyWith(text: 'x').withPrevious, isTrue);
   });
+
+  test('kázání: rozvržení Bible vlevo, poznámky vpravo', () {
+    const p = Passage(43, 3, 16, 16);
+    const h = PrepBlock(id: 1, kind: PrepBlockKind.heading, text: 'Bod');
+    const v = PrepBlock(id: 2, kind: PrepBlockKind.verse, passage: p);
+    const n = PrepBlock(id: 3, kind: PrepBlockKind.note, text: 'a');
+    const q = PrepBlock(
+      id: 4,
+      kind: PrepBlockKind.question,
+      text: 'b',
+      place: PrepPlace.full,
+    );
+    String show(PrepLayout l) => prepRows([h, v, n, q], l)
+        .map(
+          (r) =>
+              '${r.left.map((b) => b.id).join()}|'
+              '${r.right.map((b) => b.id).join()}',
+        )
+        .join(' ');
+    expect(show(PrepLayout.versesLeft), '1| 2|3 4|');
+    expect(show(PrepLayout.versesRight), '1| 3|2 4|');
+    expect(show(PrepLayout.stacked), '1| 2| 3| 4|');
+    // Vlastní místo bloku má přednost a uloží se.
+    final left = n.copyWith(place: PrepPlace.left);
+    expect(prepPlaceOf(left, PrepLayout.versesLeft), PrepPlace.left);
+    expect(PrepBlock.fromJson(left.toJson())!.place, PrepPlace.left);
+    expect(PrepBlock.fromJson(n.toJson())!.place, PrepPlace.auto);
+  });
 }

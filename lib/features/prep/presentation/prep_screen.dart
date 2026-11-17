@@ -26,10 +26,13 @@ import '../../shell/home_shell.dart';
 import '../../study/application/study_providers.dart';
 import '../../study/presentation/study_pack_screen.dart';
 import '../../translations/application/translation_controller.dart';
+import '../../translations/presentation/library_screen.dart';
 import '../application/prep_controller.dart';
 import '../../search/presentation/thought_results.dart';
 import '../../../core/widgets/pill_switch.dart';
 import 'passage_picker.dart';
+
+part 'prep_present.dart';
 
 void openPreps(BuildContext context) =>
     Navigator.of(context)
@@ -418,6 +421,13 @@ class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
             PopupMenuButton<String>(
               onSelected: (v) async {
                 switch (v) {
+                  case 'rehearse':
+                    await Navigator.of(context, rootNavigator: true).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            PrepPresentScreen(prepId: prepId, rehearsal: true),
+                      ),
+                    );
                   case 'share':
                     final text = await _exportText(ref, prep);
                     await SharePlus.instance.share(ShareParams(text: text));
@@ -453,6 +463,14 @@ class _PrepEditorScreenState extends ConsumerState<PrepEditorScreen> {
                 }
               },
               itemBuilder: (_) => const [
+                PopupMenuItem(
+                  value: 'rehearse',
+                  child: ListTile(
+                    leading: Icon(Icons.design_services_outlined),
+                    title: Text(S.prepRehearsalMenu),
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                ),
                 PopupMenuItem(
                   value: 'share',
                   child: ListTile(
@@ -877,7 +895,8 @@ class _BlockCardState extends ConsumerState<_BlockCard> {
                   ),
                 ],
               ),
-              if (b.passage case final p?) _VerseText(passage: p),
+              if (b.passage != null)
+                _VerseText(prepId: widget.prepId, block: b),
               Padding(
                 padding: const EdgeInsets.only(right: 12),
                 child: TextField(
@@ -1036,33 +1055,159 @@ class _SmallAdd extends StatelessWidget {
 }
 
 /// Text verše v hlavním překladu (jako citát).
-class _VerseText extends ConsumerWidget {
-  const _VerseText({required this.passage});
+/// Překlady, ve kterých se verš bloku ukazuje (jen nainstalované;
+/// bez výběru hlavní překlad aplikace).
+List<Translation> prepTranslations(WidgetRef ref, PrepBlock b) {
+  final all = ref.watch(translationsProvider);
+  final picked = [
+    for (final id in b.translations) ?all.where((t) => t.id == id).firstOrNull,
+  ];
+  return picked.isEmpty ? [ref.watch(primaryTranslationProvider)] : picked;
+}
 
-  final Passage passage;
+/// Výběr překladů verše (jeden nebo víc) a jak je ukázat.
+Future<void> showPrepTranslations(
+  BuildContext context,
+  WidgetRef ref,
+  int prepId,
+  PrepBlock block,
+) => showAppSheet<void>(
+  context: context,
+  isScrollControlled: true,
+  builder: (context) => _TranslationPicker(prepId: prepId, blockId: block.id),
+);
+
+class _TranslationPicker extends ConsumerWidget {
+  const _TranslationPicker({required this.prepId, required this.blockId});
+
+  final int prepId;
+  final int blockId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final translation = ref.watch(primaryTranslationProvider);
-    final verses = ref
-        .watch(passageTextProvider((translation.id, passage)))
-        .value;
     final theme = Theme.of(context);
-    final text = verses == null
-        ? '…'
-        : verses.map((v) => v.text.replaceAll('\n', ' ')).join(' ');
+    final palette = AppPalette.of(context);
+    final prep = ref.watch(
+      prepProvider.select((l) => l.where((p) => p.id == prepId).firstOrNull),
+    );
+    final b = prep?.blocks.where((x) => x.id == blockId).firstOrNull;
+    if (b == null) return const SizedBox.shrink();
+    final all = ref.watch(translationsProvider);
+    final current = [for (final t in prepTranslations(ref, b)) t.id];
+    final controller = ref.read(prepProvider.notifier);
+    void set(List<String> ids) =>
+        controller.updateBlock(prepId, b.copyWith(translations: ids));
+    return SafeArea(
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+        children: [
+          Text(S.prepTranslationsTitle, style: theme.textTheme.titleLarge),
+          const SizedBox(height: 4),
+          Text(
+            S.prepTranslationsHint,
+            style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
+          ),
+          const SizedBox(height: 8),
+          for (final t in all)
+            CheckboxListTile(
+              contentPadding: EdgeInsets.zero,
+              value: current.contains(t.id),
+              title: Text('${t.abbreviation} – ${t.name}'),
+              onChanged: (on) {
+                final next = [...current];
+                on == true ? next.add(t.id) : next.remove(t.id);
+                // Aspoň jeden překlad zůstane.
+                if (next.isNotEmpty) set(next);
+              },
+            ),
+          if (current.length > 1) ...[
+            const Divider(),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              value: b.parallel,
+              title: const Text(S.prepParallel),
+              subtitle: const Text(S.prepParallelHint),
+              onChanged: (v) =>
+                  controller.updateBlock(prepId, b.copyWith(parallel: v)),
+            ),
+          ],
+          const SizedBox(height: 4),
+          TextButton.icon(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const LibraryScreen()),
+              );
+            },
+            icon: const Icon(Icons.download_outlined),
+            label: const Text(S.prepMoreTranslations),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Text verše v editoru – v každém vybraném překladu – a tlačítko výběru
+/// překladů.
+class _VerseText extends ConsumerWidget {
+  const _VerseText({required this.prepId, required this.block});
+
+  final int prepId;
+  final PrepBlock block;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final passage = block.passage!;
+    final theme = Theme.of(context);
+    final palette = AppPalette.of(context);
+    final translations = prepTranslations(ref, block);
+    final many = translations.length > 1;
     return Padding(
       padding: const EdgeInsets.fromLTRB(2, 2, 12, 4),
-      child: Text(
-        text,
-        maxLines: passage.wholeChapter ? 4 : 12,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          fontFamily: appFontFamily,
-          fontSize: 16,
-          height: 1.45,
-          color: theme.colorScheme.onSurface,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final t in translations) ...[
+            if (many)
+              Padding(
+                padding: const EdgeInsets.only(top: 6, bottom: 2),
+                child: Text(
+                  t.abbreviation,
+                  style: theme.textTheme.labelSmall?.copyWith(
+                    color: palette.gold,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            Text(
+              switch (ref.watch(passageTextProvider((t.id, passage))).value) {
+                final vs? =>
+                  vs.map((v) => v.text.replaceAll('\n', ' ')).join(' '),
+                null => '…',
+              },
+              maxLines: passage.wholeChapter ? 4 : (many ? 6 : 12),
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: appFontFamily,
+                fontSize: 16,
+                height: 1.45,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+          ],
+          const SizedBox(height: 6),
+          ActionChip(
+            visualDensity: VisualDensity.compact,
+            avatar: Icon(Icons.translate, size: 16, color: palette.gold),
+            label: Text(
+              translations.map((t) => t.abbreviation).join(' · ') +
+                  (many && block.parallel ? '  ·  ${S.prepParallelShort}' : ''),
+            ),
+            onPressed: () => showPrepTranslations(context, ref, prepId, block),
+          ),
+        ],
       ),
     );
   }
@@ -1088,13 +1233,20 @@ Future<String> _exportText(WidgetRef ref, Prep prep) async {
           ..writeln(b.text.toUpperCase());
         if (b.body.isNotEmpty) out.writeln(b.body);
       case PrepBlockKind.verse:
-        final verses = await ref.read(
-          passageTextProvider((translation.id, b.passage!)).future,
-        );
-        out.writeln(
-          '${passageLabel(ref, b.passage!)} (${translation.abbreviation}): '
-          '„${verses.map((v) => v.text.replaceAll('\n', ' ')).join(' ')}“',
-        );
+        final all = ref.read(translationsProvider);
+        final picked = [
+          for (final id in b.translations)
+            ?all.where((t) => t.id == id).firstOrNull,
+        ];
+        for (final t in picked.isEmpty ? [translation] : picked) {
+          final verses = await ref.read(
+            passageTextProvider((t.id, b.passage!)).future,
+          );
+          out.writeln(
+            '${passageLabel(ref, b.passage!)} (${t.abbreviation}): '
+            '„${verses.map((v) => v.text.replaceAll('\n', ' ')).join(' ')}“',
+          );
+        }
         if (b.text.isNotEmpty) out.writeln('  ${b.text}');
       case PrepBlockKind.question:
         out.writeln('? ${b.text}');
@@ -1769,369 +1921,6 @@ class _HelperOutline extends ConsumerWidget {
               ),
             ),
       ],
-    );
-  }
-}
-
-// --- Prezentace ---------------------------------------------------------------
-
-/// Prezentační režim: velké písmo, listování po blocích a stopky.
-class PrepPresentScreen extends ConsumerStatefulWidget {
-  const PrepPresentScreen({super.key, required this.prepId});
-
-  final int prepId;
-
-  @override
-  ConsumerState<PrepPresentScreen> createState() => _PrepPresentScreenState();
-}
-
-class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
-  final _pages = PageController();
-  final _watch = Stopwatch()..start();
-  late final Timer _tick;
-  double _scale = 1;
-  int _page = 0;
-  late var _layout =
-      PrepLayout.values.asNameMap()[ref
-          .read(appPreferencesProvider)
-          .prepLayout] ??
-      PrepLayout.stacked;
-  late var _mode =
-      PrepSlideMode.values.asNameMap()[ref
-          .read(appPreferencesProvider)
-          .prepSlideMode] ??
-      PrepSlideMode.custom;
-
-  @override
-  void initState() {
-    super.initState();
-    _tick = Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _tick.cancel();
-    _pages.dispose();
-    super.dispose();
-  }
-
-  void _go(int delta, int count) {
-    final target = (_page + delta).clamp(0, count - 1);
-    _pages.animateToPage(
-      target,
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeOut,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final prep = ref.watch(prepProvider.notifier).byId(widget.prepId);
-    if (prep == null) return const Scaffold();
-    final blocks = prep.blocks
-        .where((b) => b.text.trim().isNotEmpty || b.passage != null)
-        .toList();
-    final slides = prepSlides(blocks, _mode);
-    final count = slides.length + 1;
-    const ink = Color(0xFFF3E6CC);
-    final e = _watch.elapsed;
-    final time =
-        '${e.inMinutes}:${(e.inSeconds % 60).toString().padLeft(2, '0')}';
-    return Scaffold(
-      backgroundColor: const Color(0xFF15120F),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: ink,
-        title: Text(
-          '$time  ·  ${_page + 1}/$count',
-          style: const TextStyle(
-            color: ink,
-            fontSize: 17,
-            fontFeatures: [FontFeature.tabularFigures()],
-          ),
-        ),
-        actions: [
-          PopupMenuButton<PrepSlideMode>(
-            tooltip: S.prepSlideMode,
-            icon: const Icon(Icons.view_agenda_outlined),
-            initialValue: _mode,
-            onSelected: (m) {
-              setState(() {
-                _mode = m;
-                _page = 0;
-              });
-              ref.read(appPreferencesProvider).setPrepSlideMode(m.name);
-              _pages.jumpToPage(0);
-            },
-            itemBuilder: (_) => [
-              for (final (m, title, hint) in const [
-                (
-                  PrepSlideMode.custom,
-                  S.prepSlideCustom,
-                  S.prepSlideCustomHint,
-                ),
-                (
-                  PrepSlideMode.sections,
-                  S.prepSlideSections,
-                  S.prepSlideSectionsHint,
-                ),
-                (PrepSlideMode.single, S.prepSlideSingle, null),
-              ])
-                CheckedPopupMenuItem(
-                  value: m,
-                  checked: _mode == m,
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(title),
-                    subtitle: hint == null ? null : Text(hint),
-                  ),
-                ),
-            ],
-          ),
-          PopupMenuButton<PrepLayout>(
-            tooltip: S.prepLayout,
-            icon: const Icon(Icons.vertical_split_outlined),
-            initialValue: _layout,
-            onSelected: (l) {
-              setState(() => _layout = l);
-              ref.read(appPreferencesProvider).setPrepLayout(l.name);
-            },
-            itemBuilder: (_) => [
-              for (final l in PrepLayout.values)
-                CheckedPopupMenuItem(
-                  value: l,
-                  checked: _layout == l,
-                  child: Text(l.label),
-                ),
-            ],
-          ),
-          IconButton(
-            tooltip: S.smallerText,
-            icon: const Icon(Icons.text_decrease),
-            onPressed: () =>
-                setState(() => _scale = (_scale - 0.15).clamp(0.7, 2.0)),
-          ),
-          IconButton(
-            tooltip: S.largerText,
-            icon: const Icon(Icons.text_increase),
-            onPressed: () =>
-                setState(() => _scale = (_scale + 0.15).clamp(0.7, 2.0)),
-          ),
-        ],
-      ),
-      body: GestureDetector(
-        onTapUp: (d) {
-          final w = MediaQuery.sizeOf(context).width;
-          _go(d.localPosition.dx > w / 3 ? 1 : -1, count);
-        },
-        child: PageView.builder(
-          controller: _pages,
-          itemCount: count,
-          onPageChanged: (i) => setState(() => _page = i),
-          itemBuilder: (context, i) => Center(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(32, 16, 32, 48),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxWidth: _layout == PrepLayout.stacked ? 900 : 1400,
-                ),
-                child: i == 0
-                    ? _Slide(
-                        title: prep.title.isEmpty ? S.prepUntitled : prep.title,
-                        subtitle: prep.passages.isEmpty
-                            ? prep.kind.label
-                            : prep.passages
-                                  .map((p) => passageLabel(ref, p))
-                                  .join(' · '),
-                        scale: _scale,
-                        big: true,
-                      )
-                    : _GroupSlide(
-                        blocks: slides[i - 1],
-                        layout: _layout,
-                        scale: _scale,
-                      ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Slide extends StatelessWidget {
-  const _Slide({
-    required this.title,
-    this.subtitle,
-    this.body,
-    required this.scale,
-    this.big = false,
-    this.color = const Color(0xFFE8C77E),
-  });
-
-  final String title;
-  final String? subtitle;
-  final String? body;
-  final double scale;
-  final bool big;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    const ink = Color(0xFFF3E6CC);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: TextStyle(
-            color: big ? ink : color,
-            fontSize: (big ? 40 : 22) * scale,
-            fontWeight: FontWeight.w700,
-            height: 1.2,
-          ),
-        ),
-        if (subtitle case final s?)
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              s,
-              style: TextStyle(color: color, fontSize: 20 * scale),
-            ),
-          ),
-        if (body case final b?)
-          Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(
-              b,
-              style: TextStyle(
-                color: ink,
-                fontSize: 28 * scale,
-                height: 1.45,
-                fontFamily: appFontFamily,
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-}
-
-/// Jedna obrazovka kázání: jeden blok, nebo několik – pod sebou nebo ve
-/// dvou sloupcích podle rozvržení (menším písmem, oddělené tenkou čarou).
-class _GroupSlide extends StatelessWidget {
-  const _GroupSlide({
-    required this.blocks,
-    required this.layout,
-    required this.scale,
-  });
-
-  final List<PrepBlock> blocks;
-  final PrepLayout layout;
-  final double scale;
-
-  static const _line = Color(0x2EF3E6CC);
-
-  @override
-  Widget build(BuildContext context) {
-    if (blocks.length == 1) {
-      return _BlockSlide(block: blocks.single, scale: scale);
-    }
-    final rows = prepRows(blocks, layout);
-    final wide = MediaQuery.sizeOf(context).width >= 520;
-    // Výška obsahu v blocích (sloupce vedle sebe se nesčítají).
-    final tall = rows.fold<int>(
-      0,
-      (n, r) =>
-          n +
-          (wide && r.right.isNotEmpty && r.left.isNotEmpty
-              ? math.max(r.left.length, r.right.length)
-              : r.left.length + r.right.length),
-    );
-    final s = scale * (tall <= 1 ? 1 : (tall == 2 ? 0.85 : 0.75));
-    Widget column(List<PrepBlock> list) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (final (i, b) in list.indexed) ...[
-          if (i > 0)
-            Container(
-              height: 1,
-              margin: const EdgeInsets.symmetric(vertical: 22),
-              color: _line,
-            ),
-          _BlockSlide(block: b, scale: s),
-        ],
-      ],
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        for (final (i, r) in rows.indexed) ...[
-          if (i > 0)
-            Container(
-              height: 1,
-              margin: const EdgeInsets.symmetric(vertical: 22),
-              color: _line,
-            ),
-          if (wide && r.left.isNotEmpty && r.right.isNotEmpty)
-            IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(child: column(r.left)),
-                  Container(
-                    width: 1,
-                    margin: const EdgeInsets.symmetric(horizontal: 24),
-                    color: _line,
-                  ),
-                  Expanded(child: column(r.right)),
-                ],
-              ),
-            )
-          else
-            column([...r.left, ...r.right]),
-        ],
-      ],
-    );
-  }
-}
-
-class _BlockSlide extends ConsumerWidget {
-  const _BlockSlide({required this.block, required this.scale});
-
-  final PrepBlock block;
-  final double scale;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final b = block;
-    final color = Color.lerp(_blockColor(b.kind), Colors.white, 0.35)!;
-    if (b.passage case final p?) {
-      final t = ref.watch(primaryTranslationProvider);
-      final verses = ref.watch(passageTextProvider((t.id, p))).value;
-      final text = verses?.map((v) => v.text.replaceAll('\n', ' ')).join(' ');
-      return _Slide(
-        title: '${passageLabel(ref, p)} · ${t.abbreviation}',
-        body: [?text, if (b.text.isNotEmpty) '\n${b.text}'].join(),
-        scale: scale,
-        color: color,
-      );
-    }
-    if (b.kind == PrepBlockKind.heading) {
-      return _Slide(
-        title: b.text,
-        body: b.body.isEmpty ? null : b.body,
-        scale: scale,
-        big: true,
-        color: color,
-      );
-    }
-    return _Slide(
-      title: b.kind.label,
-      body: b.text,
-      scale: scale,
-      color: color,
     );
   }
 }

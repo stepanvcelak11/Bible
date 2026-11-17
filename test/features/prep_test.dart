@@ -191,4 +191,46 @@ void main() {
     expect(PrepBlock.fromJson(left.toJson())!.place, PrepPlace.left);
     expect(PrepBlock.fromJson(n.toJson())!.place, PrepPlace.auto);
   });
+
+  test('kázání: překlady, ruční rozmístění a klepnutí se uloží', () {
+    const p = Passage(43, 3, 16, 16);
+    final b = const PrepBlock(id: 7, kind: PrepBlockKind.verse, passage: p)
+        .copyWith(
+          translations: ['bkr', 'cep'],
+          parallel: true,
+          frame: () => const PrepFrame(0.1, 0.2, 0.5, 0.3),
+          step: 2,
+          zoom: 1.3,
+        );
+    final r = PrepBlock.fromJson(jsonDecode(jsonEncode(b.toJson())))!;
+    expect(r.translations, ['bkr', 'cep']);
+    expect(r.parallel, isTrue);
+    expect(r.frame, const PrepFrame(0.1, 0.2, 0.5, 0.3));
+    expect(r.step, 2);
+    expect(r.zoom, closeTo(1.3, 1e-9));
+    // Zrušení ručního místa.
+    expect(r.copyWith(frame: () => null).frame, isNull);
+    expect(r.copyWith(text: 'x').frame, isNotNull);
+    // Rámeček nevyjede z plochy.
+    final f = const PrepFrame(0.8, 0.8, 0.3, 0.3).moved(0, 0);
+    expect(f.x + f.w, lessThanOrEqualTo(1));
+    expect(const PrepFrame(0.5, 0.5, 0.2, 0.2).moved(0.9, 0.9).x, 0.8);
+    expect(const PrepFrame(0.5, 0.5, 0.2, 0.2).resized(1, 1).w, 0.5);
+  });
+
+  test('kázání: výchozí rozmístění podle rozvržení', () {
+    const p = Passage(43, 3, 16, 16);
+    const h = PrepBlock(id: 1, kind: PrepBlockKind.heading, text: 'Bod');
+    const v = PrepBlock(id: 2, kind: PrepBlockKind.verse, passage: p);
+    const n = PrepBlock(id: 3, kind: PrepBlockKind.note, text: 'a');
+    final f = defaultFrames([h, v, n], PrepLayout.versesLeft);
+    expect(f[1]!.w, greaterThan(0.9));
+    expect(f[2]!.x, lessThan(f[3]!.x));
+    expect(f[2]!.y, f[3]!.y);
+    expect(f[1]!.y, lessThan(f[2]!.y));
+    for (final r in f.values) {
+      expect(r.x + r.w, lessThanOrEqualTo(1.0001));
+      expect(r.y + r.h, lessThanOrEqualTo(1.0001));
+    }
+  });
 }

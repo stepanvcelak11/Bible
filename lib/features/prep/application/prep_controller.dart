@@ -45,6 +45,11 @@ class PrepBlock {
     this.passage,
     this.withPrevious = false,
     this.place = PrepPlace.auto,
+    this.translations = const [],
+    this.parallel = false,
+    this.frame,
+    this.step = 0,
+    this.zoom = 1,
   });
 
   final int id;
@@ -68,12 +73,33 @@ class PrepBlock {
   /// Kde na obrazovce kázání blok stojí (auto = podle rozvržení).
   final PrepPlace place;
 
+  /// U verše: překlady (id); prázdné = hlavní překlad aplikace.
+  final List<String> translations;
+
+  /// U verše s více překlady: vedle sebe (jinak pod sebou).
+  final bool parallel;
+
+  /// Ručně nastavené místo a velikost na obrazovce kázání (null =
+  /// automaticky podle rozvržení).
+  final PrepFrame? frame;
+
+  /// Na kolikáté klepnutí se blok na své obrazovce objeví (0 = hned).
+  final int step;
+
+  /// Velikost písma bloku při kázání (1 = běžná).
+  final double zoom;
+
   PrepBlock copyWith({
     String? text,
     String? body,
     PrepBlockKind? kind,
     bool? withPrevious,
     PrepPlace? place,
+    List<String>? translations,
+    bool? parallel,
+    PrepFrame? Function()? frame,
+    int? step,
+    double? zoom,
   }) => PrepBlock(
     id: id,
     kind: kind ?? this.kind,
@@ -83,6 +109,11 @@ class PrepBlock {
     passage: passage,
     withPrevious: withPrevious ?? this.withPrevious,
     place: place ?? this.place,
+    translations: translations ?? this.translations,
+    parallel: parallel ?? this.parallel,
+    frame: frame == null ? this.frame : frame(),
+    step: step ?? this.step,
+    zoom: zoom ?? this.zoom,
   );
 
   Map<String, Object?> toJson() => {
@@ -95,6 +126,11 @@ class PrepBlock {
       'ref': [p.bookId, p.chapter, p.verse, p.end, p.endChapter],
     if (withPrevious) 'join': true,
     if (place != PrepPlace.auto) 'place': place.name,
+    if (translations.isNotEmpty) 'tr': translations,
+    if (parallel) 'par': true,
+    if (frame case final f?) 'frame': f.toJson(),
+    if (step != 0) 'step': step,
+    if (zoom != 1) 'zoom': zoom,
   };
 
   static PrepBlock? fromJson(Object? json) {
@@ -120,6 +156,21 @@ class PrepBlock {
       passage: passage,
       withPrevious: json['join'] == true,
       place: PrepPlace.values.asNameMap()[json['place']] ?? PrepPlace.auto,
+      translations: [
+        if (json['tr'] case final List<Object?> l)
+          for (final t in l)
+            if (t is String) t,
+      ],
+      parallel: json['par'] == true,
+      frame: PrepFrame.fromJson(json['frame']),
+      step: switch (json['step']) {
+        final int n when n >= 0 => n,
+        _ => 0,
+      },
+      zoom: switch (json['zoom']) {
+        final num z => z.toDouble().clamp(0.4, 3.0),
+        _ => 1.0,
+      },
     );
   }
 }
@@ -229,6 +280,46 @@ class Prep {
       ],
     );
   }
+}
+
+/// Ručně nastavený obdélník bloku na obrazovce kázání (zlomky šířky
+/// a výšky plochy, 0–1).
+@immutable
+class PrepFrame {
+  const PrepFrame(this.x, this.y, this.w, this.h);
+
+  final double x, y, w, h;
+
+  /// Posune / změní velikost, ale nechá rámeček celý na ploše.
+  PrepFrame moved(double dx, double dy) =>
+      PrepFrame((x + dx).clamp(0, 1 - w), (y + dy).clamp(0, 1 - h), w, h);
+
+  PrepFrame resized(double dw, double dh) =>
+      PrepFrame(x, y, (w + dw).clamp(0.12, 1 - x), (h + dh).clamp(0.08, 1 - y));
+
+  List<double> toJson() => [
+    for (final v in [x, y, w, h]) (v * 1000).roundToDouble() / 1000,
+  ];
+
+  static PrepFrame? fromJson(Object? json) {
+    if (json is! List || json.length != 4 || json.any((v) => v is! num)) {
+      return null;
+    }
+    final [x, y, w, h] = [for (final v in json) (v as num).toDouble()];
+    if (w <= 0 || h <= 0) return null;
+    return PrepFrame(x, y, w, h).moved(0, 0);
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PrepFrame &&
+      other.x == x &&
+      other.y == y &&
+      other.w == w &&
+      other.h == h;
+
+  @override
+  int get hashCode => Object.hash(x, y, w, h);
 }
 
 /// Místo bloku na obrazovce kázání.
@@ -480,6 +571,19 @@ class PrepController extends Notifier<List<Prep>> {
     update(
       prep.copyWith(
         blocks: [for (final b in prep.blocks) b.id == block.id ? block : b],
+      ),
+      debounce: true,
+    );
+  }
+
+  /// Uloží několik bloků najednou (např. rozvržení celé obrazovky).
+  void updateBlocks(int prepId, List<PrepBlock> changed) {
+    final prep = byId(prepId);
+    if (prep == null) return;
+    final changedById = {for (final b in changed) b.id: b};
+    update(
+      prep.copyWith(
+        blocks: [for (final b in prep.blocks) changedById[b.id] ?? b],
       ),
       debounce: true,
     );

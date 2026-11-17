@@ -7,9 +7,17 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 26;
+const whatsNewVersion = 27;
 
 const _items = [
+  (
+    Icons.design_services_outlined,
+    'Zkušební kázání a volné rozvržení',
+    'V režimu kázání klepněte na ikonu úprav: bloky přetáhnete, kam chcete, '
+        'rohem změníte velikost, nastavíte písmo a na kolikáté klepnutí se '
+        'který blok objeví. U verše si vyberete jeden nebo víc překladů '
+        '– pod sebou nebo vedle sebe.',
+  ),
   (
     Icons.view_agenda_outlined,
     'Při kázání víc věcí na jedné obrazovce',

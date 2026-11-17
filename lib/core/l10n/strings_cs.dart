@@ -512,6 +512,30 @@ abstract final class S {
   static const prepJoinedLabel = 'Na stejné obrazovce jako předchozí';
   static const prepSlideMode = 'Co ukázat najednou';
   static const prepLayout = 'Rozvržení obrazovky';
+  static const prepRehearsal = 'Zkouška';
+  static const prepRehearsalMenu = 'Zkušební kázání a rozvržení';
+  static const prepEditScreen = 'Upravit obrazovku (zkouška)';
+  static const prepEditDone = 'Hotovo';
+  static const prepEditHint =
+      'Táhněte bloky, kam je chcete mít, roh mění velikost. Klepnutím blok '
+      'vyberete a nastavíte, kdy se objeví a jak velké má písmo.';
+  static const prepAppears = 'Objeví se';
+  static const prepStepNow = 'hned';
+  static String prepStepAt(int n) => 'na $n. klepnutí';
+  static const prepStepEarlier = 'Dřív';
+  static const prepStepLater = 'Později';
+  static const prepFullWidth = 'Přes celou šířku';
+  static const prepPrevScreen = 'Předchozí obrazovka';
+  static const prepNextScreen = 'Další obrazovka';
+  static const prepResetScreen = 'Automaticky rozmístit';
+  static const prepTranslationsTitle = 'Překlady verše';
+  static const prepTranslationsHint =
+      'Vyberte jeden nebo víc překladů – při kázání se ukážou všechny.';
+  static const prepParallel = 'Překlady vedle sebe';
+  static const prepParallelHint =
+      'Jinak se ukážou pod sebou. Na úzké obrazovce vždy pod sebou.';
+  static const prepParallelShort = 'vedle sebe';
+  static const prepMoreTranslations = 'Stáhnout další překlady';
   static const prepPlace = 'Místo při kázání';
   static const prepSlideCustom = 'Podle mého nastavení';
   static const prepSlideCustomHint = 'Bloky spojené ikonou řetízku jsou spolu';

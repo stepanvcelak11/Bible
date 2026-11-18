@@ -86,6 +86,23 @@ void main() {
     expect(rows[1].secondaryLabel, '4');
   });
 
+  test('BKR Jan 1: v. 38 rozdělený, v. 50–51 spojené', () {
+    VerseRef c(int v) => Versification.fromCanonical(VerseRef(43, 1, v), 'BKR');
+    expect(c(37), const VerseRef(43, 1, 37));
+    expect(c(38), const VerseRef(43, 1, 38));
+    expect(c(46), const VerseRef(43, 1, 47), reason: 'Pojď a podívej se');
+    expect(c(50), const VerseRef(43, 1, 51));
+    expect(c(51), const VerseRef(43, 1, 51));
+    expect(
+      Versification.toCanonical(const VerseRef(43, 1, 39), 'BKR'),
+      const VerseRef(43, 1, 38),
+    );
+    expect(
+      Versification.toCanonical(const VerseRef(43, 1, 47), 'BKR'),
+      const VerseRef(43, 1, 46),
+    );
+  });
+
   test('BKR žalm 22: nadpis je verš 1, verše 31–32 spojené', () {
     VerseRef c(int v) =>
         Versification.fromCanonical(VerseRef(19, 22, v), 'BKR');

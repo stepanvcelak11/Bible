@@ -20,11 +20,16 @@ OUT = ROOT / "lib/domain/services/versification_data.dart"
 
 # (kniha, eng kap., eng verš, heb kap., heb verš) – NZ, ověřeno ručně.
 NT_E2H = [
+    # J 1: BKR dělí v. 38 na dva (38–39) a spojuje v. 50–51 do jednoho,
+    # takže BKR 1:40–51 = 1:39–50 ostatních překladů.
+    (43, 1, 39, 1, 38),
+    *[(43, 1, v, 1, v - 1) for v in range(40, 52)],
     (44, 19, 41, 19, 40),  # Sk 19:40–41 → 19:40
     (47, 13, 13, 13, 12),  # 2K 13:12–13 → 13:12
     (47, 13, 14, 13, 13),
 ]
 NT_H2E = [
+    *[(43, 1, v, 1, v + 1) for v in range(39, 51)],
     (47, 13, 13, 13, 14),
     (64, 1, 15, 1, 14),    # 3J 15 je v KJV součástí v. 14
     (66, 12, 18, 13, 1),   # Zj 12:18 je v KJV začátek 13:1
@@ -61,6 +66,11 @@ def main():
     # Verše „0“ (nadpisy žalmů v KJV) jsou v BKR součástí verše 1.
     h2e = {k: (c, max(v, 1)) for k, (c, v) in h2e.items()}
     e2h = {k: h for k, h in e2h.items() if k[2] > 0}
+    # Ž 22: BKR má nadpis jako v. 1 (jako hebrejský text) a hebrejské
+    # v. 31–32 spojuje do v. 31.
+    e2h = {k: v for k, v in e2h.items() if k[:2] != (19, 22)}
+    h2e = {k: v for k, v in h2e.items() if k[:2] != (19, 22)}
+    h2e[(19, 22, 32)] = (22, 31)
     for bk, c1, v1, c2, v2 in NT_E2H:
         e2h[(bk, c1, v1)] = (c2, v2)
     for bk, c1, v1, c2, v2 in NT_H2E:

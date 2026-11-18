@@ -56,6 +56,14 @@ const situationIcons = <String, IconData>{
   'angel': Icons.auto_awesome_outlined,
   'history': Icons.history_edu_outlined,
   'calendar': Icons.calendar_month_outlined,
+  'eye': Icons.visibility_outlined,
+  'broken': Icons.heart_broken_outlined,
+  'storm': Icons.thunderstorm_outlined,
+  'door': Icons.door_front_door_outlined,
+  'tree': Icons.park_outlined,
+  'group': Icons.groups_outlined,
+  'workoff': Icons.work_off_outlined,
+  'hearing': Icons.hearing_outlined,
 };
 
 const _groupColors = {

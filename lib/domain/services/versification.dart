@@ -4,10 +4,11 @@ import 'versification_data.dart';
 /// Systém číslování veršů překladu.
 ///
 /// Bible kralická používá anglické (KJV) číslování: nadpisy žalmů jsou
-/// součástí verše 1, Jóel má 3 kapitoly, Malachiáš 4… Výjimkou je žalm 22,
-/// kde má BKR nadpis jako verš 1 (jako hebrejský text) a hebrejské verše
-/// 31–32 spojuje do verše 31 – tabulky to tak převádějí. Moderní české
-/// překlady (ČEP, B21, ČSP) číslují podle hebrejského textu.
+/// součástí verše 1, Jóel má 3 kapitoly, Malachiáš 4… Výjimky: v žalmu 22
+/// má BKR nadpis jako verš 1 (jako hebrejský text) a hebrejské verše 31–32
+/// spojuje do verše 31; v Janovi 1 dělí verš 38 na dva a spojuje verše
+/// 50–51 – tabulky to tak převádějí (viz tool/gen_versification.py).
+/// Moderní české překlady (ČEP, B21, ČSP) číslují podle hebrejského textu.
 enum VerseScheme { english, hebrew }
 
 VerseScheme schemeOf(String translationId) =>

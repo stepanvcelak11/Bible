@@ -77,6 +77,11 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
   /// Ukazovat rámečky oblastí pro klepnutí (vlevo zpět, vpravo dál).
   late var _zones = ref.read(appPreferencesProvider).prepTapZones;
 
+  /// Popisky oblastí („Zpět“, „Dál“) se po přechodu na obrazovku ukážou
+  /// jen na chvíli; rámečky zůstávají.
+  int _labelsPage = -1;
+  Duration _labelsSince = Duration.zero;
+
   /// Podíl šířky obrazovky, kterým se listuje zpět (zbytek = dál).
   static const _backShare = 0.3;
 
@@ -169,6 +174,14 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
     final steps = page == 0 ? const <int>[] : _steps(slides[page - 1]);
     _step = _editing || steps.isEmpty ? 0 : steps.last;
   });
+
+  bool _showZoneLabels() {
+    if (_labelsPage != _page) {
+      _labelsPage = _page;
+      _labelsSince = _watch.elapsed;
+    }
+    return _watch.elapsed - _labelsSince < const Duration(seconds: 4);
+  }
 
   KeyEventResult _onKey(KeyEvent e, List<List<PrepBlock>> slides) {
     if (_editing || e is KeyUpEvent) return KeyEventResult.ignored;
@@ -604,6 +617,7 @@ class _PrepPresentScreenState extends ConsumerState<PrepPresentScreen> {
                     child: IgnorePointer(
                       child: _TapZones(
                         backShare: _backShare,
+                        showLabels: _showZoneLabels(),
                         canBack: _page > 0,
                         canNext:
                             _page < count - 1 ||
@@ -627,10 +641,14 @@ class _TapZones extends StatelessWidget {
     required this.backShare,
     required this.canBack,
     required this.canNext,
+    required this.showLabels,
   });
 
   final double backShare;
   final bool canBack, canNext;
+
+  /// Ukázat popisky (jen chvíli po přechodu na obrazovku).
+  final bool showLabels;
 
   @override
   Widget build(BuildContext context) {
@@ -645,16 +663,33 @@ class _TapZones extends StatelessWidget {
             ),
           ),
           alignment: left ? Alignment.bottomLeft : Alignment.bottomRight,
-          padding: const EdgeInsets.all(10),
-          child: Opacity(
-            opacity: active ? 0.45 : 0.15,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (left) Icon(icon, color: _ink, size: 20),
-                Text(label, style: const TextStyle(color: _ink, fontSize: 13)),
-                if (!left) Icon(icon, color: _ink, size: 20),
-              ],
+          padding: const EdgeInsets.all(6),
+          // Tmavý podklad, aby popisek nepřekrýval text pod sebou.
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 600),
+            opacity: showLabels ? 1 : 0,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xFF15120F).withValues(alpha: 0.9),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                child: Opacity(
+                  opacity: active ? 0.55 : 0.2,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (left) Icon(icon, color: _ink, size: 20),
+                      Text(
+                        label,
+                        style: const TextStyle(color: _ink, fontSize: 13),
+                      ),
+                      if (!left) Icon(icon, color: _ink, size: 20),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         );

@@ -18,7 +18,8 @@ const _items = [
         'zklamání, strach ze smrti, změna, stáří, ztráta práce, závislost, '
         'Bůh mlčí…). Nové plány čtení: Jan, Skutky, Pět knih Mojžíšových, '
         'Dějiny Izraele, Mudroslovné knihy a Proroci. Lectio divina má '
-        '32 úryvků.',
+        '32 úryvků, přibylo 8 biblických témat a nový kurz Žalmy – škola '
+        'modlitby.',
   ),
   (
     Icons.backup_outlined,

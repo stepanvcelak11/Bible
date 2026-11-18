@@ -743,7 +743,7 @@ final _defining = RegExp(
   // Pojem ze slovníčku: farizeové, denár, sabat…
   final words = meaningStems(t).length;
   if (_defining.hasMatch(folded) || (question == null && words <= 2)) {
-    for (final e in glossaryFor(t, bookId: 40).take(2)) {
+    for (final (i, e) in glossaryFor(t, bookId: 40).take(2).indexed) {
       sources.add(
         AnswerSource(
           kind: AnswerSourceKind.glossary,
@@ -751,7 +751,10 @@ final _defining = RegExp(
           title: e.title,
           entity: e,
           priority: 1.3,
-          paragraphs: ['${e.title}: ${e.text}'],
+          // Pojem je v nadpisu karty; u dalšího pojmu ho připomeneme.
+          paragraphs: [
+            if (i == 0 && sources.isEmpty) e.text else '${e.title}: ${e.text}',
+          ],
           passages: const [],
         ),
       );
@@ -806,7 +809,9 @@ final _defining = RegExp(
           : switch (first.kind) {
               AnswerSourceKind.person => 'Kdo byl ${first.title}?',
               AnswerSourceKind.book => 'O čem je kniha ${first.title}?',
-              AnswerSourceKind.glossary => 'Co je ${first.title}?',
+              // Pojmy jsou různé („Clo a daně“, „Denár (peníz)“) – nadpisem
+              // je samotný pojem, ne vynucená otázka.
+              AnswerSourceKind.glossary => first.title,
               _ => _asQuestion(text),
             });
   return (title: title, sources: sources);

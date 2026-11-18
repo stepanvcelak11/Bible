@@ -49,4 +49,17 @@ void main() {
     expect(top('pavlovy cesty'), 'Pavlovy cesty');
     expect(searchApp(index, 'xyzzy'), isEmpty);
   });
+
+  test('překlep jen tam, kde nic nesedí přesně', () {
+    AppSearchItem item(String title) => AppSearchItem(
+      kind: AppHitKind.topic,
+      title: title,
+      subtitle: '',
+      icon: Icons.abc,
+      open: (_, _) {},
+    );
+    final small = [item('Denár'), item('Lo-debar')];
+    expect(searchApp(small, 'denár').map((h) => h.item.title), ['Denár']);
+    expect(searchApp([item('Lo-debar')], 'denár'), hasLength(1));
+  });
 }

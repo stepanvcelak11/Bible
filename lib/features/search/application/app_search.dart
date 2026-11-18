@@ -315,9 +315,12 @@ List<AppHit> searchApp(List<AppSearchItem> index, String query) {
   final stems = intent == null || intent.$2.isEmpty ? all : intent.$2;
   final folded = foldCzech(query.trim());
   final hits = <AppHit>[];
+  // Položky nalezené jen díky toleranci překlepů („denár“ → „Lo-debar“).
+  final typoOnly = <AppSearchItem>{};
   for (final item in index) {
     var score = 0.0;
     var matched = 0;
+    var typo = false;
     for (final q in stems) {
       final t = _matchIn(q, item._title);
       final k = t >= 1 ? 0.0 : _matchIn(q, item._keys);
@@ -326,6 +329,7 @@ List<AppHit> searchApp(List<AppSearchItem> index, String query) {
           : _matchIn(q, item._body, fuzzy: false);
       final s = [t * 10, k * 6, b * 2.5].reduce((a, c) => a > c ? a : c);
       if (s > 0) matched++;
+      if (s > 0 && t < 0.7 && k < 0.7 && b == 0) typo = true;
       score += s;
     }
     // Všechna slova musí sedět; u delšího dotazu stačí většina.
@@ -344,7 +348,12 @@ List<AppHit> searchApp(List<AppSearchItem> index, String query) {
         score *= 0.6;
       }
     }
+    if (typo) typoOnly.add(item);
     hits.add((item: item, score: score * item.boost));
+  }
+  // Překlepy jen tehdy, když nic jiného nesedí přesně.
+  if (typoOnly.isNotEmpty && hits.length > typoOnly.length) {
+    hits.removeWhere((h) => typoOnly.contains(h.item));
   }
   hits.sort((a, b) => b.score.compareTo(a.score));
   return hits;

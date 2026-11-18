@@ -38,7 +38,30 @@ const suggestedMemoryVerses = [
   MemoryVerse(VerseRef(19, 46, 2), 2),
   MemoryVerse(VerseRef(43, 14, 6), 6),
   MemoryVerse(VerseRef(49, 2, 8), 9),
+  MemoryVerse(VerseRef(40, 6, 33), 33),
+  MemoryVerse(VerseRef(6, 1, 9), 9),
+  MemoryVerse(VerseRef(19, 119, 105), 105),
+  MemoryVerse(VerseRef(23, 40, 31), 31),
+  MemoryVerse(VerseRef(25, 3, 22), 23),
+  MemoryVerse(VerseRef(33, 6, 8), 8),
+  MemoryVerse(VerseRef(43, 1, 12), 12),
+  MemoryVerse(VerseRef(45, 3, 23), 23),
+  MemoryVerse(VerseRef(45, 6, 23), 23),
+  MemoryVerse(VerseRef(45, 12, 2), 2),
+  MemoryVerse(VerseRef(46, 10, 13), 13),
+  MemoryVerse(VerseRef(47, 5, 17), 17),
+  MemoryVerse(VerseRef(48, 2, 20), 20),
+  MemoryVerse(VerseRef(51, 3, 23), 23),
+  MemoryVerse(VerseRef(55, 3, 16), 17),
+  MemoryVerse(VerseRef(58, 11, 1), 1),
+  MemoryVerse(VerseRef(60, 5, 7), 7),
+  MemoryVerse(VerseRef(62, 1, 9), 9),
+  MemoryVerse(VerseRef(40, 28, 19), 20),
+  MemoryVerse(VerseRef(19, 37, 5), 5),
 ];
+
+/// Kolik doporučených veršů ukázat, než uživatel rozbalí další.
+const _suggestedShown = 12;
 
 /// Seznam veršů, které se učím nazpaměť.
 class MemoryScreen extends ConsumerWidget {
@@ -159,25 +182,64 @@ class MemoryScreen extends ConsumerWidget {
             ],
             if (suggested.isNotEmpty) ...[
               SectionLabel(S.memorySuggested),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  for (final m in suggested)
-                    ActionChip(
-                      avatar: const Icon(Icons.add, size: 18),
-                      label: Text(_citation(ref, m)),
-                      onPressed: () {
-                        HapticFeedback.selectionClick();
-                        ref.read(memoryProvider.notifier).add(m);
-                      },
-                    ),
-                ],
+              _Suggested(
+                verses: suggested,
+                label: (m) => _citation(ref, m),
+                onAdd: (m) {
+                  HapticFeedback.selectionClick();
+                  ref.read(memoryProvider.notifier).add(m);
+                },
               ),
             ],
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Doporučené verše – prvních pár hned, ostatní po rozbalení.
+class _Suggested extends StatefulWidget {
+  const _Suggested({
+    required this.verses,
+    required this.label,
+    required this.onAdd,
+  });
+
+  final List<MemoryVerse> verses;
+  final String Function(MemoryVerse) label;
+  final ValueChanged<MemoryVerse> onAdd;
+
+  @override
+  State<_Suggested> createState() => _SuggestedState();
+}
+
+class _SuggestedState extends State<_Suggested> {
+  var _all = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final more = widget.verses.length - _suggestedShown;
+    final shown = _all || more <= 0
+        ? widget.verses
+        : widget.verses.take(_suggestedShown);
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final m in shown)
+          ActionChip(
+            avatar: const Icon(Icons.add, size: 18),
+            label: Text(widget.label(m)),
+            onPressed: () => widget.onAdd(m),
+          ),
+        if (!_all && more > 0)
+          ActionChip(
+            avatar: const Icon(Icons.expand_more, size: 18),
+            label: Text(S.memoryMoreSuggested(more)),
+            onPressed: () => setState(() => _all = true),
+          ),
+      ],
     );
   }
 }

@@ -10,6 +10,7 @@ import 'package:bible_reader/domain/services/bible_content.dart';
 import 'package:bible_reader/domain/services/timeline.dart';
 import 'package:bible_reader/features/content/presentation/family_tree_screen.dart';
 import 'package:bible_reader/features/prayer/presentation/lectio_screen.dart';
+import 'package:bible_reader/features/memory/presentation/memory_screen.dart';
 import 'package:bible_reader/domain/services/versification.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -174,6 +175,10 @@ void main() {
             if (r != null) addPassage('harmonie ${e['title']} $r', r);
           }
         }
+      }
+      for (final m in suggestedMemoryVerses) {
+        final r = m.start;
+        addPassage('nazpaměť $r', [r.bookId, r.chapter, r.verse, m.end]);
       }
       for (final (p, title) in lectioPassages) {
         addPassage('lectio $title', [

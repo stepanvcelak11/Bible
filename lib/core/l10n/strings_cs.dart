@@ -925,6 +925,7 @@ abstract final class S {
   static const memoryEasier = 'Ještě ne';
   static const memoryKnow = 'Umím';
   static const memorySuggested = 'Doporučené verše';
+  static String memoryMoreSuggested(int n) => 'Další ($n)';
   static String memoryReviewAll(int n) => 'Opakovat vše ($n)';
   static const memoryReview = 'Opakování';
   static const memoryRecall = 'Zkuste si verš říct zpaměti.';

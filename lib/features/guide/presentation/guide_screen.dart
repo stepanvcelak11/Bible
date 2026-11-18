@@ -46,7 +46,8 @@ const _parts = [
           'medailony postav a místa na mapě.',
       'Na konci kapitoly → zamyšlení krok za krokem s otázkami přímo '
           'k této kapitole (uloží se do Deníku) a další kapitola.',
-      'Menu ⋮ → předčítání nahlas, místa v kapitole, překlady, nastavení.',
+      'Menu ⋮ → předčítání nahlas, úvod ke knize, místa v kapitole, '
+          'překlady, nastavení a rozdělená obrazovka.',
     ],
   ),
   _GuidePart(
@@ -55,17 +56,22 @@ const _parts = [
     Color(0xFF8C4A6B),
     'Studium',
     [
-      'Čtyři oddíly – skočíte na ně štítky nahoře:',
-      'Bible jako celek – strom Bible, velký příběh, červené nitě, mapa '
-          'odkazů, časová osa a mapy.',
-      'Pro život – verše do situací, témata, verše nazpaměť, modlitby, '
-          'kvíz, církevní rok a plány čtení.',
-      'Knihy a postavy – úvody ke knihám, medailony, aplikační poznámky, '
-          'tabulky a harmonie evangelií.',
-      'Nástroje – původní text se slovníkem a překlady.',
+      'Studium krok za krokem – krátké kurzy (Jak číst Bibli, Jak Bible '
+          'vznikla…) s lekcemi, které si odškrtáváte.',
+      'Čtení a objevování – biblická témata, úvody ke knihám, postavy, '
+          'verše do situací, mapy a časová osa.',
+      'Souvislosti a přehledy – strom Bible, rodokmen, plány měst '
+          'a staveb, harmonie evangelií, tabulky, aplikační poznámky '
+          'a původní text.',
+      'Modlitba a ztišení – modlitby, lectio divina, církevní rok '
+          'a verše nazpaměť.',
+      'Plánování a hry – plány čtení, přípravy kázání, biblický kvíz '
+          'a překlady.',
     ],
   ),
   _GuidePart(AppTab.search, Icons.search, Color(0xFF3F7CAC), 'Hledat', [
+    'Dva režimy: Slova a odkazy (přesný text) a Podle myšlenky – '
+        'popíšete vlastními slovy, co hledáte.',
     'Diakritiku psát nemusíte – „laska“ najde i „láska“.',
     'Přesnou frázi dejte do uvozovek, odkaz napište jako J 3,16.',
     'Jedno hledání pro celou aplikaci – verše i postavy, témata, '
@@ -77,21 +83,39 @@ const _parts = [
     Color(0xFF5B7A3A),
     'Deník',
     [
-      'Vaše záložky, poznámky a zvýraznění na jednom místě; lupa '
-          'v nich hledá.',
-      'Nahoře rychlé odkazy: Můj pokrok, Verše nazpaměť a Plán čtení; '
-          'vpravo nastavení.',
+      'Nahoře nástroje: Přípravy, Můj pokrok, Verše nazpaměť a Plán '
+          'čtení; vpravo lupa a nastavení.',
+      'Pod nimi záložky, poznámky, zvýraznění a modlitby – lupa v nich '
+          'hledá.',
       'Modlitby – zapisujte prosby, označujte vyslyšené; „Čas modlitby“ '
           'vás jimi provede.',
       'Položku smažete přejetím doleva (lze vrátit).',
-      'Zálohu uložíte v Nastavení.',
+    ],
+  ),
+  _GuidePart(
+    AppTab.journal,
+    Icons.edit_note,
+    Color(0xFFB0603A),
+    'Přípravy kázání',
+    [
+      'Deník → Přípravy: kázání, biblická hodina nebo program – body '
+          'osnovy, verše, poznámky, otázky a ilustrace.',
+      'Žárovka → pomocník: hledání veršů, souvislosti, kontext kapitoly, '
+          'vaše záznamy z Deníku a osnovy.',
+      'Ikona prezentace → kázání: velké písmo, klepnutí vpravo dál '
+          'a vlevo zpět, přehled obrazovek a stopky.',
+      'Menu ⋮ → zkušební kázání (rozmístění bloků a kdy se objeví), '
+          'export a přenos na jiné zařízení.',
+      'Po kázání si zapíšete, kdy a kde zaznělo – aplikace vám to '
+          'připomene u dalšího kázání nad stejným textem.',
     ],
   ),
   _GuidePart(null, Icons.tune, Color(0xFF4E9A8A), 'Nastavení', [
-    'Najdete je vpravo nahoře na stránce Dnes.',
-    'Vzhled (světlý, sépie, tmavý), barva, pozadí, písmo a řádkování.',
+    'Najdete je vpravo nahoře na stránce Dnes i v Deníku.',
+    'Vzhled (světlý, sépie, tmavý, svíčka), barva, pozadí, písmo '
+        'a řádkování.',
     'Stažení dalších překladů (B21, ČEP, ČSP…) a studijního balíčku.',
-    'Záloha a obnovení dat.',
+    'Záloha a obnovení – i přípravy, modlitby a pokrok.',
   ]),
 ];
 

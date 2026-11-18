@@ -326,7 +326,7 @@ class StemIndex<T extends Stemmed> {
     return [
       for (final h in hits.take(limit))
         if (h.score >= minScore &&
-            h.score >= top * 0.55 &&
+            h.score >= top * 0.6 &&
             (words.length == 1 || h.coverage >= 0.45))
           h,
     ];

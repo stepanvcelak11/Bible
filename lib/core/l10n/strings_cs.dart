@@ -182,10 +182,24 @@ abstract final class S {
       'Na počátku bylo Slovo, a to Slovo bylo u Boha, a Bůh byl to Slovo.';
   static const backup = 'Záloha';
   static const backupInfo =
-      'Poznámky, záložky a zvýraznění jsou uložené jen v tomto zařízení. '
-      'Zálohu si uložte do Souborů nebo pošlete sami sobě.';
+      'Poznámky, záložky, zvýraznění, přípravy, modlitby i pokrok (plán '
+      'čtení, kurzy, kvíz) jsou uložené jen v tomto zařízení. Zálohu si '
+      'uložte do Souborů nebo pošlete sami sobě – obnovou se vše sloučí.';
   static const exportBackup = 'Uložit zálohu';
   static const importBackup = 'Obnovit ze zálohy';
+  static const backupNever = 'Zatím jste zálohu neuložili';
+  static String backupLast(DateTime d) {
+    final days = DateTime.now().difference(d).inDays;
+    return switch (days) {
+      0 => 'Naposledy dnes',
+      1 => 'Naposledy včera',
+      < 5 => 'Naposledy před $days dny',
+      _ =>
+        'Naposledy ${d.day}. ${d.month}. ${d.year}'
+            '${days > 30 ? ' – je čas na novou' : ''}',
+    };
+  }
+
   static const backupInvalid = 'Soubor není platná záloha.';
   static String backupImported(int n) => 'Obnoveno položek: $n';
   static const about = 'O aplikaci';

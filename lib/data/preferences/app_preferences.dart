@@ -72,13 +72,11 @@ class AppPreferences {
     await _prefs.setInt(_readerActiveTab, active);
   }
 
-  /// Poslední verze přehledu „Co je nového“, kterou uživatel viděl.
   /// Přípravy kázání a programů (JSON, viz `Prep`).
   List<String> get preps => _prefs.getStringList(_preps) ?? const [];
   Future<void> setPreps(List<String> value) =>
       _prefs.setStringList(_preps, value);
 
-  /// Co při kázání ukázat najednou (název `PrepSlideMode`).
   /// Rozvržení obrazovky kázání (název `PrepLayout`).
   String? get prepLayout => _prefs.getString('prep.layout');
   Future<void> setPrepLayout(String value) =>
@@ -89,6 +87,7 @@ class AppPreferences {
   Future<void> setPrepTapZones(bool value) =>
       _prefs.setBool('prep.tapZones', value);
 
+  /// Co při kázání ukázat najednou (název `PrepSlideMode`).
   String? get prepSlideMode => _prefs.getString('prep.slideMode');
   Future<void> setPrepSlideMode(String value) =>
       _prefs.setString('prep.slideMode', value);
@@ -102,6 +101,7 @@ class AppPreferences {
   Future<void> setSplitRatio(double value) =>
       _prefs.setDouble(_splitRatio, value);
 
+  /// Poslední verze přehledu „Co je nového“, kterou uživatel viděl.
   int get whatsNewSeen => _prefs.getInt(_whatsNewSeen) ?? 0;
   Future<void> setWhatsNewSeen(int version) =>
       _prefs.setInt(_whatsNewSeen, version);
@@ -223,4 +223,104 @@ class AppPreferences {
 
   bool get onboardingDone => _prefs.getBool(_onboardingDone) ?? false;
   Future<void> setOnboardingDone() => _prefs.setBool(_onboardingDone, true);
+
+  // --- Záloha ------------------------------------------------------------------
+  static const _lastBackup = 'backup.last';
+
+  /// Kdy se naposledy ukládala záloha.
+  DateTime? get lastBackup =>
+      DateTime.tryParse(_prefs.getString(_lastBackup) ?? '');
+  Future<void> setLastBackup(DateTime at) =>
+      _prefs.setString(_lastBackup, at.toIso8601String());
+
+  /// Nastavení a pokrok, které patří do zálohy (vedle dat v databázi):
+  /// vzhled čtečky, plán čtení, kurzy, kvíz, rozvržení kázání, překlad.
+  static const _backupKeys = [
+    _readerSettings,
+    _planId,
+    _planStart,
+    _planDone,
+    _coursesDone,
+    _quizBest,
+    _primaryTranslation,
+    'prep.layout',
+    'prep.slideMode',
+    'prep.tapZones',
+  ];
+
+  Map<String, Object?> exportSettings() => {
+    for (final k in _backupKeys)
+      if (_prefs.get(k) case final v?) k: v is List ? [...v] : v,
+  };
+
+  /// Obnoví nastavení ze zálohy, aniž by přepsalo to, co v zařízení už je:
+  /// kurzy se sloučí, z kvízu zůstane lepší výsledek, plán čtení se převezme
+  /// (je-li stejný, sloučí se splněné dny) a vzhled jen tam, kde ještě
+  /// nebyl nastaven. Vrátí počet obnovených položek.
+  Future<int> importSettings(Object? json) async {
+    if (json is! Map) return 0;
+    var n = 0;
+    List<String> strings(Object? v) => [
+      if (v is List)
+        for (final x in v)
+          if (x is String) x,
+    ];
+
+    final before = coursesDone.toSet();
+    final courses = {...before, ...strings(json[_coursesDone])};
+    if (courses.length > before.length) {
+      n += courses.length - before.length;
+      await setCoursesDone(courses.toList()..sort());
+    }
+
+    final best = {...quizBest};
+    var better = false;
+    for (final s in strings(json[_quizBest])) {
+      if (s.split(':') case [final k, final v] when int.tryParse(v) != null) {
+        final score = int.parse(v);
+        if (score > (best[k] ?? -1)) {
+          best[k] = score;
+          better = true;
+          n++;
+        }
+      }
+    }
+    if (better) await setQuizBest(best);
+
+    if (json[_planId] case final String id
+        when planId == null || planId == id) {
+      final current = planId == id ? planDone : <int>{};
+      final done = {
+        ...current,
+        for (final d in strings(json[_planDone])) ?int.tryParse(d),
+      };
+      if (planId == null) {
+        await _prefs.setString(_planId, id);
+        await _prefs.setString(_planStart, switch (json[_planStart]) {
+          final String s when DateTime.tryParse(s) != null => s,
+          _ => DateTime.now().toIso8601String(),
+        });
+        n++;
+      }
+      n += done.length - current.length;
+      await setPlanDone(done);
+    }
+
+    for (final k in [
+      _readerSettings,
+      _primaryTranslation,
+      'prep.layout',
+      'prep.slideMode',
+    ]) {
+      if (json[k] case final String v when !_prefs.containsKey(k)) {
+        await _prefs.setString(k, v);
+        n++;
+      }
+    }
+    if (json['prep.tapZones'] case final bool v
+        when !_prefs.containsKey('prep.tapZones')) {
+      await _prefs.setBool('prep.tapZones', v);
+    }
+    return n;
+  }
 }

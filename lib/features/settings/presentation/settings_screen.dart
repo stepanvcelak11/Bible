@@ -9,6 +9,8 @@ import '../../prep/application/prep_controller.dart';
 import '../../guide/presentation/guide_screen.dart';
 import '../../memory/application/memory_controller.dart';
 import '../../prayer/application/prayer_controller.dart';
+import '../../study/application/course_progress.dart';
+import '../../today/application/today_providers.dart';
 
 import 'package:share_plus/share_plus.dart';
 
@@ -27,6 +29,11 @@ import '../application/reader_settings_controller.dart';
 import '../../../core/widgets/pill_switch.dart';
 
 /// Nastavení: vzhled čtení (s živým náhledem), záloha dat, o aplikaci.
+/// Kdy se naposledy ukládala záloha (pro připomenutí v nastavení).
+final _lastBackupProvider = Provider.autoDispose<DateTime?>(
+  (ref) => ref.watch(appPreferencesProvider).lastBackup,
+);
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -199,6 +206,10 @@ class SettingsScreen extends ConsumerWidget {
             ListTile(
               leading: const Icon(Icons.upload_file),
               title: const Text(S.exportBackup),
+              subtitle: Text(switch (ref.watch(_lastBackupProvider)) {
+                null => S.backupNever,
+                final d => S.backupLast(d),
+              }),
               onTap: () => _export(context, ref),
             ),
             ListTile(
@@ -258,6 +269,7 @@ class SettingsScreen extends ConsumerWidget {
       'memoryVerses': ref.read(memoryProvider.notifier).exportList(),
       'prayers': ref.read(prayerProvider.notifier).exportList(),
       'preps': ref.read(prepProvider.notifier).exportList(),
+      'settings': ref.read(appPreferencesProvider).exportSettings(),
     };
     final bytes = utf8.encode(const JsonEncoder.withIndent('  ').convert(data));
     final date = DateTime.now().toIso8601String().substring(0, 10);
@@ -279,6 +291,8 @@ class SettingsScreen extends ConsumerWidget {
             : box.localToGlobal(Offset.zero) & box.size,
       ),
     );
+    await ref.read(appPreferencesProvider).setLastBackup(DateTime.now());
+    ref.invalidate(_lastBackupProvider);
   }
 
   Future<void> _import(BuildContext context, WidgetRef ref) async {
@@ -307,7 +321,15 @@ class SettingsScreen extends ConsumerWidget {
           .read(prayerProvider.notifier)
           .importList(json['prayers']);
       final preps = ref.read(prepProvider.notifier).importList(json['preps']);
-      say(S.backupImported(result.total + memory + prayers + preps));
+      final settings = await ref
+          .read(appPreferencesProvider)
+          .importSettings(json['settings']);
+      // Načíst znovu to, co se ze zálohy mohlo změnit.
+      ref
+        ..invalidate(readerSettingsProvider)
+        ..invalidate(planProvider)
+        ..invalidate(courseProgressProvider);
+      say(S.backupImported(result.total + memory + prayers + preps + settings));
     } on InvalidBackupException {
       say(S.backupInvalid);
     } on FormatException {

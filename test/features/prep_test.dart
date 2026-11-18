@@ -351,4 +351,19 @@ void main() {
     final list = highlightPassages([h(3, 17, 1), h(3, 16, 1), h(5, 1, 2)]);
     expect(list, [const Passage(43, 5, 1, 1), const Passage(43, 3, 16, 17)]);
   });
+
+  test('nová příprava podle zvolené osnovy', () async {
+    final c = await container();
+    final ctrl = c.read(prepProvider.notifier);
+    final funeral = prepOutlines.firstWhere((o) => o.$1 == 'Pohřeb');
+    final prep = ctrl.create(title: 'Rozloučení', outline: funeral.$3);
+    expect(prep.blocks.map((b) => b.text), funeral.$3.map((e) => e.$1));
+    expect(prep.blocks.first.hint, funeral.$3.first.$2);
+    expect(ctrl.create(template: false).blocks, isEmpty);
+    // Každá osnova má body s nápovědou.
+    for (final (name, about, items) in prepOutlines) {
+      expect(about, isNotEmpty, reason: name);
+      expect(items.length, greaterThanOrEqualTo(4), reason: name);
+    }
+  });
 }

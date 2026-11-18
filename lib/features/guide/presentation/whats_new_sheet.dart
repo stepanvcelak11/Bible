@@ -22,6 +22,13 @@ const _items = [
         'modlitby.',
   ),
   (
+    Icons.edit_note,
+    'Osnovy kázání',
+    'Při zakládání přípravy si vyberete osnovu: základní, výkladovou, '
+        'problém – řešení, příběhovou, tematickou, pro pohřeb, svatbu nebo '
+        'rodinnou bohoslužbu. Další osnovy vložíte i později v pomocníkovi.',
+  ),
+  (
     Icons.backup_outlined,
     'Záloha všeho',
     'Záloha teď obsahuje i plán čtení, hotové kurzy, výsledky kvízu '

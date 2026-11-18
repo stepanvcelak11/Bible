@@ -636,7 +636,8 @@ abstract final class S {
       'v Bibli.';
   static const prepHowTitle = 'Jak na to';
   static const prepHow = [
-    'Založte přípravu – osnova podle druhu se vloží sama.',
+    'Založte přípravu a vyberte osnovu – základní, výkladovou, příběhovou, '
+        'pro pohřeb, svatbu nebo rodinnou bohoslužbu.',
     'Do každého bodu pište přímo pod jeho název; tlačítky „+ Verš“, '
         '„+ Poznámka“ a „+ Otázka“ přidáte další věci přímo do bodu.',
     'Verš vyberete v Bibli: kniha → kapitola → klepněte na verše. '
@@ -655,7 +656,6 @@ abstract final class S {
   static const prepTitle = 'Název';
   static const prepTitleHint = 'Název nebo hlavní myšlenka…';
   static const prepMainPassage = 'Hlavní text';
-  static const prepUseTemplate = 'Vložit osnovu';
   static const prepCreate = 'Založit';
   static const add = 'Přidat';
   static const prepHelper = 'Pomocník';
@@ -751,6 +751,9 @@ abstract final class S {
   static const prepOutlineIntro =
       'Osnovy pro různé druhy příprav. „Vložit“ přidá body na konec.';
   static const prepInsertOutline = 'Vložit';
+  static const prepOutline = 'Osnova';
+  static const prepOutlineBasic = 'Základní';
+  static const prepOutlineNone = 'Bez osnovy';
   static const smallerText = 'Menší písmo';
   static const largerText = 'Větší písmo';
   static const splitOn = 'Rozdělit';

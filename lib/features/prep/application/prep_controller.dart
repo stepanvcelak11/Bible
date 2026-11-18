@@ -533,6 +533,90 @@ const prepTemplates = <PrepKind, List<(String, String)>>{
   PrepKind.other: [],
 };
 
+/// Další osnovy pro pomocníka přípravy – různé způsoby, jak kázání
+/// nebo program postavit: (název, krátký popis, body s nápovědou).
+const prepOutlines = <(String, String, List<(String, String)>)>[
+  (
+    'Výkladové kázání',
+    'Text krok za krokem – kázání vychází z jednoho úseku.',
+    [
+      ('Úvod', 'Proč tento text? Otázka nebo situace, která do něj vede.'),
+      ('Souvislosti', 'Kdo, komu a proč píše; co předchází a co následuje.'),
+      ('Výklad 1. části', 'Co text říká a co znamenal pro první čtenáře.'),
+      ('Výklad 2. části', 'Další úsek – klíčová slova, obraz, napětí.'),
+      ('Hlavní myšlenka', 'Jedna věta, kterou text chce říct dnes.'),
+      ('Aplikace a závěr', 'Co to znamená v pondělí? Výzva a modlitba.'),
+    ],
+  ),
+  (
+    'Problém – řešení',
+    'Od otázky, se kterou lidé zápasí, k odpovědi evangelia.',
+    [
+      ('Problém', 'S čím lidé zápasí? Konkrétní příběh nebo zkušenost.'),
+      ('Proč to bolí', 'Co je pod povrchem – strach, vina, osamělost…'),
+      ('Co říká Bible', 'Text, který na problém odpovídá.'),
+      ('Kristus jako odpověď', 'Co Bůh udělal a dělá v Ježíši.'),
+      ('Krok pro tento týden', 'Jedna konkrétní věc, kterou lze udělat.'),
+    ],
+  ),
+  (
+    'Příběhové kázání',
+    'Kázání vystavěné jako příběh: napětí, zvrat, rozuzlení.',
+    [
+      ('Vstup do příběhu', 'Scéna, postavy, situace – ať posluchači vidí.'),
+      ('Napětí', 'Kde to drhne? Co je v sázce?'),
+      ('Zvrat', 'Kde do příběhu vstoupí Bůh nebo nečekaná pravda.'),
+      ('Rozuzlení', 'Jak příběh končí a co to odhaluje o Bohu.'),
+      ('Náš příběh', 'Kde jsme v tom příběhu my dnes?'),
+    ],
+  ),
+  (
+    'Tematické kázání',
+    'Jedno téma pohledem celé Bible.',
+    [
+      ('Téma a otázka', 'Proč o tom mluvit právě teď?'),
+      ('Starý zákon', 'Kde se téma objevuje poprvé, jak se rozvíjí.'),
+      ('Ježíš', 'Co o tom Ježíš říká a jak to žije.'),
+      ('Apoštolové a církev', 'Jak to rozvíjejí listy Nového zákona.'),
+      ('Námitky a otázky', 'Co lidi napadne, s čím zápasí.'),
+      ('Aplikace', 'Co z toho plyne pro život jednotlivce i sboru.'),
+    ],
+  ),
+  (
+    'Pohřeb',
+    'Útěcha, vzpomínka a naděje vzkříšení.',
+    [
+      ('Přivítání a útěcha', 'Slova pro pozůstalé, Boží blízkost v zármutku.'),
+      ('Vzpomínka', 'Život zesnulého – co dal druhým, čím byl.'),
+      ('Biblický text', 'Např. J 11,25–26, Ž 23, 1Te 4,13–14.'),
+      ('Naděje', 'Kristovo vzkříšení – smrt nemá poslední slovo.'),
+      ('Modlitba a požehnání', 'Za pozůstalé, poděkování za život.'),
+    ],
+  ),
+  (
+    'Svatba',
+    'Radost, smlouva a Boží požehnání pro manžele.',
+    [
+      ('Přivítání', 'Radost ze dne, kdo se schází a proč.'),
+      ('Biblický text', 'Např. 1K 13, Kaz 4,9–12, Ef 5,25–33.'),
+      ('Láska podle Bible', 'Láska jako rozhodnutí, věrnost a služba.'),
+      ('Slovo snoubencům', 'Osobní slovo – co jim přát, na co pamatovat.'),
+      ('Požehnání', 'Modlitba za manžele a jejich domov.'),
+    ],
+  ),
+  (
+    'Rodinná bohoslužba',
+    'Pro děti i dospělé společně – krátce a názorně.',
+    [
+      ('Otázka nebo předmět', 'Něco, co děti uvidí nebo vezmou do ruky.'),
+      ('Příběh z Bible', 'Vyprávět živě, ne číst dlouhý text.'),
+      ('Co to znamená', 'Jedna myšlenka srozumitelná dětem.'),
+      ('Zapojení', 'Písnička, gesto, krátká hra nebo úkol.'),
+      ('Modlitba', 'Krátká, aby se mohly přidat i děti.'),
+    ],
+  ),
+];
+
 /// Přípravy (uložené v nastavení zařízení, součást zálohy).
 class PrepController extends Notifier<List<Prep>> {
   Timer? _saveTimer;
@@ -579,6 +663,7 @@ class PrepController extends Notifier<List<Prep>> {
     PrepKind kind = PrepKind.sermon,
     List<Passage> passages = const [],
     bool template = true,
+    List<(String, String)>? outline,
   }) {
     final id = _newId(state.map((p) => p.id));
     var blockId = id;
@@ -592,7 +677,7 @@ class PrepController extends Notifier<List<Prep>> {
         for (final p in passages)
           PrepBlock(id: blockId++, kind: PrepBlockKind.verse, passage: p),
         if (template)
-          for (final (t, hint) in prepTemplates[kind]!)
+          for (final (t, hint) in outline ?? prepTemplates[kind]!)
             PrepBlock(
               id: blockId++,
               kind: PrepBlockKind.heading,

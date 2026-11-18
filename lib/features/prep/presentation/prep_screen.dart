@@ -224,6 +224,8 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
   final title = TextEditingController();
   var kind = PrepKind.sermon;
   var template = true;
+  // Vybraná osnova: null = základní osnova pro druh přípravy.
+  (String, String, List<(String, String)>)? outline;
   final passages = <Passage>[];
   final created = await showAppSheet<Prep>(
     context: context,
@@ -263,7 +265,10 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                     ChoiceChip(
                       label: Text(k.label),
                       selected: kind == k,
-                      onSelected: (_) => setState(() => kind = k),
+                      onSelected: (_) => setState(() {
+                        kind = k;
+                        outline = null;
+                      }),
                     ),
                 ],
               ),
@@ -300,19 +305,55 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                   ),
                 ],
               ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                value: template && prepTemplates[kind]!.isNotEmpty,
-                onChanged: prepTemplates[kind]!.isEmpty
-                    ? null
-                    : (v) => setState(() => template = v),
-                title: const Text(S.prepUseTemplate),
-                subtitle: Text(
-                  prepTemplates[kind]!.map((e) => e.$1).join(' · '),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
+              const SizedBox(height: 14),
+              Text(S.prepOutline, style: theme.textTheme.labelLarge),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  if (prepTemplates[kind]!.isNotEmpty)
+                    ChoiceChip(
+                      label: const Text(S.prepOutlineBasic),
+                      selected: template && outline == null,
+                      onSelected: (_) => setState(() {
+                        template = true;
+                        outline = null;
+                      }),
+                    ),
+                  for (final o in prepOutlines)
+                    ChoiceChip(
+                      label: Text(o.$1),
+                      selected: template && outline == o,
+                      onSelected: (_) => setState(() {
+                        template = true;
+                        outline = o;
+                      }),
+                    ),
+                  ChoiceChip(
+                    label: const Text(S.prepOutlineNone),
+                    selected:
+                        !template ||
+                        (outline == null && prepTemplates[kind]!.isEmpty),
+                    onSelected: (_) => setState(() {
+                      template = false;
+                      outline = null;
+                    }),
+                  ),
+                ],
               ),
+              if (template && (outline?.$3 ?? prepTemplates[kind]!).isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    (outline?.$3 ?? prepTemplates[kind]!)
+                        .map((e) => e.$1)
+                        .join(' · '),
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: palette.muted,
+                    ),
+                  ),
+                ),
               const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
@@ -325,6 +366,7 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
                           kind: kind,
                           passages: passages,
                           template: template,
+                          outline: outline?.$3,
                         ),
                   ),
                   child: const Text(S.prepCreate),
@@ -2369,42 +2411,56 @@ class _HelperOutline extends ConsumerWidget {
           S.prepOutlineIntro,
           style: theme.textTheme.bodySmall?.copyWith(color: palette.muted),
         ),
-        for (final MapEntry(key: kind, value: items) in prepTemplates.entries)
-          if (items.isNotEmpty)
-            Card(
-              margin: const EdgeInsets.only(top: 10),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(14, 10, 8, 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(kind.label, style: theme.textTheme.titleMedium),
-                    const SizedBox(height: 4),
-                    for (final (t, _) in items)
-                      Text('•  $t', style: theme.textTheme.bodySmall),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton.icon(
-                        icon: const Icon(Icons.playlist_add),
-                        label: const Text(S.prepInsertOutline),
-                        onPressed: () {
-                          final c = ref.read(prepProvider.notifier);
-                          for (final (t, hint) in items) {
-                            c.addBlock(
-                              prepId,
-                              PrepBlockKind.heading,
-                              text: t,
-                              hint: hint,
-                            );
-                          }
-                          _added(context);
-                        },
+        for (final (title, about, items) in [
+          for (final MapEntry(key: kind, value: items) in prepTemplates.entries)
+            if (items.isNotEmpty) (kind.label, null, items),
+          for (final (t, a, items) in prepOutlines) (t, a, items),
+        ])
+          Card(
+            margin: const EdgeInsets.only(top: 10),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(14, 10, 8, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: theme.textTheme.titleMedium),
+                  if (about case final a?)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        a,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: palette.muted,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ),
-                  ],
-                ),
+                  const SizedBox(height: 4),
+                  for (final (t, _) in items)
+                    Text('•  $t', style: theme.textTheme.bodySmall),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton.icon(
+                      icon: const Icon(Icons.playlist_add),
+                      label: const Text(S.prepInsertOutline),
+                      onPressed: () {
+                        final c = ref.read(prepProvider.notifier);
+                        for (final (t, hint) in items) {
+                          c.addBlock(
+                            prepId,
+                            PrepBlockKind.heading,
+                            text: t,
+                            hint: hint,
+                          );
+                        }
+                        _added(context);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
+          ),
       ],
     );
   }

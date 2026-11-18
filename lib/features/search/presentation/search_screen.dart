@@ -181,376 +181,383 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final total = counts?.values.fold<int>(0, (a, b) => a + b) ?? 0;
 
     return Scaffold(
-      body: CustomScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        slivers: [
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                16,
-                insets.top + (isCompactHeight(context) ? 8 : 14),
-                16,
-                6,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (!isCompactHeight(context)) ...[
-                    Text(S.search, style: theme.textTheme.headlineMedium),
-                    const SizedBox(height: 12),
-                  ],
-                  DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: palette.gold.withValues(alpha: 0.12),
-                          blurRadius: 18,
-                          offset: const Offset(0, 6),
-                        ),
-                      ],
-                    ),
-                    child: TextField(
-                      controller: _controller,
-                      focusNode: _focus,
-                      onChanged: _setText,
-                      onSubmitted: (v) {
-                        _setText(v, immediate: true);
-                        _remember();
-                      },
-                      textInputAction: TextInputAction.search,
-                      style: theme.textTheme.bodyLarge,
-                      decoration: InputDecoration(
-                        hintText: _thought ? S.prepThoughtHint : S.searchHint,
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                        ),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.only(left: 6),
-                          child: Icon(
-                            _thought
-                                ? Icons.psychology_alt_outlined
-                                : Icons.search,
-                            color: palette.gold,
-                          ),
-                        ),
-                        suffixIcon: _controller.text.isEmpty
-                            ? null
-                            : IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () {
-                                  _controller.clear();
-                                  _setText('', immediate: true);
-                                },
-                              ),
-                        filled: true,
-                        fillColor: palette.card,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: palette.cardBorder),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: palette.cardBorder),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(
-                            color: palette.gold,
-                            width: 1.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  PillSwitch<bool>(
-                    options: const [
-                      PillOption(
-                        false,
-                        S.searchWordsMode,
-                        icon: Icons.text_fields,
-                      ),
-                      PillOption(
-                        true,
-                        S.prepThoughtMode,
-                        icon: Icons.psychology_alt_outlined,
-                      ),
-                    ],
-                    value: _thought,
-                    onChanged: _setThought,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          if (!thought && _text.isNotEmpty)
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 50,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  children: [
-                    for (final (label, t) in [
-                      (S.searchAll, null),
-                      (S.oldTestament, Testament.oldTestament),
-                      (S.newTestament, Testament.newTestament),
-                    ])
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: ChoiceChip(
-                          label: Text(label),
-                          selected: _testament == t,
-                          onSelected: (_) => _setTestament(t),
-                        ),
-                      ),
-                    if (translations.length > 1) ...[
-                      const VerticalDivider(width: 16, indent: 8, endIndent: 8),
-                      for (final t in translations)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: FilterChip(
-                            label: Text(t.abbreviation),
-                            selected: _translations.contains(t.id),
-                            onSelected: (on) => setState(() {
-                              final next = {..._translations};
-                              on ? next.add(t.id) : next.remove(t.id);
-                              if (next.isNotEmpty) _translations = next;
-                              _limit = _pageSize;
-                            }),
-                          ),
-                        ),
-                    ],
-                  ],
-                ),
-              ),
-            ),
-          if (reference != null)
+      body: ReadableWidth(
+        maxWidth: 820,
+        child: CustomScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
-                child: Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: palette.gold.withValues(alpha: 0.15),
-                      child: Icon(Icons.arrow_forward, color: palette.gold),
-                    ),
-                    title: Text(
-                      '${S.goToReference} '
-                      '${Citation.single(books[reference.bookId - 1].name, reference)}',
-                    ),
-                    onTap: () {
-                      _remember();
-                      openReaderAt(
-                        context,
-                        ref,
-                        reference,
-                        from: schemeOf(
-                          ref.read(translationControllerProvider).primaryId,
-                        ),
-                      );
-                    },
-                  ),
+                padding: EdgeInsets.fromLTRB(
+                  16,
+                  insets.top + (isCompactHeight(context) ? 8 : 14),
+                  16,
+                  6,
                 ),
-              ),
-            ),
-          if (thoughtFallback)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 4, 20, 2),
-                child: Text(
-                  S.thoughtFallback,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: palette.muted,
-                  ),
-                ),
-              ),
-            ),
-          if (thought)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 4, 16, insets.bottom + 110),
-                child: _text.length < 2
-                    ? const SizedBox.shrink()
-                    : ThoughtResults(text: _text),
-              ),
-            )
-          else if (_text.isEmpty)
-            const SliverToBoxAdapter(child: SizedBox.shrink())
-          else ...[
-            if (_text.split(' ').where((w) => w.length > 1).length >= 3)
-              SliverToBoxAdapter(
-                child: _ThoughtSuggestion(
-                  text: _text,
-                  onTap: () => _setThought(true),
-                ),
-              ),
-            // Chytré hledání v celé aplikaci: funkce, mapy, témata,
-            // kurzy, plány, zamyšlení, poznámky…
-            if (_text.trim().length >= 2 && reference == null)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: BibleAnswerCard(query: _text, onOpen: _remember),
-                ),
-              ),
-            if (_text.trim().length >= 2 && reference == null)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: AppSearchResults(query: _text, onOpen: _remember),
-                ),
-              ),
-            if (counts != null && counts.isNotEmpty && reference == null)
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
-                  child: Text(
-                    S.versesInBible.toUpperCase(),
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: palette.muted,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.1,
-                    ),
-                  ),
-                ),
-              ),
-            if (counts != null && counts.isNotEmpty)
-              SliverToBoxAdapter(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
-                      child: Text(
-                        S.inBooks(total, counts.length),
-                        style: theme.textTheme.labelLarge?.copyWith(
-                          color: palette.muted,
+                    if (!isCompactHeight(context)) ...[
+                      Text(S.search, style: theme.textTheme.headlineMedium),
+                      const SizedBox(height: 12),
+                    ],
+                    DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: palette.gold.withValues(alpha: 0.12),
+                            blurRadius: 18,
+                            offset: const Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        controller: _controller,
+                        focusNode: _focus,
+                        onChanged: _setText,
+                        onSubmitted: (v) {
+                          _setText(v, immediate: true);
+                          _remember();
+                        },
+                        textInputAction: TextInputAction.search,
+                        style: theme.textTheme.bodyLarge,
+                        decoration: InputDecoration(
+                          hintText: _thought ? S.prepThoughtHint : S.searchHint,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                          ),
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: Icon(
+                              _thought
+                                  ? Icons.psychology_alt_outlined
+                                  : Icons.search,
+                              color: palette.gold,
+                            ),
+                          ),
+                          suffixIcon: _controller.text.isEmpty
+                              ? null
+                              : IconButton(
+                                  icon: const Icon(Icons.close),
+                                  onPressed: () {
+                                    _controller.clear();
+                                    _setText('', immediate: true);
+                                  },
+                                ),
+                          filled: true,
+                          fillColor: palette.card,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(color: palette.cardBorder),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(color: palette.cardBorder),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              color: palette.gold,
+                              width: 1.5,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 48,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
+                    const SizedBox(height: 12),
+                    PillSwitch<bool>(
+                      options: const [
+                        PillOption(
+                          false,
+                          S.searchWordsMode,
+                          icon: Icons.text_fields,
                         ),
-                        children: [
+                        PillOption(
+                          true,
+                          S.prepThoughtMode,
+                          icon: Icons.psychology_alt_outlined,
+                        ),
+                      ],
+                      value: _thought,
+                      onChanged: _setThought,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (!thought && _text.isNotEmpty)
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 50,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    children: [
+                      for (final (label, t) in [
+                        (S.searchAll, null),
+                        (S.oldTestament, Testament.oldTestament),
+                        (S.newTestament, Testament.newTestament),
+                      ])
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChoiceChip(
+                            label: Text(label),
+                            selected: _testament == t,
+                            onSelected: (_) => _setTestament(t),
+                          ),
+                        ),
+                      if (translations.length > 1) ...[
+                        const VerticalDivider(
+                          width: 16,
+                          indent: 8,
+                          endIndent: 8,
+                        ),
+                        for (final t in translations)
                           Padding(
-                            padding: const EdgeInsets.only(right: 6),
-                            child: ChoiceChip(
-                              label: const Text(S.allBooks),
-                              selected: _bookId == null,
-                              onSelected: (_) => setState(() {
-                                _bookId = null;
+                            padding: const EdgeInsets.only(right: 8),
+                            child: FilterChip(
+                              label: Text(t.abbreviation),
+                              selected: _translations.contains(t.id),
+                              onSelected: (on) => setState(() {
+                                final next = {..._translations};
+                                on ? next.add(t.id) : next.remove(t.id);
+                                if (next.isNotEmpty) _translations = next;
                                 _limit = _pageSize;
                               }),
                             ),
                           ),
-                          for (final e
-                              in (counts.entries.toList()
-                                ..sort((a, b) => a.key.compareTo(b.key))))
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            if (reference != null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                  child: Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: palette.gold.withValues(alpha: 0.15),
+                        child: Icon(Icons.arrow_forward, color: palette.gold),
+                      ),
+                      title: Text(
+                        '${S.goToReference} '
+                        '${Citation.single(books[reference.bookId - 1].name, reference)}',
+                      ),
+                      onTap: () {
+                        _remember();
+                        openReaderAt(
+                          context,
+                          ref,
+                          reference,
+                          from: schemeOf(
+                            ref.read(translationControllerProvider).primaryId,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            if (thoughtFallback)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 2),
+                  child: Text(
+                    S.thoughtFallback,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: palette.muted,
+                    ),
+                  ),
+                ),
+              ),
+            if (thought)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, 4, 16, insets.bottom + 110),
+                  child: _text.length < 2
+                      ? const SizedBox.shrink()
+                      : ThoughtResults(text: _text),
+                ),
+              )
+            else if (_text.isEmpty)
+              const SliverToBoxAdapter(child: SizedBox.shrink())
+            else ...[
+              if (_text.split(' ').where((w) => w.length > 1).length >= 3)
+                SliverToBoxAdapter(
+                  child: _ThoughtSuggestion(
+                    text: _text,
+                    onTap: () => _setThought(true),
+                  ),
+                ),
+              // Chytré hledání v celé aplikaci: funkce, mapy, témata,
+              // kurzy, plány, zamyšlení, poznámky…
+              if (_text.trim().length >= 2 && reference == null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: BibleAnswerCard(query: _text, onOpen: _remember),
+                  ),
+                ),
+              if (_text.trim().length >= 2 && reference == null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: AppSearchResults(query: _text, onOpen: _remember),
+                  ),
+                ),
+              if (counts != null && counts.isNotEmpty && reference == null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 18, 20, 0),
+                    child: Text(
+                      S.versesInBible.toUpperCase(),
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: palette.muted,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.1,
+                      ),
+                    ),
+                  ),
+                ),
+              if (counts != null && counts.isNotEmpty)
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 4),
+                        child: Text(
+                          S.inBooks(total, counts.length),
+                          style: theme.textTheme.labelLarge?.copyWith(
+                            color: palette.muted,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 48,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 6),
                               child: ChoiceChip(
-                                avatar: CircleAvatar(
-                                  radius: 5,
-                                  backgroundColor: Color(
-                                    categoryOf(e.key).color,
-                                  ),
-                                ),
-                                label: Text(
-                                  '${books[e.key - 1].abbreviation} ${e.value}',
-                                ),
-                                selected: _bookId == e.key,
+                                label: const Text(S.allBooks),
+                                selected: _bookId == null,
                                 onSelected: (_) => setState(() {
-                                  _bookId = e.key;
+                                  _bookId = null;
                                   _limit = _pageSize;
                                 }),
                               ),
                             ),
-                        ],
+                            for (final e
+                                in (counts.entries.toList()
+                                  ..sort((a, b) => a.key.compareTo(b.key))))
+                              Padding(
+                                padding: const EdgeInsets.only(right: 6),
+                                child: ChoiceChip(
+                                  avatar: CircleAvatar(
+                                    radius: 5,
+                                    backgroundColor: Color(
+                                      categoryOf(e.key).color,
+                                    ),
+                                  ),
+                                  label: Text(
+                                    '${books[e.key - 1].abbreviation} ${e.value}',
+                                  ),
+                                  selected: _bookId == e.key,
+                                  onSelected: (_) => setState(() {
+                                    _bookId = e.key;
+                                    _limit = _pageSize;
+                                  }),
+                                ),
+                              ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-            switch (results) {
-              AsyncValue(:final value?)
-                  when value.isEmpty &&
-                      reference == null &&
-                      ref.watch(appHitsProvider(_text)).isNotEmpty =>
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      20,
-                      16,
-                      20,
-                      insets.bottom + 110,
-                    ),
-                    child: Text(
-                      S.noVersesWithWords,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: palette.muted,
-                      ),
-                    ),
+                    ],
                   ),
                 ),
-              AsyncValue(:final value?)
-                  when value.isEmpty && reference == null =>
-                const SliverToBoxAdapter(
-                  child: _Hint(
-                    icon: Icons.search_off,
-                    title: S.searchNoResults,
-                    body: S.searchEmptyBody,
-                  ),
-                ),
-              AsyncValue(:final value?) => SliverList.builder(
-                itemCount: value.length + 1,
-                itemBuilder: (context, i) {
-                  if (i == value.length) {
-                    final more = value.length >= _limit;
-                    return Padding(
+              switch (results) {
+                AsyncValue(:final value?)
+                    when value.isEmpty &&
+                        reference == null &&
+                        ref.watch(appHitsProvider(_text)).isNotEmpty =>
+                  SliverToBoxAdapter(
+                    child: Padding(
                       padding: EdgeInsets.fromLTRB(
+                        20,
                         16,
-                        8,
-                        16,
+                        20,
                         insets.bottom + 110,
                       ),
-                      child: more
-                          ? OutlinedButton(
-                              onPressed: () =>
-                                  setState(() => _limit += _pageSize),
-                              child: const Text(S.loadMore),
-                            )
-                          : const SizedBox.shrink(),
+                      child: Text(
+                        S.noVersesWithWords,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: palette.muted,
+                        ),
+                      ),
+                    ),
+                  ),
+                AsyncValue(:final value?)
+                    when value.isEmpty && reference == null =>
+                  const SliverToBoxAdapter(
+                    child: _Hint(
+                      icon: Icons.search_off,
+                      title: S.searchNoResults,
+                      body: S.searchEmptyBody,
+                    ),
+                  ),
+                AsyncValue(:final value?) => SliverList.builder(
+                  itemCount: value.length + 1,
+                  itemBuilder: (context, i) {
+                    if (i == value.length) {
+                      final more = value.length >= _limit;
+                      return Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          16,
+                          8,
+                          16,
+                          insets.bottom + 110,
+                        ),
+                        child: more
+                            ? OutlinedButton(
+                                onPressed: () =>
+                                    setState(() => _limit += _pageSize),
+                                child: const Text(S.loadMore),
+                              )
+                            : const SizedBox.shrink(),
+                      );
+                    }
+                    return _ResultTile(
+                      hit: value[i],
+                      showTranslation: _translations.length > 1,
+                      onOpen: _remember,
                     );
-                  }
-                  return _ResultTile(
-                    hit: value[i],
-                    showTranslation: _translations.length > 1,
-                    onOpen: _remember,
-                  );
-                },
-              ),
-              AsyncValue(:final error?) => SliverToBoxAdapter(
-                child: Center(child: Text('$error')),
-              ),
-              _ => const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.all(40),
-                  child: Center(child: CircularProgressIndicator()),
+                  },
                 ),
-              ),
-            },
+                AsyncValue(:final error?) => SliverToBoxAdapter(
+                  child: Center(child: Text('$error')),
+                ),
+                _ => const SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(40),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              },
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

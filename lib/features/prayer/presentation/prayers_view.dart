@@ -452,6 +452,7 @@ class _PrayerTimeScreenState extends ConsumerState<PrayerTimeScreen> {
                 Row(
                   children: [
                     IconButton(
+                      tooltip: S.close,
                       onPressed: () => Navigator.of(context).pop(),
                       icon: Icon(Icons.close, color: on),
                     ),

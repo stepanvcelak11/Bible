@@ -72,6 +72,7 @@ abstract final class S {
   static const deleted = 'Smazáno';
   static const undo = 'Zpět';
   static const close = 'Zavřít';
+  static const clearSearch = 'Smazat hledání';
   static String chapterLength(int verses, int minutes) =>
       '$verses ${_plural(verses, 'verš', 'verše', 'veršů')} · ≈ $minutes min';
   static const chapterAlreadyRead = 'přečteno';

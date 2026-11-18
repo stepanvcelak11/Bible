@@ -447,7 +447,11 @@ class _PlaceSearch extends SearchDelegate<BiblePlace?> {
   @override
   List<Widget>? buildActions(BuildContext context) => [
     if (query.isNotEmpty)
-      IconButton(icon: const Icon(Icons.clear), onPressed: () => query = ''),
+      IconButton(
+        tooltip: S.clearSearch,
+        icon: const Icon(Icons.clear),
+        onPressed: () => query = '',
+      ),
   ];
 
   @override

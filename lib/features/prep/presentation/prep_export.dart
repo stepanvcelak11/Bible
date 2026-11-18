@@ -3,11 +3,11 @@ part of 'prep_screen.dart';
 // --- Přenos mezi zařízeními a export ------------------------------------------
 
 /// Název souboru z názvu přípravy (bez diakritiky a mezer).
-String prepFileName(Prep prep, String ext) {
+String prepFileName(Prep prep, String ext, {String suffix = ''}) {
   final slug = foldCzech(prep.title.isEmpty ? S.prepUntitled : prep.title)
       .replaceAll(RegExp('[^a-z0-9]+'), '-')
       .replaceAll(RegExp(r'^-+|-+$'), '');
-  return '${slug.isEmpty ? 'priprava' : slug}.$ext';
+  return '${slug.isEmpty ? 'priprava' : slug}$suffix.$ext';
 }
 
 /// Pošle soubor přes nabídku sdílení (e-mail, cloud, Bluetooth…);
@@ -328,7 +328,7 @@ Future<void> showPrepExport(
               await _shareFile(
                 context,
                 content,
-                prepFileName(prep, 'otazky.html'),
+                prepFileName(prep, 'html', suffix: '-otazky'),
                 'text/html',
               );
             },

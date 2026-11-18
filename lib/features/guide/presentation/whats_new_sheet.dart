@@ -7,9 +7,26 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 29;
+const whatsNewVersion = 30;
 
 const _items = [
+  (
+    Icons.auto_awesome,
+    'Velká aktualizace obsahu',
+    'Kvíz má přes 200 otázek a nové oblasti Králové a proroci a Žalmy '
+        'a moudrost. Ve Verších do situací přibylo 15 situací (závist, '
+        'zklamání, strach ze smrti, změna, stáří, ztráta práce, závislost, '
+        'Bůh mlčí…). Nové plány čtení: Jan, Skutky, Pět knih Mojžíšových, '
+        'Dějiny Izraele, Mudroslovné knihy a Proroci. Lectio divina má '
+        '32 úryvků.',
+  ),
+  (
+    Icons.backup_outlined,
+    'Záloha všeho',
+    'Záloha teď obsahuje i plán čtení, hotové kurzy, výsledky kvízu '
+        'a nastavení vzhledu; obnova vše sloučí. V Nastavení uvidíte, kdy '
+        'jste zálohu naposledy uložili.',
+  ),
   (
     Icons.grid_view_rounded,
     'Kázání: přehled, klepání a zvýrazněná slova',

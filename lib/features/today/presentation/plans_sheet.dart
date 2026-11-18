@@ -76,8 +76,12 @@ class _PlansSheet extends ConsumerWidget {
 }
 
 const _groups = [
-  ('Na začátek', ['start14', 'story50', 'gospels40']),
-  ('Části Bible', ['nt90', 'paul30', 'psalms31']),
+  ('Na začátek', ['start14', 'john21', 'story50', 'gospels40']),
+  ('Nový zákon', ['nt90', 'acts28', 'paul30']),
+  (
+    'Starý zákon',
+    ['torah50', 'history60', 'psalms31', 'wisdom21', 'prophets90'],
+  ),
   ('Celá Bible', ['bible365', 'both365']),
   ('Církevní rok', ['advent24', 'lent40', 'easter50']),
 ];
@@ -94,6 +98,12 @@ const _planIcons = {
   'advent24': (Icons.star_outline, Color(0xFF6B4FA0)),
   'lent40': (Icons.local_florist_outlined, Color(0xFF8C4A6B)),
   'easter50': (Icons.wb_sunny_outlined, Color(0xFFC08A2E)),
+  'john21': (Icons.light_mode_outlined, Color(0xFFB0813B)),
+  'acts28': (Icons.local_fire_department_outlined, Color(0xFFC0503A)),
+  'torah50': (Icons.terrain_outlined, Color(0xFF8C6BA8)),
+  'history60': (Icons.account_balance_outlined, Color(0xFF9A7232)),
+  'wisdom21': (Icons.psychology_alt_outlined, Color(0xFF5B6F8A)),
+  'prophets90': (Icons.campaign_outlined, Color(0xFF3F7CAC)),
 };
 
 /// Plán v nabídce: ikona, název, popis, délka; klepnutí otevře podrobnosti.

@@ -31,6 +31,121 @@ const customPlanInfo = PlanInfo(
 );
 
 const planInfo = <String, PlanInfo>{
+  'john21': PlanInfo(
+    about: [
+      'Janovo evangelium je jiné než ostatní tři. Začíná před stvořením '
+          '– „Na počátku bylo Slovo“ – a vede k jednomu cíli: abyste '
+          'uvěřili, že Ježíš je Kristus, Syn Boží, a věříce měli život.',
+      'Najdete tu sedm znamení (od proměny vody ve víno po vzkříšení '
+          'Lazara), sedm výroků „Já jsem“ a dlouhé rozhovory – s Nikodémem, '
+          'se Samařankou i s učedníky při poslední večeři. Jedna kapitola '
+          'denně dává čas se u nich zastavit.',
+    ],
+    forWhom:
+        'Pro ty, kdo chtějí Ježíše poznat do hloubky, i pro začínající '
+        'čtenáře, kterým stačí jedna kapitola denně.',
+    tips: [
+      'Všímejte si slov, která se vracejí: světlo, život, pravda, zůstávat.',
+      'Zapisujte si výroky „Já jsem…“, na které narazíte.',
+      'U dlouhých rozhovorů se ptejte: co Ježíš tomu člověku nabízí?',
+    ],
+  ),
+  'acts28': PlanInfo(
+    about: [
+      'Skutky apoštolů navazují na Lukášovo evangelium. Vyprávějí, jak se '
+          'z hrstky vystrašených učedníků stalo hnutí, které zasáhlo celou '
+          'římskou říši: Letnice, první sbor v Jeruzalémě, Štěpán, obrácení '
+          'Pavla, Petr u Kornélia a Pavlovy misijní cesty.',
+      'Jedna kapitola denně je přesně 28 dní. Kniha končí otevřeně – Pavel '
+          'v Římě káže „s veškerou odvahou a bez překážek“. Příběh církve '
+          'pokračuje dál, až k nám.',
+    ],
+    forWhom:
+        'Pro ty, kdo chtějí vědět, jak začala církev, a hledají povzbuzení '
+        'ke svědectví.',
+    tips: [
+      'Sledujte Pavlovy cesty v Mapách (Studium → Biblické mapy).',
+      'Všímejte si, kdy a jak jedná Duch svatý.',
+      'Ptejte se: co dělali první křesťané společně?',
+    ],
+  ),
+  'torah50': PlanInfo(
+    about: [
+      'Pět knih Mojžíšových (Tóra) je základ celé Bible: stvoření, pád, '
+          'potopa, Boží zaslíbení Abrahamovi, příběhy praotců, vysvobození '
+          'z Egypta, smlouva na Sínaji a putování pouští až k Jordánu.',
+      'Najdete tu i zákony o obětech, svátcích a čistotě. Někdy se čtou '
+          'těžko, ale ukazují, jak Bůh učil svůj lid žít s ním – a mnoho '
+          'z nich se v Novém zákoně vykládá ve světle Krista.',
+    ],
+    forWhom:
+        'Pro ty, kdo chtějí rozumět kořenům víry a souvislostem, na které '
+        'Nový zákon stále odkazuje.',
+    tips: [
+      'U Levitika se nezasekněte – čtěte plynule a hledejte, co zákon '
+          'říká o Boží svatosti a blízkosti.',
+      'Před každou knihou si otevřete úvod ke knize.',
+      'Svatostánek a tábor Izraele najdete v Plánech měst a staveb.',
+    ],
+  ),
+  'history60': PlanInfo(
+    about: [
+      'Dvanáct historických knih vypráví příběh Izraele v zaslíbené zemi: '
+          'dobývání za Jozueho, chaotické období soudců, krásný příběh Rút, '
+          'vznik království se Saulem, Davidem a Šalomounem, rozdělení '
+          'říše, pád Samaří i Jeruzaléma, zajetí a návrat.',
+      'Je to příběh o Boží věrnosti a lidské nevěrnosti. Králové jsou '
+          'hodnoceni podle jediného měřítka: zda „činili, co je správné '
+          'v Hospodinových očích“.',
+    ],
+    forWhom:
+        'Pro ty, kdo chtějí mít přehled o dějinách Starého zákona a '
+        'pochopit pozadí proroků.',
+    tips: [
+      'Časová osa ve Studiu pomůže udržet přehled o králích a obdobích.',
+      'Kroniky opakují Samuelovy a Královské knihy z jiného pohledu – '
+          'všímejte si, co zdůrazňují.',
+      'Ke každému králi si poznamenejte jednu větu: jak skončil?',
+    ],
+  ),
+  'wisdom21': PlanInfo(
+    about: [
+      'Tři mudroslovné knihy kladou velké otázky. Jób se ptá, proč trpí '
+          'spravedlivý. Kazatel hledá smysl života „pod sluncem“ a naráží '
+          'na marnost všeho, co člověk drží sám. Píseň písní oslavuje lásku '
+          'mezi mužem a ženou jako Boží dar.',
+      'Nedávají laciné odpovědi. Učí ale poctivě se ptát, nést otázky '
+          'před Boha a nacházet moudrost v bázni před ním.',
+    ],
+    forWhom:
+        'Pro ty, kdo procházejí těžkým obdobím, hledají smysl nebo chtějí '
+        'poznat poetickou část Bible.',
+    tips: [
+      'Jóbovy přátele čtěte kriticky – na konci je Bůh nepochválí.',
+      'U Kazatele si všímejte, kde se objeví Bůh a co to změní.',
+      'Píseň písní čtěte jako báseň, ne jako vyprávění.',
+    ],
+  ),
+  'prophets90': PlanInfo(
+    about: [
+      'Proroci mluvili do konkrétních dob – před pádem Samaří a Jeruzaléma, '
+          'v babylónském zajetí i po návratu. Volají k obrácení, hájí '
+          'chudé, odhalují modlářství a zároveň přinášejí největší '
+          'zaslíbení Bible: nové srdce, novou smlouvu, Mesiáše a nové '
+          'stvoření.',
+      'Za tři měsíce projdete velké proroky (Izajáš, Jeremjáš, Ezechiel, '
+          'Daniel) i dvanáct malých. Uvidíte, kolik z jejich slov cituje '
+          'Ježíš a apoštolové.',
+    ],
+    forWhom:
+        'Pro zkušenější čtenáře, kteří chtějí rozumět Starému zákonu '
+        'i adventním a velikonočním textům.',
+    tips: [
+      'U každého proroka si v úvodu ke knize zjistěte, kdy a komu mluvil.',
+      'Odstavce soudu střídají odstavce naděje – hledejte obojí.',
+      'Zvýrazněte si zaslíbení, která se naplnila v Kristu.',
+    ],
+  ),
   'start14': PlanInfo(
     about: [
       'Lukášovo evangelium je ideální první kniha: vypráví celý Ježíšův '

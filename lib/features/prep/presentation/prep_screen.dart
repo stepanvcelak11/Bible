@@ -246,114 +246,131 @@ Future<void> _newPrep(BuildContext context, WidgetRef ref) async {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(S.prepNew, style: theme.textTheme.titleLarge),
-              const SizedBox(height: 12),
-              TextField(
-                controller: title,
-                textCapitalization: TextCapitalization.sentences,
-                decoration: const InputDecoration(
-                  labelText: S.prepTitle,
-                  hintText: S.prepTitleHint,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: [
-                  for (final k in PrepKind.values)
-                    ChoiceChip(
-                      label: Text(k.label),
-                      selected: kind == k,
-                      onSelected: (_) => setState(() {
-                        kind = k;
-                        outline = null;
-                      }),
-                    ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Text(S.prepMainPassages, style: theme.textTheme.labelLarge),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: [
-                  for (final p in passages)
-                    InputChip(
-                      avatar: Icon(
-                        Icons.menu_book,
-                        size: 18,
-                        color: palette.gold,
+              // Volby se posouvají, tlačítko Založit zůstává vždy vidět.
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(S.prepNew, style: theme.textTheme.titleLarge),
+                      const SizedBox(height: 12),
+                      TextField(
+                        controller: title,
+                        textCapitalization: TextCapitalization.sentences,
+                        decoration: const InputDecoration(
+                          labelText: S.prepTitle,
+                          hintText: S.prepTitleHint,
+                        ),
                       ),
-                      label: Text(passageLabel(ref, p)),
-                      onDeleted: () => setState(() => passages.remove(p)),
-                    ),
-                  ActionChip(
-                    avatar: const Icon(Icons.add, size: 18),
-                    label: Text(
-                      passages.isEmpty
-                          ? S.prepPickFromBible
-                          : S.prepAnotherText,
-                    ),
-                    onPressed: () async {
-                      final p = await pickPassage(context);
-                      if (p != null && !passages.contains(p)) {
-                        setState(() => passages.add(p));
-                      }
-                    },
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Text(S.prepOutline, style: theme.textTheme.labelLarge),
-              const SizedBox(height: 6),
-              Wrap(
-                spacing: 6,
-                runSpacing: 6,
-                children: [
-                  if (prepTemplates[kind]!.isNotEmpty)
-                    ChoiceChip(
-                      label: const Text(S.prepOutlineBasic),
-                      selected: template && outline == null,
-                      onSelected: (_) => setState(() {
-                        template = true;
-                        outline = null;
-                      }),
-                    ),
-                  for (final o in prepOutlines)
-                    ChoiceChip(
-                      label: Text(o.$1),
-                      selected: template && outline == o,
-                      onSelected: (_) => setState(() {
-                        template = true;
-                        outline = o;
-                      }),
-                    ),
-                  ChoiceChip(
-                    label: const Text(S.prepOutlineNone),
-                    selected:
-                        !template ||
-                        (outline == null && prepTemplates[kind]!.isEmpty),
-                    onSelected: (_) => setState(() {
-                      template = false;
-                      outline = null;
-                    }),
-                  ),
-                ],
-              ),
-              if (template && (outline?.$3 ?? prepTemplates[kind]!).isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Text(
-                    (outline?.$3 ?? prepTemplates[kind]!)
-                        .map((e) => e.$1)
-                        .join(' · '),
-                    style: theme.textTheme.bodySmall?.copyWith(
-                      color: palette.muted,
-                    ),
+                      const SizedBox(height: 12),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          for (final k in PrepKind.values)
+                            ChoiceChip(
+                              label: Text(k.label),
+                              selected: kind == k,
+                              onSelected: (_) => setState(() {
+                                kind = k;
+                                outline = null;
+                              }),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        S.prepMainPassages,
+                        style: theme.textTheme.labelLarge,
+                      ),
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          for (final p in passages)
+                            InputChip(
+                              avatar: Icon(
+                                Icons.menu_book,
+                                size: 18,
+                                color: palette.gold,
+                              ),
+                              label: Text(passageLabel(ref, p)),
+                              onDeleted: () =>
+                                  setState(() => passages.remove(p)),
+                            ),
+                          ActionChip(
+                            avatar: const Icon(Icons.add, size: 18),
+                            label: Text(
+                              passages.isEmpty
+                                  ? S.prepPickFromBible
+                                  : S.prepAnotherText,
+                            ),
+                            onPressed: () async {
+                              final p = await pickPassage(context);
+                              if (p != null && !passages.contains(p)) {
+                                setState(() => passages.add(p));
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
+                      Text(S.prepOutline, style: theme.textTheme.labelLarge),
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 6,
+                        children: [
+                          if (prepTemplates[kind]!.isNotEmpty)
+                            ChoiceChip(
+                              label: const Text(S.prepOutlineBasic),
+                              selected: template && outline == null,
+                              onSelected: (_) => setState(() {
+                                template = true;
+                                outline = null;
+                              }),
+                            ),
+                          for (final o in prepOutlines)
+                            ChoiceChip(
+                              label: Text(o.$1),
+                              selected: template && outline == o,
+                              onSelected: (_) => setState(() {
+                                template = true;
+                                outline = o;
+                              }),
+                            ),
+                          ChoiceChip(
+                            label: const Text(S.prepOutlineNone),
+                            selected:
+                                !template ||
+                                (outline == null &&
+                                    prepTemplates[kind]!.isEmpty),
+                            onSelected: (_) => setState(() {
+                              template = false;
+                              outline = null;
+                            }),
+                          ),
+                        ],
+                      ),
+                      if (template &&
+                          (outline?.$3 ?? prepTemplates[kind]!).isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Text(
+                            (outline?.$3 ?? prepTemplates[kind]!)
+                                .map((e) => e.$1)
+                                .join(' · '),
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: palette.muted,
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
+              ),
               const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,

@@ -26,6 +26,8 @@ const _categoryStyle = <String, (IconData, Color)>{
   'gospels': (Icons.wb_sunny_outlined, Color(0xFFB0603A)),
   'church': (Icons.groups_outlined, Color(0xFF3F7CAC)),
   'people': (Icons.diversity_3_outlined, Color(0xFF2E8B57)),
+  'kings': (Icons.account_balance_outlined, Color(0xFF9A7232)),
+  'wisdom': (Icons.music_note_outlined, Color(0xFF5B6F8A)),
 };
 
 void openQuiz(BuildContext context) =>

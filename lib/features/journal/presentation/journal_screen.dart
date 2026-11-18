@@ -382,17 +382,21 @@ class _SectionTabs extends StatelessWidget {
                               ],
                             ),
                             const SizedBox(height: 3),
-                            Text(
-                              label,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.textTheme.labelSmall?.copyWith(
-                                color: controller.index == i
-                                    ? theme.colorScheme.onSurface
-                                    : palette.muted,
-                                fontWeight: controller.index == i
-                                    ? FontWeight.w700
-                                    : FontWeight.w500,
+                            // Na úzkém telefonu se popisek raději zmenší,
+                            // než aby se ořízl („Zvýrazn…“).
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                label,
+                                maxLines: 1,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: controller.index == i
+                                      ? theme.colorScheme.onSurface
+                                      : palette.muted,
+                                  fontWeight: controller.index == i
+                                      ? FontWeight.w700
+                                      : FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],

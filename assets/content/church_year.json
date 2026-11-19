@@ -337,6 +337,26 @@
    ]
   },
   {
+   "id": "annunciation",
+   "color": "white",
+   "name": "Zvěstování Páně",
+   "text": "Anděl Gabriel zvěstuje Marii, že porodí Božího Syna. Devět měsíců před Vánoci slaví církev Boží rozhodnutí vstoupit do lidských dějin – i Mariino „Staň se mi podle tvého slova“.",
+   "refs": [
+    [
+     42,
+     1,
+     26,
+     38
+    ],
+    [
+     23,
+     7,
+     14,
+     14
+    ]
+   ]
+  },
+  {
    "id": "ash",
    "color": "violet",
    "name": "Popeleční středa",
@@ -589,6 +609,52 @@
      5,
      29,
      29
+    ]
+   ]
+  },
+  {
+   "id": "transfiguration",
+   "color": "white",
+   "name": "Proměnění Páně",
+   "text": "Na hoře zazářila před Petrem, Jakubem a Janem Ježíšova sláva a mluvili s ním Mojžíš a Eliáš. Z oblaku zazní: „Toto je můj milovaný Syn… toho poslouchejte.“",
+   "refs": [
+    [
+     40,
+     17,
+     1,
+     9
+    ],
+    [
+     61,
+     1,
+     16,
+     18
+    ]
+   ]
+  },
+  {
+   "id": "thanksgiving",
+   "color": "green",
+   "name": "Díkůvzdání za úrodu",
+   "text": "Poděkování za úrodu a za všechno, co Bůh dává k životu. Mnohé sbory ho slaví první říjnovou neděli – na stole bývá chléb, ovoce a plody zahrad.",
+   "refs": [
+    [
+     19,
+     65,
+     10,
+     14
+    ],
+    [
+     5,
+     8,
+     10,
+     10
+    ],
+    [
+     47,
+     9,
+     10,
+     11
     ]
    ]
   },

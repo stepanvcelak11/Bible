@@ -62,6 +62,12 @@ class ChurchYear {
     return _plus(epiphany, 7 - epiphany.weekday % 7);
   }
 
+  /// Díkůvzdání za úrodu: první neděle v říjnu.
+  DateTime get thanksgiving {
+    final first = DateTime(_y, 10, 1);
+    return _plus(first, (7 - first.weekday) % 7);
+  }
+
   DateTime get ashWednesday => _plus(easter, -46);
   DateTime get palmSunday => _plus(easter, -7);
   DateTime get pentecost => _plus(easter, 49);
@@ -82,7 +88,10 @@ class ChurchYear {
     'ascension': _plus(easter, 39),
     'pentecost': pentecost,
     'trinity': _plus(easter, 56),
+    'annunciation': DateTime(_y, 3, 25),
     'cyrilmethod': DateTime(_y, 7, 5),
+    'transfiguration': DateTime(_y, 8, 6),
+    'thanksgiving': thanksgiving,
     'hus': DateTime(_y, 7, 6),
     'reformation': DateTime(_y, 10, 31),
     'allsaints': DateTime(_y, 11, 1),

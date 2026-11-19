@@ -28,6 +28,8 @@ void main() {
     expect(y.feasts['ascension'], DateTime(2026, 5, 14));
     expect(y.feasts['baptism'], DateTime(2026, 1, 11));
     expect(y.feasts['lastsunday'], DateTime(2026, 11, 22));
+    expect(y.feasts['thanksgiving'], DateTime(2026, 10, 4));
+    expect(y.feasts['annunciation'], DateTime(2026, 3, 25));
     expect(y.seasonOf(DateTime(2025, 12, 10)), ChurchSeason.advent);
     expect(y.seasonOf(DateTime(2026, 1, 1)), ChurchSeason.christmas);
     expect(y.seasonOf(DateTime(2026, 1, 12)), ChurchSeason.ordinary);
@@ -59,7 +61,7 @@ void main() {
     final list = upcomingFeasts(DateTime(2026, 10, 28));
     expect(list.first, ('reformation', DateTime(2026, 10, 31)));
     expect(list.map((e) => e.$1).toSet().length, list.length);
-    expect(list.length, 20);
+    expect(list.length, 23);
     expect(list.last.$2.isBefore(DateTime(2027, 10, 28)), isTrue);
     expect(list.map((e) => e.$1), contains('easter'));
   });

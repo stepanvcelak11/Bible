@@ -241,10 +241,10 @@ c("unity", "Jednota",
   "jednot společ spolu dohromad tým rozdělen",
   "jednomysl jednot tělo= údy= jedno_tělo", "t:church")
 c("church", "Církev a společenství",
-  "církev sbor společenst komunit bratři sestry shromážd",
+  "církev sbor společenst komunit bratři_a_sestry shromážd",
   "sbor= sboru církev shromážděn", "t:church")
 c("family", "Rodina a děti",
-  "rodin rodič dět dítě syn dcer výchov máma otec",
+  "rodin rodič dět dítě syn dcer výchov máma otec sestr bratr brách ségr sourozen",
   "matk dcer dítk děti= dětí= rodiče= rodičů", "t:family s:family")
 c("marriage", "Manželství a láska",
   "manžel manželk svatb partner láska_mezi",
@@ -708,3 +708,39 @@ _EXTRA = {
 for _c in C:
     _c["triggers"] += _EXTRA.pop(_c["id"], "").split()
 assert not _EXTRA, _EXTRA
+
+# Odkazy na novější situace a témata (doplněno později).
+_LINKS = {
+    "envy": "s:jealous", "death": "s:death t:death t:heaven",
+    "aging": "s:aging t:age", "addiction": "s:addiction",
+    "silence": "s:silence", "doubt": "t:doubt", "work": "s:joblost",
+    "busy": "s:overwhelmed", "tired": "s:overwhelmed",
+    "reconcile": "s:conflict t:reconciliation", "friend": "s:friendship",
+    "persecution": "s:mocked t:persecution", "serve": "s:serve t:service",
+    "witness": "s:witness", "knowledge": "s:study", "plans": "s:change",
+    "despair": "s:disappointed", "mercy": "t:mercy", "glory": "t:glory",
+    "presence": "t:presence", "name": "t:names", "sovereign": "t:providence",
+    "christmas": "t:incarnation", "parables": "t:parables",
+    "miracles": "t:miracles t:signs", "covenant": "t:covenant",
+    "kingdom": "t:kingdom", "law": "t:law", "temple": "t:temple",
+    "blessing": "t:blessing", "wisdom": "t:wisdom", "exile": "t:exile",
+    "justify": "t:justification", "freedom": "t:redemption",
+    "newlife": "t:growth", "hope": "t:hope", "fear": "t:fear",
+    "anxiety": "t:worry", "worship": "t:worship", "words": "t:speech",
+    "anger": "t:anger", "patience": "t:patience", "waiting": "t:patience",
+    "fasting": "t:silence", "stillness": "t:silence",
+    "content": "t:contentment", "guidance": "t:guidance",
+    "obey": "t:obedience", "stranger": "t:strangers", "truth": "t:truth",
+    "honesty": "t:truth", "creation": "t:creation_care",
+    "children": "t:children", "leaders": "t:leadership",
+    "gifts": "t:gifts", "unity": "t:unity", "church": "t:fellowship",
+    "eternal": "t:heaven", "newearth": "t:heaven", "prophecy": "t:prophecy",
+    "angels": "t:angels", "evil": "t:evil", "warfare": "t:warfare",
+    "protection": "t:protection", "jesus": "t:titles",
+    "cross": "t:sacrifice", "salvation": "t:redemption",
+}
+for _c in C:
+    for _l in _LINKS.pop(_c["id"], "").split():
+        if _l not in _c["links"]:
+            _c["links"].append(_l)
+assert not _LINKS, _LINKS

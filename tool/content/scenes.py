@@ -13,7 +13,7 @@ o = podobenství, v = známý verš / výrok.
 SCENES = [
     # --- Genesis ------------------------------------------------------------
     ("Gn 1,1", "p", "Stvoření světa",
-     "na počátku stvořil nebe zemi světlo sedm dní šest dní tma vznik světa "
+     "na počátku stvořil nebe zemi světlo sedm dní šestidenní tma vznik světa "
      "jak vznikl svět stvoření vesmír"),
     ("Gn 1,27", "v", "Člověk stvořen k Božímu obrazu",
      "obraz boží podoba muž žena stvořil člověka důstojnost hodnota"),

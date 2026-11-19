@@ -37,7 +37,7 @@ QUESTIONS = [
     # --- Svět a zlo ---------------------------------------------------------
     ("Jak vznikl svět a vesmír?",
      "jak vznikl vesmír svět země život stvoření počátek velký třesk "
-     "evoluce věda šest dní",
+     "evoluce věda šestidenní",
      "t:creator l:howto:1 t:image"),
     ("Proč je na světě zlo?",
      "proč je zlo na světě odkud se vzalo zlo proč bůh dopouští zlo "

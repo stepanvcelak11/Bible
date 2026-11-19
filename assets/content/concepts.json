@@ -251,7 +251,8 @@
    ],
    "links": [
     "h:presence",
-    "h:name"
+    "h:name",
+    "t:presence"
    ]
   },
   {
@@ -340,7 +341,8 @@
     "utocist"
    ],
    "links": [
-    "h:rock"
+    "h:rock",
+    "t:protection"
    ]
   },
   {
@@ -370,7 +372,8 @@
    ],
    "links": [
     "s:decision",
-    "h:shepherd"
+    "h:shepherd",
+    "t:guidance"
    ]
   },
   {
@@ -467,7 +470,8 @@
    ],
    "links": [
     "t:creator",
-    "h:tree"
+    "h:tree",
+    "t:creation_care"
    ]
   },
   {
@@ -515,7 +519,8 @@
    ],
    "links": [
     "s:knowgod",
-    "h:name"
+    "h:name",
+    "t:names"
    ]
   },
   {
@@ -543,7 +548,8 @@
    ],
    "links": [
     "s:waiting",
-    "s:doubt"
+    "s:doubt",
+    "s:silence"
    ]
   },
   {
@@ -565,7 +571,8 @@
    ],
    "links": [
     "t:jesus",
-    "h:king"
+    "h:king",
+    "t:titles"
    ]
   },
   {
@@ -591,7 +598,8 @@
    ],
    "links": [
     "t:cross",
-    "h:lamb"
+    "h:lamb",
+    "t:sacrifice"
    ]
   },
   {
@@ -631,7 +639,8 @@
    ],
    "links": [
     "t:grace",
-    "h:exodus"
+    "h:exodus",
+    "t:redemption"
    ]
   },
   {
@@ -679,7 +688,8 @@
     "soucit"
    ],
    "links": [
-    "t:love"
+    "t:love",
+    "t:mercy"
    ]
   },
   {
@@ -817,7 +827,8 @@
    ],
    "links": [
     "t:newbirth",
-    "s:newstart"
+    "s:newstart",
+    "t:growth"
    ]
   },
   {
@@ -839,7 +850,8 @@
    ],
    "links": [
     "t:newcreation",
-    "h:tree"
+    "h:tree",
+    "t:heaven"
    ]
   },
   {
@@ -884,7 +896,8 @@
     "svobod"
    ],
    "links": [
-    "h:exodus"
+    "h:exodus",
+    "t:redemption"
    ]
   },
   {
@@ -933,7 +946,8 @@
     "proc"
    ],
    "links": [
-    "s:doubt"
+    "s:doubt",
+    "t:doubt"
    ]
   },
   {
@@ -954,7 +968,8 @@
    ],
    "links": [
     "s:hope",
-    "t:return"
+    "t:return",
+    "t:hope"
    ]
   },
   {
@@ -1004,7 +1019,8 @@
     "zpiv"
    ],
    "links": [
-    "s:gratitude"
+    "s:gratitude",
+    "t:worship"
    ]
   },
   {
@@ -1088,7 +1104,8 @@
     "zachova"
    ],
    "links": [
-    "t:word"
+    "t:word",
+    "t:obedience"
    ]
   },
   {
@@ -1170,7 +1187,9 @@
     "postil",
     "postit"
    ],
-   "links": []
+   "links": [
+    "t:silence"
+   ]
   },
   {
    "id": "holiness",
@@ -1225,7 +1244,8 @@
     "zdes"
    ],
    "links": [
-    "s:fear"
+    "s:fear",
+    "t:fear"
    ]
   },
   {
@@ -1252,7 +1272,8 @@
     "zitr"
    ],
    "links": [
-    "s:anxiety"
+    "s:anxiety",
+    "t:worry"
    ]
   },
   {
@@ -1437,7 +1458,8 @@
     "s:tired",
     "s:sleep",
     "h:rest",
-    "t:work"
+    "t:work",
+    "s:overwhelmed"
    ]
   },
   {
@@ -1497,7 +1519,8 @@
     "zlost"
    ],
    "links": [
-    "s:anger"
+    "s:anger",
+    "t:anger"
    ]
   },
   {
@@ -1549,7 +1572,8 @@
     "trpeliv"
    ],
    "links": [
-    "s:waiting"
+    "s:waiting",
+    "t:patience"
    ]
   },
   {
@@ -1705,7 +1729,9 @@
     "svar"
    ],
    "links": [
-    "t:forgiveness"
+    "t:forgiveness",
+    "s:conflict",
+    "t:reconciliation"
    ]
   },
   {
@@ -1727,18 +1753,18 @@
     "udy="
    ],
    "links": [
-    "t:church"
+    "t:church",
+    "t:unity"
    ]
   },
   {
    "id": "church",
    "label": "Církev a společenství",
    "triggers": [
-    "bratri",
+    "bratri_a_sestry",
     "cirkev",
     "komunit",
     "sbor",
-    "sestry",
     "shromazd",
     "spolecenst"
    ],
@@ -1749,13 +1775,16 @@
     "shromazden"
    ],
    "links": [
-    "t:church"
+    "t:church",
+    "t:fellowship"
    ]
   },
   {
    "id": "family",
    "label": "Rodina a děti",
    "triggers": [
+    "brach",
+    "bratr",
     "dcer",
     "det",
     "dite",
@@ -1763,6 +1792,9 @@
     "otec",
     "rodic",
     "rodin",
+    "segr",
+    "sestr",
+    "sourozen",
     "syn",
     "vychov"
    ],
@@ -1819,7 +1851,8 @@
     "pritel"
    ],
    "links": [
-    "t:friendship"
+    "t:friendship",
+    "s:friendship"
    ]
   },
   {
@@ -1839,7 +1872,9 @@
     "sluzte"
    ],
    "links": [
-    "t:humility"
+    "t:humility",
+    "s:serve",
+    "t:service"
    ]
   },
   {
@@ -1958,7 +1993,8 @@
    ],
    "links": [
     "t:work",
-    "s:work"
+    "s:work",
+    "s:joblost"
    ]
   },
   {
@@ -1981,7 +2017,9 @@
     "rty=",
     "utrh"
    ],
-   "links": []
+   "links": [
+    "t:speech"
+   ]
   },
   {
    "id": "truth",
@@ -2002,7 +2040,8 @@
     "pravd"
    ],
    "links": [
-    "t:word"
+    "t:word",
+    "t:truth"
    ]
   },
   {
@@ -2023,7 +2062,8 @@
     "rozum"
    ],
    "links": [
-    "s:decision"
+    "s:decision",
+    "t:wisdom"
    ]
   },
   {
@@ -2079,7 +2119,8 @@
     "host"
    ],
    "links": [
-    "h:nations"
+    "h:nations",
+    "t:strangers"
    ]
   },
   {
@@ -2102,7 +2143,8 @@
    ],
    "links": [
     "t:witness",
-    "h:nations"
+    "h:nations",
+    "s:witness"
    ]
   },
   {
@@ -2219,7 +2261,8 @@
     "kralovstv"
    ],
    "links": [
-    "h:king"
+    "h:king",
+    "t:kingdom"
    ]
   },
   {
@@ -2326,7 +2369,8 @@
    ],
    "links": [
     "s:success",
-    "h:nations"
+    "h:nations",
+    "t:blessing"
    ]
   },
   {
@@ -2403,7 +2447,8 @@
    ],
    "links": [
     "t:holiness",
-    "h:presence"
+    "h:presence",
+    "t:glory"
    ]
   },
   {
@@ -2441,7 +2486,8 @@
     "ustanovil"
    ],
    "links": [
-    "t:faithfulness"
+    "t:faithfulness",
+    "t:providence"
    ]
   },
   {
@@ -2496,7 +2542,8 @@
     "umluv"
    ],
    "links": [
-    "h:covenant"
+    "h:covenant",
+    "t:covenant"
    ]
   },
   {
@@ -2514,7 +2561,8 @@
     "zakon"
    ],
    "links": [
-    "t:word"
+    "t:word",
+    "t:law"
    ]
   },
   {
@@ -2547,7 +2595,8 @@
     "ospravedl"
    ],
    "links": [
-    "t:grace"
+    "t:grace",
+    "t:justification"
    ]
   },
   {
@@ -2583,7 +2632,9 @@
     "jesl",
     "narodil"
    ],
-   "links": []
+   "links": [
+    "t:incarnation"
+   ]
   },
   {
    "id": "ascension",
@@ -2630,7 +2681,10 @@
     "zazrak",
     "znamen"
    ],
-   "links": []
+   "links": [
+    "t:miracles",
+    "t:signs"
+   ]
   },
   {
    "id": "parables",
@@ -2641,7 +2695,9 @@
    "terms": [
     "podobenst"
    ],
-   "links": []
+   "links": [
+    "t:parables"
+   ]
   },
   {
    "id": "prophecy",
@@ -2655,7 +2711,9 @@
     "proroct",
     "prorok"
    ],
-   "links": []
+   "links": [
+    "t:prophecy"
+   ]
   },
   {
    "id": "angels",
@@ -2666,7 +2724,9 @@
    "terms": [
     "andel"
    ],
-   "links": []
+   "links": [
+    "t:angels"
+   ]
   },
   {
    "id": "warfare",
@@ -2684,7 +2744,8 @@
     "zbroj"
    ],
    "links": [
-    "h:victory"
+    "h:victory",
+    "t:warfare"
    ]
   },
   {
@@ -2769,7 +2830,8 @@
     "nove_nebe"
    ],
    "links": [
-    "t:newcreation"
+    "t:newcreation",
+    "t:heaven"
    ]
   },
   {
@@ -2862,7 +2924,10 @@
     "zemr"
    ],
    "links": [
-    "t:resurrection"
+    "t:resurrection",
+    "s:death",
+    "t:death",
+    "t:heaven"
    ]
   },
   {
@@ -2881,7 +2946,10 @@
     "star",
     "starec"
    ],
-   "links": []
+   "links": [
+    "s:aging",
+    "t:age"
+   ]
   },
   {
    "id": "youth",
@@ -2918,7 +2986,8 @@
    ],
    "links": [
     "t:family",
-    "s:family"
+    "s:family",
+    "t:children"
    ]
   },
   {
@@ -3034,7 +3103,8 @@
     "opojn"
    ],
    "links": [
-    "s:temptation"
+    "s:temptation",
+    "s:addiction"
    ]
   },
   {
@@ -3050,7 +3120,9 @@
     "zavid",
     "zavist"
    ],
-   "links": []
+   "links": [
+    "s:jealous"
+   ]
   },
   {
    "id": "greed",
@@ -3083,7 +3155,8 @@
     "spokoj"
    ],
    "links": [
-    "t:money"
+    "t:money",
+    "t:contentment"
    ]
   },
   {
@@ -3114,7 +3187,9 @@
     "poctiv",
     "podvod"
    ],
-   "links": []
+   "links": [
+    "t:truth"
+   ]
   },
   {
    "id": "stealing",
@@ -3208,7 +3283,8 @@
     "trpeliv"
    ],
    "links": [
-    "s:waiting"
+    "s:waiting",
+    "t:patience"
    ]
   },
   {
@@ -3288,7 +3364,8 @@
    ],
    "links": [
     "t:spirit",
-    "t:church"
+    "t:church",
+    "t:gifts"
    ]
   },
   {
@@ -3341,7 +3418,8 @@
     "zitr"
    ],
    "links": [
-    "s:decision"
+    "s:decision",
+    "s:change"
    ]
   },
   {
@@ -3374,7 +3452,8 @@
     "ztis"
    ],
    "links": [
-    "s:peace"
+    "s:peace",
+    "t:silence"
    ]
   },
   {
@@ -3410,7 +3489,8 @@
     "vudce"
    ],
    "links": [
-    "t:church"
+    "t:church",
+    "t:leadership"
    ]
   },
   {
@@ -3462,7 +3542,9 @@
     "protivenst"
    ],
    "links": [
-    "t:suffering"
+    "t:suffering",
+    "s:mocked",
+    "t:persecution"
    ]
   },
   {
@@ -3542,7 +3624,8 @@
    ],
    "links": [
     "s:hope",
-    "s:sadness"
+    "s:sadness",
+    "s:disappointed"
    ]
   },
   {
@@ -3787,7 +3870,8 @@
     "svatyn"
    ],
    "links": [
-    "h:presence"
+    "h:presence",
+    "t:temple"
    ]
   },
   {
@@ -3853,7 +3937,8 @@
     "zajet"
    ],
    "links": [
-    "h:home"
+    "h:home",
+    "t:exile"
    ]
   },
   {
@@ -4049,7 +4134,9 @@
     "poznan",
     "umeni"
    ],
-   "links": []
+   "links": [
+    "s:study"
+   ]
   },
   {
    "id": "evil",
@@ -4064,7 +4151,8 @@
     "zly"
    ],
    "links": [
-    "t:suffering"
+    "t:suffering",
+    "t:evil"
    ]
   },
   {
@@ -4217,7 +4305,8 @@
    ],
    "links": [
     "s:anxiety",
-    "h:rest"
+    "h:rest",
+    "s:overwhelmed"
    ]
   },
   {

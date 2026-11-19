@@ -197,7 +197,7 @@ def fold(s: str) -> str:
 
 
 def build_concepts() -> dict:
-    topics_ = {t["id"] for t in topics.T}
+    topics_ = {t["id"] for t in build_topics()["topics"]}
     sits = {s[0] for s in situations.SITUATIONS}
     threads_ = {t[0] for t in threads.THREADS}
     ids = set()
@@ -231,7 +231,7 @@ def build_scenes() -> dict:
 
 
 def build_questions() -> dict:
-    topics_ = {t["id"] for t in topics.T} | {t["id"] for t in topics_more.T}
+    topics_ = {t["id"] for t in build_topics()["topics"]} | {t["id"] for t in topics_more.T}
     sits = {s[0] for s in situations.SITUATIONS}
     crs = {c["id"]: len(c["lessons"]) for c in courses.COURSES}
     out = []

@@ -101,15 +101,60 @@ int _minutes(Prep p) {
 
 // --- Seznam -------------------------------------------------------------------
 
-class PrepListScreen extends ConsumerWidget {
+/// Jestli příprava obsahuje hledaný text (název, texty, místa, body,
+/// poznámky, kde se kázalo) – bez ohledu na diakritiku.
+bool prepMatches(Prep p, String query, String Function(Passage) label) {
+  final q = foldCzech(query.trim());
+  if (q.isEmpty) return true;
+  final hay = foldCzech(
+    [
+      p.title,
+      p.kind.label,
+      for (final ps in p.passages) label(ps),
+      for (final b in p.blocks) ...[
+        b.text,
+        b.body,
+        if (b.passage case final ps?) label(ps),
+      ],
+      for (final d in p.preached) d.place,
+    ].join(' '),
+  );
+  return q.split(RegExp(r'\s+')).every(hay.contains);
+}
+
+/// Filtr seznamu příprav.
+enum _PrepFilter { all, open, preached }
+
+class PrepListScreen extends ConsumerStatefulWidget {
   const PrepListScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PrepListScreen> createState() => _PrepListScreenState();
+}
+
+class _PrepListScreenState extends ConsumerState<PrepListScreen> {
+  var _query = '';
+  var _filter = _PrepFilter.all;
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = AppPalette.of(context);
-    final preps = ref.watch(prepProvider);
+    final all = ref.watch(prepProvider);
     final books = ref.watch(booksProvider);
+    String label(Passage ps) => ps.label(books[ps.bookId - 1].abbreviation);
+    final preps = [
+      for (final p in all)
+        if (switch (_filter) {
+              _PrepFilter.all => true,
+              _PrepFilter.open => p.preached.isEmpty,
+              _PrepFilter.preached => p.preached.isNotEmpty,
+            } &&
+            prepMatches(p, _query, label))
+          p,
+    ];
+    // Hledání a filtr až tam, kde je z čeho vybírat.
+    final showTools = all.length >= 4;
     return ReadableWidth(
       child: Scaffold(
         appBar: AppBar(
@@ -151,7 +196,54 @@ class PrepListScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 6),
-            if (preps.isEmpty)
+            if (showTools) ...[
+              TextField(
+                onChanged: (v) => setState(() => _query = v),
+                decoration: InputDecoration(
+                  hintText: S.prepSearchList,
+                  prefixIcon: const Icon(Icons.search),
+                  isDense: true,
+                  filled: true,
+                  fillColor: palette.card,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide(color: palette.cardBorder),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide(color: palette.cardBorder),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 6,
+                children: [
+                  for (final (f, text) in const [
+                    (_PrepFilter.all, S.prepFilterAll),
+                    (_PrepFilter.open, S.prepFilterOpen),
+                    (_PrepFilter.preached, S.prepFilterPreached),
+                  ])
+                    ChoiceChip(
+                      label: Text(text),
+                      selected: _filter == f,
+                      onSelected: (_) => setState(() => _filter = f),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              if (preps.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Center(
+                    child: Text(
+                      S.prepNothingFound,
+                      style: TextStyle(color: palette.muted),
+                    ),
+                  ),
+                ),
+            ],
+            if (all.isEmpty)
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(18),
@@ -192,7 +284,12 @@ class PrepListScreen extends ConsumerWidget {
                   contentPadding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
                   leading: CircleAvatar(
                     backgroundColor: palette.gold.withValues(alpha: 0.15),
-                    child: Icon(Icons.edit_note, color: palette.gold),
+                    child: Icon(
+                      p.preached.isEmpty
+                          ? Icons.edit_note
+                          : Icons.check_circle_outline,
+                      color: palette.gold,
+                    ),
                   ),
                   title: Text(
                     p.title.isEmpty ? S.prepUntitled : p.title,
@@ -201,8 +298,7 @@ class PrepListScreen extends ConsumerWidget {
                   subtitle: Text(
                     [
                       p.kind.label,
-                      for (final ps in p.passages)
-                        ps.label(books[ps.bookId - 1].abbreviation),
+                      for (final ps in p.passages) label(ps),
                       if (p.date case final d?) _date(d),
                       S.prepBlocks(p.blocks.length),
                       if (p.preached.isNotEmpty)

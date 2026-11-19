@@ -366,4 +366,25 @@ void main() {
       expect(items.length, greaterThanOrEqualTo(4), reason: name);
     }
   });
+
+  test('hledání v přípravách bez ohledu na diakritiku', () {
+    final p = Prep(
+      id: 1,
+      title: 'Dobrý pastýř',
+      kind: PrepKind.sermon,
+      updated: DateTime(2026),
+      passages: const [Passage(43, 10, 11, 11)],
+      blocks: const [
+        PrepBlock(id: 2, kind: PrepBlockKind.note, text: 'Ovce znají hlas'),
+      ],
+      preached: [PrepPreached(DateTime(2026), 'Sbor Brno')],
+    );
+    String label(Passage x) => 'J ${x.shortLabel}';
+    expect(prepMatches(p, 'pastyr', label), isTrue);
+    expect(prepMatches(p, 'OVCE hlas', label), isTrue);
+    expect(prepMatches(p, 'J 10', label), isTrue);
+    expect(prepMatches(p, 'brno', label), isTrue);
+    expect(prepMatches(p, 'vinice', label), isFalse);
+    expect(prepMatches(p, '  ', label), isTrue);
+  });
 }

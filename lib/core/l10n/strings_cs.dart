@@ -753,6 +753,11 @@ abstract final class S {
       'Osnovy pro různé druhy příprav. „Vložit“ přidá body na konec.';
   static const prepInsertOutline = 'Vložit';
   static const prepOutline = 'Osnova';
+  static const prepSearchList = 'Hledat v přípravách (název, text, verš…)';
+  static const prepFilterAll = 'Vše';
+  static const prepFilterOpen = 'Připravuji';
+  static const prepFilterPreached = 'Už kázané';
+  static const prepNothingFound = 'Nic takového v přípravách není.';
   static const prepOutlineBasic = 'Základní';
   static const prepOutlineNone = 'Bez osnovy';
   static const smallerText = 'Menší písmo';

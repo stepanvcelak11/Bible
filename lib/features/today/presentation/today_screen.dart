@@ -43,7 +43,10 @@ class TodayScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final now = DateTime.now();
-    final greeting = now.hour < 10
+    // Hluboko v noci (do 4:00) ještě „Dobrý večer“, ne „Dobré ráno“.
+    final greeting = now.hour < 4
+        ? S.goodEvening
+        : now.hour < 10
         ? S.goodMorning
         : now.hour < 18
         ? S.goodDay
@@ -62,14 +65,16 @@ class TodayScreen extends ConsumerWidget {
     final twoColumns = MediaQuery.sizeOf(context).width >= 1100;
     const gutter = 24.0;
 
+    // Na telefonu jdou oba seznamy pod sebou; na tabletu jsou to dva
+    // zhruba stejně vysoké sloupce.
     const reading = [
       InstallBanner(padding: EdgeInsets.only(top: 16)),
       SectionLabel(S.myReading),
       MyReadingCard(),
-    ];
-    const more = [
       _SituationsStrip(),
       ForTodaySection(),
+    ];
+    const more = [
       SectionLabel(S.todayStudy),
       FactOfDayCard(),
       SizedBox(height: 10),

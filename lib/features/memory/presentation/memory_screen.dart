@@ -423,19 +423,21 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                 ),
               ),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () => setState(() => _showAll = !_showAll),
-                    icon: Icon(
-                      _showAll ? Icons.visibility_off : Icons.visibility,
+            // V prvním kroku je text vidět celý – tlačítko by nic nedělalo.
+            if (_level > 0)
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () => setState(() => _showAll = !_showAll),
+                      icon: Icon(
+                        _showAll ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      label: Text(_showAll ? S.memoryHide : S.memoryShow),
                     ),
-                    label: Text(_showAll ? S.memoryHide : S.memoryShow),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
             const SizedBox(height: 10),
             Row(
               children: [

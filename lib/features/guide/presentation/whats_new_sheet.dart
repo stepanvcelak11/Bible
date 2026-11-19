@@ -18,15 +18,16 @@ const _items = [
         'zklamání, strach ze smrti, změna, stáří, ztráta práce, závislost, '
         'Bůh mlčí…). Nové plány čtení: Jan, Skutky, Pět knih Mojžíšových, '
         'Dějiny Izraele, Mudroslovné knihy a Proroci. Lectio divina má '
-        '32 úryvků, přibylo 8 biblických témat a nový kurz Žalmy – škola '
-        'modlitby.',
+        '32 úryvků, přibylo 8 biblických témat, nový kurz Žalmy – škola '
+        'modlitby a v církevním roce Zvěstování, Proměnění Páně a Díkůvzdání.',
   ),
   (
     Icons.edit_note,
     'Osnovy kázání',
     'Při zakládání přípravy si vyberete osnovu: základní, výkladovou, '
         'problém – řešení, příběhovou, tematickou, pro pohřeb, svatbu nebo '
-        'rodinnou bohoslužbu. Další osnovy vložíte i později v pomocníkovi.',
+        'rodinnou bohoslužbu. Další osnovy vložíte i později v pomocníkovi. '
+        'Seznam příprav má hledání a filtr Připravuji / Už kázané.',
   ),
   (
     Icons.backup_outlined,

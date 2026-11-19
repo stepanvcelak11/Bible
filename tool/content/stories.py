@@ -156,7 +156,7 @@ S = [
     ("den-smireni", "exodus", "Svatostánek a Den smíření", "Lv 16",
      "Jednou v roce vstupuje velekněz s krví oběti do svatyně svatých "
      "a kozel odnáší hříchy lidu na poušť.",
-     ["aron"],
+     ["aron", "nadab_abihu"],
      [("kriz", "Kristus jako velekněz vstoupil s vlastní krví jednou "
        "provždy (Žd 9)")]),
     ("zvedove", "exodus", "Zvědové a čtyřicet let na poušti", "Nu 13-14",
@@ -316,15 +316,28 @@ S = [
     ("elisa", "divided", "Elíša a Naamán", "2Kr 2-5",
      "Eliáš je vzat do nebe a Elíša dostane jeho plášť. Pomáhá Šúnemce "
      "a syrský velitel Naamán je očištěn v Jordánu.",
-     ["elisa", "elias", "naaman", "sunemka"],
+     ["elisa", "elias", "naaman", "sunemka", "gechazi"],
      [("krest", "Očištění v Jordánu – Ježíš na Naamána upozorní "
        "v Nazaretu (L 4,27)")]),
+    ("jehu", "divided", "Jehú a konec Achabova domu", "2Kr 9-10",
+     "Elíšův učedník pomaže velitele Jehúa za krále. Jehú vyhladí Achabův "
+     "rod i Baalovu bohoslužbu, ale sám nechodí za Hospodinem celým srdcem.",
+     ["jehu", "elisa", "jezabel"],
+     [("nabot", "Eliášovo slovo nad Achabem a Jezábel se naplňuje"),
+      ("elias", "Jehúovo pomazání patřilo k úkolům, které Eliáš dostal na "
+       "Chorébu (1Kr 19,16)")]),
     ("jonas", "divided", "Jonáš a Ninive", "Jon 1-4",
      "Prorok utíká před Božím úkolem, skončí v útrobách ryby a nakonec "
      "zvěstuje Ninive. Zlobí se, že Bůh je k nepřátelům milosrdný.",
      ["jonas"],
      [("vzkriseni", "Znamení Jonáše: tři dny a tři noci (Mt 12,40)"),
       ("kornelius", "Boží milosrdenství k cizím národům")]),
+    ("joel", "divided", "Jóel: den Hospodinův a dar Ducha", "Jl 1-4",
+     "Pohroma kobylek je pro Jóela výzvou k pokání: „Roztrhněte svá srdce.“ "
+     "Bůh slibuje obnovu a vylití svého Ducha na všechny lidi.",
+     ["joel"],
+     [("letnice", "Petr o Letnicích cituje Jóela: „Vyleji svého Ducha na "
+       "všechny lidi“ (Sk 2,16-21)")]),
     ("ozeas", "divided", "Ozeáš a nevěrná žena", "Oz 1-3",
      "Bůh posílá proroka, aby si vzal nevěrnou ženu. Jeho věrná láska "
      "je obrazem Boží lásky k nevěrnému Izraeli.",
@@ -360,6 +373,21 @@ S = [
      "a Bůh vyslyší i jeho prosbu.",
      ["menases"],
      [("ztraceni", "Ani nejhorší hříšník není pro Boží milost ztracený")]),
+    ("nahum", "divided", "Nahum: pád Ninive", "Na 1-3",
+     "Asyrské Ninive, kdysi kající se po Jonášově kázání, se vrátilo "
+     "k násilí. Nahum ohlašuje jeho pád a těší Judu: Hospodin je dobrý, "
+     "je záštitou v den soužení.",
+     ["nahum"],
+     [("jonas", "Totéž město: jednou přijalo milost, později propadlo soudu"),
+      ("pad-samari", "Asýrie, která zničila Samaří, sama padne")]),
+    ("sofonjas", "divided", "Sofonjáš: Bůh se raduje nad svým lidem",
+     "Sf 1-3",
+     "Za krále Jóšijáše varuje Sofonjáš před dnem Hospodinovým, který "
+     "zasáhne i lhostejné. Kniha končí písní o Bohu, který se nad svým "
+     "lidem raduje s jásotem.",
+     ["sofonjas", "josijas"],
+     [("josijas", "Sofonjáš kázal za Jóšijáše – snad i jeho slova "
+       "připravila půdu pro reformu")]),
     ("josijas", "divided", "Jóšijáš a nalezená kniha Zákona", "2Kr 22-23",
      "Při opravě chrámu se najde kniha Zákona. Mladý král se zděsí, "
      "prorokyně Chulda potvrdí slovo a Jóšijáš obnoví smlouvu.",
@@ -391,6 +419,14 @@ S = [
        "nakonec padne")]),
 
     # --- Babylonské zajetí ---------------------------------------------------
+    ("abdijas", "divided", "Abdijáš: soud nad Edómem", "Abd 1",
+     "Když padl Jeruzalém, Edóm – potomci Ezaua – se z neštěstí bratra "
+     "radoval a pomáhal nepříteli. Nejkratší kniha Starého zákona "
+     "ohlašuje, že pýcha padne a království bude Hospodinovo.",
+     ["abdijas"],
+     [("jakob-ezau", "Spor bratrů Jákoba a Ezaua pokračuje v jejich "
+       "národech"),
+      ("pad-jeruzalema", "Edóm se radoval z pádu Jeruzaléma")]),
     ("daniel-pec", "exile", "Daniel a ohnivá pec", "Da 1-4",
      "Mladí zajatci zůstanou věrni Bohu na babylonském dvoře. Tři přátelé "
      "odmítnou klanět se soše a v peci je s nimi čtvrtý.",
@@ -424,7 +460,7 @@ S = [
     ("navrat", "return", "Návrat a nový chrám", "Ezd 1-6",
      "Perský král Kýros dovolí Židům vrátit se. Zerubábel vede stavbu "
      "chrámu a proroci Ageus a Zachariáš povzbuzují lid.",
-     ["kyros", "zerubabel"],
+     ["kyros", "zerubabel", "ageus", "zacharjas_prorok"],
      [("vjezd", "„Tvůj král přichází, pokorný, jede na oslu“ (Za 9,9)")]),
     ("ezdras", "return", "Ezdráš a Zákon", "Ezd 7-10",
      "Písař Ezdráš přichází, aby lid učil Boží Zákon. Lid vyznává své "
@@ -447,7 +483,7 @@ S = [
     ("malachias", "return", "Malachiáš: posel před Pánem", "Mal 3",
      "Poslední prorok Starého zákona ohlašuje posla, který připraví cestu, "
      "a příchod proroka Eliáše.",
-     [],
+     ["malachias"],
      [("krest", "Jan Křtitel je posel, který připravuje cestu"),
       ("elias", "Zaslíbený návrat Eliáše")]),
 
@@ -495,8 +531,29 @@ S = [
     ("zazraky", "jesus", "Uzdravení a zázraky v Galileji", "Mt 8-9",
      "Ježíš uzdravuje setníkova sluhu na dálku, utiší bouři, povolá "
      "celníka Matouše a vzkřísí Jairovu dceru.",
-     ["jezis", "setnik-kafarnaum", "jairos", "matous"],
+     ["jezis", "setnik-kafarnaum", "jairos", "matous", "zena_krvotok"],
      [("kornelius", "Víra římského setníka – předzvěst víry pohanů")]),
+    ("smrt-jana", "jesus", "Smrt Jana Křtitele", "Mk 6",
+     "Jan napomenul Heroda Antipu kvůli Herodiadě a skončil ve vězení. Na "
+     "hostině Herodiada využije tance své dcery a vyžádá si Janovu hlavu.",
+     ["jan-krtitel", "herodes-antipas", "herodiada"],
+     [("krest", "Ten, kdo připravil Ježíši cestu, ji dokončil "
+       "mučednictvím"),
+      ("elias", "Jan přišel v duchu a moci Eliášově – a jako Eliáš čelil "
+       "králi i královně")]),
+    ("hrisnice", "jesus", "Hříšnice v domě farizeje", "L 7",
+     "Na hostině u farizeje Šimona přijde žena se špatnou pověstí, "
+     "pláče u Ježíšových nohou a maže je olejem. Ježíš vysvětlí, že komu "
+     "je mnoho odpuštěno, ten mnoho miluje.",
+     ["jezis", "hrisnice"],
+     [("ztraceni", "Ježíš přijímá hříšníky – ke zlosti „spravedlivých“")]),
+    ("kananejska", "jesus", "Víra kananejské ženy", "Mt 15",
+     "Pohanská matka prosí za posedlou dceru a nenechá se odbýt. Ježíš "
+     "obdivuje její víru: „Ženo, veliká je tvá víra.“",
+     ["jezis", "kananejska_zena"],
+     [("kornelius", "Evangelium je i pro pohany"),
+      ("zazraky", "Jako setník z Kafarnaum je i ona cizinkou s velkou "
+       "vírou")]),
     ("nasyceni", "jesus", "Nasycení zástupu", "J 6",
      "Z pěti chlebů a dvou ryb nasytí Ježíš tisíce lidí. Pak říká: "
      "„Já jsem chléb života.“",
@@ -518,7 +575,7 @@ S = [
     ("zacheus", "jesus", "Slepý Bartimaios a Zacheus", "L 18-19",
      "U Jericha volá slepec o smilování a prohlédne. Celník Zacheus vyleze "
      "na strom, Ježíš k němu přijde domů a Zacheus se změní.",
-     ["jezis", "bartimaios", "zacheus"], []),
+     ["jezis", "bartimaios", "zacheus", "bohaty_mladik"], []),
     ("vjezd", "jesus", "Vjezd do Jeruzaléma", "Mt 21",
      "Ježíš vjíždí do města na oslátku a zástupy volají Hosana. "
      "V chrámu převrací stoly směnárníků.",
@@ -527,10 +584,17 @@ S = [
      "Ježíš myje učedníkům nohy a při velikonoční večeři ohlásí zradu. "
      "Jidáš odchází do noci.",
      ["jezis", "petr", "jidas", "jan-apostol"], []),
+    ("chram-spory", "jesus", "Poslední dny v chrámě", "Mk 11-13",
+     "Ježíš vyhání obchodníky, odpovídá na chytáky o daních i vzkříšení "
+     "a jmenuje největší přikázání. Všimne si chudé vdovy, která dala "
+     "všechno, co měla, a mluví o konci věků.",
+     ["jezis", "chuda_vdova"],
+     [("vjezd", "Stejný týden – po vjezdu do města přichází spor "
+       "o chrám")]),
     ("getsemane", "jesus", "Getsemane a zatčení", "Mt 26",
      "Večeře Páně, modlitba v zahradě: „Ne má, ale tvá vůle.“ Jidáš "
      "zradí polibkem a učedníci utečou.",
-     ["jezis", "jidas", "petr", "jakub-zebedeuv", "jan-apostol"], []),
+     ["jezis", "jidas", "petr", "jakub-zebedeuv", "jan-apostol", "malchos"], []),
     ("soud", "jesus", "Soud před Kaifášem a Pilátem", "J 18",
      "Ježíš stojí před veleknězem, Petr ho třikrát zapře. Pilát se ptá, "
      "co je pravda, a propustí Barabáše.",
@@ -539,7 +603,7 @@ S = [
      "Ježíš nese kříž na Golgotu a umírá se slovy „Dokonáno jest“. "
      "Josef z Arimatie a Nikodém ho pohřbí.",
      ["jezis", "simon-kyrene", "josef-arimatie", "nikodem", "marie",
-      "jan-apostol", "pilat"],
+      "jan-apostol", "pilat", "lotr_na_krizi"],
      [("beranek", "Zabitý Beránek, který zvítězil")]),
     ("vzkriseni", "jesus", "Vzkříšení", "J 20-21",
      "Hrob je prázdný. Ježíš se ukáže Marii Magdalské, Tomášovi "
@@ -560,7 +624,7 @@ S = [
     ("prvni-cirkev", "church", "První církev", "Sk 3-5",
      "Petr a Jan uzdraví chromého a odvážně svědčí před veleradou. "
      "Věřící sdílejí majetek – Barnabáš štědře, Ananiáš a Safira lživě.",
-     ["petr", "jan-apostol", "barnabas", "ananias-safira"], []),
+     ["petr", "jan-apostol", "barnabas", "ananias-safira", "gamaliel"], []),
     ("stepan", "church", "Štěpán, první mučedník", "Sk 6-7",
      "Služebník Štěpán je obviněn a před veleradou vypráví dějiny "
      "Izraele. Umírá s prosbou za ty, kdo ho kamenují; přihlíží Saul.",
@@ -569,7 +633,7 @@ S = [
     ("filip-dvoran", "church", "Filip a etiopský dvořan", "Sk 8",
      "Pronásledovaní věřící nesou zvěst dál. Filip vysvětlí dvořanovi "
      "z Etiopie, o kom mluví Izajáš, a pokřtí ho.",
-     ["dvoran"], []),
+     ["dvoran", "simon_mag"], []),
     ("obraceni", "church", "Obrácení Saula", "Sk 9",
      "Pronásledovatel Saul potká na cestě do Damašku vzkříšeného Ježíše. "
      "Ananiáš mu vrátí zrak a Barnabáš se ho zastane.",
@@ -581,7 +645,12 @@ S = [
     ("prvni-cesta", "church", "První misijní cesta", "Sk 13-14",
      "Církev v Antiochii vysílá Barnabáše a Saula. Na Kypru a v Malé Asii "
      "vznikají sbory, Jan Marek se vrátí domů.",
-     ["pavel", "barnabas", "jan-marek"], []),
+     ["pavel", "barnabas", "jan-marek", "sergius_paulus"], []),
+    ("petr-vezeni", "church", "Petr vysvobozen z vězení", "Sk 12",
+     "Herodes Agrippa dá popravit Jakuba a uvězní Petra. Církev se "
+     "modlí a anděl Petra vyvede. Služka Rode z radosti zapomene otevřít.",
+     ["petr", "jakub-zebedeuv", "rode", "jan-marek"],
+     [("vzkriseni", "Bůh vyvádí z vězení i z hrobu")]),
     ("snem", "church", "Sněm v Jeruzalémě", "Sk 15",
      "Musí se pohané obřezat? Apoštolové a starší se shodnou: spása je "
      "z milosti. Pavel se pak s Barnabášem rozejde.",
@@ -593,10 +662,16 @@ S = [
      "věřící Evropy, v Korintu Pavel pracuje s Priskou a Akvilou.",
      ["pavel", "silas", "lydie", "timoteus", "priska-akvila", "apollos"],
      []),
+    ("efez", "church", "Efez a třetí misijní cesta", "Sk 19-20",
+     "Evangelium mění Efez tak, že stříbrník Démetrios vyvolá vzpouru. "
+     "V Troadě Pavel kříšením Eutycha potěší sbor a s pláčem se loučí "
+     "se staršími z Efezu.",
+     ["pavel", "apollos", "demetrios", "eutychus"],
+     [("pavlovy-listy", "Do Efezu později Pavel napsal list")]),
     ("pavel-souzen", "church", "Pavel zatčen a souzen", "Sk 21-26",
      "V Jeruzalémě je Pavel zatčen. Před Felixem, Festem i králem "
      "Agrippou vypráví, jak potkal Ježíše.",
-     ["pavel", "felix", "festus", "agrippa"],
+     ["pavel", "felix", "festus", "agrippa", "agabos"],
      [("soud", "Jako jeho Pán stojí Pavel před veleradou i římskými "
        "místodržiteli")]),
     ("rim", "church", "Plavba do Říma", "Sk 27-28",

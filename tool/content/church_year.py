@@ -59,6 +59,13 @@ FEASTS = [
      "Čtyřicet dní po narození přinášejí Marie a Josef Ježíše do chrámu. "
      "Starý Simeon v něm poznává „světlo k osvícení národů“.",
      ["L 2,25-32"]),
+    ('annunciation',
+     'white',
+     'Zvěstování Páně',
+     'Anděl Gabriel zvěstuje Marii, že porodí Božího Syna. Devět měsíců před '
+     'Vánoci slaví církev Boží rozhodnutí vstoupit do lidských dějin – i '
+     'Mariino „Staň se mi podle tvého slova“.',
+     ['L 1,26-38', 'Iz 7,14']),
     ("ash", "violet", "Popeleční středa",
      "Začátek postní doby. Popel připomíná lidskou pomíjivost i pokání – "
      "a Boží milosrdenství, které na pokání odpovídá.",
@@ -104,6 +111,20 @@ FEASTS = [
      "Den upálení Mistra Jana Husa v Kostnici (1415). Kazatel, který "
      "zdůrazňoval autoritu Písma, věrnost pravdě a svědomí.",
      ["J 8,31-32", "Sk 5,29"]),
+    ('transfiguration',
+     'white',
+     'Proměnění Páně',
+     'Na hoře zazářila před Petrem, Jakubem a Janem Ježíšova sláva a mluvili '
+     's ním Mojžíš a Eliáš. Z oblaku zazní: „Toto je můj milovaný Syn… toho '
+     'poslouchejte.“',
+     ['Mt 17,1-9', '2Pt 1,16-18']),
+    ('thanksgiving',
+     'green',
+     'Díkůvzdání za úrodu',
+     'Poděkování za úrodu a za všechno, co Bůh dává k životu. Mnohé sbory ho '
+     'slaví první říjnovou neděli – na stole bývá chléb, ovoce a plody '
+     'zahrad.',
+     ['Ž 65,10-14', 'Dt 8,10', '2K 9,10-11']),
     ("reformation", "red", "Den reformace",
      "Výročí Lutherových tezí (1517). Evangelické církve si připomínají "
      "návrat k Písmu a ke zvěsti o milosti, kterou člověk přijímá vírou.",
@@ -121,3 +142,4 @@ FEASTS = [
      "nebi a nové zemi, kde Bůh setře každou slzu.",
      ["Zj 21,3-5", "Mt 25,34-36", "Ko 1,15-17"]),
 ]
+

@@ -196,3 +196,256 @@ q("people", "Jaké řemeslo měl apoštol Pavel?",
   "Stanař", ["Rybář", "Tesař", "Hrnčíř"], "Sk 18,3")
 q("people", "Čím obchodovala Lýdie z Thyatir?",
   "Purpurem", ["Kořením", "Olejem", "Stříbrem"], "Sk 16,14")
+
+
+# --- Doplněné otázky -----------------------------------------------------------
+CATEGORIES += [('kings', 'Králové a proroci'), ('wisdom', 'Žalmy a moudrost')]
+
+q('ot', 'Kam Bůh umístil člověka, kterého stvořil?',
+  'Do zahrady v Edenu', ['Do Babylóna', 'Na horu Sínaj', 'Do země Kenaán'], 'Gn 2,8')
+q('ot', 'Ze kterého stromu Bůh zakázal člověku jíst?',
+  'Ze stromu poznání dobrého a zlého', ['Ze stromu života', 'Z fíkovníku', 'Z olivovníku'], 'Gn 2,17')
+q('ot', 'Proč lidé přestali stavět babylónskou věž?',
+  'Bůh zmátl jejich jazyk', ['Přišla potopa', 'Zničilo ji zemětřesení', 'Došel jim materiál'], 'Gn 11,7-8')
+q('ot', 'Odkud se Abram vydal do Kenaánu, když ho Bůh povolal?',
+  'Z Cháranu', ['Z Egypta', 'Z Ninive', 'Z Damašku'], 'Gn 12,4')
+q('ot', 'Co Hospodin slíbil Abramovi, když mu ukázal hvězdy na nebi?',
+  'Že jeho potomstvo bude stejně početné', ['Že bude králem', 'Že se dožije sta let', 'Že získá Egypt'], 'Gn 15,5')
+q('ot', 'Co se stalo s Lotovou ženou, když se ohlédla?',
+  'Proměnila se v solný sloup', ['Oslepla', 'Onemocněla malomocenstvím', 'Ztratila řeč'], 'Gn 19,26')
+q('ot', 'Co viděl Jákob ve snu v Bét-elu?',
+  'Žebřík sahající do nebe', ['Hořící keř', 'Sedm krav', 'Duhu nad zemí'], 'Gn 28,12')
+q('ot', 'Jaké jméno dostal Jákob po zápasu u potoka Jabok?',
+  'Izrael', ['Abraham', 'Juda', 'Edom'], 'Gn 32,29')
+q('ot', 'Co dal Jákob Josefovi jako znamení zvláštní lásky?',
+  'Pestrobarevnou suknici', ['Zlatý prsten', 'Meč', 'Stádo ovcí'], 'Gn 37,3')
+q('ot', 'Co znamenal faraonův sen o sedmi tučných a sedmi hubených kravách?',
+  'Sedm let hojnosti a sedm let hladu', ['Sedm vítězných válek', 'Sedm let moru', 'Sedm budoucích králů'], 'Gn 41,29-30')
+q('ot', 'Kdo vytáhl malého Mojžíše z vody v ošatce?',
+  'Faraonova dcera', ['Mojžíšova matka', 'Egyptská porodní bába', 'Faraonova manželka'], 'Ex 2,5')
+q('ot', 'Co si Izraelci udělali, když Mojžíš dlouho nesestupoval z hory?',
+  'Zlaté tele', ['Měděného hada', 'Kamenný oltář', 'Zlatou truhlu'], 'Ex 32,4')
+q('ot', 'Kolik zvědů vyslal Mojžíš do kenaanské země?',
+  '12', ['2', '7', '40'], 'Nu 13,2')
+q('ot', 'Kteří dva zvědové dostali slib, že vejdou do zaslíbené země?',
+  'Jozue a Káleb', ['Áron a Chúr', 'Mojžíš a Áron', 'Gedeón a Barák'], 'Nu 14,30')
+q('ot', 'Kdo v Jerichu ukryl izraelské zvědy?',
+  'Rachab', ['Debora', 'Rút', 'Jáel'], 'Joz 2,4')
+q('ot', 'Čím si Gedeón ověřoval Boží vůli?',
+  'Rounem', ['Losem', 'Hvězdami', 'Snem'], 'Sd 6,37')
+q('ot', 'Kde k Eliášovi promluvil Hospodin tichým, jemným hlasem?',
+  'Na hoře Choréb', ['Na Karmelu', 'V jeruzalémském chrámu', 'U Jordánu'], '1Kr 19,8-12')
+q('ot', 'Kdo posilnil Eliáše jídlem, když na poušti prosil o smrt?',
+  'Anděl', ['Havrani', 'Vdova ze Sarepty', 'Elíša'], '1Kr 19,5')
+q('ot', 'Kolikrát se měl Naamán umýt v Jordánu, aby byl čistý?',
+  'Sedmkrát', ['Třikrát', 'Jednou', 'Dvanáctkrát'], '2Kr 5,10')
+q('ot', 'Za kterého krále byl zničen jeruzalémský chrám a lid odveden do Babylóna?',
+  'Nebúkadnesara', ['Kýra', 'Faraona Neka', 'Sancheríba'], '2Kr 25,8-9')
+q('ot', 'Který perský král dovolil Židům vrátit se a postavit chrám?',
+  'Kýros', ['Dareios', 'Xerxes', 'Nebúkadnesar'], 'Ezd 1,1-3')
+q('ot', 'Co napsala tajemná ruka na zeď Belšasarova paláce?',
+  'Mene, mene, tekel, ufarsin', ['Svatý, svatý, svatý', 'Pamatuj na Hospodina', 'Hle, přichází král'], 'Da 5,25')
+q('ot', 'Co Ezechiel uviděl v údolí, kterému Bůh vrátil život?',
+  'Suché kosti', ['Zbořené modly', 'Rozbité hradby', 'Uschlé stromy'], 'Ez 37,1-4')
+q('ot', 'Kterému městu kázal Jonáš pokání?',
+  'Ninive', ['Babylónu', 'Sodomě', 'Týru'], 'Jon 3,2')
+q('gospels', 'Jak se jmenoval anděl, který zvěstoval Marii narození Ježíše?',
+  'Gabriel', ['Michael', 'Rafael', 'Serafín'], 'L 1,26-27')
+q('gospels', 'Kam Marie položila novorozeného Ježíše?',
+  'Do jeslí', ['Do košíku', 'Do kolébky v chrámu', 'Na lůžko v hostinci'], 'L 2,7')
+q('gospels', 'Kdo podle Matouše přišel k Ježíši, veden hvězdou?',
+  'Mudrci od východu', ['Pastýři', 'Kněží z chrámu', 'Herodovi vojáci'], 'Mt 2,1-2')
+q('gospels', 'Kam utekl Josef s Marií a dítětem před Herodem?',
+  'Do Egypta', ['Do Babylóna', 'Do Nazareta', 'Do Damašku'], 'Mt 2,14')
+q('gospels', 'Kolik bylo Ježíšovi, když zůstal v chrámu a rodiče ho hledali?',
+  '12 let', ['30 let', '8 dní', '7 let'], 'L 2,42')
+q('gospels', 'Kolik let bylo Ježíšovi přibližně, když začal veřejně působit?',
+  'Asi 30', ['Asi 20', 'Asi 40', 'Asi 12'], 'L 3,23')
+q('gospels', 'Čím se živil Jan Křtitel na poušti?',
+  'Kobylkami a medem', ['Manou', 'Chlebem a rybami', 'Datlemi a mlékem'], 'Mt 3,4')
+q('gospels', 'Kde podle Matouše Ježíš pronesl blahoslavenství?',
+  'Na hoře', ['Na lodi', 'V chrámu', 'V nazaretské synagoze'], 'Mt 5,1-3')
+q('gospels', 'Kterou modlitbu Ježíš naučil své učedníky?',
+  'Otče náš', ['Žalm 23', 'Slyš, Izraeli', 'Chvalozpěv Mariin'], 'Mt 6,9-13')
+q('gospels', 'Na čem postavil svůj dům moudrý muž z Ježíšova podobenství?',
+  'Na skále', ['Na písku', 'Na kopci', 'U řeky'], 'Mt 7,24-25')
+q('gospels', 'Co udělal Ježíš, když se na jezeře strhla bouře a učedníci ho vzbudili?',
+  'Utišil vítr a moře', ['Poslal je zpět ke břehu', 'Skočil do vody', 'Odplul sám na druhý břeh'], 'Mk 4,39')
+q('gospels', 'Kdo šel po vodě Ježíši naproti?',
+  'Petr', ['Jan', 'Ondřej', 'Jakub'], 'Mt 14,29')
+q('gospels', 'Kdo se ukázal s Ježíšem při jeho proměnění?',
+  'Mojžíš a Eliáš', ['Abraham a David', 'Izajáš a Jeremjáš', 'Noe a Henoch'], 'Mt 17,3')
+q('gospels', 'Kolikrát má podle Ježíše člověk odpustit svému bratru?',
+  'Sedmdesátkrát sedmkrát', ['Sedmkrát', 'Třikrát', 'Jednou za rok'], 'Mt 18,22')
+q('gospels', 'Co udělal mladší syn v podobenství o marnotratném synu?',
+  'Promrhal svůj podíl majetku', ['Zabil vykrmené tele', 'Zůstal doma s otcem', 'Koupil si pole'], 'L 15,13')
+q('gospels', 'Kolik malomocných Ježíš uzdravil, když se mu jen jeden vrátil poděkovat?',
+  '10', ['7', '12', '3'], 'L 17,17')
+q('gospels', 'Na čem vjel Ježíš do Jeruzaléma?',
+  'Na oslátku', ['Na koni', 'Na velbloudu', 'Na voze'], 'J 12,14')
+q('gospels', 'Co podle Jana udělal Ježíš učedníkům při poslední večeři?',
+  'Umyl jim nohy', ['Pomazal je olejem', 'Pokřtil je', 'Dal jim prsteny'], 'J 13,5')
+q('gospels', 'Kde se Ježíš modlil v noci, kdy byl zatčen?',
+  'V Getsemane', ['V chrámu', 'V Betánii', 'V Kafarnaum'], 'Mt 26,36')
+q('gospels', 'Komu Petr při Ježíšově zatčení usekl ucho?',
+  'Malchovi', ['Kaifášovi', 'Barabášovi', 'Jidášovi'], 'J 18,10')
+q('gospels', 'Co dal Pilát napsat nad Ježíšův kříž?',
+  'Ježíš Nazaretský, král Židů', ['Syn Boží', 'Rouhač', 'Prorok z Galileje'], 'J 19,19')
+q('gospels', 'Kdo požádal Piláta o Ježíšovo tělo?',
+  'Josef z Arimatie', ['Petr', 'Zacheus', 'Lazar'], 'Mt 27,57-58')
+q('gospels', 'Kam šli dva učedníci, k nimž se vzkříšený Ježíš připojil na cestě?',
+  'Do Emauz', ['Do Betléma', 'Do Jericha', 'Do Kafarnaum'], 'L 24,13')
+q('gospels', 'Kolik velkých ryb vytáhli učedníci v síti po Ježíšově vzkříšení?',
+  '153', ['100', '99', '77'], 'J 21,11')
+q('gospels', 'Kolikrát se Ježíš po vzkříšení zeptal Petra: „Miluješ mě?“',
+  'Třikrát', ['Jednou', 'Dvakrát', 'Sedmkrát'], 'J 21,17')
+q('church', 'Koho apoštolové vybrali losem na místo Jidáše?',
+  'Matěje', ['Barnabáše', 'Štěpána', 'Pavla'], 'Sk 1,26')
+q('church', 'Koho uzdravili Petr a Jan u chrámové brány zvané Krásná?',
+  'Chromého od narození', ['Slepého', 'Malomocného', 'Hluchoněmého'], 'Sk 3,2-7')
+q('church', 'Kteří manželé lhali o ceně prodaného pole?',
+  'Ananiáš a Safira', ['Akvila a Priscilla', 'Zachariáš a Alžběta', 'Josef a Marie'], 'Sk 5,1-2')
+q('church', 'Komu Filip na cestě vysvětlil proroka Izajáše a pokřtil ho?',
+  'Etiopskému dvořanovi', ['Kornéliovi', 'Šimonu kouzelníkovi', 'Saulovi'], 'Sk 8,27-38')
+q('church', 'Kdo vložil v Damašku ruce na Saula, aby znovu viděl?',
+  'Ananiáš', ['Barnabáš', 'Petr', 'Silas'], 'Sk 9,17')
+q('church', 'Kterého setníka navštívil Petr v Cesareji?',
+  'Kornélia', ['Julia', 'Theofila', 'Felixe'], 'Sk 10,1')
+q('church', 'Kdo vyvedl Petra z vězení, když byl hlídán čtyřmi stráži?',
+  'Anděl Páně', ['Král Herodes', 'Apoštol Jan', 'Římský setník'], 'Sk 12,7')
+q('church', 'Kde Pavel kázal o oltáři „neznámému Bohu“?',
+  'V Athénách', ['V Římě', 'V Korintu', 'V Efezu'], 'Sk 17,22-23')
+q('church', 'Kdo byli Akvila a Priscilla?',
+  'Manželé, Pavlovi spolupracovníci', ['Římští úředníci', 'Proroci z Antiochie', 'Pavlovi rodiče'], 'Sk 18,2')
+q('church', 'Který mladík usnul při Pavlově kázání a vypadl z okna?',
+  'Eutychus', ['Timoteus', 'Titus', 'Onésimus'], 'Sk 20,9')
+q('church', 'K čemu se Pavel odvolal, když byl souzen před Festem?',
+  'K císaři', ['K veleradě', 'K Mojžíšovu zákonu', 'K lidu v Jeruzalémě'], 'Sk 25,11')
+q('church', 'Komu napsal Pavel list kvůli uprchlému otroku Onésimovi?',
+  'Filemonovi', ['Titovi', 'Timoteovi', 'Gaiovi'], 'Fm 1,10')
+q('church', 'Kdo podle Římanům 3,23 zhřešil?',
+  'Všichni', ['Většina lidí', 'Jen pohané', 'Jen zákoníci'], 'Ř 3,23')
+q('church', 'Co je podle Římanům 6,23 mzdou hříchu?',
+  'Smrt', ['Nemoc', 'Chudoba', 'Vyhnanství'], 'Ř 6,23')
+q('church', 'Co podle 1. Korintským 13,13 zůstává?',
+  'Víra, naděje a láska', ['Moudrost a poznání', 'Zákon a proroci', 'Modlitba a půst'], '1K 13,13')
+q('church', 'Jaká je podle Jakubova listu víra bez skutků?',
+  'Mrtvá', ['Dokonalá', 'Skrytá', 'Nejsilnější'], 'Jk 2,17')
+q('church', 'Kolika církvím jsou určeny dopisy na začátku knihy Zjevení?',
+  'Sedmi', ['Dvanácti', 'Třem', 'Deseti'], 'Zj 1,11')
+q('church', 'Kterými slovy se Kristus představuje ve Zjevení 22,13?',
+  'Já jsem Alfa i Omega', ['Já jsem dobrý pastýř', 'Já jsem pravá réva', 'Já jsem chléb života'], 'Zj 22,13')
+q('church', 'Kolik dní po Ježíšově vzkříšení se učedníkům ukazoval, než byl vzat do nebe?',
+  '40', ['3', '7', '50'], 'Sk 1,3')
+q('church', 'Jaké jméno měl Saul, když začal působit mezi pohany?',
+  'Pavel', ['Petr', 'Silas', 'Barnabáš'], 'Sk 13,9')
+q('people', 'Který Abrahamův synovec se usadil u Sodomy?',
+  'Lot', ['Izák', 'Nachor', 'Lában'], 'Gn 13,12')
+q('people', 'Kdo se stal Izákovou manželkou?',
+  'Rebeka', ['Ráchel', 'Lea', 'Sára'], 'Gn 24,67')
+q('people', 'Jak se jmenoval Josefův nejmladší bratr?',
+  'Benjamín', ['Juda', 'Rúben', 'Lévi'], 'Gn 35,18')
+q('people', 'Která Mojžíšova sestra zpívala s bubínkem po přechodu moře?',
+  'Mirjam', ['Sipora', 'Debora', 'Chana'], 'Ex 15,20')
+q('people', 'Jak se jmenovala Mojžíšova manželka?',
+  'Sipora', ['Mirjam', 'Rachab', 'Ráchel'], 'Ex 2,21')
+q('people', 'Která žena se v Šílu modlila o syna a porodila Samuela?',
+  'Chana', ['Penina', 'Noemi', 'Abígail'], '1S 1,20')
+q('people', 'Koho si vzala Rút za muže v Betlémě?',
+  'Bóaza', ['Elímeleka', 'Obéda', 'Machlóna'], 'Rt 4,13')
+q('people', 'Kdo byla Rútina tchyně?',
+  'Noemi', ['Orpa', 'Chana', 'Debora'], 'Rt 1,3-4')
+q('people', 'Jak se jmenoval Davidův otec?',
+  'Jišaj', ['Bóaz', 'Obéd', 'Saul'], '1S 16,1')
+q('people', 'Čí manželkou byla Batšeba, než si ji vzal David?',
+  'Uriáše Chetejského', ['Joába', 'Nátana', 'Abšalóma'], '2S 11,3')
+q('people', 'Který Davidův syn se proti otci vzbouřil?',
+  'Abšalóm', ['Šalomoun', 'Nátan', 'Jónatan'], '2S 15,10')
+q('people', 'Koho povolal Eliáš za svého nástupce?',
+  'Elíšu', ['Gechazího', 'Jonáše', 'Ozeáše'], '1Kr 19,16')
+q('people', 'Která královna chtěla zabít proroka Eliáše?',
+  'Jezábel', ['Atalja', 'Ester', 'Vašti'], '1Kr 19,2')
+q('people', 'Kdo vychoval královnu Ester?',
+  'Mordokaj', ['Haman', 'Nehemjáš', 'Ezdráš'], 'Est 2,7')
+q('people', 'Kdo přišel o všechno, zůstal Bohu věrný a Bůh mu nakonec dvojnásob požehnal?',
+  'Jób', ['Lot', 'Ezau', 'Jonáš'], 'Jb 42,10')
+q('people', 'Kdo byla matka Jana Křtitele?',
+  'Alžběta', ['Anna', 'Marie', 'Salome'], 'L 1,5')
+q('people', 'Jak se jmenovala sestra Marty a Lazara?',
+  'Marie', ['Salome', 'Lýdie', 'Tabita'], 'J 11,1')
+q('people', 'Který velekněz vedl výslech Ježíše?',
+  'Kaifáš', ['Gamaliel', 'Nikodém', 'Zachariáš'], 'Mt 26,57')
+q('people', 'Kterou učednici v Joppe vzkřísil Petr?',
+  'Tabitu', ['Lýdii', 'Priscillu', 'Rode'], 'Sk 9,40')
+q('people', 'U kterého učitele se Pavel vzdělával v Zákoně?',
+  'U Gamaliela', ['U Nikodéma', 'U Kaifáše', 'U Barnabáše'], 'Sk 22,3')
+q('kings', 'Kdo pomazal Davida za krále?',
+  'Samuel', ['Nátan', 'Eliáš', 'Gád'], '1S 16,13')
+q('kings', 'Které město dobyl David a učinil je svým sídlem?',
+  'Jeruzalém', ['Hebron', 'Samaří', 'Betlém'], '2S 5,6-7')
+q('kings', 'Oč požádal Šalomoun Boha, když mu Bůh nabídl cokoli?',
+  'O moudré srdce', ['O bohatství', 'O dlouhý život', 'O vítězství nad nepřáteli'], '1Kr 3,9')
+q('kings', 'Která panovnice přijela vyzkoušet Šalomounovu moudrost?',
+  'Královna ze Šeby', ['Ester', 'Jezábel', 'Vašti'], '1Kr 10,1')
+q('kings', 'Který Šalomounův syn kraloval, když se říše rozdělila?',
+  'Rechabeám', ['Jarobeám', 'Abšalóm', 'Ása'], '1Kr 11,43')
+q('kings', 'Kdo se stal prvním králem severního Izraele po rozdělení říše?',
+  'Jarobeám', ['Rechabeám', 'Achab', 'Omrí'], '1Kr 12,20')
+q('kings', 'Který izraelský král si vzal za ženu Jezábel?',
+  'Achab', ['Jehú', 'Saul', 'Jarobeám'], '1Kr 16,31')
+q('kings', 'Kdo nosil Eliášovi u potoka Kerít chléb a maso?',
+  'Havrani', ['Holubice', 'Anděl', 'Vdova ze Sarepty'], '1Kr 17,6')
+q('kings', 'Komu Elíša rozmnožil olej, aby mohla splatit dluh?',
+  'Chudé vdově', ['Šúnemské ženě', 'Naamánovi', 'Královně Jezábel'], '2Kr 4,1-7')
+q('kings', 'Kolik bylo Jóašovi, když se stal judským králem?',
+  '7 let', ['12 let', '18 let', '30 let'], '2Kr 12,1')
+q('kings', 'Kterému králi Bůh prodloužil život o patnáct let?',
+  'Chizkijášovi', ['Joziášovi', 'Davidovi', 'Uzijášovi'], '2Kr 20,6')
+q('kings', 'Za kterého krále se v chrámu našla kniha Zákona?',
+  'Joziáše', ['Chizkijáše', 'Achaza', 'Menašeho'], '2Kr 22,8')
+q('kings', 'Kdy viděl Izajáš Hospodina sedět na vysokém trůnu?',
+  'V roce, kdy zemřel král Uzijáš', ['Při posvěcení chrámu', 'V babylónském zajetí', 'Při korunovaci Joziáše'], 'Iz 6,1')
+q('kings', 'Čeho se ve vidění dotkl serafín Izajášových rtů?',
+  'Žhavým uhlíkem', ['Kapkou oleje', 'Svitkem knihy', 'Svou rukou'], 'Iz 6,6-7')
+q('kings', 'Kolik let mělo podle Jeremjáše trvat babylónské zajetí?',
+  '70', ['40', '7', '400'], 'Jr 25,11')
+q('kings', 'Kterého proroka spustili do cisterny plné bláta?',
+  'Jeremjáše', ['Izajáše', 'Ezechiela', 'Daniela'], 'Jr 38,6')
+q('kings', 'Kterému prorokovi Bůh řekl, aby si vzal Gomeru?',
+  'Ozeášovi', ['Ámosovi', 'Jóelovi', 'Micheášovi'], 'Oz 1,2-3')
+q('kings', 'Čím byl Ámos, než ho Bůh poslal prorokovat?',
+  'Pastýřem a pěstitelem fíků', ['Knězem', 'Písařem', 'Rybářem'], 'Am 7,14')
+q('kings', 'Který prorok zvěstoval, že Bůh vylije svého Ducha na každé tělo?',
+  'Jóel', ['Ámos', 'Malachiáš', 'Abakuk'], 'Jl 3,1')
+q('kings', 'Který prorok pokáral krále Davida po hříchu s Batšebou?',
+  'Nátan', ['Samuel', 'Gád', 'Eliáš'], '2S 12,7')
+q('wisdom', 'Čím je podle Žalmu 119 Boží slovo mé noze?',
+  'Svítilnou', ['Holí', 'Pokrmem', 'Štítem'], 'Ž 119,105')
+q('wisdom', 'Čemu se podobá spravedlivý podle Žalmu 1?',
+  'Stromu u tekoucích vod', ['Skále', 'Lvu', 'Hvězdě'], 'Ž 1,3')
+q('wisdom', 'Komu připisují nadpisy nejvíc žalmů?',
+  'Davidovi', ['Šalomounovi', 'Mojžíšovi', 'Asafovi'], 'Ž 3,1')
+q('wisdom', 'Který žalm je nejdelší kapitolou Bible?',
+  '119', ['23', '150', '51'], 'Ž 119,1')
+q('wisdom', 'Kolik žalmů obsahuje kniha Žalmů?',
+  '150', ['120', '100', '176'], 'Ž 150,6')
+q('wisdom', 'Co je podle Přísloví počátkem poznání?',
+  'Bázeň před Hospodinem', ['Bohatství', 'Učení u mudrců', 'Dlouhý věk'], 'Př 1,7')
+q('wisdom', 'Na co se nemáš spoléhat podle Přísloví 3,5?',
+  'Na vlastní rozumnost', ['Na Hospodina', 'Na rady otce', 'Na modlitbu'], 'Př 3,5')
+q('wisdom', 'Ke kterému tvoru posílají Přísloví lenocha, aby se učil?',
+  'K mravenci', ['K včele', 'Ke lvu', 'K holubici'], 'Př 6,6')
+q('wisdom', 'Co má podle Kazatele svůj čas?',
+  'Všechno pod nebem', ['Jen radost', 'Jen práce', 'Jen modlitba'], 'Kaz 3,1')
+q('wisdom', 'Kterými slovy začíná Kazatel svou úvahu o životě?',
+  'Marnost nad marnost', ['Bázeň Hospodinova', 'Všechno je dobré', 'Hle, činím nové věci'], 'Kaz 1,2')
+q('wisdom', 'O čem zpívá Píseň písní?',
+  'O lásce mezi milými', ['O stvoření světa', 'O válce', 'O stavbě chrámu'], 'Pís 1,2')
+q('wisdom', 'Kdo podle knihy Jób zpochybnil před Hospodinem Jóbovu věrnost?',
+  'Satan', ['Elífaz', 'Bildad', 'Michael'], 'Jb 1,9-11')
+q('wisdom', 'Kolik přátel přišlo Jóba potěšit?',
+  'Tři', ['Sedm', 'Dva', 'Dvanáct'], 'Jb 2,11')
+q('wisdom', 'Který žalm je Davidovou kajícnou modlitbou po hříchu s Batšebou?',
+  '51', ['23', '1', '100'], 'Ž 51,1-2')
+q('wisdom', 'Jak začíná Žalm 46: „Bůh je naše …“',
+  'Útočiště a síla', ['Světlo a spása', 'Pastýř', 'Píseň'], 'Ž 46,2')

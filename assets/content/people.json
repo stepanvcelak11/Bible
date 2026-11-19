@@ -7875,6 +7875,1032 @@
      25
     ]
    ]
+  },
+  {
+   "id": "joel",
+   "name": "Jóel",
+   "role": "prorok Hospodinova dne",
+   "where": "Juda",
+   "occupation": "prorok",
+   "relatives": "otec Petúel",
+   "strengths": [
+    "Viděl v pohromě kobylek výzvu k pokání",
+    "Ohlásil vylití Ducha na všechny lidi"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Pravé pokání je věc srdce, ne vnějších gest („roztrhněte srdce“).",
+    "Petr o Letnicích ukázal, že se Jóelovo proroctví naplnilo (Sk 2,16–21)."
+   ],
+   "books": [
+    29
+   ],
+   "key": [
+    29,
+    2,
+    13,
+    13
+   ],
+   "story": [
+    [
+     29,
+     1,
+     1,
+     4
+    ],
+    [
+     29,
+     2,
+     12,
+     17
+    ],
+    [
+     29,
+     3,
+     1,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "abdijas",
+   "name": "Abdijáš",
+   "role": "prorok proti pýše Edómu",
+   "where": "Juda",
+   "occupation": "prorok",
+   "relatives": "",
+   "strengths": [
+    "Napsal nejkratší knihu Starého zákona",
+    "Ohlásil, že Bůh soudí pýchu i škodolibost"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Radovat se z neštěstí druhých je hřích (Abd 12).",
+    "Pýcha klame srdce a vede k pádu."
+   ],
+   "books": [
+    31
+   ],
+   "key": [
+    31,
+    1,
+    15,
+    15
+   ],
+   "story": [
+    [
+     31,
+     1,
+     1,
+     4
+    ],
+    [
+     31,
+     1,
+     10,
+     15
+    ],
+    [
+     31,
+     1,
+     17,
+     21
+    ]
+   ]
+  },
+  {
+   "id": "nahum",
+   "name": "Nahum",
+   "role": "prorok pádu Ninive",
+   "where": "Elkóš",
+   "occupation": "prorok (7. stol. př. Kr.)",
+   "relatives": "",
+   "strengths": [
+    "Těšil Judu zprávou, že tyranie Asýrie skončí",
+    "Spojil Boží spravedlnost s jeho dobrotou"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Hospodin je dobrý, je záštitou v den soužení (Na 1,7).",
+    "Ani nejmocnější říše nestojí nad Božím soudem."
+   ],
+   "books": [
+    34
+   ],
+   "key": [
+    34,
+    1,
+    7,
+    7
+   ],
+   "story": [
+    [
+     34,
+     1,
+     1,
+     8
+    ],
+    [
+     34,
+     3,
+     1,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "sofonjas",
+   "name": "Sofonjáš",
+   "role": "prorok, který zpíval o Boží radosti",
+   "where": "Juda za krále Jóšijáše",
+   "occupation": "prorok",
+   "relatives": "potomek krále Chizkijáše",
+   "strengths": [
+    "Varoval před lhostejností „usazených“ lidí",
+    "Ukázal Boha, který se nad svým lidem raduje s jásotem"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Bůh není lhostejný – soudí i obnovuje.",
+    "Bůh se nad svým lidem raduje a obnovuje ho svou láskou (Sf 3,17)."
+   ],
+   "books": [
+    36
+   ],
+   "key": [
+    36,
+    3,
+    17,
+    17
+   ],
+   "story": [
+    [
+     36,
+     1,
+     1,
+     6
+    ],
+    [
+     36,
+     1,
+     12,
+     18
+    ],
+    [
+     36,
+     3,
+     14,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "ageus",
+   "name": "Ageus",
+   "role": "prorok, který povzbudil ke stavbě chrámu",
+   "where": "Jeruzalém po návratu z exilu",
+   "occupation": "prorok (520 př. Kr.)",
+   "relatives": "",
+   "strengths": [
+    "Krátce a jasně vyzval lid k obnovení chrámu",
+    "Spolu se Zacharjášem povzbudil Zerubábela a velekněze Jóšuu"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "„Pomyslete na své cesty“ – Bůh má mít v životě první místo.",
+    "Malé začátky nejsou bezvýznamné, když je s námi Bůh."
+   ],
+   "books": [
+    37,
+    15
+   ],
+   "key": [
+    37,
+    1,
+    5,
+    5
+   ],
+   "story": [
+    [
+     37,
+     1,
+     1,
+     15
+    ],
+    [
+     37,
+     2,
+     1,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "zacharjas_prorok",
+   "name": "Zacharjáš (prorok)",
+   "role": "prorok nočních vidění a přicházejícího krále",
+   "where": "Jeruzalém po návratu z exilu",
+   "occupation": "prorok a kněz",
+   "relatives": "děd Iddo, otec Berekjáš",
+   "strengths": [
+    "Povzbuzoval lid vizemi Boží blízkosti",
+    "Předpověděl krále, který přijede na oslátku"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Ne mocí ani silou, ale Božím Duchem (Za 4,6).",
+    "Ježíšův vjezd do Jeruzaléma naplnil Zacharjášovo proroctví (Mt 21,4–5)."
+   ],
+   "books": [
+    38,
+    15
+   ],
+   "key": [
+    38,
+    4,
+    6,
+    6
+   ],
+   "story": [
+    [
+     38,
+     1,
+     1,
+     6
+    ],
+    [
+     38,
+     4,
+     1,
+     14
+    ],
+    [
+     38,
+     9,
+     9,
+     10
+    ]
+   ]
+  },
+  {
+   "id": "malachias",
+   "name": "Malachiáš",
+   "role": "poslední prorok Starého zákona",
+   "where": "Jeruzalém po exilu",
+   "occupation": "prorok (asi 450 př. Kr.)",
+   "relatives": "",
+   "strengths": [
+    "Mluvil formou otázek a odpovědí, které odhalovaly výmluvy lidu",
+    "Ohlásil posla, který připraví cestu Pánu"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Bůh se nemění a zůstává věrný své smlouvě (Mal 3,6).",
+    "Bohu patří to nejlepší, ne zbytky."
+   ],
+   "books": [
+    39
+   ],
+   "key": [
+    39,
+    3,
+    6,
+    6
+   ],
+   "story": [
+    [
+     39,
+     1,
+     6,
+     14
+    ],
+    [
+     39,
+     3,
+     1,
+     12
+    ],
+    [
+     39,
+     3,
+     22,
+     24
+    ]
+   ]
+  },
+  {
+   "id": "jehu",
+   "name": "Jehú",
+   "role": "král Izraele, který vyhubil Baalovu bohoslužbu",
+   "where": "Izrael (Samaří)",
+   "occupation": "velitel vojska, později král",
+   "relatives": "syn Jóšafata, vnuk Nimšího",
+   "strengths": [
+    "Rázně skoncoval s Baalovým kultem",
+    "Splnil úkol, který mu Bůh svěřil"
+   ],
+   "weaknesses": [
+    "Jednal krutě a s velkým krveprolitím",
+    "Nechal v zemi zlaté býčky Jarobeámovy"
+   ],
+   "lessons": [
+    "Horlivost bez celého srdce nestačí (2Kr 10,31).",
+    "Kdo začne dobře, musí v poslušnosti i pokračovat."
+   ],
+   "books": [
+    12
+   ],
+   "key": [
+    12,
+    10,
+    31,
+    31
+   ],
+   "story": [
+    [
+     12,
+     9,
+     1,
+     13
+    ],
+    [
+     12,
+     9,
+     30,
+     37
+    ],
+    [
+     12,
+     10,
+     18,
+     31
+    ]
+   ]
+  },
+  {
+   "id": "gechazi",
+   "name": "Gechazí",
+   "role": "služebník proroka Elíši",
+   "where": "Izrael",
+   "occupation": "služebník proroka",
+   "relatives": "",
+   "strengths": [
+    "Byl u Elíšových zázraků blízko",
+    "Pomohl Šúnemce, když Elíša hledal, jak jí poděkovat"
+   ],
+   "weaknesses": [
+    "Ze ziskuchtivosti si vymohl dary od Naamána",
+    "Lhal svému pánovi"
+   ],
+   "lessons": [
+    "Blízkost Božímu dílu ještě neznamená proměněné srdce.",
+    "Chamtivost dokáže zkazit i to, co Bůh dal zadarmo."
+   ],
+   "books": [
+    12
+   ],
+   "key": [
+    12,
+    5,
+    26,
+    26
+   ],
+   "story": [
+    [
+     12,
+     4,
+     8,
+     37
+    ],
+    [
+     12,
+     5,
+     20,
+     27
+    ]
+   ]
+  },
+  {
+   "id": "nadab_abihu",
+   "name": "Nádab a Abíhú",
+   "role": "Áronovi synové, kteří přinesli „cizí oheň“",
+   "where": "poušť Sínaj",
+   "occupation": "kněží",
+   "relatives": "otec Áron, bratři Elazar a Ítamar",
+   "strengths": [
+    "Směli vystoupit na horu s Mojžíšem a spatřit Boží slávu"
+   ],
+   "weaknesses": [
+    "Přinesli před Hospodina oheň, který jim nepřikázal"
+   ],
+   "lessons": [
+    "Bůh je svatý a k bohoslužbě nepatří libovůle.",
+    "Čím blíž Bohu, tím větší odpovědnost."
+   ],
+   "books": [
+    2,
+    3
+   ],
+   "key": [
+    3,
+    10,
+    3,
+    3
+   ],
+   "story": [
+    [
+     2,
+     24,
+     1,
+     11
+    ],
+    [
+     3,
+     10,
+     1,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "gamaliel",
+   "name": "Gamaliel",
+   "role": "vážený učitel zákona",
+   "where": "Jeruzalém",
+   "occupation": "farizeus, člen veleradny",
+   "relatives": "",
+   "strengths": [
+    "Moudře zabránil zabití apoštolů",
+    "Vychoval mladého Saula (Pavla)"
+   ],
+   "weaknesses": [
+    "Zůstal opatrně neutrální, místo aby se rozhodl"
+   ],
+   "lessons": [
+    "Co je od Boha, nikdo nezastaví (Sk 5,38–39).",
+    "Moudrost a umírněnost mohou chránit, ale víra žádá rozhodnutí."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    5,
+    38,
+    39
+   ],
+   "story": [
+    [
+     44,
+     5,
+     33,
+     42
+    ],
+    [
+     44,
+     22,
+     3,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "simon_mag",
+   "name": "Šimon mág",
+   "role": "kouzelník, který chtěl koupit Ducha svatého",
+   "where": "Samaří",
+   "occupation": "kouzelník",
+   "relatives": "",
+   "strengths": [
+    "Uvěřil zvěsti a dal se pokřtít",
+    "Na Petrovu výtku požádal o modlitbu"
+   ],
+   "weaknesses": [
+    "Chtěl si moc Ducha svatého koupit za peníze",
+    "Toužil po obdivu lidí"
+   ],
+   "lessons": [
+    "Boží dar se nedá koupit (Sk 8,20).",
+    "Duchovní služba není cesta k moci a slávě."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    8,
+    20,
+    21
+   ],
+   "story": [
+    [
+     44,
+     8,
+     9,
+     24
+    ]
+   ]
+  },
+  {
+   "id": "herodiada",
+   "name": "Herodiada",
+   "role": "žena, která chtěla hlavu Jana Křtitele",
+   "where": "Galilea, dvůr Heroda Antipy",
+   "occupation": "manželka Heroda Antipy",
+   "relatives": "manžel Herodes Antipas; dcera Salome",
+   "strengths": [],
+   "weaknesses": [
+    "Nesnesla Janovo napomenutí a chovala k němu nenávist",
+    "Využila svou dceru k pomstě"
+   ],
+   "lessons": [
+    "Kdo odmítá napomenutí, může skončit u velkého zla.",
+    "Neodpuštěná zášť roste a hledá příležitost."
+   ],
+   "books": [
+    40,
+    41
+   ],
+   "key": [
+    41,
+    6,
+    19,
+    19
+   ],
+   "story": [
+    [
+     41,
+     6,
+     14,
+     29
+    ],
+    [
+     40,
+     14,
+     1,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "eutychus",
+   "name": "Eutychus",
+   "role": "mladík, který usnul při Pavlově kázání",
+   "where": "Troas",
+   "occupation": "",
+   "relatives": "",
+   "strengths": [
+    "Přišel večer na shromáždění, kde se lámal chléb"
+   ],
+   "weaknesses": [
+    "Usnul a spadl z okna"
+   ],
+   "lessons": [
+    "Bůh se sklání i k naší slabosti a únavě.",
+    "Společenství pokračuje i po zkoušce – a s útěchou (Sk 20,12)."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    20,
+    12,
+    12
+   ],
+   "story": [
+    [
+     44,
+     20,
+     7,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "agabos",
+   "name": "Agabos",
+   "role": "prorok rané církve",
+   "where": "Judsko, Antiochie, Cesareje",
+   "occupation": "prorok",
+   "relatives": "",
+   "strengths": [
+    "Předpověděl hlad, a církev tak mohla včas pomoci",
+    "Varoval Pavla před poutáním v Jeruzalémě"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Proroctví v církvi slouží k pomoci a přípravě, ne k senzaci.",
+    "I varování lze přijmout s odevzdaností: „Staň se vůle Páně.“"
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    21,
+    11,
+    11
+   ],
+   "story": [
+    [
+     44,
+     11,
+     27,
+     30
+    ],
+    [
+     44,
+     21,
+     10,
+     14
+    ]
+   ]
+  },
+  {
+   "id": "rode",
+   "name": "Rode",
+   "role": "služka, která v radosti zapomněla otevřít",
+   "where": "Jeruzalém, dům Marie, matky Jana Marka",
+   "occupation": "služka",
+   "relatives": "",
+   "strengths": [
+    "Poznala Petrův hlas a radostně to zvěstovala",
+    "Trvala na pravdě, i když se jí ostatní smáli"
+   ],
+   "weaknesses": [
+    "Z radosti nechala Petra stát za dveřmi"
+   ],
+   "lessons": [
+    "Bůh někdy odpoví na modlitbu dřív, než tomu stačíme uvěřit.",
+    "Radost z Boží odpovědi je nakažlivá."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    12,
+    14,
+    14
+   ],
+   "story": [
+    [
+     44,
+     12,
+     12,
+     17
+    ]
+   ]
+  },
+  {
+   "id": "sergius_paulus",
+   "name": "Sergius Paulus",
+   "role": "římský místodržitel na Kypru, který uvěřil",
+   "where": "Pafos na Kypru",
+   "occupation": "prokonzul",
+   "relatives": "",
+   "strengths": [
+    "Rozumný muž, který chtěl slyšet Boží slovo",
+    "Uvěřil, když viděl Boží moc a slyšel učení"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Evangelium oslovuje i vlivné a vzdělané lidi.",
+    "Odpor proti pravdě (Elymas) nemůže Boží slovo zastavit."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    13,
+    12,
+    12
+   ],
+   "story": [
+    [
+     44,
+     13,
+     4,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "demetrios",
+   "name": "Démetrios",
+   "role": "stříbrník, který vyvolal vzpouru v Efezu",
+   "where": "Efez",
+   "occupation": "zlatník, výrobce stříbrných chrámků Artemidy",
+   "relatives": "",
+   "strengths": [
+    "Rozpoznal, že evangelium mění životy i hospodářství města"
+   ],
+   "weaknesses": [
+    "Hájil svůj zisk pod záminkou zbožnosti",
+    "Pobouřil celé město proti křesťanům"
+   ],
+   "lessons": [
+    "Evangelium může ohrozit pohodlné zdroje zisku.",
+    "Peníze se rády převlékají za náboženské či vlastenecké motivy."
+   ],
+   "books": [
+    44
+   ],
+   "key": [
+    44,
+    19,
+    26,
+    27
+   ],
+   "story": [
+    [
+     44,
+     19,
+     23,
+     41
+    ]
+   ]
+  },
+  {
+   "id": "malchos",
+   "name": "Malchos",
+   "role": "sluha velekněze, kterého Ježíš uzdravil",
+   "where": "Getsemane",
+   "occupation": "sluha velekněze",
+   "relatives": "",
+   "strengths": [
+    "Zažil Ježíšovo uzdravení uprostřed zatýkání"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Ježíš uzdravuje i ty, kdo přišli proti němu.",
+    "Násilí není cestou Božího království (Mt 26,52)."
+   ],
+   "books": [
+    42,
+    43
+   ],
+   "key": [
+    42,
+    22,
+    51,
+    51
+   ],
+   "story": [
+    [
+     43,
+     18,
+     10,
+     11
+    ],
+    [
+     42,
+     22,
+     49,
+     51
+    ]
+   ]
+  },
+  {
+   "id": "zena_krvotok",
+   "name": "Žena trpící krvotokem",
+   "role": "žena, která se dotkla Ježíšova roucha",
+   "where": "Galilea",
+   "occupation": "",
+   "relatives": "",
+   "strengths": [
+    "Po dvanácti letech nemoci nevzdala naději",
+    "Věřila, že stačí dotknout se Ježíše",
+    "Odvážila se vystoupit a říct celou pravdu"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Ježíš si všímá i těch, které společnost odstrčila.",
+    "Víra se může projevit tichým dotykem – Ježíš ji vidí."
+   ],
+   "books": [
+    40,
+    41,
+    42
+   ],
+   "key": [
+    41,
+    5,
+    34,
+    34
+   ],
+   "story": [
+    [
+     41,
+     5,
+     25,
+     34
+    ],
+    [
+     42,
+     8,
+     43,
+     48
+    ]
+   ]
+  },
+  {
+   "id": "hrisnice",
+   "name": "Hříšná žena v domě farizeje",
+   "role": "žena, která pomazala Ježíšovy nohy",
+   "where": "Galilea, dům farizeje Šimona",
+   "occupation": "",
+   "relatives": "",
+   "strengths": [
+    "Projevila velikou lásku a vděčnost",
+    "Nestyděla se za slzy před ostatními"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Komu je mnoho odpuštěno, ten mnoho miluje (L 7,47).",
+    "Ježíš nehledí na pověst, ale na srdce."
+   ],
+   "books": [
+    42
+   ],
+   "key": [
+    42,
+    7,
+    47,
+    47
+   ],
+   "story": [
+    [
+     42,
+     7,
+     36,
+     50
+    ]
+   ]
+  },
+  {
+   "id": "bohaty_mladik",
+   "name": "Bohatý mladík",
+   "role": "mladý muž, který odešel smutný",
+   "where": "Judsko",
+   "occupation": "zámožný muž, podle Lukáše předák",
+   "relatives": "",
+   "strengths": [
+    "Upřímně se ptal po věčném životě",
+    "Od mládí zachovával přikázání"
+   ],
+   "weaknesses": [
+    "Nedokázal se vzdát majetku pro Ježíše"
+   ],
+   "lessons": [
+    "Ježíš zkoumá, čemu patří naše srdce.",
+    "Co je nemožné u lidí, je možné u Boha (Mt 19,26)."
+   ],
+   "books": [
+    40,
+    41,
+    42
+   ],
+   "key": [
+    41,
+    10,
+    21,
+    21
+   ],
+   "story": [
+    [
+     40,
+     19,
+     16,
+     26
+    ],
+    [
+     41,
+     10,
+     17,
+     27
+    ]
+   ]
+  },
+  {
+   "id": "chuda_vdova",
+   "name": "Chudá vdova",
+   "role": "vdova, která dala dvě drobné mince",
+   "where": "Jeruzalém, chrám",
+   "occupation": "",
+   "relatives": "",
+   "strengths": [
+    "Dala všechno, co měla",
+    "Důvěřovala Bohu ve své chudobě"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Bůh neměří velikost daru, ale srdce a oběť.",
+    "I malý dar může být největší."
+   ],
+   "books": [
+    41,
+    42
+   ],
+   "key": [
+    41,
+    12,
+    43,
+    44
+   ],
+   "story": [
+    [
+     41,
+     12,
+     41,
+     44
+    ],
+    [
+     42,
+     21,
+     1,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "kananejska_zena",
+   "name": "Kananejská žena",
+   "role": "matka, která neustoupila",
+   "where": "okolí Týru a Sidónu",
+   "occupation": "",
+   "relatives": "dcera posedlá zlým duchem",
+   "strengths": [
+    "Vytrvale prosila za svou dceru",
+    "Pokorně a s důvtipem odpověděla Ježíšovi"
+   ],
+   "weaknesses": [],
+   "lessons": [
+    "Vytrvalá modlitba se neodbývá (Mt 15,28).",
+    "Boží milost je i pro ty, kdo stojí „venku“."
+   ],
+   "books": [
+    40,
+    41
+   ],
+   "key": [
+    40,
+    15,
+    28,
+    28
+   ],
+   "story": [
+    [
+     40,
+     15,
+     21,
+     28
+    ],
+    [
+     41,
+     7,
+     24,
+     30
+    ]
+   ]
+  },
+  {
+   "id": "lotr_na_krizi",
+   "name": "Kajícný lotr na kříži",
+   "role": "zločinec, kterému Ježíš slíbil ráj",
+   "where": "Golgota",
+   "occupation": "zločinec",
+   "relatives": "",
+   "strengths": [
+    "Uznal svou vinu",
+    "Na poslední chvíli se obrátil k Ježíši s prosbou"
+   ],
+   "weaknesses": [
+    "Žil jako zločinec"
+   ],
+   "lessons": [
+    "Nikdy není pozdě obrátit se ke Kristu.",
+    "Spasení je dar, ne odměna za zásluhy (L 23,43)."
+   ],
+   "books": [
+    42
+   ],
+   "key": [
+    42,
+    23,
+    42,
+    43
+   ],
+   "story": [
+    [
+     42,
+     23,
+     39,
+     43
+    ]
+   ]
   }
  ]
 }

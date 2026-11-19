@@ -587,7 +587,8 @@
    ],
    "summary": "Jednou v roce vstupuje velekněz s krví oběti do svatyně svatých a kozel odnáší hříchy lidu na poušť.",
    "people": [
-    "aron"
+    "aron",
+    "nadab_abihu"
    ],
    "links": [
     {
@@ -1266,12 +1267,42 @@
     "elisa",
     "elias",
     "naaman",
-    "sunemka"
+    "sunemka",
+    "gechazi"
    ],
    "links": [
     {
      "to": "krest",
      "label": "Očištění v Jordánu – Ježíš na Naamána upozorní v Nazaretu (L 4,27)"
+    }
+   ]
+  },
+  {
+   "id": "jehu",
+   "era": "divided",
+   "title": "Jehú a konec Achabova domu",
+   "span": "2Kr 9–10",
+   "ref": [
+    12,
+    9,
+    0,
+    0,
+    10
+   ],
+   "summary": "Elíšův učedník pomaže velitele Jehúa za krále. Jehú vyhladí Achabův rod i Baalovu bohoslužbu, ale sám nechodí za Hospodinem celým srdcem.",
+   "people": [
+    "jehu",
+    "elisa",
+    "jezabel"
+   ],
+   "links": [
+    {
+     "to": "nabot",
+     "label": "Eliášovo slovo nad Achabem a Jezábel se naplňuje"
+    },
+    {
+     "to": "elias",
+     "label": "Jehúovo pomazání patřilo k úkolům, které Eliáš dostal na Chorébu (1Kr 19,16)"
     }
    ]
   },
@@ -1299,6 +1330,29 @@
     {
      "to": "kornelius",
      "label": "Boží milosrdenství k cizím národům"
+    }
+   ]
+  },
+  {
+   "id": "joel",
+   "era": "divided",
+   "title": "Jóel: den Hospodinův a dar Ducha",
+   "span": "Jl 1–4",
+   "ref": [
+    29,
+    1,
+    0,
+    0,
+    4
+   ],
+   "summary": "Pohroma kobylek je pro Jóela výzvou k pokání: „Roztrhněte svá srdce.“ Bůh slibuje obnovu a vylití svého Ducha na všechny lidi.",
+   "people": [
+    "joel"
+   ],
+   "links": [
+    {
+     "to": "letnice",
+     "label": "Petr o Letnicích cituje Jóela: „Vyleji svého Ducha na všechny lidi“ (Sk 2,16-21)"
     }
    ]
   },
@@ -1460,6 +1514,57 @@
    ]
   },
   {
+   "id": "nahum",
+   "era": "divided",
+   "title": "Nahum: pád Ninive",
+   "span": "Na 1–3",
+   "ref": [
+    34,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Asyrské Ninive, kdysi kající se po Jonášově kázání, se vrátilo k násilí. Nahum ohlašuje jeho pád a těší Judu: Hospodin je dobrý, je záštitou v den soužení.",
+   "people": [
+    "nahum"
+   ],
+   "links": [
+    {
+     "to": "jonas",
+     "label": "Totéž město: jednou přijalo milost, později propadlo soudu"
+    },
+    {
+     "to": "pad-samari",
+     "label": "Asýrie, která zničila Samaří, sama padne"
+    }
+   ]
+  },
+  {
+   "id": "sofonjas",
+   "era": "divided",
+   "title": "Sofonjáš: Bůh se raduje nad svým lidem",
+   "span": "Sf 1–3",
+   "ref": [
+    36,
+    1,
+    0,
+    0,
+    3
+   ],
+   "summary": "Za krále Jóšijáše varuje Sofonjáš před dnem Hospodinovým, který zasáhne i lhostejné. Kniha končí písní o Bohu, který se nad svým lidem raduje s jásotem.",
+   "people": [
+    "sofonjas",
+    "josijas"
+   ],
+   "links": [
+    {
+     "to": "josijas",
+     "label": "Sofonjáš kázal za Jóšijáše – snad i jeho slova připravila půdu pro reformu"
+    }
+   ]
+  },
+  {
    "id": "josijas",
    "era": "divided",
    "title": "Jóšijáš a nalezená kniha Zákona",
@@ -1578,6 +1683,33 @@
     {
      "to": "drak",
      "label": "Babylon se stává obrazem každé pyšné moci, která nakonec padne"
+    }
+   ]
+  },
+  {
+   "id": "abdijas",
+   "era": "divided",
+   "title": "Abdijáš: soud nad Edómem",
+   "span": "Abd 1",
+   "ref": [
+    31,
+    1,
+    0,
+    0,
+    1
+   ],
+   "summary": "Když padl Jeruzalém, Edóm – potomci Ezaua – se z neštěstí bratra radoval a pomáhal nepříteli. Nejkratší kniha Starého zákona ohlašuje, že pýcha padne a království bude Hospodinovo.",
+   "people": [
+    "abdijas"
+   ],
+   "links": [
+    {
+     "to": "jakob-ezau",
+     "label": "Spor bratrů Jákoba a Ezaua pokračuje v jejich národech"
+    },
+    {
+     "to": "pad-jeruzalema",
+     "label": "Edóm se radoval z pádu Jeruzaléma"
     }
    ]
   },
@@ -1721,7 +1853,9 @@
    "summary": "Perský král Kýros dovolí Židům vrátit se. Zerubábel vede stavbu chrámu a proroci Ageus a Zachariáš povzbuzují lid.",
    "people": [
     "kyros",
-    "zerubabel"
+    "zerubabel",
+    "ageus",
+    "zacharjas_prorok"
    ],
    "links": [
     {
@@ -1823,7 +1957,9 @@
     3
    ],
    "summary": "Poslední prorok Starého zákona ohlašuje posla, který připraví cestu, a příchod proroka Eliáše.",
-   "people": [],
+   "people": [
+    "malachias"
+   ],
    "links": [
     {
      "to": "krest",
@@ -2042,12 +2178,94 @@
     "jezis",
     "setnik-kafarnaum",
     "jairos",
-    "matous"
+    "matous",
+    "zena_krvotok"
    ],
    "links": [
     {
      "to": "kornelius",
      "label": "Víra římského setníka – předzvěst víry pohanů"
+    }
+   ]
+  },
+  {
+   "id": "smrt-jana",
+   "era": "jesus",
+   "title": "Smrt Jana Křtitele",
+   "span": "Mk 6",
+   "ref": [
+    41,
+    6,
+    0,
+    0,
+    6
+   ],
+   "summary": "Jan napomenul Heroda Antipu kvůli Herodiadě a skončil ve vězení. Na hostině Herodiada využije tance své dcery a vyžádá si Janovu hlavu.",
+   "people": [
+    "jan-krtitel",
+    "herodes-antipas",
+    "herodiada"
+   ],
+   "links": [
+    {
+     "to": "krest",
+     "label": "Ten, kdo připravil Ježíši cestu, ji dokončil mučednictvím"
+    },
+    {
+     "to": "elias",
+     "label": "Jan přišel v duchu a moci Eliášově – a jako Eliáš čelil králi i královně"
+    }
+   ]
+  },
+  {
+   "id": "hrisnice",
+   "era": "jesus",
+   "title": "Hříšnice v domě farizeje",
+   "span": "L 7",
+   "ref": [
+    42,
+    7,
+    0,
+    0,
+    7
+   ],
+   "summary": "Na hostině u farizeje Šimona přijde žena se špatnou pověstí, pláče u Ježíšových nohou a maže je olejem. Ježíš vysvětlí, že komu je mnoho odpuštěno, ten mnoho miluje.",
+   "people": [
+    "jezis",
+    "hrisnice"
+   ],
+   "links": [
+    {
+     "to": "ztraceni",
+     "label": "Ježíš přijímá hříšníky – ke zlosti „spravedlivých“"
+    }
+   ]
+  },
+  {
+   "id": "kananejska",
+   "era": "jesus",
+   "title": "Víra kananejské ženy",
+   "span": "Mt 15",
+   "ref": [
+    40,
+    15,
+    0,
+    0,
+    15
+   ],
+   "summary": "Pohanská matka prosí za posedlou dceru a nenechá se odbýt. Ježíš obdivuje její víru: „Ženo, veliká je tvá víra.“",
+   "people": [
+    "jezis",
+    "kananejska_zena"
+   ],
+   "links": [
+    {
+     "to": "kornelius",
+     "label": "Evangelium je i pro pohany"
+    },
+    {
+     "to": "zazraky",
+     "label": "Jako setník z Kafarnaum je i ona cizinkou s velkou vírou"
     }
    ]
   },
@@ -2158,7 +2376,8 @@
    "people": [
     "jezis",
     "bartimaios",
-    "zacheus"
+    "zacheus",
+    "bohaty_mladik"
    ],
    "links": []
   },
@@ -2202,6 +2421,30 @@
    "links": []
   },
   {
+   "id": "chram-spory",
+   "era": "jesus",
+   "title": "Poslední dny v chrámě",
+   "span": "Mk 11–13",
+   "ref": [
+    41,
+    11,
+    0,
+    0,
+    13
+   ],
+   "summary": "Ježíš vyhání obchodníky, odpovídá na chytáky o daních i vzkříšení a jmenuje největší přikázání. Všimne si chudé vdovy, která dala všechno, co měla, a mluví o konci věků.",
+   "people": [
+    "jezis",
+    "chuda_vdova"
+   ],
+   "links": [
+    {
+     "to": "vjezd",
+     "label": "Stejný týden – po vjezdu do města přichází spor o chrám"
+    }
+   ]
+  },
+  {
    "id": "getsemane",
    "era": "jesus",
    "title": "Getsemane a zatčení",
@@ -2219,7 +2462,8 @@
     "jidas",
     "petr",
     "jakub-zebedeuv",
-    "jan-apostol"
+    "jan-apostol",
+    "malchos"
    ],
    "links": []
   },
@@ -2266,7 +2510,8 @@
     "nikodem",
     "marie",
     "jan-apostol",
-    "pilat"
+    "pilat",
+    "lotr_na_krizi"
    ],
    "links": [
     {
@@ -2362,7 +2607,8 @@
     "petr",
     "jan-apostol",
     "barnabas",
-    "ananias-safira"
+    "ananias-safira",
+    "gamaliel"
    ],
    "links": []
   },
@@ -2404,7 +2650,8 @@
    ],
    "summary": "Pronásledovaní věřící nesou zvěst dál. Filip vysvětlí dvořanovi z Etiopie, o kom mluví Izajáš, a pokřtí ho.",
    "people": [
-    "dvoran"
+    "dvoran",
+    "simon_mag"
    ],
    "links": []
   },
@@ -2464,9 +2711,36 @@
    "people": [
     "pavel",
     "barnabas",
-    "jan-marek"
+    "jan-marek",
+    "sergius_paulus"
    ],
    "links": []
+  },
+  {
+   "id": "petr-vezeni",
+   "era": "church",
+   "title": "Petr vysvobozen z vězení",
+   "span": "Sk 12",
+   "ref": [
+    44,
+    12,
+    0,
+    0,
+    12
+   ],
+   "summary": "Herodes Agrippa dá popravit Jakuba a uvězní Petra. Církev se modlí a anděl Petra vyvede. Služka Rode z radosti zapomene otevřít.",
+   "people": [
+    "petr",
+    "jakub-zebedeuv",
+    "rode",
+    "jan-marek"
+   ],
+   "links": [
+    {
+     "to": "vzkriseni",
+     "label": "Bůh vyvádí z vězení i z hrobu"
+    }
+   ]
   },
   {
    "id": "snem",
@@ -2519,6 +2793,32 @@
    "links": []
   },
   {
+   "id": "efez",
+   "era": "church",
+   "title": "Efez a třetí misijní cesta",
+   "span": "Sk 19–20",
+   "ref": [
+    44,
+    19,
+    0,
+    0,
+    20
+   ],
+   "summary": "Evangelium mění Efez tak, že stříbrník Démetrios vyvolá vzpouru. V Troadě Pavel kříšením Eutycha potěší sbor a s pláčem se loučí se staršími z Efezu.",
+   "people": [
+    "pavel",
+    "apollos",
+    "demetrios",
+    "eutychus"
+   ],
+   "links": [
+    {
+     "to": "pavlovy-listy",
+     "label": "Do Efezu později Pavel napsal list"
+    }
+   ]
+  },
+  {
    "id": "pavel-souzen",
    "era": "church",
    "title": "Pavel zatčen a souzen",
@@ -2535,7 +2835,8 @@
     "pavel",
     "felix",
     "festus",
-    "agrippa"
+    "agrippa",
+    "agabos"
    ],
    "links": [
     {

@@ -458,3 +458,243 @@ MORE = {
         "Bože, dej mému životu smysl. Nauč mě milovat tebe i lidi "
         "kolem mě a ukaž mi, k čemu mě voláš."),
 }
+
+
+# --- Doplněné situace ---
+MORE.update({'jealous': (['Závist je stará jako lidstvo. Kain záviděl Ábelovi, Jákobovi '
+              'synové Josefovi, Saul Davidovi. Pokaždé začala nenápadně – '
+              'srovnáním – a skončila tím, že rozbila vztah.',
+              'Žalm 73 začíná upřímně: „Záviděl jsem chvástavcům, když jsem '
+              'viděl, jak se daří svévolníkům.“ Obrat přichází, když žalmista '
+              'vstoupí do Boží svatyně a podívá se na věci z Boží strany. '
+              'Závist roste z pohledu, ve kterém chybí Bůh.',
+              'Lékem na závist není předstírat, že nic nechceme, ale učit se '
+              'vděčnosti a radovat se s těmi, kdo se radují. Pavel píše, že '
+              'se naučil být spokojený v každé situaci – bylo to učení, ne '
+              'vrozená vlastnost.'],
+             ['Pojmenujte, co přesně druhému závidíte – a co to říká o vaší '
+              'touze.',
+              'Napište tři věci, za které můžete být vděční právě teď.',
+              'Pomodlete se za člověka, kterému závidíte, a přejte mu dobro.'],
+             'Pane, odpusť mi, že se srovnávám a závidím. Nauč mě radovat se '
+             'z toho, co dáváš druhým, a děkovat za to, co jsi dal mně.'),
+ 'disappointed': (['Učedníci na cestě do Emauz řekli smutnou větu: „A my jsme '
+                   'doufali…“ Jejich očekávání se rozpadla. Ježíš s nimi '
+                   'přesto šel – nejdřív naslouchal, potom jim otevřel Písma.',
+                   'Zklamání často vzniká z rozdílu mezi tím, co jsme čekali, '
+                   'a tím, co přišlo. Žalmista se ptá: „Dokdy, Hospodine?“ '
+                   'Bible nás neučí zklamání skrývat, ale přinést ho k Bohu.',
+                   'Abakuk na konci své knihy píše: i kdyby fíkovník nekvetl '
+                   'a ve chlévech nebyl dobytek, já budu jásat v Hospodinu. '
+                   'Neříká, že je všechno v pořádku – rozhoduje se důvěřovat, '
+                   'i když to tak nevypadá.'],
+                  ['Řekněte Bohu upřímně, co vás zklamalo a co jste čekali.',
+                   'Zkuste rozlišit, co bylo vaše očekávání a co Boží slib.',
+                   'Svěřte se někomu, komu důvěřujete.'],
+                  'Bože, jsem zklamaný a nevím, co si s tím počít. Přináším '
+                  'ti své nesplněné naděje. Jdi se mnou, jako jsi šel s '
+                  'učedníky do Emauz.'),
+ 'death': (['Bible mluví o smrti otevřeně. Nazývá ji nepřítelem, ne něčím, co '
+            'je třeba přijmout s úsměvem. I Ježíš se v Getsemane chvěl '
+            'úzkostí.',
+            'List Židům píše, že Kristus zemřel, aby vysvobodil ty, kdo byli '
+            'strachem ze smrti drženi v otroctví po celý život. Strach nemusí '
+            'zmizet hned, ale už nemá poslední slovo.',
+            'Pavel napsal z vězení: „Mně je životem Kristus a smrt ziskem.“ '
+            'Smrt pro něj byla dveřmi, ne zdí. Ježíš slibuje: „V domě mého '
+            'Otce je mnoho příbytků… jdu, abych vám připravil místo.“'],
+           ['Pojmenujte, čeho se na smrti bojíte nejvíc.',
+            'Přečtěte si pomalu Jan 14,1–3 jako slova určená vám.',
+            'Promluvte o svém strachu s někým blízkým nebo s duchovním.'],
+           'Pane Ježíši, ty jsi prošel smrtí a vstal jsi. Vezmi můj strach a '
+           'dej mi naději, že ani smrt mě neoddělí od tvé lásky.'),
+ 'overwhelmed': (['Marta se starala o mnoho věcí a byla podrážděná. Ježíš jí '
+                  'neřekl, že je špatná. Řekl: „Marto, Marto, děláš si '
+                  'starosti a znepokojuješ se pro mnoho věcí, ale jen jednoho '
+                  'je třeba.“ Uprostřed shonu zve k tomu podstatnému.',
+                  'Mojžíš soudil lid od rána do večera, až mu tchán řekl: '
+                  '„Není dobré, jak to děláš. Uštveš se.“ Rozdělit práci a '
+                  'přijmout pomoc není slabost, ale moudrost.',
+                  'Ježíš zval učedníky: „Pojďte stranou na pusté místo a '
+                  'trochu si odpočiňte.“ A Bůh v žalmu říká: „Ztište se a '
+                  'vězte, že já jsem Bůh.“ Ticho není ztráta času – je to '
+                  'místo, kde se srovnají priority.'],
+                 ['Sepište, co vás tíží, a označte, co opravdu musíte udělat '
+                  'vy.',
+                  'Požádejte dnes o pomoc s jednou konkrétní věcí.',
+                  'Najděte si deset minut ticha bez telefonu.'],
+                 'Pane, je toho na mě moc. Zastav mě, abych slyšel, co je '
+                 'opravdu důležité. Dej mi odvahu něco pustit a přijmout '
+                 'pomoc.'),
+ 'conflict': (['Bible není kniha bez konfliktů. Abram a Lot se museli '
+               'rozdělit, Pavel a Barnabáš se rozešli po ostrém sporu. Spor '
+               'sám není selhání – záleží na tom, jak s ním naložíme.',
+               'Ježíš dává praktický postup: jdi a promluv si s ním nejdřív '
+               'mezi čtyřma očima. Ne za zády, ne přes druhé. A dokonce říká, '
+               'že smíření je důležitější než dar na oltáři.',
+               'Jakub radí: buďte rychlí k naslouchání, pomalí k mluvení, '
+               'pomalí k hněvu. Pavel dodává: „Je-li možné, pokud to záleží '
+               'na vás, žijte se všemi v pokoji.“ Ne vždy to jde – ale náš '
+               'díl je v našich rukou.'],
+              ['Než začnete mluvit, vyslechněte, jak věc vidí druhý.',
+               'Přiznejte svůj podíl na sporu, i kdyby byl menší.',
+               'Navrhněte klidný rozhovor mezi čtyřma očima.'],
+              'Bože pokoje, ukaž mi, kde jsem se mýlil já. Dej mi odvahu jít '
+              'ke smíření jako první a moudrost mluvit tak, aby to stavělo, a '
+              'ne bořilo.'),
+ 'change': (['Abram slyšel: „Odejdi ze své země… do země, kterou ti ukážu.“ '
+             'Nevěděl, kam jde – věděl jen, kdo ho vede. Víra často znamená '
+             'vykročit dřív, než vidíme celou cestu.',
+             'Změny přinášejí ztrátu i příležitost. Izraelité na poušti '
+             'vzpomínali na egyptské hrnce masa. Je v pořádku truchlit nad '
+             'tím, co končí – a zároveň se otevřít tomu, co Bůh připravuje.',
+             'Uprostřed proměn zůstává něco stálého: „Ježíš Kristus je tentýž '
+             'včera i dnes i navěky.“ Místa a lidé se mění, Boží věrnost ne.'],
+            ['Sepište, co vám změna bere a co vám může dát.',
+             'Rozlučte se vědomě s tím, co končí – i poděkováním.',
+             'Hledejte na novém místě společenství, kam můžete patřit.'],
+            'Pane, jdu do neznáma. Děkuji ti za to, co končí, a svěřuji ti '
+            'to, co začíná. Veď mě a buď se mnou, jako jsi byl s Abrahamem.'),
+ 'aging': (['Bůh u Izajáše slibuje: „Až do vašeho stáří jsem to já, až do '
+            'šedin vás ponesu.“ Péče, kterou jsme zažili jako děti, nekončí, '
+            'když síly ubývají.',
+            'Žalm 92 říká, že spravedliví ponesou ovoce i ve stáří a budou '
+            'plní svěžesti. Stáří může být čas, kdy se předává víra, '
+            'zkušenost a modlitba těm, kdo přijdou po nás.',
+            'Simeon a Anna v chrámu byli staří, a přece čekali s otevřenýma '
+            'očima. Simeon pak mohl říct: „Nyní propouštíš svého služebníka v '
+            'pokoji.“ Konec života může být naplněním, ne jen úbytkem.'],
+           ['Vyprávějte někomu mladšímu, jak vás Bůh vedl.',
+            'Modlete se pravidelně za konkrétní mladší lidi.',
+            'Přijímejte pomoc druhých jako dar, ne jako porážku.'],
+           'Bože, ty jsi se mnou od mládí až dosud. Až přijdou šediny, nes mě '
+           'ty. Dej, ať i teď přináším ovoce a předávám víru dál.'),
+ 'study': (['Daniel a jeho přátelé se v Babylóně tři roky učili jazyk a '
+            'literaturu cizí země. Bible říká, že jim Bůh dal poznání a '
+            'porozumění – a oni přitom poctivě studovali. Boží pomoc a '
+            'vlastní píle nejdou proti sobě.',
+            'Přísloví mluví o hledání moudrosti jako o hledání pokladu. Učení '
+            'tak není jen cesta ke známce, ale způsob, jak poznávat svět, '
+            'který Bůh stvořil.',
+            'Před zkouškou se hodí Pavlova rada: o nic nemějte starost, ale '
+            've všem předkládejte své prosby Bohu. Pokoj nepřichází z jistoty '
+            'výsledku, ale z vědomí, že na výsledku nestojí naše hodnota.'],
+           ['Rozdělte si učení na malé denní kroky.',
+            'Před učením se krátce pomodlete o soustředění.',
+            'Po zkoušce poděkujte – ať dopadla jakkoli.'],
+           'Pane, dej mi jasnou mysl a vytrvalost při učení. Svěřuji ti '
+           'zkoušku i její výsledek. Ať vím, že má hodnota je v tobě, ne ve '
+           'známkách.'),
+ 'friendship': (['David a Jónatan jsou v Bibli obrazem věrného přátelství: '
+                 'Jónatan miloval Davida jako sám sebe, i když tím riskoval '
+                 'přízeň vlastního otce. Opravdové přátelství něco stojí.',
+                 'Ježíš nazval učedníky přáteli: „Už vás nenazývám '
+                 'služebníky… nazval jsem vás přáteli.“ Přátelství s ním je '
+                 'základem, ze kterého můžeme být přáteli druhým.',
+                 'Přísloví říkají, že přítel miluje v každé době a že železo '
+                 'se ostří železem. Dobrý přítel nás nejen utěší, ale i '
+                 'povzbudí k růstu – někdy i nepříjemnou pravdou.'],
+                ['Ozvěte se dnes příteli, se kterým jste dlouho nemluvili.',
+                 'Zeptejte se přítele, jak se mu opravdu daří, a vyslechněte '
+                 'ho.',
+                 'Poděkujte Bohu jmenovitě za své přátele.'],
+                'Děkuji ti, Pane, za přátele, které jsi mi dal. Nauč mě být '
+                'věrným přítelem, který povzbuzuje, naslouchá a zůstává i v '
+                'těžkých časech.'),
+ 'joblost': (['Práce dává denní rytmus, příjem i pocit užitečnosti. Když '
+              'zmizí, ozve se strach i stud. Bible ale nikdy neměří hodnotu '
+              'člověka jeho pracovním místem.',
+              'Ježíš mluví o ptácích a liliích ne jako o návodu k nečinnosti, '
+              'ale jako o pozvání k důvěře: „Váš nebeský Otec ví, že to '
+              'všechno potřebujete.“ Hledat nejprve Boží království znamená '
+              'nevložit celou jistotu do výplaty.',
+              'Rút přišla do Betléma bez ničeho a šla sbírat klasy na cizí '
+              'pole. Právě tam ji Bůh nečekaně vedl. Období hledání může být '
+              'i obdobím, kdy se otevírají nové cesty.'],
+             ['Udržujte si denní rytmus – vstávání, modlitbu, pohyb i '
+              'hledání.',
+              'Řekněte o své situaci přátelům a lidem ve sboru; pomoc často '
+              'přichází přes druhé.',
+              'Zapisujte si každý den jednu věc, za kterou jste vděční.'],
+             'Otče, přišel jsem o jistotu, o kterou jsem se opíral. Ty víš, '
+             'co potřebuji. Dej mi pokoj, sílu hledat a otevři mi dveře, '
+             'které mají být otevřené.'),
+ 'addiction': (['Pavel přesně popisuje vnitřní rozpolcenost: „Nedělám dobro, '
+                'které chci, ale zlo, které nechci.“ Závislost není jen slabá '
+                'vůle – je to pouto, které člověk sám nerozváže.',
+                'Ježíš slibuje: „Když vás Syn vysvobodí, budete opravdu '
+                'svobodní.“ Svoboda přichází jako dar, ale často postupně – '
+                'den za dnem, krok za krokem.',
+                'Jakub radí: vyznávejte si navzájem hříchy a modlete se jeden '
+                'za druhého. Ze závislosti se málokdo dostane sám. Odborná '
+                'pomoc, skupina nebo věrný přítel mohou být Boží odpovědí na '
+                'modlitbu.'],
+               ['Řekněte pravdu o svém boji alespoň jednomu důvěryhodnému '
+                'člověku.',
+                'Vyhledejte odbornou pomoc nebo svépomocnou skupinu.',
+                'Počítejte dny po jednom – a za každý poděkujte.'],
+               'Pane, sám to nezvládnu. Jsem svázaný a toužím po svobodě. Dej '
+               'mi pravdivost, pokoru přijmout pomoc a sílu na dnešní den.'),
+ 'mocked': (['Ježíš svým učedníkům nic nezastíral: „Jestliže vás svět '
+             'nenávidí, vězte, že mne nenáviděl dříve než vás.“ Nepochopení '
+             'kvůli víře není známka, že děláme něco špatně.',
+             'Petr radí odpovídat na otázky tiše a s uctivostí a mít dobré '
+             'svědomí. Ne hádat se, ne vracet urážky – ale být připraveni '
+             'vysvětlit, proč máme naději.',
+             'Apoštolové odcházeli z veleradny s radostí, že byli uznáni za '
+             'hodné snášet potupu pro Ježíšovo jméno. To neznamená vyhledávat '
+             'posměch, ale vědět, že v něm nejsme sami a že má smysl.'],
+            ['Modlete se za ty, kdo se vám posmívají.',
+             'Připravte si vlastními slovy, proč věříte.',
+             'Najděte spojence – jiného věřícího ve škole nebo v práci.'],
+            'Pane Ježíši, ani tebe nechápali a posmívali se ti. Dej mi pokoj, '
+            'laskavá slova a odvahu nestydět se za tebe. Žehnej těm, kdo se '
+            'mi smějí.'),
+ 'serve': (['Ježíš o sobě řekl: „Syn člověka nepřišel, aby si dal sloužit, '
+            'ale aby sloužil.“ Při poslední večeři to ukázal: vzal zástěru a '
+            'umyl učedníkům nohy.',
+            'Petr píše, že každý dostal nějaký dar a má jím sloužit druhým. '
+            'Služba nemusí být velká ani viditelná – hrnek vody, návštěva, '
+            'modlitba. Ježíš říká, že co jsme udělali nejmenším, udělali jsme '
+            'jemu.',
+            'Pavel povzbuzuje: neochabujme v konání dobra. Služba umí '
+            'vyčerpat, proto je dobré sloužit z toho, co dostáváme od Boha, a '
+            'ne jen z vlastních sil.'],
+           ['Zeptejte se ve sboru nebo v okolí, kde je potřeba pomoc.',
+            'Zamyslete se, jaké dary vám Bůh dal a komu by mohly posloužit.',
+            'Udělejte dnes jednu skrytou službu, o které nikdo neví.'],
+           'Pane, ty jsi sloužil i mně. Otevři mi oči pro potřeby lidí kolem '
+           'a dej mi ochotné ruce a srdce, které nehledá uznání.'),
+ 'witness': (['Uzdravený muž z Gerasy chtěl jít s Ježíšem, ale slyšel: „Jdi '
+              'domů ke svým a oznam jim, jak veliké věci ti Pán učinil.“ '
+              'Svědectví začíná doma a začíná vlastním příběhem.',
+              'Když Natanael pochyboval, že z Nazareta může vzejít něco '
+              'dobrého, Filip se s ním nepřel. Řekl jen: „Pojď a podívej se.“ '
+              'Nemusíme mít odpovědi na všechno – můžeme pozvat.',
+              'Pavel radí, aby naše řeč byla vždy laskavá, solí okořeněná. '
+              'Víra se nesdílí jen slovy, ale i tím, jak jednáme. Světlo se '
+              'nestaví pod nádobu – ale ani nikoho neoslňuje.'],
+             ['Napište si krátce, jak jste přišli k víře a co pro vás '
+              'znamená.',
+              'Modlete se za tři lidi, se kterými byste rádi mluvili o Bohu.',
+              'Pozvěte někoho na bohoslužbu, do skupinky nebo ke společnému '
+              'čtení Bible.'],
+             'Pane, dej mi odvahu i laskavost mluvit o tobě. Ukaž mi lidi, '
+             'kteří jsou otevření, a dej mi slova, která budou pravdivá a '
+             'přívětivá.'),
+ 'silence': (['Ježíš na kříži volal slovy žalmu: „Bože můj, Bože můj, proč '
+              'jsi mě opustil?“ I on prožil hlubinu Boží vzdálenosti. Proto '
+              'smíme tuto zkušenost vyslovit i my – v modlitbě, ne mimo ni.',
+              'Žalmista přirovnává svou touhu k laní, která prahne po vodě. '
+              'Žízeň po Bohu je sama o sobě známkou vztahu. Kdo Boha '
+              'postrádá, ještě ho neztratil.',
+              'Bůh slibuje: „Budete mě hledat a naleznete, když mě budete '
+              'hledat celým srdcem.“ V obdobích ticha pomáhá věrnost malým '
+              'věcem – modlitbě, Písmu, společenství – i bez pocitů. Jako '
+              'zahrada, která roste i v noci.'],
+             ['Pomodlete se Žalm 13 nebo 42 jako svou vlastní modlitbu.',
+              'Nečekejte na pocity – zůstaňte u pravidelné modlitby a čtení.',
+              'Svěřte se zkušenému křesťanovi, jak to prožíváte.'],
+             'Bože, nevidím tě a neslyším. Přesto k tobě volám. Věřím, že jsi '
+             'blízko, i když to necítím. Nenech mě odejít a dej, ať tě znovu '
+             'poznám.')})

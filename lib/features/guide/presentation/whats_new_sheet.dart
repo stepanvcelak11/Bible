@@ -7,9 +7,18 @@ import '../../../core/theme/app_theme.dart';
 import 'guide_screen.dart';
 
 /// Verze přehledu novinek – zvýšit při další velké aktualizaci.
-const whatsNewVersion = 30;
+const whatsNewVersion = 31;
 
 const _items = [
+  (
+    Icons.people_alt_outlined,
+    '25 nových biblických postav',
+    'Medailony malých proroků (Jóel, Abdijáš, Nahum, Sofonjáš, Ageus, '
+        'Zacharjáš, Malachiáš), krále Jehúa, Gechazího, Gamaliele, Šimona '
+        'mága, Herodiady, Rode, Eutycha i lidí z evangelií – chudé vdovy, '
+        'kananejské ženy, bohatého mladíka nebo lotra na kříži. Strom Bible '
+        'má 11 nových příběhů.',
+  ),
   (
     Icons.auto_awesome,
     'Velká aktualizace obsahu',

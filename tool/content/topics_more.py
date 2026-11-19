@@ -1421,3 +1421,202 @@ topic("warfare", "world", "shield", "Duchovní boj",
        "pro evangelium pokoje“."],
       ["Který kus „Boží výzbroje“ teď nejvíc potřebuji?",
        "Kde mohu tento týden přemoci zlé dobrým?"])
+
+
+# --- Doplněná témata ---
+topic('mercy', 'god', 'heart', 'Boží milosrdenství',
+      'Bůh se v Bibli představuje jako „milosrdný a milostivý, shovívavý, nejvýš laskavý a věrný“. Jeho milosrdenství znamená, že nás nenechává tam, kam jsme se dostali vlastní vinou, a sklání se ke slabým.',
+      [('Ex 34,6-7', 'Bůh milosrdný a milostivý'),
+ ('Ž 103,8-13', 'Jako se otec slitovává nad syny'),
+ ('Iz 49,15', 'Matka nezapomene'),
+ ('Pl 3,22-23', 'Nové každé ráno'),
+ ('Mi 7,18', 'Bůh, který má zalíbení v milosrdenství'),
+ ('L 6,36', 'Buďte milosrdní'),
+ ('L 10,33-37', 'Milosrdný Samařan'),
+ ('Ef 2,4-5', 'Bůh bohatý v milosrdenství')],
+      ['Hebrejské slovo rachamim souvisí se slovem rechem – mateřské lůno. '
+ 'Boží milosrdenství se tak přirovnává k hlubokému citu matky k dítěti. '
+ 'U Izajáše Bůh říká: i kdyby matka zapomněla na své dítě, já na tebe '
+ 'nezapomenu.',
+ 'Ježíš milosrdenství ukazuje činy: dotýká se malomocných, jí s '
+ 'hříšníky, odpouští ženě přistižené při cizoložství. V podobenství o '
+ 'milosrdném Samařanovi se milosrdenství stává měřítkem toho, kdo je '
+ 'můj bližní – a Ježíš zve: „Buďte milosrdní, jako je milosrdný váš '
+ 'Otec.“'],
+      ['Popis Boha „milosrdného a milostivého“ z Ex 34,6 se ve Starém zákoně '
+ 'vrací znovu a znovu – v žalmech, u Jonáše, Jóela i Nehemjáše.',
+ 'Řecké eleos (milosrdenství) zní v prosbě Kyrie eleison – „Pane, '
+ 'smiluj se“. Tak volali na Ježíše slepí u Jericha.'],
+      ['Kde jsem sám zažil milosrdenství, které jsem si nezasloužil?',
+ 'Komu bych dnes mohl prokázat milosrdenství?'])
+topic('obedience', 'life', 'signpost', 'Poslušnost',
+      'Poslouchat v Bibli znamená slyšet a jednat. Poslušnost není cesta, jak si Boží lásku vysloužit, ale odpověď na lásku, kterou už jsme dostali: „Jestliže mě milujete, budete zachovávat má přikázání.“',
+      [('Dt 6,4-6', 'Slyš, Izraeli'),
+ ('1S 15,22', 'Poslušnost je lepší než oběť'),
+ ('Žd 11,8', 'Abraham poslechl'),
+ ('L 1,38', 'Staň se mi'),
+ ('J 14,15', 'Jestliže mě milujete'),
+ ('L 22,42', 'Ne má vůle, ale tvá'),
+ ('Jk 1,22', 'Činitelé slova'),
+ ('Žd 5,8', 'Naučil se poslušnosti')],
+      ['Hebrejské šama znamená slyšet i poslechnout. „Slyš, Izraeli“ tedy '
+ 'není výzva jen k poslouchání ušima, ale k životu, který slyšené '
+ 'uskuteční. Jakub říká totéž: buďte činiteli slova, ne jen posluchači.',
+ 'Abraham vyšel, aniž věděl kam; Marie řekla „staň se mi podle tvého '
+ 'slova“; Ježíš se v Getsemane modlil „ne má vůle, ale tvá“. Poslušnost '
+ 'v Bibli často stojí víc, než se zdá – a přináší víc, než člověk '
+ 'čekal.'],
+      ['Samuel králi Saulovi řekl: „Poslušnost je lepší než oběť“ (1S 15,22) '
+ '– Bohu nejde o náboženské výkony, ale o srdce.',
+ 'List Židům píše, že i Ježíš „se naučil poslušnosti z toho, co '
+ 'vytrpěl“ (Žd 5,8).'],
+      ['V čem mě Bůh vede k poslušnosti právě teď?',
+ 'Je pro mě poslušnost spíš povinnost, nebo odpověď lásky?'])
+topic('women', 'relations', 'person', 'Ženy v Bibli',
+      'Biblický příběh by nebyl úplný bez žen: Sára, Mirjam, Debora, Rút, Chana, Ester, Marie, Marta, Marie Magdalská, Lýdie, Priscilla… Bůh skrze ně jedná v klíčových chvílích dějin.',
+      [('Sd 4,4-5', 'Prorokyně Debora'),
+ ('Rt 1,16', 'Rút: tvůj lid je můj lid'),
+ ('1S 1,27-28', 'Chanina modlitba vyslyšena'),
+ ('Est 4,14', 'Ester: pro takovou chvíli'),
+ ('Př 31,10', 'Statečná žena'),
+ ('L 1,38', 'Marie: staň se mi'),
+ ('L 10,39', 'Marie u Ježíšových nohou'),
+ ('J 20,17-18', 'Marie Magdalská zvěstuje'),
+ ('Ř 16,1-3', 'Foibé a Priscilla')],
+      ['V době, kdy svědectví ženy mnoho neplatilo, byly ženy prvními svědky '
+ 'vzkříšení. Ježíš poslal Marii Magdalskou, aby to oznámila učedníkům – '
+ 'proto jí církevní otcové říkali „apoštolka apoštolů“.',
+ 'Ježíš se k ženám choval na svou dobu neobvykle: mluvil se Samařankou '
+ 'u studny, nechal Marii sedět u svých nohou jako učednici a zastal se '
+ 'ženy přistižené při cizoložství. Pavel ve svých listech jmenovitě '
+ 'zdraví mnoho spolupracovnic, například Foibé, Priscillu a Junii.'],
+      ['Matoušův rodokmen Ježíše jmenuje čtyři ženy ze Starého zákona: Tamar, '
+ 'Rachab, Rút a Batšebu („Uriášovu ženu“).',
+ 'Debora je jediná žena mezi soudci v knize Soudců a zároveň je nazvána '
+ 'prorokyní (Sd 4,4).'],
+      ['Která biblická žena mě inspiruje a proč?',
+ 'Co mi Ježíšův přístup k ženám říká o mých vztazích?'])
+topic('leadership', 'relations', 'crown', 'Vedení a autorita',
+      'Bible chce vedoucí, kteří slouží. Dobrý pastýř se stará o stádo, král má znát Boží zákon a Ježíš říká: kdo chce být mezi vámi první, ať je služebníkem všech.',
+      [('Ex 18,21', 'Schopní a bohabojní muži'),
+ ('Dt 17,18-19', 'Král a Boží zákon'),
+ ('2S 12,7', 'Ty jsi ten muž'),
+ ('Mk 10,42-45', 'Kdo chce být první'),
+ ('1Pt 5,2-3', 'Pasťte Boží stádo'),
+ ('Žd 13,17', 'Poslouchejte své vedoucí'),
+ ('1Tm 2,1-2', 'Modlitba za vládnoucí'),
+ ('Ř 13,1', 'Moc od Boha')],
+      ['Starý zákon měří krále podle toho, zda vedou lid k Bohu. David je '
+ '„muž podle Božího srdce“, ale Bible jeho selhání nezamlčuje – a '
+ 'prorok Nátan mu odvážně řekne „Ty jsi ten muž“. Autorita v Bibli '
+ 'stojí pod Božím slovem, ne nad ním.',
+ 'Ježíš obrací měřítka: velký je ten, kdo slouží. Umývá učedníkům nohy '
+ 'a Petr potom starší sborů vybízí, aby pásli stádo ochotně, ne pro '
+ 'zisk a ne jako páni, ale jako vzor. Zároveň Bible vede k úctě k '
+ 'vedoucím a k modlitbě za ty, kdo mají moc.'],
+      ['Mojžíš na radu tchána Jitra rozdělil vedení lidu mezi představené nad '
+ 'tisíci, sty, padesáti a deseti – první biblický příklad sdílené '
+ 'zodpovědnosti.',
+ 'Pavel žádá modlitby „za krále a za všechny, kdo jsou ve vysokém '
+ 'postavení“ – v době, kdy vládli římští císaři, kteří křesťanům '
+ 'nepřáli.'],
+      ['Kde mám vliv na druhé a jak ho používám?',
+ 'Za které vedoucí se mohu pravidelně modlit?'])
+topic('promises', 'future', 'key', 'Boží zaslíbení',
+      'Bible je kniha zaslíbení: Bůh slibuje požehnání Abrahamovi, trůn Davidovi, novou smlouvu skrze proroky a svého Ducha učedníkům. Zaslíbení se opírají o Boží věrnost a v Kristu dostávají své „ano“.',
+      [('Gn 12,2-3', 'Požehnání pro všechny národy'),
+ ('2S 7,12-13', 'Davidův trůn navěky'),
+ ('Jr 31,31-33', 'Nová smlouva'),
+ ('Ez 36,26', 'Nové srdce'),
+ ('J 14,16-17', 'Jiný Přímluvce'),
+ ('2K 1,20', 'Ano v Kristu'),
+ ('Žd 11,13', 'Z dálky to viděli'),
+ ('2Pt 3,13', 'Nová nebesa a nová země')],
+      ['Zaslíbení Abrahamovi (Gn 12) je osou celého biblického příběhu: země, '
+ 'potomstvo a požehnání pro všechny národy. Pavel v listu Galatským '
+ 'vidí jeho naplnění v Kristu, skrze něhož požehnání přichází i k '
+ 'pohanům.',
+ 'Mnohá zaslíbení se plní postupně – částečně už v dějinách Izraele, '
+ 'plně v Kristu a definitivně při jeho návratu. List Židům proto mluví '
+ 'o lidech víry, kteří zemřeli, aniž obdrželi zaslíbené – jen z dálky '
+ 'to viděli a zdravili.'],
+      ['Pavel píše, že všechna Boží zaslíbení mají v Kristu své „ano“, a '
+ 'proto skrze něho říkáme „amen“ (2K 1,20).',
+ 'Duch svatý se v Novém zákoně nazývá „zaslíbený Duch“ (Ef 1,13) – '
+ 'Ježíš ho učedníkům slíbil před svým odchodem.'],
+      ['Na které Boží zaslíbení se v tomto období opírám?',
+ 'Čím se liší Boží slib od lidského přání?'])
+topic('prophecy', 'future', 'lamp', 'Proroctví naplněná v Kristu',
+      'Evangelisté znovu a znovu píšou: „aby se naplnilo, co bylo řečeno skrze proroka.“ Ježíšovo narození, služba, smrt i vzkříšení navazují na staletí stará slova Písma.',
+      [('Mi 5,1', 'Z Betléma vyjde vládce'),
+ ('Iz 7,14', 'Panna počne'),
+ ('Iz 53,4-6', 'Nesl naše bolesti'),
+ ('Ž 22,17-19', 'Probodli mé ruce i nohy'),
+ ('Za 9,9', 'Král přichází na oslátku'),
+ ('Mt 1,22-23', 'Aby se naplnilo'),
+ ('L 24,27', 'Vykládal jim Písma'),
+ ('Sk 8,32-35', 'Filip a Izajáš')],
+      ['Po vzkříšení Ježíš učedníkům na cestě do Emauz vykládal, co se na '
+ 'něho vztahovalo ve všech Písmech, počínaje Mojžíšem a všemi proroky. '
+ 'Starý zákon tedy není jen předehra – Ježíš v něm vidí sám sebe.',
+ 'Proroctví se nenaplňují jen jako přesné předpovědi, ale jako '
+ 'vrcholící příběh. Matouš cituje Ozeáše „Z Egypta jsem povolal svého '
+ 'syna“ – původně o Izraeli. Ježíš prožívá dějiny svého lidu znovu a '
+ 'věrně je dovádí k cíli.'],
+      ['Izajáš 53 o trpícím Služebníku Nový zákon cituje nebo připomíná '
+ 'mnohokrát – právě tento text četl etiopský dvořan, když k němu přišel '
+ 'Filip.',
+ 'Žalm 22, jehož první slova Ježíš volal na kříži, mluví o probodených '
+ 'rukou i nohou a o losování o oděv – evangelisté tyto podrobnosti '
+ 'výslovně zmiňují.'],
+      ['Které proroctví o Kristu mě nejvíc oslovuje?',
+ 'Co mi říká, že Bůh plní své slovo i po staletích?'])
+topic('protection', 'world', 'shield', 'Boží ochrana',
+      'Žalmy mluví o Bohu jako o skále, štítu a útočišti. Bible neslibuje život bez nebezpečí, ale slibuje, že nás Bůh v něm drží a že nás nic nevyrve z jeho ruky.',
+      [('Ž 91,1-4', 'Ve skrýši Nejvyššího'),
+ ('Ž 121,7-8', 'Hospodin tě ochrání'),
+ ('Nu 6,24-26', 'Áronské požehnání'),
+ ('Př 18,10', 'Pevná věž'),
+ ('Iz 43,2', 'Půjdeš-li přes vody'),
+ ('J 10,28-29', 'Nikdo je nevyrve'),
+ ('2Te 3,3', 'Pán vás ochrání před zlým'),
+ ('Mt 4,5-7', 'Nepokoušej Pána')],
+      ['Žalm 91 popisuje Boží ochranu silnými obrazy – pod jeho křídly, šípy, '
+ 'mor. Satan ho cituje Ježíšovi na poušti, aby ho svedl ke skoku z '
+ 'chrámu. Ježíš odmítne: Boží ochrana není pozvánka k hazardu, ale '
+ 'důvod k důvěře.',
+ 'Mnozí věrní v Bibli trpěli – Štěpán byl ukamenován, Jakub popraven. '
+ 'Ochrana tedy neznamená, že se nám nic nestane. Pavel ji vidí '
+ 'hlouběji: nic nás nemůže odloučit od Boží lásky. A Ježíš slibuje, že '
+ 'své ovce nikdo nevyrve z Otcovy ruky.'],
+      ['Slovo „útočiště“ patří k nejčastějším obrazům Boha v žalmech – vedle '
+ 'skály, hradu a štítu.',
+ 'Áronské požehnání „Hospodin ať tě žehná a ochraňuje“ (Nu 6,24) bylo '
+ 'nalezeno vyryté na malých stříbrných svitcích z doby kolem roku 600 '
+ 'př. n. l. Patří k nejstarším známým zápisům biblického textu.'],
+      ['Kde jsem zažil Boží ochranu?',
+ 'Čeho se bojím a co by znamenalo svěřit to Bohu?'])
+topic('signs', 'world', 'star', 'Zázraky a znamení',
+      'Zázraky v Bibli nejsou kouzla pro efekt, ale znamení: ukazují, kdo je Bůh a co chce udělat se světem. Soustřeďují se kolem vyjití z Egypta, Eliáše a Elíši, Ježíše a apoštolů.',
+      [('Ex 14,21-22', 'Moře se rozestoupilo'),
+ ('1Kr 18,36-38', 'Oheň na Karmelu'),
+ ('J 2,11', 'Počátek znamení'),
+ ('Mk 2,9-12', 'Vstaň a choď'),
+ ('J 6,35', 'Chléb života'),
+ ('J 11,25', 'Vzkříšení i život'),
+ ('Mt 12,38-40', 'Znamení Jonášovo'),
+ ('J 20,30-31', 'Abyste uvěřili')],
+      ['Jan nenazývá Ježíšovy zázraky „mocnými činy“, ale „znameními“. Každé '
+ 'ukazuje dál: nasycení zástupu vede k výroku „Já jsem chléb života“, '
+ 'uzdravení slepého k „Já jsem světlo světa“, vzkříšení Lazara k „Já '
+ 'jsem vzkříšení i život“.',
+ 'Zázraky víru nevynutí. Farao viděl rány a zatvrdil srdce, mnozí '
+ 'viděli vzkříšeného Lazara a o to víc chtěli Ježíše zabít. Ježíš '
+ 'odmítal dělat znamení na objednávku – zázrak je pozvání, ne důkaz, '
+ 'který by umlčel všechny otázky.'],
+      ['Většina biblických zázraků připadá na tři období: Mojžíš a Jozue, '
+ 'Eliáš a Elíša, Ježíš a apoštolové – vždy na přelomu dějin spásy.',
+ 'Jan popisuje sedm znamení – od proměny vody ve víno v Káně po '
+ 'vzkříšení Lazara – a píše, že je zapsal, „abyste uvěřili“ (J 20,31).'],
+      ['Co mi Ježíšova znamení říkají o tom, kdo je?',
+ 'Kde vidím Boží jednání v obyčejných věcech?'])

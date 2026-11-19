@@ -1149,3 +1149,181 @@ course(
              "Kde mohu i v omezení (nemoc, „vězení“) sloužit druhým?"],
             "Přečtěte si celý list Filipským – dopis radosti z vězení."),
     ])
+
+
+# --- Doplněné kurzy ---
+COURSES.append({'id': 'psalms',
+ 'icon': 'music',
+ 'color': '7A55A8',
+ 'title': 'Žalmy – škola modlitby',
+ 'subtitle': 'Šest lekcí o modlitební knize Izraele i církve',
+ 'intro': 'Žalmy jsou modlitby, kterými se po tři tisíciletí modlí Izrael i '
+          'církev – a modlil se jimi i Ježíš. Najdeme v nich jásot i nářek, '
+          'vděčnost i hněv, pokání i důvěru. Tento kurz ukazuje, jak žalmy '
+          'číst a jak se jimi učit modlit vlastními slovy.',
+ 'lessons': [{'title': 'Kniha chval i nářků',
+              'text': ['Kniha Žalmů obsahuje 150 písní a modliteb, které '
+                       'vznikaly během mnoha staletí – od Davidovy doby až po '
+                       'návrat z babylónského vyhnanství. Nejsou to soukromé '
+                       'deníky, ale modlitby, které si Izrael zpíval při '
+                       'bohoslužbách v chrámu, na poutích i doma.',
+                       'Hebrejský název knihy zní Tehillim – „chvály“. Přesto '
+                       'v ní najdeme víc nářků než chvalozpěvů. Žalmy učí, že '
+                       'k chvále patří i upřímný pláč: kdo před Bohem smí '
+                       'vyslovit bolest, může se k němu vracet i s díky.',
+                       'Kniha začíná žalmem o člověku, který má zalíbení v '
+                       'Hospodinově zákoně, a končí výzvou „Všechno, co '
+                       'dýchá, ať chválí Hospodina“. Cesta mezi tím vede přes '
+                       'všechny polohy lidského života.'],
+              'read': [('Ž 1,1-3', 'Brána do knihy Žalmů'),
+                       ('Ž 150,1-6', 'Všechno, co dýchá'),
+                       ('L 24,44', 'Co je o Ježíši psáno v Žalmech')],
+              'facts': ['Kniha Žalmů je rozdělena do pěti částí (Ž 1–41, '
+                        '42–72, 73–89, 90–106, 107–150). Každá končí krátkým '
+                        'chvalozpěvem – možná jako ozvěna pěti knih '
+                        'Mojžíšových.',
+                        'Řecké slovo psalmos, z něhož máme „žalm“, označovalo '
+                        'píseň doprovázenou strunným nástrojem.'],
+              'questions': ['Který žalm je mi blízký a proč?',
+                            'Proč asi kniha chval obsahuje tolik nářků?'],
+              'life': 'Vyberte si na tento týden jeden žalm a čtěte ho každý '
+                      'den pomalu nahlas.'},
+             {'title': 'Nářek: Bohu smím říct všechno',
+              'text': ['Nářky tvoří asi třetinu knihy Žalmů. Žalmisté se v '
+                       'nich ptají „Dokdy, Hospodine?“, „Proč ses vzdálil?“ – '
+                       'a nikdo je za to nekárá. Bible tyto otázky uchovala '
+                       'jako Boží slovo, a tím říká: i nářek je modlitba.',
+                       'Typický nářek má tři kroky. Začíná stížností („Dokdy '
+                       'na mě zapomeneš?“), pokračuje prosbou („Pohleď, '
+                       'odpověz mi“) a často končí obratem k důvěře („Já však '
+                       'doufám ve tvé milosrdenství“). Ten obrat nemusí '
+                       'přijít hned – Žalm 88 končí ve tmě.',
+                       'Ježíš na kříži volal slovy Žalmu 22: „Bože můj, Bože '
+                       'můj, proč jsi mě opustil?“ Nejtěžší chvíli svého '
+                       'života prožil s modlitbou žalmu na rtech. Žalm 22 '
+                       'přitom končí chválou a nadějí pro všechny národy.'],
+              'read': [('Ž 13,2-6', 'Dokdy, Hospodine?'),
+                       ('Ž 42,2-6', 'Proč se trápíš, má duše?'),
+                       ('Mt 27,46', 'Ježíš se modlí Žalm 22')],
+              'facts': ['Žalm 13 má jen šest veršů, a přece obsahuje celou '
+                        'cestu nářku: od „Dokdy?“ až po „Budu zpívat '
+                        'Hospodinu, neboť se mě zastal“.',
+                        'Žalmy 42 a 43 tvoří jeden celek – spojuje je refrén '
+                        '„Proč se trápíš, má duše, proč ve mně sténáš? Doufej '
+                        'v Boha!“'],
+              'questions': ['Co jsem Bohu nikdy neřekl, protože mi to '
+                            'připadalo nevhodné?',
+                            'Kde v mém životě by se nářek mohl změnit v '
+                            'důvěru?'],
+              'life': 'Napište si vlastní krátký nářek podle Žalmu 13: '
+                      'stížnost, prosba, důvěra.'},
+             {'title': 'Chvála a díky',
+              'text': ['Chvalozpěvy (hymny) oslavují, kdo Bůh je: Stvořitel, '
+                       'Král, ten, kdo vysvobozuje. Žalmy díků vyprávějí, co '
+                       'Bůh udělal – konkrétně a s datem: „Volal jsem k '
+                       'Hospodinu a on mi odpověděl.“',
+                       'Žalm 103 začíná rozhovorem se sebou samým: „Dobrořeč, '
+                       'duše má, Hospodinu, a nezapomeň na žádné jeho '
+                       'dobrodiní.“ Vděčnost se dá trénovat – zapomnění je '
+                       'přirozené, vzpomínání je rozhodnutí.',
+                       'Chvála v žalmech je hlasitá a společná: zpěv, hudební '
+                       'nástroje, tanec, shromážděný lid. Zároveň vede ven – '
+                       'k národům a ke všemu stvoření. Chválit Boha znamená '
+                       'postavit ho doprostřed, kam patří.'],
+              'read': [('Ž 103,1-5', 'Nezapomeň na jeho dobrodiní'),
+                       ('Ž 136,1-9', 'Jeho milosrdenství je věčné'),
+                       ('Ž 100,1-5', 'Vstupte do jeho bran s díky')],
+              'facts': ['Haleluja je hebrejsky „chvalte Jah“ – Jah je '
+                        'zkrácené Boží jméno. Žalmy 146–150 jím začínají i '
+                        'končí.',
+                        'Žalm 136 opakuje refrén „neboť jeho milosrdenství je '
+                        'věčné“ ve všech 26 verších – zřejmě ho střídavě '
+                        'zpíval předzpěvák a shromáždění.'],
+              'questions': ['Za co Bohu děkuji nejčastěji a na co zapomínám?',
+                            'Jak by se změnil můj den, kdybych ho začínal '
+                            'chválou?'],
+              'life': 'Každý večer tohoto týdne si zapište tři konkrétní '
+                      'dobrodiní dne – jako v Žalmu 103.'},
+             {'title': 'Pokání a odpuštění',
+              'text': ['Některé žalmy jsou modlitbou člověka, který zhřešil. '
+                       'Nejznámější je Žalm 51, podle nadpisu Davidova '
+                       'modlitba po hříchu s Batšebou. David nic neomlouvá: '
+                       '„Proti tobě, jen proti tobě jsem zhřešil.“',
+                       'Pokání v žalmech ale nekončí u viny. Vede k prosbě o '
+                       'nové srdce („Stvoř mi, Bože, čisté srdce“) a k '
+                       'radosti z odpuštění. Žalm 32 začíná slovy „Blaze '
+                       'tomu, komu je odpuštěna nevěra“ a popisuje, jak '
+                       'mlčení o hříchu člověka vysušuje.',
+                       'Žalm 130 volá „z hlubin“ a zároveň ví, že „u tebe je '
+                       'odpuštění“. Pokání tedy není ponižování, ale návrat '
+                       'domů – k Bohu, u něhož je hojné vykoupení.'],
+              'read': [('Ž 51,3-8', 'Smiluj se nade mnou'),
+                       ('Ž 32,1-5', 'Blaze tomu, komu je odpuštěno'),
+                       ('Ž 130,1-8', 'Z hlubin volám')],
+              'facts': ['Církev od starověku zná sedm kajících žalmů: 6, 32, '
+                        '38, 51, 102, 130 a 143.',
+                        'Podle latinských prvních slov Žalmu 130 – De '
+                        'profundis („Z hlubin“) – se tento žalm po staletí '
+                        'modlí v modlitbách za zemřelé.'],
+              'questions': ['Je něco, o čem před Bohem mlčím?',
+                            'Jak mohu prožít odpuštění ne jako výčitku, ale '
+                            'jako úlevu?'],
+              'life': 'Pomodlete se pomalu Žalm 51,12–14 jako svou vlastní '
+                      'prosbu.'},
+             {'title': 'Důvěra a útočiště',
+              'text': ['Žalmy důvěry jsou plné obrazů: Bůh je pastýř, skála, '
+                       'hrad, štít, světlo, stín křídel. Nevznikly v klidných '
+                       'časech – žalmista mluví o nepřátelích, nemoci a '
+                       'nebezpečí. Důvěra v nich není nepřítomnost strachu, '
+                       'ale rozhodnutí, komu se svěřit.',
+                       'Žalmy 120–134 jsou „poutní písně“. Zpívali je '
+                       'poutníci cestou do Jeruzaléma na velké svátky. Žalm '
+                       '121 se ptá „Odkud mi přijde pomoc?“ – a odpovídá: od '
+                       'Hospodina, který stvořil nebe i zemi a nespí ani '
+                       'nedříme.',
+                       'Nejkratší a možná nejněžnější je Žalm 131: „Utišil '
+                       'jsem svou duši jako odstavené dítě u matky.“ Důvěra '
+                       'tu není velké hrdinství, ale klid dítěte, které už '
+                       'nemusí nic vyžadovat, protože ví, že je v bezpečí.'],
+              'read': [('Ž 27,1-5', 'Hospodin je mé světlo'),
+                       ('Ž 121,1-8', 'Odkud mi přijde pomoc'),
+                       ('Ž 131,1-3', 'Jako odstavené dítě')],
+              'facts': ['Poutní písně (Ž 120–134) jsou krátké a dobře se '
+                        'pamatují – možná proto, aby se daly zpívat zpaměti '
+                        'cestou.',
+                        'Obraz Boha jako pastýře ze Žalmu 23 vztahuje Ježíš '
+                        'na sebe: „Já jsem dobrý pastýř“ (J 10,11).'],
+              'questions': ['Který obraz Boha z žalmů je mi nejbližší – '
+                            'pastýř, skála, světlo, nebo útočiště?',
+                            'Co mi brání svěřit Bohu to, čeho se bojím?'],
+              'life': 'Naučte se zpaměti jeden verš důvěry a opakujte si ho, '
+                      'když přijde strach.'},
+             {'title': 'Žalmy o Mesiáši a modlitba s Ježíšem',
+              'text': ['Některé žalmy mluví o králi z Davidova rodu, kterého '
+                       'Bůh dosadil: „Ty jsi můj syn, já jsem tě dnes '
+                       'zplodil“ (Ž 2). Apoštolové v nich poznali Ježíše – '
+                       'zaslíbeného Krále, jehož vláda přesahuje Izrael a '
+                       'zahrnuje celý svět.',
+                       'Žalm 110 začíná slovy „Řekl Hospodin mému Pánu: Seď '
+                       'po mé pravici.“ Ježíš ho použil v rozhovoru s '
+                       'farizeji a apoštolové ho citují, když mluví o jeho '
+                       'vyvýšení. Žalmy tak pomáhaly první církvi pochopit, '
+                       'kdo je Ježíš.',
+                       'Pavel vyzývá křesťany, aby se navzájem povzbuzovali '
+                       '„žalmy, chvalozpěvy a duchovními písněmi“. Kdo se '
+                       'modlí žalmy, nemodlí se sám – připojuje se k Ježíši a '
+                       'k zástupu věřících všech dob.'],
+              'read': [('Ž 2,7-8', 'Ty jsi můj syn'),
+                       ('Ž 110,1', 'Seď po mé pravici'),
+                       ('Ko 3,16', 'Zpívejte žalmy')],
+              'facts': ['Žalm 110,1 patří k nejčastěji citovaným '
+                        'starozákonním veršům v Novém zákoně.',
+                        'Dietrich Bonhoeffer napsal o žalmech útlou knížku '
+                        '„Modlitební kniha Bible“ (1940). Učí v ní, že se '
+                        'žalmy modlíme spolu s Kristem – i ty, které '
+                        'neodpovídají naší momentální náladě.'],
+              'questions': ['Jak se mění můj pohled na žalmy, když vím, že se '
+                            'jimi modlil Ježíš?',
+                            'Který žalm bych chtěl, aby se stal „mým“?'],
+              'life': 'Zkuste se celý týden modlit jeden žalm denně – ráno '
+                      'nebo večer – i když vám zrovna nebude blízký.'}]})

@@ -549,6 +549,16 @@ def main() -> None:
                     t = text(r[0], r[1], r[2] or 1, r[3] or 1)
                     print(f"   {ABBR[r[0]-1]} {r[1]},{r[2]}: {t[:70]}")
         return
+    if "--verify" in sys.argv:
+        # Hlídá, aby JSON v aplikaci odpovídal zdrojům v tool/content
+        # (obsah se upravuje jen tam, JSON se generuje).
+        stale = [name for name, d in data.items()
+                 if json.loads((out / name).read_text(encoding="utf-8")) != d]
+        if stale:
+            raise SystemExit("Neodpovídá zdrojům (spusťte "
+                             "tool/build_content.py): " + ", ".join(stale))
+        print("Obsah odpovídá zdrojům.")
+        return
     for name, d in data.items():
         (out / name).write_text(
             json.dumps(d, ensure_ascii=False, indent=1) + "\n",

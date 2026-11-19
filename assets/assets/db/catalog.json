@@ -1,0 +1,50 @@
+{
+  "translations": [
+    {
+      "id": "B21",
+      "name": "Bible, překlad 21. století",
+      "abbreviation": "B21",
+      "year": 2009,
+      "license": "© Biblion, z. s. Šíření povoleno společnosti CrossWire; stahuje se z jejího repozitáře pro osobní potřebu.",
+      "description": "Současná, čtivá čeština. Nadpisy oddílů, odstavce, poezie a poznámky překladatelů.",
+      "format": "osis",
+      "url": "https://gitlab.com/api/v4/projects/5095544/repository/files/CzeB21.xml/raw?ref=master&lfs=true",
+      "size_mb": 9.8,
+      "available": true
+    },
+    {
+      "id": "CEP",
+      "name": "Český ekumenický překlad",
+      "abbreviation": "ČEP",
+      "year": 1985,
+      "license": "© Ekumenická rada církví v ČR. Šíření povoleno společnosti CrossWire; stahuje se z jejího repozitáře pro osobní potřebu.",
+      "description": "Nejrozšířenější moderní překlad, společné dílo českých církví.",
+      "format": "osis",
+      "url": "https://gitlab.com/api/v4/projects/685250/repository/files/CzeCEP.xml/raw?ref=master&lfs=true",
+      "size_mb": 7.0,
+      "available": true
+    },
+    {
+      "id": "CSP",
+      "name": "Český studijní překlad",
+      "abbreviation": "ČSP",
+      "year": 2009,
+      "license": "© Nadační fond Křesťanská dobročinnost. Šíření povoleno společnosti CrossWire; pouze pro osobní potřebu.",
+      "description": "Doslovný studijní překlad – blízko původnímu textu.",
+      "format": "scrollmapper",
+      "url": "https://raw.githubusercontent.com/scrollmapper/bible_databases/master/formats/json/CzeCSP.json",
+      "size_mb": 8.0,
+      "available": true
+    },
+    {
+      "id": "SNC",
+      "name": "Slovo na cestu",
+      "abbreviation": "SNC",
+      "year": 2012,
+      "license": "© Biblion, z. s.",
+      "description": "Volný převod do současné češtiny. Vydavatel ho nešíří v otevřeném formátu, proto ho nelze stáhnout.",
+      "format": "zefania",
+      "available": false
+    }
+  ]
+}

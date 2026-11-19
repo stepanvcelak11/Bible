@@ -1,0 +1,3763 @@
+{
+ "_info": "Stručné úvody k biblickým knihám (vlastní text aplikace). Údaje o autorství a datování uvádějí tradiční pohled a tam, kde se odborníci liší, i převládající odborný názor.",
+ "books": {
+  "1": {
+   "author": "Tradičně Mojžíš; kniha čerpá ze starších izraelských tradic.",
+   "date": "Události od stvoření po Josefa (cca 2000–1800 př. Kr. pro praotce).",
+   "theme": "Počátky – svět, člověk, hřích a Boží zaslíbení.",
+   "summary": "Genesis vypráví o stvoření světa a člověka, o pádu do hříchu, potopě a babylonské věži. Od 12. kapitoly sleduje praotce Abrahama, Izáka, Jákoba a Josefa. Bůh si vyvoluje Abrahama a dává mu zaslíbení země, potomstva a požehnání pro všechny národy.",
+   "outline": [
+    "1–11 Prvotní dějiny",
+    "12–25 Abraham",
+    "25–36 Izák a Jákob",
+    "37–50 Josef"
+   ],
+   "keyVerses": [
+    "1:1",
+    "1:27",
+    "12:2-3",
+    "15:6",
+    "50:20"
+   ],
+   "purpose": "Vyprávět o počátku světa, lidstva, hříchu a o tom, jak si Bůh vyvolil Abrahama a jeho rod, aby skrze něj požehnal všem národům.",
+   "recipients": "Izraelský lid",
+   "setting": "Mezopotámie, Kenaan a Egypt",
+   "people": [
+    "Adam a Eva",
+    "Noe",
+    "Abraham",
+    "Sára",
+    "Izák",
+    "Rebeka",
+    "Jákob",
+    "Ráchel",
+    "Josef"
+   ],
+   "places": [
+    "Eden",
+    "Ur",
+    "Cháran",
+    "Šekem",
+    "Bét-el",
+    "Chebrón",
+    "Beer-šeba",
+    "Egypt"
+   ],
+   "features": "Kniha počátků: stvoření, první vzpoura člověka, první zaslíbení vykoupení (3,15) a první smlouvy Boha s lidmi.",
+   "themes": [
+    {
+     "title": "Stvoření",
+     "text": "Bůh stvořil svět dobrý a člověka ke svému obrazu. Každý člověk má proto hodnotu a důstojnost."
+    },
+    {
+     "title": "Hřích a jeho následky",
+     "text": "Nedůvěra k Bohu přinesla odcizení, vinu a smrt. Hřích se šíří, ale Bůh ho nenechává mít poslední slovo."
+    },
+    {
+     "title": "Zaslíbení a smlouva",
+     "text": "Bůh se zavazuje Abrahamovi i jeho potomkům. Jeho sliby platí, i když lidé selhávají."
+    },
+    {
+     "title": "Víra a poslušnost",
+     "text": "Abraham věřil Bohu a bylo mu to počteno za spravedlnost (15,6). Víra se ukazuje v ochotě vykročit."
+    },
+    {
+     "title": "Boží prozřetelnost",
+     "text": "V Josefově příběhu Bůh obrací zlé úmysly lidí k dobrému (50,20)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "bez datace",
+     "event": "Stvoření, pád, potopa, babylonská věž"
+    },
+    {
+     "date": "tradičně 2166 př. Kr.",
+     "event": "Narození Abrama"
+    },
+    {
+     "date": "tradičně 2091 př. Kr.",
+     "event": "Abram odchází z Cháranu (je mu 75 let)"
+    },
+    {
+     "date": "tradičně 2066 př. Kr.",
+     "event": "Narození Izáka"
+    },
+    {
+     "date": "tradičně 2006 př. Kr.",
+     "event": "Narození Jákoba a Ezaua"
+    },
+    {
+     "date": "tradičně 1876 př. Kr.",
+     "event": "Jákobova rodina přichází do Egypta"
+    }
+   ],
+   "timelineNote": "Tradiční data vycházejí z věků uvedených v Bibli a z dřívější datace exodu (1446 př. Kr.). Mnozí badatelé kladou dobu praotců o 100–300 let později.",
+   "background": "Genesis vznikla v prostředí starověkého Předního východu, kde existovaly i jiné příběhy o stvoření a potopě (např. babylonský Enúma eliš a Epos o Gilgamešovi). Na rozdíl od nich Genesis představuje jediného Boha, který tvoří slovem, svět je dobrý a člověk má důstojnost Božího obrazu. Praotcové žili jako kočovní pastevci mezi Mezopotámií, Kenaanem a Egyptem.",
+   "connection": "Nový zákon často navazuje na Genesis: Ježíš je „poslední Adam“ (1K 15,45), Abrahamova víra je vzorem pro křesťany (Ř 4) a zaslíbení, že v Abrahamovi dojdou požehnání všechny národy, se naplňuje v evangeliu (Ga 3,8).",
+   "howToRead": "Čtěte nejdřív jako příběh – kapitoly 1–11 jako úvod k celé Bibli, 12–50 jako rodinnou ságu. Všímejte si, jak Bůh jedná s nedokonalými lidmi a jak se opakuje motiv zaslíbení."
+  },
+  "2": {
+   "author": "Tradičně Mojžíš.",
+   "date": "Vyvedení z Egypta (13. nebo 15. stol. př. Kr.).",
+   "theme": "Vysvobození z otroctví a smlouva na Sínaji.",
+   "summary": "Izraelci jsou v Egyptě otroky. Bůh povolává Mojžíše, seslání deseti ran přiměje faraona lid propustit a Izrael prochází Rákosovým mořem. Na Sínaji Bůh uzavírá s lidem smlouvu, dává Desatero a pokyny ke stavbě svatostánku, v němž chce přebývat uprostřed svého lidu.",
+   "outline": [
+    "1–18 Vysvobození z Egypta",
+    "19–24 Smlouva a Desatero",
+    "25–40 Svatostánek"
+   ],
+   "keyVerses": [
+    "3:14",
+    "12:13",
+    "14:13-14",
+    "20:2-3",
+    "34:6"
+   ],
+   "purpose": "Zaznamenat, jak Bůh vysvobodil Izrael z egyptského otroctví, uzavřel s ním smlouvu a začal přebývat uprostřed svého lidu.",
+   "recipients": "Izraelský lid",
+   "setting": "Egypt, Sínajský poloostrov",
+   "people": [
+    "Mojžíš",
+    "Áron",
+    "Mirjam",
+    "farao",
+    "Jetro",
+    "Jozue"
+   ],
+   "places": [
+    "Egypt",
+    "Midján",
+    "Rákosové moře",
+    "hora Sínaj"
+   ],
+   "features": "Obsahuje Desatero (kap. 20), ustanovení Paschy a podrobný popis svatostánku.",
+   "themes": [
+    {
+     "title": "Vysvobození",
+     "text": "Bůh slyší volání utlačených a jedná. Exodus se stal vzorem pro pochopení spásy."
+    },
+    {
+     "title": "Boží jméno",
+     "text": "Bůh se zjevuje jako „Jsem, který jsem“ (3,14) – věrný, přítomný a svrchovaný."
+    },
+    {
+     "title": "Smlouva a Zákon",
+     "text": "Desatero vychází z vysvobození: Bůh nejprve zachraňuje a potom učí žít svobodně."
+    },
+    {
+     "title": "Boží přítomnost",
+     "text": "Svatostánek ukazuje, že svatý Bůh chce přebývat se svým lidem."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "15. nebo 13. stol. př. Kr.",
+     "event": "Útlak Izraelců v Egyptě"
+    },
+    {
+     "date": "cca 1446 nebo 1260 př. Kr.",
+     "event": "Vyjití z Egypta, přechod moře"
+    },
+    {
+     "date": "o 3 měsíce později",
+     "event": "Příchod k Sínaji, Desatero"
+    },
+    {
+     "date": "o rok později",
+     "event": "Postaven svatostánek (40,17)"
+    }
+   ],
+   "background": "Izraelci žili v Egyptě jako cizinci a později otroci. Egypt Nové říše (16.–11. stol. př. Kr.) stavěl velká města; zmínky o otrocích pracujících na cihlách odpovídají době. Kniha zachycuje přechod od rodiny k národu.",
+   "connection": "Pascha je pozadím poslední večeře; Ježíš je nazván „naším velikonočním beránkem“ (1K 5,7). Jan přirovnává Ježíše k svatostánku, v němž Bůh „přebýval mezi námi“ (J 1,14).",
+   "howToRead": "Kapitoly 1–20 čtěte souvisle jako drama vysvobození. U popisu svatostánku (kap. 25–40) se ptejte, co říká o Boží svatosti a o přístupu k Bohu."
+  },
+  "3": {
+   "author": "Tradičně Mojžíš.",
+   "date": "Pobyt u Sínaje.",
+   "theme": "Svatost – jak se blížit ke svatému Bohu.",
+   "summary": "Leviticus obsahuje předpisy pro oběti, kněžskou službu, čistotu a svátky. Vrcholí Dnem smíření (kap. 16). Opakovaná výzva „Buďte svatí, neboť já jsem svatý“ ukazuje, že víra se týká celého života – bohoslužby, jídla, rodiny i vztahů k bližním.",
+   "outline": [
+    "1–7 Oběti",
+    "8–10 Kněžství",
+    "11–16 Čistota a Den smíření",
+    "17–27 Zákon svatosti"
+   ],
+   "keyVerses": [
+    "11:44",
+    "16:30",
+    "17:11",
+    "19:18"
+   ],
+   "purpose": "Učit Izrael, jak žít jako svatý lid ve vztahu se svatým Bohem – v bohoslužbě i v každodenním životě.",
+   "recipients": "Kněží a izraelský lid",
+   "setting": "U hory Sínaj",
+   "people": [
+    "Mojžíš",
+    "Áron",
+    "Nádab a Abíhú"
+   ],
+   "places": [
+    "hora Sínaj"
+   ],
+   "features": "Kniha zákonů o obětech a čistotě; obsahuje přikázání „Miluj svého bližního jako sebe“ (19,18).",
+   "themes": [
+    {
+     "title": "Svatost",
+     "text": "„Buďte svatí, neboť já jsem svatý“ (11,44). Svatost se týká bohoslužby, jídla, sexuality i spravedlnosti."
+    },
+    {
+     "title": "Oběť a smíření",
+     "text": "Oběti ukazují vážnost hříchu i Boží cestu k odpuštění; Nový zákon je vidí naplněné v Kristu."
+    },
+    {
+     "title": "Láska k bližnímu",
+     "text": "Zákon chrání chudé, cizince a slabé – víra se projevuje ve vztazích."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "rok po exodu",
+     "event": "Vysvěcení kněží (kap. 8–9)"
+    },
+    {
+     "date": "během pobytu u Sínaje",
+     "event": "Zákony o obětech, čistotě a svátcích"
+    }
+   ],
+   "background": "Leviticus popisuje bohoslužbu svatostánku v době putování. Oběti a předpisy o čistotě byly běžné i u okolních národů, ale v Izraeli vyjadřovaly vztah se svatým Bohem a péči o společenství (např. ochranu chudých a cizinců).",
+   "connection": "List Židům vykládá oběti a Den smíření jako předobraz Kristovy jediné oběti (Žd 9–10). Ježíš cituje Lv 19,18 jako druhé největší přikázání (Mk 12,31).",
+   "howToRead": "Nečtěte jen jako soupis pravidel. Ptejte se: co tento předpis chránil, co učil o Bohu a o hříchu? Dobře se čte spolu s listem Židům."
+  },
+  "4": {
+   "author": "Tradičně Mojžíš.",
+   "date": "Čtyřicet let putování pouští.",
+   "theme": "Putování pouští – nevěra lidu a Boží věrnost.",
+   "summary": "Kniha začíná sčítáním lidu (odtud název Numeri). Izrael vyráží od Sínaje, ale pro nedůvěru odmítne vstoupit do zaslíbené země a musí čtyřicet let bloudit pouští. Přesto o něj Bůh pečuje a nová generace se nakonec připravuje k vstupu do Kenaanu.",
+   "outline": [
+    "1–10 U Sínaje",
+    "11–21 Putování a vzpoury",
+    "22–36 Na moábských pláních"
+   ],
+   "keyVerses": [
+    "6:24-26",
+    "14:18",
+    "23:19"
+   ],
+   "purpose": "Popsat cestu Izraele od Sínaje k hranicím zaslíbené země a ukázat následky nedůvěry i Boží věrnost.",
+   "recipients": "Izraelský lid",
+   "setting": "Sínajská poušť, Kádeš, Moábské pláně",
+   "people": [
+    "Mojžíš",
+    "Áron",
+    "Mirjam",
+    "Jozue",
+    "Káleb",
+    "Balák",
+    "Bileám"
+   ],
+   "places": [
+    "Sínaj",
+    "Kádeš-barnea",
+    "Moábské pláně"
+   ],
+   "features": "Dvě sčítání lidu (kap. 1 a 26) rámují dobu putování; obsahuje Áronovo požehnání (6,24–26).",
+   "themes": [
+    {
+     "title": "Nevěra a její následky",
+     "text": "Generace, která nedůvěřovala Bohu, nevstoupila do země. Strach může zavřít dveře."
+    },
+    {
+     "title": "Boží trpělivost",
+     "text": "Bůh lid trestá, ale neopouští – živí ho a vede dál."
+    },
+    {
+     "title": "Vedení",
+     "text": "Oblak a ohnivý sloup ukazují, že Bůh vede svůj lid krok za krokem."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "2. rok po exodu",
+     "event": "Odchod od Sínaje"
+    },
+    {
+     "date": "krátce poté",
+     "event": "Zvědové v Kenaanu, vzpoura v Kádeši"
+    },
+    {
+     "date": "38 let",
+     "event": "Putování pouští"
+    },
+    {
+     "date": "40. rok",
+     "event": "Na Moábských pláních"
+    }
+   ],
+   "background": "Izrael putuje Sínajskou pouští a Negebem; Kádeš-barnea byla oáza na jihu Kenaanu. Sčítání sloužila k organizaci tábora a armády.",
+   "connection": "Pavel uvádí události putování jako varování i povzbuzení (1K 10,1–13). Ježíš přirovnává svůj kříž k měděnému hadu (Nu 21; J 3,14–15).",
+   "howToRead": "Pasáže se seznamy můžete přelétnout; zastavte se u příběhů (kap. 11–14, 16–17, 20–24). Zeptejte se, kde ve svém životě „reptám“ místo důvěry."
+  },
+  "5": {
+   "author": "Tradičně Mojžíš; poslední kapitola popisuje jeho smrt.",
+   "date": "Konec putování, na moábských pláních.",
+   "theme": "Obnovení smlouvy – milovat Boha celým srdcem.",
+   "summary": "Deuteronomium jsou Mojžíšovy řeči k nové generaci před vstupem do země. Připomíná Boží vedení, opakuje Zákon a vyzývá k lásce a věrnosti Bohu. Obsahuje vyznání „Slyš, Izraeli“, které se stalo základem židovské víry, a končí Mojžíšovou smrtí.",
+   "outline": [
+    "1–4 Ohlédnutí za cestou",
+    "5–26 Výklad Zákona",
+    "27–34 Požehnání, kletby a Mojžíšova smrt"
+   ],
+   "keyVerses": [
+    "6:4-5",
+    "8:3",
+    "30:19-20",
+    "31:6"
+   ],
+   "purpose": "Připomenout nové generaci Boží jednání a vyzvat ji k lásce a věrnosti Bohu před vstupem do země.",
+   "recipients": "Nová generace Izraele",
+   "setting": "Moábské pláně u Jordánu",
+   "people": [
+    "Mojžíš",
+    "Jozue"
+   ],
+   "places": [
+    "Moábské pláně",
+    "hora Nebó"
+   ],
+   "features": "Tři Mojžíšovy řeči; „Slyš, Izraeli“ (6,4–5). Ježíš z této knihy citoval při pokušení na poušti.",
+   "themes": [
+    {
+     "title": "Láska k Bohu",
+     "text": "Bůh nechce jen vnější poslušnost, ale lásku celým srdcem (6,5)."
+    },
+    {
+     "title": "Paměť",
+     "text": "„Pamatuj“ – připomínání Božích skutků chrání před zapomenutím a pýchou."
+    },
+    {
+     "title": "Volba",
+     "text": "Život a smrt, požehnání a kletba: Bůh vyzývá vybrat si život (30,19)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "40. rok po exodu",
+     "event": "Mojžíšovy řeči k lidu"
+    },
+    {
+     "date": "tamtéž",
+     "event": "Obnovení smlouvy, Jozue nástupcem"
+    },
+    {
+     "date": "konec 40. roku",
+     "event": "Mojžíšova smrt na hoře Nebó"
+    }
+   ],
+   "background": "Kniha má podobu smlouvy, připomínající starověké smlouvy mezi vládcem a poddanými: připomenutí dějin, ustanovení, požehnání a kletby, svědkové.",
+   "connection": "Ježíš při pokušení na poušti odpovídá třikrát slovy z Deuteronomia (Mt 4,1–11). „Slyš, Izraeli“ nazývá největším přikázáním (Mk 12,29–30).",
+   "howToRead": "Čtěte jako kázání starého vůdce lidu. Podtrhávejte si slova „pamatuj“, „miluj“ a „poslouchej“."
+  },
+  "6": {
+   "author": "Tradičně Jozue; kniha patří k tzv. deuteronomistickému dílu.",
+   "date": "Dobytí Kenaanu.",
+   "theme": "Vstup do zaslíbené země.",
+   "summary": "Jozue, Mojžíšův nástupce, vede Izrael přes Jordán. Následuje dobytí Jericha a dalších měst a rozdělení země mezi kmeny. Kniha zdůrazňuje, že úspěch závisí na věrnosti Bohu, a končí Jozuovou výzvou: „Já a můj dům budeme sloužit Hospodinu.“",
+   "outline": [
+    "1–12 Dobývání země",
+    "13–22 Rozdělení země",
+    "23–24 Jozuovo rozloučení"
+   ],
+   "keyVerses": [
+    "1:8-9",
+    "21:45",
+    "24:15"
+   ],
+   "purpose": "Ukázat, jak Bůh splnil slib a uvedl Izrael do zaslíbené země, a vyzvat k věrnosti.",
+   "recipients": "Izraelský lid",
+   "setting": "Kenaan",
+   "people": [
+    "Jozue",
+    "Rachab",
+    "Káleb",
+    "Akán"
+   ],
+   "places": [
+    "Jordán",
+    "Jericho",
+    "Aj",
+    "Gibeón",
+    "Šíló",
+    "Šekem"
+   ],
+   "features": "Rozdělení země mezi kmeny (kap. 13–21); závěrečná výzva „Já a můj dům budeme sloužit Hospodinu“.",
+   "themes": [
+    {
+     "title": "Boží věrnost",
+     "text": "„Nepadlo ani jedno slovo“ z Božích slibů (21,45)."
+    },
+    {
+     "title": "Odvaha a poslušnost",
+     "text": "Úspěch nestojí na síle, ale na důvěře a poslušnosti (1,7–9)."
+    },
+    {
+     "title": "Rozhodnutí",
+     "text": "Každá generace se musí sama rozhodnout, komu bude sloužit (24,15)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1406 nebo 1220 př. Kr.",
+     "event": "Přechod Jordánu, pád Jericha"
+    },
+    {
+     "date": "následující roky",
+     "event": "Dobývání země"
+    },
+    {
+     "date": "později",
+     "event": "Rozdělení země, Jozuovo rozloučení"
+    }
+   ],
+   "background": "Kenaan byl rozdělen na městské státy, často v područí Egypta. Archeologie dobu dobývání nepopisuje jednoznačně a badatelé se v jejím výkladu liší; text sám ukazuje, že dobytí bylo postupné a neúplné (13,1).",
+   "connection": "Jméno Jozue a Ježíš je stejné (hebrejsky Jehošua – „Hospodin zachraňuje“). List Židům mluví o „odpočinku“, který Jozue nedal plně a který přináší Kristus (Žd 4,8–11).",
+   "howToRead": "Těžké pasáže o válce čtěte v jejich historickém kontextu a s vědomím, že šlo o jedinečnou událost, ne o vzor pro dnešek. Zaměřte se na Boží věrnost a na výzvu k rozhodnutí."
+  },
+  "7": {
+   "author": "Neznámý.",
+   "date": "Období před vznikem království (cca 1200–1050 př. Kr.).",
+   "theme": "Kruh odpadnutí a záchrany.",
+   "summary": "Po Jozuově smrti se Izrael opakovaně odvrací od Boha, upadá do útlaku a volá o pomoc. Bůh posílá soudce-zachránce, jako byli Debora, Gedeón nebo Samson. Kniha ukazuje morální úpadek doby, kdy „každý dělal, co uznal za správné“.",
+   "outline": [
+    "1–2 Neúplné dobytí",
+    "3–16 Příběhy soudců",
+    "17–21 Úpadek bez krále"
+   ],
+   "keyVerses": [
+    "2:16",
+    "21:25"
+   ],
+   "purpose": "Ukázat, kam vede odpadnutí od Boha, a jak Bůh přesto znovu posílá zachránce.",
+   "recipients": "Izraelský lid v době královské",
+   "setting": "Kenaan v době kmenů",
+   "people": [
+    "Debora",
+    "Barák",
+    "Gedeón",
+    "Jefte",
+    "Samson",
+    "Delila"
+   ],
+   "places": [
+    "Šíló",
+    "Bét-el",
+    "Gibea"
+   ],
+   "features": "Opakující se kruh: odpadnutí – útlak – volání – záchrana. Kniha nic nepřikrášluje.",
+   "themes": [
+    {
+     "title": "Kruh hříchu",
+     "text": "Bez trvalé věrnosti se lid stále vrací ke stejným chybám."
+    },
+    {
+     "title": "Bůh používá slabé",
+     "text": "Soudci byli nedokonalí lidé; síla pocházela od Boha."
+    },
+    {
+     "title": "Morální chaos",
+     "text": "„Každý dělal, co uznal za správné“ (21,25) – kniha ukazuje potřebu dobrého vedení."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1200–1050 př. Kr.",
+     "event": "Doba soudců"
+    },
+    {
+     "date": "cca 1125 př. Kr.",
+     "event": "Debora a Barák (přibližně)"
+    },
+    {
+     "date": "cca 1100 př. Kr.",
+     "event": "Gedeón (přibližně)"
+    },
+    {
+     "date": "cca 1070 př. Kr.",
+     "event": "Samson (přibližně)"
+    }
+   ],
+   "background": "Doba soudců spadá do přechodu z doby bronzové do železné, kdy se rozpadly velké říše a na pobřeží se usadili Pelištejci. Kmeny byly volně propojené a často je ohrožovali sousedé.",
+   "connection": "Soudci jsou nedokonalí zachránci; kniha vzbuzuje touhu po spravedlivém králi. List Židům uvádí Gedeóna, Baráka, Samsona i Jefteho mezi hrdiny víry (Žd 11,32).",
+   "howToRead": "Sledujte opakující se cyklus (2,11–19). Příběhy jsou syrové – Bible je popisuje, ne schvaluje."
+  },
+  "8": {
+   "author": "Neznámý.",
+   "date": "Doba soudců.",
+   "theme": "Věrná láska a Boží prozřetelnost.",
+   "summary": "Moábka Rút zůstává věrná své tchyni Noemi a odchází s ní do Betléma. Při paběrkování na poli potká Bóaza, který se stává jejím vykupitelem a manželem. Z jejich rodu pochází král David – cizinka se tak stává součástí dějin spásy.",
+   "outline": [
+    "1 Ztráta a návrat",
+    "2–3 Rút a Bóaz",
+    "4 Vykoupení a potomstvo"
+   ],
+   "keyVerses": [
+    "1:16",
+    "4:14"
+   ],
+   "purpose": "Ukázat Boží péči a věrnou lásku v obyčejném životě a vysvětlit původ Davidova rodu.",
+   "recipients": "Izraelský lid",
+   "setting": "Moáb a Betlém v době soudců",
+   "people": [
+    "Rút",
+    "Noemi",
+    "Bóaz"
+   ],
+   "places": [
+    "Moáb",
+    "Betlém"
+   ],
+   "features": "Cizinka Moábka se stává prababičkou krále Davida a předkyní Ježíše (Mt 1,5).",
+   "themes": [
+    {
+     "title": "Věrná láska",
+     "text": "Rút zůstává věrná Noemi i v nejisté budoucnosti."
+    },
+    {
+     "title": "Vykupitel",
+     "text": "Bóaz jako příbuzný-vykupitel ukazuje Boží péči o slabé."
+    },
+    {
+     "title": "Boží plán",
+     "text": "Bůh jedná i skrze obyčejná rozhodnutí obyčejných lidí."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "doba soudců",
+     "event": "Hladomor, odchod do Moábu"
+    },
+    {
+     "date": "o 10 let později",
+     "event": "Návrat Noemi a Rút do Betléma"
+    },
+    {
+     "date": "o generace později",
+     "event": "Narození Davida"
+    }
+   ],
+   "background": "Příběh se odehrává v době soudců, v Betlémě a v Moábu. Zákon o paběrkování a o příbuzném-vykupiteli chránil vdovy a chudé (Lv 19,9–10; 25,25; Dt 25,5–10).",
+   "connection": "Rút patří k ženám, které jsou výslovně jmenovány v Ježíšově rodokmenu (Mt 1,5). Bóaz jako vykupitel bývá chápán jako obraz Krista.",
+   "howToRead": "Kniha je krátká – přečtěte ji najednou (asi 15 minut). Všímejte si, kde jedná Bůh skrytě a kde skrze laskavost lidí."
+  },
+  "9": {
+   "author": "Neznámý; čerpá z prorockých záznamů.",
+   "date": "Cca 1100–1010 př. Kr.",
+   "theme": "Přechod od soudců ke králům.",
+   "summary": "Kniha vypráví o proroku Samuelovi, prvním králi Saulovi a mladém Davidovi. Izrael žádá krále „jako mají ostatní národy“. Saul pro neposlušnost selhává a Bůh si vybírá Davida, „muže podle svého srdce“, který porazí Goliáše.",
+   "outline": [
+    "1–7 Samuel",
+    "8–15 Saul",
+    "16–31 David a Saul"
+   ],
+   "keyVerses": [
+    "2:2",
+    "15:22",
+    "16:7",
+    "17:47"
+   ],
+   "purpose": "Popsat přechod od soudců ke králům a vzestup Davida.",
+   "recipients": "Izraelský lid",
+   "setting": "Izrael",
+   "people": [
+    "Chana",
+    "Samuel",
+    "Élí",
+    "Saul",
+    "Jonatan",
+    "David",
+    "Goliáš"
+   ],
+   "places": [
+    "Šíló",
+    "Ráma",
+    "Gibea",
+    "údolí Ela",
+    "Gilboa"
+   ],
+   "features": "Bůh hledí na srdce, ne na vzhled (16,7).",
+   "themes": [
+    {
+     "title": "Poslušnost",
+     "text": "„Poslušnost je lepší než oběť“ (15,22)."
+    },
+    {
+     "title": "Boží volba",
+     "text": "Bůh si vybírá Davida, nejmladšího pastýře."
+    },
+    {
+     "title": "Přátelství",
+     "text": "Jonatan a David – věrnost i v nebezpečí."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1100 př. Kr.",
+     "event": "Narození Samuela"
+    },
+    {
+     "date": "cca 1050 př. Kr.",
+     "event": "Saul králem"
+    },
+    {
+     "date": "cca 1025 př. Kr.",
+     "event": "David pomazán (přibližně)"
+    },
+    {
+     "date": "cca 1010 př. Kr.",
+     "event": "Saulova smrt na Gilboa"
+    }
+   ],
+   "background": "Pelištejci měli převahu díky zpracování železa (13,19–22). Kmeny potřebovaly jednotné vedení a žádaly krále jako okolní národy.",
+   "connection": "David je předek Ježíše; Ježíšovo narození v Betlémě, Davidově městě, navazuje na tento příběh. Chanin chvalozpěv je podobný Mariinu chvalozpěvu (L 1,46–55).",
+   "howToRead": "Sledujte tři postavy: Samuela, Saula a Davida. Ptejte se, čím se liší Saulovo a Davidovo srdce."
+  },
+  "10": {
+   "author": "Neznámý.",
+   "date": "Vláda krále Davida (cca 1010–970 př. Kr.).",
+   "theme": "Davidovo království a Boží zaslíbení.",
+   "summary": "David se stává králem nad celým Izraelem a dobývá Jeruzalém. Bůh mu skrze proroka Nátana slibuje věčné království (kap. 7) – základ mesiášských nadějí. Kniha však poctivě popisuje i Davidův hřích s Batšebou a jeho tragické následky v rodině.",
+   "outline": [
+    "1–10 Vzestup Davida",
+    "11–20 Hřích a jeho důsledky",
+    "21–24 Dodatky"
+   ],
+   "keyVerses": [
+    "7:16",
+    "12:13",
+    "22:2-3"
+   ],
+   "purpose": "Vylíčit Davidovu vládu – úspěchy, selhání i Boží zaslíbení trvalého království.",
+   "recipients": "Izraelský lid",
+   "setting": "Juda a celý Izrael, Jeruzalém",
+   "people": [
+    "David",
+    "Batšeba",
+    "Nátan",
+    "Absalóm",
+    "Jóab",
+    "Urijáš"
+   ],
+   "places": [
+    "Chebrón",
+    "Jeruzalém"
+   ],
+   "features": "Boží smlouva s Davidem (kap. 7) je základem mesiášské naděje.",
+   "themes": [
+    {
+     "title": "Zaslíbení",
+     "text": "Bůh slibuje Davidovi trvalý rod – naplněno v Ježíši, Synu Davidově."
+    },
+    {
+     "title": "Hřích a pokání",
+     "text": "Ani velký král není nad Božím zákonem; David své selhání přiznává (12,13)."
+    },
+    {
+     "title": "Následky",
+     "text": "Odpuštění neruší všechny následky – rodina prochází bolestí."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1010 př. Kr.",
+     "event": "David králem v Chebrónu"
+    },
+    {
+     "date": "cca 1003 př. Kr.",
+     "event": "Dobytí Jeruzaléma"
+    },
+    {
+     "date": "cca 990 př. Kr.",
+     "event": "Hřích s Batšebou (přibližně)"
+    },
+    {
+     "date": "cca 980 př. Kr.",
+     "event": "Absalómova vzpoura (přibližně)"
+    }
+   ],
+   "background": "David sjednotil kmeny a z Jeruzaléma, dosud jebúsejského města, udělal hlavní město. Nápis z Tel Danu (9. stol. př. Kr.) zmiňuje „dům Davidův“.",
+   "connection": "Zaslíbení trvalého Davidova rodu (kap. 7) je klíčem k očekávání Mesiáše; Ježíš je oslovován „Synu Davidův“ a anděl slibuje Marii Davidův trůn pro jejího syna (L 1,32).",
+   "howToRead": "Kapitoly 11–12 čtěte spolu s Žalmem 51. Všimněte si, že kniha otevřeně ukazuje i selhání největšího krále."
+  },
+  "11": {
+   "author": "Neznámý.",
+   "date": "Cca 970–850 př. Kr.",
+   "theme": "Šalomounova sláva a rozdělení říše.",
+   "summary": "Šalomoun prosí o moudrost a staví chrám. Ke konci života se však odvrací k cizím bohům a po jeho smrti se říše rozpadá na severní Izrael a jižní Judu. Druhá polovina sleduje prorocké působení Eliáše, který na Karmelu čelí Baalovým prorokům.",
+   "outline": [
+    "1–11 Šalomoun",
+    "12–16 Rozdělení říše",
+    "17–22 Eliáš"
+   ],
+   "keyVerses": [
+    "3:9",
+    "8:27",
+    "18:21",
+    "19:12"
+   ],
+   "purpose": "Ukázat, že prosperita národa závisí na věrnosti Bohu – od Šalomounovy slávy po rozdělení a úpadek.",
+   "recipients": "Izraelci v zajetí",
+   "setting": "Izrael a Juda",
+   "people": [
+    "Šalomoun",
+    "Rechabeám",
+    "Jarobeám",
+    "Achab",
+    "Jezábel",
+    "Eliáš"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Samaří",
+    "Karmel",
+    "Choréb"
+   ],
+   "features": "Stavba chrámu; Eliášův zápas s Baalovými proroky (kap. 18).",
+   "themes": [
+    {
+     "title": "Moudrost",
+     "text": "Šalomoun prosí o moudrost, ne o bohatství."
+    },
+    {
+     "title": "Rozdělené srdce",
+     "text": "Šalomounova pozdní modloslužba vede k rozdělení říše."
+    },
+    {
+     "title": "Bůh mluví",
+     "text": "Eliáš poznává Boha v tichém hlasu (19,12)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 970 př. Kr.",
+     "event": "Šalomoun králem"
+    },
+    {
+     "date": "cca 960 př. Kr.",
+     "event": "Dokončení chrámu"
+    },
+    {
+     "date": "cca 931 př. Kr.",
+     "event": "Rozdělení říše"
+    },
+    {
+     "date": "cca 874–853 př. Kr.",
+     "event": "Achab v Izraeli, Eliáš"
+    }
+   ],
+   "background": "Za Šalomouna dosáhl Izrael největšího rozsahu a bohatství. Po rozdělení soupeřily dvě říše; Asýrie postupně rostla. Kniha vznikla jako výklad dějin pro lid v zajetí.",
+   "connection": "Ježíš zmiňuje Šalomounovu slávu (Mt 6,29) a Eliáše; Jan Křtitel přichází „v duchu a moci Eliášově“ (L 1,17).",
+   "howToRead": "Všímejte si hodnotících vět „činil, co je zlé / správné v Hospodinových očích“. Eliášovy příběhy (kap. 17–19) čtěte jako celek."
+  },
+  "12": {
+   "author": "Neznámý.",
+   "date": "Cca 850–560 př. Kr.",
+   "theme": "Úpadek dvou království až do zajetí.",
+   "summary": "Pokračuje příběh králů Izraele a Judy. Prorok Elíša koná mnohé zázraky. Severní říše pro modlářství padá roku 722 př. Kr. pod Asyřany, Juda i přes reformy krále Chizkijáše a Jóšijáše podléhá Babylonu – roku 586 je Jeruzalém zničen.",
+   "outline": [
+    "1–8 Elíša",
+    "9–17 Pád Izraele",
+    "18–25 Juda až do zajetí"
+   ],
+   "keyVerses": [
+    "2:11",
+    "17:13",
+    "22:13"
+   ],
+   "purpose": "Vysvětlit, proč oba národy skončily v zajetí: odmítly varování proroků.",
+   "recipients": "Izraelci v zajetí",
+   "setting": "Izrael a Juda",
+   "people": [
+    "Elíša",
+    "Naamán",
+    "Jehú",
+    "Chizkijáš",
+    "Izajáš",
+    "Jóšijáš",
+    "Nebúkadnesar"
+   ],
+   "places": [
+    "Samaří",
+    "Jeruzalém",
+    "Asýrie",
+    "Babylón"
+   ],
+   "features": "Pád Samaří (kap. 17) i Jeruzaléma (kap. 25) potvrzují i mimobiblické prameny.",
+   "themes": [
+    {
+     "title": "Varování",
+     "text": "Bůh trpělivě posílá proroky (17,13)."
+    },
+    {
+     "title": "Reformy",
+     "text": "Chizkijáš a Jóšijáš ukazují, že návrat k Bohu je možný."
+    },
+    {
+     "title": "Soud a naděje",
+     "text": "Kniha končí propuštěním krále Jójakína – Davidův rod nezanikl."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 850 př. Kr.",
+     "event": "Eliášovo nanebevzetí, Elíša"
+    },
+    {
+     "date": "722 př. Kr.",
+     "event": "Pád Samaří"
+    },
+    {
+     "date": "701 př. Kr.",
+     "event": "Sancheríb u Jeruzaléma"
+    },
+    {
+     "date": "622 př. Kr.",
+     "event": "Jóšijášova reforma"
+    },
+    {
+     "date": "587/586 př. Kr.",
+     "event": "Zničení Jeruzaléma"
+    }
+   ],
+   "background": "Asyrská a babylonská říše postupně ovládly Přední východ. Mnoho událostí potvrzují mimobiblické prameny (asyrské letopisy, Babylonská kronika, Sancheríbův hranol).",
+   "connection": "Ježíš připomíná Elíšu a Naamána (L 4,27). Pád obou království ukazuje potřebu nové smlouvy, kterou ohlásil Jeremjáš a naplnil Kristus.",
+   "howToRead": "Pomůže vám tabulka králů (Studium → Tabulky). Proroky, kteří v té době působili, si můžete číst souběžně."
+  },
+  "13": {
+   "author": "Tradičně Ezdráš (tzv. Kronikář).",
+   "date": "Sepsáno po návratu ze zajetí (5.–4. stol. př. Kr.).",
+   "theme": "Davidovský rod a příprava chrámu.",
+   "summary": "Kniha začíná rodokmeny od Adama a pak se soustředí na Davida – zejména na jeho přípravu stavby chrámu a uspořádání bohoslužby. Navrátilcům ze zajetí připomíná, že patří k Božímu lidu a že Bůh svá zaslíbení Davidovi neodvolal.",
+   "outline": [
+    "1–9 Rodokmeny",
+    "10–29 Vláda Davida"
+   ],
+   "keyVerses": [
+    "16:34",
+    "29:11"
+   ],
+   "purpose": "Povzbudit navrátilce ze zajetí: připomenout jejich kořeny, Davidův rod a význam chrámu.",
+   "recipients": "Židé po návratu z Babylónu",
+   "setting": "Izrael (pohled zpět z 5. stol. př. Kr.)",
+   "people": [
+    "David",
+    "Šalomoun",
+    "Nátan"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Chebrón"
+   ],
+   "features": "Rozsáhlé rodokmeny od Adama; Davidova vláda líčená se zaměřením na přípravu chrámu.",
+   "themes": [
+    {
+     "title": "Kořeny a identita",
+     "text": "Rodokmeny ukazují, že Bůh nezapomněl na žádnou rodinu."
+    },
+    {
+     "title": "Bohoslužba",
+     "text": "David organizuje kněze, lévijce a zpěváky."
+    },
+    {
+     "title": "Chvála",
+     "text": "„Vzdejte díky Hospodinu, neboť je dobrý“ (16,34)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1010–970 př. Kr.",
+     "event": "Vláda Davida"
+    },
+    {
+     "date": "5.–4. stol. př. Kr.",
+     "event": "Sepsání knihy"
+    }
+   ],
+   "background": "Kronikář píše po návratu ze zajetí, kdy Judsko bylo malou perskou provincií. Chce lidu připomenout jeho identitu a význam bohoslužby.",
+   "connection": "Rodokmeny vedou od Adama přes Davida – podobně jako rodokmeny Ježíše u Matouše a Lukáše.",
+   "howToRead": "Rodokmeny (kap. 1–9) můžete přelétnout. Porovnejte líčení Davida s 2. Samuelovou – Kronikář zdůrazňuje jiné věci."
+  },
+  "14": {
+   "author": "Tradičně Ezdráš (Kronikář).",
+   "date": "Sepsáno po návratu ze zajetí.",
+   "theme": "Chrám a věrnost judských králů.",
+   "summary": "Popisuje Šalomounovu stavbu chrámu a dějiny judských králů až po babylonské zajetí. Hodnotí krále podle věrnosti Bohu a ukazuje, že pokání přináší obnovu. Končí nadějí – výnosem perského krále Kýra, který dovoluje návrat.",
+   "outline": [
+    "1–9 Šalomoun a chrám",
+    "10–36 Judští králové"
+   ],
+   "keyVerses": [
+    "7:14",
+    "16:9",
+    "20:15"
+   ],
+   "purpose": "Ukázat dějiny Judska od Šalomouna po zajetí jako dějiny věrnosti a nevěrnosti v bohoslužbě.",
+   "recipients": "Židé po návratu z Babylónu",
+   "setting": "Juda a Jeruzalém",
+   "people": [
+    "Šalomoun",
+    "Jóšafat",
+    "Chizkijáš",
+    "Jóšijáš",
+    "Kýros"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Končí Kýrovým ediktem – nadějí na návrat.",
+   "themes": [
+    {
+     "title": "Pokání",
+     "text": "„Pokoří-li se můj lid… uzdravím jejich zemi“ (7,14)."
+    },
+    {
+     "title": "Důvěra",
+     "text": "„Boj nepatří vám, ale Bohu“ (20,15)."
+    },
+    {
+     "title": "Obnova",
+     "text": "Králové, kteří hledali Boha, přinesli obnovu."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 960 př. Kr.",
+     "event": "Posvěcení chrámu"
+    },
+    {
+     "date": "cca 931 př. Kr.",
+     "event": "Rozdělení říše"
+    },
+    {
+     "date": "587/586 př. Kr.",
+     "event": "Zničení Jeruzaléma"
+    },
+    {
+     "date": "539/538 př. Kr.",
+     "event": "Kýrův edikt"
+    }
+   ],
+   "background": "Stejně jako 1. Paralipomenon vzniká po zajetí. Zaměřuje se jen na Judsko a na chrám; obnovy za Chizkijáše a Jóšijáše jsou vzorem pro navrátilce.",
+   "connection": "Ježíš mluví o sobě jako o chrámu (J 2,19–21); Kronikář ukazuje, jak důležitá byla Boží přítomnost uprostřed lidu.",
+   "howToRead": "Čtěte jako „kázání z dějin“: proč se jednomu králi dařilo a druhému ne? Dobře se čte s 1. a 2. Královskou."
+  },
+  "15": {
+   "author": "Tradičně Ezdráš.",
+   "date": "Cca 538–450 př. Kr.",
+   "theme": "Návrat ze zajetí a obnova chrámu.",
+   "summary": "Na základě Kýrova výnosu se první skupina vrací do Jeruzaléma a navzdory odporu obnovuje chrám. O desetiletí později přichází znalec Zákona Ezdráš, učí lid Boží slovo a vede ho k pokání.",
+   "outline": [
+    "1–6 Návrat a stavba chrámu",
+    "7–10 Ezdrášova reforma"
+   ],
+   "keyVerses": [
+    "7:10"
+   ],
+   "purpose": "Zachytit návrat ze zajetí, obnovu chrámu a obnovu duchovního života podle Božího zákona.",
+   "recipients": "Navrátilci v Judsku",
+   "setting": "Babylónie a Jeruzalém",
+   "people": [
+    "Kýros",
+    "Zerubábel",
+    "Jéšua",
+    "Ezdráš",
+    "Ageus",
+    "Zacharjáš"
+   ],
+   "places": [
+    "Babylón",
+    "Jeruzalém"
+   ],
+   "features": "Obsahuje aramejské úřední dopisy perské doby.",
+   "themes": [
+    {
+     "title": "Boží svrchovanost",
+     "text": "Bůh vede i pohanské vládce (1,1)."
+    },
+    {
+     "title": "Obnova bohoslužby",
+     "text": "Nejdříve oltář, potom chrám."
+    },
+    {
+     "title": "Slovo Boží",
+     "text": "Ezdráš se rozhodl zkoumat, plnit a učit Zákon (7,10)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "538 př. Kr.",
+     "event": "První návrat pod Zerubábelem"
+    },
+    {
+     "date": "536 př. Kr.",
+     "event": "Základy chrámu"
+    },
+    {
+     "date": "516/515 př. Kr.",
+     "event": "Dokončení chrámu"
+    },
+    {
+     "date": "458 př. Kr.",
+     "event": "Ezdrášův příchod"
+    }
+   ],
+   "background": "Perský král Kýros dovolil národům vrátit se domů (Kýrův válec). Navrátilci žili v chudobě a pod tlakem sousedů. Část knihy obsahuje aramejské úřední dopisy.",
+   "connection": "Obnova chrámu připravuje dobu, kdy do něj přijde Ježíš. Ezdráš jako učitel Zákona ukazuje význam Božího slova.",
+   "howToRead": "Pozor: kniha není řazena přísně chronologicky (kap. 4 skáče dopředu). Čtěte spolu s Ageem a Zacharjášem."
+  },
+  "16": {
+   "author": "Nehemjáš (paměti v 1. osobě).",
+   "date": "Cca 445–430 př. Kr.",
+   "theme": "Obnova hradeb a společenství.",
+   "summary": "Nehemjáš, číšník perského krále, se dozví o zbořených hradbách Jeruzaléma. S modlitbou se vrací a navzdory nepřátelům hradby za 52 dní obnoví. Následuje veřejné čtení Zákona a obnovení smlouvy s Bohem.",
+   "outline": [
+    "1–7 Stavba hradeb",
+    "8–10 Obnova smlouvy",
+    "11–13 Reformy"
+   ],
+   "keyVerses": [
+    "1:11",
+    "8:10"
+   ],
+   "purpose": "Ukázat obnovu jeruzalémských hradeb i společenství skrze modlitbu, vedení a poslušnost Božímu slovu.",
+   "recipients": "Navrátilci v Judsku",
+   "setting": "Perská Súsy a Jeruzalém",
+   "people": [
+    "Nehemjáš",
+    "Ezdráš",
+    "Artaxerxés",
+    "Sanbalat"
+   ],
+   "places": [
+    "Súsy",
+    "Jeruzalém"
+   ],
+   "features": "Psáno převážně v 1. osobě jako Nehemjášovy paměti.",
+   "themes": [
+    {
+     "title": "Modlitba a práce",
+     "text": "Nehemjáš se modlí i jedná."
+    },
+    {
+     "title": "Vedení",
+     "text": "Dobrý vůdce povzbuzuje, organizuje a nevzdává se."
+    },
+    {
+     "title": "Radost",
+     "text": "„Radost z Hospodina je vaše síla“ (8,10)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "445 př. Kr.",
+     "event": "Nehemjáš v Jeruzalémě"
+    },
+    {
+     "date": "445 př. Kr.",
+     "event": "Hradby postaveny za 52 dní (6,15)"
+    },
+    {
+     "date": "cca 433 př. Kr.",
+     "event": "Druhý Nehemjášův pobyt"
+    }
+   ],
+   "background": "Nehemjáš byl číšníkem perského krále Artaxerxa I. a přišel do Jeruzaléma jako místodržitel roku 445 př. Kr. Hradby byly důležité pro bezpečí i identitu města.",
+   "connection": "Nehemjášova modlitba a služba ukazují vůdce, který obětuje pohodlí pro druhé – motiv, který vrcholí v Kristu.",
+   "howToRead": "Čtěte jako deník vůdce. Všímejte si krátkých modliteb „střelných“ uprostřed práce (např. 2,4)."
+  },
+  "17": {
+   "author": "Neznámý.",
+   "date": "Perská doba (cca 480 př. Kr.).",
+   "theme": "Skrytá Boží prozřetelnost.",
+   "summary": "Židovská dívka Ester se stává perskou královnou. Když Haman připraví vyhlazení Židů, riskuje Ester život a předstoupí před krále. Bůh v knize není jmenován, a přesto je zřejmé, že řídí události. Kniha je základem svátku Purim.",
+   "outline": [
+    "1–2 Ester královnou",
+    "3–5 Hamanovo spiknutí",
+    "6–10 Záchrana"
+   ],
+   "keyVerses": [
+    "4:14"
+   ],
+   "purpose": "Ukázat Boží skrytou péči o jeho lid a vysvětlit původ svátku Purim.",
+   "recipients": "Židé v perské říši",
+   "setting": "Súsy, sídlo perských králů",
+   "people": [
+    "Ester",
+    "Mordokaj",
+    "Achašveróš (Xerxés)",
+    "Haman"
+   ],
+   "places": [
+    "Súsy"
+   ],
+   "features": "Boží jméno se v knize nevyskytuje, přesto je jeho péče zřetelná.",
+   "themes": [
+    {
+     "title": "Prozřetelnost",
+     "text": "„Kdo ví, zda ses nedostala ke královské hodnosti právě pro takovou chvíli?“ (4,14)."
+    },
+    {
+     "title": "Odvaha",
+     "text": "Ester riskuje život pro svůj lid."
+    },
+    {
+     "title": "Spravedlnost",
+     "text": "Pýcha a nenávist Hamana se obracejí proti němu."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "483 př. Kr.",
+     "event": "Hostina krále Achašveróše (3. rok vlády)"
+    },
+    {
+     "date": "479/478 př. Kr.",
+     "event": "Ester královnou (7. rok)"
+    },
+    {
+     "date": "473 př. Kr.",
+     "event": "Záchrana Židů, svátek Purim"
+    }
+   ],
+   "background": "Děj se odehrává v Súsách za krále Xerxa I. (Achašveróše). Mnoho Židů zůstalo v Persii i po návratu části lidu. Kniha dobře zná perské zvyky a úřady.",
+   "connection": "Ester riskuje život za svůj lid – motiv přímluvce, který se postaví za druhé, vrcholí v Ježíši (Žd 7,25).",
+   "howToRead": "Přečtěte najednou jako napínavý příběh. Hledejte „náhody“, za nimiž je skrytá Boží péče."
+  },
+  "18": {
+   "author": "Neznámý.",
+   "date": "Nejisté; příběh se odehrává v době praotců.",
+   "theme": "Utrpení spravedlivého a Boží moudrost.",
+   "summary": "Bezúhonný Jób přichází o majetek, děti i zdraví. Jeho přátelé tvrdí, že utrpení je trestem za hřích, Jób to odmítá a volá k Bohu o odpověď. Bůh nakonec promlouvá z bouře – nevysvětluje, ale ukazuje svou velikost – a Jób nachází pokoj.",
+   "outline": [
+    "1–2 Prolog",
+    "3–37 Rozhovory",
+    "38–42 Boží odpověď a epilog"
+   ],
+   "keyVerses": [
+    "1:21",
+    "19:25",
+    "42:5"
+   ],
+   "purpose": "Zápasit s otázkou utrpení spravedlivého a ukázat Boží moudrost, která přesahuje lidské vysvětlení.",
+   "recipients": "Všichni, kdo trpí a hledají odpovědi",
+   "setting": "Země Ús (pravděpodobně Edóm či Arábie)",
+   "people": [
+    "Jób",
+    "Elífaz",
+    "Bildad",
+    "Sófar",
+    "Elíhú",
+    "satan"
+   ],
+   "places": [
+    "země Ús"
+   ],
+   "features": "Básnický dialog; Bůh nakonec odpovídá ze smršti.",
+   "themes": [
+    {
+     "title": "Utrpení",
+     "text": "Utrpení není vždy trestem za hřích."
+    },
+    {
+     "title": "Upřímnost",
+     "text": "Jób před Bohem nic nepředstírá – a Bůh ho nakonec ospravedlňuje."
+    },
+    {
+     "title": "Boží velikost",
+     "text": "Bůh neodpovídá na všechno, ale ukazuje sebe (42,5)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "nejisté",
+     "event": "Příběh se odehrává pravděpodobně v době praotců"
+    }
+   ],
+   "background": "Kniha patří k moudrostní literatuře Předního východu, která se zabývala utrpením spravedlivého. Je psána převážně jako báseň v hebrejské poezii.",
+   "connection": "Jób touží po prostředníkovi mezi sebou a Bohem (9,33); Nový zákon představuje Ježíše jako prostředníka (1Tm 2,5). Jakub připomíná Jóbovu vytrvalost (Jk 5,11).",
+   "howToRead": "Nespěchejte s rozhovory přátel – jejich rady znějí zbožně, ale Bůh je nakonec nepochválí (42,7). Kapitoly 38–41 čtěte nahlas."
+  },
+  "19": {
+   "author": "David (73 žalmů), Asaf, synové Kórachovi, Mojžíš, Šalomoun a další.",
+   "date": "Cca 1400–400 př. Kr.",
+   "theme": "Modlitební a zpěvník Božího lidu.",
+   "summary": "150 žalmů zahrnuje chvály, nářky, prosby, díkůvzdání i mesiášské žalmy. Vyjadřují celou škálu lidských pocitů před Bohem. Jsou rozděleny do pěti knih a po staletí slouží židům i křesťanům jako modlitby.",
+   "outline": [
+    "1–41 Kniha I",
+    "42–72 Kniha II",
+    "73–89 Kniha III",
+    "90–106 Kniha IV",
+    "107–150 Kniha V"
+   ],
+   "keyVerses": [
+    "1:1-2",
+    "23:1",
+    "46:2",
+    "51:12",
+    "119:105",
+    "139:23-24"
+   ],
+   "purpose": "Dát Božímu lidu slova k modlitbě a chvále ve všech životních situacích.",
+   "recipients": "Izrael a všichni, kdo se modlí",
+   "setting": "Od doby Mojžíše po návrat ze zajetí",
+   "people": [
+    "David",
+    "Asaf",
+    "synové Kórachovi",
+    "Mojžíš",
+    "Šalomoun"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Sijón"
+   ],
+   "features": "Pět knih žalmů; chvalozpěvy, nářky, žalmy důvěry, moudrosti i královské žalmy.",
+   "themes": [
+    {
+     "title": "Chvála",
+     "text": "Žalmy učí oslavovat Boha za to, kdo je."
+    },
+    {
+     "title": "Nářek",
+     "text": "Bolest i otázky smějí zaznít před Bohem."
+    },
+    {
+     "title": "Důvěra",
+     "text": "„Hospodin je můj pastýř“ (23,1)."
+    },
+    {
+     "title": "Mesiáš",
+     "text": "Královské žalmy ukazují k Mesiáši; Nový zákon je často cituje."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 1400 př. Kr.",
+     "event": "Žalm 90 připisován Mojžíšovi"
+    },
+    {
+     "date": "cca 1010–970 př. Kr.",
+     "event": "Davidovy žalmy"
+    },
+    {
+     "date": "po 587 př. Kr.",
+     "event": "Žalmy zajetí (např. 137)"
+    },
+    {
+     "date": "po 538 př. Kr.",
+     "event": "Konečné uspořádání sbírky"
+    }
+   ],
+   "background": "Žalmy vznikaly asi tisíc let a sloužily při bohoslužbě v chrámu i při osobní modlitbě. Nadpisy uvádějí autory a hudební pokyny; „sela“ je pravděpodobně hudební značka.",
+   "connection": "Nový zákon cituje Žalmy častěji než kteroukoli jinou knihu. Ježíš se modlil žalmy i na kříži (Ž 22,2; 31,6).",
+   "howToRead": "Nečtěte žalmy jen jako text, ale jako modlitbu. Zkuste denně jeden; Žalm 119 po částech."
+  },
+  "20": {
+   "author": "Převážně Šalomoun, dále Agur a Lemúel.",
+   "date": "10. stol. př. Kr., uspořádáno později.",
+   "theme": "Praktická moudrost pro každodenní život.",
+   "summary": "Krátká přísloví a delší naučné básně učí moudrosti v práci, řeči, penězích, rodině a vztazích. Moudrost začíná bázní před Hospodinem. Kniha končí oslavou statečné ženy.",
+   "outline": [
+    "1–9 Výzva k moudrosti",
+    "10–29 Šalomounova přísloví",
+    "30–31 Agur, Lemúel, statečná žena"
+   ],
+   "keyVerses": [
+    "1:7",
+    "3:5-6",
+    "4:23",
+    "16:9"
+   ],
+   "purpose": "Učit praktické moudrosti pro život v bázni před Bohem.",
+   "recipients": "Mladí lidé i všichni, kdo hledají moudrost",
+   "setting": "Izraelský královský dvůr a rodina",
+   "people": [
+    "Šalomoun",
+    "Agur",
+    "Lemúel"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Krátká přísloví o slovech, práci, penězích, přátelství a rodině; závěrečná báseň o statečné ženě.",
+   "themes": [
+    {
+     "title": "Bázeň Hospodinova",
+     "text": "Začátek poznání (1,7)."
+    },
+    {
+     "title": "Slova",
+     "text": "Jazyk může uzdravovat i ničit."
+    },
+    {
+     "title": "Práce a poctivost",
+     "text": "Pílí, poctivostí a pokorou se staví dobrý život."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 970–930 př. Kr.",
+     "event": "Šalomounova přísloví"
+    },
+    {
+     "date": "cca 700 př. Kr.",
+     "event": "Muži judského krále Chizkijáše opisují další přísloví (25,1)"
+    }
+   ],
+   "background": "Moudrostní výroky existovaly i v Egyptě a Mezopotámii; část Přísloví (22,17–24,22) je podobná egyptskému „Učení Amenemopa“. Izraelská moudrost je však zakotvena v bázni před Hospodinem.",
+   "connection": "Ježíš je nazván „Boží moudrostí“ (1K 1,24) a jeho podobenství navazují na moudrostní tradici.",
+   "howToRead": "Přísloví jsou obecná pravidla, ne záruky. Zkuste číst jednu kapitolu denně – podle dne v měsíci (31 kapitol)."
+  },
+  "21": {
+   "author": "„Kazatel, syn Davidův“ – tradičně Šalomoun.",
+   "date": "Tradičně 10. stol.; mnozí badatelé kladou vznik později.",
+   "theme": "Smysl života „pod sluncem“.",
+   "summary": "Kazatel zkoumá moudrost, požitky, práci i bohatství a dochází k závěru, že bez Boha je vše „marnost nad marnost“ – pomíjivý dech. Vyzývá radovat se z darů života a nakonec shrnuje: „Boha se boj a jeho přikázání zachovávej.“",
+   "outline": [
+    "1–2 Marnost všeho",
+    "3–11 Čas a moudrost",
+    "12 Závěr"
+   ],
+   "keyVerses": [
+    "1:2",
+    "3:1",
+    "12:1",
+    "12:13"
+   ],
+   "purpose": "Ukázat marnost života bez Boha a vést k radosti z Božích darů a k bázni před ním.",
+   "recipients": "Hledající lidé",
+   "setting": "Pohled moudrého na život „pod sluncem“",
+   "people": [
+    "Kazatel"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Upřímné otázky a závěr „Boha se boj a jeho příkazy zachovávej“ (12,13).",
+   "themes": [
+    {
+     "title": "Pomíjivost",
+     "text": "Úspěch, bohatství ani moudrost nedávají trvalé naplnění."
+    },
+    {
+     "title": "Čas",
+     "text": "Všechno má svou chvíli (3,1)."
+    },
+    {
+     "title": "Radost z darů",
+     "text": "Jídlo, práce a láska jsou dary, které můžeme přijímat s vděčností."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "tradičně 10. stol. př. Kr.",
+     "event": "Připisováno Šalomounovi"
+    }
+   ],
+   "background": "Kniha patří k moudrostní literatuře a klade otázky, které zaznívají i v jiných kulturách: co zbude z lidské námahy?",
+   "connection": "Pavel píše, že stvoření bylo „podrobeno marnosti“ s nadějí na osvobození (Ř 8,20–21). Ježíš dává smysl „pod sluncem“.",
+   "howToRead": "Neberte jednotlivé věty vytržené – kniha je dialog skepse a víry. Klíčem je závěr (12,13–14)."
+  },
+  "22": {
+   "author": "Tradičně Šalomoun.",
+   "date": "Tradičně 10. stol. př. Kr.",
+   "theme": "Krása lásky mezi mužem a ženou.",
+   "summary": "Milostná poezie oslavuje lásku, touhu a věrnost mezi milým a milou. Židovská i křesťanská tradice v ní viděla i obraz lásky Boha k jeho lidu.",
+   "outline": [
+    "1–3 Touha a setkání",
+    "4–5 Svatba",
+    "6–8 Zralá láska"
+   ],
+   "keyVerses": [
+    "2:16",
+    "8:6-7"
+   ],
+   "purpose": "Oslavit lásku mezi mužem a ženou jako dobrý Boží dar.",
+   "recipients": "Izrael; zamilovaní a manželé",
+   "setting": "Izrael, venkov i Jeruzalém",
+   "people": [
+    "milá (Šulamitka)",
+    "milý"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Libanon"
+   ],
+   "features": "Milostná poezie; židovská i křesťanská tradice v ní viděla i obraz Boží lásky.",
+   "themes": [
+    {
+     "title": "Láska",
+     "text": "„Láska je silná jako smrt“ (8,6)."
+    },
+    {
+     "title": "Věrnost",
+     "text": "Láska chce výlučnost a trvalost."
+    },
+    {
+     "title": "Čas lásky",
+     "text": "„Nebuďte lásku, dokud sama nechce“ (2,7)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "tradičně 10. stol. př. Kr.",
+     "event": "Připisováno Šalomounovi"
+    }
+   ],
+   "background": "Píseň patří k milostné poezii starověku; podobné písně známe z Egypta. Byla čtena při svátku Paschy.",
+   "connection": "Nový zákon přirovnává vztah Krista a církve k manželství (Ef 5,25–32); proto mnozí vykladači četli Píseň i duchovně.",
+   "howToRead": "Čtěte nejdřív doslovně – jako oslavu lásky a manželství. Pak se můžete ptát, co říká o Boží lásce."
+  },
+  "23": {
+   "author": "Prorok Izajáš (kap. 40–66 mnozí badatelé připisují pozdějším autorům z jeho školy).",
+   "date": "Cca 740–680 př. Kr.",
+   "theme": "Svatý Bůh soudí i zachraňuje – zaslíbení Mesiáše.",
+   "summary": "Izajáš vidí Boha jako „Svatého Izraele“. Ohlašuje soud nad Judou i národy, ale také naději: Immanuele, Knížete pokoje a Služebníka, který nese hříchy mnohých (kap. 53). Druhá část utěšuje zajatce a ohlašuje nové nebe a novou zemi.",
+   "outline": [
+    "1–39 Soud a naděje",
+    "40–55 Útěcha a Služebník Hospodinův",
+    "56–66 Budoucí sláva"
+   ],
+   "keyVerses": [
+    "6:3",
+    "9:5",
+    "40:31",
+    "53:5",
+    "55:8-9"
+   ],
+   "purpose": "Volat Judu k návratu k Bohu, ohlásit soud i útěchu a zaslíbit Mesiáše.",
+   "recipients": "Juda a Jeruzalém",
+   "setting": "Jeruzalém v době asyrské hrozby",
+   "people": [
+    "Izajáš",
+    "Uzijáš",
+    "Achaz",
+    "Chizkijáš",
+    "Sancheríb",
+    "Kýros"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Asýrie",
+    "Babylón"
+   ],
+   "features": "Nejčastěji citovaný prorok v Novém zákoně; písně o Služebníku Hospodinově (kap. 42–53).",
+   "themes": [
+    {
+     "title": "Svatost Boží",
+     "text": "„Svatý, svatý, svatý“ (6,3)."
+    },
+    {
+     "title": "Mesiáš",
+     "text": "Dítě se nám narodilo (9,5); trpící Služebník (53)."
+    },
+    {
+     "title": "Útěcha",
+     "text": "„Potěšujte můj lid“ (40,1) – naděje po soudu."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 740 př. Kr.",
+     "event": "Izajášovo povolání (rok Uzijášovy smrti)"
+    },
+    {
+     "date": "cca 734 př. Kr.",
+     "event": "Proroctví o Immanuelovi"
+    },
+    {
+     "date": "701 př. Kr.",
+     "event": "Sancheríbovo obléhání Jeruzaléma"
+    }
+   ],
+   "background": "Izajáš působil v Jeruzalémě za čtyř králů, v době asyrské hrozby. Kapitoly 40–66 mluví k lidu v babylonském zajetí a po něm; proto je mnozí badatelé připisují pozdějším autorům z Izajášovy školy.",
+   "connection": "Ježíš začal své působení čtením z Iz 61 (L 4,16–21). Píseň o trpícím Služebníku (52,13–53,12) je v Novém zákoně vztažena na Krista (Sk 8,32–35).",
+   "howToRead": "Kniha je dlouhá; začněte kapitolami 6, 9, 40, 53 a 55. Pomůže znát dobu krále Chizkijáše (2Kr 18–20)."
+  },
+  "24": {
+   "author": "Prorok Jeremjáš, zapisoval Báruk.",
+   "date": "Cca 627–580 př. Kr.",
+   "theme": "Volání k pokání a nová smlouva.",
+   "summary": "„Plačící prorok“ čtyřicet let varuje Judu před soudem, je odmítán a pronásledován. Prožívá pád Jeruzaléma. Uprostřed zkázy však ohlašuje novou smlouvu, kdy Bůh napíše svůj zákon lidem do srdce.",
+   "outline": [
+    "1–25 Varování Judě",
+    "26–45 Jeremjášův příběh",
+    "46–52 Proroctví o národech"
+   ],
+   "keyVerses": [
+    "1:5",
+    "17:7-8",
+    "29:11",
+    "31:33"
+   ],
+   "purpose": "Varovat Judu před soudem a vyzvat k pokání; zaslíbit novou smlouvu.",
+   "recipients": "Juda a Jeruzalém",
+   "setting": "Jeruzalém před a po babylonském dobytí",
+   "people": [
+    "Jeremjáš",
+    "Báruk",
+    "Jóšijáš",
+    "Jójakím",
+    "Sidkijáš",
+    "Nebúkadnesar"
+   ],
+   "places": [
+    "Anatót",
+    "Jeruzalém",
+    "Egypt"
+   ],
+   "features": "Nejvíce osobních pasáží ze všech proroků („Jeremjášova vyznání“).",
+   "themes": [
+    {
+     "title": "Pokání",
+     "text": "Bůh zve k návratu, i když lid odmítá."
+    },
+    {
+     "title": "Věrnost v utrpení",
+     "text": "Jeremjáš zůstal věrný, i když byl odmítán a vězněn."
+    },
+    {
+     "title": "Nová smlouva",
+     "text": "Bůh vepíše svůj zákon do srdce (31,33)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "627 př. Kr.",
+     "event": "Jeremjášovo povolání"
+    },
+    {
+     "date": "605 př. Kr.",
+     "event": "Báruk zapisuje proroctví"
+    },
+    {
+     "date": "597 př. Kr.",
+     "event": "První deportace"
+    },
+    {
+     "date": "587/586 př. Kr.",
+     "event": "Pád Jeruzaléma"
+    }
+   ],
+   "background": "Jeremjáš působil 40 let v době úpadku Judska a babylonské nadvlády. Archeologové v Jeruzalémě našli otisky pečetí se jmény úředníků z knihy (např. Gemarjáše, syna Šáfanova – 36,10).",
+   "connection": "Zaslíbení nové smlouvy (31,31–34) cituje Ježíš při poslední večeři (L 22,20) a vykládá ho list Židům (Žd 8).",
+   "howToRead": "Kniha není chronologická. Čtěte nejprve příběhové kapitoly (26–45) a pak proroctví."
+  },
+  "25": {
+   "author": "Tradičně Jeremjáš.",
+   "date": "Brzy po zničení Jeruzaléma (586 př. Kr.).",
+   "theme": "Nářek nad zničeným městem a naděje.",
+   "summary": "Pět básní (většinou abecedních akrostichů) oplakává zničený Jeruzalém. Uprostřed bolesti zaznívá vyznání: „Hospodinova milosrdenství nejsou vyčerpána, každé ráno jsou nová.“",
+   "outline": [
+    "1–2 Zpustošené město",
+    "3 Naděje uprostřed utrpení",
+    "4–5 Prosba o obnovu"
+   ],
+   "keyVerses": [
+    "3:22-23"
+   ],
+   "purpose": "Vyjádřit zármutek nad zničeným Jeruzalémem a uprostřed bolesti nalézt naději v Boží věrnosti.",
+   "recipients": "Přeživší po pádu Jeruzaléma",
+   "setting": "Zničený Jeruzalém",
+   "people": [
+    "autor (tradičně Jeremjáš)"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Pět nářků; kap. 1–4 jsou abecední akrostichy.",
+   "themes": [
+    {
+     "title": "Žal",
+     "text": "Bolest smí být vyslovena naplno."
+    },
+    {
+     "title": "Boží věrnost",
+     "text": "„Je nové každé ráno“ (3,22–23)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "587/586 př. Kr.",
+     "event": "Zničení Jeruzaléma a chrámu"
+    }
+   ],
+   "background": "Pět nářků vzniklo po zničení Jeruzaléma roku 587/586 př. Kr. První čtyři jsou akrostichy – každý verš začíná dalším písmenem hebrejské abecedy.",
+   "connection": "Ježíš plakal nad Jeruzalémem (L 19,41–44). Kniha učí, že nářek patří k víře.",
+   "howToRead": "Čtěte pomalu, v době smutku. Středem knihy je naděje (3,21–33)."
+  },
+  "26": {
+   "author": "Prorok Ezechiel, kněz v babylonském zajetí.",
+   "date": "Cca 593–571 př. Kr.",
+   "theme": "Boží sláva, soud a obnova.",
+   "summary": "Ezechiel má mezi zajatci mocná vidění Boží slávy. Ohlašuje pád Jeruzaléma, ale po něm i obnovu: Bůh dá lidu nové srdce a nového ducha, oživí suché kosti a znovu bude přebývat uprostřed svého lidu v novém chrámu.",
+   "outline": [
+    "1–24 Soud nad Jeruzalémem",
+    "25–32 Národy",
+    "33–48 Obnova a nový chrám"
+   ],
+   "keyVerses": [
+    "36:26",
+    "37:5"
+   ],
+   "purpose": "Ukázat vyhnancům, že Bůh je svrchovaný i v zajetí, že soud byl spravedlivý a že přijde obnova.",
+   "recipients": "Židé v babylonském zajetí",
+   "setting": "Babylónie, u řeky Kebar",
+   "people": [
+    "Ezechiel"
+   ],
+   "places": [
+    "řeka Kebar",
+    "Jeruzalém"
+   ],
+   "features": "Výrazná vidění: Boží sláva (kap. 1), suché kosti (kap. 37), nový chrám (kap. 40–48).",
+   "themes": [
+    {
+     "title": "Boží sláva",
+     "text": "Bůh není vázán na jedno místo."
+    },
+    {
+     "title": "Osobní odpovědnost",
+     "text": "Každý odpovídá za své činy (kap. 18)."
+    },
+    {
+     "title": "Nové srdce",
+     "text": "Bůh dává nové srdce a nového ducha (36,26)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "597 př. Kr.",
+     "event": "Ezechiel odveden do Babylónie"
+    },
+    {
+     "date": "593 př. Kr.",
+     "event": "Povolání"
+    },
+    {
+     "date": "587/586 př. Kr.",
+     "event": "Zpráva o pádu Jeruzaléma"
+    },
+    {
+     "date": "571 př. Kr.",
+     "event": "Poslední datované proroctví"
+    }
+   ],
+   "background": "Ezechiel byl knězem, kterého Babyloňané odvedli roku 597 př. Kr. Působil mezi vyhnanci u řeky Kebar. Jeho vidění jsou plná symbolů a obrazů.",
+   "connection": "Ježíš jako dobrý pastýř (J 10) navazuje na Ez 34. Nové srdce a Duch (36,26–27) se naplňují v Novém zákoně.",
+   "howToRead": "Kapitoly 1, 18, 34, 36 a 37 jsou dobrým začátkem. Obrazy čtěte jako obrazy, ne jako technický popis."
+  },
+  "27": {
+   "author": "Tradičně Daniel; mnozí badatelé datují konečnou podobu do 2. stol. př. Kr.",
+   "date": "Děj v babylonském zajetí (605–530 př. Kr.).",
+   "theme": "Bůh vládne nad říšemi světa.",
+   "summary": "Daniel a jeho přátelé zůstávají věrni Bohu na babylonském dvoře – v ohnivé peci i ve lví jámě. Druhá polovina obsahuje apokalyptická vidění o střídání světových říší a o věčném království „Syna člověka“.",
+   "outline": [
+    "1–6 Příběhy věrnosti",
+    "7–12 Vidění"
+   ],
+   "keyVerses": [
+    "2:44",
+    "3:17-18",
+    "6:23",
+    "7:13-14"
+   ],
+   "purpose": "Povzbudit k věrnosti v cizím prostředí a ukázat, že Bůh vládne nad dějinami.",
+   "recipients": "Židé v zajetí a pod cizí vládou",
+   "setting": "Babylón a Persie",
+   "people": [
+    "Daniel",
+    "Chananjáš, Míšael a Azarjáš",
+    "Nebúkadnesar",
+    "Belšasar",
+    "Dareios"
+   ],
+   "places": [
+    "Babylón"
+   ],
+   "features": "Část psána aramejsky (2,4–7,28); příběhy (kap. 1–6) a apokalyptická vidění (kap. 7–12).",
+   "themes": [
+    {
+     "title": "Věrnost",
+     "text": "Daniel a přátelé zůstávají věrní i za cenu života."
+    },
+    {
+     "title": "Boží vláda",
+     "text": "Říše přicházejí a odcházejí, Boží království trvá (2,44)."
+    },
+    {
+     "title": "Syn člověka",
+     "text": "Vidění, k němuž se Ježíš přihlásil (7,13–14)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "605 př. Kr.",
+     "event": "Daniel odveden do Babylóna"
+    },
+    {
+     "date": "539 př. Kr.",
+     "event": "Pád Babylóna (Belšasarova hostina)"
+    },
+    {
+     "date": "cca 537 př. Kr.",
+     "event": "Daniel ve lví jámě (za Dareia)"
+    }
+   ],
+   "background": "Daniel byl odveden do Babylóna roku 605 př. Kr. Kniha je psána hebrejsky a aramejsky. Vidění v kapitolách 7–12 patří k apokalyptické literatuře; část badatelů datuje konečnou podobu knihy do 2. stol. př. Kr.",
+   "connection": "Ježíš se nejčastěji nazývá „Syn člověka“ – výraz z Da 7,13–14. Zjevení Janovo navazuje na Danielova vidění.",
+   "howToRead": "Kapitoly 1–6 jsou příběhy pro každého; vidění 7–12 čtěte s vědomím, že jejich výklad se mezi křesťany liší."
+  },
+  "28": {
+   "author": "Prorok Ozeáš.",
+   "date": "Cca 750–720 př. Kr.",
+   "theme": "Věrná Boží láska k nevěrnému lidu.",
+   "summary": "Bůh přikazuje Ozeášovi vzít si nevěrnou ženu. Jeho bolestné manželství se stává obrazem vztahu Boha a Izraele, který slouží modlám. Přesto Bůh svůj lid neopouští: „Jak bych tě mohl vydat, Efrajime?“",
+   "outline": [
+    "1–3 Ozeášovo manželství",
+    "4–14 Obžaloba a naděje"
+   ],
+   "keyVerses": [
+    "6:6",
+    "11:8",
+    "14:5"
+   ],
+   "purpose": "Ukázat Boží věrnou lásku k nevěrnému lidu a vyzvat k návratu.",
+   "recipients": "Severní Izrael",
+   "setting": "Izrael před pádem Samaří",
+   "people": [
+    "Ozeáš",
+    "Gomer"
+   ],
+   "places": [
+    "Samaří"
+   ],
+   "features": "Prorokovo manželství je živým obrazem vztahu Boha a Izraele.",
+   "themes": [
+    {
+     "title": "Věrná láska",
+     "text": "Bůh neopouští, i když je zrazen (11,8)."
+    },
+    {
+     "title": "Poznání Boha",
+     "text": "„Chci milosrdenství, ne oběť“ (6,6)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 755–715 př. Kr.",
+     "event": "Ozeášovo působení"
+    },
+    {
+     "date": "722 př. Kr.",
+     "event": "Pád Samaří"
+    }
+   ],
+   "background": "Ozeáš působil v severním Izraeli v posledních desetiletích před pádem Samaří (722 př. Kr.), v době politického chaosu a uctívání Baala.",
+   "connection": "Ježíš dvakrát cituje „Chci milosrdenství, a ne oběť“ (Mt 9,13; 12,7). Mt 2,15 vztahuje 11,1 na Ježíše.",
+   "howToRead": "Kapitoly 1–3 čtěte jako příběh; kapitoly 11 a 14 jsou srdcem knihy."
+  },
+  "29": {
+   "author": "Prorok Jóel.",
+   "date": "Nejisté (návrhy od 9. do 4. stol. př. Kr.).",
+   "theme": "Den Hospodinův a vylití Ducha.",
+   "summary": "Pohroma kobylek je pro Jóela předzvěstí „dne Hospodinova“. Vyzývá k pokání („roztrhněte svá srdce, ne roucha“) a slibuje obnovu i vylití Božího Ducha na všechny lidi – Petr tento text cituje o Letnicích.",
+   "outline": [
+    "1–2:17 Kobylky a výzva k pokání",
+    "2:18–4 Obnova a soud"
+   ],
+   "keyVerses": [
+    "2:13",
+    "3:1"
+   ],
+   "purpose": "Vyzvat k pokání po pohromě kobylek a ohlásit Den Hospodinův i vylití Ducha.",
+   "recipients": "Juda",
+   "setting": "Juda po zničující pohromě",
+   "people": [
+    "Jóel"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Sijón"
+   ],
+   "features": "Petr citoval Jóele o Letnicích (Sk 2).",
+   "themes": [
+    {
+     "title": "Pokání",
+     "text": "„Roztrhněte svá srdce, ne roucha“ (2,13)."
+    },
+    {
+     "title": "Duch pro všechny",
+     "text": "Bůh vyleje svého Ducha na každé tělo (3,1)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "nejisté",
+     "event": "Datace sporná (9.–4. stol. př. Kr.)"
+    }
+   ],
+   "background": "Datace je nejistá. Pohroma kobylek byla v zemědělské společnosti katastrofou a prorok ji chápe jako výzvu k pokání.",
+   "connection": "Petr cituje Jóele o Letnicích (Sk 2,16–21); Pavel cituje „každý, kdo vzývá jméno Páně, bude spasen“ (Ř 10,13).",
+   "howToRead": "Krátká kniha – přečtěte ji najednou. Klíčem je 2,12–13."
+  },
+  "30": {
+   "author": "Prorok Ámos, pastýř z Tekóje.",
+   "date": "Cca 760 př. Kr.",
+   "theme": "Sociální spravedlnost.",
+   "summary": "Prostý pastýř Ámos přichází do bohatého severního Izraele a odsuzuje útlak chudých, korupci a prázdnou zbožnost. Bůh nestojí o slavnosti bez spravedlnosti: „Ať valí se právo jako vody.“",
+   "outline": [
+    "1–2 Soud nad národy",
+    "3–6 Obžaloba Izraele",
+    "7–9 Vidění a naděje"
+   ],
+   "keyVerses": [
+    "5:24",
+    "9:11"
+   ],
+   "purpose": "Odsoudit sociální nespravedlnost a prázdnou zbožnost.",
+   "recipients": "Severní Izrael",
+   "setting": "Izrael v době blahobytu",
+   "people": [
+    "Ámos",
+    "Amasjáš",
+    "Jarobeám II."
+   ],
+   "places": [
+    "Tekóa",
+    "Bét-el",
+    "Samaří"
+   ],
+   "features": "Prorok byl pastýř a pěstitel fíků z Judska.",
+   "themes": [
+    {
+     "title": "Spravedlnost",
+     "text": "„Ať se valí právo jako voda“ (5,24)."
+    },
+    {
+     "title": "Pravá bohoslužba",
+     "text": "Bůh odmítá bohoslužbu bez spravedlnosti."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 760 př. Kr.",
+     "event": "Ámosovo působení (dva roky před zemětřesením)"
+    }
+   ],
+   "background": "Ámos byl pastýř z Judska, který kázal v severním Izraeli za Jarobeáma II. v době blahobytu, kdy se prohlubovaly rozdíly mezi bohatými a chudými.",
+   "connection": "Jakub ve Skutcích cituje Ám 9,11–12 o obnově Davidova stanu (Sk 15,16–17). Ježíšův zájem o chudé navazuje na proroky.",
+   "howToRead": "Čtěte s otázkou: kde dnes vidím nespravedlnost a co by na ni řekl Ámos?"
+  },
+  "31": {
+   "author": "Prorok Abdijáš.",
+   "date": "Pravděpodobně po roce 586 př. Kr.",
+   "theme": "Soud nad pyšným Edómem.",
+   "summary": "Nejkratší kniha Starého zákona ohlašuje soud nad Edómem, který se radoval z pádu Jeruzaléma. Pýcha předchází pád – a „království bude Hospodinovo“.",
+   "outline": [
+    "1–14 Pád Edómu",
+    "15–21 Den Hospodinův"
+   ],
+   "keyVerses": [
+    "1:15",
+    "1:21"
+   ],
+   "purpose": "Ohlásit soud nad Edómem za pýchu a krutost vůči Judovi.",
+   "recipients": "Juda",
+   "setting": "Po pádu Jeruzaléma",
+   "people": [
+    "Abdijáš"
+   ],
+   "places": [
+    "Edóm",
+    "Jeruzalém"
+   ],
+   "features": "Nejkratší kniha Starého zákona.",
+   "themes": [
+    {
+     "title": "Pýcha",
+     "text": "Pýcha klame srdce (v. 3)."
+    },
+    {
+     "title": "Boží spravedlnost",
+     "text": "Jak jsi činil, tak se stane tobě (v. 15)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "pravděpodobně po 586 př. Kr.",
+     "event": "Proroctví o Edómu"
+    }
+   ],
+   "background": "Edóm, potomci Ezaua, se při pádu Jeruzaléma radoval a pomáhal Babyloňanům. Nepřátelství mezi bratrskými národy je staré (Gn 27).",
+   "connection": "Proroctví končí slovy „Království bude Hospodinovo“ – téma, které rozvíjí Ježíšovo kázání o Božím království.",
+   "howToRead": "Jediná kapitola – přečtěte ji spolu s Gn 25–27."
+  },
+  "32": {
+   "author": "Tradičně prorok Jonáš.",
+   "date": "Děj v 8. stol. př. Kr.",
+   "theme": "Boží milosrdenství i pro nepřátele.",
+   "summary": "Jonáš utíká před úkolem kázat v Ninive, hlavním městě nepřátelské Asýrie. Po bouři a pobytu v rybě nakonec poslechne, Ninive se obrátí a Bůh ho ušetří. Jonáš se zlobí – a Bůh mu ukazuje, že jeho soucit platí všem.",
+   "outline": [
+    "1–2 Útěk a záchrana",
+    "3–4 Ninive a Jonášův hněv"
+   ],
+   "keyVerses": [
+    "2:10",
+    "4:2",
+    "4:11"
+   ],
+   "purpose": "Ukázat Boží milosrdenství k nepřátelům a odhalit úzkost lidského srdce.",
+   "recipients": "Izrael",
+   "setting": "Jafo, moře, Ninive",
+   "people": [
+    "Jonáš"
+   ],
+   "places": [
+    "Jafo",
+    "Taršíš",
+    "Ninive"
+   ],
+   "features": "Ježíš zmínil „znamení Jonášovo“ (Mt 12,39–41).",
+   "themes": [
+    {
+     "title": "Boží milosrdenství",
+     "text": "Bůh má soucit i s krutými Ninivany."
+    },
+    {
+     "title": "Útěk před Bohem",
+     "text": "Před Bohem se nedá utéct – ale lze se k němu vrátit."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 785–760 př. Kr.",
+     "event": "Jonášovo působení (za Jarobeáma II.)"
+    }
+   ],
+   "background": "Ninive bylo hlavním městem Asýrie, krutého nepřítele Izraele. Jonáš je zmíněn v 2Kr 14,25 za Jarobeáma II.",
+   "connection": "Ježíš mluví o „znamení Jonášově“ – tři dny a tři noci – jako o obrazu své smrti a vzkříšení (Mt 12,39–41).",
+   "howToRead": "Přečtěte najednou a sledujte, kdo se v příběhu obrací – námořníci, Ninivští – a kdo ne."
+  },
+  "33": {
+   "author": "Prorok Micheáš.",
+   "date": "Cca 735–700 př. Kr.",
+   "theme": "Spravedlnost, milosrdenství a pokora.",
+   "summary": "Micheáš kritizuje vykořisťování a falešné proroky, ale ohlašuje i Vládce z Betléma (5:1) a věk pokoje. Shrnuje, co Bůh žádá: „Jednat podle práva, milovat milosrdenství a pokorně chodit se svým Bohem.“",
+   "outline": [
+    "1–3 Soud",
+    "4–5 Naděje a Vládce z Betléma",
+    "6–7 Spor a útěcha"
+   ],
+   "keyVerses": [
+    "5:1",
+    "6:8",
+    "7:18"
+   ],
+   "purpose": "Odsoudit nespravedlnost a zaslíbit vládce z Betléma.",
+   "recipients": "Izrael a Juda",
+   "setting": "Juda v 8. stol. př. Kr.",
+   "people": [
+    "Micheáš"
+   ],
+   "places": [
+    "Betlém",
+    "Jeruzalém",
+    "Samaří"
+   ],
+   "features": "Předpověď Betléma jako místa narození Mesiáše (5,1).",
+   "themes": [
+    {
+     "title": "Co Bůh žádá",
+     "text": "Právo, milosrdenství a pokora (6,8)."
+    },
+    {
+     "title": "Mesiáš",
+     "text": "Vládce z Betléma (5,1)."
+    },
+    {
+     "title": "Odpuštění",
+     "text": "Kdo je Bůh jako ty? (7,18)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 735–700 př. Kr.",
+     "event": "Micheášovo působení"
+    }
+   ],
+   "background": "Micheáš byl současníkem Izajáše, ale pocházel z venkova (Morešet). Kritizoval bohaté a vládce, kteří utiskovali chudé.",
+   "connection": "Mi 5,1 citují zákoníci Herodovi jako místo narození Mesiáše (Mt 2,5–6).",
+   "howToRead": "Verš 6,8 je shrnutím knihy – vraťte se k němu na konci."
+  },
+  "34": {
+   "author": "Prorok Nahum.",
+   "date": "Mezi 663 a 612 př. Kr.",
+   "theme": "Pád krutého Ninive.",
+   "summary": "Nahum oslavuje Boží spravedlnost, která skončí krutovládu Asýrie. Ninive padlo roku 612 př. Kr. Pro utlačované je to zpráva útěchy: „Dobrý je Hospodin, záštita v den soužení.“",
+   "outline": [
+    "1 Hospodin soudce",
+    "2–3 Pád Ninive"
+   ],
+   "keyVerses": [
+    "1:7"
+   ],
+   "purpose": "Ohlásit pád Ninive a potěšit utlačené.",
+   "recipients": "Juda",
+   "setting": "Asyrská nadvláda",
+   "people": [
+    "Nahum"
+   ],
+   "places": [
+    "Ninive"
+   ],
+   "features": "Ninive padlo roku 612 př. Kr.",
+   "themes": [
+    {
+     "title": "Boží spravedlnost",
+     "text": "Krutost nezůstane bez soudu."
+    },
+    {
+     "title": "Útočiště",
+     "text": "„Hospodin je dobrý, je záštitou“ (1,7)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "663–612 př. Kr.",
+     "event": "Vznik proroctví"
+    },
+    {
+     "date": "612 př. Kr.",
+     "event": "Pád Ninive"
+    }
+   ],
+   "background": "Asýrie byla proslulá krutostí; Ninive padlo roku 612 př. Kr. pod útokem Babyloňanů a Médů – jak Nahum předpověděl.",
+   "connection": "Boží soud nad zlem je součástí evangelia; „Hle, po horách kráčí posel radostné zvěsti“ (1,15/2,1) připomíná Pavel (Ř 10,15).",
+   "howToRead": "Čtěte jako útěchu pro utlačené, ne jako oslavu násilí."
+  },
+  "35": {
+   "author": "Prorok Abakuk.",
+   "date": "Cca 605 př. Kr.",
+   "theme": "Víra uprostřed nespravedlnosti.",
+   "summary": "Abakuk se ptá Boha, proč dovoluje zlo. Odpověď ho zaskočí – Bůh použije krutých Babyloňanů. Prorok se učí čekat a důvěřovat: „Spravedlivý bude živ ze své víry.“ Kniha končí nádhernou modlitbou radosti i v nedostatku.",
+   "outline": [
+    "1–2 Prorokovy otázky a Boží odpovědi",
+    "3 Modlitba"
+   ],
+   "keyVerses": [
+    "2:4",
+    "3:17-18"
+   ],
+   "purpose": "Zápasit s otázkou, proč Bůh dopouští zlo, a naučit se důvěřovat.",
+   "recipients": "Juda",
+   "setting": "Před babylonským vpádem",
+   "people": [
+    "Abakuk"
+   ],
+   "places": [
+    "Juda",
+    "Babylónie"
+   ],
+   "features": "Rozhovor proroka s Bohem; „spravedlivý bude žít z víry“ (2,4).",
+   "themes": [
+    {
+     "title": "Otázky",
+     "text": "Prorok se nebojí ptát."
+    },
+    {
+     "title": "Víra",
+     "text": "Víra se drží Boha i bez úrody a jistot (3,17–18)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 605 př. Kr.",
+     "event": "Vzestup Babylónie"
+    }
+   ],
+   "background": "Babyloňané se po roce 612 př. Kr. stali světovou velmocí a ohrožovali Judsko. Abakuk se ptá, jak může Bůh použít ještě horší národ k potrestání svého lidu.",
+   "connection": "„Spravedlivý bude žít z víry“ (2,4) cituje Pavel (Ř 1,17; Ga 3,11) i list Židům (Žd 10,38).",
+   "howToRead": "Kniha je rozhovor – čtěte ji jako modlitbu člověka, který nerozumí, a přesto důvěřuje (3,17–19)."
+  },
+  "36": {
+   "author": "Prorok Sofonjáš.",
+   "date": "Za krále Jóšijáše (640–609 př. Kr.).",
+   "theme": "Den Hospodinův – soud i radost.",
+   "summary": "Sofonjáš ohlašuje přísný soud nad Judou i národy, ale končí jásavým obrazem Boha, který se nad svým lidem raduje a „jásá nad tebou s plesáním“.",
+   "outline": [
+    "1–2 Soud",
+    "3 Očištění a radost"
+   ],
+   "keyVerses": [
+    "3:17"
+   ],
+   "purpose": "Ohlásit Den Hospodinův a vyzvat k pokoře.",
+   "recipients": "Juda",
+   "setting": "Za krále Jóšijáše",
+   "people": [
+    "Sofonjáš",
+    "Jóšijáš"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Končí obrazem Boha, který se raduje nad svým lidem (3,17).",
+   "themes": [
+    {
+     "title": "Soud",
+     "text": "Den Hospodinův přichází."
+    },
+    {
+     "title": "Radost",
+     "text": "Bůh se nad svým lidem raduje."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "640–609 př. Kr.",
+     "event": "Vláda Jóšijáše"
+    }
+   ],
+   "background": "Sofonjáš působil za krále Jóšijáše, pravděpodobně před jeho reformou, kdy v Judsku přetrvávala modloslužba.",
+   "connection": "Den Hospodinův se v Novém zákoně stává „dnem Páně“ – Kristovým příchodem.",
+   "howToRead": "Po přísných kapitolách 1–2 si vychutnejte radost kapitoly 3."
+  },
+  "37": {
+   "author": "Prorok Ageus.",
+   "date": "520 př. Kr.",
+   "theme": "Dostavět Boží dům.",
+   "summary": "Navrátilci ze zajetí stavějí vlastní domy, ale chrám leží v troskách. Ageus je vyzývá, aby dali Boha na první místo, a slibuje, že sláva nového chrámu bude větší než prvního.",
+   "outline": [
+    "1 Výzva ke stavbě",
+    "2 Zaslíbení slávy"
+   ],
+   "keyVerses": [
+    "1:4",
+    "2:9"
+   ],
+   "purpose": "Povzbudit navrátilce, aby dostavěli chrám.",
+   "recipients": "Navrátilci v Jeruzalémě",
+   "setting": "Jeruzalém 520 př. Kr.",
+   "people": [
+    "Ageus",
+    "Zerubábel",
+    "Jéšua"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Přesně datovaná proroctví během čtyř měsíců.",
+   "themes": [
+    {
+     "title": "Priority",
+     "text": "Nejdřív Boží dům, ne jen vlastní domy (1,4)."
+    },
+    {
+     "title": "Povzbuzení",
+     "text": "„Buďte silní… já jsem s vámi“ (2,4)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "520 př. Kr.",
+     "event": "Proroctví a obnovení stavby"
+    },
+    {
+     "date": "516/515 př. Kr.",
+     "event": "Dokončení chrámu"
+    }
+   ],
+   "background": "Navrátilci ze zajetí začali stavět chrám, ale práce se na léta zastavila. Ageus je povzbuzuje roku 520 př. Kr. Proroctví jsou přesně datována.",
+   "connection": "Slib slávy nového chrámu (2,9) se podle křesťanů naplňuje v Kristově přítomnosti.",
+   "howToRead": "Krátká kniha – otázka 1,4 je stále aktuální."
+  },
+  "38": {
+   "author": "Prorok Zacharjáš.",
+   "date": "520–480 př. Kr.",
+   "theme": "Obnova a přicházející král.",
+   "summary": "Zacharjáš povzbuzuje stavitele chrámu nočními viděními. Druhá část obsahuje mesiášská proroctví: pokorný král přijíždějící na oslu, propíchnutý, na kterého budou hledět, a Hospodin, který bude králem nad celou zemí.",
+   "outline": [
+    "1–8 Vidění a výzvy",
+    "9–14 Budoucí král a Boží království"
+   ],
+   "keyVerses": [
+    "4:6",
+    "9:9",
+    "12:10"
+   ],
+   "purpose": "Povzbudit navrátilce vidinou Boží budoucnosti a příchodu krále.",
+   "recipients": "Navrátilci v Jeruzalémě",
+   "setting": "Jeruzalém po návratu",
+   "people": [
+    "Zacharjáš",
+    "Zerubábel",
+    "Jéšua"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Osm nočních vidění; král přijíždějící na oslu (9,9).",
+   "themes": [
+    {
+     "title": "Boží Duch",
+     "text": "„Ne mocí ani silou, ale mým Duchem“ (4,6)."
+    },
+    {
+     "title": "Mesiáš",
+     "text": "Pokorný král (9,9), probodený (12,10)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "520–518 př. Kr.",
+     "event": "Vidění"
+    },
+    {
+     "date": "po 480 př. Kr.",
+     "event": "Kapitoly 9–14 (pravděpodobně později)"
+    }
+   ],
+   "background": "Zacharjáš byl současníkem Agea; jeho noční vidění povzbuzují stavitele chrámu. Druhá část knihy (9–14) má jiný styl a výhled do budoucnosti.",
+   "connection": "Evangelia citují Zacharjáše při vjezdu do Jeruzaléma (9,9; Mt 21,5), při Jidášově zradě (11,12–13) i u kříže (12,10; J 19,37).",
+   "howToRead": "Vidění v kapitolách 1–6 čtěte s poznámkami nebo s dobrým výkladem; kapitoly 9–14 sledujte s evangelii."
+  },
+  "39": {
+   "author": "Prorok Malachiáš („můj posel“).",
+   "date": "Cca 450–430 př. Kr.",
+   "theme": "Obnova vztahu s Bohem.",
+   "summary": "Lid i kněží jsou lhostejní – obětují vadná zvířata a rozvádějí se. Malachiáš v rozhovorech otázek a odpovědí volá k návratu. Ohlašuje posla, který připraví cestu, a příchod „slunce spravedlnosti“ – poslední slovo Starého zákona.",
+   "outline": [
+    "1–2 Spor s kněžími a lidem",
+    "3–4 Den Hospodinův"
+   ],
+   "keyVerses": [
+    "3:1",
+    "3:10",
+    "3:20"
+   ],
+   "purpose": "Vyzvat k obnovení upřímného vztahu s Bohem a ohlásit posla před Hospodinovým příchodem.",
+   "recipients": "Židé v Judsku",
+   "setting": "Jeruzalém v 5. stol. př. Kr.",
+   "people": [
+    "Malachiáš"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Poslední kniha Starého zákona; ohlašuje Eliáše, kterého Ježíš ztotožnil s Janem Křtitelem.",
+   "themes": [
+    {
+     "title": "Boží láska",
+     "text": "„Miluji vás“ (1,2)."
+    },
+    {
+     "title": "Upřímnost",
+     "text": "Bohu nepatří zbytky, ale to nejlepší."
+    },
+    {
+     "title": "Příchod Páně",
+     "text": "Posel připraví cestu (3,1)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 450–430 př. Kr.",
+     "event": "Malachiášovo působení"
+    }
+   ],
+   "background": "Po návratu ze zajetí a obnově chrámu nastala duchovní ochablost: kněží přinášeli vadné oběti, lidé se rozváděli a nedávali desátky.",
+   "connection": "Posel z 3,1 a „Eliáš“ (3,23) jsou v evangeliích vztaženi na Jana Křtitele (Mt 11,10.14).",
+   "howToRead": "Kniha je psána jako rozhovor: Bůh něco řekne, lid odporuje („V čem?“). Hledejte, kde se podobně vymlouvám i já."
+  },
+  "40": {
+   "author": "Tradičně apoštol Matouš (Levi), bývalý celník.",
+   "date": "Cca 60–80 po Kr.",
+   "theme": "Ježíš – zaslíbený Mesiáš a Král.",
+   "summary": "Matouš píše především pro čtenáře z židovského prostředí a ukazuje, jak Ježíš naplňuje Písma. Obsahuje pět velkých řečí, mezi nimi Kázání na hoře. Končí Velkým posláním: „Jděte a získávejte učedníky ve všech národech.“",
+   "outline": [
+    "1–4 Narození a počátky",
+    "5–7 Kázání na hoře",
+    "8–25 Působení a učení",
+    "26–28 Utrpení a vzkříšení"
+   ],
+   "keyVerses": [
+    "5:3",
+    "6:33",
+    "11:28",
+    "16:16",
+    "28:19-20"
+   ],
+   "purpose": "Ukázat, že Ježíš je zaslíbený Mesiáš, Davidův syn a král, v němž se naplňuje Starý zákon.",
+   "recipients": "Především křesťané židovského původu",
+   "setting": "Galilea a Judsko",
+   "people": [
+    "Ježíš",
+    "Marie",
+    "Josef",
+    "Jan Křtitel",
+    "Petr",
+    "učedníci",
+    "farizeové",
+    "Pilát"
+   ],
+   "places": [
+    "Betlém",
+    "Egypt",
+    "Nazaret",
+    "Kafarnaum",
+    "Jeruzalém"
+   ],
+   "features": "Pět velkých řečí (např. Kázání na hoře, kap. 5–7); mnoho citací se slovy „aby se naplnilo“.",
+   "themes": [
+    {
+     "title": "Ježíš Mesiáš",
+     "text": "Rodokmen, narození i skutky ukazují na naplnění Božích slibů."
+    },
+    {
+     "title": "Království nebeské",
+     "text": "Ježíš ohlašuje Boží vládu, která už začíná a jednou se plně projeví."
+    },
+    {
+     "title": "Učednictví",
+     "text": "Následovat Ježíše znamená žít jeho učení a předávat ho dál (28,19–20)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 6–4 př. Kr.",
+     "event": "Narození Ježíše"
+    },
+    {
+     "date": "cca 27–29 po Kr.",
+     "event": "Křest a začátek působení"
+    },
+    {
+     "date": "30 nebo 33 po Kr.",
+     "event": "Ukřižování a vzkříšení"
+    },
+    {
+     "date": "cca 60–80 po Kr.",
+     "event": "Sepsání evangelia"
+    }
+   ],
+   "background": "Matouš píše pro křesťany, kteří znali Starý zákon a židovské zvyky. Judsko bylo pod římskou nadvládou, vládli zde Herodovci a velekněží; očekávání Mesiáše bylo silné.",
+   "connection": "Matouš ukazuje Ježíše jako naplnění Zákona i Proroků: „nepřišel jsem zrušit, ale naplnit“ (5,17).",
+   "howToRead": "Všímejte si pěti velkých řečí (kap. 5–7, 10, 13, 18, 24–25) a citací ze Starého zákona."
+  },
+  "41": {
+   "author": "Tradičně Jan Marek, Petrův spolupracovník.",
+   "date": "Cca 60–70 po Kr.",
+   "theme": "Ježíš – Boží Syn a služebník.",
+   "summary": "Nejkratší a nejdynamičtější evangelium („hned“) ukazuje Ježíše v akci – uzdravuje, vyhání démony a učí. Zlom přichází s Petrovým vyznáním, pak Ježíš míří k Jeruzalému, kde „dává svůj život jako výkupné za mnohé“.",
+   "outline": [
+    "1–8 Působení v Galileji",
+    "8–10 Cesta do Jeruzaléma",
+    "11–16 Poslední týden a vzkříšení"
+   ],
+   "keyVerses": [
+    "1:15",
+    "8:29",
+    "10:45"
+   ],
+   "purpose": "Představit Ježíše jako Božího Syna, který přišel sloužit a dát svůj život.",
+   "recipients": "Především křesťané z pohanů (pravděpodobně v Římě)",
+   "setting": "Galilea a Jeruzalém",
+   "people": [
+    "Ježíš",
+    "Jan Křtitel",
+    "Petr",
+    "Jakub",
+    "Jan",
+    "Pilát"
+   ],
+   "places": [
+    "Galilea",
+    "Kafarnaum",
+    "Cesarea Filipova",
+    "Jeruzalém"
+   ],
+   "features": "Nejkratší a pravděpodobně nejstarší evangelium; rychlé tempo („hned“), vysvětluje židovské zvyky.",
+   "themes": [
+    {
+     "title": "Služebník",
+     "text": "„Syn člověka nepřišel, aby si dal sloužit“ (10,45)."
+    },
+    {
+     "title": "Kdo je Ježíš?",
+     "text": "Otázka prochází celou knihou až k vyznání setníka (15,39)."
+    },
+    {
+     "title": "Učedníci",
+     "text": "Učedníci často nechápou – a Ježíš s nimi přesto trpělivě pracuje."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 27–29 po Kr.",
+     "event": "Začátek působení v Galileji"
+    },
+    {
+     "date": "30 nebo 33 po Kr.",
+     "event": "Poslední týden v Jeruzalémě"
+    },
+    {
+     "date": "cca 60–70 po Kr.",
+     "event": "Sepsání evangelia"
+    }
+   ],
+   "background": "Podle tradice Marek zapsal Petrovo kázání v Římě, pravděpodobně v době pronásledování za Nerona. Vysvětluje židovské zvyky pro čtenáře z pohanů.",
+   "connection": "Celé evangelium směřuje ke kříži: třetina knihy popisuje poslední týden.",
+   "howToRead": "Nejkratší evangelium – dá se přečíst za jeden večer. Ideální první kniha pro nové čtenáře."
+  },
+  "42": {
+   "author": "Lékař Lukáš, Pavlův spolupracovník.",
+   "date": "Cca 60–80 po Kr.",
+   "theme": "Ježíš – Spasitel všech lidí.",
+   "summary": "Lukáš pečlivě vyšetřil události a sepsal je pro Theofila. Zdůrazňuje Boží zájem o chudé, ženy, hříšníky a ztracené. Jen u něj najdeme podobenství o milosrdném Samařanu a ztraceném synu či příběh Zachea.",
+   "outline": [
+    "1–2 Narození",
+    "3–9 Působení v Galileji",
+    "9–19 Cesta do Jeruzaléma",
+    "19–24 Utrpení a vzkříšení"
+   ],
+   "keyVerses": [
+    "2:11",
+    "15:20",
+    "19:10"
+   ],
+   "purpose": "Podat spořádaný a ověřený popis Ježíšova života (1,3–4) a ukázat ho jako Spasitele všech lidí.",
+   "recipients": "Theofilos a křesťané z pohanů",
+   "setting": "Galilea, Samaří, Judsko",
+   "people": [
+    "Ježíš",
+    "Marie",
+    "Alžběta",
+    "Zachariáš",
+    "Jan Křtitel",
+    "Zacheus",
+    "učedníci"
+   ],
+   "places": [
+    "Nazaret",
+    "Betlém",
+    "Galilea",
+    "Jericho",
+    "Jeruzalém",
+    "Emauzy"
+   ],
+   "features": "Nejvíce podobenství (marnotratný syn, milosrdný Samařan); zájem o chudé, ženy a vyděděnce.",
+   "themes": [
+    {
+     "title": "Spasitel všech",
+     "text": "Ježíš přišel hledat a zachránit, co zahynulo (19,10)."
+    },
+    {
+     "title": "Modlitba a Duch",
+     "text": "Ježíš se často modlí; Duch svatý vede události."
+    },
+    {
+     "title": "Soucit",
+     "text": "Bůh je otec, který vybíhá naproti (15,20)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 6–4 př. Kr.",
+     "event": "Narození Jana Křtitele a Ježíše"
+    },
+    {
+     "date": "cca 28 po Kr.",
+     "event": "15. rok vlády Tiberia, vystoupení Jana Křtitele (3,1)"
+    },
+    {
+     "date": "30 nebo 33 po Kr.",
+     "event": "Ukřižování, vzkříšení, nanebevstoupení"
+    },
+    {
+     "date": "cca 60–80 po Kr.",
+     "event": "Sepsání evangelia"
+    }
+   ],
+   "background": "Lukáš, lékař a Pavlův společník, pečlivě zkoumal svědectví očitých svědků (1,1–4). Zasazuje události do světových dějin (císař Augustus, Tiberius, Pilát).",
+   "connection": "Ježíš je Spasitel všech – i chudých, žen, Samařanů a celníků. Pokračováním jsou Skutky apoštolů.",
+   "howToRead": "Čtěte s pozorností na modlitbu a Ducha svatého; kapitolu 15 si přečtěte celou."
+  },
+  "43": {
+   "author": "Apoštol Jan, „učedník, kterého Ježíš miloval“.",
+   "date": "Cca 90 po Kr.",
+   "theme": "Věřit, že Ježíš je Kristus, Syn Boží.",
+   "summary": "Janovo evangelium začíná „Na počátku bylo Slovo“. Vybírá sedm znamení a výroky „Já jsem“ (chléb života, světlo světa, dobrý pastýř, vzkříšení a život…). Velkou část věnuje poslední večeři a Ježíšovým rozlučkovým řečem.",
+   "outline": [
+    "1 Prolog",
+    "2–12 Kniha znamení",
+    "13–17 Rozlučkové řeči",
+    "18–21 Kříž a vzkříšení"
+   ],
+   "keyVerses": [
+    "1:1",
+    "1:14",
+    "3:16",
+    "11:25",
+    "14:6",
+    "20:31"
+   ],
+   "purpose": "Vést k víře, že Ježíš je Kristus, Syn Boží, a k životu v jeho jménu (20,31).",
+   "recipients": "Křesťané i hledající",
+   "setting": "Galilea, Samaří a hlavně Jeruzalém",
+   "people": [
+    "Ježíš",
+    "Jan Křtitel",
+    "Nikodém",
+    "Samařanka",
+    "Marta, Marie a Lazar",
+    "Tomáš",
+    "Petr"
+   ],
+   "places": [
+    "Kána",
+    "Sychar",
+    "Betanie",
+    "Jeruzalém"
+   ],
+   "features": "Sedm znamení a sedm výroků „Já jsem“; zmiňuje tři svátky Paschy.",
+   "themes": [
+    {
+     "title": "Ježíš je Bůh",
+     "text": "Slovo bylo u Boha a Slovo byl Bůh (1,1)."
+    },
+    {
+     "title": "Víra a život",
+     "text": "Kdo věří, má život věčný (3,16)."
+    },
+    {
+     "title": "Láska",
+     "text": "„Milujte se navzájem, jako jsem já miloval vás“ (15,12)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 27–29 po Kr.",
+     "event": "Začátek Ježíšova působení"
+    },
+    {
+     "date": "30 nebo 33 po Kr.",
+     "event": "Ukřižování a vzkříšení"
+    },
+    {
+     "date": "cca 90 po Kr.",
+     "event": "Sepsání evangelia"
+    }
+   ],
+   "background": "Jan píše pravděpodobně v Efezu koncem 1. století, kdy církev čelila rozchodu se synagogou i falešnému učení.",
+   "connection": "Jan ukazuje Ježíše jako věčné Slovo, které se stalo tělem (1,14), a vede k víře (20,31).",
+   "howToRead": "Sledujte sedm znamení a sedm výroků „Já jsem“ (Studium → Tabulky). Kapitoly 13–17 čtěte pomalu."
+  },
+  "44": {
+   "author": "Lukáš (pokračování jeho evangelia).",
+   "date": "Cca 62–80 po Kr.",
+   "theme": "Šíření evangelia v moci Ducha svatého.",
+   "summary": "Po Ježíšově nanebevstoupení sestupuje o Letnicích Duch svatý a vzniká církev v Jeruzalémě. Evangelium se šíří do Samaří a k pohanům. Druhá polovina sleduje misijní cesty apoštola Pavla až do Říma.",
+   "outline": [
+    "1–7 Jeruzalém",
+    "8–12 Judsko a Samaří",
+    "13–28 Až na konec země – Pavlovy cesty"
+   ],
+   "keyVerses": [
+    "1:8",
+    "2:38",
+    "4:12"
+   ],
+   "purpose": "Ukázat, jak se evangelium v moci Ducha svatého šířilo z Jeruzaléma až do Říma.",
+   "recipients": "Theofilos a církev",
+   "setting": "Jeruzalém, Judsko, Samaří, Malá Asie, Řecko, Řím",
+   "people": [
+    "Petr",
+    "Jan",
+    "Štěpán",
+    "Filip",
+    "Pavel",
+    "Barnabáš",
+    "Silas",
+    "Lukáš"
+   ],
+   "places": [
+    "Jeruzalém",
+    "Samaří",
+    "Antiochie",
+    "Efez",
+    "Korint",
+    "Řím"
+   ],
+   "features": "Pokračování Lukášova evangelia; pasáže v 1. osobě množného čísla („my“) naznačují autora jako očitého svědka.",
+   "themes": [
+    {
+     "title": "Duch svatý",
+     "text": "Duch dává odvahu i směr (1,8)."
+    },
+    {
+     "title": "Církev",
+     "text": "Společenství učení, chleba a modlitby (2,42)."
+    },
+    {
+     "title": "Evangelium pro všechny",
+     "text": "Bůh nedělá rozdíly mezi národy (10,34–35)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "30 nebo 33 po Kr.",
+     "event": "Letnice"
+    },
+    {
+     "date": "cca 33–36 po Kr.",
+     "event": "Obrácení Pavla"
+    },
+    {
+     "date": "cca 46–48 po Kr.",
+     "event": "1. misijní cesta"
+    },
+    {
+     "date": "cca 49 po Kr.",
+     "event": "Apoštolský sněm"
+    },
+    {
+     "date": "cca 49–52 po Kr.",
+     "event": "2. misijní cesta"
+    },
+    {
+     "date": "cca 53–57 po Kr.",
+     "event": "3. misijní cesta"
+    },
+    {
+     "date": "cca 60–62 po Kr.",
+     "event": "Pavel v Římě"
+    }
+   ],
+   "background": "Kniha zachycuje asi 30 let od Ježíšova nanebevstoupení po Pavlův pobyt v Římě. Římské silnice, společný řecký jazyk a židovské komunity v městech usnadnily šíření evangelia.",
+   "connection": "Duch svatý, kterého Ježíš slíbil, vede církev; Petr a Pavel pokračují v Ježíšově díle.",
+   "howToRead": "Mapa Pavlových cest (Studium → Mapy) pomůže sledovat děj. Čtěte jako pokračování Lukáše."
+  },
+  "45": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 57 po Kr., z Korintu.",
+   "theme": "Evangelium – Boží spravedlnost z víry.",
+   "summary": "Nejsoustavnější Pavlův výklad víry: všichni zhřešili, ale z milosti jsou ospravedlněni vírou v Krista. Následuje život v Duchu, Boží plán s Izraelem a praktické důsledky – proměna myšlení a láska v církvi.",
+   "outline": [
+    "1–3 Hřích všech",
+    "3–8 Ospravedlnění a život v Duchu",
+    "9–11 Izrael",
+    "12–16 Praktický život"
+   ],
+   "keyVerses": [
+    "1:16",
+    "3:23-24",
+    "5:8",
+    "8:28",
+    "8:38-39",
+    "12:2"
+   ],
+   "purpose": "Vyložit evangelium: všichni zhřešili a všichni mohou být ospravedlněni z milosti skrze víru v Krista.",
+   "recipients": "Křesťané v Římě",
+   "setting": "Pavel píše z Korintu před cestou do Jeruzaléma",
+   "people": [
+    "Pavel",
+    "Foibé",
+    "Priska a Akvila"
+   ],
+   "places": [
+    "Řím",
+    "Korint"
+   ],
+   "features": "Nejsoustavnější Pavlův dopis; výklad o Izraeli (kap. 9–11).",
+   "themes": [
+    {
+     "title": "Hřích",
+     "text": "Všichni zhřešili (3,23)."
+    },
+    {
+     "title": "Ospravedlnění z víry",
+     "text": "Spravedlnost je Boží dar (3,24)."
+    },
+    {
+     "title": "Život v Duchu",
+     "text": "Žádné odsouzení pro ty, kdo jsou v Kristu (kap. 8)."
+    },
+    {
+     "title": "Proměna",
+     "text": "Neřiďte se tímto světem, ale proměňujte se (12,2)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 57 po Kr.",
+     "event": "Sepsání dopisu v Korintu"
+    }
+   ],
+   "background": "Sbor v Římě vznikl bez Pavla; tvořili ho křesťané židovského i pohanského původu. Pavel se chystal do Říma a dál do Španělska.",
+   "connection": "Pavel systematicky vykládá evangelium – co Bůh udělal v Kristu pro hříšníky.",
+   "howToRead": "Hutný text – čtěte po menších částech. Kapitoly 1–8 vysvětlují evangelium, 12–15 život z něj."
+  },
+  "46": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 54 po Kr., z Efezu.",
+   "theme": "Jednota a řád v církvi.",
+   "summary": "Církev v Korintu trápí rozdělení, nemorálnost, spory a zmatek kolem duchovních darů. Pavel odpovídá s láskou i přísností. Obsahuje slavný „chvalozpěv na lásku“ (kap. 13) a nejstarší svědectví o vzkříšení (kap. 15).",
+   "outline": [
+    "1–4 Rozdělení",
+    "5–11 Morální a praktické otázky",
+    "12–14 Duchovní dary a láska",
+    "15–16 Vzkříšení"
+   ],
+   "keyVerses": [
+    "1:18",
+    "10:13",
+    "13:4-7",
+    "13:13",
+    "15:3-4"
+   ],
+   "purpose": "Řešit rozdělení a problémy v korintském sboru a ukázat cestu lásky.",
+   "recipients": "Sbor v Korintu",
+   "setting": "Pavel píše z Efezu",
+   "people": [
+    "Pavel",
+    "Apollos",
+    "Petr (Kéfas)",
+    "Sóstenés"
+   ],
+   "places": [
+    "Korint",
+    "Efez"
+   ],
+   "features": "Píseň o lásce (kap. 13) a jedno z nejstarších písemných svědectví o vzkříšení (15,3–8).",
+   "themes": [
+    {
+     "title": "Jednota",
+     "text": "Církev je jedno tělo s mnoha údy (kap. 12)."
+    },
+    {
+     "title": "Láska",
+     "text": "Bez lásky nejsem nic (13,2)."
+    },
+    {
+     "title": "Vzkříšení",
+     "text": "Kristus vstal – a proto i naše víra má smysl."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 50–52 po Kr.",
+     "event": "Pavel zakládá sbor v Korintu"
+    },
+    {
+     "date": "cca 54 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Korint byl bohaté přístavní město s pestrým náboženským a mravním životem. Sbor se potýkal se spory, pýchou a otázkami každodenního života.",
+   "connection": "Pavel odpovídá na problémy sboru z pohledu kříže (1,18) a vzkříšení (kap. 15).",
+   "howToRead": "Kniha odpovídá na konkrétní dotazy („co se týče…“). Ptejte se, jaký princip za radou stojí."
+  },
+  "47": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 55–56 po Kr.",
+   "theme": "Síla ve slabosti.",
+   "summary": "Pavel obhajuje svou apoštolskou službu proti „superapoštolům“ a otevírá své srdce. Mluví o útěše v soužení, o službě smíření, o štědrosti a o „ostnu v těle“, skrze který poznal, že Boží moc se projevuje ve slabosti.",
+   "outline": [
+    "1–7 Služba a smíření",
+    "8–9 Sbírka pro Jeruzalém",
+    "10–13 Obhajoba apoštolství"
+   ],
+   "keyVerses": [
+    "4:7",
+    "5:17",
+    "9:7",
+    "12:9"
+   ],
+   "purpose": "Obhájit Pavlovu službu a ukázat, že Boží moc se projevuje ve slabosti.",
+   "recipients": "Sbor v Korintu",
+   "setting": "Pavel píše z Makedonie",
+   "people": [
+    "Pavel",
+    "Titus"
+   ],
+   "places": [
+    "Korint",
+    "Makedonie"
+   ],
+   "features": "Nejosobnější Pavlův dopis; sbírka pro Jeruzalém (kap. 8–9).",
+   "themes": [
+    {
+     "title": "Síla ve slabosti",
+     "text": "„Stačí ti má milost“ (12,9)."
+    },
+    {
+     "title": "Smíření",
+     "text": "Bůh nás v Kristu smířil se sebou (5,18–20)."
+    },
+    {
+     "title": "Štědrost",
+     "text": "Radostného dárce miluje Bůh (9,7)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 55–56 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Mezi prvním a druhým listem došlo k napětí: Pavlovi protivníci zpochybňovali jeho autoritu. Pavel mezitím napsal i „slzavý dopis“ (2,4).",
+   "connection": "Kristova síla se projevuje v lidské slabosti (12,9).",
+   "howToRead": "Osobní a emotivní list – čtěte ho jako dopis přítele."
+  },
+  "48": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 49–55 po Kr.",
+   "theme": "Svoboda v Kristu.",
+   "summary": "Někteří učitelé tvrdili, že pohanští křesťané musí dodržovat Mojžíšův zákon. Pavel vášnivě hájí, že člověk je ospravedlněn vírou, ne skutky zákona. Svoboda však není svévole – vede k životu v Duchu a jeho ovoci.",
+   "outline": [
+    "1–2 Pavlovo evangelium",
+    "3–4 Víra versus zákon",
+    "5–6 Život ve svobodě a v Duchu"
+   ],
+   "keyVerses": [
+    "2:20",
+    "5:1",
+    "5:22-23",
+    "6:9"
+   ],
+   "purpose": "Bránit evangelium milosti proti učení, že spásu je třeba si zasloužit dodržováním Zákona.",
+   "recipients": "Sbory v Galacii",
+   "setting": "Po Pavlově první misijní cestě",
+   "people": [
+    "Pavel",
+    "Petr",
+    "Barnabáš",
+    "Titus"
+   ],
+   "places": [
+    "Galacie",
+    "Jeruzalém",
+    "Antiochie"
+   ],
+   "features": "Ostrý tón; ovoce Ducha (5,22–23).",
+   "themes": [
+    {
+     "title": "Svoboda",
+     "text": "Kristus nás osvobodil (5,1)."
+    },
+    {
+     "title": "Víra, ne zásluhy",
+     "text": "Ospravedlnění z víry v Krista (2,16)."
+    },
+    {
+     "title": "Život v Duchu",
+     "text": "Ovoce Ducha roste ve vztazích."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 49–55 po Kr.",
+     "event": "Sepsání dopisu (datace sporná)"
+    }
+   ],
+   "background": "Galacie byla oblast v dnešním Turecku. Do sborů přišli učitelé, kteří požadovali obřízku a dodržování Mojžíšova zákona od pohanů.",
+   "connection": "Spása je z milosti skrze víru v Krista, ne ze skutků Zákona (2,16).",
+   "howToRead": "Krátký a vášnivý list. Kapitoly 5–6 ukazují, jak vypadá svoboda v praxi."
+  },
+  "49": {
+   "author": "Apoštol Pavel (z vězení).",
+   "date": "Cca 60–62 po Kr.",
+   "theme": "Církev – Kristovo tělo.",
+   "summary": "První polovina oslavuje Boží plán spásy: z milosti jsme spaseni skrze víru a Kristus spojil Židy i pohany v jedno tělo. Druhá polovina ukazuje, jak žít v jednotě, v rodině a v duchovním boji v „plné výzbroji Boží“.",
+   "outline": [
+    "1–3 Bohatství v Kristu",
+    "4–6 Život hodný povolání"
+   ],
+   "keyVerses": [
+    "2:8-9",
+    "3:20",
+    "4:32",
+    "6:10-11"
+   ],
+   "purpose": "Ukázat bohatství, které máme v Kristu, a jak má církev žít jako jedno tělo.",
+   "recipients": "Křesťané v Efezu a okolí",
+   "setting": "Pavel ve vězení (pravděpodobně v Římě)",
+   "people": [
+    "Pavel",
+    "Tychikos"
+   ],
+   "places": [
+    "Efez"
+   ],
+   "features": "Boží výzbroj (6,10–18); učení o manželství a rodině.",
+   "themes": [
+    {
+     "title": "Milost",
+     "text": "Spaseni jste milostí skrze víru (2,8–9)."
+    },
+    {
+     "title": "Jednota",
+     "text": "Jedno tělo a jeden Duch (4,4)."
+    },
+    {
+     "title": "Duchovní boj",
+     "text": "Oblečte se do Boží výzbroje (6,11)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 60–62 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Efez byl jedním z největších měst Malé Asie se slavným Artemidiným chrámem. Pavel tu působil přes dva roky (Sk 19).",
+   "connection": "Kristus spojuje lidi z různých národů v jedno tělo – církev (2,14–16).",
+   "howToRead": "Kapitoly 1–3 popisují, co Bůh udělal; 4–6, jak z toho žít."
+  },
+  "50": {
+   "author": "Apoštol Pavel (z vězení).",
+   "date": "Cca 60–62 po Kr.",
+   "theme": "Radost v Kristu.",
+   "summary": "Dopis plný radosti, i když je Pavel ve vězení. Děkuje Filipským za podporu, vybízí k jednotě a pokoře podle Kristova příkladu (hymnus v kap. 2) a učí spokojenosti: „Všechno mohu v tom, který mi dává sílu.“",
+   "outline": [
+    "1 Pavlova situace",
+    "2 Kristova pokora",
+    "3 Poznat Krista",
+    "4 Radost a pokoj"
+   ],
+   "keyVerses": [
+    "1:21",
+    "2:5-7",
+    "4:4",
+    "4:6-7",
+    "4:13"
+   ],
+   "purpose": "Poděkovat Filipským, povzbudit je k jednotě a radosti v Kristu.",
+   "recipients": "Sbor ve Filipech",
+   "setting": "Pavel ve vězení",
+   "people": [
+    "Pavel",
+    "Timoteus",
+    "Epafroditos",
+    "Euodia a Syntyché"
+   ],
+   "places": [
+    "Filipy",
+    "Řím"
+   ],
+   "features": "Dopis radosti; píseň o Kristově pokoře (2,5–11).",
+   "themes": [
+    {
+     "title": "Radost",
+     "text": "Radujte se v Pánu vždycky (4,4)."
+    },
+    {
+     "title": "Pokora",
+     "text": "Mějte stejné smýšlení jako Kristus (2,5)."
+    },
+    {
+     "title": "Spokojenost",
+     "text": "Naučil jsem se být spokojen (4,11)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 49–50 po Kr.",
+     "event": "Založení sboru (Sk 16)"
+    },
+    {
+     "date": "cca 60–62 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Filipy byly římskou kolonií v Makedonii; sbor tu Pavel založil na 2. misijní cestě (Sk 16). Filipští ho štědře podporovali.",
+   "connection": "Píseň o Kristu (2,6–11) je jedním z nejstarších vyznání víry.",
+   "howToRead": "Krátký list plný radosti – podtrhávejte slova „radost“ a „radovat se“."
+  },
+  "51": {
+   "author": "Apoštol Pavel (z vězení).",
+   "date": "Cca 60–62 po Kr.",
+   "theme": "Kristova nadřazenost.",
+   "summary": "Proti falešnému učení Pavel ukazuje, že Kristus je obraz neviditelného Boha a hlava všeho stvoření i církve. V něm máme plnost – nepotřebujeme lidská pravidla ani tajné nauky. Následují pokyny pro nový život.",
+   "outline": [
+    "1–2 Kristus nade vším",
+    "3–4 Nový život"
+   ],
+   "keyVerses": [
+    "1:15-17",
+    "2:9-10",
+    "3:23"
+   ],
+   "purpose": "Ukázat Kristovu nadřazenost nad vším a varovat před falešným učením.",
+   "recipients": "Sbor v Kolosách",
+   "setting": "Pavel ve vězení",
+   "people": [
+    "Pavel",
+    "Epafras",
+    "Onésimos",
+    "Tychikos"
+   ],
+   "places": [
+    "Kolosy",
+    "Laodikeia"
+   ],
+   "features": "Hymnus o Kristu (1,15–20).",
+   "themes": [
+    {
+     "title": "Kristus nade vším",
+     "text": "V něm je obsažena všechna plnost (2,9)."
+    },
+    {
+     "title": "Nový život",
+     "text": "Oblečte se do soucitu a lásky (3,12–14)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 60–62 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Kolosy byly malé město v Malé Asii; sbor založil Epafras. Ohrožovalo ho učení, které mísilo víru s filozofií a předpisy.",
+   "connection": "Kristus je obraz neviditelného Boha a hlava církve (1,15–20).",
+   "howToRead": "Čtěte spolu s Efezským a Filemonem – vznikly současně."
+  },
+  "52": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 50–51 po Kr. – jedna z nejstarších knih NZ.",
+   "theme": "Víra, láska, naděje a Kristův návrat.",
+   "summary": "Pavel chválí mladou církev za věrnost v pronásledování, připomíná svou službu u nich a utěšuje ty, kdo truchlí: zemřelí v Kristu vstanou při jeho příchodu. Vyzývá: „Ustavičně se modlete, ve všem děkujte.“",
+   "outline": [
+    "1–3 Díky a vzpomínky",
+    "4–5 Život a Kristův příchod"
+   ],
+   "keyVerses": [
+    "4:16-17",
+    "5:16-18"
+   ],
+   "purpose": "Povzbudit mladý sbor v pronásledování a vysvětlit naději Kristova příchodu.",
+   "recipients": "Sbor v Tesalonice",
+   "setting": "Pavel píše z Korintu",
+   "people": [
+    "Pavel",
+    "Silvanus",
+    "Timoteus"
+   ],
+   "places": [
+    "Tesalonika",
+    "Korint"
+   ],
+   "features": "Jedna z nejstarších knih Nového zákona.",
+   "themes": [
+    {
+     "title": "Víra, láska, naděje",
+     "text": "Dílo víry, námaha lásky, vytrvalost naděje (1,3)."
+    },
+    {
+     "title": "Kristův příchod",
+     "text": "Útěcha pro truchlící (4,13–18)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 49–50 po Kr.",
+     "event": "Založení sboru (Sk 17)"
+    },
+    {
+     "date": "cca 50–51 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Pavel založil sbor v Tesalonice na 2. misijní cestě, ale kvůli pronásledování musel brzy odejít (Sk 17).",
+   "connection": "Naděje na Kristův příchod dává útěchu i směr životu.",
+   "howToRead": "Jedna z nejstarších knih NZ – ukazuje, jak žila mladá církev."
+  },
+  "53": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 51 po Kr.",
+   "theme": "Vytrvat do Kristova příchodu.",
+   "summary": "Někteří v Tesalonice mysleli, že Pánův den už nastal, a přestali pracovat. Pavel vysvětluje, co musí předcházet, povzbuzuje v pronásledování a nabádá k poctivé práci.",
+   "outline": [
+    "1 Povzbuzení",
+    "2 Den Páně",
+    "3 Pracovat a nepolevovat"
+   ],
+   "keyVerses": [
+    "3:3",
+    "3:13"
+   ],
+   "purpose": "Opravit nedorozumění o dni Páně a vyzvat k vytrvalosti a práci.",
+   "recipients": "Sbor v Tesalonice",
+   "setting": "Krátce po prvním dopise",
+   "people": [
+    "Pavel",
+    "Silvanus",
+    "Timoteus"
+   ],
+   "places": [
+    "Tesalonika"
+   ],
+   "features": "„Kdo nechce pracovat, ať nejí“ (3,10).",
+   "themes": [
+    {
+     "title": "Vytrvalost",
+     "text": "Neochabujte v konání dobra (3,13)."
+    },
+    {
+     "title": "Den Páně",
+     "text": "Nedejte se vyvést z míry spekulacemi."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 51 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Krátce po prvním listu se v Tesalonice šířily zmatky o dni Páně a někteří přestali pracovat.",
+   "connection": "Kristův příchod není důvod k pasivitě, ale k věrnosti.",
+   "howToRead": "Kapitola 2 je obtížná; zaměřte se na praktické rady kap. 3."
+  },
+  "54": {
+   "author": "Apoštol Pavel (někteří badatelé připisují pozdějšímu žáku).",
+   "date": "Cca 62–64 po Kr.",
+   "theme": "Pokyny pro vedení církve.",
+   "summary": "Pavel radí mladému Timoteovi v Efezu: jak čelit falešnému učení, jaké mají být starší a služebníci, jak se modlit a pečovat o vdovy. „Bojuj dobrý boj víry.“",
+   "outline": [
+    "1 Falešné učení",
+    "2–3 Bohoslužba a vedoucí",
+    "4–6 Rady Timoteovi"
+   ],
+   "keyVerses": [
+    "1:15",
+    "2:5",
+    "4:12",
+    "6:6"
+   ],
+   "purpose": "Dát Timoteovi pokyny pro vedení sboru a varovat před falešným učením.",
+   "recipients": "Timoteus v Efezu",
+   "setting": "Efez",
+   "people": [
+    "Pavel",
+    "Timoteus"
+   ],
+   "places": [
+    "Efez"
+   ],
+   "features": "Požadavky na starší a služebníky sboru (kap. 3).",
+   "themes": [
+    {
+     "title": "Zdravé učení",
+     "text": "Kristus přišel na svět zachránit hříšníky (1,15)."
+    },
+    {
+     "title": "Vzor",
+     "text": "Buď věřícím příkladem (4,12)."
+    },
+    {
+     "title": "Peníze",
+     "text": "Zbožnost se spokojeností je velký zisk (6,6)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 62–64 po Kr.",
+     "event": "Sepsání dopisu (podle tradice)"
+    }
+   ],
+   "background": "Timoteus vedl sbor v Efezu, kde se šířilo falešné učení. Někteří badatelé považují pastorální listy za pozdější; tradice je připisuje Pavlovi.",
+   "connection": "Kristus Ježíš přišel na svět zachránit hříšníky (1,15).",
+   "howToRead": "Čtěte jako rady zkušeného mentora mladšímu kolegovi."
+  },
+  "55": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 66–67 po Kr. – Pavlův poslední dopis.",
+   "theme": "Věrnost až do konce.",
+   "summary": "Pavel ve vězení v Římě očekává smrt a předává štafetu Timoteovi. Vybízí ho, aby se nestyděl za evangelium, snášel těžkosti a hlásal slovo. „Dobrý boj jsem bojoval, běh jsem dokončil, víru zachoval.“",
+   "outline": [
+    "1–2 Nestyď se a vytrvej",
+    "3–4 Poslední slova"
+   ],
+   "keyVerses": [
+    "1:7",
+    "3:16-17",
+    "4:7"
+   ],
+   "purpose": "Povzbudit Timotea k věrnosti a odvaze; Pavlovo rozloučení.",
+   "recipients": "Timoteus",
+   "setting": "Pavel ve vězení v Římě před popravou",
+   "people": [
+    "Pavel",
+    "Timoteus",
+    "Lukáš",
+    "Marek",
+    "Lóis a Euniké"
+   ],
+   "places": [
+    "Řím",
+    "Efez"
+   ],
+   "features": "Pavlův poslední dopis: „Dobrý boj jsem bojoval“ (4,7).",
+   "themes": [
+    {
+     "title": "Věrnost do konce",
+     "text": "Vytrvat i v utrpení."
+    },
+    {
+     "title": "Písmo",
+     "text": "Celé Písmo je inspirováno Bohem (3,16)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 64 po Kr.",
+     "event": "Neronovo pronásledování křesťanů"
+    },
+    {
+     "date": "cca 66–67 po Kr.",
+     "event": "Sepsání dopisu, Pavlova smrt"
+    }
+   ],
+   "background": "Pavel je znovu ve vězení v Římě a očekává smrt; mnozí ho opustili. Je to jeho poslední dopis.",
+   "connection": "Věrnost Kristu až do konce; Písmo je inspirované Bohem (3,16).",
+   "howToRead": "Čtěte jako závěť – co předává člověk, který ví, že odchází?"
+  },
+  "56": {
+   "author": "Apoštol Pavel.",
+   "date": "Cca 63–65 po Kr.",
+   "theme": "Zdravé učení vede k dobrým skutkům.",
+   "summary": "Titus má na Krétě uspořádat církev a ustanovit starší. Pavel zdůrazňuje, že Boží milost nás vychovává k dobrému životu – ne pro naše skutky, ale z jeho milosrdenství jsme spaseni.",
+   "outline": [
+    "1 Starší",
+    "2 Zdravé učení",
+    "3 Dobré skutky"
+   ],
+   "keyVerses": [
+    "2:11-12",
+    "3:5"
+   ],
+   "purpose": "Pomoci Titovi uspořádat sbory na Krétě a ukázat, že zdravé učení vede k dobrým skutkům.",
+   "recipients": "Titus na Krétě",
+   "setting": "Kréta",
+   "people": [
+    "Pavel",
+    "Titus"
+   ],
+   "places": [
+    "Kréta",
+    "Nikopolis"
+   ],
+   "features": "Krátký souhrn milosti, která vychovává (2,11–14).",
+   "themes": [
+    {
+     "title": "Milost",
+     "text": "Bůh nás zachránil ne pro naše skutky (3,5)."
+    },
+    {
+     "title": "Dobré skutky",
+     "text": "Víra se ukazuje v praktickém životě."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 63–65 po Kr.",
+     "event": "Sepsání dopisu (podle tradice)"
+    }
+   ],
+   "background": "Kréta měla pověst ostrova lhářů (1,12 cituje krétského básníka). Titus měl uspořádat mladé sbory.",
+   "connection": "Boží milost vychovává k dobrému životu (2,11–14).",
+   "howToRead": "Krátký list – všímejte si, jak úzce spojuje učení a život."
+  },
+  "57": {
+   "author": "Apoštol Pavel (z vězení).",
+   "date": "Cca 60–62 po Kr.",
+   "theme": "Odpuštění a nové bratrství.",
+   "summary": "Krátký osobní dopis: otrok Onésimos utekl svému pánu Filemonovi, v Římě uvěřil a Pavel ho posílá zpět – „ne už jako otroka, ale jako milovaného bratra“. Evangelium mění vztahy.",
+   "outline": [
+    "1–7 Díky",
+    "8–25 Prosba za Onésima"
+   ],
+   "keyVerses": [
+    "1:15-16"
+   ],
+   "purpose": "Prosit Filemona, aby přijal uprchlého otroka Onésima jako bratra v Kristu.",
+   "recipients": "Filemon a sbor v jeho domě",
+   "setting": "Pavel ve vězení",
+   "people": [
+    "Pavel",
+    "Filemon",
+    "Onésimos"
+   ],
+   "places": [
+    "Kolosy"
+   ],
+   "features": "Nejkratší Pavlův dopis; ukázka odpuštění v praxi.",
+   "themes": [
+    {
+     "title": "Odpuštění",
+     "text": "Přijmi ho jako mne (v. 17)."
+    },
+    {
+     "title": "Rovnost v Kristu",
+     "text": "Otrok i pán jsou bratři."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 60–62 po Kr.",
+     "event": "Sepsání dopisu"
+    }
+   ],
+   "background": "Otrok Onésimos utekl Filemonovi, setkal se s Pavlem ve vězení a stal se křesťanem. Pavel ho posílá zpět s prosbou.",
+   "connection": "Evangelium mění vztahy – otrok a pán jsou bratři.",
+   "howToRead": "Přečtěte najednou a představte si Filemona při čtení dopisu."
+  },
+  "58": {
+   "author": "Neznámý (navrhováni Pavel, Barnabáš, Apollos aj.).",
+   "date": "Pravděpodobně před rokem 70 po Kr.",
+   "theme": "Kristus je větší.",
+   "summary": "Pro křesťany z židovského prostředí pokoušené vrátit se ke starým způsobům ukazuje, že Ježíš je větší než andělé, Mojžíš i kněží – je dokonalým Veleknězem a jeho oběť platí jednou provždy. Kap. 11 je „galerie víry“.",
+   "outline": [
+    "1–4 Kristus nad anděly a Mojžíšem",
+    "5–10 Velekněz a nová smlouva",
+    "11–13 Víra a vytrvalost"
+   ],
+   "keyVerses": [
+    "4:12",
+    "4:15-16",
+    "11:1",
+    "12:1-2",
+    "13:8"
+   ],
+   "purpose": "Ukázat, že Kristus je větší než andělé, Mojžíš i kněžství, a povzbudit k vytrvalosti ve víře.",
+   "recipients": "Křesťané židovského původu",
+   "setting": "Nejisté; pravděpodobně před zničením chrámu",
+   "people": [
+    "Ježíš (velekněz)",
+    "Melchisedech",
+    "hrdinové víry"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Galerie víry (kap. 11); autor neznámý.",
+   "themes": [
+    {
+     "title": "Kristus je větší",
+     "text": "Jedinečná oběť a věčný velekněz."
+    },
+    {
+     "title": "Víra",
+     "text": "Víra je podstata toho, v co doufáme (11,1)."
+    },
+    {
+     "title": "Vytrvalost",
+     "text": "Běžme vytrvale, upřeme zrak na Ježíše (12,1–2)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "pravděpodobně před 70 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "List je adresován křesťanům, kteří pod tlakem zvažovali návrat k židovským obřadům. Autor není znám.",
+   "connection": "Ježíš je větší než andělé, Mojžíš i kněží; jeho jediná oběť stačí navždy.",
+   "howToRead": "Čtěte spolu s Leviticem. Kapitolu 11 a 12,1–3 si zapamatujte."
+  },
+  "59": {
+   "author": "Jakub, bratr Ježíšův.",
+   "date": "Cca 45–62 po Kr.",
+   "theme": "Živá víra se projevuje skutky.",
+   "summary": "Praktický list v duchu biblické moudrosti: zkoušky, pokušení, ovládání jazyka, péče o chudé, nestrannost a modlitba. „Víra bez skutků je mrtvá.“",
+   "outline": [
+    "1 Zkoušky a moudrost",
+    "2 Víra a skutky",
+    "3–5 Jazyk, pokora, trpělivost"
+   ],
+   "keyVerses": [
+    "1:5",
+    "1:22",
+    "2:17",
+    "4:8",
+    "5:16"
+   ],
+   "purpose": "Vyzvat k živé víře, která se projevuje skutky.",
+   "recipients": "Židovští křesťané v diaspoře",
+   "setting": "Jeruzalém",
+   "people": [
+    "Jakub"
+   ],
+   "places": [
+    "Jeruzalém"
+   ],
+   "features": "Praktická moudrost podobná Přísloví a Kázání na hoře.",
+   "themes": [
+    {
+     "title": "Víra a skutky",
+     "text": "Víra bez skutků je mrtvá (2,17)."
+    },
+    {
+     "title": "Jazyk",
+     "text": "Malý úd, velká moc (kap. 3)."
+    },
+    {
+     "title": "Zkoušky",
+     "text": "Zkoušky vedou k vytrvalosti (1,2–4)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 45–62 po Kr.",
+     "event": "Sepsání listu (Jakub zemřel 62)"
+    }
+   ],
+   "background": "Jakub, Ježíšův bratr a vůdce jeruzalémské církve, píše křesťanům rozptýleným mimo Judsko. Jakub byl popraven roku 62 (Josephus).",
+   "connection": "Jakub často připomíná Ježíšovo Kázání na hoře.",
+   "howToRead": "Krátké praktické oddíly – vyberte si každý den jednu výzvu."
+  },
+  "60": {
+   "author": "Apoštol Petr.",
+   "date": "Cca 62–64 po Kr.",
+   "theme": "Živá naděje v utrpení.",
+   "summary": "Petr píše křesťanům rozptýleným a pronásledovaným v Malé Asii: díky vzkříšení mají živou naději. Jsou „vyvolené pokolení, královské kněžstvo“. Mají snášet utrpení s Kristovým příkladem před očima.",
+   "outline": [
+    "1–2 Spása a nová identita",
+    "2–4 Život mezi pohany",
+    "4–5 Utrpení a pastýři"
+   ],
+   "keyVerses": [
+    "1:3",
+    "2:9",
+    "3:15",
+    "5:7"
+   ],
+   "purpose": "Povzbudit křesťany v utrpení živou nadějí a vyzvat k dobrému životu mezi nevěřícími.",
+   "recipients": "Křesťané v Malé Asii",
+   "setting": "Petr píše z „Babylóna“ (pravděpodobně Říma)",
+   "people": [
+    "Petr",
+    "Silvanus",
+    "Marek"
+   ],
+   "places": [
+    "Pontus, Galacie, Kappadokie, Asie, Bithýnie",
+    "Řím"
+   ],
+   "features": "„Buďte vždy připraveni obhájit naději“ (3,15).",
+   "themes": [
+    {
+     "title": "Naděje",
+     "text": "Znovuzrození k živé naději (1,3)."
+    },
+    {
+     "title": "Utrpení",
+     "text": "Trpět pro dobro má smysl."
+    },
+    {
+     "title": "Identita",
+     "text": "Vyvolený rod, Boží lid (2,9)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 62–64 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Křesťané v Malé Asii čelili pomluvám a pronásledování. Petr píše z „Babylóna“ – pravděpodobně Říma.",
+   "connection": "Kristus trpěl za nás a dal nám příklad (2,21–24).",
+   "howToRead": "Hledejte slovo „naděje“ a rady pro život mezi nevěřícími."
+  },
+  "61": {
+   "author": "Apoštol Petr (někteří badatelé uvažují o pozdějším autorovi).",
+   "date": "Cca 64–68 po Kr.",
+   "theme": "Růst v poznání a bdělost proti bludům.",
+   "summary": "Petr vybízí k růstu ctností, varuje před falešnými učiteli a vysvětluje, proč Pán dosud nepřišel: „Jeden den je u Pána jako tisíc let“ – čeká, aby všichni došli k pokání.",
+   "outline": [
+    "1 Růst ve víře",
+    "2 Falešní učitelé",
+    "3 Den Páně"
+   ],
+   "keyVerses": [
+    "1:3",
+    "3:9",
+    "3:18"
+   ],
+   "purpose": "Varovat před falešnými učiteli a vyzvat k růstu v poznání.",
+   "recipients": "Stejní čtenáři jako 1. Petrův",
+   "setting": "Krátce před Petrovou smrtí",
+   "people": [
+    "Petr"
+   ],
+   "places": [
+    "Řím"
+   ],
+   "features": "Bůh je trpělivý, nechce, aby někdo zahynul (3,9).",
+   "themes": [
+    {
+     "title": "Růst",
+     "text": "Rostěte v milosti a poznání (3,18)."
+    },
+    {
+     "title": "Pravda",
+     "text": "Rozlišovat falešné učení."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 64–68 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Petr píše krátce před smrtí; varuje před falešnými učiteli. Autorství je mezi badateli diskutováno.",
+   "connection": "Petr byl očitým svědkem Ježíšovy slávy (1,16–18).",
+   "howToRead": "Čtěte spolu s Judovým listem – mají podobnou látku."
+  },
+  "62": {
+   "author": "Apoštol Jan.",
+   "date": "Cca 85–95 po Kr.",
+   "theme": "Bůh je světlo a láska.",
+   "summary": "Jan dává jistotu těm, kdo věří: kdo vyznává hříchy, tomu Bůh odpouští. Láska k bratřím, poslušnost a víra v Ježíše, který přišel v těle, jsou znakem pravých Božích dětí. „Bůh je láska.“",
+   "outline": [
+    "1–2 Chodit ve světle",
+    "3–4 Láska",
+    "5 Jistota věčného života"
+   ],
+   "keyVerses": [
+    "1:9",
+    "3:1",
+    "4:8",
+    "4:19",
+    "5:13"
+   ],
+   "purpose": "Upevnit jistotu víry a varovat před bludy; ukázat, že Bůh je světlo a láska.",
+   "recipients": "Sbory v okolí Efezu",
+   "setting": "Efez",
+   "people": [
+    "Jan"
+   ],
+   "places": [
+    "Efez"
+   ],
+   "features": "Jednoduchý jazyk, hluboké myšlenky; „Bůh je láska“ (4,8).",
+   "themes": [
+    {
+     "title": "Láska",
+     "text": "Milujeme, protože on první miloval nás (4,19)."
+    },
+    {
+     "title": "Světlo",
+     "text": "Chodit ve světle, vyznávat hříchy (1,9)."
+    },
+    {
+     "title": "Jistota",
+     "text": "Abyste věděli, že máte věčný život (5,13)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 85–95 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Ve sborech kolem Efezu se šířilo učení, které popíralo, že Ježíš přišel v těle. Někteří ze sborů odešli.",
+   "connection": "Bůh je láska a projevil ji v Ježíši (4,9–10).",
+   "howToRead": "Jednoduchý jazyk – ale hluboké myšlenky. Čtěte pomalu, opakovaně."
+  },
+  "63": {
+   "author": "Apoštol Jan („starší“).",
+   "date": "Cca 85–95 po Kr.",
+   "theme": "Pravda a láska.",
+   "summary": "Krátký dopis „vyvolené paní a jejím dětem“ (pravděpodobně sboru): žít v pravdě a lásce a nepřijímat bludné učitele.",
+   "outline": [
+    "1–6 Žít v lásce",
+    "7–13 Varování"
+   ],
+   "keyVerses": [
+    "1:6"
+   ],
+   "purpose": "Vyzvat k lásce a varovat před bludnými učiteli.",
+   "recipients": "„Vyvolená paní a její děti“ – pravděpodobně sbor",
+   "setting": "Efez",
+   "people": [
+    "Jan (Starší)"
+   ],
+   "places": [
+    "Efez"
+   ],
+   "features": "Jeden z nejkratších dopisů Bible.",
+   "themes": [
+    {
+     "title": "Pravda a láska",
+     "text": "Láska se drží pravdy."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 85–95 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Putující kazatelé byli přijímáni do domů; Jan varuje před těmi, kdo šíří bludy.",
+   "connection": "Pravda a láska patří k sobě.",
+   "howToRead": "Přečtete za dvě minuty – spolu s 3. Janovým."
+  },
+  "64": {
+   "author": "Apoštol Jan („starší“).",
+   "date": "Cca 85–95 po Kr.",
+   "theme": "Pohostinnost k Božím služebníkům.",
+   "summary": "Osobní dopis Gaiovi, který pohostinně přijímá misionáře, na rozdíl od panovačného Diotrefa. „Nenapodobuj zlé, ale dobré.“",
+   "outline": [
+    "1–8 Chvála Gaia",
+    "9–15 Diotrefés a Démétrios"
+   ],
+   "keyVerses": [
+    "1:4",
+    "1:11"
+   ],
+   "purpose": "Pochválit Gaia za pohostinnost a varovat před Diotrefovou pýchou.",
+   "recipients": "Gaius",
+   "setting": "Efez",
+   "people": [
+    "Jan (Starší)",
+    "Gaius",
+    "Diotrefés",
+    "Démétrios"
+   ],
+   "places": [
+    "Efez"
+   ],
+   "features": "Nejkratší kniha Nového zákona.",
+   "themes": [
+    {
+     "title": "Pohostinnost",
+     "text": "Podporovat Boží služebníky."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 85–95 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Gaius přijímal misionáře; Diotrefés je odmítal a toužil po moci.",
+   "connection": "Pohostinnost je spoluúčastí na šíření pravdy.",
+   "howToRead": "Krátké – všímejte si tří postav a jejich postojů."
+  },
+  "65": {
+   "author": "Juda, bratr Jakubův (a Ježíšův).",
+   "date": "Cca 65–80 po Kr.",
+   "theme": "Zápasit o víru.",
+   "summary": "Juda chtěl psát o spáse, ale musí varovat před bezbožnými lidmi, kteří zneužívají milost. Končí jedním z nejkrásnějších chvalozpěvů Bibli: „Tomu, který vás může uchránit od pádu…“",
+   "outline": [
+    "1–4 Důvod dopisu",
+    "5–16 Varování",
+    "17–25 Výzva a chvalozpěv"
+   ],
+   "keyVerses": [
+    "1:3",
+    "1:24-25"
+   ],
+   "purpose": "Vyzvat k zápasu o víru proti bezbožným učitelům.",
+   "recipients": "Křesťané ohrožení bludy",
+   "setting": "Nejisté",
+   "people": [
+    "Juda",
+    "Michael"
+   ],
+   "places": [],
+   "features": "Krásný závěrečný chvalozpěv (v. 24–25).",
+   "themes": [
+    {
+     "title": "Zápas o víru",
+     "text": "Bojujte za víru jednou provždy danou (v. 3)."
+    },
+    {
+     "title": "Ochrana",
+     "text": "Bůh vás může zachovat od pádu (v. 24)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 65–80 po Kr.",
+     "event": "Sepsání listu"
+    }
+   ],
+   "background": "Do sborů pronikli lidé, kteří zneužívali milost jako omluvu nemravnosti. Juda cituje i židovské spisy (Henoch).",
+   "connection": "Bůh dokáže zachovat své lidi od pádu (24–25).",
+   "howToRead": "Čtěte spolu s 2. Petrovým; nezapomeňte na závěrečný chvalozpěv."
+  },
+  "66": {
+   "author": "Jan na ostrově Patmos.",
+   "date": "Cca 95 po Kr.",
+   "theme": "Kristovo vítězství a nové stvoření.",
+   "summary": "Apokalyptická kniha plná symbolů. Začíná dopisy sedmi církvím, pak odhaluje nebeský trůn, Beránka a sérii soudů. Zlo je poraženo a vše vrcholí novým nebem a novou zemí, kde Bůh setře každou slzu.",
+   "outline": [
+    "1–3 Dopisy sedmi církvím",
+    "4–5 Trůn a Beránek",
+    "6–20 Soudy a vítězství",
+    "21–22 Nové stvoření"
+   ],
+   "keyVerses": [
+    "1:8",
+    "3:20",
+    "21:4",
+    "22:13",
+    "22:20"
+   ],
+   "purpose": "Povzbudit pronásledované křesťany vizí Kristova vítězství a nového stvoření.",
+   "recipients": "Sedm sborů v Malé Asii",
+   "setting": "Ostrov Patmos",
+   "people": [
+    "Jan",
+    "Ježíš (Beránek)",
+    "sedm sborů"
+   ],
+   "places": [
+    "Patmos",
+    "Efez",
+    "Smyrna",
+    "Pergamon",
+    "Thyatira",
+    "Sardy",
+    "Filadelfie",
+    "Laodikeia"
+   ],
+   "features": "Apokalyptická kniha plná symbolů a čísel; vykladači se liší v pojetí (historické, futuristické, symbolické).",
+   "themes": [
+    {
+     "title": "Kristovo vítězství",
+     "text": "Beránek zvítězil."
+    },
+    {
+     "title": "Věrnost",
+     "text": "Buď věrný až do smrti (2,10)."
+    },
+    {
+     "title": "Nové stvoření",
+     "text": "Bůh setře každou slzu (21,4)."
+    }
+   ],
+   "timeline": [
+    {
+     "date": "cca 95 po Kr.",
+     "event": "Jan na Patmu, za císaře Domitiána"
+    }
+   ],
+   "background": "Za Domitiána sílil tlak na uctívání císaře. Jan píše sedmi sborům v Malé Asii v obrazné (apokalyptické) řeči.",
+   "connection": "Beránek, který byl zabit, vítězí; kniha končí novým stvořením a voláním „Přijď, Pane Ježíši“.",
+   "howToRead": "Neztraťte se v detailech. Začněte dopisy sborům (kap. 2–3) a závěrem (21–22). Výklady se liší – držte se hlavního poselství: Kristus vítězí."
+  }
+ }
+}

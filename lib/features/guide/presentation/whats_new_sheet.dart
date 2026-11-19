@@ -17,7 +17,7 @@ const _items = [
         'Zacharjáš, Malachiáš), krále Jehúa, Gechazího, Gamaliele, Šimona '
         'mága, Herodiady, Rode, Eutycha i lidí z evangelií – chudé vdovy, '
         'kananejské ženy, bohatého mladíka nebo lotra na kříži. Strom Bible '
-        'má 11 nových příběhů.',
+        'má 11 nových příběhů a kvíz 16 otázek o nich.',
   ),
   (
     Icons.auto_awesome,

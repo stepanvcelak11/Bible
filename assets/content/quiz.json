@@ -3241,6 +3241,262 @@
     2,
     2
    ]
+  },
+  {
+   "category": "people",
+   "question": "Který učitel zákona radil veleradě, aby apoštoly nechala být?",
+   "answers": [
+    "Gamaliel",
+    "Nikodém",
+    "Kaifáš",
+    "Annáš"
+   ],
+   "ref": [
+    44,
+    5,
+    34,
+    34
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Jak se jmenoval mladík, který usnul při Pavlově kázání a spadl z okna?",
+   "answers": [
+    "Eutychus",
+    "Timoteus",
+    "Onésimos",
+    "Tychikus"
+   ],
+   "ref": [
+    44,
+    20,
+    9,
+    9
+   ]
+  },
+  {
+   "category": "people",
+   "question": "Kdo poznal Petrův hlas za dveřmi, ale z radosti mu zapomněl otevřít?",
+   "answers": [
+    "Služka Rode",
+    "Marie, matka Marka",
+    "Lýdie",
+    "Tabita"
+   ],
+   "ref": [
+    44,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Co chtěl Šimon mág od apoštolů koupit za peníze?",
+   "answers": [
+    "Moc udílet Ducha svatého",
+    "Místo mezi apoštoly",
+    "Uzdravovací olej",
+    "Petrovy klíče"
+   ],
+   "ref": [
+    44,
+    8,
+    18,
+    19
+   ]
+  },
+  {
+   "category": "church",
+   "question": "Který prorok svázal sám sebe Pavlovým pásem?",
+   "answers": [
+    "Agabos",
+    "Silas",
+    "Barnabáš",
+    "Apollos"
+   ],
+   "ref": [
+    44,
+    21,
+    10,
+    11
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kolik dala do chrámové pokladnice chudá vdova?",
+   "answers": [
+    "Dvě drobné mince",
+    "Jeden denár",
+    "Desátek z úrody",
+    "Stříbrný talent"
+   ],
+   "ref": [
+    41,
+    12,
+    42,
+    42
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Komu Ježíš na kříži řekl: „Dnes budeš se mnou v ráji“?",
+   "answers": [
+    "Kajícímu lotrovi",
+    "Janovi",
+    "Setníkovi",
+    "Marii Magdalské"
+   ],
+   "ref": [
+    42,
+    23,
+    43,
+    43
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Kterému sluhovi velekněze uťal Petr ucho?",
+   "answers": [
+    "Malchovi",
+    "Kaifášovi",
+    "Barabášovi",
+    "Alexandrovi"
+   ],
+   "ref": [
+    43,
+    18,
+    10,
+    10
+   ]
+  },
+  {
+   "category": "gospels",
+   "question": "Jak dlouho trpěla žena krvotokem, než se dotkla Ježíšova roucha?",
+   "answers": [
+    "Dvanáct let",
+    "Tři roky",
+    "Sedm let",
+    "Čtyřicet let"
+   ],
+   "ref": [
+    41,
+    5,
+    25,
+    25
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Kdo byl pomazán za krále Izraele, aby vyhladil Achabův dům?",
+   "answers": [
+    "Jehú",
+    "Jóram",
+    "Ozeáš",
+    "Jarobeám"
+   ],
+   "ref": [
+    12,
+    9,
+    6,
+    7
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Který Elíšův služebník si vzal Naamánovy dary a dostal jeho malomocenství?",
+   "answers": [
+    "Gechazí",
+    "Báruk",
+    "Jónatan",
+    "Ebed-melek"
+   ],
+   "ref": [
+    12,
+    5,
+    27,
+    27
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Proti kterému městu prorokoval Nahum?",
+   "answers": [
+    "Ninive",
+    "Babylón",
+    "Týr",
+    "Damašek"
+   ],
+   "ref": [
+    34,
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Který prorok slíbil, že Bůh vyleje svého Ducha na všechny lidi?",
+   "answers": [
+    "Jóel",
+    "Ámos",
+    "Abdijáš",
+    "Ageus"
+   ],
+   "ref": [
+    29,
+    3,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Který prorok povzbuzoval lid po návratu z exilu ke stavbě chrámu slovy „Pomyslete na své cesty“?",
+   "answers": [
+    "Ageus",
+    "Malachiáš",
+    "Ezechiel",
+    "Daniel"
+   ],
+   "ref": [
+    37,
+    1,
+    5,
+    5
+   ]
+  },
+  {
+   "category": "kings",
+   "question": "Kterou knihou končí Starý zákon v křesťanských Biblích?",
+   "answers": [
+    "Malachiáš",
+    "Zacharjáš",
+    "Daniel",
+    "Nehemjáš"
+   ],
+   "ref": [
+    39,
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "category": "ot",
+   "question": "Jak zemřeli Áronovi synové Nádab a Abíhú?",
+   "answers": [
+    "Pohltil je oheň od Hospodina",
+    "Otrávili se",
+    "Spolkla je země",
+    "Zabil je Mojžíš"
+   ],
+   "ref": [
+    3,
+    10,
+    2,
+    2
+   ]
   }
  ]
 }

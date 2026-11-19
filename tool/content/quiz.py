@@ -449,3 +449,47 @@ q('wisdom', 'Který žalm je Davidovou kajícnou modlitbou po hříchu s Batšeb
   '51', ['23', '1', '100'], 'Ž 51,1-2')
 q('wisdom', 'Jak začíná Žalm 46: „Bůh je naše …“',
   'Útočiště a síla', ['Světlo a spása', 'Pastýř', 'Píseň'], 'Ž 46,2')
+
+
+# --- Otázky k dalším postavám ---------------------------------------------------
+q("people", "Který učitel zákona radil veleradě, aby apoštoly nechala být?",
+  "Gamaliel", ["Nikodém", "Kaifáš", "Annáš"], "Sk 5,34")
+q("people", "Jak se jmenoval mladík, který usnul při Pavlově kázání a spadl "
+  "z okna?",
+  "Eutychus", ["Timoteus", "Onésimos", "Tychikus"], "Sk 20,9")
+q("people", "Kdo poznal Petrův hlas za dveřmi, ale z radosti mu zapomněl "
+  "otevřít?",
+  "Služka Rode", ["Marie, matka Marka", "Lýdie", "Tabita"], "Sk 12,13-14")
+q("church", "Co chtěl Šimon mág od apoštolů koupit za peníze?",
+  "Moc udílet Ducha svatého", ["Místo mezi apoštoly", "Uzdravovací olej",
+                              "Petrovy klíče"], "Sk 8,18-19")
+q("church", "Který prorok svázal sám sebe Pavlovým pásem?",
+  "Agabos", ["Silas", "Barnabáš", "Apollos"], "Sk 21,10-11")
+q("gospels", "Kolik dala do chrámové pokladnice chudá vdova?",
+  "Dvě drobné mince", ["Jeden denár", "Desátek z úrody", "Stříbrný talent"],
+  "Mk 12,42")
+q("gospels", "Komu Ježíš na kříži řekl: „Dnes budeš se mnou v ráji“?",
+  "Kajícímu lotrovi", ["Janovi", "Setníkovi", "Marii Magdalské"],
+  "L 23,43")
+q("gospels", "Kterému sluhovi velekněze uťal Petr ucho?",
+  "Malchovi", ["Kaifášovi", "Barabášovi", "Alexandrovi"], "J 18,10")
+q("gospels", "Jak dlouho trpěla žena krvotokem, než se dotkla Ježíšova "
+  "roucha?",
+  "Dvanáct let", ["Tři roky", "Sedm let", "Čtyřicet let"], "Mk 5,25")
+q("kings", "Kdo byl pomazán za krále Izraele, aby vyhladil Achabův dům?",
+  "Jehú", ["Jóram", "Ozeáš", "Jarobeám"], "2Kr 9,6-7")
+q("kings", "Který Elíšův služebník si vzal Naamánovy dary a dostal jeho "
+  "malomocenství?",
+  "Gechazí", ["Báruk", "Jónatan", "Ebed-melek"], "2Kr 5,27")
+q("kings", "Proti kterému městu prorokoval Nahum?",
+  "Ninive", ["Babylón", "Týr", "Damašek"], "Na 1,1")
+q("kings", "Který prorok slíbil, že Bůh vyleje svého Ducha na všechny lidi?",
+  "Jóel", ["Ámos", "Abdijáš", "Ageus"], "Jl 3,1")
+q("kings", "Který prorok povzbuzoval lid po návratu z exilu ke stavbě "
+  "chrámu slovy „Pomyslete na své cesty“?",
+  "Ageus", ["Malachiáš", "Ezechiel", "Daniel"], "Ag 1,5")
+q("kings", "Kterou knihou končí Starý zákon v křesťanských Biblích?",
+  "Malachiáš", ["Zacharjáš", "Daniel", "Nehemjáš"], "Mal 1,1")
+q("ot", "Jak zemřeli Áronovi synové Nádab a Abíhú?",
+  "Pohltil je oheň od Hospodina", ["Otrávili se", "Spolkla je země",
+                                   "Zabil je Mojžíš"], "Lv 10,2")

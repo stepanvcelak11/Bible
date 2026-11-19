@@ -122,6 +122,9 @@
   "pravy",
   "pred",
   "pri",
+  "prisel",
+  "prisla",
+  "prisli",
   "pro",
   "proc",
   "proto",
@@ -696,6 +699,10 @@
    "id": "forgive",
    "label": "Odpuštění",
    "triggers": [
+    "krivd",
+    "mi_ublizil",
+    "mi_ublizila",
+    "mi_ublizili",
     "odpous",
     "odpus",
     "odpust",
@@ -1363,9 +1370,7 @@
     "tezk",
     "trpet",
     "trpi",
-    "utrpen",
-    "zkous",
-    "zkousk"
+    "utrpen"
    ],
    "terms": [
     "bolest",
@@ -1659,7 +1664,8 @@
    ],
    "links": [
     "s:guilt",
-    "s:newstart"
+    "s:newstart",
+    "s:disappointed"
    ]
   },
   {
@@ -1763,6 +1769,7 @@
    "triggers": [
     "bratri_a_sestry",
     "cirkev",
+    "cirkv",
     "komunit",
     "sbor",
     "shromazd",
@@ -1844,7 +1851,11 @@
     "kamaradk",
     "kamos",
     "pratel",
-    "pritel"
+    "pritel=",
+    "pritele=",
+    "pritelem=",
+    "priteli=",
+    "pritelkyn"
    ],
    "terms": [
     "pratel",
@@ -3409,8 +3420,12 @@
    "label": "Plány do budoucna",
    "triggers": [
     "budoucnost_v",
+    "nova_prace",
+    "novou_praci",
     "plan",
-    "planov"
+    "planov",
+    "stehov",
+    "velka_zmena"
    ],
    "terms": [
     "srdce_cloveka",
@@ -3624,8 +3639,7 @@
    ],
    "links": [
     "s:hope",
-    "s:sadness",
-    "s:disappointed"
+    "s:sadness"
    ]
   },
   {
@@ -4127,7 +4141,14 @@
    "id": "knowledge",
    "label": "Poznání",
    "triggers": [
+    "maturit",
+    "pisemk",
     "poznan",
+    "skol",
+    "student",
+    "studi",
+    "uceni",
+    "ucit_se",
     "vedeni"
    ],
    "terms": [
@@ -4294,9 +4315,13 @@
    "id": "busy",
    "label": "Shon a uspěchanost",
    "triggers": [
+    "moc_prace",
     "nestiham",
+    "nezvladam_to",
     "shon",
     "spech",
+    "toho_moc",
+    "zahlcen",
     "zaneprazdn"
    ],
    "terms": [

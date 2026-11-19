@@ -103,6 +103,9 @@ class BigQuestion implements Stemmed {
 /// Slova, která nic neurčují: výplň otázek („kde je ten příběh, jak…“).
 const _filler = {
   'proc',
+  'prisel',
+  'prisla',
+  'prisli',
   'kdy',
   'kam',
   'cim',

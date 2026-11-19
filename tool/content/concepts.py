@@ -37,6 +37,7 @@ lidi rict říct rika říká rekl řekl muze může muzeme můžeme chce chci
 máme mame můžu můžeš musí musím musíme dělat dělá jít jde vždy vždycky
 nikdy někdy hodně opravdu pravý pravá pravé skutečný jenom jediný
 potřebuju potřebuji potřebujeme chceme chtít umí umět najít najde
+přišel přišla přišli
 """.split()
 
 # --- Bůh a jeho vztah k nám ---------------------------------------------------
@@ -188,7 +189,7 @@ c("comfort", "Útěcha a povzbuzení",
   "útěch utěš povzbuz podpoř obejm",
   "utěš potěš těš= útěch", "s:sadness")
 c("suffering", "Utrpení a bolest",
-  "utrpen trpí trpět bolest bolí těžk zkouš zkoušk krize problém",
+  "utrpen trpí trpět bolest bolí těžk krize problém",
   "trpí trpěl soužen utrpen zkouš bolest", "t:suffering")
 c("illness", "Nemoc a uzdravení",
   "nemoc nemocn uzdrav lékař nemocnic zdraví",
@@ -250,7 +251,7 @@ c("marriage", "Manželství a láska",
   "manžel manželk svatb partner láska_mezi",
   "manžel ženich nevěsta= nevěstu= nevěsty= žena= ženu=", "t:marriage s:love h:bride")
 c("friend", "Přátelství",
-  "přítel přátel kamarád",
+  "přítel= přítele= příteli= přítelem= přítelkyn přátel kamarád",
   "přítel přátel", "t:friendship")
 c("serve", "Služba druhým",
   "služ sloužit pomáh dobrovol pokor",
@@ -718,7 +719,7 @@ _LINKS = {
     "reconcile": "s:conflict t:reconciliation", "friend": "s:friendship",
     "persecution": "s:mocked t:persecution", "serve": "s:serve t:service",
     "witness": "s:witness", "knowledge": "s:study", "plans": "s:change",
-    "despair": "s:disappointed", "mercy": "t:mercy", "glory": "t:glory",
+    "failure": "s:disappointed", "mercy": "t:mercy", "glory": "t:glory",
     "presence": "t:presence", "name": "t:names", "sovereign": "t:providence",
     "christmas": "t:incarnation", "parables": "t:parables",
     "miracles": "t:miracles t:signs", "covenant": "t:covenant",
@@ -744,3 +745,15 @@ for _c in C:
         if _l not in _c["links"]:
             _c["links"].append(_l)
 assert not _LINKS, _LINKS
+
+# Další spouštěcí slova pro situace z běžného života.
+_MORE_TRIGGERS = {
+    "busy": "toho_moc moc_práce zahlcen nezvládám_to",
+    "church": "církv",
+    "plans": "stěhov velká_změna nová_práce novou_práci",
+    "knowledge": "škol student studi učení učit_se písemk maturit",
+    "forgive": "mi_ublížil mi_ublížila mi_ublížili křivd",
+}
+for _c in C:
+    _c["triggers"] += _MORE_TRIGGERS.pop(_c["id"], "").split()
+assert not _MORE_TRIGGERS, _MORE_TRIGGERS

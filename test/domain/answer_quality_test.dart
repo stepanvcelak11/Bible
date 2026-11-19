@@ -133,4 +133,22 @@ void main() {
     // „žít“ samo o sobě nespouští krizovou odpověď.
     expect(ask('jak žít podle Bible')!.question, 'Jak žít podle Bible?');
   });
+
+  test('pojmy u běžných situací', () {
+    List<String> labels(String q) => [
+      for (final c in lexicon.detect(q)) c.label,
+    ];
+    expect(labels('přišel jsem o práci'), ['Práce']);
+    expect(
+      labels('pořád závidím sestře'),
+      isNot(contains('Církev a společenství')),
+    );
+    expect(labels('pořád závidím sestře'), contains('Závist'));
+    expect(labels('mám toho moc'), contains('Shon a uspěchanost'));
+    expect(labels('mám zkoušky ve škole'), contains('Poznání'));
+    expect(labels('mám zkoušky ve škole'), isNot(contains('Utrpení a bolest')));
+    expect(labels('čeká mě stěhování'), contains('Plány do budoucna'));
+    expect(labels('bratr mi ublížil'), contains('Odpuštění'));
+    expect(labels('jsem zklamaný z církve'), contains('Církev a společenství'));
+  });
 }
